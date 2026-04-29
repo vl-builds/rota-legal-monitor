@@ -22,13 +22,13 @@ async function enforceRateLimit(url: string): Promise<void> {
 
 const CONTENT_LANG_RE = /^(en|pt|de|es|nl|fr|it)/
 
-function detectLanguage(response: Response): string {
+export function detectLanguage(response: Response): string {
   const cl = response.headers.get('content-language') ?? ''
   const match = cl.split(',')[0]?.trim().toLowerCase().match(CONTENT_LANG_RE)
   return match?.[0] ?? 'en'
 }
 
-function looksEmpty(html: string): boolean {
+export function looksEmpty(html: string): boolean {
   // Remove script e style antes de contar texto para nao confundir JS bundle com conteudo real
   const withoutCode = html
     .replace(/<script[\s\S]*?<\/script>/gi, '')

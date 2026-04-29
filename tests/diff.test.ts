@@ -1,165 +1,301 @@
-import { describe, it, expect } from "bun:test";
-import { diffSnapshots } from "@/diff/detect-changes";
-import type { CountryData } from "@/extractors/schema";
+import { describe, it, expect } from 'bun:test'
+import { diffSnapshots } from '@/diff/detect-changes'
+import type { CountryData, VisaType, MoneyAmount } from '@/extractors/schema'
 
-function baseSnapshot(): CountryData {
+// ---- fixtures ----------------------------------------------------------------
+
+function makeVisa(overrides: Partial<VisaType> = {}): VisaType {
+  return {
+    id: 'test-visa',
+    name: 'Test Visa',
+    nameOriginal: 'Test Visa Original',
+    description: 'Visto de teste',
+    eligibility: ['graduacao completa'],
+    requirements: {
+      documents: [],
+      incomeRequirement: null,
+      qualificationsRequired: [],
+      languageRequired: null,
+    },
+    process: {
+      steps: [{ order: 1, name: 'Solicitar', description: 'Enviar requerimento', estimatedDays: 30 }],
+      estimatedDuration: '30 dias',
+      fees: [],
+      applicationLocation: 'origem',
+    },
+    rights: {
+      canWork: true,
+      canBringFamily: false,
+      canChangeEmployer: false,
+      pathToResidency: null,
+      pathToCitizenship: null,
+    },
+    relevanceForDelivery: 'direct',
+    notes: null,
+    ...overrides,
+  }
+}
+
+function makeSnapshot(overrides: Partial<CountryData> = {}): CountryData {
   return {
     meta: {
-      country: "nl",
-      countryName: "Holanda",
-      lastUpdated: "2026-01-01T06:00:00Z",
-      schemaVersion: "1.0.0",
-      sources: [],
+      country: 'nl',
+      countryName: 'Holanda',
+      lastUpdated: '2026-01-01T00:00:00Z',
+      schemaVersion: '1.0.0',
+      sources: [
+        {
+          url: 'https://example.com',
+          fetchedAt: '2026-01-01T00:00:00Z',
+          status: 'ok',
+          contentLanguage: 'en',
+        },
+      ],
     },
     forBrazilians: {
       schengenVisaFree: true,
       maxStayDaysAsTourist: 90,
-      workPermitNeeded: true,
+      workPermitNeeded: false,
       specialAgreements: [],
-      notes: "Nota base",
+      notes: '',
     },
-    visaTypes: [
-      {
-        id: "highly-skilled-migrant",
-        name: "Migrante Altamente Qualificado",
-        nameOriginal: "Highly Skilled Migrant",
-        description: "Visto para profissionais qualificados",
-        eligibility: ["Oferta de emprego de sponsor reconhecido"],
-        requirements: {
-          documents: [],
-          incomeRequirement: { amount: 5688, currency: "EUR", period: "monthly", notes: null },
-          qualificationsRequired: [],
-          languageRequired: null,
-        },
-        process: {
-          steps: [{ order: 1, name: "Aplicacao", description: "Submeter pedido", estimatedDays: null }],
-          estimatedDuration: "2 a 4 semanas",
-          fees: [{ amount: 380, currency: "EUR", period: "one-time", notes: null }],
-          applicationLocation: "destino",
-        },
-        rights: {
-          canWork: true,
-          canBringFamily: true,
-          canChangeEmployer: false,
-          pathToResidency: { yearsRequired: 5, conditions: [] },
-          pathToCitizenship: null,
-        },
-        relevanceForDelivery: "low",
-        notes: null,
-      },
-    ],
+    visaTypes: [],
     generalRequirements: {
-      passportValidity: "Minimo 6 meses",
+      passportValidity: 'Minimo 6 meses',
       proofOfFunds: null,
-      healthInsurance: { required: true, mustBeLocal: true, minimumCoverage: null, notes: "" },
+      healthInsurance: { required: false, mustBeLocal: false, minimumCoverage: null, notes: '' },
       cleanCriminalRecord: true,
       vaccinations: [],
     },
     recentChanges: [],
     reliability: {
-      extractedBy: "llm",
-      extractionConfidence: "high",
+      extractedBy: 'llm',
+      extractionConfidence: 'medium',
       humanReviewedAt: null,
       knownIssues: [],
     },
-  };
+    ...overrides,
+  }
 }
 
-describe("diffSnapshots", () => {
-  it("retorna hasChanges=false quando snapshots sao identicos", () => {
-    const snap = baseSnapshot();
-    const result = diffSnapshots(snap, snap);
-    expect(result.hasChanges).toBe(false);
-    expect(result.high).toHaveLength(0);
-    expect(result.medium).toHaveLength(0);
-  });
+const EUR = (amount: number): MoneyAmount => ({
+  amount,
+  currency: 'EUR',
+  period: 'monthly',
+  notes: null,
+})
 
-  it("detecta mudanca de incomeRequirement como alta relevancia", () => {
-    const before = baseSnapshot();
-    const after = baseSnapshot();
-    after.visaTypes[0]!.requirements.incomeRequirement = {
-      amount: 5876,
-      currency: "EUR",
-      period: "monthly",
-      notes: null,
-    };
-    after.meta.lastUpdated = "2026-02-01T06:00:00Z";
+// ---- sem mudancas ------------------------------------------------------------
 
-    const result = diffSnapshots(before, after);
-    expect(result.hasChanges).toBe(true);
-    const highPaths = result.high.map((c) => c.path);
-    expect(highPaths.some((p) => p.includes("incomeRequirement"))).toBe(true);
-  });
+describe('diffSnapshots sem mudancas', () => {
+  it('snapshots identicos retornam hasChanges false', () => {
+    const snap = makeSnapshot()
+    const result = diffSnapshots(snap, snap)
+    expect(result.hasChanges).toBe(false)
+    expect(result.high).toHaveLength(0)
+    expect(result.medium).toHaveLength(0)
+    expect(result.low).toHaveLength(0)
+  })
 
-  it("detecta adicao de visaType como alta relevancia", () => {
-    const before = baseSnapshot();
-    const after = baseSnapshot();
-    after.visaTypes.push({
-      id: "orientation-year",
-      name: "Ano de Orientacao",
-      nameOriginal: "Orientation Year",
-      description: "Visto para recém-graduados",
-      eligibility: ["Diploma recente"],
-      requirements: { documents: [], incomeRequirement: null, qualificationsRequired: [], languageRequired: null },
-      process: { steps: [], estimatedDuration: "Nao especificado", fees: [], applicationLocation: "destino" },
-      rights: { canWork: true, canBringFamily: false, canChangeEmployer: true, pathToResidency: null, pathToCitizenship: null },
-      relevanceForDelivery: "indirect",
-      notes: null,
-    });
-    after.meta.lastUpdated = "2026-02-01T06:00:00Z";
+  it('preenche country e snapshotDate do snapshot mais recente', () => {
+    const snap = makeSnapshot({
+      meta: { ...makeSnapshot().meta, country: 'pt', lastUpdated: '2026-05-01T00:00:00Z' },
+    })
+    const result = diffSnapshots(snap, snap)
+    expect(result.country).toBe('pt')
+    expect(result.snapshotDate).toBe('2026-05-01T00:00:00Z')
+  })
+})
 
-    const result = diffSnapshots(before, after);
-    expect(result.high.some((c) => c.path === "visaTypes.added")).toBe(true);
-  });
+// ---- relevancia alta ---------------------------------------------------------
 
-  it("detecta remocao de visaType como alta relevancia", () => {
-    const before = baseSnapshot();
-    const after = baseSnapshot();
-    after.visaTypes = [];
-    // workPermitNeeded precisa ser false para passar no schema
-    after.forBrazilians.workPermitNeeded = false;
-    after.meta.lastUpdated = "2026-02-01T06:00:00Z";
+describe('diffSnapshots relevancia alta', () => {
+  it('schengenVisaFree mudou → high', () => {
+    const fb = makeSnapshot().forBrazilians
+    const before = makeSnapshot({ forBrazilians: { ...fb, schengenVisaFree: true } })
+    const after = makeSnapshot({ forBrazilians: { ...fb, schengenVisaFree: false } })
+    const result = diffSnapshots(before, after)
+    expect(result.high).toHaveLength(1)
+    expect(result.high[0]!.path).toBe('forBrazilians.schengenVisaFree')
+    expect(result.high[0]!.before).toBe(true)
+    expect(result.high[0]!.after).toBe(false)
+  })
 
-    const result = diffSnapshots(before, after);
-    expect(result.high.some((c) => c.path === "visaTypes.removed")).toBe(true);
-  });
+  it('workPermitNeeded mudou → high', () => {
+    const fb = makeSnapshot().forBrazilians
+    const before = makeSnapshot({ forBrazilians: { ...fb, workPermitNeeded: false } })
+    const after = makeSnapshot({ forBrazilians: { ...fb, workPermitNeeded: true } })
+    const result = diffSnapshots(before, after)
+    expect(result.high.some((c) => c.path === 'forBrazilians.workPermitNeeded')).toBe(true)
+  })
 
-  it("detecta mudanca em workPermitNeeded como alta relevancia", () => {
-    const before = baseSnapshot();
-    const after = baseSnapshot();
-    after.forBrazilians.workPermitNeeded = false;
-    after.visaTypes = [];
-    after.meta.lastUpdated = "2026-02-01T06:00:00Z";
+  it('maxStayDaysAsTourist mudou → high', () => {
+    const fb = makeSnapshot().forBrazilians
+    const before = makeSnapshot({ forBrazilians: { ...fb, maxStayDaysAsTourist: 90 } })
+    const after = makeSnapshot({ forBrazilians: { ...fb, maxStayDaysAsTourist: 30 } })
+    const result = diffSnapshots(before, after)
+    expect(result.high.some((c) => c.path === 'forBrazilians.maxStayDaysAsTourist')).toBe(true)
+  })
 
-    const result = diffSnapshots(before, after);
-    expect(result.high.some((c) => c.path === "forBrazilians.workPermitNeeded")).toBe(true);
-  });
+  it('visaType adicionado → high com path visaTypes.added', () => {
+    const before = makeSnapshot()
+    const after = makeSnapshot({ visaTypes: [makeVisa()] })
+    const result = diffSnapshots(before, after)
+    const change = result.high.find((c) => c.path === 'visaTypes.added')
+    expect(change).toBeDefined()
+    expect(change!.after).toBe('Test Visa')
+    expect(change!.before).toBeNull()
+  })
 
-  it("detecta mudanca em notes como media relevancia", () => {
-    const before = baseSnapshot();
-    const after = baseSnapshot();
-    after.forBrazilians.notes = "Nota atualizada com nova informacao";
-    after.meta.lastUpdated = "2026-02-01T06:00:00Z";
+  it('visaType removido → high com path visaTypes.removed', () => {
+    const before = makeSnapshot({ visaTypes: [makeVisa()] })
+    const after = makeSnapshot()
+    const result = diffSnapshots(before, after)
+    const change = result.high.find((c) => c.path === 'visaTypes.removed')
+    expect(change).toBeDefined()
+    expect(change!.before).toBe('Test Visa')
+    expect(change!.after).toBeNull()
+  })
 
-    const result = diffSnapshots(before, after);
-    expect(result.medium.some((c) => c.path === "forBrazilians.notes")).toBe(true);
-    expect(result.high).toHaveLength(0);
-  });
+  it('incomeRequirement do visto mudou → high', () => {
+    const req = (income: MoneyAmount | null) => ({
+      documents: [],
+      incomeRequirement: income,
+      qualificationsRequired: [],
+      languageRequired: null,
+    })
+    const before = makeSnapshot({ visaTypes: [makeVisa({ requirements: req(EUR(4_000)) })] })
+    const after = makeSnapshot({ visaTypes: [makeVisa({ requirements: req(EUR(5_000)) })] })
+    const result = diffSnapshots(before, after)
+    expect(result.high.some((c) => c.path.includes('incomeRequirement'))).toBe(true)
+  })
 
-  it("gera markdown com secoes de relevancia", () => {
-    const before = baseSnapshot();
-    const after = baseSnapshot();
-    after.visaTypes[0]!.requirements.incomeRequirement = {
-      amount: 6000,
-      currency: "EUR",
-      period: "monthly",
-      notes: null,
-    };
-    after.meta.lastUpdated = "2026-02-01T06:00:00Z";
+  it('fees do visto mudaram → high', () => {
+    const proc = makeVisa().process
+    const before = makeSnapshot({ visaTypes: [makeVisa({ process: { ...proc, fees: [EUR(300)] } })] })
+    const after = makeSnapshot({ visaTypes: [makeVisa({ process: { ...proc, fees: [EUR(400)] } })] })
+    const result = diffSnapshots(before, after)
+    expect(result.high.some((c) => c.path.includes('fees'))).toBe(true)
+  })
 
-    const result = diffSnapshots(before, after);
-    expect(result.markdown).toContain("## Mudancas detectadas: NL");
-    expect(result.markdown).toContain("### Alta relevancia");
-    expect(result.markdown).toContain("incomeRequirement");
-  });
-});
+  it('proofOfFunds mudou de valor para null → high', () => {
+    const gr = makeSnapshot().generalRequirements
+    const before = makeSnapshot({ generalRequirements: { ...gr, proofOfFunds: EUR(3_000) } })
+    const after = makeSnapshot({ generalRequirements: { ...gr, proofOfFunds: null } })
+    const result = diffSnapshots(before, after)
+    expect(result.high.some((c) => c.path.includes('proofOfFunds'))).toBe(true)
+  })
+
+  it('novo recentChange major → high', () => {
+    const before = makeSnapshot()
+    const after = makeSnapshot({
+      recentChanges: [{
+        date: '2026-04-01',
+        title: 'Nova lei de imigracao',
+        summary: 'Requisitos de renda alterados',
+        severity: 'major',
+        affects: ['skilled-worker'],
+        sourceUrl: 'https://example.com/lei',
+      }],
+    })
+    const result = diffSnapshots(before, after)
+    expect(result.high.some((c) => c.path.includes('recentChanges'))).toBe(true)
+  })
+})
+
+// ---- relevancia media --------------------------------------------------------
+
+describe('diffSnapshots relevancia media', () => {
+  it('description do visto mudou → medium', () => {
+    const before = makeSnapshot({ visaTypes: [makeVisa({ description: 'Descricao antiga' })] })
+    const after = makeSnapshot({ visaTypes: [makeVisa({ description: 'Descricao nova' })] })
+    const result = diffSnapshots(before, after)
+    expect(result.medium.some((c) => c.path.includes('description'))).toBe(true)
+    expect(result.high.some((c) => c.path.includes('description'))).toBe(false)
+  })
+
+  it('estimatedDuration mudou → medium', () => {
+    const proc = makeVisa().process
+    const before = makeSnapshot({ visaTypes: [makeVisa({ process: { ...proc, estimatedDuration: '30 dias' } })] })
+    const after = makeSnapshot({ visaTypes: [makeVisa({ process: { ...proc, estimatedDuration: '60 dias' } })] })
+    const result = diffSnapshots(before, after)
+    expect(result.medium.some((c) => c.path.includes('estimatedDuration'))).toBe(true)
+  })
+
+  it('rights do visto mudaram → medium', () => {
+    const before = makeSnapshot({ visaTypes: [makeVisa({ rights: { ...makeVisa().rights, canBringFamily: false } })] })
+    const after = makeSnapshot({ visaTypes: [makeVisa({ rights: { ...makeVisa().rights, canBringFamily: true } })] })
+    const result = diffSnapshots(before, after)
+    expect(result.medium.some((c) => c.path.includes('rights'))).toBe(true)
+  })
+
+  it('eligibility do visto mudou → medium', () => {
+    const before = makeSnapshot({ visaTypes: [makeVisa({ eligibility: ['req A'] })] })
+    const after = makeSnapshot({ visaTypes: [makeVisa({ eligibility: ['req A', 'req B'] })] })
+    const result = diffSnapshots(before, after)
+    expect(result.medium.some((c) => c.path.includes('eligibility'))).toBe(true)
+  })
+
+  it('novo recentChange minor → medium', () => {
+    const before = makeSnapshot()
+    const after = makeSnapshot({
+      recentChanges: [{
+        date: '2026-04-01',
+        title: 'Atualizacao de formularios',
+        summary: 'Formulario atualizado',
+        severity: 'minor',
+        affects: ['all'],
+        sourceUrl: 'https://example.com',
+      }],
+    })
+    const result = diffSnapshots(before, after)
+    expect(result.medium.some((c) => c.path.includes('recentChanges'))).toBe(true)
+    expect(result.high.some((c) => c.path.includes('recentChanges'))).toBe(false)
+  })
+
+  it('passportValidity mudou → medium', () => {
+    const gr = makeSnapshot().generalRequirements
+    const before = makeSnapshot({ generalRequirements: { ...gr, passportValidity: '6 meses' } })
+    const after = makeSnapshot({ generalRequirements: { ...gr, passportValidity: '3 meses' } })
+    const result = diffSnapshots(before, after)
+    expect(result.medium.some((c) => c.path.includes('passportValidity'))).toBe(true)
+  })
+})
+
+// ---- relevancia baixa --------------------------------------------------------
+
+describe('diffSnapshots relevancia baixa', () => {
+  it('name do visto mudou → low (nao e high nem medium)', () => {
+    const before = makeSnapshot({ visaTypes: [makeVisa({ name: 'Nome antigo' })] })
+    const after = makeSnapshot({ visaTypes: [makeVisa({ name: 'Nome novo' })] })
+    const result = diffSnapshots(before, after)
+    expect(result.low.some((c) => c.path.includes('.name'))).toBe(true)
+    expect(result.high.some((c) => c.path.includes('.name'))).toBe(false)
+    expect(result.medium.some((c) => c.path.includes('.name'))).toBe(false)
+  })
+})
+
+// ---- markdown ----------------------------------------------------------------
+
+describe('diffSnapshots markdown', () => {
+  it('sem mudancas inclui mensagem de ausencia', () => {
+    const snap = makeSnapshot()
+    const result = diffSnapshots(snap, snap)
+    expect(result.markdown).toContain('Nenhuma mudanca detectada')
+  })
+
+  it('com mudancas alta inclui secao Alta relevancia', () => {
+    const fb = makeSnapshot().forBrazilians
+    const before = makeSnapshot({ forBrazilians: { ...fb, schengenVisaFree: true } })
+    const after = makeSnapshot({ forBrazilians: { ...fb, schengenVisaFree: false } })
+    const result = diffSnapshots(before, after)
+    expect(result.markdown).toContain('Alta relevancia')
+    expect(result.markdown).toContain('schengenVisaFree')
+  })
+
+  it('inclui o codigo do pais em maiusculas no titulo', () => {
+    const snap = makeSnapshot()
+    const result = diffSnapshots(snap, snap)
+    expect(result.markdown).toContain('NL')
+  })
+})
