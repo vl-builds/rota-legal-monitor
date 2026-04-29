@@ -1,52 +1,46 @@
 import type { SourceConfig } from '@/types'
 
-// vistos.mne.gov.pt tambem usa CA do governo portugues nao incluida no bundle do Bun/Node.
+// aima.gov.pt usa CA do governo portugues nao incluida no bundle do Bun/Node.
 // ignoreSSL: true ativa tls.rejectUnauthorized=false apenas para essas requests.
+// vistos.mne.gov.pt bloqueia IPs do GitHub Actions (ERR_CONNECTION_CLOSED), por isso
+// usamos AIMA + portaldascomunidades como fontes primarias.
 export const ptSource: SourceConfig = {
   countryCode: 'pt',
   countryName: 'Portugal',
-  primaryLanguage: 'en',
-  acceptableLanguages: ['en', 'pt'],
+  primaryLanguage: 'pt',
+  acceptableLanguages: ['pt', 'en'],
 
   urls: [
     {
-      url: 'https://vistos.mne.gov.pt/en/national-visas/general-information/type-of-visa',
+      url: 'https://aima.gov.pt/pt/area-do-cidadao/vistos-e-autorizacoes-de-residencia',
       contentType: 'visa-overview',
       promptHint:
-        'Pagina oficial do MNE portugues listando todos os tipos de visto nacional (D). Liste cada tipo: D1 (subordinado), D2 (independente), D3 (altamente qualificado), D7 (rendimentos proprios), D8 (nomade digital), CPLP. Para cada um indique o objetivo e se permite trabalhar.',
+        'Pagina oficial da AIMA (agencia de migracao de Portugal) listando todos os tipos de visto nacional (D) e autorizacoes de residencia. Liste cada tipo: D1 (subordinado), D2 (independente), D3 (altamente qualificado), D7 (rendimentos proprios), D8 (nomade digital). Para cada um indique o objetivo e se permite trabalhar.',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/residency',
+      url: 'https://aima.gov.pt/pt/area-do-cidadao/cplp',
       contentType: 'visa-requirements',
       promptHint:
-        'Documentos necessarios para visto de residencia para trabalho em Portugal (D1 e equivalentes). Extraia a lista completa de documentos exigidos, traducoes necessarias, apostilamentos e qualquer exigencia especifica para brasileiros (Tratado de Amizade Luso-Brasileiro e Estatuto de Igualdade).',
+        'Pagina da AIMA sobre o acordo CPLP para cidadaos de paises de lingua portuguesa, incluindo brasileiros. Extraia: vantagens especificas para brasileiros, Estatuto de Igualdade, Tratado de Amizade Luso-Brasileiro, documentos necessarios e como difere do processo padrao de visto.',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/cplp-en',
-      contentType: 'visa-requirements',
+      url: 'https://aima.gov.pt/pt',
+      contentType: 'visa-overview',
       promptHint:
-        'Documentos para o visto de mobilidade CPLP para cidadaos de paises de lingua portuguesa, incluindo brasileiros. Extraia: lista de documentos, elegibilidade especifica para brasileiros, como difere do visto D padrao, duracao e se permite trabalhar em Portugal durante o periodo de validade.',
+        'Pagina principal da AIMA (antiga SEF). Extraia informacoes gerais sobre requisitos de entrada e residencia em Portugal para cidadaos de fora da UE, incluindo requisitos de seguro saude, prova de meios de subsistencia e antecedentes criminais.',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/job-seeker-visa',
+      url: 'https://www.portaldascomunidades.mne.gov.pt/pt/vistos-e-legalizacao',
       contentType: 'visa-requirements',
       promptHint:
-        'Visto de busca de emprego em Portugal (job seeker visa). Extraia: documentos necessarios, duracao maxima, atividades permitidas durante a busca, e como converter para visto de trabalho apos conseguir emprego.',
+        'Portal do Ministerio dos Negocios Estrangeiros portugues sobre vistos e legalizacao. Extraia: tipos de visto nacional disponíveis, documentos exigidos, taxas em EUR, prazos de processamento e informacoes especificas para brasileiros (Tratado de Amizade, Estatuto de Igualdade).',
       fetchFrequency: 'monthly',
-      ignoreSSL: true,
-    },
-    {
-      url: 'https://vistos.mne.gov.pt/en/national-visas/general-information/fees',
-      contentType: 'fees',
-      promptHint:
-        'Tabela oficial de taxas consulares para vistos nacionais portugueses. Extraia cada valor em EUR por tipo de visto. Registre se ha isencoes ou reducoes para brasileiros ou cidadaos CPLP. Nao estime: use apenas valores explicitamente listados.',
-      fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
   ],
