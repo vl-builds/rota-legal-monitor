@@ -1,0 +1,465 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Brasileiros são isentos de visto de turista para estadias de até 90 dias no espaço Schengen, mas precisam de visto nacional para trabalhar em Portugal.",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "Seguro de saúde é geralmente exigido para vistos nacionais",
+      "required": true
+    },
+    "passportValidity": "Válido por pelo menos 3 meses após a data prevista de saída",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "pt",
+    "countryName": "Portugal",
+    "lastUpdated": "2026-04-29T08:40:37.340Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:36:24.124Z",
+        "status": "failed",
+        "url": "https://vistos.mne.gov.pt/en/national-visas/general-information/type-of-visa"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:37:45.886Z",
+        "status": "ok",
+        "url": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/residency"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:38:21.439Z",
+        "status": "ok",
+        "url": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/cplp-en"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:38:51.201Z",
+        "status": "failed",
+        "url": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/job-seeker-visa"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:40:12.608Z",
+        "status": "ok",
+        "url": "https://vistos.mne.gov.pt/en/national-visas/general-information/fees"
+      }
+    ]
+  },
+  "recentChanges": [
+    {
+      "affects": [
+        "Cidadãos brasileiros",
+        "Cidadãos de países CPLP",
+        "Trabalhadores",
+        "Estagiários"
+      ],
+      "date": "2021-07-17",
+      "severity": "major",
+      "sourceUrl": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/cplp-en",
+      "summary": "Acordo sobre Mobilidade entre os Estados-Membros da Comunidade dos Países de Língua Portuguesa foi assinado em Luanda, estabelecendo regime especial de visto para cidadãos CPLP.",
+      "title": "Acordo de Mobilidade CPLP assinado"
+    }
+  ],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": [
+      "2 URL(s) falharam na extracao"
+    ]
+  },
+  "visaTypes": [
+    {
+      "description": "Visto de residência para exercer atividade profissional subordinada (emprego) em Portugal",
+      "eligibility": [
+        "Trabalhadores com contrato de trabalho ou promessa de contrato de trabalho em Portugal",
+        "Profissionais que irão exercer atividade laboral subordinada",
+        "Pessoas com oferta de emprego de empregador português"
+      ],
+      "id": "d1-trabalho-subordinado",
+      "name": "Visto de Residência para Trabalho Subordinado",
+      "nameOriginal": "Residence Visa for Subordinate Work Activity",
+      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
+            "estimatedDays": null,
+            "name": "Submissão de documentos obrigatórios iniciais",
+            "order": 1
+          },
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "estimatedDays": null,
+            "name": "Análise pelo posto consular",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "isCritical": true,
+            "name": "Documentos obrigatórios iniciais"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de residência para exercer atividade profissional independente ou como empreendedor migrante em Portugal",
+      "eligibility": [
+        "Trabalhadores autônomos",
+        "Empreendedores migrantes",
+        "Profissionais que irão exercer atividade por conta própria"
+      ],
+      "id": "d2-trabalho-independente",
+      "name": "Visto de Residência para Trabalho Independente ou Empreendedor Migrante",
+      "nameOriginal": "Residence Visa for Independent Work Activity or Migrant Entrepreneur",
+      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
+            "estimatedDays": null,
+            "name": "Submissão de documentos obrigatórios iniciais",
+            "order": 1
+          },
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "estimatedDays": null,
+            "name": "Análise pelo posto consular",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "isCritical": true,
+            "name": "Documentos obrigatórios iniciais"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de residência para fins de ensino, atividade altamente qualificada ou cultural, ou atividade subordinada altamente qualificada",
+      "eligibility": [
+        "Profissionais altamente qualificados",
+        "Professores e educadores",
+        "Profissionais de atividades culturais",
+        "Trabalhadores subordinados altamente qualificados"
+      ],
+      "id": "d3-atividade-altamente-qualificada",
+      "name": "Visto de Residência para Atividade Altamente Qualificada",
+      "nameOriginal": "Residence Visa for Teaching Purposes, Highly Qualified or Cultural Activity, or Highly Qualified Subordinate Activity",
+      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
+            "estimatedDays": null,
+            "name": "Submissão de documentos obrigatórios iniciais",
+            "order": 1
+          },
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "estimatedDays": null,
+            "name": "Análise pelo posto consular",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "isCritical": true,
+            "name": "Documentos obrigatórios iniciais"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de residência para exercício de atividade profissional realizada remotamente",
+      "eligibility": [
+        "Profissionais que exercem atividade profissional de forma remota",
+        "Trabalhadores remotos para empresas estrangeiras",
+        "Nômades digitais"
+      ],
+      "id": "digital-nomad",
+      "name": "Visto de Residência para Nômades Digitais",
+      "nameOriginal": "Residence Visa for Digital Nomads",
+      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
+            "estimatedDays": null,
+            "name": "Submissão de documentos obrigatórios iniciais",
+            "order": 1
+          },
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "estimatedDays": null,
+            "name": "Análise pelo posto consular",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
+            "isCritical": true,
+            "name": "Documentos obrigatórios iniciais"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Regime de visto aplicável a nacionais de Estados onde o Acordo sobre Mobilidade entre os Estados-Membros da Comunidade dos Países de Língua Portuguesa assinado em Luanda em 17 de julho de 2021 está em vigor. Este visto facilita a mobilidade de cidadãos CPLP, incluindo brasileiros, para Portugal.",
+      "eligibility": [
+        "Cidadãos de países membros da CPLP onde o Acordo de Mobilidade está em vigor",
+        "Aplicável a trabalhadores com termo de responsabilidade de entidade anfitriã",
+        "Aplicável a estagiários com termo de responsabilidade",
+        "Brasileiros que buscam trabalho qualificado em Portugal",
+        "Cidadãos CPLP com garantia de acomodação e alimentação por cidadão português ou estrangeiro residente"
+      ],
+      "id": "cplp-mobility",
+      "name": "Visto de Mobilidade CPLP",
+      "nameOriginal": "CPLP Agreement Visa",
+      "notes": "Este visto é especificamente para cidadãos CPLP, incluindo brasileiros, e oferece requisitos simplificados em comparação com o visto D padrão. A principal diferença é a isenção de comprovação de meios de subsistência mediante apresentação de termo de responsabilidade. A duração específica e detalhes sobre caminho para residência não estão especificados nesta página.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado na página",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Reunir todos os documentos necessários, incluindo formulário de visto preenchido, passaporte válido, fotografias, certificado de antecedentes criminais e termo de responsabilidade da entidade anfitriã ou fiador em Portugal.",
+            "estimatedDays": null,
+            "name": "Preparação da documentação",
+            "order": 1
+          },
+          {
+            "description": "Apresentar o pedido de visto no consulado ou embaixada de Portugal no país de origem ou residência.",
+            "estimatedDays": null,
+            "name": "Submissão do pedido",
+            "order": 2
+          },
+          {
+            "description": "As autoridades portuguesas analisam a documentação e verificam os requisitos do Acordo CPLP.",
+            "estimatedDays": null,
+            "name": "Análise do pedido",
+            "order": 3
+          },
+          {
+            "description": "Após aprovação, o visto é emitido e o requerente pode viajar para Portugal.",
+            "estimatedDays": null,
+            "name": "Decisão e emissão do visto",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Formulário preenchido e devidamente assinado pelo requerente. Para menores e incapazes, deve ser assinado pelo tutor legal.",
+            "isCritical": true,
+            "name": "Formulário de pedido de visto nacional"
+          },
+          {
+            "description": "2 fotos iguais, tipo passaporte, recentes e em boas condições para identificar o requerente (1 para o formulário).",
+            "isCritical": true,
+            "name": "Fotografias tipo passaporte"
+          },
+          {
+            "description": "Válido por 3 meses após a data estimada de retorno. Fotocópia do passaporte (dados biográficos).",
+            "isCritical": true,
+            "name": "Passaporte ou documento de viagem"
+          },
+          {
+            "description": "Se for de nacionalidade diferente daquela do país onde está solicitando o visto, válido por mais tempo que a data de expiração do visto solicitado.",
+            "isCritical": false,
+            "name": "Comprovante de situação regular"
+          },
+          {
+            "description": "Emitido pela autoridade competente do país de nacionalidade do requerente ou do país onde residiu por mais de um ano (exceto para requerentes menores de dezesseis anos), com Apostila de Haia (se aplicável) ou legalizado.",
+            "isCritical": true,
+            "name": "Certificado de antecedentes criminais"
+          },
+          {
+            "description": "Assinado pela entidade anfitriã para estagiários ou trabalhadores, ou pela organização responsável por programas de intercâmbio estudantil ou voluntário. Cidadãos CPLP são isentos de apresentar comprovante de meios de subsistência mediante apresentação deste documento.",
+            "isCritical": true,
+            "name": "Termo de responsabilidade da entidade anfitriã"
+          },
+          {
+            "description": "Com assinatura reconhecida, assinado por cidadão português ou estrangeiro qualificado com documento de residência em Portugal, que garanta alimentação e acomodação para o requerente do visto, bem como custos de remoção em caso de permanência irregular, acompanhado de: Declaração de Imposto de Renda do subscritor (último ano) e extrato bancário do subscritor (últimos 3 meses).",
+            "isCritical": false,
+            "name": "Termo de responsabilidade alternativo"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto nacional português para fins de trabalho, residência ou outras atividades de longa duração em Portugal.",
+      "eligibility": [
+        "Trabalhadores com contrato de trabalho ou promessa de contrato em Portugal",
+        "Profissionais qualificados com oferta de emprego",
+        "Trabalhadores autônomos com atividade comprovada"
+      ],
+      "id": "visto-nacional-trabalho",
+      "name": "Visto Nacional",
+      "nameOriginal": "National Visa",
+      "notes": "A página menciona que existem isenções (Exemptions) e procedimentos de recurso (Appeal procedures), mas os detalhes específicos não estão disponíveis no conteúdo fornecido. Recomenda-se consultar a seção completa de isenções no site oficial para verificar se há descontos ou isenções para cidadãos brasileiros ou da CPLP.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Variável conforme o tipo de visto",
+        "fees": [
+          {
+            "amount": 110,
+            "currency": "EUR",
+            "notes": "Taxa de processamento de pedido de visto nacional. Podem existir isenções - consulte seção de Exemptions no site oficial.",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Pagamento da taxa de processamento de 110€",
+            "estimatedDays": null,
+            "name": "Pagamento da taxa",
+            "order": 1
+          },
+          {
+            "description": "Submissão do pedido de visto com toda a documentação necessária",
+            "estimatedDays": null,
+            "name": "Submissão do pedido",
+            "order": 2
+          },
+          {
+            "description": "Análise do pedido pelas autoridades consulares",
+            "estimatedDays": null,
+            "name": "Análise do pedido",
+            "order": 3
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passaporte com validade mínima de 3 meses após a data prevista de saída",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Formulário de candidatura devidamente preenchido e assinado",
+            "isCritical": true,
+            "name": "Formulário de pedido de visto"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "conditions": [
+            "Residência legal contínua por 5 anos",
+            "Conhecimento básico de português",
+            "Sem antecedentes criminais"
+          ],
+          "yearsRequired": 5
+        },
+        "pathToResidency": {
+          "conditions": [
+            "Aprovação do visto nacional permite solicitar autorização de residência em Portugal"
+          ],
+          "yearsRequired": 1
+        }
+      }
+    }
+  ]
+}

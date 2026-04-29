@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-04-29T10:58:30.527Z",
+  "schemaVersion": "1.0.0",
+  "countries": [
+    {
+      "code": "de",
+      "name": "Alemanha",
+      "lastUpdated": "2026-04-29T08:44:53.379Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 12,
+      "confidence": "medium"
+    },
+    {
+      "code": "ie",
+      "name": "Irlanda",
+      "lastUpdated": "2026-04-29T09:02:12.826Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 15,
+      "confidence": "medium"
+    },
+    {
+      "code": "nl",
+      "name": "Holanda",
+      "lastUpdated": "2026-04-28T22:48:27.136Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 22,
+      "confidence": "medium"
+    },
+    {
+      "code": "pt",
+      "name": "Portugal",
+      "lastUpdated": "2026-04-29T10:58:30.472Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 4,
+      "confidence": "medium"
+    }
+  ]
+}

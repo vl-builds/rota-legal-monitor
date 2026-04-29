@@ -1,7 +1,7 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Brasileiros são isentos de visto de turista para estadias de até 90 dias no espaço Schengen, mas precisam de visto nacional para trabalhar em Portugal.",
+    "notes": "Brasileiros podem entrar em Portugal sem visto como turistas (Schengen) por até 90 dias, mas necessitam de visto de residência específico para trabalho remoto.",
     "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
@@ -11,321 +11,130 @@
     "healthInsurance": {
       "minimumCoverage": null,
       "mustBeLocal": false,
-      "notes": "Seguro de saúde é geralmente exigido para vistos nacionais",
-      "required": true
+      "notes": "Não mencionado nos requisitos desta autorização específica",
+      "required": false
     },
-    "passportValidity": "Válido por pelo menos 3 meses após a data prevista de saída",
+    "passportValidity": "Passaporte válido",
     "proofOfFunds": null,
     "vaccinations": []
   },
   "meta": {
     "country": "pt",
     "countryName": "Portugal",
-    "lastUpdated": "2026-04-29T08:40:37.340Z",
+    "lastUpdated": "2026-04-29T10:58:30.472Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T08:36:24.124Z",
-        "status": "failed",
-        "url": "https://vistos.mne.gov.pt/en/national-visas/general-information/type-of-visa"
-      },
-      {
-        "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T08:37:45.886Z",
+        "fetchedAt": "2026-04-29T10:53:53.415Z",
         "status": "ok",
-        "url": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/residency"
+        "url": "https://aima.gov.pt/pt/trabalhar"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T08:38:21.439Z",
+        "fetchedAt": "2026-04-29T10:55:30.173Z",
         "status": "ok",
-        "url": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/cplp-en"
+        "url": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-visto-de-residencia-art-88-o-n-o-1"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T08:38:51.201Z",
-        "status": "failed",
-        "url": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/job-seeker-visa"
-      },
-      {
-        "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T08:40:12.608Z",
+        "fetchedAt": "2026-04-29T10:56:05.904Z",
         "status": "ok",
-        "url": "https://vistos.mne.gov.pt/en/national-visas/general-information/fees"
+        "url": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T10:57:23.137Z",
+        "status": "ok",
+        "url": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-atividade-altamente-qualificada-art-90-o"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T10:58:05.841Z",
+        "status": "ok",
+        "url": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-o-exercicio-de-atividade-profissional-prestada-de-forma-remota-com-visto-de-residencia-para-o-exe"
       }
     ]
   },
   "recentChanges": [
     {
       "affects": [
-        "Cidadãos brasileiros",
-        "Cidadãos de países CPLP",
-        "Trabalhadores",
-        "Estagiários"
+        "Autorização de Residência para Atividade Profissional Subordinada com Dispensa de Visto",
+        "Manifestações de interesse nos termos do artigo 88.º, n.º 2"
       ],
-      "date": "2021-07-17",
+      "date": "2024-06-04",
       "severity": "major",
-      "sourceUrl": "https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/cplp-en",
-      "summary": "Acordo sobre Mobilidade entre os Estados-Membros da Comunidade dos Países de Língua Portuguesa foi assinado em Luanda, estabelecendo regime especial de visto para cidadãos CPLP.",
-      "title": "Acordo de Mobilidade CPLP assinado"
+      "sourceUrl": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-",
+      "summary": "O artigo 88.º, n.º 2 do REPSAE (Regime Especial de Entrada, Permanência, Saída e Afastamento de Estrangeiros) foi revogado pelo Decreto-Lei n.º 37-A/2024, de 3 de junho, com efeitos a partir de 4 de junho de 2024. Esta alteração impacta diretamente o processo de autorização de residência para atividade profissional subordinada com dispensa de visto.",
+      "title": "Revogação do Artigo 88.º, n.º 2 do REPSAE"
     }
   ],
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
     "humanReviewedAt": null,
-    "knownIssues": [
-      "2 URL(s) falharam na extracao"
-    ]
+    "knownIssues": []
   },
   "visaTypes": [
     {
-      "description": "Visto de residência para exercer atividade profissional subordinada (emprego) em Portugal",
+      "description": "Autorização de residência destinada a cidadãos estrangeiros que pretendem exercer atividade profissional subordinada (emprego) em Portugal, mediante visto de residência prévio.",
       "eligibility": [
-        "Trabalhadores com contrato de trabalho ou promessa de contrato de trabalho em Portugal",
-        "Profissionais que irão exercer atividade laboral subordinada",
-        "Pessoas com oferta de emprego de empregador português"
+        "Possuir visto de residência válido para exercício de atividade profissional subordinada",
+        "Ter contrato de trabalho ou vínculo laboral com entidade patronal portuguesa",
+        "Não ter condenação por crime punível com pena superior a um ano",
+        "Não estar em período de interdição de entrada em território nacional",
+        "Não constar no Sistema de Informação Schengen (SIS) para recusa de entrada"
       ],
-      "id": "d1-trabalho-subordinado",
-      "name": "Visto de Residência para Trabalho Subordinado",
-      "nameOriginal": "Residence Visa for Subordinate Work Activity",
-      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
+      "id": "autorizacao-residencia-trabalho-subordinado",
+      "name": "Autorização de Residência para Exercício de Atividade Profissional Subordinada",
+      "nameOriginal": "Autorização de Residência para Exercício de Atividade Profissional Subordinada com Visto de Residência",
+      "notes": "O titular pode exercer atividade profissional independente se solicitar a substituição do título de residência. A autorização é válida por 2 anos e renovável por períodos sucessivos de 3 anos. Fundamentação legal: Artigo 88.º, n.º 1 do REPSAE, conjugado com Artigos 51.º, 53.º e 54.º n.º 1 do Dec. Reg. n.º 84/2007.",
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
-            "estimatedDays": null,
-            "name": "Submissão de documentos obrigatórios iniciais",
-            "order": 1
-          },
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "estimatedDays": null,
-            "name": "Análise pelo posto consular",
-            "order": 2
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "isCritical": true,
-            "name": "Documentos obrigatórios iniciais"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Visto de residência para exercer atividade profissional independente ou como empreendedor migrante em Portugal",
-      "eligibility": [
-        "Trabalhadores autônomos",
-        "Empreendedores migrantes",
-        "Profissionais que irão exercer atividade por conta própria"
-      ],
-      "id": "d2-trabalho-independente",
-      "name": "Visto de Residência para Trabalho Independente ou Empreendedor Migrante",
-      "nameOriginal": "Residence Visa for Independent Work Activity or Migrant Entrepreneur",
-      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
-            "estimatedDays": null,
-            "name": "Submissão de documentos obrigatórios iniciais",
-            "order": 1
-          },
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "estimatedDays": null,
-            "name": "Análise pelo posto consular",
-            "order": 2
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "isCritical": true,
-            "name": "Documentos obrigatórios iniciais"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": true,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Visto de residência para fins de ensino, atividade altamente qualificada ou cultural, ou atividade subordinada altamente qualificada",
-      "eligibility": [
-        "Profissionais altamente qualificados",
-        "Professores e educadores",
-        "Profissionais de atividades culturais",
-        "Trabalhadores subordinados altamente qualificados"
-      ],
-      "id": "d3-atividade-altamente-qualificada",
-      "name": "Visto de Residência para Atividade Altamente Qualificada",
-      "nameOriginal": "Residence Visa for Teaching Purposes, Highly Qualified or Cultural Activity, or Highly Qualified Subordinate Activity",
-      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
-            "estimatedDays": null,
-            "name": "Submissão de documentos obrigatórios iniciais",
-            "order": 1
-          },
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "estimatedDays": null,
-            "name": "Análise pelo posto consular",
-            "order": 2
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "isCritical": true,
-            "name": "Documentos obrigatórios iniciais"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Visto de residência para exercício de atividade profissional realizada remotamente",
-      "eligibility": [
-        "Profissionais que exercem atividade profissional de forma remota",
-        "Trabalhadores remotos para empresas estrangeiras",
-        "Nômades digitais"
-      ],
-      "id": "digital-nomad",
-      "name": "Visto de Residência para Nômades Digitais",
-      "nameOriginal": "Residence Visa for Digital Nomads",
-      "notes": "A exigência de seguro de saúde pode ser dispensada no caso de Acordo Bilateral/Internacional entre Portugal e o país de origem relativo à assistência médica que qualifique certos beneficiários com seguro reconhecido, como no caso do Brasil (PB4) e do Reino Unido (S1)",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Os documentos referidos são os documentos obrigatórios iniciais a serem apresentados",
-            "estimatedDays": null,
-            "name": "Submissão de documentos obrigatórios iniciais",
-            "order": 1
-          },
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "estimatedDays": null,
-            "name": "Análise pelo posto consular",
-            "order": 2
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "O posto consular pode solicitar documentos adicionais a seu critério",
-            "isCritical": true,
-            "name": "Documentos obrigatórios iniciais"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": true,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Regime de visto aplicável a nacionais de Estados onde o Acordo sobre Mobilidade entre os Estados-Membros da Comunidade dos Países de Língua Portuguesa assinado em Luanda em 17 de julho de 2021 está em vigor. Este visto facilita a mobilidade de cidadãos CPLP, incluindo brasileiros, para Portugal.",
-      "eligibility": [
-        "Cidadãos de países membros da CPLP onde o Acordo de Mobilidade está em vigor",
-        "Aplicável a trabalhadores com termo de responsabilidade de entidade anfitriã",
-        "Aplicável a estagiários com termo de responsabilidade",
-        "Brasileiros que buscam trabalho qualificado em Portugal",
-        "Cidadãos CPLP com garantia de acomodação e alimentação por cidadão português ou estrangeiro residente"
-      ],
-      "id": "cplp-mobility",
-      "name": "Visto de Mobilidade CPLP",
-      "nameOriginal": "CPLP Agreement Visa",
-      "notes": "Este visto é especificamente para cidadãos CPLP, incluindo brasileiros, e oferece requisitos simplificados em comparação com o visto D padrão. A principal diferença é a isenção de comprovação de meios de subsistência mediante apresentação de termo de responsabilidade. A duração específica e detalhes sobre caminho para residência não estão especificados nesta página.",
-      "process": {
-        "applicationLocation": "origem",
+        "applicationLocation": "ambos",
         "estimatedDuration": "Não especificado na página",
         "fees": [],
         "steps": [
           {
-            "description": "Reunir todos os documentos necessários, incluindo formulário de visto preenchido, passaporte válido, fotografias, certificado de antecedentes criminais e termo de responsabilidade da entidade anfitriã ou fiador em Portugal.",
+            "description": "Solicitar visto de residência para trabalho subordinado no Consulado Português no país de origem, apresentando contrato de trabalho ou promessa de contrato",
             "estimatedDays": null,
-            "name": "Preparação da documentação",
+            "name": "Obtenção do visto de residência no país de origem",
             "order": 1
           },
           {
-            "description": "Apresentar o pedido de visto no consulado ou embaixada de Portugal no país de origem ou residência.",
+            "description": "Entrar em território português com o visto de residência válido",
             "estimatedDays": null,
-            "name": "Submissão do pedido",
+            "name": "Entrada em Portugal",
             "order": 2
           },
           {
-            "description": "As autoridades portuguesas analisam a documentação e verificam os requisitos do Acordo CPLP.",
+            "description": "Realizar agendamento para submissão do pedido de autorização de residência em qualquer Loja AIMA (ou através de plataforma eletrónica quando implementada)",
             "estimatedDays": null,
-            "name": "Análise do pedido",
+            "name": "Agendamento na AIMA",
             "order": 3
           },
           {
-            "description": "Após aprovação, o visto é emitido e o requerente pode viajar para Portugal.",
+            "description": "Providenciar todos os documentos exigidos: passaporte, visto válido, declaração da entidade patronal, comprovativo de morada, NIF, NISS e formulários",
             "estimatedDays": null,
-            "name": "Decisão e emissão do visto",
+            "name": "Reunir documentação necessária",
             "order": 4
+          },
+          {
+            "description": "Comparecer à Loja AIMA na data agendada e entregar o pedido com todos os documentos",
+            "estimatedDays": null,
+            "name": "Submissão presencial do pedido",
+            "order": 5
+          },
+          {
+            "description": "AIMA analisa o pedido, verifica requisitos legais e ausência de impedimentos (antecedentes criminais, alertas SIS, etc.)",
+            "estimatedDays": null,
+            "name": "Análise e decisão",
+            "order": 6
+          },
+          {
+            "description": "Caso aprovado, é emitido o título de residência temporária válido por 2 anos",
+            "estimatedDays": null,
+            "name": "Emissão do título de residência",
+            "order": 7
           }
         ]
       },
@@ -333,39 +142,54 @@
       "requirements": {
         "documents": [
           {
-            "description": "Formulário preenchido e devidamente assinado pelo requerente. Para menores e incapazes, deve ser assinado pelo tutor legal.",
-            "isCritical": true,
-            "name": "Formulário de pedido de visto nacional"
-          },
-          {
-            "description": "2 fotos iguais, tipo passaporte, recentes e em boas condições para identificar o requerente (1 para o formulário).",
-            "isCritical": true,
-            "name": "Fotografias tipo passaporte"
-          },
-          {
-            "description": "Válido por 3 meses após a data estimada de retorno. Fotocópia do passaporte (dados biográficos).",
-            "isCritical": true,
-            "name": "Passaporte ou documento de viagem"
-          },
-          {
-            "description": "Se for de nacionalidade diferente daquela do país onde está solicitando o visto, válido por mais tempo que a data de expiração do visto solicitado.",
+            "description": "Fotografias iguais, a cores, fundo liso, atualizadas e com boas condições de identificação (para agendamentos em Odivelas ou Aveiro)",
             "isCritical": false,
-            "name": "Comprovante de situação regular"
+            "name": "Duas fotografias tipo passe"
           },
           {
-            "description": "Emitido pela autoridade competente do país de nacionalidade do requerente ou do país onde residiu por mais de um ano (exceto para requerentes menores de dezesseis anos), com Apostila de Haia (se aplicável) ou legalizado.",
+            "description": "Passaporte em vigor durante o período de residência",
             "isCritical": true,
-            "name": "Certificado de antecedentes criminais"
+            "name": "Passaporte válido"
           },
           {
-            "description": "Assinado pela entidade anfitriã para estagiários ou trabalhadores, ou pela organização responsável por programas de intercâmbio estudantil ou voluntário. Cidadãos CPLP são isentos de apresentar comprovante de meios de subsistência mediante apresentação deste documento.",
+            "description": "Visto de residência para exercício de atividade profissional subordinada, emitido previamente e ainda válido",
             "isCritical": true,
-            "name": "Termo de responsabilidade da entidade anfitriã"
+            "name": "Visto de residência válido"
           },
           {
-            "description": "Com assinatura reconhecida, assinado por cidadão português ou estrangeiro qualificado com documento de residência em Portugal, que garanta alimentação e acomodação para o requerente do visto, bem como custos de remoção em caso de permanência irregular, acompanhado de: Declaração de Imposto de Renda do subscritor (último ano) e extrato bancário do subscritor (últimos 3 meses).",
+            "description": "Documento emitido pelo empregador atestando o vínculo laboral existente",
+            "isCritical": true,
+            "name": "Declaração sob compromisso de honra da Entidade Patronal"
+          },
+          {
+            "description": "Declaração sob compromisso de honra indicando a morada e em que termos habita (proprietário, arrendatário, subarrendatário, usufrutuário, comodatário, etc.)",
+            "isCritical": true,
+            "name": "Declaração de morada de residência"
+          },
+          {
+            "description": "Certidão de registo predial ou código de acesso (proprietário/usufrutuário) OU declaração do senhorio/entidade alojadora (arrendatário/locatário)",
+            "isCritical": true,
+            "name": "Comprovativo de direito sobre o imóvel"
+          },
+          {
+            "description": "Documento comprovando inscrição no sistema fiscal português",
+            "isCritical": true,
+            "name": "Comprovativo de inscrição na administração fiscal (NIF)"
+          },
+          {
+            "description": "Documento comprovando inscrição no sistema de segurança social português",
+            "isCritical": true,
+            "name": "Comprovativo de inscrição na segurança social (NISS)"
+          },
+          {
+            "description": "Impresso próprio assinado pelo requerente ou representante legal (preenchimento obrigatório)",
+            "isCritical": true,
+            "name": "Modelo 1 preenchido"
+          },
+          {
+            "description": "Preenchimento se aplicável",
             "isCritical": false,
-            "name": "Termo de responsabilidade alternativo"
+            "name": "Modelo 4 - Termo de Responsabilidade"
           }
         ],
         "incomeRequirement": null,
@@ -374,90 +198,423 @@
       },
       "rights": {
         "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Visto nacional português para fins de trabalho, residência ou outras atividades de longa duração em Portugal.",
-      "eligibility": [
-        "Trabalhadores com contrato de trabalho ou promessa de contrato em Portugal",
-        "Profissionais qualificados com oferta de emprego",
-        "Trabalhadores autônomos com atividade comprovada"
-      ],
-      "id": "visto-nacional-trabalho",
-      "name": "Visto Nacional",
-      "nameOriginal": "National Visa",
-      "notes": "A página menciona que existem isenções (Exemptions) e procedimentos de recurso (Appeal procedures), mas os detalhes específicos não estão disponíveis no conteúdo fornecido. Recomenda-se consultar a seção completa de isenções no site oficial para verificar se há descontos ou isenções para cidadãos brasileiros ou da CPLP.",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Variável conforme o tipo de visto",
-        "fees": [
-          {
-            "amount": 110,
-            "currency": "EUR",
-            "notes": "Taxa de processamento de pedido de visto nacional. Podem existir isenções - consulte seção de Exemptions no site oficial.",
-            "period": "one-time"
-          }
-        ],
-        "steps": [
-          {
-            "description": "Pagamento da taxa de processamento de 110€",
-            "estimatedDays": null,
-            "name": "Pagamento da taxa",
-            "order": 1
-          },
-          {
-            "description": "Submissão do pedido de visto com toda a documentação necessária",
-            "estimatedDays": null,
-            "name": "Submissão do pedido",
-            "order": 2
-          },
-          {
-            "description": "Análise do pedido pelas autoridades consulares",
-            "estimatedDays": null,
-            "name": "Análise do pedido",
-            "order": 3
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Passaporte com validade mínima de 3 meses após a data prevista de saída",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Formulário de candidatura devidamente preenchido e assinado",
-            "isCritical": true,
-            "name": "Formulário de pedido de visto"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": false,
+        "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": {
           "conditions": [
-            "Residência legal contínua por 5 anos",
-            "Conhecimento básico de português",
-            "Sem antecedentes criminais"
+            "Residência legal em Portugal por 5 anos",
+            "Conhecimento suficiente da língua portuguesa",
+            "Não ter condenações criminais",
+            "Não representar perigo ou ameaça à segurança nacional"
           ],
           "yearsRequired": 5
         },
         "pathToResidency": {
           "conditions": [
-            "Aprovação do visto nacional permite solicitar autorização de residência em Portugal"
+            "Renovação da autorização de residência após 2 anos",
+            "Renovações sucessivas por períodos de 3 anos",
+            "Manutenção dos requisitos legais"
           ],
-          "yearsRequired": 1
+          "yearsRequired": 2
+        }
+      }
+    },
+    {
+      "description": "Autorização de residência para exercício de trabalho subordinado (emprego assalariado) em Portugal, sem necessidade de obter visto prévio. Especialmente relevante para brasileiros cobertos pelo Estatuto de Igualdade e Tratado de Amizade Luso-Brasileiro. Permite regularização com base em contrato de trabalho ou 12 meses de contribuições à segurança social.",
+      "eligibility": [
+        "Cidadãos estrangeiros com entrada legal em Portugal (visto válido ou 12 meses de contribuições à segurança social)",
+        "Ter promessa de contrato de trabalho ou vínculo laboral em Portugal",
+        "Estar registrado na administração fiscal e segurança social portuguesas",
+        "Não ter condenação por crime punível com pena superior a um ano",
+        "Não estar em período de interdição de entrada em território nacional"
+      ],
+      "id": "autorizacao-residencia-trabalho-subordinado-dispensa-visto",
+      "name": "Autorização de Residência para Atividade Profissional Subordinada com Dispensa de Visto",
+      "nameOriginal": "Autorização de Residência para Exercício de Atividade Profissional Subordinada com Dispensa de Visto de Residência",
+      "notes": "IMPORTANTE: O artigo 88.º, n.º 2 do REPSAE foi REVOGADO a partir de 4 de junho de 2024 pelo Decreto-Lei n.º 37-A/2024. Presume-se entrada legal sempre que o requerente trabalhe em território nacional e tenha situação regularizada perante a segurança social há pelo menos 12 meses. O titular pode alterar para atividade profissional independente mediante substituição do título. Aplicam-se contraordenações por permanência ilegal, falta de declaração de entrada, exercício não autorizado e falta de apresentação de documento de viagem.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Variável conforme disponibilidade de agendamento e processamento pela AIMA. O prazo não está especificado na legislação.",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Efetuar e confirmar registro como utilizador no novo Sistema Automático de Pré-Agendamento (SAPA) da AIMA",
+            "estimatedDays": 1,
+            "name": "Registro no Portal SAPA",
+            "order": 1
+          },
+          {
+            "description": "Apresentar manifestação de interesse através do Portal SAPA, preenchendo formulário e carregando documentos necessários. O sistema permite consultar o estado da manifestação e receber notificações da AIMA",
+            "estimatedDays": 1,
+            "name": "Manifestação de Interesse Online",
+            "order": 2
+          },
+          {
+            "description": "A AIMA analisa a manifestação de interesse e os documentos submetidos. Pedidos incompletos suspendem os prazos para decisão",
+            "estimatedDays": null,
+            "name": "Análise pela AIMA",
+            "order": 3
+          },
+          {
+            "description": "Após análise favorável, a AIMA disponibiliza possibilidade de agendamento através do Portal SAPA. O utilizador seleciona local, data e hora de acordo com disponibilidade",
+            "estimatedDays": null,
+            "name": "Agendamento para presença",
+            "order": 4
+          },
+          {
+            "description": "Comparecer pessoalmente nas Lojas AIMA na data agendada com documentos originais para formalização e decisão do pedido",
+            "estimatedDays": 1,
+            "name": "Comparecimento nas Lojas AIMA",
+            "order": 5
+          },
+          {
+            "description": "Após instrução e decisão favorável, emissão do título de residência válido por 2 anos",
+            "estimatedDays": null,
+            "name": "Emissão da Autorização de Residência",
+            "order": 6
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documento de viagem válido",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Visto que se encontrava válido no momento da entrada em Portugal OU 12 meses de contribuições para a segurança social",
+            "isCritical": true,
+            "name": "Comprovativo de entrada legal"
+          },
+          {
+            "description": "Cópia da promessa de contrato de trabalho ou declaração sob compromisso de honra da Entidade Patronal atestando o vínculo laboral",
+            "isCritical": true,
+            "name": "Contrato de trabalho"
+          },
+          {
+            "description": "Registo criminal do país da nacionalidade ou do país onde residiu há mais de um ano antes de residir em Portugal, devidamente autenticado",
+            "isCritical": true,
+            "name": "Registo Criminal"
+          },
+          {
+            "description": "Declaração sob compromisso de honra da morada de residência, indicando em que termos reside (proprietário, arrendatário, subarrendatário, usufrutuário, comodatário, etc.)",
+            "isCritical": true,
+            "name": "Declaração de morada"
+          },
+          {
+            "description": "Se proprietário/usufrutuário: certidão de registo predial ou código de acesso. Se arrendatário: declaração do senhorio com menção da situação jurídica",
+            "isCritical": true,
+            "name": "Comprovativo de habitação"
+          },
+          {
+            "description": "Número de Identificação Fiscal (NIF) português",
+            "isCritical": true,
+            "name": "Comprovativo de inscrição na administração fiscal"
+          },
+          {
+            "description": "Número de Identificação da Segurança Social (NISS)",
+            "isCritical": true,
+            "name": "Comprovativo de inscrição na segurança social"
+          },
+          {
+            "description": "Duas fotografias iguais, tipo passe, a cores e fundo liso, atualizadas (caso o agendamento seja nas Lojas AIMA em Odivelas ou Aveiro)",
+            "isCritical": false,
+            "name": "Fotografias"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "A autorização inicial é válida por 2 anos",
+            "Renovável por períodos sucessivos de 3 anos",
+            "Manutenção dos requisitos que deram origem à autorização"
+          ],
+          "yearsRequired": 2
+        }
+      }
+    },
+    {
+      "description": "Autorizacao de residencia para exercicio de atividade altamente qualificada, subordinada ou autonoma, em Portugal. Equivalente ao EU Blue Card, mas com regime proprio portugues (Artigo 90.º do REPSAE).",
+      "eligibility": [
+        "Exercer atividade altamente qualificada subordinada ou autonoma",
+        "Possuir certificado de habilitacoes ou documento que comprove especializacao",
+        "Cumprir requisitos salariais minimos conforme tipo de profissao",
+        "Nao ter condenacao por crime punivel com pena superior a 1 ano em Portugal",
+        "Nao estar em periodo de interdicao de entrada em territorio nacional"
+      ],
+      "id": "altamente-qualificada",
+      "name": "Autorizacao de Residencia para Atividade Altamente Qualificada",
+      "nameOriginal": "Autorização de Residência para Atividade Altamente Qualificada",
+      "notes": "Esta autorizacao e o regime portugues proprio para atividade altamente qualificada (Art. 90.º REPSAE), distinto do cartao azul UE (Art. 121.º-A REPSAE) e do Tech Visa (regime especial para empresas certificadas). Requisitos salariais minimos: salario bruto anual de 1,5x o salario medio nacional (25.884 EUR/ano ou 2.157 EUR/mes em valores 2023) para trabalho subordinado em geral, ou 1,2x (20.707 EUR/ano ou 1.725,60 EUR/mes) para profissoes dos grupos 1 e 2 da CITP em setores carentes. Contraordenacoes aplicaveis por permanencia ilegal, falta de declaracao de entrada ou falta de apresentacao de documento de viagem.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "Nao especificado. O prazo varia conforme a carga de trabalho da AIMA",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Obter visto de residencia para atividade altamente qualificada no pais de origem, junto do consulado portugues",
+            "estimatedDays": null,
+            "name": "Obtencao de visto de residencia",
+            "order": 1
+          },
+          {
+            "description": "Entrar em Portugal com o visto de residencia valido",
+            "estimatedDays": null,
+            "name": "Entrada em Portugal",
+            "order": 2
+          },
+          {
+            "description": "Realizar inscricao na Administracao Fiscal e na Seguranca Social",
+            "estimatedDays": null,
+            "name": "Inscricao na AT e Seguranca Social",
+            "order": 3
+          },
+          {
+            "description": "Agendar atendimento presencial na Loja AIMA (ou submeter via plataforma eletronica quando disponivel). O pedido pode ser feito pelo interessado ou pela entidade/empresa que o acolhe",
+            "estimatedDays": null,
+            "name": "Agendamento na AIMA",
+            "order": 4
+          },
+          {
+            "description": "Reunir todos os documentos necessarios: passaporte, visto, registo criminal autenticado, comprovativos de morada, inscricoes AT/SS, certificado de habilitacoes, comprovativo de atividade altamente qualificada, formularios preenchidos",
+            "estimatedDays": null,
+            "name": "Preparacao da documentacao",
+            "order": 5
+          },
+          {
+            "description": "Comparecer presencialmente em qualquer Loja AIMA com impresso proprio (Modelo 1) assinado e toda documentacao. A loja pode remeter o processo para os servicos da area de residencia do requerente",
+            "estimatedDays": null,
+            "name": "Entrega presencial do pedido",
+            "order": 6
+          },
+          {
+            "description": "Aguardar instrucao e decisao do pedido pela AIMA",
+            "estimatedDays": null,
+            "name": "Analise e decisao",
+            "order": 7
+          },
+          {
+            "description": "Recebimento do titulo de autorizacao de residencia temporaria, valido por 2 anos",
+            "estimatedDays": null,
+            "name": "Emissao da autorizacao de residencia",
+            "order": 8
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Fotografias iguais, a cores, fundo liso, atualizadas e com boas condicoes de identificacao (caso agendamento se realize nas Lojas AIMA em Odivelas ou Aveiro)",
+            "isCritical": false,
+            "name": "Duas fotografias tipo passe"
+          },
+          {
+            "description": "Passaporte em validade",
+            "isCritical": true,
+            "name": "Passaporte valido"
+          },
+          {
+            "description": "Visto de residencia valido para atividade altamente qualificada",
+            "isCritical": true,
+            "name": "Visto de residencia para atividade altamente qualificada"
+          },
+          {
+            "description": "Registo criminal do pais da nacionalidade ou do pais onde residiu ha mais de um ano antes de residir em Portugal, devidamente autenticado",
+            "isCritical": true,
+            "name": "Registo Criminal"
+          },
+          {
+            "description": "Declaracao sob compromisso de honra da morada de residencia, referindo em que termos se encontra a residir (proprietario, arrendatario, subarrendatario, usufrutuario, comodatario, etc.)",
+            "isCritical": true,
+            "name": "Declaracao de morada de residencia"
+          },
+          {
+            "description": "Se proprietario/usufrutuario: certidao de registo predial ou codigo de acesso. Se arrendatario/locatario: declaracao do senhorio com mencao da situacao juridica",
+            "isCritical": true,
+            "name": "Comprovativo de propriedade ou uso do imovel"
+          },
+          {
+            "description": "Comprovativo de inscricao junto da Administracao Fiscal (AT)",
+            "isCritical": true,
+            "name": "Comprovativo de inscricao na administracao fiscal"
+          },
+          {
+            "description": "Comprovativo de inscricao na Seguranca Social",
+            "isCritical": true,
+            "name": "Comprovativo de inscricao na seguranca social"
+          },
+          {
+            "description": "Copia autenticada do certificado de habilitacoes ou de documento que comprove a especializacao",
+            "isCritical": true,
+            "name": "Certificado de habilitacoes ou documento de especializacao"
+          },
+          {
+            "description": "Declaracao da entidade patronal atestando existencia de contrato de trabalho com vencimento minimo de 1,5x salario medio nacional (2.157 EUR/mes) ou 3x IAS. Para profissoes CITP grupos 1 e 2 em setores carentes: 1,2x salario medio (1.725,60 EUR/mes) ou 2x IAS (1.018,52 EUR/mes). Valores de 2023-2024.",
+            "isCritical": true,
+            "name": "Comprovativo de exercicio de atividade altamente qualificada - Trabalho Subordinado"
+          },
+          {
+            "description": "Comprovativo de inicio de atividade junto da AT e Seguranca Social, contrato de prestacao de servicos, comprovativo de constituicao de sociedade (certidao permanente) ou ultimos recibos emitidos",
+            "isCritical": true,
+            "name": "Comprovativo de exercicio de atividade altamente qualificada - Trabalho Autonomo"
+          },
+          {
+            "description": "Formulario oficial (Modelo 1) assinado pelo requerente ou representante legal",
+            "isCritical": true,
+            "name": "Modelo 1 - Impresso proprio"
+          },
+          {
+            "description": "Termo de Responsabilidade (preenchimento se aplicavel)",
+            "isCritical": false,
+            "name": "Modelo 4 - Termo de Responsabilidade"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 25884,
+          "currency": "EUR",
+          "notes": "Salario bruto minimo anual de 1,5x o salario medio nacional (2.157 EUR/mes x 12 = 25.884 EUR/ano) para trabalho subordinado em geral. Para profissoes dos grupos 1 e 2 da CITP em setores com necessidade de trabalhadores: 1,2x salario medio nacional (1.725,60 EUR/mes x 12 = 20.707,20 EUR/ano) ou 2x IAS (1.018,52 EUR/mes x 12 = 12.222,24 EUR/ano). Valores de referencia 2023-2024.",
+          "period": "yearly"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Certificado de habilitacoes de nivel superior ou documento que comprove especializacao profissional",
+          "Qualificacao adequada para exercicio de atividade altamente qualificada"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "A autorizacao de residencia temporaria e valida inicialmente por 2 anos",
+            "Renovavel por periodos sucessivos de 3 anos",
+            "Manter requisitos de atividade altamente qualificada e requisitos salariais"
+          ],
+          "yearsRequired": 2
+        }
+      }
+    },
+    {
+      "description": "Autorização de residência temporária destinada a profissionais que exercem atividade profissional de forma remota para empresas ou clientes localizados fora de Portugal. Também conhecida como visto de nômade digital.",
+      "eligibility": [
+        "Profissionais que exercem atividade profissional de forma remota",
+        "Trabalho prestado para entidades com domicílio ou sede fora do território nacional",
+        "Vínculo laboral ou prestação de serviços comprovado",
+        "Ausência de condenação por crime punível com pena superior a 1 ano em Portugal",
+        "Não estar em período de interdição de entrada em território nacional"
+      ],
+      "id": "autorizacao-residencia-trabalho-remoto",
+      "name": "Autorização de Residência para Trabalho Remoto (Nômade Digital)",
+      "nameOriginal": "Autorização de Residência para o Exercício de Atividade Profissional Prestada de Forma Remota para Fora do Território Nacional",
+      "notes": "A autorização de residência é válida por 2 anos a partir da emissão e renovável por períodos sucessivos de 3 anos. O trabalho deve ser prestado para entidades fora de Portugal. Contraordenações aplicáveis: permanência ilegal, falta de declaração de entrada, exercício de atividade não autorizado, falta de apresentação de documento de viagem.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Obter visto de residência para trabalho remoto no consulado português no país de origem",
+            "estimatedDays": null,
+            "name": "Obtenção do visto de residência",
+            "order": 1
+          },
+          {
+            "description": "Agendar atendimento em uma Loja AIMA (ou através de plataforma eletrônica, quando implementada para titulares de visto de residência)",
+            "estimatedDays": null,
+            "name": "Agendamento",
+            "order": 2
+          },
+          {
+            "description": "Apresentar pedido presencialmente em qualquer Loja AIMA com todos os documentos necessários",
+            "estimatedDays": null,
+            "name": "Apresentação do pedido",
+            "order": 3
+          },
+          {
+            "description": "Aguardar instrução e decisão do pedido pela AIMA, que pode remeter para os serviços da área de residência do requerente",
+            "estimatedDays": null,
+            "name": "Instrução e decisão",
+            "order": 4
+          },
+          {
+            "description": "Emissão do título de residência após aprovação",
+            "estimatedDays": null,
+            "name": "Emissão da autorização",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Fotografias iguais, a cores e fundo liso, atualizadas e com boas condições de identificação (aplicável para agendamentos em Odivelas ou Aveiro)",
+            "isCritical": false,
+            "name": "Duas fotografias tipo passe"
+          },
+          {
+            "description": "Passaporte com validade",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Visto de residência para o exercício de atividade profissional prestada de forma remota para fora do território nacional válido",
+            "isCritical": true,
+            "name": "Visto de residência para trabalho remoto"
+          },
+          {
+            "description": "Declaração sob compromisso de honra da pessoa singular ou coletiva com domicílio ou sede fora do território nacional atestando o vínculo laboral ou a prestação de serviços",
+            "isCritical": true,
+            "name": "Declaração de vínculo laboral ou prestação de serviços"
+          },
+          {
+            "description": "Declaração sob compromisso de honra da morada de residência, referindo em que termos se encontra a residir na habitação (proprietário, arrendatário, subarrendatário, usufrutuário, comodatário, etc.)",
+            "isCritical": true,
+            "name": "Declaração de morada de residência"
+          },
+          {
+            "description": "Se proprietário/usufrutuário: certidão de registo predial ou código de acesso. Se arrendatário/locatário: declaração do senhorio com menção da situação jurídica do direito de uso do imóvel",
+            "isCritical": true,
+            "name": "Comprovativo de habitação"
+          },
+          {
+            "description": "Impresso próprio assinado pelo requerente ou representante legal (preenchimento obrigatório)",
+            "isCritical": true,
+            "name": "Modelo 1"
+          },
+          {
+            "description": "Termo de Responsabilidade (preenchimento se aplicável)",
+            "isCritical": false,
+            "name": "Modelo 4"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Renovável por períodos sucessivos de três anos após o período inicial de dois anos"
+          ],
+          "yearsRequired": 2
         }
       }
     }
