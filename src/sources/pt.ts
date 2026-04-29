@@ -32,6 +32,7 @@ export const ptSource: SourceConfig = {
       promptHint:
         'Autorizacao de residencia para atividade subordinada COM DISPENSA de visto de residencia em Portugal. Esta modalidade e relevante para brasileiros cobertos pelo Estatuto de Igualdade e Tratado de Amizade Luso-Brasileiro. Extraia: quem e elegivel para a dispensa, documentos necessarios e como o processo difere da via com visto.',
       fetchFrequency: 'monthly',
+      model: 'sonnet',
       ignoreSSL: true,
     },
     {

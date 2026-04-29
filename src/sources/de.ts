@@ -13,6 +13,7 @@ export const deSource: SourceConfig = {
       promptHint:
         'Portal oficial do governo alemao sobre tipos de visto e permissao de residencia para trabalhadores qualificados. Liste todos os tipos relevantes para brasileiros que querem trabalhar na Alemanha. Destaque Skilled Worker visa, Opportunity Card (Chancenkarte) e EU Blue Card.',
       fetchFrequency: 'monthly',
+      model: 'sonnet',
     },
     {
       url: 'https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals',

@@ -20,6 +20,7 @@ export const ieSource: SourceConfig = {
       promptHint:
         'Tipos de Employment Permit na Irlanda. Para cada tipo extraia: elegibilidade, salario anual minimo em EUR, setores qualificados e nao-qualificados, se ha restricao de nacionalidade, e como solicitar. O Critical Skills e o General Employment Permit sao os mais relevantes para brasileiros.',
       fetchFrequency: 'monthly',
+      model: 'sonnet',
     },
     {
       url: 'https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/',

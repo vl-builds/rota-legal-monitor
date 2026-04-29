@@ -42,6 +42,7 @@ export const esSource: SourceConfig = {
       promptHint:
         'Tipos de autorizacao de residencia e trabalho na Espanha. Extraia para cada tipo: requisitos, documentos, salario minimo em EUR, prazo de validade e como renovar. Inclua especificamente o visto de nomade digital (Ley de Startups 28/2022) e autorizacao para profissionais altamente qualificados (EU Blue Card).',
       fetchFrequency: 'monthly',
+      model: 'sonnet',
       ignoreSSL: true,
     },
     {

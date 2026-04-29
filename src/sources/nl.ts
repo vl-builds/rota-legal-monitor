@@ -20,6 +20,7 @@ export const nlSource: SourceConfig = {
       promptHint:
         'Foco exclusivo no Highly Skilled Migrant visa (Kennismigrant). Extraia o valor minimo de salario bruto mensal exigido, documentos necessarios e steps do processo. Este e o campo mais critico: capture o valor exato em EUR.',
       fetchFrequency: 'monthly',
+      model: 'sonnet',
     },
     {
       url: 'https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year',
