@@ -1,7 +1,7 @@
 import type { SourceConfig } from '@/types'
 
-// Fonte: vistos.mne.gov.pt (Ministerio dos Negocios Estrangeiros) - sem problemas de SSL.
-// O portal aima.gov.pt usa CA do governo portugues nao confiada pelo Bun/Node por padrao.
+// vistos.mne.gov.pt tambem usa CA do governo portugues nao incluida no bundle do Bun/Node.
+// ignoreSSL: true ativa tls.rejectUnauthorized=false apenas para essas requests.
 export const ptSource: SourceConfig = {
   countryCode: 'pt',
   countryName: 'Portugal',
@@ -15,6 +15,7 @@ export const ptSource: SourceConfig = {
       promptHint:
         'Pagina oficial do MNE portugues listando todos os tipos de visto nacional (D). Liste cada tipo: D1 (subordinado), D2 (independente), D3 (altamente qualificado), D7 (rendimentos proprios), D8 (nomade digital), CPLP. Para cada um indique o objetivo e se permite trabalhar.',
       fetchFrequency: 'biweekly',
+      ignoreSSL: true,
     },
     {
       url: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/residency',
@@ -22,6 +23,7 @@ export const ptSource: SourceConfig = {
       promptHint:
         'Documentos necessarios para visto de residencia para trabalho em Portugal (D1 e equivalentes). Extraia a lista completa de documentos exigidos, traducoes necessarias, apostilamentos e qualquer exigencia especifica para brasileiros (Tratado de Amizade Luso-Brasileiro e Estatuto de Igualdade).',
       fetchFrequency: 'biweekly',
+      ignoreSSL: true,
     },
     {
       url: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/cplp-en',
@@ -29,6 +31,7 @@ export const ptSource: SourceConfig = {
       promptHint:
         'Documentos para o visto de mobilidade CPLP para cidadaos de paises de lingua portuguesa, incluindo brasileiros. Extraia: lista de documentos, elegibilidade especifica para brasileiros, como difere do visto D padrao, duracao e se permite trabalhar em Portugal durante o periodo de validade.',
       fetchFrequency: 'biweekly',
+      ignoreSSL: true,
     },
     {
       url: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/job-seeker-visa',
@@ -36,6 +39,7 @@ export const ptSource: SourceConfig = {
       promptHint:
         'Visto de busca de emprego em Portugal (job seeker visa). Extraia: documentos necessarios, duracao maxima, atividades permitidas durante a busca, e como converter para visto de trabalho apos conseguir emprego.',
       fetchFrequency: 'monthly',
+      ignoreSSL: true,
     },
     {
       url: 'https://vistos.mne.gov.pt/en/national-visas/general-information/fees',
@@ -43,6 +47,7 @@ export const ptSource: SourceConfig = {
       promptHint:
         'Tabela oficial de taxas consulares para vistos nacionais portugueses. Extraia cada valor em EUR por tipo de visto. Registre se ha isencoes ou reducoes para brasileiros ou cidadaos CPLP. Nao estime: use apenas valores explicitamente listados.',
       fetchFrequency: 'biweekly',
+      ignoreSSL: true,
     },
   ],
 
