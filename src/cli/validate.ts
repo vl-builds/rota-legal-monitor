@@ -13,7 +13,8 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const jsonFiles = files.filter((f) => f.endsWith(".json"));
+  const SKIP = new Set(['example.json', 'index.json'])
+  const jsonFiles = files.filter((f) => f.endsWith(".json") && !SKIP.has(f));
 
   if (jsonFiles.length === 0) {
     console.log(`Nenhum arquivo JSON encontrado em ${CURRENT_DIR}`);
