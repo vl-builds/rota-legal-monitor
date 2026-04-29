@@ -84,7 +84,7 @@ O resultado fica em `data/current/{country}.json`.
 rota-legal-monitor/
 ├── README.md                    voce esta aqui
 ├── CLAUDE.md                    instrucoes para Claude Code
-├── PLAN.md                      roadmap de implementacao em 7 fases
+├── PLAN.md                      roadmap de implementacao em 6 fases
 ├── spec.md                      especificacao tecnica completa
 ├── package.json
 ├── tsconfig.json
@@ -154,17 +154,17 @@ Substitua `SEU_USER` pelo seu nome de usuário do GitHub. Configure o GitHub Pag
 | Holanda | `nl` | P0 | ativo |
 | Portugal | `pt` | P1 | ativo |
 | Alemanha | `de` | P2 | ativo |
-| Espanha | `es` | P3 | ativo (CI) |
+| Espanha | `es` | P3 | ativo |
 | Irlanda | `ie` | P4 | ativo |
-| Itália | `it` | P5 | em desenvolvimento |
-| França | `fr` | P6 | em desenvolvimento |
-| Bélgica | `be` | P7 | em desenvolvimento |
-| Áustria | `at` | P8 | em desenvolvimento |
-| Austrália | `au` | P9 | em desenvolvimento (Working Holiday Visa) |
+| Itália | `it` | P5 | ativo |
+| França | `fr` | P6 | ativo |
+| Bélgica | `be` | P7 | ativo |
+| Áustria | `at` | P8 | ativo |
+| Austrália | `au` | P9 | ativo |
 
 Cada país é uma config isolada em `src/sources/{cc}.ts`. Adicionar país novo é seguir [`docs/adding-countries.md`](docs/adding-countries.md).
 
-> Espanha: o snapshot é gerado no CI (Ubuntu). Localmente no Windows o Playwright não consegue iniciar o chromium headless, mas todas as URLs espanholas respondem corretamente no Linux.
+> Windows: o Playwright não consegue iniciar o chromium headless em alguns ambientes Windows. O fallback é ignorado nesses casos e a extração continua com as URLs que respondem via fetch nativo. No CI (Ubuntu) o Playwright funciona normalmente.
 
 > Austrália: único país fora da Europa na v1.0. Incluído por relevância para brasileiros via Working Holiday Visa subclass 462. O campo `audienceFit` está marcado como `narrow` no source config.
 
@@ -189,4 +189,4 @@ A definir. Provavelmente MIT para o código e CC BY-SA para os dados extraídos.
 
 ---
 
-Projeto em desenvolvimento ativo. Última atualização desta documentação: abril de 2026.
+Todas as 6 fases do roadmap estão completas. 10 países ativos, 128 testes, extração mensal automatizada. Última atualização desta documentação: abril de 2026.
