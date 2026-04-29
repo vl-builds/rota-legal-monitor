@@ -29,7 +29,11 @@ function detectLanguage(response: Response): string {
 }
 
 function looksEmpty(html: string): boolean {
-  const textLength = html.replace(/<[^>]+>/g, '').trim().length
+  // Remove script e style antes de contar texto para nao confundir JS bundle com conteudo real
+  const withoutCode = html
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[\s\S]*?<\/style>/gi, '')
+  const textLength = withoutCode.replace(/<[^>]+>/g, '').trim().length
   const hasNoscript = html.includes('<noscript>')
   return textLength < 200 || (hasNoscript && textLength < 1_000)
 }
@@ -95,7 +99,9 @@ async function fetchPlaywright(url: string): Promise<string | null> {
     try {
       const page = await browser.newPage()
       await page.setExtraHTTPHeaders({ 'User-Agent': UA })
-      await page.goto(url, { timeout: FETCH_TIMEOUT_MS, waitUntil: 'domcontentloaded' })
+      await page.goto(url, { timeout: FETCH_TIMEOUT_MS, waitUntil: 'load' })
+      // Aguarda SPA renderizar conteudo apos carregamento inicial
+      await page.waitForTimeout(3_000)
       return await page.content()
     } finally {
       await browser.close()
