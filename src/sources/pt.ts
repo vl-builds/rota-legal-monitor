@@ -2,8 +2,7 @@ import type { SourceConfig } from '@/types'
 
 // aima.gov.pt usa CA do governo portugues nao incluida no bundle do Bun/Node.
 // ignoreSSL: true ativa tls.rejectUnauthorized=false apenas para essas requests.
-// vistos.mne.gov.pt bloqueia IPs do GitHub Actions (ERR_CONNECTION_CLOSED), por isso
-// usamos AIMA + portaldascomunidades como fontes primarias.
+// vistos.mne.gov.pt e portaldascomunidades.mne.gov.pt bloqueiam IPs do GitHub Actions.
 export const ptSource: SourceConfig = {
   countryCode: 'pt',
   countryName: 'Portugal',
@@ -12,35 +11,43 @@ export const ptSource: SourceConfig = {
 
   urls: [
     {
-      url: 'https://aima.gov.pt/pt/area-do-cidadao/vistos-e-autorizacoes-de-residencia',
+      url: 'https://aima.gov.pt/pt/trabalhar',
       contentType: 'visa-overview',
       promptHint:
-        'Pagina oficial da AIMA (agencia de migracao de Portugal) listando todos os tipos de visto nacional (D) e autorizacoes de residencia. Liste cada tipo: D1 (subordinado), D2 (independente), D3 (altamente qualificado), D7 (rendimentos proprios), D8 (nomade digital). Para cada um indique o objetivo e se permite trabalhar.',
+        'Pagina hub da AIMA listando todos os tipos de autorizacao de residencia para trabalho em Portugal para cidadaos de fora da UE. Liste cada tipo disponivel: subordinado (empregado), independente (autonomo), altamente qualificado, nomade digital, transferencia intraempresarial. Indique para cada um se exige visto previo ou se ha dispensa.',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://aima.gov.pt/pt/area-do-cidadao/cplp',
+      url: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-visto-de-residencia-art-88-o-n-o-1',
       contentType: 'visa-requirements',
       promptHint:
-        'Pagina da AIMA sobre o acordo CPLP para cidadaos de paises de lingua portuguesa, incluindo brasileiros. Extraia: vantagens especificas para brasileiros, Estatuto de Igualdade, Tratado de Amizade Luso-Brasileiro, documentos necessarios e como difere do processo padrao de visto.',
+        'Autorizacao de residencia para atividade profissional subordinada (empregado) com visto de residencia em Portugal. Extraia: documentos exigidos, contrato de trabalho necessario, salario minimo, prazo de processamento e se ha tratamento especial para cidadaos brasileiros (Estatuto de Igualdade, Tratado de Amizade Luso-Brasileiro).',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://aima.gov.pt/pt',
-      contentType: 'visa-overview',
-      promptHint:
-        'Pagina principal da AIMA (antiga SEF). Extraia informacoes gerais sobre requisitos de entrada e residencia em Portugal para cidadaos de fora da UE, incluindo requisitos de seguro saude, prova de meios de subsistencia e antecedentes criminais.',
-      fetchFrequency: 'biweekly',
-      ignoreSSL: true,
-    },
-    {
-      url: 'https://www.portaldascomunidades.mne.gov.pt/pt/vistos-e-legalizacao',
+      url: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-',
       contentType: 'visa-requirements',
       promptHint:
-        'Portal do Ministerio dos Negocios Estrangeiros portugues sobre vistos e legalizacao. Extraia: tipos de visto nacional disponíveis, documentos exigidos, taxas em EUR, prazos de processamento e informacoes especificas para brasileiros (Tratado de Amizade, Estatuto de Igualdade).',
-      fetchFrequency: 'monthly',
+        'Autorizacao de residencia para atividade subordinada COM DISPENSA de visto de residencia em Portugal. Esta modalidade e relevante para brasileiros cobertos pelo Estatuto de Igualdade e Tratado de Amizade Luso-Brasileiro. Extraia: quem e elegivel para a dispensa, documentos necessarios e como o processo difere da via com visto.',
+      fetchFrequency: 'biweekly',
+      ignoreSSL: true,
+    },
+    {
+      url: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-atividade-altamente-qualificada-art-90-o',
+      contentType: 'visa-requirements',
+      promptHint:
+        'Autorizacao de residencia para atividade altamente qualificada em Portugal (equivalente ao EU Blue Card). Extraia: salario bruto minimo anual em EUR, qualificacao academica exigida, documentos necessarios e como se compara ao processo padrao de trabalho.',
+      fetchFrequency: 'biweekly',
+      ignoreSSL: true,
+    },
+    {
+      url: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-o-exercicio-de-atividade-profissional-prestada-de-forma-remota-com-visto-de-residencia-para-o-exe',
+      contentType: 'visa-requirements',
+      promptHint:
+        'Autorizacao de residencia para trabalho remoto em Portugal (nomade digital). Extraia: requisito de renda mensal minima em EUR, tipo de trabalho aceito (remoto para empresa fora de Portugal), documentos necessarios e duracao da autorizacao.',
+      fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
   ],
@@ -54,11 +61,10 @@ export const ptSource: SourceConfig = {
     'Estatuto de Igualdade': 'Status especial para brasileiros com direitos equivalentes a cidadaos portugueses',
     'Tratado de Amizade': 'Tratado de Amizade, Cooperacao e Consulta Brasil-Portugal (2000)',
     'Cartao Azul UE': 'EU Blue Card para profissionais altamente qualificados',
-    'D1': 'Visto de residencia para atividade profissional subordinada (empregado)',
-    'D2': 'Visto de residencia para atividade profissional independente (autonomo)',
-    'D3': 'Visto de residencia para profissional altamente qualificado',
-    'D7': 'Visto de residencia para pessoas com rendimentos proprios',
-    'D8': 'Visto de residencia para nomades digitais / trabalho remoto',
+    'AR subordinada': 'Autorizacao de residencia para empregado (art. 88)',
+    'AR independente': 'Autorizacao de residencia para autonomo (art. 89)',
+    'AR altamente qualificado': 'Autorizacao para profissional altamente qualificado (art. 90)',
+    'Dispensa de visto': 'Possibilidade de pedir AR diretamente sem visto previo (beneficio para brasileiros)',
     'SNS': 'Servico Nacional de Saude portugues',
     'IEFP': 'Instituto do Emprego e Formacao Profissional',
   },

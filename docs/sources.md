@@ -34,16 +34,18 @@ Idiomas: português. O conteúdo já está em PT-PT, próximo o suficiente do PT
 
 | URL | Tipo de conteúdo | Frequência sugerida |
 |-----|------------------|---------------------|
-| `https://aima.gov.pt/pt` | Página principal da agência de migrações | Quinzenal |
-| `https://aima.gov.pt/pt/area-do-cidadao/cplp` | Acordo CPLP, vantagens para brasileiros | Quinzenal |
-| `https://aima.gov.pt/pt/area-do-cidadao/vistos-e-autorizacoes-de-residencia` | Tipos de visto e autorização de residência | Quinzenal |
-| `https://www.portaldascomunidades.mne.gov.pt/pt/vistos-e-legalizacao` | Ministério dos Negócios Estrangeiros | Mensal |
+| `https://aima.gov.pt/pt/trabalhar` | Hub com todos os tipos de autorização para trabalho | Quinzenal |
+| `https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-visto-de-residencia-art-88-o-n-o-1` | Autorização subordinada (empregado) com visto | Quinzenal |
+| `https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-` | Autorização subordinada SEM visto (relevante para brasileiros via Estatuto de Igualdade) | Quinzenal |
+| `https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-atividade-altamente-qualificada-art-90-o` | Altamente qualificado (EU Blue Card) | Quinzenal |
+| `https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-o-exercicio-de-atividade-profissional-prestada-de-forma-remota-com-visto-de-residencia-para-o-exe` | Nômade digital (trabalho remoto) | Quinzenal |
 
 **Notas:**
 
-- AIMA substituiu o antigo SEF em 2023. Verificar regularmente se URLs antigas redirecionam corretamente.
-- CPLP é o diferencial mais importante para brasileiros. Sempre extrair em campo próprio do schema.
-- Conteúdo em PT-PT pode usar termos como "autorização de residência" em vez de "visto". Garantir que o LLM normalize.
+- AIMA substituiu o antigo SEF em 2023. URLs no formato `/pt/area-do-cidadao/` foram descontinuadas.
+- `vistos.mne.gov.pt` e `portaldascomunidades.mne.gov.pt` bloqueiam IPs do GitHub Actions. Não usar.
+- A "dispensa de visto" é o benefício mais importante para brasileiros: permite pedir a AR diretamente sem obter visto consular antes, graças ao Tratado de Amizade Luso-Brasileiro.
+- Conteúdo em PT-PT pode usar "autorização de residência" em vez de "visto". Garantir que o LLM normalize.
 
 ## Alemanha (`de`)
 
