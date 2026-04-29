@@ -1,8 +1,10 @@
 import type { SourceConfig } from '@/types'
 
-// Todos os dominios .gob.es usam CA propria do governo espanhol nao incluida
-// no bundle do Bun/Node. ignoreSSL: true ativa tls.rejectUnauthorized=false
-// apenas para essas requests. No CI (Ubuntu) o sistema ja confia nessas CAs.
+// www.inclusion.gob.es e um portal Liferay com conteudo renderizado via JS.
+// O fetch nativo recebe apenas os bundles JS (sem conteudo util).
+// Playwright renderiza o conteudo real e funciona corretamente no CI (Ubuntu).
+// extranjeros.inclusion.gob.es/en/* foi descontinuado e redireciona para 404.
+// ignoreSSL: true necessario para CA propria do governo espanhol.
 export const esSource: SourceConfig = {
   countryCode: 'es',
   countryName: 'Espanha',
@@ -11,42 +13,42 @@ export const esSource: SourceConfig = {
 
   urls: [
     {
-      url: 'https://extranjeros.inclusion.gob.es/en/regimenes_extranjeria/regimen_general/index.html',
+      url: 'https://www.inclusion.gob.es/en/web/migraciones/tipos-de-autorizacion',
       contentType: 'visa-overview',
       promptHint:
-        'Portal oficial espanhol sobre autorizacoes de residencia para cidadaos de fora da UE (regime geral). Liste todos os tipos de autorizacao relevantes para brasileiros que querem trabalhar na Espanha: autorizacao inicial de trabalho, trabalho por conta propria, profissionais altamente qualificados, nomade digital.',
+        'Portal oficial espanhol sobre tipos de autorizacao de residencia e trabalho para cidadaos de fora da UE. Liste todos os tipos de autorizacao relevantes para brasileiros que querem trabalhar na Espanha: autorizacao inicial de trabalho, trabalho por conta propria, profissionais altamente qualificados, nomade digital.',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://extranjeros.inclusion.gob.es/en/regimenes_extranjeria/regimen_general/residencia/trabajadores/index.html',
+      url: 'https://www.inclusion.gob.es/en/web/migraciones',
+      contentType: 'visa-overview',
+      promptHint:
+        'Portal principal do Ministerio de Inclusao espanhol sobre migracao. Extraia informacoes gerais sobre requisitos de entrada e residencia para cidadaos de fora da UE, incluindo requisitos de seguro saude, prova de meios de subsistencia e antecedentes criminais. Indique se brasileiros precisam de visto.',
+      fetchFrequency: 'biweekly',
+      ignoreSSL: true,
+    },
+    {
+      url: 'https://www.inclusion.gob.es/web/migraciones/vivir-en-espana',
       contentType: 'visa-requirements',
       promptHint:
-        'Autorizacao de residencia e trabalho por conta alheia na Espanha. Extraia: requisitos do empregador, oferta de emprego necessaria, salario minimo, documentos exigidos e tempo de processamento. Verifique se ha tratamento diferenciado para cidadaos ibero-americanos (incluindo brasileiros).',
+        'Pagina sobre como viver na Espanha para cidadaos estrangeiros. Extraia: tipos de autorizacao de residencia disponíveis para trabalhadores, documentos exigidos, requisitos de renda, prazo de processamento e qualquer tratamento especial para cidadaos ibero-americanos ou de paises com acordos bilaterais com a Espanha.',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://www.inclusion.gob.es/web/migraciones/en/trabajadores-extranjeros/altamente-cualificados',
+      url: 'https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion',
       contentType: 'visa-requirements',
       promptHint:
-        'Autorizacao espanhola para profissionais altamente qualificados e EU Blue Card na Espanha. Extraia: salario bruto anual minimo em EUR, qualificacao academica exigida, setores prioritarios e como difere da autorizacao de trabalho padrao.',
+        'Tipos de autorizacao de residencia e trabalho na Espanha. Extraia para cada tipo: requisitos, documentos, salario minimo em EUR, prazo de validade e como renovar. Inclua especificamente o visto de nomade digital (Ley de Startups 28/2022) e autorizacao para profissionais altamente qualificados (EU Blue Card).',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },
     {
-      url: 'https://extranjeros.inclusion.gob.es/en/regimenes_extranjeria/regimen_general/residencia/nomada_digital/index.html',
-      contentType: 'visa-requirements',
-      promptHint:
-        'Visto de nomade digital espanhol (Lei de Startups 28/2022). Extraia: requisitos de renda minima em EUR, tipo de trabalho aceito (remoto para empresa fora da Espanha), documentacao necessaria, beneficios fiscais (regime BECKHAM) e como solicitar.',
-      fetchFrequency: 'biweekly',
-      ignoreSSL: true,
-    },
-    {
-      url: 'https://extranjeros.inclusion.gob.es/en/InformacionInteres/tasa.html',
+      url: 'https://www.inclusion.gob.es/web/migraciones/informacion-util',
       contentType: 'fees',
       promptHint:
-        'Tabela de taxas (modelo 790) para autorizacoes de residencia e trabalho na Espanha. Extraia cada valor em EUR por tipo de autorizacao. Nao estime: use apenas valores explicitamente listados.',
+        'Informacoes uteis sobre taxas e custos de autorizacoes de residencia e trabalho na Espanha (modelo 790). Extraia cada valor em EUR por tipo de autorizacao. Nao estime: use apenas valores explicitamente listados.',
       fetchFrequency: 'biweekly',
       ignoreSSL: true,
     },

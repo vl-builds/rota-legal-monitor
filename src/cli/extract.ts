@@ -93,7 +93,7 @@ function buildCountryData(
     },
     forBrazilians: {
       schengenVisaFree: fb.schengenVisaFree ?? true,
-      maxStayDaysAsTourist: fb.maxStayDaysAsTourist ?? 90,
+      maxStayDaysAsTourist: (fb.maxStayDaysAsTourist ?? 0) > 0 ? fb.maxStayDaysAsTourist! : 90,
       workPermitNeeded: fb.workPermitNeeded ?? true,
       specialAgreements: fb.specialAgreements ?? [],
       notes: fb.notes ?? '',

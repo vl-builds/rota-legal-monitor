@@ -70,14 +70,18 @@ Idiomas: espanhol e inglês. Inglês quando disponível, espanhol nos fallbacks.
 
 | URL | Tipo de conteúdo | Frequência sugerida |
 |-----|------------------|---------------------|
-| `https://www.inclusion.gob.es/web/migraciones/inicio` | Ministério de Inclusão, área de migrações | Quinzenal |
-| `https://www.exteriores.gob.es/Consulados/saopaulo/pt/ServiciosConsulares/Paginas/Visados.aspx` | Consulado em São Paulo, lista de vistos | Mensal |
-| `https://extranjeros.inclusion.gob.es/es/InformacionInteres/InformacionProcedimientos/index.html` | Procedimentos detalhados | Quinzenal |
+| `https://www.inclusion.gob.es/en/web/migraciones/tipos-de-autorizacion` | Tipos de autorização (inglês) | Quinzenal |
+| `https://www.inclusion.gob.es/en/web/migraciones` | Portal principal de migrações (inglês) | Quinzenal |
+| `https://www.inclusion.gob.es/web/migraciones/vivir-en-espana` | Viver na Espanha, requisitos | Quinzenal |
+| `https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion` | Tipos de autorização (espanhol) | Quinzenal |
+| `https://www.inclusion.gob.es/web/migraciones/informacion-util` | Taxas e informações úteis | Quinzenal |
 
 **Notas:**
 
-- Páginas espanholas são frequentemente PDF anexos em vez de HTML. Fetcher precisa lidar com `application/pdf`.
-- Há diferença significativa entre "visado nacional" e "autorización de residencia". O LLM deve distinguir.
+- O portal `inclusion.gob.es` é Liferay com conteúdo renderizado via JS. Playwright obrigatório para obter conteúdo real.
+- `extranjeros.inclusion.gob.es/en/*` foi descontinuado: redireciona para 404. Não usar.
+- Há diferença entre "visado nacional" e "autorización de residencia". O LLM deve distinguir.
+- ignoreSSL necessário: CA do governo espanhol não está no bundle do Bun/Node.
 
 ## Irlanda (`ie`)
 

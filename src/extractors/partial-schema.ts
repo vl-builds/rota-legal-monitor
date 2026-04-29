@@ -17,7 +17,7 @@ export const PartialExtractionSchema = z.object({
   forBrazilians: z
     .object({
       schengenVisaFree: z.boolean().optional(),
-      maxStayDaysAsTourist: z.number().int().positive().optional(),
+      maxStayDaysAsTourist: z.number().int().min(0).optional(),
       workPermitNeeded: z.boolean().optional(),
       specialAgreements: z.array(SpecialAgreementSchema).optional(),
       notes: z.string().max(500).optional(),
