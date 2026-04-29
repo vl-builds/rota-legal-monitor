@@ -100,7 +100,7 @@ function buildCountryData(
     },
     visaTypes: merged.visaTypes,
     generalRequirements: {
-      passportValidity: gr.passportValidity ?? 'Minimo 6 meses apos a data de entrada',
+      passportValidity: gr.passportValidity || 'Minimo 6 meses apos a data de entrada',
       proofOfFunds: gr.proofOfFunds ?? null,
       healthInsurance: {
         required: hi.required ?? false,
