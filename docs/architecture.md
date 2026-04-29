@@ -5,7 +5,7 @@ Como o Rota Legal Monitor está montado por dentro. Foco em decisões e fluxo, n
 ## Visão geral
 
 ```
-                    GitHub Actions (cron quinzenal)
+                    GitHub Actions (cron mensal)
                               │
                               ▼
                     ┌─────────────────┐
@@ -72,7 +72,7 @@ Cada arquivo `{cc}.ts` exporta um objeto com:
 - Lista de URLs a visitar
 - Para cada URL: tipo de conteúdo esperado (visa-info, fees, requirements, news), prompt específico para passar ao LLM
 - Metadados do país (nome em PT-BR, idiomas oficiais para tradução)
-- Frequência sugerida (quinzenal por padrão, alguns conteúdos podem ser mensais)
+- Frequência sugerida (mensal por padrão)
 
 ### `extractors/fetcher.ts`
 

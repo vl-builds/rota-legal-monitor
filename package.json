@@ -1,7 +1,7 @@
 {
   "name": "rota-legal-monitor",
   "version": "0.1.0",
-  "description": "Monitor quinzenal de condicoes de imigracao legal para brasileiros que querem trabalhar como entregadores na Europa",
+  "description": "Monitor mensal de condicoes de imigracao legal para brasileiros que querem trabalhar como entregadores na Europa e Oceania",
   "type": "module",
   "private": true,
   "scripts": {

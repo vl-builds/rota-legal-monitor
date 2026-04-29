@@ -6,11 +6,11 @@ Instruções para o Claude Code trabalhando neste repositório. Mantenha curto. 
 
 - **Runtime:** Bun 1.1+ (compatível com Node 20+)
 - **Linguagem:** TypeScript estrito
-- **LLM:** API da Anthropic, modelo `claude-sonnet-4-5` (referência atual, atualizar conforme nova versão)
+- **LLM:** API da Anthropic, estratégia híbrida 80/20: Haiku 4.5 como padrão, Sonnet 4.5 em URLs marcadas como críticas. Ver `docs/model-routing.md`
 - **Validação:** Zod
 - **HTTP:** `fetch` nativo do Bun, com Playwright apenas como fallback para sites JS-pesados
 - **Parser HTML:** `@mozilla/readability` para extrair conteúdo principal antes de mandar pro LLM
-- **CI:** GitHub Actions (cron quinzenal, dias 1 e 15 de cada mês)
+- **CI:** GitHub Actions (cron mensal, dia 1 de cada mês)
 - **Storage:** arquivos JSON versionados no Git, sem banco de dados
 
 ## Antes de começar uma tarefa
@@ -70,7 +70,8 @@ São regras do projeto HenryZuka que valem aqui também:
 | Que dados extraímos exatamente? | `docs/data-schema.md` |
 | Como o LLM extrai dados estruturados? | `docs/extraction-strategy.md` |
 | De que sites tiramos os dados? | `docs/sources.md` |
-| Como o cron quinzenal funciona? | `docs/workflow.md` |
+| Como o cron mensal funciona? | `docs/workflow.md` |
+| Quando usar Haiku vs Sonnet em uma URL? | `docs/model-routing.md` |
 | Como adicionar um país novo? | `docs/adding-countries.md` |
 | Em que ordem implementar tudo? | `PLAN.md` |
 | Por que o projeto existe? | `spec.md` |

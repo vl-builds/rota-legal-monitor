@@ -12,14 +12,14 @@ export const nlSource: SourceConfig = {
       contentType: 'visa-overview',
       promptHint:
         'Pagina hub com todos os tipos de visto de trabalho disponiveis na Holanda. Liste cada categoria encontrada e avalie se e relevante para trabalhadores assalariados ou de plataformas (entregadores, motoristas de app).',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://ind.nl/en/residence-permits/work/highly-skilled-migrant',
       contentType: 'visa-requirements',
       promptHint:
         'Foco exclusivo no Highly Skilled Migrant visa (Kennismigrant). Extraia o valor minimo de salario bruto mensal exigido, documentos necessarios e steps do processo. Este e o campo mais critico: capture o valor exato em EUR.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year',
@@ -33,7 +33,7 @@ export const nlSource: SourceConfig = {
       contentType: 'fees',
       promptHint:
         'Tabela oficial de taxas da IND para todos os vistos e permissoes de residencia. Para cada tipo, registre o valor exato em EUR. Nao estime: use apenas valores explicitamente listados.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://ind.nl/en/work',

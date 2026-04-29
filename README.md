@@ -1,6 +1,6 @@
 # Rota Legal Monitor
 
-> Monitor quinzenal automatizado das condições de imigração legal em países europeus para brasileiros que pretendem trabalhar como entregadores de delivery.
+> Monitor mensal automatizado das condições de imigração legal em 10 países (9 europeus e Austrália) para brasileiros que pretendem trabalhar como entregadores de delivery.
 
 Parte do ecossistema **HenryZuka**. Este repositório alimenta de dados frescos a ferramenta web *Rota Legal* e fornece a fonte de verdade que o e-book *Rota Holanda* referencia.
 
@@ -8,9 +8,9 @@ Parte do ecossistema **HenryZuka**. Este repositório alimenta de dados frescos 
 
 ## O que este projeto faz
 
-Duas vezes por mês (dias 1 e 15), automaticamente:
+No dia 1 de cada mês, automaticamente:
 
-1. Visita as páginas oficiais de imigração de 5 países europeus (Holanda, Portugal, Alemanha, Espanha, Irlanda)
+1. Visita as páginas oficiais de imigração de 10 países (Holanda, Portugal, Alemanha, Espanha, Irlanda, Itália, França, Bélgica, Áustria, Austrália)
 2. Extrai dados estruturados sobre vistos, requisitos, taxas, prazos e mudanças recentes usando a API da Anthropic
 3. Valida os dados contra um schema Zod
 4. Salva um snapshot em JSON no diretório `data/current/`
@@ -33,21 +33,21 @@ Com este monitor:
 ## Arquitetura em 30 segundos
 
 ```
-GitHub Actions (cron quinzenal)
-        ↓
-  fetcher (httpx + Playwright fallback)
-        ↓
+GitHub Actions (cron mensal: dia 1)
+        |
+  fetcher (fetch nativo + Playwright fallback)
+        |
   extractor (Anthropic API + schema Zod)
-        ↓
-  validator (rejeita output inválido)
-        ↓
+        |
+  validator (rejeita output invalido)
+        |
   storage (JSON em data/current/)
-        ↓
+        |
   diff (compara com snapshot anterior)
-        ↓
+        |
   notify (issue no GitHub se mudou)
-        ↓
-  commit + push (histórico em data/history/)
+        |
+  commit + push (historico em data/history/)
 ```
 
 Detalhe completo em [`docs/architecture.md`](docs/architecture.md).
@@ -66,10 +66,10 @@ bun install
 cp .env.example .env
 # editar .env e colar sua ANTHROPIC_API_KEY
 
-# rodar uma extração local (Holanda)
+# rodar uma extracao local (Holanda)
 bun run extract:nl
 
-# rodar todos os países
+# rodar todos os paises
 bun run extract
 
 # verificar diff entre snapshot atual e anterior
@@ -90,30 +90,33 @@ rota-legal-monitor/
 ├── tsconfig.json
 ├── .env.example
 ├── .gitignore
-│
+|
 ├── docs/
-│   ├── architecture.md          design do sistema
-│   ├── sources.md               registro das fontes oficiais
-│   ├── data-schema.md           contratos TypeScript
-│   ├── extraction-strategy.md   como funciona a extracao via LLM
-│   ├── workflow.md              fluxo quinzenal passo a passo
-│   └── adding-countries.md      como adicionar novo pais
-│
+|   ├── architecture.md          design do sistema
+|   ├── sources.md               registro das fontes oficiais
+|   ├── data-schema.md           contratos TypeScript
+|   ├── extraction-strategy.md   como funciona a extracao via LLM
+|   ├── workflow.md              fluxo mensal passo a passo
+|   ├── model-routing.md         quando usar Haiku vs Sonnet por URL
+|   ├── cost-and-billing.md      estimativa de custos e cenarios
+|   └── adding-countries.md      como adicionar novo pais
+|
 ├── src/
-│   ├── cli/                     comandos executaveis
-│   ├── sources/                 config por pais (urls, seletores)
-│   ├── extractors/              fetch + LLM + validacao
-│   ├── storage/                 leitura e escrita de snapshots
-│   ├── diff/                    deteccao de mudancas
-│   └── notify/                  alertas via GitHub Issues
-│
+|   ├── cli/                     comandos executaveis
+|   ├── sources/                 config por pais (urls, modelo por url)
+|   ├── extractors/              fetch + LLM + validacao
+|   ├── lib/                     utilitarios compartilhados (log, models)
+|   ├── storage/                 leitura e escrita de snapshots
+|   ├── diff/                    deteccao de mudancas
+|   └── notify/                  alertas via GitHub Issues
+|
 ├── data/
-│   ├── current/                 ultimo snapshot por pais
-│   └── history/                 snapshots quinzenais arquivados
-│
+|   ├── current/                 ultimo snapshot por pais
+|   └── history/                 snapshots mensais arquivados
+|
 └── .github/
     └── workflows/
-        └── biweekly-update.yml  cron quinzenal
+        └── monthly-update.yml   cron mensal (dia 1)
 ```
 
 ## Consumindo os dados
@@ -133,6 +136,11 @@ https://SEU_USER.github.io/rota-legal-monitor/pt.json   # Portugal
 https://SEU_USER.github.io/rota-legal-monitor/de.json   # Alemanha
 https://SEU_USER.github.io/rota-legal-monitor/es.json   # Espanha
 https://SEU_USER.github.io/rota-legal-monitor/ie.json   # Irlanda
+https://SEU_USER.github.io/rota-legal-monitor/it.json   # Italia
+https://SEU_USER.github.io/rota-legal-monitor/fr.json   # Franca
+https://SEU_USER.github.io/rota-legal-monitor/be.json   # Belgica
+https://SEU_USER.github.io/rota-legal-monitor/at.json   # Austria
+https://SEU_USER.github.io/rota-legal-monitor/au.json   # Australia
 ```
 
 O `index.json` lista todos os países disponíveis com metadados (última atualização, número de tipos de visto, nível de confiança). Use-o para descobrir quais países têm dados antes de buscar o JSON completo.
@@ -148,10 +156,17 @@ Substitua `SEU_USER` pelo seu nome de usuário do GitHub. Configure o GitHub Pag
 | Alemanha | `de` | P2 | ativo |
 | Espanha | `es` | P3 | ativo (CI) |
 | Irlanda | `ie` | P4 | ativo |
+| Itália | `it` | P5 | em desenvolvimento |
+| França | `fr` | P6 | em desenvolvimento |
+| Bélgica | `be` | P7 | em desenvolvimento |
+| Áustria | `at` | P8 | em desenvolvimento |
+| Austrália | `au` | P9 | em desenvolvimento (Working Holiday Visa) |
 
 Cada país é uma config isolada em `src/sources/{cc}.ts`. Adicionar país novo é seguir [`docs/adding-countries.md`](docs/adding-countries.md).
 
 > Espanha: o snapshot é gerado no CI (Ubuntu). Localmente no Windows o Playwright não consegue iniciar o chromium headless, mas todas as URLs espanholas respondem corretamente no Linux.
+
+> Austrália: único país fora da Europa na v1.0. Incluído por relevância para brasileiros via Working Holiday Visa subclass 462. O campo `audienceFit` está marcado como `narrow` no source config.
 
 ## Como começar a desenvolver
 
@@ -161,12 +176,12 @@ Se você é humano, leia [`spec.md`](spec.md) para a visão completa.
 
 ## Custo estimado de operação
 
-- GitHub Actions: gratuito (free tier cobre folgadamente um cron quinzenal)
-- Hospedagem dos JSON: gratuita (raw.githubusercontent.com ou GitHub Pages)
-- API da Anthropic: estimativa de USD 7 a 21 por ano com 5 países (detalhe em `docs/cost-and-billing.md`)
-- Domínio: opcional, custa o que você quiser pagar
+- GitHub Actions: gratuito (free tier cobre folgadamente um cron mensal)
+- Hospedagem dos JSON: gratuita (GitHub Pages)
+- API da Anthropic: USD 4 a 10 por ano com 10 países e estratégia híbrida 80/20 (detalhe em [`docs/cost-and-billing.md`](docs/cost-and-billing.md))
+- Domínio: opcional
 
-Ou seja: o sistema todo roda por uns USD 10 a 25 por ano.
+Com os USD 5 de crédito grátis da Anthropic para contas novas, o sistema cobre os primeiros 6 meses no cenário inicial. Com cache de hash ativo, o crédito dura mais de 1 ano.
 
 ## Licença
 

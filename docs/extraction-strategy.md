@@ -44,26 +44,29 @@ Pegar o input da tool, passar pelo Zod. Se passar, ótimo. Se não passar, o err
 
 ## Modelo e custo
 
-Modelo padrão: `claude-sonnet-4-5` (referência atual de abril 2026).
+Estratégia híbrida: Haiku 4.5 como padrão (80% das URLs) e Sonnet 4.5 para URLs marcadas como críticas (20%). Detalhamento em `docs/model-routing.md`.
 
-Por que Sonnet e não Haiku? Extração precisa de raciocínio sobre estrutura, especialmente quando há ambiguidade entre vistos parecidos. Haiku às vezes confunde categorias. Sonnet acerta consistentemente.
+Critério resumido: Haiku cobre listas de documentos, tabelas de taxas, guias passo a passo e visões gerais curtas. Sonnet entra quando há múltiplos vistos parecidos na mesma página, valores monetários com condicionais, seções de mudanças recentes ou idioma jurídico denso.
 
 Por que não Opus? Custo desproporcional. Sonnet entrega qualidade equivalente para esta tarefa.
 
 ### Estimativa de custo por execução
 
-Por país (média):
+Premissas: 10 países, 5 URLs por país, 4.000 tokens de input por URL (após Readability), 1.500 tokens de output, distribuição 40 URLs Haiku e 10 URLs Sonnet.
 
-- 4 a 6 URLs
-- Conteúdo limpo: 5 a 15 KB cada
-- Tokens de input: aproximadamente 8.000 por URL = 40.000 por país
-- Tokens de output: aproximadamente 1.500 por URL = 9.000 por país
-- Custo estimado por país por execução: USD 0,15 a 0,30
+| Componente | Cálculo | Custo |
+|------------|---------|-------|
+| 40 URLs Haiku (input) | 40 x 4.000 x USD 0,80/Mtok | USD 0,128 |
+| 40 URLs Haiku (output) | 40 x 1.500 x USD 4,00/Mtok | USD 0,240 |
+| 10 URLs Sonnet (input) | 10 x 4.000 x USD 3,00/Mtok | USD 0,120 |
+| 10 URLs Sonnet (output) | 10 x 1.500 x USD 15,00/Mtok | USD 0,225 |
+| **Total por execução** | | **USD 0,71 a 0,90** |
 
-5 países por semana = USD 1 a 2 por execução.
-52 execuções por ano = USD 50 a 100.
+12 execuções por ano = USD 8,50 a 10,80. Estimativa conservadora: USD 9,66.
 
-Com cache (próxima seção), custo cai para aproximadamente metade.
+Com cache de hash (páginas que não mudaram não chamam o LLM): custo cai para USD 3,86 por ano.
+
+Detalhe por cenário em `docs/cost-and-billing.md`.
 
 ## Cache por hash de conteúdo
 

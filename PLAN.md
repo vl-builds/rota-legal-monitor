@@ -55,18 +55,17 @@ Estimativa total: 4 a 6 dias de trabalho focado.
 **Entregáveis:**
 
 - `src/extractors/llm-extractor.ts` com função `extractFromHtml(html, schema, prompt): Promise<T>`
-- Uso do recurso de [tool use](https://docs.claude.com/en/docs/build-with-claude/tool-use) ou structured output para forçar JSON válido
+- Uso do recurso de tool use para forçar JSON válido
 - Retry com backoff exponencial (3 tentativas, 1s, 2s, 4s)
 - Tratamento de erros distintos (rate limit, JSON inválido, schema inválido) com mensagens úteis
 - Logs estruturados (não usar `console.log` cru, criar `src/lib/log.ts`)
+- `src/lib/models.ts` exportando `MODELS.haiku` e `MODELS.sonnet` como constantes
 
 **Critério de aceite:**
 
 - Passar HTML manual de uma página da IND e receber objeto validado contra o schema
 - Se o LLM devolver JSON inválido, função lança erro claro com o caminho do campo problemático
 - Custo da chamada é registrado no log (input tokens + output tokens)
-
-**Atenção:** modelo recomendado é `claude-sonnet-4-5` para custo/qualidade. Documentar no código a versão exata usada.
 
 ---
 
@@ -76,18 +75,18 @@ Estimativa total: 4 a 6 dias de trabalho focado.
 
 **Entregáveis:**
 
-- `src/sources/nl.ts` listando 4 a 6 URLs prioritárias da IND com metadados (tipo de visto que cobrem, frequência)
+- `src/sources/nl.ts` listando 4 a 6 URLs prioritárias da IND com metadados (tipo de visto que cobrem, frequência, campo `model`)
 - `src/extractors/fetcher.ts` com função `fetchPage(url): Promise<{ html: string, fetchedAt: string }>`
 - Rate limit por domínio (mínimo 2 segundos entre requests)
 - User agent honesto identificando o projeto
 - Fallback para Playwright só se a página retornar conteúdo vazio ou bloquear (detectar e logar)
-- Pipeline completo: para cada URL em `nl.ts`, fetch → readability → llm-extractor → consolida em um JSON único `data/current/nl.json`
+- Pipeline completo: para cada URL em `nl.ts`, fetch -> readability -> llm-extractor -> consolida em um JSON único `data/current/nl.json`
 
 **Critério de aceite:**
 
 - `bun run extract:nl` roda do zero e gera `data/current/nl.json` válido
 - O JSON gerado passa na validação Zod
-- Custo total da extração da Holanda é menor que USD 1
+- Custo total da extração da Holanda é menor que USD 0,15
 - Tempo total de execução menor que 5 minutos
 
 **Saída esperada:** primeira versão do `data/current/nl.json` comitada manualmente como referência.
@@ -115,20 +114,21 @@ Estimativa total: 4 a 6 dias de trabalho focado.
 
 ## Fase 5. GitHub Actions
 
-**Objetivo:** automatizar a execução quinzenal.
+**Objetivo:** automatizar a execução mensal.
 
 **Entregáveis:**
 
-- `.github/workflows/biweekly-update.yml` rodando nos dias 1 e 15 de cada mês às 06:00 UTC
-- Steps: checkout, setup Bun, install, run extract, run diff, archive, commit & push
+- `.github/workflows/monthly-update.yml` rodando no dia 1 de cada mês às 06:00 UTC
+- Steps: checkout, setup Bun, install, run extract, run diff, archive, commit e push
 - Variável `ANTHROPIC_API_KEY` configurada como secret no repositório
+- Variáveis de ambiente `ANTHROPIC_MODEL_DEFAULT=claude-haiku-4-5` e `ANTHROPIC_MODEL_PREMIUM=claude-sonnet-4-5` no step de extração
 - Se o diff detectar mudança de relevância alta, abrir issue automaticamente com `gh issue create`
 - Workflow também roda manualmente via `workflow_dispatch`
 
 **Critério de aceite:**
 
 - Trigger manual pelo botão Run workflow funciona end-to-end
-- Commit automático aparece com mensagem `chore(data): biweekly snapshot YYYY-MM-DD`
+- Commit automático aparece com mensagem `chore(data): monthly snapshot YYYY-MM-DD`
 - Issue é aberta quando uma mudança alta é injetada artificialmente
 - Falha em qualquer step para o pipeline e notifica via email do GitHub
 
@@ -136,44 +136,24 @@ Estimativa total: 4 a 6 dias de trabalho focado.
 
 ## Fase 6. Países adicionais
 
-**Objetivo:** estender para Portugal, Alemanha, Espanha, Irlanda.
+**Objetivo:** estender para Portugal, Alemanha, Espanha, Irlanda, Itália, França, Bélgica, Áustria e Austrália.
 
 **Entregáveis:**
 
-- `src/sources/pt.ts`, `de.ts`, `es.ts`, `ie.ts` com URLs e prompts específicos por país
-- Considerações específicas de Portugal: CPLP merece seção própria no schema
-- Tradução de termos técnicos por país (Aufenthaltstitel, Tarjeta de Identidad de Extranjero, NIE, etc.) consolidada em glossário
+- `src/sources/pt.ts`, `de.ts`, `es.ts`, `ie.ts`, `it.ts`, `fr.ts`, `be.ts`, `at.ts`, `au.ts` com URLs e prompts específicos por país
+- Cada URL tem campo `model` definido seguindo os critérios de `docs/model-routing.md` (tipicamente 1 URL Sonnet e 4 Haiku por país)
+- Considerações específicas de Portugal: CPLP e Tratado de Amizade Luso-Brasileiro merecem seção própria em `forBrazilians.specialAgreements`
+- Considerações específicas da Austrália: Working Holiday Visa subclass 462 é o caminho principal para brasileiros. Marcar `audienceFit: 'narrow'` no source config. Sem Schengen: qualquer entrada exige visto.
 - Cada país gera seu próprio `data/current/{cc}.json`
 
+**Ordem sugerida de implementação:** Portugal primeiro (mais relevante para brasileiros via CPLP), depois Alemanha, Espanha, Irlanda, Itália, França, Bélgica, Áustria, Austrália.
+
 **Critério de aceite:**
 
-- `bun run extract` extrai todos os 5 países sequencialmente
-- Tempo total menor que 25 minutos
-- Custo total menor que USD 5 por execução
+- `bun run extract` extrai todos os 10 países sequencialmente
+- Tempo total menor que 50 minutos
+- Custo total menor que USD 1 por execução
 - Cada JSON valida contra o mesmo schema central
-
-**Ordem sugerida de implementação:** Portugal primeiro (mais relevante para brasileiros via CPLP), depois Alemanha, Espanha, Irlanda.
-
----
-
-## Fase 7. Camada pública e integração com frontend
-
-**Objetivo:** expor os dados de forma consumível pela ferramenta web Rota Legal.
-
-**Entregáveis:**
-
-- Habilitar GitHub Pages no repositório apontando para `data/current/`
-- Ou alternativa: criar branch `gh-pages` que serve só os JSONs limpos
-- Endpoint público: `https://USER.github.io/rota-legal-monitor/nl.json`
-- Header CORS apropriado (GitHub Pages serve com `*` por padrão)
-- Adicionar `index.json` no root listando todos os países e timestamps
-- Documentar URLs públicas na seção "Consumindo os dados" do README
-
-**Critério de aceite:**
-
-- `curl https://USER.github.io/rota-legal-monitor/nl.json` retorna JSON válido
-- Frontend consegue fazer fetch sem erro de CORS
-- `index.json` lista corretamente todos os países disponíveis com timestamp
 
 ---
 
@@ -183,22 +163,22 @@ Não passe da fase X para X+1 sem confirmar:
 
 - **Após fase 1:** schema reflete fielmente o que o usuário final precisa ver na ferramenta web. Confira com a wireframe da ferramenta antes de avançar.
 - **Após fase 3:** o `nl.json` gerado é qualitativamente confiável. Compare 5 campos com a fonte original manualmente.
-- **Após fase 5:** o cron rodou pelo menos uma vez de verdade no Actions, não só no manual. Espere uma semana ou ajuste o cron temporariamente.
-- **Após fase 6:** os 5 países estão com qualidade equivalente, não só preenchidos. Holanda excelente e Espanha pela metade não conta.
+- **Após fase 5:** o cron rodou pelo menos uma vez de verdade no Actions, não só no manual. Espere o dia 1 do mês seguinte ou ajuste o cron temporariamente.
+- **Após fase 6:** os 10 países estão com qualidade equivalente. Holanda excelente e Espanha pela metade não conta.
 
 ## Riscos conhecidos
 
 - **Bloqueio anti-bot:** alguns sites de governo podem ter Cloudflare ou similar. Mitigação: Playwright como fallback, headers de browser real, rate limit conservador.
 - **Mudança de layout brusca:** o LLM ajuda, mas se a página inteira for redesenhada o conteúdo pode não estar mais nas URLs antigas. Mitigação: monitorar 404s e abrir issue.
-- **Custo do LLM crescer:** se adicionarmos muitas URLs por país, custo escala. Mitigação: cache por hash do HTML (se o HTML não mudou, não chama o LLM).
+- **Custo do LLM crescer:** se adicionarmos muitas URLs por país, custo escala. Mitigação: cache por hash do HTML (se o HTML não mudou, não chama o LLM) e estratégia híbrida Haiku/Sonnet.
 - **Tradução inconsistente:** terminologia técnica em PT-BR varia. Mitigação: glossário centralizado em `docs/glossary.md` na fase 6.
 
 ## Definição de "pronto"
 
 O projeto está pronto para v1.0 quando:
 
-- 5 países estão sendo atualizados quinzenalmente sem intervenção manual por pelo menos 8 execuções seguidas (4 meses)
+- 10 países estão sendo atualizados mensalmente sem intervenção manual por pelo menos 4 execuções seguidas (4 meses)
 - O frontend consome os dados em produção
 - Existem testes unitários para schema, fetcher, extractor e diff
-- A documentação cobre as 6 áreas listadas no README
+- A documentação cobre as áreas listadas no README
 - Existe um plano simples para alguém da comunidade abrir PR adicionando país novo

@@ -12,28 +12,28 @@ export const deSource: SourceConfig = {
       contentType: 'visa-overview',
       promptHint:
         'Portal oficial do governo alemao sobre tipos de visto e permissao de residencia para trabalhadores qualificados. Liste todos os tipos relevantes para brasileiros que querem trabalhar na Alemanha. Destaque Skilled Worker visa, Opportunity Card (Chancenkarte) e EU Blue Card.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals',
       contentType: 'visa-requirements',
       promptHint:
         'Visto de trabalho para profissionais qualificados na Alemanha (Fachkrafteeinwanderungsgesetz). Extraia: reconhecimento de diploma exigido, nivel de idioma alemao, salario minimo, passos do processo e tempo medio de processamento.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://www.make-it-in-germany.com/en/visa-residence/opportunity-card',
       contentType: 'visa-requirements',
       promptHint:
         'Opportunity Card (Chancenkarte) da Alemanha para busca de emprego. Extraia: sistema de pontos necessarios, criterios de elegibilidade (diploma, experiencia, idioma, idade), duracao do visto, restricoes de trabalho durante a busca e como converter para visto de trabalho.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card',
       contentType: 'visa-requirements',
       promptHint:
         'EU Blue Card para a Alemanha. Extraia: salario bruto anual minimo exigido (valor exato em EUR), areas de escassez com salario reduzido, reconhecimento de diploma e vantagens sobre visto padrao.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit',

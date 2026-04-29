@@ -8,7 +8,7 @@ Antes de começar, confirme que vale a pena adicionar:
 
 - O país é relevante para o público-alvo (brasileiros que querem trabalhar como entregadores na Europa)
 - Existem fontes oficiais em formato consultável (HTML ou PDF, não vídeos ou áudios)
-- O país não está em situação política instável que mude regras a cada mês (essa volatilidade quebra o pressuposto de update quinzenal)
+- O país não está em situação política instável que mude regras a cada mês (essa volatilidade quebra o pressuposto de update mensal)
 
 ## Passos
 
@@ -43,7 +43,8 @@ export const beSource: SourceConfig = {
       url: 'https://...',
       contentType: 'visa-overview',
       promptHint: 'foco em trabalhadores assalariados',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
+      model: 'haiku',  // 'sonnet' para URLs com alta ambiguidade semântica
     },
     // mais urls aqui
   ],
@@ -54,6 +55,17 @@ export const beSource: SourceConfig = {
   },
 }
 ```
+
+#### Haiku vs Sonnet por URL
+
+Por padrão, use `model: 'haiku'` em todas as URLs. Mude para `model: 'sonnet'` apenas quando a URL contiver:
+
+- Múltiplos vistos com nomes parecidos na mesma página (ex: Skilled Worker e Highly Skilled Migrant)
+- Valores monetários com condicionais complexas ("varia conforme idade" ou "depende de qualificação")
+- Seção de mudanças recentes ou terminologia jurídica densa (títulos de permissão, decretos)
+- Qualquer URL onde a primeira extração com Haiku gerou `extractionConfidence: 'low'`
+
+Para detalhes e exemplos concretos, ver `docs/model-routing.md`.
 
 ### 3. Adicionar entrada no registro de países
 
@@ -100,7 +112,7 @@ Anotar no campo `reliability.knownIssues` qualquer coisa que ficou meia-boca.
 
 ### 7. Adicionar ao workflow do GitHub Actions
 
-Em `.github/workflows/biweekly-update.yml`, garantir que o novo país é coberto. Se o workflow itera sobre `Object.keys(sources)`, nenhuma mudança necessária. Se está hardcoded, adicionar.
+Em `.github/workflows/monthly-update.yml`, garantir que o novo país é coberto. Se o workflow itera sobre `Object.keys(sources)`, nenhuma mudança necessária. Se está hardcoded, adicionar.
 
 ### 8. Atualizar README
 
@@ -135,7 +147,7 @@ Um país está "pronto" para entrar no monitor automatizado quando:
 
 Para evitar discussão futura:
 
-- **Países fora da Europa** estão fora do escopo da v1.0
+- **Países sem relevância para o público-alvo** (brasileiros que querem trabalhar como entregadores): avaliar audiência antes de propor
 - **Países sem fonte oficial em idioma que o LLM domina** (digamos, só em húngaro com transliteração esquisita)
 - **Países onde brasileiros raramente vão como entregador** (Suíça, Liechtenstein, Andorra)
 - **Países com situação política tornando regras erráticas** (avaliar caso a caso)

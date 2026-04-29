@@ -1,16 +1,16 @@
 # Workflow
 
-O que acontece, em ordem cronológica, quando o cron quinzenal dispara. Documento de referência para entender o ciclo completo.
+O que acontece, em ordem cronológica, quando o cron mensal dispara. Documento de referência para entender o ciclo completo.
 
 ## Trigger
 
-Nos dias 1 e 15 de cada mês às 06:00 UTC, o GitHub Actions agenda a execução do workflow `biweekly-update.yml`. Também pode ser disparado manualmente pelo botão Run workflow no painel do Actions ou via push do `workflow_dispatch`.
+No dia 1 de cada mês às 06:00 UTC, o GitHub Actions executa o workflow `monthly-update.yml`. Também pode ser disparado manualmente pelo botão Run workflow no painel do Actions ou via `workflow_dispatch`.
 
-A escolha dos dias 1 e 15 é deliberada:
+A escolha do dia 1 é deliberada:
 
-- Datas previsíveis facilitam comunicar ao usuário quando esperar a próxima atualização
 - Sites de governo costumam publicar mudanças no início do mês, então o dia 1 pega rápido
-- A janela máxima entre execuções fica em 17 dias (de 15 de janeiro a 1 de fevereiro), mantendo o indicador dentro do limite verde
+- Data previsível facilita comunicar ao usuário quando esperar a próxima atualização ("sempre nos primeiros dias do mês")
+- A contagem de dias entre execuções nunca ultrapassa 31, mantendo o indicador dentro do limite verde do frontend
 - 06:00 UTC é horário comercial cedo na Europa (08:00 NL, 03:00 BR), bom para abrir issue antes do início do dia útil
 
 ## Steps do workflow
@@ -48,7 +48,7 @@ Sequencial, não paralelo. Por quê:
 Para cada país:
 
 1. Carregar `src/sources/{cc}.ts`
-2. Para cada URL: fetch → readability → llm-extractor → acumular
+2. Para cada URL: fetch -> readability -> llm-extractor (Haiku ou Sonnet conforme campo `model`) -> acumular
 3. Validar o objeto consolidado
 4. Se inválido: registrar erro, NÃO sobrescrever o `current`, abrir issue de extração quebrada
 5. Se válido: escrever `data/current/{cc}.json`
@@ -64,20 +64,20 @@ Saída do diff vai para o log e também para um arquivo temporário `data/.diff-
 Se algum país tem mudança de relevância **alta**:
 
 - Abrir issue no GitHub via `gh issue create`
-- Título: `[<COUNTRY>] Mudança detectada em <DATA>`
+- Título: `Mudanca detectada em YYYY-MM-DD`
 - Corpo: trecho relevante de `.diff-summary.md`
-- Labels: `data-update`, `country/<cc>`, `relevance/high`
+- Labels: `data-update`, `relevance/high`
 
 Mudanças médias e baixas não geram issue. Vão pro log do Actions e pro corpo do commit.
 
 ### 9. Commit
 
-Mensagem padrão: `chore(data): biweekly snapshot YYYY-MM-DD`
+Mensagem padrão: `chore(data): monthly snapshot YYYY-MM-DD`
 
 Se houve mudança de qualquer relevância, mensagem detalhada:
 
 ```
-chore(data): biweekly snapshot 2026-04-28
+chore(data): monthly snapshot 2026-05-01
 
 Changes detected:
 - nl: highly-skilled-migrant income threshold updated (5688 -> 5731)
@@ -88,7 +88,7 @@ See data/history for previous snapshots.
 
 ### 10. Push
 
-`git push origin main`. Se falhar (alguém pushou commit no meio), o workflow falha e roda de novo na quinzena seguinte. Tudo bem perder uma quinzena ocasional.
+`git push origin master`. Se falhar (alguém pushou commit no meio), o workflow falha e roda de novo no mês seguinte. Tudo bem perder uma execução mensal ocasional.
 
 ### 11. Limpeza
 
@@ -98,10 +98,10 @@ Apagar `data/.diff-summary.md` (foi temporário). Não fica no commit.
 
 - Checkout + setup: 30 segundos
 - Install: 20 segundos (com cache)
-- Extração: 4 a 6 minutos por país, 20 a 30 minutos para 5 países
+- Extração: 4 a 6 minutos por país, 40 a 50 minutos para 10 países
 - Diff e commit: 30 segundos
 
-Total: aproximadamente 25 a 35 minutos por execução.
+Total: aproximadamente 45 a 55 minutos por execução.
 
 ## Falhas e recuperação
 
@@ -145,8 +145,8 @@ Casos válidos para disparar manual:
 Para disparar:
 
 ```bash
-gh workflow run biweekly-update.yml
-# ou pelo painel web: Actions > Biweekly Update > Run workflow
+gh workflow run monthly-update.yml
+# ou pelo painel web: Actions > Monthly Update > Run workflow
 ```
 
 ## Observabilidade

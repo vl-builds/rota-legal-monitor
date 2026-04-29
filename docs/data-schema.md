@@ -234,11 +234,11 @@ function diasDesdeAtualizacao(lastUpdated: string): number {
 |-----------------|---------------|--------|
 | 0 | "atualizado hoje" | normal |
 | 1 | "atualizado ontem" | normal |
-| 2 a 17 | "atualizado há N dias" | normal |
-| 18 a 24 | "atualizado há N dias" | amarelo (aviso) |
-| 25 ou mais | "atualizado há N dias" | vermelho |
+| 2 a 31 | "atualizado há N dias" | verde (normal) |
+| 32 a 40 | "atualizado há N dias" | amarelo (aviso) |
+| 41 ou mais | "atualizado há N dias" | vermelho |
 
-Esses limites refletem a cadência quinzenal: a janela máxima entre execuções é de 17 dias (de 15 de janeiro a 1 de fevereiro). A partir de 18 dias algo pode ter falhado. A partir de 25 dias o dado está comprovadamente atrasado.
+Esses limites refletem a cadência mensal: a execução acontece no dia 1, então até 31 dias é o estado normal esperado. A partir de 32 dias algo pode ter falhado (execução do dia 1 não rodou ou foi revertida). A partir de 41 dias o dado está comprovadamente atrasado.
 
 ## Exemplo mínimo válido
 

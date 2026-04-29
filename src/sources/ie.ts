@@ -12,14 +12,14 @@ export const ieSource: SourceConfig = {
       contentType: 'visa-overview',
       promptHint:
         'Portal oficial de imigracao da Irlanda para quem quer vir trabalhar. Liste todos os tipos de permissao de trabalho e visto relevantes para brasileiros. Destaque Critical Skills Employment Permit, General Employment Permit e se ha algum tratamento especial para falantes de ingles ou cidadaos de paises especificos.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html',
       contentType: 'visa-requirements',
       promptHint:
         'Tipos de Employment Permit na Irlanda. Para cada tipo extraia: elegibilidade, salario anual minimo em EUR, setores qualificados e nao-qualificados, se ha restricao de nacionalidade, e como solicitar. O Critical Skills e o General Employment Permit sao os mais relevantes para brasileiros.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
     {
       url: 'https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/',
@@ -40,7 +40,7 @@ export const ieSource: SourceConfig = {
       contentType: 'fees',
       promptHint:
         'Taxas e tempo de processamento de Employment Permits na Irlanda. Extraia os valores em EUR de cada tipo de permissao e o tempo medio de processamento atual. Registre a data de atualizacao da tabela.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
     },
   ],
 

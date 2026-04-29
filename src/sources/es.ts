@@ -17,7 +17,7 @@ export const esSource: SourceConfig = {
       contentType: 'visa-overview',
       promptHint:
         'Portal oficial espanhol sobre tipos de autorizacao de residencia e trabalho para cidadaos de fora da UE. Liste todos os tipos de autorizacao relevantes para brasileiros que querem trabalhar na Espanha: autorizacao inicial de trabalho, trabalho por conta propria, profissionais altamente qualificados, nomade digital.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -25,7 +25,7 @@ export const esSource: SourceConfig = {
       contentType: 'visa-overview',
       promptHint:
         'Portal principal do Ministerio de Inclusao espanhol sobre migracao. Extraia informacoes gerais sobre requisitos de entrada e residencia para cidadaos de fora da UE, incluindo requisitos de seguro saude, prova de meios de subsistencia e antecedentes criminais. Indique se brasileiros precisam de visto.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -33,7 +33,7 @@ export const esSource: SourceConfig = {
       contentType: 'visa-requirements',
       promptHint:
         'Pagina sobre como viver na Espanha para cidadaos estrangeiros. Extraia: tipos de autorizacao de residencia disponíveis para trabalhadores, documentos exigidos, requisitos de renda, prazo de processamento e qualquer tratamento especial para cidadaos ibero-americanos ou de paises com acordos bilaterais com a Espanha.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -41,7 +41,7 @@ export const esSource: SourceConfig = {
       contentType: 'visa-requirements',
       promptHint:
         'Tipos de autorizacao de residencia e trabalho na Espanha. Extraia para cada tipo: requisitos, documentos, salario minimo em EUR, prazo de validade e como renovar. Inclua especificamente o visto de nomade digital (Ley de Startups 28/2022) e autorizacao para profissionais altamente qualificados (EU Blue Card).',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -49,7 +49,7 @@ export const esSource: SourceConfig = {
       contentType: 'fees',
       promptHint:
         'Informacoes uteis sobre taxas e custos de autorizacoes de residencia e trabalho na Espanha (modelo 790). Extraia cada valor em EUR por tipo de autorizacao. Nao estime: use apenas valores explicitamente listados.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
   ],

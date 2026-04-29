@@ -15,7 +15,7 @@ export const ptSource: SourceConfig = {
       contentType: 'visa-overview',
       promptHint:
         'Pagina hub da AIMA listando todos os tipos de autorizacao de residencia para trabalho em Portugal para cidadaos de fora da UE. Liste cada tipo disponivel: subordinado (empregado), independente (autonomo), altamente qualificado, nomade digital, transferencia intraempresarial. Indique para cada um se exige visto previo ou se ha dispensa.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -23,7 +23,7 @@ export const ptSource: SourceConfig = {
       contentType: 'visa-requirements',
       promptHint:
         'Autorizacao de residencia para atividade profissional subordinada (empregado) com visto de residencia em Portugal. Extraia: documentos exigidos, contrato de trabalho necessario, salario minimo, prazo de processamento e se ha tratamento especial para cidadaos brasileiros (Estatuto de Igualdade, Tratado de Amizade Luso-Brasileiro).',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -31,7 +31,7 @@ export const ptSource: SourceConfig = {
       contentType: 'visa-requirements',
       promptHint:
         'Autorizacao de residencia para atividade subordinada COM DISPENSA de visto de residencia em Portugal. Esta modalidade e relevante para brasileiros cobertos pelo Estatuto de Igualdade e Tratado de Amizade Luso-Brasileiro. Extraia: quem e elegivel para a dispensa, documentos necessarios e como o processo difere da via com visto.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -39,7 +39,7 @@ export const ptSource: SourceConfig = {
       contentType: 'visa-requirements',
       promptHint:
         'Autorizacao de residencia para atividade altamente qualificada em Portugal (equivalente ao EU Blue Card). Extraia: salario bruto minimo anual em EUR, qualificacao academica exigida, documentos necessarios e como se compara ao processo padrao de trabalho.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
     {
@@ -47,7 +47,7 @@ export const ptSource: SourceConfig = {
       contentType: 'visa-requirements',
       promptHint:
         'Autorizacao de residencia para trabalho remoto em Portugal (nomade digital). Extraia: requisito de renda mensal minima em EUR, tipo de trabalho aceito (remoto para empresa fora de Portugal), documentos necessarios e duracao da autorizacao.',
-      fetchFrequency: 'biweekly',
+      fetchFrequency: 'monthly',
       ignoreSSL: true,
     },
   ],
