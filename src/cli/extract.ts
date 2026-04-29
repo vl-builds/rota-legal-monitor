@@ -8,6 +8,7 @@ import { CountryDataSchema } from '@/extractors/schema'
 import type { CountryData, SourceRef, PolicyChange } from '@/extractors/schema'
 import { readCurrent, writeCurrent, archiveCurrent } from '@/storage/snapshot'
 import { log } from '@/lib/log'
+import type { ModelKey } from '@/lib/models'
 import type { SourceConfig } from '@/types'
 
 // ---- merge helpers --------------------------------------------------------
@@ -141,14 +142,18 @@ function buildCountryData(
 
 // ---- per-country extraction ----------------------------------------------
 
-async function extractCountry(countryCode: string): Promise<void> {
+async function extractCountry(countryCode: string, forceModel?: ModelKey): Promise<void> {
   const config = sources[countryCode]
   if (!config) {
     log.error('pais desconhecido', { country: countryCode })
     process.exit(1)
   }
 
-  log.info('iniciando extracao', { country: countryCode, urls: config.urls.length })
+  log.info('iniciando extracao', {
+    country: countryCode,
+    urls: config.urls.length,
+    ...(forceModel ? { forceModel } : {}),
+  })
 
   archiveCurrent(countryCode)
 
@@ -184,6 +189,7 @@ async function extractCountry(countryCode: string): Promise<void> {
     log.debug('conteudo limpo', { url: urlConfig.url, chars: cleanContent.length })
 
     try {
+      const resolvedModel = forceModel ?? urlConfig.model
       const partial = await extractFromHtml(cleanContent, PartialExtractionSchema, {
         country: config.countryCode,
         countryName: config.countryName,
@@ -191,6 +197,7 @@ async function extractCountry(countryCode: string): Promise<void> {
         sourceUrl: urlConfig.url,
         contentLanguage,
         promptHint: urlConfig.promptHint,
+        ...(resolvedModel ? { model: resolvedModel } : {}),
       })
       partials.push(partial)
     } catch (err) {
@@ -235,11 +242,19 @@ async function extractCountry(countryCode: string): Promise<void> {
 async function main(): Promise<void> {
   const args = process.argv.slice(2)
   const countryArg = args.find((a) => a.startsWith('--country='))?.split('=')[1]
+  const forceModelArg = args.find((a) => a.startsWith('--force-model='))?.split('=')[1] as
+    | ModelKey
+    | undefined
+
+  if (forceModelArg && forceModelArg !== 'haiku' && forceModelArg !== 'sonnet') {
+    log.error('--force-model invalido: use haiku ou sonnet', { value: forceModelArg })
+    process.exit(1)
+  }
 
   const countries = countryArg ? [countryArg] : Object.keys(sources)
 
   for (const country of countries) {
-    await extractCountry(country)
+    await extractCountry(country, forceModelArg)
   }
 }
 

@@ -2,8 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import type { z } from "zod";
 import { log } from "@/lib/log";
-
-const MODEL = process.env["ANTHROPIC_MODEL"] ?? "claude-sonnet-4-5";
+import { MODELS, type ModelKey } from "@/lib/models";
 
 const SYSTEM_PROMPT =
   "Voce extrai dados oficiais de imigracao de paginas de governo. " +
@@ -21,6 +20,7 @@ export interface ExtractionContext {
   sourceUrl: string;
   contentLanguage: string;
   promptHint?: string;
+  model?: ModelKey;
 }
 
 export class ExtractionError extends Error {
@@ -79,6 +79,7 @@ export async function extractFromHtml<T>(
     input_schema: rawSchema as Anthropic.Messages.Tool["input_schema"],
   };
 
+  const selectedModel = MODELS[context.model ?? "haiku"];
   const userContent = buildUserMessage(html, context);
   let lastError: unknown;
 
@@ -88,12 +89,12 @@ export async function extractFromHtml<T>(
         attempt,
         country: context.country,
         url: context.sourceUrl,
-        model: MODEL,
+        model: selectedModel,
         htmlChars: html.length,
       });
 
       const message = await client.messages.create({
-        model: MODEL,
+        model: selectedModel,
         max_tokens: 8192,
         system: SYSTEM_PROMPT,
         tools: [tool],
@@ -124,7 +125,7 @@ export async function extractFromHtml<T>(
       log.info("extracao concluida", {
         country: context.country,
         url: context.sourceUrl,
-        model: MODEL,
+        model: selectedModel,
         inputTokens: usage.input_tokens,
         outputTokens: usage.output_tokens,
         cacheReadTokens,
