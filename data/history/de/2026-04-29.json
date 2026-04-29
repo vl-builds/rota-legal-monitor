@@ -1,0 +1,1063 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Brasileiros precisam de visto para trabalhar na Alemanha. Esta página trata especificamente de permissões de residência permanente (Niederlassungserlaubnis) para trabalhadores qualificados que já residem na Alemanha.",
+    "schengenVisaFree": false,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": false,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "Não mencionado especificamente nesta página sobre permissão de residência permanente",
+      "required": false
+    },
+    "passportValidity": "Não especificado nesta página",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "de",
+    "countryName": "Alemanha",
+    "lastUpdated": "2026-04-29T08:44:53.379Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:40:57.268Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/types"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:41:39.722Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:42:06.168Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/opportunity-card"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:42:51.054Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T08:43:34.711Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit"
+      }
+    ]
+  },
+  "recentChanges": [
+    {
+      "affects": [
+        "work-qualified-professionals"
+      ],
+      "date": "2026-01-01",
+      "severity": "minor",
+      "sourceUrl": "https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals",
+      "summary": "O salário bruto anual mínimo para trabalhadores acima de 45 anos vindo trabalhar na Alemanha pela primeira vez foi estabelecido em €55.770 a partir de 2026",
+      "title": "Atualização do salário mínimo para maiores de 45 anos"
+    },
+    {
+      "affects": [
+        "EU Blue Card",
+        "EU Blue Card para jovens profissionais",
+        "EU Blue Card para profissionais de TI sem diploma"
+      ],
+      "date": "2026-01-01",
+      "severity": "major",
+      "sourceUrl": "https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card",
+      "summary": "Salário bruto anual mínimo atualizado para €50.700 (geral) e €45.934,20 (profissões em escassez, jovens profissionais e profissionais de TI sem diploma) a partir de 2026.",
+      "title": "Atualização dos limites salariais para 2026"
+    }
+  ],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "Permissão de residência para profissionais altamente qualificados com diploma acadêmico e oferta de emprego na Alemanha com salário mínimo especificado.",
+      "eligibility": [
+        "Diploma acadêmico alemão ou qualificação estrangeira comparável",
+        "Oferta de emprego específica na Alemanha por pelo menos 6 meses",
+        "Emprego compatível com a qualificação acadêmica",
+        "Salário bruto anual de pelo menos €50.700 (a partir de 2026)",
+        "Para profissões em escassez: salário bruto anual mínimo de €45.934,20 (a partir de 2026)"
+      ],
+      "id": "eu-blue-card",
+      "name": "Cartão Azul UE",
+      "nameOriginal": "EU Blue Card",
+      "notes": "Profissões em escassez que permitem salário reduzido (€45.934,20): gestores de produção/mineração/construção/distribuição, gestores de serviços de TIC, gestores de serviços profissionais (cuidados infantis, saúde, educação), profissionais STEM acadêmicos, arquitetos/planejamento espacial e de transporte, médicos, veterinários, dentistas, farmacêuticos, profissionais acadêmicos de enfermagem e obstetrícia, professores e educadores escolares e extraescolares. Jovens profissionais (formados há menos de 3 anos) podem obter Cartão Azul UE com salário mínimo de €45.934,20 para empregos iniciais em todas as profissões. Mudança de emprego no primeiro ano requer notificação à autoridade de estrangeiros local. Limiares salariais são publicados anualmente pelo Ministério Federal do Interior.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Garantir oferta de emprego específica de empresa na Alemanha com período mínimo de 6 meses e salário que atenda aos requisitos mínimos.",
+            "estimatedDays": null,
+            "name": "Obter oferta de emprego",
+            "order": 1
+          },
+          {
+            "description": "Verificar se a qualificação acadêmica estrangeira é comparável a qualificação alemã. Consultar seção 'Recognition' para informações sobre equivalência.",
+            "estimatedDays": null,
+            "name": "Verificar reconhecimento de diploma",
+            "order": 2
+          },
+          {
+            "description": "Solicitar visto para Cartão Azul UE. Se emprego for em profissão de escassez ou para jovem profissional, é necessária aprovação da Agência Federal de Emprego (BA).",
+            "estimatedDays": null,
+            "name": "Solicitar visto",
+            "order": 3
+          },
+          {
+            "description": "O Cartão Azul UE é emitido pela duração do contrato de trabalho mais 3 meses adicionais, válido por no máximo 4 anos.",
+            "estimatedDays": null,
+            "name": "Receber Cartão Azul UE",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Diploma acadêmico tradicional ou qualificação de nível terciário com pelo menos 3 anos de duração, correspondente ao nível 6 do ISCED 2011 ou nível 6 do European Qualifications Framework. Exemplos incluem Master craftsman/craftswoman training e qualificações vocacionais não-acadêmicas em profissões de educador.",
+            "isCritical": true,
+            "name": "Qualificação acadêmica alemã ou estrangeira comparável"
+          },
+          {
+            "description": "Contrato de trabalho de empresa na Alemanha com período de emprego de pelo menos 6 meses. O emprego deve corresponder à qualificação acadêmica.",
+            "isCritical": true,
+            "name": "Oferta de emprego específica"
+          },
+          {
+            "description": "Se necessário para a profissão, deve estar em vigor ou em perspectiva no momento da solicitação do visto.",
+            "isCritical": false,
+            "name": "Licença para exercer (profissões regulamentadas)"
+          },
+          {
+            "description": "Para qualificações acadêmicas estrangeiras, é necessário demonstrar que são comparáveis a qualificações acadêmicas alemãs.",
+            "isCritical": true,
+            "name": "Comprovação de reconhecimento de diploma estrangeiro"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 50700,
+          "currency": "EUR",
+          "notes": "Salário bruto anual mínimo a partir de 2026. Para profissões em escassez, o mínimo é €45.934,20. Para jovens profissionais (formados há menos de 3 anos), o mínimo é €45.934,20.",
+          "period": "yearly"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Diploma acadêmico alemão ou qualificação estrangeira comparável a diploma acadêmico alemão",
+          "Qualificação de nível terciário com pelo menos 3 anos de duração (nível 6 ISCED 2011 ou nível 6 European Qualifications Framework)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Após 27 meses, é possível obter settlement permit (autorização de residência permanente) com alemão nível A1",
+            "Após 21 meses, é possível obter settlement permit com alemão nível B1"
+          ],
+          "yearsRequired": 2
+        }
+      }
+    },
+    {
+      "description": "Visto para trabalhadores qualificados com qualificação profissional reconhecida que desejam trabalhar na Alemanha.",
+      "eligibility": [
+        "Qualificação profissional reconhecida",
+        "Oferta de emprego na Alemanha",
+        "Trabalhadores em profissões com demanda"
+      ],
+      "id": "skilled-worker-visa",
+      "name": "Visto para Trabalhadores Qualificados",
+      "nameOriginal": "Skilled Worker Visa",
+      "notes": null,
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação profissional reconhecida"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Destinado a nacionais de países terceiros com qualificação estrangeira e ampla experiência profissional, permitindo trabalhar em uma profissão não regulamentada na Alemanha, mesmo que sua qualificação não seja formalmente reconhecida.",
+      "eligibility": [
+        "Qualificação estrangeira",
+        "Ampla experiência profissional",
+        "Trabalho em profissão não regulamentada",
+        "Qualificação não precisa ser formalmente reconhecida"
+      ],
+      "id": "professionally-experienced-workers-visa",
+      "name": "Visto para Trabalhadores com Experiência Profissional",
+      "nameOriginal": "Visa for professionally experienced workers",
+      "notes": "Permite trabalhar sem reconhecimento formal da qualificação para profissões não regulamentadas",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação estrangeira",
+          "Experiência profissional comprovada"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Trabalhadores qualificados e experientes em TI são muito procurados na Alemanha. Vindos do exterior, existem muitas opções para receber um visto de trabalho - com ou sem certificado de qualificação formal.",
+      "eligibility": [
+        "Profissionais qualificados em TI",
+        "Profissionais experientes em TI",
+        "Com ou sem certificado de qualificação formal"
+      ],
+      "id": "it-professionals-visa",
+      "name": "Visto para Profissionais de TI",
+      "nameOriginal": "Visa options for IT professionals",
+      "notes": "Oferece flexibilidade para profissionais de TI sem qualificação formal",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência de acordo com as Seções 18a ou 18b da Lei de Residência (AufenthG) para assumir emprego qualificado como trabalhador qualificado na Alemanha. Destinado a pessoas que concluíram estudos acadêmicos ou formação profissional qualificada na Alemanha ou no exterior.",
+      "eligibility": [
+        "Qualificação reconhecida na Alemanha ou comparável a uma qualificação acadêmica alemã",
+        "Oferta de emprego específica de empregador na Alemanha",
+        "O trabalho oferecido deve ser uma posição qualificada que normalmente requer qualificação acadêmica ou formação profissional",
+        "Para profissões regulamentadas (como profissões de saúde), necessária licença para exercer",
+        "Se maior de 45 anos e vindo trabalhar na Alemanha pela primeira vez: salário bruto anual mínimo de €55.770 (a partir de 2026) ou comprovação de provisão adequada de pensão"
+      ],
+      "id": "work-qualified-professionals",
+      "name": "Visto de Trabalho para Profissionais Qualificados",
+      "nameOriginal": "Work Visa for Qualified Professionals (Fachkräfteeinwanderungsgesetz)",
+      "notes": "O trabalho não precisa estar relacionado à sua qualificação, exceto para profissões regulamentadas onde é necessária licença. Permissões de residência são emitidas por no máximo 4 anos. Se o contrato de trabalho for por período mais curto, a permissão será emitida pela duração do contrato mais 3 meses adicionais. Profissionais com qualificação acadêmica reconhecida devem verificar elegibilidade para EU Blue Card, que oferece oportunidades particularmente atrativas.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado na página",
+        "fees": [],
+        "steps": [
+          {
+            "description": "A qualificação deve ser reconhecida na Alemanha ou comparável a uma qualificação acadêmica alemã. Para profissões regulamentadas, obter licença para exercer.",
+            "estimatedDays": null,
+            "name": "Obter reconhecimento de qualificação",
+            "order": 1
+          },
+          {
+            "description": "Obter oferta de emprego específica de um empregador na Alemanha para uma posição qualificada",
+            "estimatedDays": null,
+            "name": "Garantir oferta de emprego",
+            "order": 2
+          },
+          {
+            "description": "A Agência Federal de Emprego (BA) deve aprovar o emprego. A BA avaliará se as condições de emprego (salário, horas de trabalho, etc.) correspondem às de funcionários locais.",
+            "estimatedDays": null,
+            "name": "Aprovação da Agência Federal de Emprego",
+            "order": 3
+          },
+          {
+            "description": "Solicitar a permissão de residência de acordo com as Seções 18a ou 18b da Lei de Residência",
+            "estimatedDays": null,
+            "name": "Solicitar visto/permissão de residência",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Qualificação deve ser reconhecida na Alemanha ou comparável a uma qualificação acadêmica alemã. Para profissões regulamentadas, licença para exercer a profissão é necessária.",
+            "isCritical": true,
+            "name": "Reconhecimento de qualificação"
+          },
+          {
+            "description": "Oferta de emprego específica de um empregador na Alemanha para uma posição qualificada",
+            "isCritical": true,
+            "name": "Oferta de emprego"
+          },
+          {
+            "description": "Para pessoas acima de 45 anos vindo trabalhar na Alemanha pela primeira vez, se o salário for inferior a €55.770 por ano",
+            "isCritical": false,
+            "name": "Comprovação de provisão de pensão (se aplicável)"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 55770,
+          "currency": "EUR",
+          "notes": "Aplicável apenas para pessoas acima de 45 anos vindo trabalhar na Alemanha pela primeira vez. Valor válido a partir de 2026. Se não atingir este valor, deve comprovar provisão adequada de pensão.",
+          "period": "yearly"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Estudos acadêmicos concluídos ou formação profissional qualificada na Alemanha ou no exterior",
+          "Reconhecimento da qualificação na Alemanha"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Ter mantido permissão de residência com finalidade de emprego por pelo menos 3 anos",
+            "Sob certas circunstâncias, pode ser elegível para permissão de estabelecimento (settlement permit)",
+            "A permissão de estabelecimento é essencialmente um título de residência permanente"
+          ],
+          "yearsRequired": 3
+        }
+      }
+    },
+    {
+      "description": "Visto para profissionais qualificados que desejam buscar emprego na Alemanha sem ter uma oferta de trabalho prévia. Pode ser obtido como trabalhador qualificado reconhecido ou através de um sistema de pontos.",
+      "eligibility": [
+        "Profissionais qualificados reconhecidos",
+        "Candidatos aprovados pelo sistema de pontos",
+        "Pessoas que buscam emprego na Alemanha"
+      ],
+      "id": "opportunity-card",
+      "name": "Cartão de Oportunidade (Chancenkarte)",
+      "nameOriginal": "Opportunity Card (Chancenkarte)",
+      "notes": "O conteúdo da página não fornece detalhes específicos sobre: sistema de pontos (critérios e pontuação), duração exata do visto, restrições específicas de trabalho durante a busca, requisitos de idioma, idade, ou processo de conversão para visto de trabalho. A página menciona apenas que existe um self-check disponível para verificar elegibilidade. Informações completas não estão disponíveis nesta página específica.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Duração não especificada",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Verificar se você é elegível através do self-check disponível no site (como trabalhador qualificado reconhecido ou através do sistema de pontos)",
+            "estimatedDays": null,
+            "name": "Verificação de elegibilidade",
+            "order": 1
+          },
+          {
+            "description": "Solicitar o Opportunity Card na embaixada ou consulado alemão no país de origem",
+            "estimatedDays": null,
+            "name": "Solicitação do visto",
+            "order": 2
+          },
+          {
+            "description": "Entrar na Alemanha com o Opportunity Card para buscar emprego",
+            "estimatedDays": null,
+            "name": "Entrada na Alemanha",
+            "order": 3
+          },
+          {
+            "description": "Buscar emprego na Alemanha durante o período de validade do cartão",
+            "estimatedDays": null,
+            "name": "Busca de emprego",
+            "order": 4
+          },
+          {
+            "description": "Após encontrar emprego, converter o Opportunity Card para visto de trabalho/residência regular",
+            "estimatedDays": null,
+            "name": "Conversão para visto de trabalho",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passaporte com validade suficiente para o período de estadia",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Diploma ou qualificação profissional reconhecida, ou pontuação suficiente no sistema de pontos",
+            "isCritical": true,
+            "name": "Qualificação profissional"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação profissional reconhecida ou pontos suficientes no sistema de pontos"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": false,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Encontrar emprego qualificado na Alemanha",
+            "Converter o Opportunity Card para visto de trabalho regular"
+          ],
+          "yearsRequired": 1
+        }
+      }
+    },
+    {
+      "description": "Cartão Azul UE para profissionais de TI ou gestores sem qualificação formal, com base em experiência profissional comprovada.",
+      "eligibility": [
+        "Oferta de emprego específica como profissional de TI na Alemanha",
+        "Período de emprego de pelo menos 6 meses",
+        "Salário bruto anual de pelo menos €45.934,20 (a partir de 2026)",
+        "Experiência de trabalho em TI por pelo menos 3 dos últimos 7 anos",
+        "Experiência profissional em nível universitário e pré-requisito para emprego na Alemanha"
+      ],
+      "id": "eu-blue-card-it-no-degree",
+      "name": "Cartão Azul UE para profissionais de TI sem diploma",
+      "nameOriginal": "EU Blue Card for IT specialists without degree",
+      "notes": "Esta opção é específica para profissionais de TI sem qualificação formal. Alternativamente, profissionais de TI sem qualificação formal podem entrar na Alemanha sob regulamentações especiais para indivíduos com conhecimento prático. Emitido sob Section 18g of the Residence Act (AufenthG).",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Garantir oferta de emprego específica como profissional de TI na Alemanha com período mínimo de 6 meses e salário mínimo de €45.934,20.",
+            "estimatedDays": null,
+            "name": "Obter oferta de emprego em TI",
+            "order": 1
+          },
+          {
+            "description": "Reunir documentação que comprove experiência profissional em TI por pelo menos 3 dos últimos 7 anos em nível universitário.",
+            "estimatedDays": null,
+            "name": "Compilar documentação de experiência",
+            "order": 2
+          },
+          {
+            "description": "Solicitar visto para Cartão Azul UE sob Section 18g of the Residence Act (AufenthG).",
+            "estimatedDays": null,
+            "name": "Solicitar visto",
+            "order": 3
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Contrato de trabalho específico como profissional de TI na Alemanha com período de emprego de pelo menos 6 meses.",
+            "isCritical": true,
+            "name": "Oferta de emprego como profissional de TI"
+          },
+          {
+            "description": "Documentação que comprove trabalho em TI por pelo menos 3 dos últimos 7 anos. A experiência profissional deve ter sido em nível universitário e ser pré-requisito para o emprego na Alemanha.",
+            "isCritical": true,
+            "name": "Comprovação de experiência profissional em TI"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 45934.2,
+          "currency": "EUR",
+          "notes": "Salário bruto anual mínimo a partir de 2026 para profissionais de TI sem qualificação formal.",
+          "period": "yearly"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Experiência profissional em TI por pelo menos 3 dos últimos 7 anos",
+          "Experiência profissional em nível universitário"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Após 27 meses, é possível obter settlement permit com alemão nível A1",
+            "Após 21 meses, é possível obter settlement permit com alemão nível B1"
+          ],
+          "yearsRequired": 2
+        }
+      }
+    },
+    {
+      "description": "Título de residência permanente que permite viver e trabalhar na Alemanha indefinidamente sem restrições. Permite trabalhar como empregado ou autônomo e trazer família. Disponível para trabalhadores qualificados que já residem na Alemanha com permissão temporária.",
+      "eligibility": [
+        "Pessoas com formação profissional qualificada concluída na Alemanha ou qualificação estrangeira equivalente",
+        "Pessoas com diploma universitário alemão, estrangeiro reconhecido ou comparável",
+        "Titulares de EU Blue Card",
+        "Pesquisadores internacionais conforme Diretiva (UE) 2016/801"
+      ],
+      "id": "settlement-permit-skilled-workers",
+      "name": "Permissão de Residência Permanente para Trabalhadores Qualificados",
+      "nameOriginal": "Settlement Permit for Skilled Workers (Niederlassungserlaubnis)",
+      "notes": "Esta é uma permissão de residência PERMANENTE, não temporária. Requer que o aplicante já tenha residido na Alemanha com permissão temporária. Condições facilitadas aplicam-se a titulares de EU Blue Card, pessoas que completaram educação superior ou formação profissional na Alemanha, trabalhadores altamente qualificados e autônomos.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Não especificado",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Taxa aproximada, varia conforme grupo de status. Valor exato deve ser confirmado com a autoridade de estrangeiros local",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Confirmar que atende todos os requisitos: 3 anos de residência com título válido, 36 meses de contribuições previdenciárias, alemão B1, teste Living in Germany, moradia adequada e emprego",
+            "estimatedDays": null,
+            "name": "Verificar requisitos",
+            "order": 1
+          },
+          {
+            "description": "Marcar consulta na Ausländerbehörde (autoridade de estrangeiros) local",
+            "estimatedDays": null,
+            "name": "Agendar consulta",
+            "order": 2
+          },
+          {
+            "description": "Preparar todos os documentos necessários conforme informado pela autoridade de estrangeiros",
+            "estimatedDays": null,
+            "name": "Reunir documentos",
+            "order": 3
+          },
+          {
+            "description": "Comparecer à consulta e submeter aplicação com todos os documentos. Pagar taxa de aproximadamente €150",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 4
+          },
+          {
+            "description": "Aguardar análise e decisão da autoridade de estrangeiros",
+            "estimatedDays": null,
+            "name": "Aguardar decisão",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Comprovação de que possui título de residência sob Seções 18a, 18b, 18d ou 18g da Lei de Residência por 3 anos",
+            "isCritical": true,
+            "name": "Título de residência anterior"
+          },
+          {
+            "description": "Comprovação de pagamento de contribuições obrigatórias ou voluntárias ao seguro de pensão estatutário por pelo menos 36 meses",
+            "isCritical": true,
+            "name": "Comprovante de contribuições previdenciárias"
+          },
+          {
+            "description": "Comprovação de conhecimento do idioma alemão no nível B1 do CEFR",
+            "isCritical": true,
+            "name": "Certificado de idioma alemão nível B1"
+          },
+          {
+            "description": "Comprovação de conhecimento básico do sistema jurídico e social e modo de vida na Alemanha",
+            "isCritical": true,
+            "name": "Teste 'Living in Germany'"
+          },
+          {
+            "description": "Comprovação de espaço de vida suficiente para si e membros da família",
+            "isCritical": true,
+            "name": "Comprovante de moradia adequada"
+          },
+          {
+            "description": "Documentação de que possui emprego permitido pela sua permissão de residência",
+            "isCritical": true,
+            "name": "Comprovante de emprego"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Alemão",
+          "level": "B1 CEFR",
+          "testsAccepted": []
+        },
+        "qualificationsRequired": [
+          "Formação profissional qualificada concluída na Alemanha ou equivalente estrangeira reconhecida",
+          "OU diploma universitário alemão, estrangeiro reconhecido ou comparável"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência permanente com condições facilitadas para titulares de EU Blue Card. Requer menos tempo de residência (21-27 meses) e menor nível de alemão (A1 ou B1) comparado à permissão padrão.",
+      "eligibility": [
+        "Titulares de EU Blue Card (Seção 18g da Lei de Residência)",
+        "Empregados em trabalho qualificado com contribuições ao seguro de pensão"
+      ],
+      "id": "settlement-permit-eu-blue-card",
+      "name": "Permissão de Residência Permanente para Titulares de EU Blue Card",
+      "nameOriginal": "Settlement Permit for EU Blue Card Holders",
+      "notes": "Condições facilitadas para titulares de EU Blue Card: período reduzido (21-27 meses vs 3 anos) e menor exigência de idioma (A1 vs B1). Com alemão B1, o período é reduzido de 27 para 21 meses.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Não especificado",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Taxa aproximada, pode variar",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Confirmar 27 meses de emprego qualificado com contribuições previdenciárias (ou 21 meses se tiver alemão B1)",
+            "estimatedDays": null,
+            "name": "Verificar período de emprego qualificado",
+            "order": 1
+          },
+          {
+            "description": "Obter certificado de alemão nível A1 (ou B1 para período reduzido) e passar no teste Living in Germany",
+            "estimatedDays": null,
+            "name": "Obter certificação de idioma",
+            "order": 2
+          },
+          {
+            "description": "Marcar consulta na Ausländerbehörde local",
+            "estimatedDays": null,
+            "name": "Agendar na autoridade de estrangeiros",
+            "order": 3
+          },
+          {
+            "description": "Apresentar todos os documentos e pagar taxa de aproximadamente €150",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 4
+          },
+          {
+            "description": "Aguardar processamento da aplicação",
+            "estimatedDays": null,
+            "name": "Aguardar decisão",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Comprovação de posse de EU Blue Card sob Seção 18g da Lei de Residência",
+            "isCritical": true,
+            "name": "EU Blue Card válido"
+          },
+          {
+            "description": "Comprovação de emprego qualificado por pelo menos 27 meses (ou 21 meses com alemão B1)",
+            "isCritical": true,
+            "name": "Comprovante de emprego qualificado"
+          },
+          {
+            "description": "Comprovação de pagamento ao seguro de pensão estatutário durante o período de emprego",
+            "isCritical": true,
+            "name": "Comprovante de contribuições previdenciárias"
+          },
+          {
+            "description": "Nível A1 CEFR (para 27 meses) ou B1 CEFR (para reduzir para 21 meses)",
+            "isCritical": true,
+            "name": "Certificado de idioma alemão"
+          },
+          {
+            "description": "Comprovação de conhecimento básico do sistema jurídico e social e modo de vida na Alemanha",
+            "isCritical": true,
+            "name": "Teste 'Living in Germany'"
+          },
+          {
+            "description": "Comprovação de espaço de vida suficiente",
+            "isCritical": true,
+            "name": "Comprovante de moradia adequada"
+          },
+          {
+            "description": "Comprovação de capacidade de cobrir custos de vida",
+            "isCritical": true,
+            "name": "Comprovante de recursos financeiros"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Alemão",
+          "level": "A1 CEFR (ou B1 CEFR para período reduzido)",
+          "testsAccepted": []
+        },
+        "qualificationsRequired": [
+          "Qualificações necessárias para obtenção de EU Blue Card (diploma universitário e emprego qualificado)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência permanente com condições facilitadas para quem completou educação superior ou formação profissional na Alemanha. Requer apenas 2 anos de permissão de trabalho e 24 meses de contribuições previdenciárias.",
+      "eligibility": [
+        "Pessoas que completaram com sucesso educação superior na Alemanha",
+        "Pessoas que completaram formação profissional na Alemanha",
+        "Devem ter permissão de residência para emprego como trabalhador qualificado"
+      ],
+      "id": "settlement-permit-after-studies",
+      "name": "Permissão de Residência Permanente após Formação na Alemanha",
+      "nameOriginal": "Settlement Permit after Vocational Training or Academic Studies",
+      "notes": "Provisões especiais para quem estudou/treinou na Alemanha: apenas 2 anos de permissão de trabalho necessários (vs 3 anos padrão) e apenas 24 meses de contribuições previdenciárias (vs 36 meses).",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Não especificado",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Taxa aproximada",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Confirmar conclusão de estudos/formação na Alemanha e 2 anos de permissão de trabalho",
+            "estimatedDays": null,
+            "name": "Verificar elegibilidade",
+            "order": 1
+          },
+          {
+            "description": "Preparar diploma, comprovantes de contribuições previdenciárias (24 meses), certificado de alemão B1 e teste Living in Germany",
+            "estimatedDays": null,
+            "name": "Reunir documentos",
+            "order": 2
+          },
+          {
+            "description": "Marcar consulta na autoridade de estrangeiros local",
+            "estimatedDays": null,
+            "name": "Agendar consulta",
+            "order": 3
+          },
+          {
+            "description": "Apresentar documentos e pagar taxa de aproximadamente €150",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 4
+          },
+          {
+            "description": "Aguardar processamento da aplicação",
+            "estimatedDays": null,
+            "name": "Aguardar decisão",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Comprovação de conclusão de educação superior ou formação profissional na Alemanha",
+            "isCritical": true,
+            "name": "Diploma alemão"
+          },
+          {
+            "description": "Comprovação de posse de permissão de residência sob Seções 18a, 18b, 18d ou 18g por pelo menos 2 anos",
+            "isCritical": true,
+            "name": "Permissão de residência para trabalho"
+          },
+          {
+            "description": "Documentação de emprego permitido pela permissão de residência",
+            "isCritical": true,
+            "name": "Comprovante de emprego"
+          },
+          {
+            "description": "Comprovação de 24 meses de contribuições ao seguro de pensão estatutário",
+            "isCritical": true,
+            "name": "Comprovante de contribuições previdenciárias"
+          },
+          {
+            "description": "Comprovação de conhecimento do idioma alemão no nível B1 do CEFR",
+            "isCritical": true,
+            "name": "Certificado de idioma alemão nível B1"
+          },
+          {
+            "description": "Comprovação de conhecimento básico do sistema jurídico e social e modo de vida na Alemanha",
+            "isCritical": true,
+            "name": "Teste 'Living in Germany'"
+          },
+          {
+            "description": "Comprovação de espaço de vida suficiente",
+            "isCritical": true,
+            "name": "Comprovante de moradia adequada"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Alemão",
+          "level": "B1 CEFR",
+          "testsAccepted": []
+        },
+        "qualificationsRequired": [
+          "Educação superior concluída na Alemanha",
+          "OU formação profissional concluída na Alemanha"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência permanente imediata para trabalhadores altamente qualificados em casos especiais, sem necessidade de período prévio de residência na Alemanha. Disponível para cientistas com conhecimento técnico especial ou professores em posições proeminentes com anos de experiência.",
+      "eligibility": [
+        "Cientistas com conhecimento técnico especial",
+        "Professores em posição proeminente com vários anos de experiência profissional",
+        "Outros trabalhadores altamente qualificados em casos especiais"
+      ],
+      "id": "settlement-permit-highly-skilled",
+      "name": "Permissão de Residência Permanente para Trabalhadores Altamente Qualificados",
+      "nameOriginal": "Settlement Permit for Highly Skilled Workers",
+      "notes": "Permissão IMEDIATA sem período de espera para casos especiais de trabalhadores altamente qualificados. Ideal ter documentos preparados antes de entrar na Alemanha. Regulado pela Seção 18c (3) da Lei de Residência.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Imediato após entrada na Alemanha",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Taxa aproximada",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Reunir todos os documentos necessários antes de entrar na Alemanha: comprovantes de formação acadêmica, qualificações especiais e capacidade financeira",
+            "estimatedDays": null,
+            "name": "Preparar documentos antes da entrada",
+            "order": 1
+          },
+          {
+            "description": "Entrar na Alemanha com documentação completa",
+            "estimatedDays": null,
+            "name": "Entrar na Alemanha",
+            "order": 2
+          },
+          {
+            "description": "Solicitar permissão de residência permanente imediatamente após entrada na autoridade de estrangeiros",
+            "estimatedDays": null,
+            "name": "Solicitar permissão imediatamente",
+            "order": 3
+          },
+          {
+            "description": "Receber permissão de residência permanente sem período de espera",
+            "estimatedDays": null,
+            "name": "Obter decisão",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documentação de conclusão de formação acadêmica",
+            "isCritical": true,
+            "name": "Comprovante de formação acadêmica"
+          },
+          {
+            "description": "Documentação de conhecimento técnico especial ou posição proeminente com experiência profissional",
+            "isCritical": true,
+            "name": "Comprovante de qualificação especial"
+          },
+          {
+            "description": "Evidências de que poderá integrar-se ao modo de vida alemão",
+            "isCritical": true,
+            "name": "Comprovante de capacidade de integração"
+          },
+          {
+            "description": "Documentação de capacidade de cobrir custos de vida sem assistência estatal",
+            "isCritical": true,
+            "name": "Comprovante de recursos financeiros"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Formação acadêmica concluída",
+          "Conhecimento técnico especial como cientista",
+          "OU posição proeminente como professor com vários anos de experiência"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Título de residência permanente comparável à permissão de residência padrão, mas que facilita migração para quase todos os países da UE. Requer 5 anos de residência legal na Alemanha e 60 meses de contribuições previdenciárias.",
+      "eligibility": [
+        "Pessoas que residem legalmente na Alemanha há pelo menos 5 anos",
+        "Não disponível para certos títulos de residência (educacional ou razões humanitárias específicas)"
+      ],
+      "id": "eu-permanent-residence-permit",
+      "name": "Permissão de Residência Permanente da UE",
+      "nameOriginal": "Permanent EU Residence Permit (Daueraufenthalt-EU)",
+      "notes": "Regulado pela Seção 9a da Lei de Residência. Vantagem principal: facilita migração para quase todos os países da UE. Requer mais tempo (5 anos vs 3 anos) e mais contribuições previdenciárias (60 meses vs 36 meses) que a permissão padrão. Não disponível para certos tipos de permissão de residência (educacional ou humanitária).",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Não especificado",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Taxa aproximada",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Aguardar completar pelo menos 5 anos de residência legal na Alemanha",
+            "estimatedDays": null,
+            "name": "Completar 5 anos de residência",
+            "order": 1
+          },
+          {
+            "description": "Garantir 60 meses de contribuições ao seguro de pensão",
+            "estimatedDays": null,
+            "name": "Acumular contribuições previdenciárias",
+            "order": 2
+          },
+          {
+            "description": "Obter certificado de idioma alemão e passar em teste de conhecimento sobre a Alemanha",
+            "estimatedDays": null,
+            "name": "Obter certificações",
+            "order": 3
+          },
+          {
+            "description": "Marcar consulta na autoridade de estrangeiros e submeter aplicação com todos os documentos",
+            "estimatedDays": null,
+            "name": "Agendar e submeter aplicação",
+            "order": 4
+          },
+          {
+            "description": "Aguardar processamento e decisão",
+            "estimatedDays": null,
+            "name": "Aguardar decisão",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documentação de pelo menos 5 anos de residência legal na Alemanha",
+            "isCritical": true,
+            "name": "Comprovante de residência legal"
+          },
+          {
+            "description": "Comprovação de capacidade de sustentar a si mesmo e membros da família",
+            "isCritical": true,
+            "name": "Comprovante de recursos financeiros"
+          },
+          {
+            "description": "Comprovação de comando suficiente do idioma alemão",
+            "isCritical": true,
+            "name": "Certificado de idioma alemão"
+          },
+          {
+            "description": "Comprovação de conhecimento básico do sistema jurídico e social e modo de vida na Alemanha",
+            "isCritical": true,
+            "name": "Teste de conhecimento sobre a Alemanha"
+          },
+          {
+            "description": "Comprovação de espaço de vida suficiente para si e família",
+            "isCritical": true,
+            "name": "Comprovante de moradia adequada"
+          },
+          {
+            "description": "Comprovação de 60 meses de contribuições obrigatórias ou voluntárias ao seguro de pensão estatutário",
+            "isCritical": true,
+            "name": "Comprovante de contribuições previdenciárias"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Alemão",
+          "level": "Comando suficiente (nível não especificado)",
+          "testsAccepted": []
+        },
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}

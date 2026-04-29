@@ -1,0 +1,1140 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Brasileiros podem entrar na Holanda sem visto para estadias de até 90 dias dentro do período de 180 dias no espaço Schengen. Para trabalhar, é necessário permissão de trabalho e autorização de residência.",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": false,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "Não mencionado requisitos específicos de seguro saúde na página geral",
+      "required": false
+    },
+    "passportValidity": "Validade mínima não especificada na página",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "nl",
+    "countryName": "Holanda",
+    "lastUpdated": "2026-04-28T22:48:27.136Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-28T22:44:37.521Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/residence-permits/work"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-28T22:45:42.980Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/residence-permits/work/highly-skilled-migrant"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-28T22:46:08.581Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-28T22:46:45.580Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/fees-costs-of-an-application"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-28T22:47:19.747Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/work"
+      }
+    ]
+  },
+  "recentChanges": [
+    {
+      "affects": [
+        "orientation-year-highly-educated"
+      ],
+      "date": "2026-04-09",
+      "severity": "minor",
+      "sourceUrl": "https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year",
+      "summary": "Última atualização das informações sobre a permissão de residência para ano de orientação",
+      "title": "Última atualização da página"
+    }
+  ],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "Permissão de residência para trabalhadores altamente qualificados que desejam trabalhar na Holanda",
+      "eligibility": [
+        "Ser empregado por empresa reconhecida como sponsor",
+        "Atender aos requisitos salariais mínimos",
+        "Ter qualificação relevante"
+      ],
+      "id": "highly-skilled-migrant",
+      "name": "Migrante Altamente Qualificado",
+      "nameOriginal": "Highly Skilled Migrant",
+      "notes": "Requer que o empregador seja sponsor reconhecido pelo IND",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "A empresa empregadora deve ser reconhecida como sponsor pelo IND",
+            "estimatedDays": null,
+            "name": "Empregador solicita como sponsor reconhecido",
+            "order": 1
+          },
+          {
+            "description": "O empregador submete a aplicação de residência em nome do trabalhador",
+            "estimatedDays": null,
+            "name": "Submissão da aplicação",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documento de viagem válido",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Contrato de trabalho com empresa sponsor reconhecida",
+            "isCritical": true,
+            "name": "Contrato de trabalho"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação relevante para a posição"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Residência contínua e legal na Holanda"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Permissão de residência para trabalhadores altamente educados viverem e trabalharem na Holanda",
+      "eligibility": [
+        "Ser altamente educado",
+        "Ter oferta de emprego na Holanda",
+        "Atender aos requisitos salariais específicos"
+      ],
+      "id": "european-blue-card",
+      "name": "Cartão Azul Europeu",
+      "nameOriginal": "European Blue Card",
+      "notes": null,
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Aplicação para o Cartão Azul Europeu",
+            "estimatedDays": null,
+            "name": "Submissão da aplicação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Comprovante de educação superior",
+            "isCritical": true,
+            "name": "Diploma de ensino superior"
+          },
+          {
+            "description": "Oferta de emprego ou contrato",
+            "isCritical": true,
+            "name": "Contrato de trabalho"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Diploma de ensino superior"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Residência contínua e legal"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Para trabalhadores sendo transferidos por empresa de fora da UE para filial na Holanda como gerente, especialista ou trainee",
+      "eligibility": [
+        "Ser transferido por empresa fora da UE",
+        "Trabalhar como gerente, especialista ou trainee",
+        "Ter filial da empresa na Holanda"
+      ],
+      "id": "intra-corporate-transferee",
+      "name": "Transferência Intra-Corporativa",
+      "nameOriginal": "Intra-corporate Transferee (Directive 2014/66/EU)",
+      "notes": "Aplicável apenas para transferências de empresas multinacionais",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Aplicação de residência para transferência intra-corporativa",
+            "estimatedDays": null,
+            "name": "Submissão da aplicação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documentação da transferência intra-corporativa",
+            "isCritical": true,
+            "name": "Comprovante de transferência"
+          },
+          {
+            "description": "Contrato de trabalho na filial holandesa",
+            "isCritical": true,
+            "name": "Contrato de trabalho"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Experiência como gerente, especialista ou trainee"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para viver e trabalhar na Holanda como pesquisador científico.",
+      "eligibility": [
+        "Conduzir pesquisa científica",
+        "Acordo de hospedagem com instituição reconhecida",
+        "Qualificações acadêmicas apropriadas"
+      ],
+      "id": "researcher",
+      "name": "Pesquisador",
+      "nameOriginal": "Researcher (Directive (EU) 2016/801)",
+      "notes": "Específico para pesquisadores científicos. Não relevante para trabalho em plataformas.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificações de pesquisa"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência combinada com permissão de trabalho para trabalhar na Holanda",
+      "eligibility": [
+        "Ter oferta de emprego de empregador holandês",
+        "Empregador deve obter permissão de trabalho",
+        "Trabalho não pode ser preenchido por cidadão UE/EEA"
+      ],
+      "id": "paid-employment-gvva",
+      "name": "Emprego Remunerado com Permissão de Trabalho (GVVA)",
+      "nameOriginal": "Paid Employment: Residence Permit with Work Permit (GVVA)",
+      "notes": "Requer que empregador demonstre que posição não pode ser preenchida por trabalhador da UE/EEA",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "O empregador deve solicitar permissão de trabalho junto com a residência",
+            "estimatedDays": null,
+            "name": "Empregador solicita permissão de trabalho",
+            "order": 1
+          },
+          {
+            "description": "Aplicação combinada de residência e trabalho",
+            "estimatedDays": null,
+            "name": "Aplicação de residência GVVA",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Oferta de emprego ou contrato com empregador holandês",
+            "isCritical": true,
+            "name": "Contrato de trabalho"
+          },
+          {
+            "description": "Documento de viagem válido",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Residência contínua e legal"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Permissão de residência para trabalho quando não é possível solicitar GVVA ou quando permissão de trabalho não é necessária",
+      "eligibility": [
+        "Não pode solicitar GVVA",
+        "Não precisa de permissão de trabalho",
+        "Ter emprego na Holanda"
+      ],
+      "id": "paid-employment-residence-only",
+      "name": "Emprego Remunerado: Apenas Residência",
+      "nameOriginal": "Paid Employment: Residence Permit Only",
+      "notes": "Para situações onde permissão de trabalho não é necessária ou GVVA não se aplica",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Aplicação de permissão de residência para trabalho",
+            "estimatedDays": null,
+            "name": "Aplicação de residência",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Comprovante de emprego na Holanda",
+            "isCritical": true,
+            "name": "Contrato de trabalho"
+          },
+          {
+            "description": "Documento de viagem válido",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Residência contínua e legal"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Permissão para procurar emprego na Holanda após graduação, doutorado ou pesquisa científica",
+      "eligibility": [
+        "Ter se graduado recentemente",
+        "Ter completado doutorado",
+        "Ter realizado pesquisa científica"
+      ],
+      "id": "orientation-year",
+      "name": "Ano de Orientação",
+      "nameOriginal": "Orientation Year",
+      "notes": "Válido por 1 ano para procurar emprego ou começar negócio próprio",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Solicitar permissão de residência para procurar trabalho",
+            "estimatedDays": null,
+            "name": "Aplicação para ano de orientação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Comprovante de graduação, doutorado ou pesquisa",
+            "isCritical": true,
+            "name": "Diploma ou certificado"
+          },
+          {
+            "description": "Documento de viagem válido",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Graduação, doutorado ou pesquisa científica completa"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Encontrar emprego adequado e mudar para permissão de trabalho"
+          ],
+          "yearsRequired": 1
+        }
+      }
+    },
+    {
+      "description": "Permissão de residência para iniciar empresa inovadora na Holanda.",
+      "eligibility": [
+        "Plano de negócio inovador",
+        "Facilitador reconhecido",
+        "Empreendedores"
+      ],
+      "id": "start-up",
+      "name": "Start-up",
+      "nameOriginal": "Start-up",
+      "notes": "Voltado para empreendedores inovadores. Não relevante para trabalho em plataformas como empregado.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para trabalhar como autônomo na Holanda",
+      "eligibility": [
+        "Ter plano de negócios viável",
+        "Demonstrar valor agregado para economia holandesa",
+        "Ter experiência relevante"
+      ],
+      "id": "self-employed",
+      "name": "Autônomo",
+      "nameOriginal": "Self-Employed Person",
+      "notes": "Requer aprovação baseada em sistema de pontos avaliando viabilidade do negócio",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Preparar plano de negócios e documentos comprobatórios",
+            "estimatedDays": null,
+            "name": "Preparação de documentação",
+            "order": 1
+          },
+          {
+            "description": "Solicitar permissão de residência como autônomo",
+            "estimatedDays": null,
+            "name": "Submissão da aplicação",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Plano de negócios detalhado",
+            "isCritical": true,
+            "name": "Plano de negócios"
+          },
+          {
+            "description": "Documentação de experiência relevante",
+            "isCritical": true,
+            "name": "Comprovante de experiência"
+          },
+          {
+            "description": "Comprovação de recursos financeiros",
+            "isCritical": true,
+            "name": "Comprovante financeiro"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Experiência relevante na área de negócios"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Residência contínua e legal",
+            "Negócio mantido com sucesso"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Para viver e trabalhar temporariamente na Holanda sob o Regulamento de Comércio Internacional.",
+      "eligibility": [
+        "Acordos comerciais específicos",
+        "Trabalho temporário",
+        "Cobertura por tratados comerciais"
+      ],
+      "id": "international-trade-regulation",
+      "name": "Regulamento de Comércio Internacional",
+      "nameOriginal": "International Trade Regulation",
+      "notes": "Específico para acordos comerciais internacionais. Baixa relevância para trabalho em plataformas.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para ser trainee ou aprendiz na Holanda.",
+      "eligibility": [
+        "Programa de estágio",
+        "Programa de aprendizagem",
+        "Objetivo educacional"
+      ],
+      "id": "intern-apprentice",
+      "name": "Estagiário ou Aprendiz",
+      "nameOriginal": "Intern or Apprentice",
+      "notes": "Voltado para estágios e programas de aprendizagem. Não relevante para trabalho em plataformas.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Para trabalhar temporariamente na Holanda para empresa de país EU/EEA ou Suíça.",
+      "eligibility": [
+        "Empregado por empresa em país EU/EEA ou Suíça",
+        "Trabalho temporário na Holanda",
+        "Prestação de serviços"
+      ],
+      "id": "cross-border-service-provider",
+      "name": "Prestador de Serviços Transfronteiriço",
+      "nameOriginal": "Cross-border Service Provider",
+      "notes": "Específico para prestadores de serviços de empresas EU/EEA. Não aplicável para brasileiros diretamente.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Para trabalhar na Holanda mas viver em outro país da UE.",
+      "eligibility": [
+        "Residência em país EU/EEA",
+        "Trabalho na Holanda",
+        "Commuting transfronteiriço"
+      ],
+      "id": "work-live-another-eu-country",
+      "name": "Trabalhar na Holanda, Viver em Outro País EU",
+      "nameOriginal": "Work in the Netherlands, Live in Another EU Country",
+      "notes": "Aplicável apenas para quem já reside legalmente em outro país EU. Não relevante para brasileiros sem status EU.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para trabalhar no setor agrícola da Holanda por no máximo 6 meses",
+      "eligibility": [
+        "Ter oferta de trabalho no setor agrícola",
+        "Trabalho limitado a 6 meses"
+      ],
+      "id": "seasonal-work",
+      "name": "Trabalho Sazonal",
+      "nameOriginal": "Seasonal Work",
+      "notes": "Limitado a setor agrícola e máximo de 6 meses",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Solicitar permissão para trabalho sazonal",
+            "estimatedDays": null,
+            "name": "Aplicação de residência sazonal",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Contrato para trabalho agrícola temporário",
+            "isCritical": true,
+            "name": "Contrato de trabalho sazonal"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Para prestar serviço marítimo a bordo de navio de alto mar em porto holandês por mais de 90 dias.",
+      "eligibility": [
+        "Tripulação de navio",
+        "Serviço marítimo",
+        "Porto holandês",
+        "Mais de 90 dias"
+      ],
+      "id": "seafaring-crew",
+      "name": "Tripulante Marítimo",
+      "nameOriginal": "Seafaring Service as Crew Member",
+      "notes": "Específico para trabalho marítimo. Não relevante para trabalho em plataformas.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para procurar trabalho na Holanda após graduação, doutorado ou pesquisa científica. Permite trabalhar livremente durante o período de um ano.",
+      "eligibility": [
+        "Graduados de programas de bacharelado ou mestrado credenciados em instituições de ensino superior holandesas nos últimos 3 anos",
+        "Graduados de programas de mestrado, doutorado ou pós-mestrado em instituições estrangeiras designadas (top 200 em rankings) nos últimos 3 anos",
+        "Pesquisadores científicos que conduziram pesquisa na Holanda nos últimos 3 anos",
+        "Graduados de programa Erasmus Mundus Joint Master nos últimos 3 anos",
+        "Para instituições estrangeiras: proficiência em inglês (IELTS 6.0 mínimo) ou holandês, salvo se o programa foi em inglês/holandês"
+      ],
+      "id": "orientation-year-highly-educated",
+      "name": "Ano de Orientação para Altamente Qualificados",
+      "nameOriginal": "Orientation Year for Highly Educated Persons / Zoekjaar hoogopgeleiden",
+      "notes": "Permite trabalhar livremente na Holanda sem necessidade de TWV (permissão de trabalho) para o empregador. Também permite trabalhar como empreendedor independente ou freelancer. Válido por 1 ano e não pode ser estendido. É possível obter segunda ou seguinte permissão de orientação após completar diferentes programas de estudo ou pesquisa. Durante o processo de aplicação, pode começar a trabalhar após obter adesivo Residence Endorsement no passaporte, desde que atenda certos requisitos. Instituições estrangeiras designadas devem estar no top 200 de pelo menos 2 dos 3 rankings reconhecidos (Times Higher Education, QS, ShanghaiRanking).",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "Não especificado na página",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Solicitar avaliação de credenciais pela Nuffic para diplomas estrangeiros (não necessário para diplomas de Flandres/Bélgica). A avaliação verifica o valor do diploma estrangeiro na Holanda e pode verificar autenticidade",
+            "estimatedDays": null,
+            "name": "Avaliação de diploma estrangeiro (se aplicável)",
+            "order": 1
+          },
+          {
+            "description": "Aplicação online (se residente na Holanda com DigiD e BSN) ou por formulário escrito enviado por correio. Necessário DigiD com verificação SMS e internet banking (iDEAL) para aplicação online",
+            "estimatedDays": null,
+            "name": "Submissão da aplicação",
+            "order": 2
+          },
+          {
+            "description": "O IND (Serviço de Imigração e Naturalização) analisa a aplicação e verifica se todos os requisitos são atendidos",
+            "estimatedDays": null,
+            "name": "Análise pelo IND",
+            "order": 3
+          },
+          {
+            "description": "Se indicado na aplicação, agendar teste de tuberculose no GGD (serviço de saúde pública) dentro de 3 meses após receber a permissão",
+            "estimatedDays": null,
+            "name": "Agendamento de teste de TB (se aplicável)",
+            "order": 4
+          },
+          {
+            "description": "Permissão de residência tipo I (temporária regular) válida por 1 ano. Durante o processo de aplicação, pode começar a trabalhar após receber adesivo Residence Endorsement no passaporte",
+            "estimatedDays": null,
+            "name": "Recebimento da permissão de residência",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Cópia do diploma holandês ou certificado estrangeiro. Diplomas estrangeiros devem ser avaliados pela Nuffic (exceto Flandres/Bélgica)",
+            "isCritical": true,
+            "name": "Diploma ou certificado"
+          },
+          {
+            "description": "Para diplomas estrangeiros: IELTS 6.0 mínimo ou outro teste aceito (TOEFL, TOEIC, Cambridge English), ou diploma de integração cívica holandesa, salvo se o programa foi ministrado em inglês ou holandês",
+            "isCritical": true,
+            "name": "Comprovante de proficiência em idioma"
+          },
+          {
+            "description": "Documentação comprovando que a graduação, doutorado ou pesquisa foi concluída nos 3 anos anteriores à data da aplicação",
+            "isCritical": true,
+            "name": "Comprovante de conclusão nos últimos 3 anos"
+          },
+          {
+            "description": "Para pesquisadores: comprovante de que teve permissão de residência para pesquisa segundo Diretiva (EU) 2016/801 ou como highly skilled migrant",
+            "isCritical": false,
+            "name": "Comprovante de permissão de residência anterior"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Inglês ou Holandês",
+          "level": "IELTS 6.0 mínimo ou equivalente",
+          "testsAccepted": [
+            "IELTS Academic",
+            "IELTS General Training",
+            "TOEFL",
+            "TOEIC",
+            "Cambridge English"
+          ]
+        },
+        "qualificationsRequired": [
+          "Graduação em instituição holandesa credenciada ou instituição estrangeira no top 200 de rankings reconhecidos",
+          "Para pesquisadores: pesquisa científica com código UFO começando com 01"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Encontrar emprego durante o ano de orientação",
+            "Solicitar permissão de residência para trabalho (por exemplo, como highly skilled migrant, start-up ou autônomo)",
+            "A permissão de orientação não pode ser estendida"
+          ],
+          "yearsRequired": 1
+        }
+      }
+    },
+    {
+      "description": "Permissão de residência para trabalho assalariado na Holanda",
+      "eligibility": [
+        "Trabalhadores com oferta de emprego de empregador holandês",
+        "Requer patrocínio do empregador"
+      ],
+      "id": "paid-employment",
+      "name": "Emprego Assalariado",
+      "nameOriginal": "Paid employment",
+      "notes": "Cidadãos turcos pagam taxa reduzida. Taxas específicas não listadas nesta página de conteúdo.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado nesta página",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Submeter aplicação com documentação necessária e pagamento de taxa",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para ganhar experiência de trabalho na Holanda",
+      "eligibility": [
+        "Jovens profissionais buscando experiência prática",
+        "Programas de trainee/estágio profissional"
+      ],
+      "id": "work-experience",
+      "name": "Experiência de Trabalho",
+      "nameOriginal": "Work experience",
+      "notes": "Cidadãos turcos pagam taxa reduzida. Taxas específicas não listadas nesta página de conteúdo.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado nesta página",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Submeter aplicação com documentação necessária e pagamento de taxa",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para pesquisadores científicos",
+      "eligibility": [
+        "Pesquisadores com acordo de acolhimento com instituição de pesquisa reconhecida",
+        "Projeto de pesquisa aprovado"
+      ],
+      "id": "research-directive",
+      "name": "Pesquisa sob Diretiva (UE) 2016/801",
+      "nameOriginal": "Research under Directive (EU) 2016/801",
+      "notes": "Cidadãos turcos pagam taxa reduzida. Taxas específicas não listadas nesta página de conteúdo.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Não especificado nesta página",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Submeter aplicação com documentação necessária e pagamento de taxa",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para buscar emprego após conclusão de estudos, doutorado ou pesquisa científica na Holanda",
+      "eligibility": [
+        "Graduados de instituições holandesas",
+        "Doutores que concluíram PhD na Holanda",
+        "Pesquisadores que finalizaram projeto científico na Holanda"
+      ],
+      "id": "job-search-after-study",
+      "name": "Busca de Emprego após Estudos",
+      "nameOriginal": "Looking for a job after study, promotion or scientific research",
+      "notes": "Cidadãos turcos pagam taxa reduzida. Taxas específicas não listadas nesta página de conteúdo.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "Não especificado nesta página",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Submeter aplicação com documentação necessária e pagamento de taxa",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência para viver e trabalhar na Holanda como pesquisador",
+      "eligibility": [
+        "Ter acordo de hospedagem com instituição de pesquisa reconhecida",
+        "Realizar pesquisa científica"
+      ],
+      "id": "researcher-directive",
+      "name": "Pesquisador",
+      "nameOriginal": "Researcher (Directive (EU) 2016/801)",
+      "notes": null,
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Aplicação de residência como pesquisador",
+            "estimatedDays": null,
+            "name": "Submissão da aplicação",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Acordo com instituição de pesquisa reconhecida",
+            "isCritical": true,
+            "name": "Acordo de hospedagem"
+          },
+          {
+            "description": "Comprovante de qualificações para pesquisa",
+            "isCritical": true,
+            "name": "Qualificações acadêmicas"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificações acadêmicas relevantes"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Residência contínua e legal"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Permissão de residência para empreendedores que desejam iniciar empresa inovadora na Holanda",
+      "eligibility": [
+        "Ter ideia de negócio inovadora",
+        "Ser mentorado por facilitador reconhecido",
+        "Demonstrar potencial de inovação"
+      ],
+      "id": "startup-innovative",
+      "name": "Start-up Inovadora",
+      "nameOriginal": "Start-up: Innovative Company",
+      "notes": "Válido por 1 ano, após o qual deve-se mudar para outra categoria de residência",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Obter aprovação de facilitador reconhecido pelo governo",
+            "estimatedDays": null,
+            "name": "Aprovação do facilitador",
+            "order": 1
+          },
+          {
+            "description": "Solicitar permissão de residência para start-up",
+            "estimatedDays": null,
+            "name": "Aplicação de residência",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Plano detalhado da start-up inovadora",
+            "isCritical": true,
+            "name": "Plano de negócios inovador"
+          },
+          {
+            "description": "Confirmação de mentoria por facilitador reconhecido",
+            "isCritical": true,
+            "name": "Acordo com facilitador"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Transição para visto de autônomo ou outro tipo de residência"
+          ],
+          "yearsRequired": 1
+        }
+      }
+    }
+  ]
+}
