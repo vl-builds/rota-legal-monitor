@@ -83,3 +83,56 @@ Pergunte antes de presumir. Especificamente:
 - Mudanças de arquitetura grandes (trocar runtime, adicionar banco, mudar formato de saída) sempre passam por confirmação
 - Adicionar dependência nova: justifique em uma frase no PR
 - Renomear coisas que aparecem em mais de 3 arquivos: confirma antes
+
+---
+
+## Design Context
+
+> Contexto de design para o frontend em `previews/`. Gerado via /impeccable teach em abril de 2026.
+
+### Usuários
+
+Três perfis em momentos distintos da jornada:
+
+1. **Decidindo**: Curioso, não sabe se é viável. Precisa ser convencido com fatos antes de detalhes.
+2. **Comparando**: Quer ir, está escolhendo entre países. Quer ver critérios que importam para entregador lado a lado.
+3. **Em processo**: Já escolheu, está juntando documentos. Usa o site como checklist contínua.
+
+Contexto de uso: pesquisa em casa, celular ou desktop, geralmente à noite. Baixa tolerância para juridiquês. Alta tolerância para informação densa se estiver organizada.
+
+### Personalidade da Marca
+
+Três palavras: **confiável, direto, vivo.**
+
+- Confiável: fontes linkadas, datas visíveis, limitações declaradas.
+- Direto: linguagem de guia de amigo, não de advogado.
+- Vivo: dados atualizados mensalmente de forma automática.
+
+Emoção alvo: competência tranquila. Não impressionar, gerar confiança.
+
+### Direção Estética
+
+Dark mode. Canvas `#0a0a0a`, amarelo elétrico `#faff69` como único accent. Inter + JetBrains Mono. Inspiração: ClickHouse docs — denso, preciso, sem decoração. Anti-referências: sites de agência de imigração com stock photos, portais gov.br confusos, guias de blog informal.
+
+### Princípios de Design
+
+1. **Dados primeiro, narrativa depois.** Stat grande antes de parágrafo, não depois.
+2. **Profundidade progressiva.** Resumo para entregador aparece antes das abas técnicas.
+3. **Confiança visível.** Cada bloco mostra quando foi atualizado e de onde veio.
+4. **Uma ação por tela.** Cada página tem um CTA principal.
+5. **Amarelo é escasso.** Um uso por seção, no máximo.
+
+### Mapa de Seções
+
+Detalhado em `.impeccable.md`. Resumo das páginas planejadas:
+
+| Rota | Descrição |
+|---|---|
+| `/` | Home com hero, strip de confiança, 3 caminhos por perfil, países em foco, como funciona |
+| `/paises` | Lista com filtros + grid de países |
+| `/paises/[cc]` | Detalhe com resumo para entregador (antes das abas) + 5 abas |
+| `/comparar` | Seletor de 2-3 países + tabela comparativa |
+| `/qual-pais` | Questionário de 6 perguntas + recomendação justificada |
+| `/historico` | Timeline mensal de mudanças com filtros + alertas |
+| `/calculadora` | Inputs de país/duração/estilo + output de reserva necessária |
+| `/sobre` | Metodologia, limitações, como contribuir |
