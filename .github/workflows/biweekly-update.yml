@@ -71,6 +71,11 @@ jobs:
         run: |
           gh label create "data-update"   --color "0075ca" --description "Dados extraidos atualizados" --force 2>/dev/null || true
           gh label create "relevance/high" --color "e11d48" --description "Mudanca de alta relevancia"   --force 2>/dev/null || true
+          # GitHub limita corpo de issue a 65536 chars
+          if [ $(wc -c < diff-output.md) -gt 65000 ]; then
+            { head -c 65000 diff-output.md; printf '\n\n_(diff truncado — ver data/current/ para detalhes completos)_'; } > diff-truncated.md
+            mv diff-truncated.md diff-output.md
+          fi
           gh issue create \
             --title "[Dados] Mudanca detectada em $(date +%Y-%m-%d)" \
             --body-file diff-output.md \
