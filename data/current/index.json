@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T10:58:30.527Z",
+  "generatedAt": "2026-04-29T11:47:49.918Z",
   "schemaVersion": "1.0.0",
   "countries": [
     {
@@ -8,6 +8,14 @@
       "lastUpdated": "2026-04-29T08:44:53.379Z",
       "schemaVersion": "1.0.0",
       "visaTypesCount": 12,
+      "confidence": "medium"
+    },
+    {
+      "code": "es",
+      "name": "Espanha",
+      "lastUpdated": "2026-04-29T11:47:49.851Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 4,
       "confidence": "medium"
     },
     {
