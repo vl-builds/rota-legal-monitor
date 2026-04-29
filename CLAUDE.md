@@ -95,7 +95,7 @@ Pergunte antes de presumir. Especificamente:
 Três perfis em momentos distintos da jornada:
 
 1. **Decidindo**: Curioso, não sabe se é viável. Precisa ser convencido com fatos antes de detalhes.
-2. **Comparando**: Quer ir, está escolhendo entre países. Quer ver critérios que importam para entregador lado a lado.
+2. **Comparando**: Quer ir, está escolhendo entre países. Quer ver critérios que importam para a sua situação lado a lado.
 3. **Em processo**: Já escolheu, está juntando documentos. Usa o site como checklist contínua.
 
 Contexto de uso: pesquisa em casa, celular ou desktop, geralmente à noite. Baixa tolerância para juridiquês. Alta tolerância para informação densa se estiver organizada.
@@ -117,7 +117,7 @@ Dark mode. Canvas `#0a0a0a`, amarelo elétrico `#faff69` como único accent. Int
 ### Princípios de Design
 
 1. **Dados primeiro, narrativa depois.** Stat grande antes de parágrafo, não depois.
-2. **Profundidade progressiva.** Resumo para entregador aparece antes das abas técnicas.
+2. **Profundidade progressiva.** Resumo rápido aparece antes das abas técnicas.
 3. **Confiança visível.** Cada bloco mostra quando foi atualizado e de onde veio.
 4. **Uma ação por tela.** Cada página tem um CTA principal.
 5. **Amarelo é escasso.** Um uso por seção, no máximo.
@@ -130,7 +130,7 @@ Detalhado em `.impeccable.md`. Resumo das páginas planejadas:
 |---|---|
 | `/` | Home com hero, strip de confiança, 3 caminhos por perfil, países em foco, como funciona |
 | `/paises` | Lista com filtros + grid de países |
-| `/paises/[cc]` | Detalhe com resumo para entregador (antes das abas) + 5 abas |
+| `/paises/[cc]` | Detalhe com resumo rápido (antes das abas) + 5 abas |
 | `/comparar` | Seletor de 2-3 países + tabela comparativa |
 | `/qual-pais` | Questionário de 6 perguntas + recomendação justificada |
 | `/historico` | Timeline mensal de mudanças com filtros + alertas |

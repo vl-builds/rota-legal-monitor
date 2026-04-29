@@ -1,6 +1,6 @@
 # Rota Legal Monitor
 
-> Monitor mensal automatizado das condições de imigração legal em 10 países (9 europeus e Austrália) para brasileiros que pretendem trabalhar como entregadores de delivery.
+> Monitor mensal automatizado das condições de imigração legal em 10 países (9 europeus e Austrália) para brasileiros que pretendem trabalhar legalmente no exterior.
 
 Parte do ecossistema **HenryZuka**. Este repositório alimenta de dados frescos a ferramenta web *Rota Legal* e fornece a fonte de verdade que o e-book *Rota Holanda* referencia.
 
