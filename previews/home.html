@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rota Legal — Trabalhar no exterior com dados de verdade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  /* ---- trust strip ---- */
+  .trust-strip {
+    background: var(--surface-soft);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: var(--s-xl) 0;
+  }
+  .trust-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .trust-item {
+    padding: 0 var(--s-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-xxs);
+  }
+  .trust-item + .trust-item { border-left: 1px solid var(--hairline); }
+  .trust-num {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    color: var(--on-dark);
+    font-variant-numeric: tabular-nums;
+  }
+  .trust-num .hi { color: var(--primary); }
+  .trust-num-text {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    color: var(--body-strong);
+    font-variant-numeric: tabular-nums;
+  }
+  .trust-label { font-size: 13px; color: var(--muted); font-weight: 500; line-height: 1.4; margin-top: var(--s-xxs); }
+
+  /* ---- path cards ---- */
+  .path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-lg);
+  }
+  .path-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-md);
+    min-height: 300px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 150ms ease;
+  }
+  .path-card:hover { border-color: var(--hairline-strong); }
+  .path-num {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .path-title {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    color: var(--on-dark);
+    margin: 0;
+  }
+  .path-quote {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.45;
+    padding: var(--s-sm) var(--s-md);
+    background: var(--surface-elevated);
+    border-radius: var(--r-md);
+    margin: 0;
+  }
+  .path-desc {
+    font-size: 14px;
+    color: var(--body);
+    line-height: 1.55;
+    flex: 1;
+    margin: 0;
+  }
+  .path-cta {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--s-xxs);
+  }
+
+  /* ---- country focus ---- */
+  .country-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--s-md);
+  }
+  .cf-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 150ms ease, transform 120ms ease;
+  }
+  .cf-card:hover { border-color: var(--hairline-strong); transform: translateY(-2px); }
+  .cf-flag {
+    width: 36px;
+    height: 26px;
+    border-radius: 4px;
+    display: block;
+    flex-shrink: 0;
+    margin-bottom: var(--s-xxs);
+  }
+  .cf-name { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); }
+  .cf-meta { font-size: 12px; color: var(--body); line-height: 1.5; flex: 1; }
+  .cf-footer {
+    margin-top: var(--s-xs);
+    padding-top: var(--s-sm);
+    border-top: 1px solid var(--hairline);
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- how it works ---- */
+  .how-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--s-xxl);
+    align-items: start;
+  }
+  .steps { display: flex; flex-direction: column; }
+  .step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: var(--s-md);
+    padding: var(--s-lg) 0;
+  }
+  .step + .step { border-top: 1px solid var(--hairline); }
+  .step-n {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  .step-title { font-size: 16px; font-weight: 700; color: var(--on-dark); margin: 0 0 var(--s-xxs); letter-spacing: -0.2px; }
+  .step-desc { font-size: 14px; color: var(--body); line-height: 1.6; margin: 0; }
+
+  /* ---- recent changes ---- */
+  .changes-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .changes-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--s-md) var(--s-lg);
+    border-bottom: 1px solid var(--hairline);
+    background: #131313;
+  }
+  .changes-body { padding: var(--s-xxs) 0; }
+  .change-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: var(--s-md);
+    align-items: center;
+    padding: var(--s-md) var(--s-lg);
+  }
+  .change-row + .change-row { border-top: 1px solid var(--hairline); }
+  .change-country {
+    display: flex;
+    align-items: center;
+    gap: var(--s-xs);
+  }
+  .change-flag {
+    width: 22px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .change-cc {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--on-dark);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+  .change-text { font-size: 14px; color: var(--body-strong); }
+  .change-date {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    white-space: nowrap;
+  }
+  .severity-high { color: var(--accent-rose); font-size: 11px; font-weight: 600; }
+  .severity-medium { color: var(--accent-blue); font-size: 11px; font-weight: 600; }
+
+  /* ---- responsive ---- */
+  @media (max-width: 1024px) {
+    .trust-items { grid-template-columns: repeat(2, 1fr); gap: var(--s-lg) 0; }
+    .trust-item { padding: 0 var(--s-lg); }
+    .trust-item:nth-child(2n+1) { border-left: none; }
+    .trust-item:nth-child(2n) { border-left: 1px solid var(--hairline); }
+    .path-grid { grid-template-columns: 1fr; gap: var(--s-md); }
+    .country-focus-grid { grid-template-columns: repeat(3, 1fr); }
+    .how-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .trust-items { grid-template-columns: repeat(2, 1fr); }
+    .trust-item { padding: 0 var(--s-md); }
+    .trust-item:nth-child(2n) { border-left: 1px solid var(--hairline); }
+    .country-focus-grid { grid-template-columns: repeat(2, 1fr); }
+    .change-row { grid-template-columns: 48px 1fr; }
+    .change-date { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <span class="logo-dot"></span>
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">Ver países</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é o meu?</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero" style="padding-bottom: var(--s-xxl);">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Atualizado em abril de 2026</div>
+        <h1 class="display-xl">
+          Trabalhar no exterior<br/>
+          <span class="accent">com dados de verdade.</span>
+        </h1>
+        <p class="lede">
+          Vistos, requisitos, prazos e custos de 10 países, extraídos de fontes oficiais
+          de imigração todo mês. Para qualquer área profissional.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="comparar.html">Comparar países</a>
+          <a class="btn btn-secondary" href="qual-pais.html">Qual país é o meu?</a>
+        </div>
+      </div>
+      <div>
+        <div class="code-window">
+          <div class="code-bar">
+            <span class="dot r"></span>
+            <span class="dot y"></span>
+            <span class="dot g"></span>
+            <span class="file">data/current/nl.json</span>
+          </div>
+          <pre class="code-body"><span class="pl"> 1</span><span class="kw">{</span>
+<span class="pl"> 2</span>  <span class="str">"country"</span><span class="kw">:</span> <span class="str">"nl"</span><span class="kw">,</span>
+<span class="pl"> 3</span>  <span class="str">"lastUpdated"</span><span class="kw">:</span> <span class="str">"2026-04-01T06:00:00Z"</span><span class="kw">,</span>
+<span class="pl"> 4</span>  <span class="str">"visaTypes"</span><span class="kw">: [{</span>
+<span class="pl"> 5</span>    <span class="str">"id"</span><span class="kw">:</span> <span class="str">"highly-skilled-migrant"</span><span class="kw">,</span>
+<span class="pl"> 6</span>    <span class="str">"name"</span><span class="kw">:</span> <span class="str">"Altamente Qualificado"</span><span class="kw">,</span>
+<span class="pl"> 7</span>    <span class="str">"requirements"</span><span class="kw">: {</span>
+<span class="pl"> 8</span>      <span class="str">"incomeRequirement"</span><span class="kw">: {</span>
+<span class="pl"> 9</span>        <span class="str">"amount"</span><span class="kw">:</span> <span class="num">5688</span><span class="kw">,</span>
+<span class="pl">10</span>        <span class="str">"currency"</span><span class="kw">:</span> <span class="str">"EUR"</span><span class="kw">,</span>
+<span class="pl">11</span>        <span class="str">"period"</span><span class="kw">:</span> <span class="str">"monthly"</span>
+<span class="pl">12</span>      <span class="kw">}</span>
+<span class="pl">13</span>    <span class="kw">}</span>
+<span class="pl">14</span>  <span class="kw">}],</span>
+<span class="pl">15</span>  <span class="str">"reliability"</span><span class="kw">: {</span>
+<span class="pl">16</span>    <span class="str">"extractionConfidence"</span><span class="kw">:</span> <span class="str">"high"</span>
+<span class="pl">17</span>  <span class="kw">}</span>
+<span class="pl">18</span><span class="kw">}</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TRUST STRIP ============== -->
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item">
+        <span class="trust-num"><span class="hi">10</span></span>
+        <span class="trust-label">países monitorados</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">40<span style="font-size:22px;font-weight:600;color:var(--muted);">+</span></span>
+        <span class="trust-label">tipos de visto catalogados</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num-text">Mensal</span>
+        <span class="trust-label">frequência de atualização automática</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num-text">Oficial</span>
+        <span class="trust-label">só fontes oficiais de imigração</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== OS TRÊS CAMINHOS ============== -->
+<section>
+  <div class="container">
+    <div class="eyebrow">Encontre o seu ponto de entrada</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-sm);">Qual é a sua situação?</h2>
+    <p class="body-md" style="max-width: 520px; margin-bottom: var(--s-xl);">
+      Cada pessoa está num momento diferente da jornada. Escolha o caminho certo para o seu.
+    </p>
+    <div class="path-grid">
+
+      <a class="path-card" href="qual-pais.html">
+        <span class="path-num">01 · decidindo</span>
+        <h3 class="path-title">Ainda não sei se vale a pena para mim</h3>
+        <p class="path-quote">"Ouvi falar que dá, mas não sei se meu perfil se encaixa."</p>
+        <p class="path-desc">
+          O questionário leva menos de 3 minutos. Perguntas sobre área profissional,
+          qualificação, idioma e prioridades. No final, uma recomendação de país
+          com justificativa e um plano B.
+        </p>
+        <span class="path-cta">Fazer o questionário →</span>
+      </a>
+
+      <a class="path-card" href="comparar.html">
+        <span class="path-num">02 · comparando</span>
+        <h3 class="path-title">Estou entre dois ou três países</h3>
+        <p class="path-quote">"Já quero ir, só não sei qual escolher."</p>
+        <p class="path-desc">
+          Selecione os países e veja lado a lado: dificuldade do visto, salário mínimo,
+          prazo estimado, Schengen, trabalho autônomo permitido e idioma exigido.
+          Cada critério com fonte e data.
+        </p>
+        <span class="path-cta">Abrir comparador →</span>
+      </a>
+
+      <a class="path-card" href="paises.html">
+        <span class="path-num">03 · em processo</span>
+        <h3 class="path-title">Já escolhi e estou juntando documentos</h3>
+        <p class="path-quote">"Preciso de um checklist atualizado, não de um artigo de blog."</p>
+        <p class="path-desc">
+          Cada página de país tem os requisitos detalhados por tipo de visto,
+          com data de verificação visível. Você sabe exatamente quando o dado foi confirmado.
+        </p>
+        <span class="path-cta">Ver países →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== PAÍSES EM FOCO ============== -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="eyebrow">Destinos mais buscados por brasileiros</div>
+    <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Países em foco</h2>
+    <div class="country-focus-grid">
+
+      <a class="cf-card" href="pais-nl.html">
+        <span class="cf-flag flag-nl"></span>
+        <span class="cf-name">Países Baixos</span>
+        <span class="cf-meta">Visto Altamente Qualificado. Renda mínima EUR 5.688/mês. IND processa em 2 a 4 semanas.</span>
+        <span class="cf-footer">Schengen · 9 países vizinhos</span>
+      </a>
+
+      <a class="cf-card" href="pais-pt.html">
+        <span class="cf-flag flag-pt"></span>
+        <span class="cf-name">Portugal</span>
+        <span class="cf-meta">Visto D3 para qualificados e Nômade Digital. Sem barreira de idioma para brasileiros.</span>
+        <span class="cf-footer">Schengen · Português</span>
+      </a>
+
+      <a class="cf-card" href="pais-ie.html">
+        <span class="cf-flag flag-ie"></span>
+        <span class="cf-name">Irlanda</span>
+        <span class="cf-meta">Critical Skills Permit. Mercado de TI forte, processamento em 6 a 8 semanas.</span>
+        <span class="cf-footer">Fora do Schengen · Inglês</span>
+      </a>
+
+      <a class="cf-card" href="pais-de.html">
+        <span class="cf-flag flag-de"></span>
+        <span class="cf-name">Alemanha</span>
+        <span class="cf-meta">Chancencard para busca de emprego no local. Lei de Imigração de Qualificados de 2023.</span>
+        <span class="cf-footer">Schengen · Maior mercado da UE</span>
+      </a>
+
+      <a class="cf-card" href="pais-fr.html">
+        <span class="cf-flag flag-fr"></span>
+        <span class="cf-name">França</span>
+        <span class="cf-meta">Talent Passport para profissionais qualificados. Conhecimento de francês exigido.</span>
+        <span class="cf-footer">Schengen · Francês</span>
+      </a>
+
+    </div>
+    <div style="margin-top: var(--s-lg); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-md);">
+      <span class="body-sm" style="color: var(--muted);">
+        Também monitorados: Espanha, Itália, Bélgica, Áustria e Austrália.
+      </span>
+      <a class="text-link body-sm" href="paises.html">Ver todos os 10 países →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COMO FUNCIONA ============== -->
+<section>
+  <div class="container">
+    <div class="eyebrow">Por baixo dos panos</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-xxl);">Como os dados chegam até você</h2>
+    <div class="how-grid">
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-n">01</span>
+          <div>
+            <h3 class="step-title">Fontes visitadas</h3>
+            <p class="step-desc">
+              No dia 1 de cada mês, URLs oficiais de imigração de 10 países são visitadas
+              automaticamente via GitHub Actions. Sem intervenção manual, sem conteúdo de segunda mão.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-n">02</span>
+          <div>
+            <h3 class="step-title">IA extrai e valida</h3>
+            <p class="step-desc">
+              Claude analisa o HTML e extrai vistos, requisitos, prazos e taxas em formato
+              estruturado. Cada campo é validado contra um schema Zod antes de ser salvo.
+              Falha na validação? Nada é publicado.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-n">03</span>
+          <div>
+            <h3 class="step-title">Publicado como JSON</h3>
+            <p class="step-desc">
+              Os dados ficam disponíveis via GitHub Pages com CORS aberto. O site consome
+              direto, sem servidor intermediário. Cada JSON carrega a data exata da verificação.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="code-window">
+          <div class="code-bar">
+            <span class="dot r"></span>
+            <span class="dot y"></span>
+            <span class="dot g"></span>
+            <span class="file">.github/workflows/monthly-update.yml</span>
+          </div>
+          <pre class="code-body"><span class="pl"> 1</span><span class="kw">on:</span>
+<span class="pl"> 2</span>  <span class="kw">schedule:</span>
+<span class="pl"> 3</span>    <span class="com"># Dia 1 de cada mês, 06:00 UTC</span>
+<span class="pl"> 4</span>    - <span class="kw">cron:</span> <span class="str">'0 6 1 * *'</span>
+<span class="pl"> 5</span>
+<span class="pl"> 6</span><span class="kw">jobs:</span>
+<span class="pl"> 7</span>  <span class="kw">update:</span>
+<span class="pl"> 8</span>    <span class="kw">runs-on:</span> <span class="str">ubuntu-latest</span>
+<span class="pl"> 9</span>    <span class="kw">steps:</span>
+<span class="pl">10</span>      - <span class="kw">name:</span> <span class="str">Extrair todos os países</span>
+<span class="pl">11</span>        <span class="kw">run:</span> <span class="fn">bun run extract</span>
+<span class="pl">12</span>
+<span class="pl">13</span>      - <span class="kw">name:</span> <span class="str">Detectar mudanças</span>
+<span class="pl">14</span>        <span class="kw">run:</span> <span class="fn">bun run diff</span>
+<span class="pl">15</span>
+<span class="pl">16</span>      - <span class="kw">name:</span> <span class="str">Publicar no GitHub Pages</span>
+<span class="pl">17</span>        <span class="kw">uses:</span> <span class="str">peaceiris/actions-gh-pages@v4</span>
+<span class="pl">18</span>        <span class="kw">with:</span>
+<span class="pl">19</span>          <span class="kw">publish_dir:</span> <span class="str">./data/current</span>
+<span class="pl">20</span>          <span class="kw">publish_branch:</span> <span class="str">gh-pages</span></pre>
+        </div>
+        <p class="body-sm" style="margin-top: var(--s-md); color: var(--muted);">
+          O código é open-source. Você pode inspecionar exatamente o que é extraído
+          e como é validado antes de ser publicado.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== ÚLTIMA ATUALIZAÇÃO ============== -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--s-xl); flex-wrap: wrap; gap: var(--s-md);">
+      <div>
+        <div class="eyebrow">Ciclo de abril de 2026</div>
+        <h2 class="display-sm">Alterações recentes</h2>
+      </div>
+      <a class="text-link body-sm" href="historico.html">Ver histórico completo →</a>
+    </div>
+    <div class="changes-card">
+      <div class="changes-head">
+        <span class="caption-up">País · Alteração detectada · Data</span>
+        <span class="badge up"><span class="pulse"></span>Verificado em abr/2026</span>
+      </div>
+      <div class="changes-body">
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-nl"></span>
+            <span class="change-cc">NL</span>
+          </div>
+          <div>
+            <span class="change-text">Requisito de renda do Altamente Qualificado atualizado para EUR 5.688/mês</span>
+            <div class="severity-high" style="margin-top:2px;">Alta relevância</div>
+          </div>
+          <span class="change-date">2026-04-01</span>
+        </div>
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-de"></span>
+            <span class="change-cc">DE</span>
+          </div>
+          <div>
+            <span class="change-text">Chancencard com novo critério de pontuação para profissionais de saúde</span>
+            <div class="severity-high" style="margin-top:2px;">Alta relevância</div>
+          </div>
+          <span class="change-date">2026-04-01</span>
+        </div>
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-ie"></span>
+            <span class="change-cc">IE</span>
+          </div>
+          <div>
+            <span class="change-text">Critical Skills Permit: lista de ocupações elegíveis expandida</span>
+            <div class="severity-medium" style="margin-top:2px;">Relevância média</div>
+          </div>
+          <span class="change-date">2026-04-01</span>
+        </div>
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-pt"></span>
+            <span class="change-cc">PT</span>
+          </div>
+          <div>
+            <span class="change-text">Prazo de análise do Visto D3 reduzido de 60 para 30 dias úteis</span>
+            <div class="severity-medium" style="margin-top:2px;">Relevância média</div>
+          </div>
+          <span class="change-date">2026-04-01</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA BAND ============== -->
+<section>
+  <div class="container">
+    <div class="cta-band-yellow">
+      <div>
+        <h2>Qual país é o meu?</h2>
+        <p>
+          Responda 6 perguntas sobre área profissional, qualificação, idioma e prioridades.
+          Você recebe uma recomendação com justificativa e um plano B.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-on-yellow" href="paises.html">Ver todos os países</a>
+        <a class="btn btn-on-yellow" href="qual-pais.html">Fazer o questionário</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <span class="logo-dot"></span>
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -405,6 +405,11 @@ tbody tr:hover { background: #131313; }
 .flag-de { background: linear-gradient(to bottom, #000 0 33%, #dd0000 33% 66%, #ffce00 66% 100%); }
 .flag-fr { background: linear-gradient(to right, #0055a4 0 33%, #fff 33% 66%, #ef4135 66% 100%); }
 .flag-es { background: linear-gradient(to bottom, #aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%); }
+.flag-ie { background: linear-gradient(to right, #169b62 0 33%, #fff 33% 66%, #ff883e 66% 100%); }
+.flag-it { background: linear-gradient(to right, #009246 0 33%, #fff 33% 66%, #ce2b37 66% 100%); }
+.flag-be { background: linear-gradient(to right, #000 0 33%, #ffd90c 33% 66%, #ef3340 66% 100%); }
+.flag-at { background: linear-gradient(to bottom, #ed2939 0 33%, #fff 33% 66%, #ed2939 66% 100%); }
+.flag-au { background: #012169; }
 
 .badge {
   display: inline-flex;
