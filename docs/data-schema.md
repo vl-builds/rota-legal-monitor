@@ -197,7 +197,7 @@ interface Reliability {
 ```typescript
 interface MoneyAmount {
   amount: number                        // numero, sem separador. exemplo: 5688
-  currency: 'EUR' | 'USD' | 'BRL'
+  currency: 'EUR' | 'USD' | 'BRL' | 'AUD'
   period: 'one-time' | 'monthly' | 'yearly' | null
   notes: string | null                  // exemplo: "antes de impostos"
 }

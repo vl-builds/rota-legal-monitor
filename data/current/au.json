@@ -1,0 +1,288 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Brasil é parte do programa Working Holiday com Austrália. Brasileiros podem acessar vistos temporários de trabalho e vistos permanentes baseados em habilidades.",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "",
+      "required": false
+    },
+    "passportValidity": "Mínimo 6 meses de validade recomendado",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "au",
+    "countryName": "Australia",
+    "lastUpdated": "2026-04-29T21:07:03.291Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:04:59.522Z",
+        "status": "ok",
+        "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/work-holiday-462"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:05:07.327Z",
+        "status": "partial",
+        "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-independent-189"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:05:58.605Z",
+        "status": "partial",
+        "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/temporary-skill-shortage-482"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:06:48.015Z",
+        "status": "ok",
+        "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-finder"
+      }
+    ]
+  },
+  "recentChanges": [],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": [
+      "2 URL(s) falharam na extracao"
+    ]
+  },
+  "visaTypes": [
+    {
+      "description": "Visto que permite trabalhar e viajar na Austrália para jovens brasileiros",
+      "eligibility": [],
+      "id": "work-holiday-462",
+      "name": "Working Holiday Visa",
+      "nameOriginal": "Working Holiday Visa subclass 462",
+      "notes": "Conteúdo da página fornecido não contém informações detalhadas sobre requisitos, processos e restrições",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto temporário que permite a brasileiros trabalhar e viajar na Austrália por até 12 meses",
+      "eligibility": [
+        "Cidadão brasileiro",
+        "Idade entre 18 e 30 anos",
+        "Passaporte válido"
+      ],
+      "id": "working-holiday-462",
+      "name": "Working Holiday",
+      "nameOriginal": "Working Holiday Visa 462",
+      "notes": "Visto temporário para trabalho e férias. Requer patrocínio de empregador para extensão.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto temporário que permite que empregadores australianos contratem trabalhadores estrangeiros para preencher lacunas de habilidades",
+      "eligibility": [
+        "Ser patrocinado por um empregador australiano",
+        "Possuir habilidades relevantes para a posição",
+        "Atender aos requisitos de idioma inglês"
+      ],
+      "id": "tss-482",
+      "name": "Temporary Skill Shortage",
+      "nameOriginal": "Temporary Skill Shortage Visa 482",
+      "notes": "Visto temporário que requer patrocínio obrigatório de empregador. Válido por até 4 anos.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "English",
+          "level": "Funcional",
+          "testsAccepted": []
+        },
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto temporário para graduados recentes que completaram estudos na Austrália, permitindo trabalho e residência temporária",
+      "eligibility": [
+        "Ter completado qualificação elegível na Austrália nos últimos 6 meses",
+        "Ter visto de estudante válido ou anterior",
+        "Estar fisicamente na Austrália"
+      ],
+      "id": "graduate-485",
+      "name": "Temporary Graduate",
+      "nameOriginal": "Temporary Graduate Visa 485",
+      "notes": "Visto temporário pós-estudo. Não requer patrocínio de empregador.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de residência permanente para profissionais qualificados cujas habilidades estão em demanda na Austrália, sem necessidade de patrocínio estadual ou de empregador",
+      "eligibility": [
+        "Profissão listada na occupation list",
+        "Atender aos requisitos de pontuação do sistema de pontos",
+        "Competência em inglês",
+        "Estar com menos de 45 anos (geralmente)"
+      ],
+      "id": "skilled-independent-189",
+      "name": "Skilled Independent",
+      "nameOriginal": "Skilled Independent Visa 189",
+      "notes": "Visto permanente que não requer patrocínio de empregador. Utiliza sistema de pontos para seleção.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "English",
+          "level": "Competent",
+          "testsAccepted": [
+            "IELTS",
+            "TOEFL",
+            "PTE",
+            "Cambridge"
+          ]
+        },
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": {
+          "conditions": [
+            "Manter residência permanente por 4 anos",
+            "Cumprir requisitos de presença física"
+          ],
+          "yearsRequired": 4
+        },
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de residência permanente para profissionais qualificados patrocinados por um estado ou território australiano cuja profissão está em demanda regional",
+      "eligibility": [
+        "Profissão listada na occupation list",
+        "Ser patrocinado por estado ou território australiano",
+        "Atender aos requisitos de pontuação do sistema de pontos",
+        "Competência em inglês"
+      ],
+      "id": "skilled-nominated-190",
+      "name": "Skilled Nominated",
+      "nameOriginal": "Skilled Nominated Visa 190",
+      "notes": "Visto permanente que requer patrocínio de estado/território australiano. Oferece 5 pontos adicionais no sistema de pontos.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "English",
+          "level": "Competent",
+          "testsAccepted": [
+            "IELTS",
+            "TOEFL",
+            "PTE",
+            "Cambridge"
+          ]
+        },
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": {
+          "conditions": [
+            "Manter residência permanente por 4 anos",
+            "Cumprir requisitos de presença física"
+          ],
+          "yearsRequired": 4
+        },
+        "pathToResidency": null
+      }
+    }
+  ]
+}

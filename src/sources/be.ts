@@ -12,26 +12,26 @@ export const beSource: SourceConfig = {
 
   urls: [
     {
-      url: 'https://dofi.ibz.be/en/themes/work',
+      url: 'https://dofi.ibz.be/en',
       contentType: 'visa-overview',
       promptHint:
-        'Office des Etrangers belga, secao sobre trabalho para estrangeiros. Liste os tipos de autorizacao de trabalho disponiveis para brasileiros (Single Permit, Profissional Altamente Qualificado, Seasonal Worker). Indique para cada tipo se e autorizacao unica (residencia + trabalho) ou separada.',
+        'Office des Etrangers belga (Escritorio de Estrangeiros). Extraia: visao geral dos tipos de autorizacao de trabalho e residencia disponiveis para brasileiros (Single Permit, Profissional Altamente Qualificado, trabalhadores sazonais), diferenca entre autorizacao federal e regional, e como dar entrada no processo.',
       fetchFrequency: 'monthly',
     },
     {
-      url: 'https://diplomatie.belgium.be/en/services/travel-to-belgium/visa-for-belgium',
+      url: 'https://employment.belgium.be/en',
       contentType: 'visa-requirements',
       promptHint:
-        'Ministerio das Relacoes Exteriores belga sobre vistos para a Belgica. Para brasileiros, extraia: se precisam de visto para entrar (verificar lista de paises isentos vs obrigados), tipos de visto de trabalho disponíveis, documentos necessarios e onde solicitar o visto.',
-      fetchFrequency: 'monthly',
-    },
-    {
-      url: 'https://emploi.belgique.be/en/themes/foreign-workers',
-      contentType: 'visa-requirements',
-      promptHint:
-        'Ministerio do Emprego belga sobre trabalhadores estrangeiros. Extraia: tipos de autorizacao de trabalho por regiao (Flandres, Valonia, Bruxelas), o Single Permit (autorizacao unica) como caminho federal, salario minimo exigido, setores com falta de mao de obra e se ha acordo bilateral com o Brasil. Indicar que a Belgica tem competencias regionais de trabalho.',
+        'Servico Federal de Emprego belga. Extraia: tipos de autorizacao de trabalho por regiao (Flandres, Valonia, Bruxelas), o Single Permit (autorizacao unica de trabalho e residencia) como caminho federal, salario minimo exigido, setores com escassez de mao de obra e se ha acordo bilateral com o Brasil.',
       fetchFrequency: 'monthly',
       model: 'sonnet',
+    },
+    {
+      url: 'https://www.belgium.be/en',
+      contentType: 'visa-requirements',
+      promptHint:
+        'Portal oficial do governo belga. Para brasileiros querendo trabalhar na Belgica, extraia: requisitos gerais de entrada (visto necessario ou nao), onde solicitar o visto de trabalho (consulado), documentos exigidos, seguro saude obrigatorio e percurso para residencia permanente apos trabalho continuado.',
+      fetchFrequency: 'monthly',
     },
   ],
 

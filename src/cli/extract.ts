@@ -3,9 +3,9 @@ import { fetchPage } from '@/extractors/fetcher'
 import { extractMainContent } from '@/extractors/content-cleaner'
 import { extractFromHtml } from '@/extractors/llm-extractor'
 import { PartialExtractionSchema } from '@/extractors/partial-schema'
-import type { PartialExtraction, PartialVisaType } from '@/extractors/partial-schema'
+import type { PartialExtraction, PartialVisaType, PartialMoneyAmount } from '@/extractors/partial-schema'
 import { CountryDataSchema } from '@/extractors/schema'
-import type { CountryData, SourceRef, PolicyChange } from '@/extractors/schema'
+import type { CountryData, SourceRef, PolicyChange, MoneyAmount } from '@/extractors/schema'
 import { readCurrent, writeCurrent, archiveCurrent } from '@/storage/snapshot'
 import { log } from '@/lib/log'
 import type { ModelKey } from '@/lib/models'
@@ -72,6 +72,11 @@ function mergeExtractions(partials: PartialExtraction[]): MergedData {
 
 // ---- build full CountryData from merged partials -------------------------
 
+function toMoney(m: PartialMoneyAmount | null | undefined): MoneyAmount | null {
+  if (!m || m.amount == null || m.amount <= 0) return null
+  return m as MoneyAmount
+}
+
 function buildCountryData(
   merged: MergedData,
   sourceRefs: SourceRef[],
@@ -79,7 +84,7 @@ function buildCountryData(
 ): CountryData {
   const fb = merged.forBrazilians ?? {}
   const gr = merged.generalRequirements ?? {}
-  const hi = gr.healthInsurance ?? {}
+  const hi = gr.healthInsurance
 
   const successCount = sourceRefs.filter((r) => r.status === 'ok').length
   const confidence = merged.visaTypes.length >= 2 ? 'medium' : 'low'
@@ -94,19 +99,31 @@ function buildCountryData(
     },
     forBrazilians: {
       schengenVisaFree: fb.schengenVisaFree ?? true,
-      maxStayDaysAsTourist: (fb.maxStayDaysAsTourist ?? 0) > 0 ? fb.maxStayDaysAsTourist! : 90,
+      maxStayDaysAsTourist:
+        fb.maxStayDaysAsTourist != null && fb.maxStayDaysAsTourist > 0
+          ? fb.maxStayDaysAsTourist
+          : 90,
       workPermitNeeded: fb.workPermitNeeded ?? true,
       specialAgreements: fb.specialAgreements ?? [],
-      notes: fb.notes ?? '',
+      notes: (fb.notes ?? '').slice(0, 500),
     },
     visaTypes: merged.visaTypes.map((v) => ({
       ...v,
+      eligibility: v.eligibility.slice(0, 5),
+      requirements: {
+        ...v.requirements,
+        incomeRequirement: toMoney(v.requirements.incomeRequirement),
+      },
       process: {
         ...v.process,
         estimatedDuration: v.process.estimatedDuration || 'A determinar',
+        fees: v.process.fees.map(toMoney).filter((f): f is MoneyAmount => f !== null),
       },
       rights: {
         ...v.rights,
+        canWork: v.rights.canWork ?? true,
+        canBringFamily: v.rights.canBringFamily ?? false,
+        canChangeEmployer: v.rights.canChangeEmployer ?? false,
         pathToResidency: v.rights.pathToResidency?.yearsRequired
           ? v.rights.pathToResidency
           : null,
@@ -117,12 +134,12 @@ function buildCountryData(
     })),
     generalRequirements: {
       passportValidity: gr.passportValidity || 'Minimo 6 meses apos a data de entrada',
-      proofOfFunds: gr.proofOfFunds ?? null,
+      proofOfFunds: toMoney(gr.proofOfFunds),
       healthInsurance: {
-        required: hi.required ?? false,
-        mustBeLocal: hi.mustBeLocal ?? false,
-        minimumCoverage: hi.minimumCoverage ?? null,
-        notes: hi.notes ?? '',
+        required: hi?.required ?? false,
+        mustBeLocal: hi?.mustBeLocal ?? false,
+        minimumCoverage: toMoney(hi?.minimumCoverage),
+        notes: hi?.notes ?? '',
       },
       cleanCriminalRecord: gr.cleanCriminalRecord ?? true,
       vaccinations: gr.vaccinations ?? [],
@@ -142,7 +159,7 @@ function buildCountryData(
 
 // ---- per-country extraction ----------------------------------------------
 
-async function extractCountry(countryCode: string, forceModel?: ModelKey): Promise<void> {
+async function extractCountry(countryCode: string, forceModel?: ModelKey): Promise<boolean> {
   const config = sources[countryCode]
   if (!config) {
     log.error('pais desconhecido', { country: countryCode })
@@ -211,7 +228,7 @@ async function extractCountry(countryCode: string, forceModel?: ModelKey): Promi
     log.error('todas as URLs falharam, abortando sem sobrescrever snapshot', {
       country: countryCode,
     })
-    process.exit(1)
+    return false
   }
 
   const merged = mergeExtractions(partials)
@@ -226,7 +243,7 @@ async function extractCountry(countryCode: string, forceModel?: ModelKey): Promi
       country: countryCode,
       issues,
     })
-    process.exit(1)
+    return false
   }
 
   writeCurrent(countryCode, validation.data)
@@ -235,6 +252,7 @@ async function extractCountry(countryCode: string, forceModel?: ModelKey): Promi
     visaTypes: validation.data.visaTypes.length,
     confidence: validation.data.reliability.extractionConfidence,
   })
+  return true
 }
 
 // ---- entry point ---------------------------------------------------------
@@ -253,8 +271,15 @@ async function main(): Promise<void> {
 
   const countries = countryArg ? [countryArg] : Object.keys(sources)
 
+  const failed: string[] = []
   for (const country of countries) {
-    await extractCountry(country, forceModelArg)
+    const ok = await extractCountry(country, forceModelArg)
+    if (!ok) failed.push(country)
+  }
+
+  if (failed.length > 0) {
+    log.error('paises com falha', { countries: failed.join(', ') })
+    process.exit(1)
   }
 }
 

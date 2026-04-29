@@ -1,0 +1,213 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Página não contém informações detalhadas sobre requisitos de visto para trabalhadores brasileiros. Conteúdo disponível refere-se apenas a oportunidades de emprego no setor público belga através da plataforma workingfor.be.",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "",
+      "required": false
+    },
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "be",
+    "countryName": "Belgica",
+    "lastUpdated": "2026-04-29T21:04:32.704Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:04:04.666Z",
+        "status": "ok",
+        "url": "https://dofi.ibz.be/en"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:04:12.892Z",
+        "status": "ok",
+        "url": "https://employment.belgium.be/en"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:04:29.698Z",
+        "status": "ok",
+        "url": "https://www.belgium.be/en"
+      }
+    ]
+  },
+  "recentChanges": [
+    {
+      "affects": [
+        "immigration-office-location"
+      ],
+      "date": "2026-03-16",
+      "severity": "minor",
+      "sourceUrl": "https://dofi.ibz.be/en",
+      "summary": "Pessoas convidadas para entrevista de Proteção Internacional, outro procedimento de residência ou acompanhamento ICAM não devem mais se reportar ao PASSAGE 44 a partir de segunda-feira, 16 de março",
+      "title": "Mudança de Localização do Office of Immigration"
+    }
+  ],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "Autorização federal que combina permissão de trabalho e residência em um único procedimento. Válida em todo o território belga (Flandres, Valônia e Bruxelas).",
+      "eligibility": [
+        "Trabalhadores assalariados com oferta de emprego na Bélgica",
+        "Profissionais qualificados"
+      ],
+      "id": "single-permit",
+      "name": "Permissão Única",
+      "nameOriginal": "Single Permit",
+      "notes": "O Single Permit é o caminho federal principal para trabalhar na Bélgica. As autoridades regionais (Flandres, Valônia, Bruxelas) são responsáveis por processar os pedidos conforme a localização do empregador.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "O empregador belga inicia o processo solicitando a autorização única junto às autoridades regionais competentes",
+            "estimatedDays": null,
+            "name": "Empregador solicita autorização",
+            "order": 1
+          },
+          {
+            "description": "Autoridades regionais e federais analisam o pedido",
+            "estimatedDays": null,
+            "name": "Análise do pedido",
+            "order": 2
+          },
+          {
+            "description": "Após aprovação, a permissão única é emitida",
+            "estimatedDays": null,
+            "name": "Emissão da permissão",
+            "order": 3
+          },
+          {
+            "description": "O trabalhador solicita visto de trabalho na embaixada/consulado belga no país de origem",
+            "estimatedDays": null,
+            "name": "Solicitação de visto",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Oferta de emprego ou contrato de trabalho válido com empregador belga",
+            "isCritical": true,
+            "name": "Contrato de trabalho"
+          },
+          {
+            "description": "Passaporte com validade mínima de 3 meses",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Certificado de antecedentes criminais do país de origem",
+            "isCritical": false,
+            "name": "Certificado de antecedentes criminais"
+          },
+          {
+            "description": "Comprovação de qualificações profissionais e acadêmicas",
+            "isCritical": false,
+            "name": "Diplomas e qualificações"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "conditions": [
+            "Residência legal por 5 anos",
+            "Conhecimento de uma das línguas oficiais (holandês, francês ou alemão)",
+            "Integração social e econômica"
+          ],
+          "yearsRequired": 5
+        },
+        "pathToResidency": {
+          "conditions": [
+            "Residência legal contínua por 5 anos",
+            "Integração adequada"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Categoria de visto para profissionais com qualificações elevadas em Bélgica",
+      "eligibility": [],
+      "id": "highly-qualified-professional",
+      "name": "Profissional Altamente Qualificado",
+      "nameOriginal": "Highly Qualified Professional",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Autorização de trabalho para trabalhadores sazonais em Bélgica",
+      "eligibility": [],
+      "id": "seasonal-worker",
+      "name": "Trabalhador Sazonal",
+      "nameOriginal": "Seasonal Worker",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}

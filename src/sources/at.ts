@@ -28,10 +28,10 @@ export const atSource: SourceConfig = {
       model: 'sonnet',
     },
     {
-      url: 'https://www.oesterreich.gv.at/en/themen/living-and-working-in-austria/work.html',
+      url: 'https://www.migration.gv.at/en/types-of-immigration/temporary-work/',
       contentType: 'visa-requirements',
       promptHint:
-        'Portal do governo austriaco sobre trabalho na Austria para estrangeiros. Extraia: autorizacao de trabalho necessaria para brasileiros, onde solicitar, documentos exigidos, prazo de processamento, EU Blue Card como alternativa a RWR Card e requisitos gerais de seguro saude.',
+        'Portal de migracao austriaco sobre trabalho temporario. Extraia: tipos de autorizacao para trabalho temporario (Saisonnier, Rotationskraft, trabalho transfronteirico), documentos exigidos para cada tipo, prazo de validade, onde solicitar e requisitos de idioma alemao quando aplicavel.',
       fetchFrequency: 'monthly',
     },
   ],

@@ -1,17 +1,17 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Informações específicas para brasileiros não disponíveis nesta página. A página trata apenas de taxas de Employment Permits aplicáveis a todos os candidatos não-EEA.",
-    "schengenVisaFree": false,
+    "notes": "Cidadãos brasileiros necessitam de visto de trabalho (employment permit) para trabalhar na Irlanda. A Irlanda não faz parte do espaço Schengen.",
+    "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
   },
   "generalRequirements": {
-    "cleanCriminalRecord": false,
+    "cleanCriminalRecord": true,
     "healthInsurance": {
       "minimumCoverage": null,
       "mustBeLocal": false,
-      "notes": "Não especificado nesta página",
+      "notes": "",
       "required": false
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
@@ -21,36 +21,36 @@
   "meta": {
     "country": "ie",
     "countryName": "Irlanda",
-    "lastUpdated": "2026-04-29T12:35:04.424Z",
+    "lastUpdated": "2026-04-29T20:35:04.593Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:31:03.481Z",
+        "fetchedAt": "2026-04-29T20:33:37.030Z",
         "status": "ok",
         "url": "https://www.irishimmigration.ie/coming-to-work-in-ireland/"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:31:32.339Z",
+        "fetchedAt": "2026-04-29T20:33:40.797Z",
         "status": "ok",
         "url": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:32:39.371Z",
+        "fetchedAt": "2026-04-29T20:34:29.646Z",
         "status": "ok",
         "url": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:33:24.820Z",
+        "fetchedAt": "2026-04-29T20:34:43.650Z",
         "status": "ok",
         "url": "https://www.irishimmigration.ie/registering-your-immigration-permission/"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:34:02.913Z",
+        "fetchedAt": "2026-04-29T20:34:46.653Z",
         "status": "ok",
         "url": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/"
       }
@@ -59,33 +59,27 @@
   "recentChanges": [
     {
       "affects": [
-        "Todos os tipos de permissão"
-      ],
-      "date": "2025-12-23",
-      "severity": "minor",
-      "sourceUrl": "https://www.irishimmigration.ie/registering-your-immigration-permission/",
-      "summary": "Última atualização da página sobre registro de permissões de imigração irlandesas",
-      "title": "Atualização da página de registro"
-    },
-    {
-      "affects": [
         "Critical Skills Employment Permit",
-        "Todas as ocupações listadas"
+        "Ocupações em TI/Tecnologia",
+        "Ocupações em Ciências",
+        "Ocupações em Engenharia",
+        "Ocupações em Saúde",
+        "Ocupações em Educação"
       ],
       "date": "2024-09-02",
       "severity": "major",
       "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/",
-      "summary": "Lista de ocupações elegíveis para Critical Skills Employment Permit foi atualizada através do SI 444 of 2024, entrando em vigor em 02 de setembro de 2024. A lista está definida no Schedule 3 dos Regulamentos e organiza ocupações usando o sistema SOC 2010.",
-      "title": "Atualização da Critical Skills Occupations List"
+      "summary": "Nova versão da Critical Skills Occupations List entrou em vigor com a aprovação de SI 444 de 2024. A lista foi reorganizada e atualizada para refletir as ocupações críticas e habilidades específicas elegíveis para o visto de trabalho.",
+      "title": "Critical Skills Occupations List Atualizada"
     },
     {
       "affects": [
-        "todos os tipos de permissões"
+        "Todos os tipos de Employment Permits"
       ],
       "date": "2024-01-01",
       "severity": "major",
       "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html",
-      "summary": "A Employment Permits Act 2024, conforme emendada, permite que nove tipos diferentes de Employment Permits sejam concedidos.",
+      "summary": "O Employment Permits Act 2024 permite nove diferentes tipos de Employment Permits. Esta lei atualizada regula todos os tipos de vistos de trabalho na Irlanda.",
       "title": "Employment Permits Act 2024"
     },
     {
@@ -98,11 +92,11 @@
         "Sport and Cultural Employment Permit",
         "Internship Employment Permit"
       ],
-      "date": "2021-03-22",
+      "date": "2014-10-01",
       "severity": "major",
       "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/",
-      "summary": "Taxas vigentes para permissões de trabalho recebidas a partir de 1 de outubro de 2014, incluindo valores para primeira aplicação e renovação de diversos tipos de permissões.",
-      "title": "Tabela de taxas de Employment Permits atualizada"
+      "summary": "A partir de 1º de outubro de 2014, o Departamento não aceita mais pagamentos em papel de candidatos comerciais. Pagamento deve ser feito por transferência eletrônica de fundos. Candidatos individuais podem continuar com cheques em euros ou optar por transferência eletrônica.",
+      "title": "Alteração nas modalidades de pagamento de taxas"
     }
   ],
   "reliability": {
@@ -113,237 +107,24 @@
   },
   "visaTypes": [
     {
-      "description": "Visto para trabalho temporário na Irlanda com duração de até 90 dias. Requer Employment Permit válido.",
-      "eligibility": [
-        "Não ser nacional de EEA, Suíça ou Reino Unido",
-        "Ter Employment Permit válido",
-        "Trabalho com duração de até 90 dias",
-        "Nacionalidade que requer visto para Irlanda"
-      ],
-      "id": "employment-permit-short",
-      "name": "Visto de Trabalho Curta Duração",
-      "nameOriginal": "Short Stay (C) Visa for Work",
-      "notes": "Para estadas de até 90 dias",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Solicitar e obter Employment Permit válido antes de aplicar para o visto",
-            "estimatedDays": null,
-            "name": "Obter Employment Permit",
-            "order": 1
-          },
-          {
-            "description": "Solicitar visto de curta duração através do sistema de aplicação de vistos",
-            "estimatedDays": null,
-            "name": "Aplicar para visto C",
-            "order": 2
-          },
-          {
-            "description": "Entrar na Irlanda com visto válido e Employment Permit",
-            "estimatedDays": null,
-            "name": "Viajar para Irlanda",
-            "order": 3
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Permissão de trabalho válida emitida antes da chegada à Irlanda",
-            "isCritical": true,
-            "name": "Employment Permit"
-          },
-          {
-            "description": "Passaporte com validade suficiente",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Visto para trabalho na Irlanda com duração superior a 90 dias. Requer Employment Permit válido e registro obrigatório após chegada.",
-      "eligibility": [
-        "Não ser nacional de EEA, Suíça ou Reino Unido",
-        "Ter Employment Permit válido",
-        "Trabalho com duração superior a 90 dias",
-        "Nacionalidade que requer visto para Irlanda"
-      ],
-      "id": "employment-permit-long",
-      "name": "Visto de Trabalho Longa Duração",
-      "nameOriginal": "Long Stay (D) Visa for Work",
-      "notes": "Para estadas superiores a 90 dias. Registro obrigatório após chegada.",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Solicitar e obter Employment Permit válido antes de aplicar para o visto",
-            "estimatedDays": null,
-            "name": "Obter Employment Permit",
-            "order": 1
-          },
-          {
-            "description": "Solicitar visto de longa duração através do sistema de aplicação de vistos",
-            "estimatedDays": null,
-            "name": "Aplicar para visto D",
-            "order": 2
-          },
-          {
-            "description": "Entrar na Irlanda com visto válido e Employment Permit",
-            "estimatedDays": null,
-            "name": "Viajar para Irlanda",
-            "order": 3
-          },
-          {
-            "description": "Registrar-se após a chegada na Irlanda para estadas superiores a 90 dias",
-            "estimatedDays": null,
-            "name": "Registro obrigatório",
-            "order": 4
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Permissão de trabalho válida emitida antes da chegada à Irlanda",
-            "isCritical": true,
-            "name": "Employment Permit"
-          },
-          {
-            "description": "Passaporte com validade suficiente",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Permissão alternativa ao Employment Permit para trabalhar na Irlanda em situações específicas não cobertas pelo sistema padrão de Employment Permit.",
-      "eligibility": [
-        "Não ser nacional de EEA, Suíça ou Reino Unido",
-        "Situações de emprego específicas não cobertas por Employment Permit padrão"
-      ],
-      "id": "atypical-permission",
-      "name": "Permissão Atípica",
-      "nameOriginal": "Atypical Permission",
-      "notes": "Alternativa ao Employment Permit para situações específicas de trabalho",
-      "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Aplicar para permissão atípica ao invés de Employment Permit padrão",
-            "estimatedDays": null,
-            "name": "Solicitar Atypical Permission",
-            "order": 1
-          },
-          {
-            "description": "Dependendo da nacionalidade, aplicar para visto apropriado",
-            "estimatedDays": null,
-            "name": "Aplicar para visto (se necessário)",
-            "order": 2
-          },
-          {
-            "description": "Aplicar para a permissão de imigração relevante após chegada",
-            "estimatedDays": null,
-            "name": "Obter permissão relevante",
-            "order": 3
-          }
-        ]
-      },
-      "relevanceForDelivery": "indirect",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Documentos comprovando a necessidade de permissão atípica ao invés de Employment Permit padrão",
-            "isCritical": true,
-            "name": "Documentação específica para permissão atípica"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Permissão de trabalho para profissionais altamente qualificados em ocupações de competências críticas",
+      "description": "Permissão de trabalho para profissionais com habilidades críticas",
       "eligibility": [],
       "id": "critical-skills-employment-permit",
-      "name": "Permissão de Emprego para Competências Críticas",
+      "name": "Critical Skills Employment Permit",
       "nameOriginal": "Critical Skills Employment Permit",
-      "notes": "Não há taxa de renovação listada (N/A).",
+      "notes": "Renovação não aplicável",
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
         "fees": [
           {
             "amount": 1000,
             "currency": "EUR",
-            "notes": "Para aplicação de até 24 meses",
+            "notes": "Primeira solicitação, válida até 24 meses",
             "period": "one-time"
           }
         ],
-        "steps": [
-          {
-            "description": "Empregador ou empregado submete a aplicação com documentação relevante. Empresas devem indicar pagamento por Transferência Eletrônica de Fundos.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "A aplicação passa por pré-verificação inicial e recebe um Application ID único.",
-            "estimatedDays": null,
-            "name": "Pré-verificação",
-            "order": 2
-          },
-          {
-            "description": "Email é enviado solicitando pagamento da taxa por Transferência Eletrônica com detalhes da conta bancária e Application ID como referência.",
-            "estimatedDays": null,
-            "name": "Solicitação de pagamento",
-            "order": 3
-          },
-          {
-            "description": "Após confirmação do pagamento, a aplicação é processada pelo Department of Enterprise, Trade and Employment.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 4
-          }
-        ]
+        "steps": []
       },
       "relevanceForDelivery": "direct",
       "requirements": {
@@ -361,67 +142,42 @@
       }
     },
     {
-      "description": "Permissão de trabalho para trabalhadores assalariados em ocupações elegíveis na Irlanda",
+      "description": "Permissão de trabalho geral para empregados na Irlanda",
       "eligibility": [],
       "id": "general-employment-permit",
-      "name": "Permissão de Emprego Geral",
+      "name": "General Employment Permit",
       "nameOriginal": "General Employment Permit",
-      "notes": "Taxa não aplicável para empregadores com status de caridade confirmado pelo Revenue Commissioners ou para renovações de Unlimited Permits.",
+      "notes": null,
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
         "fees": [
           {
             "amount": 1000,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de até 24 meses",
+            "notes": "Primeira solicitação, válida até 24 meses",
             "period": "one-time"
           },
           {
             "amount": 500,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de 6 meses ou menos",
+            "notes": "Primeira solicitação, válida por 6 meses ou menos",
             "period": "one-time"
           },
           {
             "amount": 1500,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de até 36 meses",
+            "notes": "Primeira solicitação, válida até 36 meses",
             "period": "one-time"
           },
           {
             "amount": 750,
             "currency": "EUR",
-            "notes": "Para renovação de 6 meses ou menos",
+            "notes": "Renovação, válida por 6 meses ou menos",
             "period": "one-time"
           }
         ],
-        "steps": [
-          {
-            "description": "Empregador ou empregado submete a aplicação com documentação relevante. Empresas devem indicar pagamento por Transferência Eletrônica de Fundos.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "A aplicação passa por pré-verificação inicial e recebe um Application ID único.",
-            "estimatedDays": null,
-            "name": "Pré-verificação",
-            "order": 2
-          },
-          {
-            "description": "Email é enviado solicitando pagamento da taxa por Transferência Eletrônica com detalhes da conta bancária e Application ID como referência.",
-            "estimatedDays": null,
-            "name": "Solicitação de pagamento",
-            "order": 3
-          },
-          {
-            "description": "Após confirmação do pagamento, a aplicação é processada pelo Department of Enterprise, Trade and Employment.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 4
-          }
-        ]
+        "steps": []
       },
       "relevanceForDelivery": "direct",
       "requirements": {
@@ -439,111 +195,34 @@
       }
     },
     {
-      "description": "Projetado para facilitar a transferência de alta gerência, pessoal-chave ou estagiários que são estrangeiros de uma filial no exterior de uma corporação multinacional para sua filial irlandesa. Pode ser valioso no estabelecimento inicial de uma empresa de investimento direto estrangeiro. Facilita a colocação temporária de pessoal corporativo ou de sede na afiliada irlandesa, permitindo que tais funcionários permaneçam na folha de pagamento estrangeira.",
-      "eligibility": [
-        "Funcionários de corporações multinacionais",
-        "Alta gerência",
-        "Pessoal-chave",
-        "Estagiários",
-        "Transferência de filial estrangeira para filial irlandesa"
-      ],
-      "id": "intra-company-transfer-permit",
-      "name": "Permissão de Transferência Intra-Empresa",
-      "nameOriginal": "Intra-Company Transfer Employment Permit",
-      "notes": "Facilita colocação temporária. Funcionários podem permanecer na folha de pagamento estrangeira.",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Informação não disponível",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Verificar que o funcionário é elegível para transferência intra-empresa",
-            "estimatedDays": null,
-            "name": "Confirmação de elegibilidade",
-            "order": 1
-          },
-          {
-            "description": "Empresa prepara documentação necessária para transferência",
-            "estimatedDays": null,
-            "name": "Preparação de documentação",
-            "order": 2
-          },
-          {
-            "description": "Submissão da solicitação de Intra-Company Transfer Employment Permit",
-            "estimatedDays": null,
-            "name": "Solicitação",
-            "order": 3
-          }
-        ]
-      },
-      "relevanceForDelivery": "indirect",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Passaporte válido do país de origem",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Documentação comprovando emprego na filial estrangeira da empresa",
-            "isCritical": true,
-            "name": "Prova de emprego na empresa multinacional"
-          },
-          {
-            "description": "Carta da empresa detalhando a transferência para a filial irlandesa",
-            "isCritical": true,
-            "name": "Carta de transferência"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": [
-          "Experiência como alta gerência, pessoal-chave ou estagiário na empresa multinacional"
-        ]
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Permite que dependentes, parceiros reconhecidos (quando reconhecidos pelo Department of Justice and Equality), parceiros civis e cônjuges de titulares de Critical Skills Employment Permit e de Pesquisadores com Hosting Agreements solicitem uma permissão de emprego para trabalhar no Estado. Geralmente, é ilegal para cônjuges e dependentes de titulares de permissão de emprego trabalhar na Irlanda sem uma permissão de emprego válida.",
+      "description": "Permite que dependentes, parceiros reconhecidos (quando reconhecidos pelo Department of Justice and Equality), parceiros civis e cônjuges de titulares de Critical Skills Employment Permit (anteriormente Green Card) e de Researchers on Hosting Agreements solicitem visto de trabalho na Irlanda. Geralmente é ilegal que cônjuges e dependentes de titulares de employment permit trabalhem na Irlanda sem um employment permit válido.",
       "eligibility": [
         "Dependentes de titulares de Critical Skills Employment Permit",
-        "Cônjuges de titulares de Critical Skills Employment Permit",
         "Parceiros reconhecidos de titulares de Critical Skills Employment Permit",
         "Parceiros civis de titulares de Critical Skills Employment Permit",
-        "Dependentes/cônjuges de Pesquisadores com Hosting Agreements"
+        "Cônjuges de titulares de Critical Skills Employment Permit",
+        "Dependentes e parceiros de Researchers on Hosting Agreements"
       ],
-      "id": "dependant-partner-spouse-permit",
-      "name": "Permissão de Emprego para Dependente/Parceiro/Cônjuge",
+      "id": "dependant-partner-spouse-employment-permit",
+      "name": "Dependant/Partner/Spouse Employment Permit",
       "nameOriginal": "Dependant/Partner/Spouse Employment Permit",
-      "notes": "Exclusivo para dependentes/cônjuges de titulares de Critical Skills Employment Permit ou Pesquisadores. É ilegal trabalhar sem esta permissão.",
+      "notes": "Anteriormente para titulares de Green Card employment permit. Geralmente é ilegal trabalhar na Irlanda como dependente sem este visto.",
       "process": {
         "applicationLocation": "destino",
-        "estimatedDuration": "Informação não disponível",
+        "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Verificar que o titular principal possui Critical Skills Employment Permit válido ou é Pesquisador com Hosting Agreement",
+            "description": "Verificar se o titular principal possui Critical Skills Employment Permit válido ou Hosting Agreement",
             "estimatedDays": null,
-            "name": "Confirmação de elegibilidade",
+            "name": "Verificação de elegibilidade",
             "order": 1
           },
           {
-            "description": "Reunir documentos comprovando relacionamento e elegibilidade",
+            "description": "Submeter aplicação para Dependant/Partner/Spouse Employment Permit",
             "estimatedDays": null,
-            "name": "Preparação de documentação",
+            "name": "Submissão da aplicação",
             "order": 2
-          },
-          {
-            "description": "Submissão da solicitação de Dependant/Partner/Spouse Employment Permit",
-            "estimatedDays": null,
-            "name": "Solicitação",
-            "order": 3
           }
         ]
       },
@@ -551,86 +230,14 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte válido do país de origem",
+            "description": "Documentação comprovando relação de dependência, parceria ou casamento com titular de Critical Skills Employment Permit ou Researcher",
             "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Comprovação de relação"
           },
           {
-            "description": "Certidão de casamento, registro de parceria civil ou prova de dependência",
+            "description": "Comprovação de que o titular principal possui Critical Skills Employment Permit válido ou Hosting Agreement",
             "isCritical": true,
-            "name": "Prova de relacionamento"
-          },
-          {
-            "description": "Cópia da permissão de emprego do titular principal",
-            "isCritical": true,
-            "name": "Comprovação do Critical Skills Employment Permit do titular principal"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": true,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Substitui o tipo Contract Service Provider de Work Permit Employment Permit. É projetado para situações onde uma empresa estrangeira (Contratada) ganhou um contrato para fornecer serviços a uma empresa irlandesa (Pessoa Relevante) com base em contrato de serviços e para facilitar a transferência de seus funcionários não-EEA para trabalhar no contrato irlandês na Irlanda.",
-      "eligibility": [
-        "Funcionários não-EEA de empresa estrangeira contratada",
-        "Empresa estrangeira com contrato de serviços com empresa irlandesa",
-        "Trabalho relacionado ao contrato específico na Irlanda"
-      ],
-      "id": "contract-for-services-permit",
-      "name": "Permissão de Emprego para Contrato de Serviços",
-      "nameOriginal": "Contract for Services Employment Permit",
-      "notes": "Específico para funcionários de empresas estrangeiras executando contratos de serviços na Irlanda.",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Informação não disponível",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Verificar que existe contrato válido de serviços entre empresa estrangeira e empresa irlandesa",
-            "estimatedDays": null,
-            "name": "Confirmação do contrato",
-            "order": 1
-          },
-          {
-            "description": "Reunir documentação do contrato e emprego",
-            "estimatedDays": null,
-            "name": "Preparação de documentação",
-            "order": 2
-          },
-          {
-            "description": "Submissão da solicitação de Contract for Services Employment Permit",
-            "estimatedDays": null,
-            "name": "Solicitação",
-            "order": 3
-          }
-        ]
-      },
-      "relevanceForDelivery": "indirect",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Passaporte válido do país de origem",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Cópia do contrato entre a empresa estrangeira e a empresa irlandesa",
-            "isCritical": true,
-            "name": "Contrato de serviços"
-          },
-          {
-            "description": "Documentação comprovando emprego na empresa estrangeira contratada",
-            "isCritical": true,
-            "name": "Prova de emprego"
+            "name": "Employment Permit do titular principal"
           }
         ],
         "incomeRequirement": null,
@@ -646,67 +253,154 @@
       }
     },
     {
-      "description": "Permissão de trabalho para reativar uma permissão de emprego anterior",
+      "description": "Permissão de trabalho para transferência dentro da mesma empresa",
+      "eligibility": [],
+      "id": "intra-company-transfer-employment-permit",
+      "name": "Intra-Company Transfer Employment Permit",
+      "nameOriginal": "Intra-Company Transfer Employment Permit",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Primeira solicitação, válida até 24 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Primeira solicitação, válida por 6 meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Primeira solicitação, válida até 36 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Renovação, válida por 6 meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Renovação, válida até 24 meses",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de trabalho para contratos de serviços",
+      "eligibility": [],
+      "id": "contract-for-services-employment-permit",
+      "name": "Contract for Services Employment Permit",
+      "nameOriginal": "Contract for Services Employment Permit",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Primeira solicitação, válida até 24 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Primeira solicitação, válida por 6 meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Primeira solicitação, válida até 36 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 750,
+            "currency": "EUR",
+            "notes": "Renovação, válida por 6 meses ou menos",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de trabalho para reativação de permissões anteriores",
       "eligibility": [],
       "id": "reactivation-employment-permit",
-      "name": "Permissão de Emprego de Reativação",
+      "name": "Reactivation Employment Permit",
       "nameOriginal": "Reactivation Employment Permit",
       "notes": null,
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
         "fees": [
           {
             "amount": 1000,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de até 24 meses",
+            "notes": "Primeira solicitação, válida até 24 meses",
             "period": "one-time"
           },
           {
             "amount": 500,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de 6 meses ou menos",
+            "notes": "Primeira solicitação, válida por 6 meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Primeira solicitação, válida até 36 meses",
             "period": "one-time"
           },
           {
             "amount": 750,
             "currency": "EUR",
-            "notes": "Para renovação de 6 meses ou menos",
-            "period": "one-time"
-          },
-          {
-            "amount": 1500,
-            "currency": "EUR",
-            "notes": "Para primeira aplicação de até 36 meses",
+            "notes": "Renovação, válida por 6 meses ou menos",
             "period": "one-time"
           }
         ],
-        "steps": [
-          {
-            "description": "Empregador ou empregado submete a aplicação para reativação. Empresas devem indicar pagamento por Transferência Eletrônica de Fundos.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "A aplicação passa por pré-verificação inicial e recebe um Application ID único.",
-            "estimatedDays": null,
-            "name": "Pré-verificação",
-            "order": 2
-          },
-          {
-            "description": "Email é enviado solicitando pagamento da taxa por Transferência Eletrônica com detalhes da conta bancária e Application ID como referência.",
-            "estimatedDays": null,
-            "name": "Solicitação de pagamento",
-            "order": 3
-          },
-          {
-            "description": "Após confirmação do pagamento, a aplicação é processada pelo Department of Enterprise, Trade and Employment.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 4
-          }
-        ]
+        "steps": []
       },
       "relevanceForDelivery": "direct",
       "requirements": {
@@ -724,466 +418,44 @@
       }
     },
     {
-      "description": "Permissão de imigração para titulares de Employment Permit (permissão de trabalho). Permite trabalhar na Irlanda com um empregador específico mediante Employment Permit válido.",
-      "eligibility": [
-        "Ter Employment Permit válido aprovado",
-        "Ter oferta de trabalho de empregador irlandês",
-        "Atender aos requisitos do tipo específico de Employment Permit",
-        "Não ser cidadão de UE/EEA/Suíça"
-      ],
-      "id": "stamp-1-employment",
-      "name": "Stamp 1 (Employment Permit Holder)",
-      "nameOriginal": "Stamp 1",
-      "notes": "Stamp 1 é vinculado ao empregador específico listado no Employment Permit. Mudar de empregador requer novo Employment Permit. Renovações devem ser feitas antes da expiração da permissão.",
-      "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "Variável, dependendo da disponibilidade de agendamento para registro",
-        "fees": [
-          {
-            "amount": 300,
-            "currency": "EUR",
-            "notes": "Taxa de registro do IRP (Irish Residence Permit)",
-            "period": "one-time"
-          }
-        ],
-        "steps": [
-          {
-            "description": "Empregador deve solicitar Employment Permit antes da chegada à Irlanda",
-            "estimatedDays": null,
-            "name": "Obter Employment Permit",
-            "order": 1
-          },
-          {
-            "description": "Entrar na Irlanda com visto apropriado (se necessário) e Employment Permit aprovado",
-            "estimatedDays": 1,
-            "name": "Entrada na Irlanda",
-            "order": 2
-          },
-          {
-            "description": "Registrar-se com Immigration Service Delivery após chegada. Obrigatório para permanências superiores a 90 dias. O registro documenta a permissão de permanência e o que você pode fazer legalmente na Irlanda.",
-            "estimatedDays": null,
-            "name": "Registro com Immigration Service Delivery",
-            "order": 3
-          },
-          {
-            "description": "Após registro, receberá o Irish Residence Permit (IRP) com Stamp 1",
-            "estimatedDays": null,
-            "name": "Recebimento do IRP (Irish Residence Permit)",
-            "order": 4
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Passaporte com validade para toda a duração da estadia",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Employment Permit aprovado pelo Department of Enterprise, Trade and Employment",
-            "isCritical": true,
-            "name": "Employment Permit"
-          },
-          {
-            "description": "Carta do empregador confirmando emprego e detalhes do contrato",
-            "isCritical": true,
-            "name": "Carta do empregador"
-          },
-          {
-            "description": "Documento comprovando residência na Irlanda",
-            "isCritical": true,
-            "name": "Comprovante de endereço na Irlanda"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Após obter Stamp 4, pode solicitar cidadania",
-            "Total de 5 anos de residência legal reckonable",
-            "Atender aos requisitos de residência e caráter para naturalização"
-          ],
-          "yearsRequired": 5
-        },
-        "pathToResidency": {
-          "conditions": [
-            "Manter Stamp 1 válido por 5 anos consecutivos legais",
-            "Trabalho contínuo e legal durante o período",
-            "Pode solicitar mudança para Stamp 4 após 5 anos"
-          ],
-          "yearsRequired": 5
-        }
-      }
-    },
-    {
-      "description": "Permissão de imigração com direitos expandidos, geralmente concedida após 5 anos de residência legal. Permite trabalhar sem Employment Permit, estudar e estabelecer negócios na Irlanda.",
-      "eligibility": [
-        "Ter residido legalmente na Irlanda por 5 anos consecutivos (geralmente)",
-        "Ter mantido permissão válida continuamente",
-        "Atender aos requisitos de residência reckonable",
-        "Ou ser familiar de cidadão irlandês/UE",
-        "Ou ter outra base legal específica para Stamp 4"
-      ],
-      "id": "stamp-4-general",
-      "name": "Stamp 4 (Direitos Expandidos)",
-      "nameOriginal": "Stamp 4",
-      "notes": "Stamp 4 oferece flexibilidade significativa: permite trabalhar para qualquer empregador sem Employment Permit, estabelecer negócios, estudar. É geralmente válido por 2-3 anos e pode ser renovado. Não é vinculado a empregador específico.",
-      "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "Variável, dependendo do caso individual",
-        "fees": [
-          {
-            "amount": 300,
-            "currency": "EUR",
-            "notes": "Taxa de registro/renovação do IRP",
-            "period": "one-time"
-          }
-        ],
-        "steps": [
-          {
-            "description": "Confirmar que atende aos requisitos de 5 anos de residência legal contínua ou outra base para Stamp 4",
-            "estimatedDays": null,
-            "name": "Verificar elegibilidade",
-            "order": 1
-          },
-          {
-            "description": "Reunir todos os documentos comprobatórios incluindo IRPs anteriores e evidência de residência",
-            "estimatedDays": null,
-            "name": "Preparar documentação",
-            "order": 2
-          },
-          {
-            "description": "Solicitar mudança de permissão (change of permission) para Stamp 4 através do Immigration Service Delivery",
-            "estimatedDays": null,
-            "name": "Submeter solicitação de mudança de permissão",
-            "order": 3
-          },
-          {
-            "description": "Immigration Service Delivery avaliará a solicitação e evidências apresentadas",
-            "estimatedDays": null,
-            "name": "Avaliação da solicitação",
-            "order": 4
-          },
-          {
-            "description": "Se aprovado, receberá novo IRP com Stamp 4",
-            "estimatedDays": null,
-            "name": "Recebimento de Stamp 4",
-            "order": 5
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Passaporte com validade adequada",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Evidência de 5 anos de residência legal na Irlanda (IRPs anteriores, documentos de trabalho, etc.)",
-            "isCritical": true,
-            "name": "Comprovante de residência contínua"
-          },
-          {
-            "description": "Comprovante de residência atual na Irlanda",
-            "isCritical": true,
-            "name": "Comprovante de endereço atual"
-          },
-          {
-            "description": "Carta detalhando base para solicitação de Stamp 4",
-            "isCritical": true,
-            "name": "Carta explicativa"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": true,
-        "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Stamp 4 conta como residência reckonable para cidadania",
-            "Total de 5 anos de residência reckonable na Irlanda",
-            "Atender aos requisitos adicionais de naturalização (bom caráter, intenção de residir, etc.)"
-          ],
-          "yearsRequired": 5
-        },
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Permissão de trabalho para dependentes, parceiros ou cônjuges de titulares de permissões de trabalho",
-      "eligibility": [],
-      "id": "dependant-partner-spouse-employment-permit",
-      "name": "Permissão de Emprego para Dependente/Parceiro/Cônjuge",
-      "nameOriginal": "Dependant/Partner/Spouse Employment Permit",
-      "notes": "Sem taxa para aplicação ou renovação. Taxa não aplicável para cônjuges/parceiros civis de nacionais EEA.",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Submissão da aplicação com documentação comprovando o relacionamento.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "Aplicação processada sem cobrança de taxa.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 2
-          }
-        ]
-      },
-      "relevanceForDelivery": "indirect",
-      "requirements": {
-        "documents": [],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Permissão de trabalho para funcionários transferidos dentro da mesma empresa multinacional para filial na Irlanda",
-      "eligibility": [],
-      "id": "intra-company-transfer-employment-permit",
-      "name": "Permissão de Emprego para Transferência Intra-Empresa",
-      "nameOriginal": "Intra-Company Transfer Employment Permit",
-      "notes": null,
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [
-          {
-            "amount": 1000,
-            "currency": "EUR",
-            "notes": "Para primeira aplicação de até 24 meses",
-            "period": "one-time"
-          },
-          {
-            "amount": 500,
-            "currency": "EUR",
-            "notes": "Para primeira aplicação de 6 meses ou menos ou renovação de 6 meses ou menos",
-            "period": "one-time"
-          },
-          {
-            "amount": 1000,
-            "currency": "EUR",
-            "notes": "Para renovação de até 24 meses",
-            "period": "one-time"
-          },
-          {
-            "amount": 1500,
-            "currency": "EUR",
-            "notes": "Para aplicação ou renovação de até 36 meses",
-            "period": "one-time"
-          }
-        ],
-        "steps": [
-          {
-            "description": "Empregador submete a aplicação com documentação relevante. Empresas devem indicar pagamento por Transferência Eletrônica de Fundos.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "A aplicação passa por pré-verificação inicial e recebe um Application ID único.",
-            "estimatedDays": null,
-            "name": "Pré-verificação",
-            "order": 2
-          },
-          {
-            "description": "Email é enviado solicitando pagamento da taxa por Transferência Eletrônica com detalhes da conta bancária e Application ID como referência.",
-            "estimatedDays": null,
-            "name": "Solicitação de pagamento",
-            "order": 3
-          },
-          {
-            "description": "Após confirmação do pagamento, a aplicação é processada pelo Department of Enterprise, Trade and Employment.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 4
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Permissão de trabalho para trabalhadores contratados para prestar serviços específicos na Irlanda",
-      "eligibility": [],
-      "id": "contract-for-services-employment-permit",
-      "name": "Permissão de Emprego para Contrato de Serviços",
-      "nameOriginal": "Contract for Services Employment Permit",
-      "notes": null,
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
-        "fees": [
-          {
-            "amount": 1000,
-            "currency": "EUR",
-            "notes": "Para primeira aplicação de até 24 meses",
-            "period": "one-time"
-          },
-          {
-            "amount": 500,
-            "currency": "EUR",
-            "notes": "Para primeira aplicação de 6 meses ou menos",
-            "period": "one-time"
-          },
-          {
-            "amount": 750,
-            "currency": "EUR",
-            "notes": "Para renovação de 6 meses ou menos",
-            "period": "one-time"
-          },
-          {
-            "amount": 1500,
-            "currency": "EUR",
-            "notes": "Para primeira aplicação de até 36 meses",
-            "period": "one-time"
-          }
-        ],
-        "steps": [
-          {
-            "description": "Contratante submete a aplicação com documentação relevante. Empresas devem indicar pagamento por Transferência Eletrônica de Fundos.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "A aplicação passa por pré-verificação inicial e recebe um Application ID único.",
-            "estimatedDays": null,
-            "name": "Pré-verificação",
-            "order": 2
-          },
-          {
-            "description": "Email é enviado solicitando pagamento da taxa por Transferência Eletrônica com detalhes da conta bancária e Application ID como referência.",
-            "estimatedDays": null,
-            "name": "Solicitação de pagamento",
-            "order": 3
-          },
-          {
-            "description": "Após confirmação do pagamento, a aplicação é processada pelo Department of Enterprise, Trade and Employment.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 4
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Permissão de trabalho para profissionais das áreas de esporte e cultura",
+      "description": "Permissão de trabalho para profissionais de esportes e cultura",
       "eligibility": [],
       "id": "sport-cultural-employment-permit",
-      "name": "Permissão de Emprego Esportiva e Cultural",
+      "name": "Sport and Cultural Employment Permit",
       "nameOriginal": "Sport and Cultural Employment Permit",
       "notes": null,
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
         "fees": [
           {
             "amount": 1000,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de até 24 meses",
+            "notes": "Primeira solicitação, válida até 24 meses",
             "period": "one-time"
           },
           {
             "amount": 500,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de 6 meses ou menos",
-            "period": "one-time"
-          },
-          {
-            "amount": 750,
-            "currency": "EUR",
-            "notes": "Para renovação de 6 meses ou menos",
+            "notes": "Primeira solicitação, válida por 6 meses ou menos",
             "period": "one-time"
           },
           {
             "amount": 1500,
             "currency": "EUR",
-            "notes": "Para primeira aplicação de até 36 meses",
+            "notes": "Primeira solicitação, válida até 36 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 750,
+            "currency": "EUR",
+            "notes": "Renovação, válida por 6 meses ou menos",
             "period": "one-time"
           }
         ],
-        "steps": [
-          {
-            "description": "Empregador ou empregado submete a aplicação com documentação relevante. Empresas devem indicar pagamento por Transferência Eletrônica de Fundos.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "A aplicação passa por pré-verificação inicial e recebe um Application ID único.",
-            "estimatedDays": null,
-            "name": "Pré-verificação",
-            "order": 2
-          },
-          {
-            "description": "Email é enviado solicitando pagamento da taxa por Transferência Eletrônica com detalhes da conta bancária e Application ID como referência.",
-            "estimatedDays": null,
-            "name": "Solicitação de pagamento",
-            "order": 3
-          },
-          {
-            "description": "Após confirmação do pagamento, a aplicação é processada pelo Department of Enterprise, Trade and Employment.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 4
-          }
-        ]
+        "steps": []
       },
-      "relevanceForDelivery": "indirect",
+      "relevanceForDelivery": "direct",
       "requirements": {
         "documents": [],
         "incomeRequirement": null,
@@ -1199,30 +471,17 @@
       }
     },
     {
-      "description": "Permissão de trabalho sob acordos de intercâmbio internacional",
+      "description": "Permissão de trabalho sob acordo de intercâmbio",
       "eligibility": [],
       "id": "exchange-agreement-employment-permit",
-      "name": "Permissão de Emprego de Acordo de Intercâmbio",
+      "name": "Exchange Agreement Employment Permit",
       "nameOriginal": "Exchange Agreement Employment Permit",
-      "notes": "Sem taxa. Renovação não aplicável (N/A).",
+      "notes": "Sem taxa de inscrição. Renovação não aplicável",
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
         "fees": [],
-        "steps": [
-          {
-            "description": "Submissão da aplicação sob acordo de intercâmbio.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "Aplicação processada sem cobrança de taxa.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 2
-          }
-        ]
+        "steps": []
       },
       "relevanceForDelivery": "low",
       "requirements": {
@@ -1240,55 +499,30 @@
       }
     },
     {
-      "description": "Permissão de trabalho para estágios profissionais na Irlanda",
+      "description": "Permissão de trabalho para programas de estágio",
       "eligibility": [],
       "id": "internship-employment-permit",
-      "name": "Permissão de Emprego de Estágio",
+      "name": "Internship Employment Permit",
       "nameOriginal": "Internship Employment Permit",
-      "notes": "Renovação não aplicável (N/A).",
+      "notes": "Renovação não aplicável",
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "Não especificado",
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
         "fees": [
           {
             "amount": 1000,
             "currency": "EUR",
-            "notes": "Para aplicação de até 12 meses",
+            "notes": "Primeira solicitação, válida até 12 meses",
             "period": "one-time"
           },
           {
             "amount": 500,
             "currency": "EUR",
-            "notes": "Para aplicação de 6 meses ou menos",
+            "notes": "Primeira solicitação, válida por 6 meses ou menos",
             "period": "one-time"
           }
         ],
-        "steps": [
-          {
-            "description": "Empregador ou estagiário submete a aplicação com documentação relevante. Empresas devem indicar pagamento por Transferência Eletrônica de Fundos.",
-            "estimatedDays": null,
-            "name": "Submissão da aplicação",
-            "order": 1
-          },
-          {
-            "description": "A aplicação passa por pré-verificação inicial e recebe um Application ID único.",
-            "estimatedDays": null,
-            "name": "Pré-verificação",
-            "order": 2
-          },
-          {
-            "description": "Email é enviado solicitando pagamento da taxa por Transferência Eletrônica com detalhes da conta bancária e Application ID como referência.",
-            "estimatedDays": null,
-            "name": "Solicitação de pagamento",
-            "order": 3
-          },
-          {
-            "description": "Após confirmação do pagamento, a aplicação é processada pelo Department of Enterprise, Trade and Employment.",
-            "estimatedDays": null,
-            "name": "Processamento",
-            "order": 4
-          }
-        ]
+        "steps": []
       },
       "relevanceForDelivery": "low",
       "requirements": {

@@ -1,0 +1,152 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "",
+      "required": false
+    },
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "at",
+    "countryName": "Austria",
+    "lastUpdated": "2026-04-29T21:04:54.968Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T21:04:37.501Z",
+        "status": "ok",
+        "url": "https://www.migration.gv.at/en/"
+      },
+      {
+        "contentLanguage": "de",
+        "fetchedAt": "2026-04-29T21:04:47.249Z",
+        "status": "ok",
+        "url": "https://www.migration.gv.at/en/types-of-immigration/permanent-immigration/red-white-red-card/"
+      },
+      {
+        "contentLanguage": "de",
+        "fetchedAt": "2026-04-29T21:04:52.335Z",
+        "status": "ok",
+        "url": "https://www.migration.gv.at/en/types-of-immigration/temporary-work/"
+      }
+    ]
+  },
+  "recentChanges": [],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "Autorização de residência e trabalho para trabalhadores muito altamente qualificados de países terceiros que desejam trabalhar e se estabelecer permanentemente na Áustria.",
+      "eligibility": [
+        "Possessão de qualificações muito altas (ensino superior ou experiência profissional equivalente)",
+        "Atender aos critérios de pontuação do Points Calculator"
+      ],
+      "id": "red-white-red-card-very-highly-qualified",
+      "name": "Red-White-Red Card - Trabalhadores Altamente Qualificados",
+      "nameOriginal": "Red-White-Red Card - Very Highly Qualified Workers",
+      "notes": "Inclui visto de busca de emprego e autorização de residência para trabalhadores altamente qualificados.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificações muito altas (ensino superior ou experiência profissional significativa)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Autorização de residência e trabalho para trabalhadores-chave de países terceiros que possuem uma oferta de emprego na Áustria.",
+      "eligibility": [
+        "Possuir uma oferta de emprego confirmada na Áustria"
+      ],
+      "id": "red-white-red-card-other-key-workers",
+      "name": "Red-White-Red Card - Outros Trabalhadores-Chave",
+      "nameOriginal": "Red-White-Red Card - Other Key Workers",
+      "notes": "Aplicável a trabalhadores qualificados com oferta de trabalho específica.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Autorização para fundadores de empresas inovadoras que desejam realizar seus projetos na Áustria.",
+      "eligibility": [
+        "Ter desenvolvido uma ideia para um produto inovador",
+        "Desejo de realizar o projeto na Áustria"
+      ],
+      "id": "startup-founder-visa",
+      "name": "Visto para Fundadores de Start-up",
+      "nameOriginal": "Start-up Founders",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Conceito inovador de produto"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}

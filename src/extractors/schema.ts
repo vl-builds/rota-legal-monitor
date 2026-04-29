@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const MoneyAmountSchema = z.object({
   amount: z.number().positive(),
-  currency: z.enum(["EUR", "USD", "BRL"]),
+  currency: z.enum(["EUR", "USD", "BRL", "AUD"]),
   period: z.enum(["one-time", "monthly", "yearly"]).nullable(),
   notes: z.string().nullable(),
 });

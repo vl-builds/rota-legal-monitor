@@ -13,17 +13,10 @@ export const itSource: SourceConfig = {
 
   urls: [
     {
-      url: 'https://vistoperitalia.esteri.it/home/en',
+      url: 'https://vistoperitalia.esteri.it/',
       contentType: 'visa-overview',
       promptHint:
-        'Portal oficial de vistos da Italia pelo Ministerio das Relacoes Exteriores. Liste todos os tipos de visto de trabalho disponiveis para cidadaos brasileiros (trabalho subordinado, trabalho autonomo, missao, EU Blue Card). Indique se o visto e de longa duracao (nacional, tipo D) ou curta (tipo C).',
-      fetchFrequency: 'monthly',
-    },
-    {
-      url: 'https://www.esteri.it/en/servizi-consolari-e-visti/visti/',
-      contentType: 'visa-requirements',
-      promptHint:
-        'Tipos de visto disponíveis na Italia para trabalho. Extraia: documentos exigidos por tipo, se e necessario ter oferta de emprego previamente, se ha sistema de cotas (decreto flussi) e como funciona. Destaque especificamente o visto para trabalho subordinado e o EU Blue Card.',
+        'Portal oficial de vistos da Italia pelo Ministerio das Relacoes Exteriores. Liste todos os tipos de visto de trabalho disponiveis para cidadaos brasileiros (lavoro subordinato, lavoro autonomo, missao, EU Blue Card). Indique documentos exigidos, necessidade de oferta de emprego e sistema de cotas (decreto flussi).',
       fetchFrequency: 'monthly',
       model: 'sonnet',
     },
@@ -31,14 +24,21 @@ export const itSource: SourceConfig = {
       url: 'https://integrazionemigranti.gov.it/en-gb/',
       contentType: 'visa-requirements',
       promptHint:
-        'Portal do Ministerio do Trabalho italiano sobre integracao de imigrantes. Extraia: como solicitar o permesso di soggiorno apos chegada, diferenca entre visto de entrada e permesso, quais permessi permitem trabalho (lavoro subordinato, autonomo, attesa occupazione) e prazos.',
+        'Portal do Ministerio do Trabalho italiano. Extraia: como solicitar o permesso di soggiorno apos chegada, diferenca entre visto de entrada e permesso, quais permessi permitem trabalho (lavoro subordinato, autonomo, attesa occupazione) e prazos de processamento.',
       fetchFrequency: 'monthly',
     },
     {
-      url: 'https://www.poliziadistato.it/articolo/permessi-di-soggiorno-per-cittadini-stranieri',
+      url: 'https://www.poliziadistato.it/tematiche/immigrazione',
       contentType: 'visa-requirements',
       promptHint:
-        'Permessi di soggiorno para cidadaos estrangeiros na Italia. Extraia: quais categorias existem, documentos necessarios para solicitar, onde solicitar (questura), prazo de validade por categoria e como renovar. Inclua permesso per attesa occupazione (aguardando emprego) se disponivel.',
+        'Secao de imigracao da Policia de Estado italiana. Extraia: categorias de permesso di soggiorno, documentos necessarios, onde solicitar (questura), prazo de validade por categoria e processo de renovacao.',
+      fetchFrequency: 'monthly',
+    },
+    {
+      url: 'https://www.lavoro.gov.it/en',
+      contentType: 'visa-requirements',
+      promptHint:
+        'Ministerio do Trabalho italiano. Extraia: direitos dos trabalhadores imigrantes, requisitos para contratacao de trabalhadores estrangeiros (nulla osta), acesso ao INPS (previdencia), mudanca de empregador e percurso para residencia permanente.',
       fetchFrequency: 'monthly',
     },
   ],
