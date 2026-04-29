@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Países — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  /* ---- filter bar ---- */
+  .filter-bar {
+    position: sticky;
+    top: 64px;
+    z-index: 40;
+    background: var(--canvas);
+    border-bottom: 1px solid var(--hairline);
+    padding: var(--s-md) 0;
+  }
+  .filter-bar .container {
+    display: flex;
+    align-items: center;
+    gap: var(--s-md);
+    flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .filter-chips {
+    display: flex;
+    gap: var(--s-xs);
+    flex-wrap: wrap;
+  }
+  .filter-chip {
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--body);
+    background: transparent;
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    font-family: inherit;
+  }
+  .filter-chip:hover { border-color: var(--hairline-strong); color: var(--on-dark); }
+  .filter-chip.active {
+    background: var(--on-dark);
+    color: var(--canvas);
+    border-color: var(--on-dark);
+    font-weight: 600;
+  }
+  .filter-chip.active-yellow {
+    background: var(--primary);
+    color: var(--on-primary);
+    border-color: var(--primary);
+    font-weight: 600;
+  }
+  .count-label {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    white-space: nowrap;
+  }
+  .count-label span { color: var(--on-dark); font-weight: 600; }
+
+  /* ---- country grid ---- */
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-lg);
+  }
+  .country-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-md);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 150ms ease, transform 120ms ease;
+  }
+  .country-card:hover { border-color: var(--hairline-strong); transform: translateY(-2px); }
+  .country-card[style*="display: none"] { display: none !important; }
+
+  .cc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--s-sm);
+  }
+  .cc-flag-name { display: flex; align-items: center; gap: var(--s-sm); }
+  .cc-flag {
+    width: 36px;
+    height: 26px;
+    border-radius: 4px;
+    display: block;
+    flex-shrink: 0;
+  }
+  .cc-name {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--on-dark);
+    line-height: 1.2;
+  }
+  .cc-code {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .cc-pills {
+    display: flex;
+    gap: var(--s-xxs);
+    flex-wrap: wrap;
+    margin-top: var(--s-xxs);
+  }
+  .cc-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+  }
+  .cc-pill.schengen { background: rgba(59,130,246,0.12); color: var(--accent-blue); }
+  .cc-pill.autonomo  { background: rgba(34,197,94,0.12); color: var(--accent-emerald); }
+  .cc-pill.wh        { background: rgba(250,255,105,0.12); color: var(--primary); }
+  .cc-pill.no-schengen { background: var(--surface-elevated); color: var(--muted); }
+
+  .cc-desc {
+    font-size: 13px;
+    color: var(--body);
+    line-height: 1.55;
+    flex: 1;
+    margin: 0;
+  }
+
+  .cc-stats {
+    display: flex;
+    align-items: center;
+    gap: var(--s-md);
+    padding-top: var(--s-sm);
+    border-top: 1px solid var(--hairline);
+    flex-wrap: wrap;
+  }
+  .cc-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .cc-stat-val {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--on-dark);
+    font-variant-numeric: tabular-nums;
+  }
+  .cc-stat-lbl { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+  .cc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+  .cc-updated {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+  .cc-arrow {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .confidence-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .confidence-dot.alta   { background: var(--accent-emerald); box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+  .confidence-dot.media  { background: var(--accent-blue); }
+  .confidence-dot.baixa  { background: var(--muted-soft); }
+
+  /* ---- confidence legend ---- */
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-lg);
+  }
+  .legend-item {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-sm);
+  }
+  .legend-title {
+    display: flex;
+    align-items: center;
+    gap: var(--s-sm);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--on-dark);
+  }
+  .legend-desc {
+    font-size: 13px;
+    color: var(--body);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .legend-countries {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    margin-top: var(--s-xxs);
+  }
+
+  /* ---- empty state ---- */
+  .empty-state {
+    display: none;
+    grid-column: 1 / -1;
+    padding: var(--s-xxl);
+    text-align: center;
+  }
+  .empty-state .empty-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--on-dark);
+    margin: 0 0 var(--s-xs);
+  }
+  .empty-state .empty-desc { font-size: 14px; color: var(--muted); }
+
+  /* ---- responsive ---- */
+  @media (max-width: 1280px) { .country-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 1024px) {
+    .country-grid { grid-template-columns: repeat(2, 1fr); }
+    .legend-grid  { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .country-grid { grid-template-columns: 1fr; }
+    .count-label  { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <span class="logo-dot"></span>
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="comparar.html">Comparar</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é o meu?</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== FILTER BAR ============== -->
+<div class="filter-bar">
+  <div class="container">
+    <span class="filter-label">Filtrar:</span>
+    <div class="filter-chips">
+      <button class="filter-chip active" data-filter="todos">Todos</button>
+      <button class="filter-chip" data-filter="schengen">Schengen</button>
+      <button class="filter-chip" data-filter="autonomo">Autônomo permitido</button>
+      <button class="filter-chip" data-filter="workingHoliday">Working Holiday</button>
+    </div>
+    <span class="count-label" id="count-label"><span id="visible-count">10</span> de 10 países</span>
+  </div>
+</div>
+
+<!-- ============== HEADER ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="eyebrow"><span class="dot"></span>Atualizado em abril de 2026</div>
+    <h1 class="display-md" style="margin-bottom: var(--s-sm);">10 países monitorados</h1>
+    <p class="body-md" style="max-width: 600px;">
+      Vistos, requisitos e prazos extraídos mensalmente de fontes oficiais de imigração.
+      Use os filtros acima para encontrar o que se encaixa no seu perfil.
+    </p>
+  </div>
+</section>
+
+<!-- ============== GRID DE PAÍSES ============== -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="country-grid" id="country-grid">
+
+      <!-- NL -->
+      <a class="country-card"
+         href="pais-nl.html"
+         data-schengen="true"
+         data-autonomo="true"
+         data-working-holiday="false">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-nl"></span>
+            <div>
+              <div class="cc-name">Países Baixos</div>
+              <div class="cc-code">nl</div>
+            </div>
+          </div>
+          <span class="confidence-dot alta" title="Alta confiança"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+          <span class="cc-pill autonomo">Autônomo</span>
+        </div>
+        <p class="cc-desc">
+          Visto Altamente Qualificado com renda mínima definida e prazo de processamento
+          de 2 a 4 semanas via IND.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">5</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 5.688</span>
+            <span class="cc-stat-lbl">renda mínima /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- PT -->
+      <a class="country-card"
+         href="pais-pt.html"
+         data-schengen="true"
+         data-autonomo="true"
+         data-working-holiday="false">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-pt"></span>
+            <div>
+              <div class="cc-name">Portugal</div>
+              <div class="cc-code">pt</div>
+            </div>
+          </div>
+          <span class="confidence-dot media" title="Confiança média"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+          <span class="cc-pill autonomo">Autônomo</span>
+        </div>
+        <p class="cc-desc">
+          Visto D3 para qualificados, Nômade Digital e D2 para empreendedores.
+          Vantagem do idioma português para brasileiros.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">5</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 820</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- DE -->
+      <a class="country-card"
+         href="pais-de.html"
+         data-schengen="true"
+         data-autonomo="false"
+         data-working-holiday="false">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-de"></span>
+            <div>
+              <div class="cc-name">Alemanha</div>
+              <div class="cc-code">de</div>
+            </div>
+          </div>
+          <span class="confidence-dot media" title="Confiança média"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+        </div>
+        <p class="cc-desc">
+          Chancencard permite buscar emprego presencialmente. Lei de Imigração de
+          Qualificados de 2023 abriu novos caminhos para profissionais de fora da UE.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">5</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 2.161</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- IE -->
+      <a class="country-card"
+         href="pais-ie.html"
+         data-schengen="false"
+         data-autonomo="true"
+         data-working-holiday="true">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-ie"></span>
+            <div>
+              <div class="cc-name">Irlanda</div>
+              <div class="cc-code">ie</div>
+            </div>
+          </div>
+          <span class="confidence-dot media" title="Confiança média"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill no-schengen">Fora do Schengen</span>
+          <span class="cc-pill autonomo">Autônomo</span>
+          <span class="cc-pill wh">Working Holiday</span>
+        </div>
+        <p class="cc-desc">
+          Critical Skills Permit para TI e saúde. Working Holiday Authorization
+          disponível para brasileiros de 18 a 35 anos.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">4</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 2.146</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- ES -->
+      <a class="country-card"
+         href="pais-es.html"
+         data-schengen="true"
+         data-autonomo="true"
+         data-working-holiday="true">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-es"></span>
+            <div>
+              <div class="cc-name">Espanha</div>
+              <div class="cc-code">es</div>
+            </div>
+          </div>
+          <span class="confidence-dot media" title="Confiança média"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+          <span class="cc-pill autonomo">Autônomo</span>
+          <span class="cc-pill wh">Working Holiday</span>
+        </div>
+        <p class="cc-desc">
+          Visto de Nômade Digital e Empreendedor. Working Holiday por acordo bilateral
+          Brasil-Espanha para menores de 35 anos.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">4</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 1.134</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- FR -->
+      <a class="country-card"
+         href="pais-fr.html"
+         data-schengen="true"
+         data-autonomo="true"
+         data-working-holiday="false">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-fr"></span>
+            <div>
+              <div class="cc-name">França</div>
+              <div class="cc-code">fr</div>
+            </div>
+          </div>
+          <span class="confidence-dot media" title="Confiança média"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+          <span class="cc-pill autonomo">Autônomo</span>
+        </div>
+        <p class="cc-desc">
+          Talent Passport para profissionais qualificados e pesquisadores.
+          Francês exigido para a maioria dos vistos de trabalho.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">4</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 1.767</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- IT -->
+      <a class="country-card"
+         href="pais-it.html"
+         data-schengen="true"
+         data-autonomo="true"
+         data-working-holiday="false">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-it"></span>
+            <div>
+              <div class="cc-name">Itália</div>
+              <div class="cc-code">it</div>
+            </div>
+          </div>
+          <span class="confidence-dot baixa" title="Confiança baixa"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+          <span class="cc-pill autonomo">Autônomo</span>
+        </div>
+        <p class="cc-desc">
+          Visto de Trabalho Subordinado e Startup. Sistema de quotas anuais
+          (decreto flussi) limita o número de autorizações por país.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">3</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 1.077</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- BE -->
+      <a class="country-card"
+         href="pais-be.html"
+         data-schengen="true"
+         data-autonomo="false"
+         data-working-holiday="false">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-be"></span>
+            <div>
+              <div class="cc-name">Bélgica</div>
+              <div class="cc-code">be</div>
+            </div>
+          </div>
+          <span class="confidence-dot baixa" title="Confiança baixa"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+        </div>
+        <p class="cc-desc">
+          Permissão única de trabalho. Processo burocrático envolvendo empregador
+          belga e aprovação regional. Dados com extração parcial.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">3</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 1.995</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- AT -->
+      <a class="country-card"
+         href="pais-at.html"
+         data-schengen="true"
+         data-autonomo="false"
+         data-working-holiday="false">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-at"></span>
+            <div>
+              <div class="cc-name">Áustria</div>
+              <div class="cc-code">at</div>
+            </div>
+          </div>
+          <span class="confidence-dot baixa" title="Confiança baixa"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill schengen">Schengen</span>
+        </div>
+        <p class="cc-desc">
+          Cartão Vermelho-Branco-Vermelho por sistema de pontos e EU Blue Card.
+          Alemão exigido para a maioria dos cargos fora de TI.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">4</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">EUR 1.945</span>
+            <span class="cc-stat-lbl">salário mínimo /mês</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- AU -->
+      <a class="country-card"
+         href="pais-au.html"
+         data-schengen="false"
+         data-autonomo="false"
+         data-working-holiday="true">
+        <div class="cc-header">
+          <div class="cc-flag-name">
+            <span class="cc-flag flag-au"></span>
+            <div>
+              <div class="cc-name">Austrália</div>
+              <div class="cc-code">au</div>
+            </div>
+          </div>
+          <span class="confidence-dot alta" title="Alta confiança"></span>
+        </div>
+        <div class="cc-pills">
+          <span class="cc-pill no-schengen">Fora do Schengen</span>
+          <span class="cc-pill wh">Working Holiday</span>
+        </div>
+        <p class="cc-desc">
+          Working Holiday Visa subclass 462 para brasileiros de 18 a 30 anos.
+          Inglês necessário. Único país fora da Europa no monitoramento.
+        </p>
+        <div class="cc-stats">
+          <div class="cc-stat">
+            <span class="cc-stat-val">3</span>
+            <span class="cc-stat-lbl">tipos de visto</span>
+          </div>
+          <div class="cc-stat">
+            <span class="cc-stat-val">AUD 24,10</span>
+            <span class="cc-stat-lbl">salário mínimo /hora</span>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <span class="cc-updated">abr/2026</span>
+          <span class="cc-arrow">Ver detalhes →</span>
+        </div>
+      </a>
+
+      <!-- empty state -->
+      <div class="empty-state" id="empty-state">
+        <p class="empty-title">Nenhum país encontrado</p>
+        <p class="empty-desc">Nenhum dos 10 países monitoriados corresponde a esse filtro.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== LEGENDA DE CONFIANÇA ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="eyebrow">Transparência metodológica</div>
+    <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que significa o nível de confiança?</h2>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-title">
+          <span class="confidence-dot alta"></span>
+          Alta confiança
+        </div>
+        <p class="legend-desc">
+          Todos os campos do schema foram extraídos com sucesso a partir da fonte oficial.
+          Os dados foram validados automaticamente e nenhum campo crítico está ausente.
+        </p>
+        <span class="legend-countries">Países: NL, AU</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-title">
+          <span class="confidence-dot media"></span>
+          Confiança média
+        </div>
+        <p class="legend-desc">
+          A maioria dos campos foi extraída com sucesso. Alguns campos opcionais
+          podem estar ausentes ou imprecisos. Recomende conferir a fonte oficial
+          antes de tomar decisões.
+        </p>
+        <span class="legend-countries">Países: PT, DE, IE, ES, FR</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-title">
+          <span class="confidence-dot baixa"></span>
+          Confiança baixa
+        </div>
+        <p class="legend-desc">
+          Extração parcial: o site da fonte oficial usou mecanismo JavaScript pesado
+          ou estrutura que limitou a leitura automática. Os dados disponíveis são válidos,
+          mas podem estar incompletos.
+        </p>
+        <span class="legend-countries">Países: IT, BE, AT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA BAND ============== -->
+<section>
+  <div class="container">
+    <div class="cta-band-yellow">
+      <div>
+        <h2>Não sabe por onde começar?</h2>
+        <p>
+          Responda 6 perguntas e receba uma recomendação personalizada com justificativa
+          e um plano B.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-on-yellow" href="comparar.html">Comparar países</a>
+        <a class="btn btn-on-yellow" href="qual-pais.html">Fazer o questionário</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <span class="logo-dot"></span>
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const chips = document.querySelectorAll('.filter-chip')
+  const cards = document.querySelectorAll('.country-card')
+  const countLabel = document.getElementById('visible-count')
+  const emptyState = document.getElementById('empty-state')
+
+  function applyFilter(filter) {
+    let visible = 0
+    cards.forEach(card => {
+      const show = filter === 'todos' || card.dataset[filter] === 'true'
+      card.style.display = show ? '' : 'none'
+      if (show) visible++
+    })
+    countLabel.textContent = visible
+    emptyState.style.display = visible === 0 ? 'block' : 'none'
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'))
+      chip.classList.add('active')
+      applyFilter(chip.dataset.filter)
+    })
+  })
+</script>
+
+</body>
+</html>
