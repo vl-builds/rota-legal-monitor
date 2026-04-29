@@ -15,6 +15,7 @@
     "validate": "bun run src/cli/validate.ts",
     "typecheck": "tsc --noEmit",
     "index": "bun run src/cli/index-gen.ts",
+    "serve": "bun run src/cli/serve.ts",
     "test": "bun test"
   },
   "dependencies": {

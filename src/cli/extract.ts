@@ -3,16 +3,16 @@ import { fetchPage } from '@/extractors/fetcher'
 import { extractMainContent } from '@/extractors/content-cleaner'
 import { extractFromHtml } from '@/extractors/llm-extractor'
 import { PartialExtractionSchema } from '@/extractors/partial-schema'
-import type { PartialExtraction } from '@/extractors/partial-schema'
+import type { PartialExtraction, PartialVisaType } from '@/extractors/partial-schema'
 import { CountryDataSchema } from '@/extractors/schema'
-import type { CountryData, SourceRef, VisaType, PolicyChange } from '@/extractors/schema'
+import type { CountryData, SourceRef, PolicyChange } from '@/extractors/schema'
 import { readCurrent, writeCurrent, archiveCurrent } from '@/storage/snapshot'
 import { log } from '@/lib/log'
 import type { SourceConfig } from '@/types'
 
 // ---- merge helpers --------------------------------------------------------
 
-function mergeVisaTypes(existing: VisaType[], incoming: VisaType[]): void {
+function mergeVisaTypes(existing: PartialVisaType[], incoming: PartialVisaType[]): void {
   for (const newVisa of incoming) {
     const idx = existing.findIndex((v) => v.id === newVisa.id)
     if (idx === -1) {
@@ -35,7 +35,7 @@ function mergeRecentChanges(existing: PolicyChange[], incoming: PolicyChange[]):
 
 interface MergedData {
   forBrazilians: PartialExtraction['forBrazilians']
-  visaTypes: VisaType[]
+  visaTypes: PartialVisaType[]
   generalRequirements: PartialExtraction['generalRequirements']
   recentChanges: PolicyChange[]
 }
@@ -98,7 +98,22 @@ function buildCountryData(
       specialAgreements: fb.specialAgreements ?? [],
       notes: fb.notes ?? '',
     },
-    visaTypes: merged.visaTypes,
+    visaTypes: merged.visaTypes.map((v) => ({
+      ...v,
+      process: {
+        ...v.process,
+        estimatedDuration: v.process.estimatedDuration || 'A determinar',
+      },
+      rights: {
+        ...v.rights,
+        pathToResidency: v.rights.pathToResidency?.yearsRequired
+          ? v.rights.pathToResidency
+          : null,
+        pathToCitizenship: v.rights.pathToCitizenship?.yearsRequired
+          ? v.rights.pathToCitizenship
+          : null,
+      },
+    })),
     generalRequirements: {
       passportValidity: gr.passportValidity || 'Minimo 6 meses apos a data de entrada',
       proofOfFunds: gr.proofOfFunds ?? null,

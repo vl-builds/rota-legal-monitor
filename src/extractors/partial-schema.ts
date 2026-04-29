@@ -4,6 +4,9 @@ import {
   SpecialAgreementSchema,
   VisaTypeSchema,
   PolicyChangeSchema,
+  PathInfoSchema,
+  VisaProcessSchema,
+  VisaRightsSchema,
 } from './schema'
 
 const PartialHealthInsuranceSchema = z.object({
@@ -12,6 +15,26 @@ const PartialHealthInsuranceSchema = z.object({
   minimumCoverage: MoneyAmountSchema.nullable().optional(),
   notes: z.string().optional(),
 })
+
+const PartialPathInfoSchema = PathInfoSchema.extend({
+  yearsRequired: z.number().int().min(0),
+})
+
+const PartialVisaProcessSchema = VisaProcessSchema.extend({
+  estimatedDuration: z.string(),
+})
+
+const PartialVisaRightsSchema = VisaRightsSchema.extend({
+  pathToResidency: PartialPathInfoSchema.nullable(),
+  pathToCitizenship: PartialPathInfoSchema.nullable(),
+})
+
+const PartialVisaTypeSchema = VisaTypeSchema.extend({
+  process: PartialVisaProcessSchema,
+  rights: PartialVisaRightsSchema,
+})
+
+export type PartialVisaType = z.infer<typeof PartialVisaTypeSchema>
 
 export const PartialExtractionSchema = z.object({
   forBrazilians: z
@@ -24,7 +47,7 @@ export const PartialExtractionSchema = z.object({
     })
     .optional(),
 
-  visaTypes: z.array(VisaTypeSchema).optional(),
+  visaTypes: z.array(PartialVisaTypeSchema).optional(),
 
   generalRequirements: z
     .object({

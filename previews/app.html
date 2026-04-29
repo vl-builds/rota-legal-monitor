@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rota Legal Monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  .country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--s-lg); margin-top: var(--s-xl); }
+  .visa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--s-lg); margin-top: var(--s-xl); }
+  .visa-card { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-xl); }
+  .visa-card h3 { font-size: 18px; font-weight: 600; color: var(--on-dark); margin-bottom: var(--s-sm); }
+  .visa-card .visa-meta { display: flex; gap: var(--s-sm); flex-wrap: wrap; margin-bottom: var(--s-md); }
+  .req-row { display: flex; justify-content: space-between; align-items: flex-start; padding: var(--s-sm) 0; border-bottom: 1px solid var(--hairline); gap: var(--s-md); }
+  .req-row:last-child { border-bottom: none; }
+  .req-label { color: var(--muted); font-size: 14px; flex-shrink: 0; }
+  .req-value { color: var(--on-dark); font-size: 14px; text-align: right; }
+  .source-row { display: flex; align-items: center; gap: var(--s-md); padding: var(--s-sm) 0; border-bottom: 1px solid var(--hairline); }
+  .source-row:last-child { border-bottom: none; }
+  .source-url { color: var(--primary); font-size: 13px; font-family: var(--font-mono); word-break: break-all; }
+  .tabs { display: flex; gap: var(--s-xs); margin-bottom: var(--s-xl); border-bottom: 1px solid var(--hairline); padding-bottom: var(--s-md); }
+  .tab { padding: var(--s-xs) var(--s-md); border-radius: var(--r-md); font-size: 14px; font-weight: 500; cursor: pointer; color: var(--muted); background: none; border: none; transition: color 0.15s, background 0.15s; }
+  .tab:hover { color: var(--on-dark); }
+  .tab.active { background: var(--surface-elevated); color: var(--on-dark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .back-btn { display: inline-flex; align-items: center; gap: var(--s-xs); color: var(--muted); font-size: 14px; cursor: pointer; background: none; border: none; padding: 0; margin-bottom: var(--s-xl); transition: color 0.15s; }
+  .back-btn:hover { color: var(--on-dark); }
+  .flag { font-size: 28px; }
+  .country-header { display: flex; align-items: center; gap: var(--s-md); margin-bottom: var(--s-xl); }
+  .country-header .flag { font-size: 40px; }
+  .confidence-high { color: var(--accent-emerald); }
+  .confidence-medium { color: var(--primary); }
+  .confidence-low { color: var(--accent-rose); }
+  .change-card { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-lg); margin-bottom: var(--s-md); }
+  .change-date { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-bottom: var(--s-xs); }
+  .change-title { font-size: 16px; font-weight: 600; color: var(--on-dark); margin-bottom: var(--s-xs); }
+  .change-desc { font-size: 14px; color: var(--body); }
+  .money { font-family: var(--font-mono); color: var(--primary); font-weight: 600; }
+  .empty-state { color: var(--muted); font-size: 14px; padding: var(--s-xl) 0; text-align: center; }
+  .loading { color: var(--muted); font-size: 14px; padding: var(--s-xxl) 0; text-align: center; }
+  #view-detail { display: none; }
+  .info-band { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-lg) var(--s-xl); margin-bottom: var(--s-md); }
+  .bool-yes { color: var(--accent-emerald); font-weight: 600; }
+  .bool-no  { color: var(--accent-rose); font-weight: 600; }
+  .requirement-detail { font-size: 13px; color: var(--muted); margin-top: var(--s-xxs); }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="#">
+      <span class="logo-dot"></span>
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">Países</a>
+    </div>
+    <div class="nav-right">
+      <span class="body-sm" id="last-generated" style="color:var(--muted)"></span>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ======== VISTA LISTA ======== -->
+  <div id="view-list">
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow"><span class="dot"></span>Monitor quinzenal</div>
+        <h1 class="display-xl">
+          Vistos de trabalho<br/>
+          <span class="accent">na Europa para brasileiros.</span>
+        </h1>
+        <p class="lede">
+          Dados extraídos automaticamente das fontes oficiais de imigração.
+          Atualizados nos dias 1 e 15 de cada mês.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-tight" style="padding-top:0">
+      <div class="container">
+        <div class="stats" id="stats-bar">
+          <div class="stat-callout"><span class="stat-display" id="stat-countries">—</span><span class="stat-label">países</span></div>
+          <div class="stat-callout"><span class="stat-display" id="stat-visas">—</span><span class="stat-label">tipos de visto</span></div>
+          <div class="stat-callout"><span class="stat-display" id="stat-sources">—</span><span class="stat-label">fontes oficiais</span></div>
+        </div>
+
+        <div class="country-grid" id="country-grid">
+          <div class="loading">Carregando dados...</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ======== VISTA DETALHE ======== -->
+  <div id="view-detail">
+    <section class="section-tight">
+      <div class="container">
+        <button class="back-btn" id="btn-back">← Voltar para países</button>
+
+        <div class="country-header" id="detail-header"></div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="vistos">Tipos de visto</button>
+          <button class="tab" data-tab="brasileiros">Para brasileiros</button>
+          <button class="tab" data-tab="requisitos">Requisitos gerais</button>
+          <button class="tab" data-tab="mudancas">Mudanças recentes</button>
+          <button class="tab" data-tab="fontes">Fontes</button>
+        </div>
+
+        <div id="tab-vistos" class="tab-panel active"></div>
+        <div id="tab-brasileiros" class="tab-panel"></div>
+        <div id="tab-requisitos" class="tab-panel"></div>
+        <div id="tab-mudancas" class="tab-panel"></div>
+        <div id="tab-fontes" class="tab-panel"></div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>rota-legal-monitor · dados extraídos de fontes oficiais</span>
+      <span class="caption-up">MIT</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const FLAGS = { nl: '🇳🇱', pt: '🇵🇹', de: '🇩🇪', es: '🇪🇸', ie: '🇮🇪' }
+const NAMES = { nl: 'Países Baixos', pt: 'Portugal', de: 'Alemanha', es: 'Espanha', ie: 'Irlanda' }
+
+function fmt(v) { return v == null ? '—' : String(v) }
+function money(m) {
+  if (!m) return '—'
+  return `<span class="money">€${m.amount.toLocaleString('pt-BR')}</span>`
+}
+function bool(v, trueLabel = 'Sim', falseLabel = 'Não') {
+  if (v == null) return '<span style="color:var(--muted)">—</span>'
+  return v
+    ? `<span class="bool-yes">${trueLabel}</span>`
+    : `<span class="bool-no">${falseLabel}</span>`
+}
+function badge(text, type = '') {
+  return `<span class="badge ${type}">${text}</span>`
+}
+function confidenceBadge(c) {
+  if (c === 'high')   return `<span class="badge up">Alta</span>`
+  if (c === 'medium') return `<span class="badge new">Média</span>`
+  return `<span class="badge down">Baixa</span>`
+}
+function relativeDate(iso) {
+  const d = new Date(iso)
+  const diff = Math.floor((Date.now() - d.getTime()) / 86400000)
+  if (diff === 0) return 'hoje'
+  if (diff === 1) return 'ontem'
+  if (diff < 7)  return `${diff} dias atrás`
+  if (diff < 30) return `${Math.floor(diff/7)} sem. atrás`
+  return d.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' })
+}
+
+// ---- navegação ----
+function showList() {
+  document.getElementById('view-list').style.display = ''
+  document.getElementById('view-detail').style.display = 'none'
+}
+function showDetail() {
+  document.getElementById('view-list').style.display = 'none'
+  document.getElementById('view-detail').style.display = ''
+}
+
+document.getElementById('btn-back').addEventListener('click', showList)
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'))
+    tab.classList.add('active')
+    document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active')
+  })
+})
+
+// ---- carrega lista ----
+async function loadList() {
+  const idx = await fetch('/data/index.json').then(r => r.json())
+
+  document.getElementById('last-generated').textContent =
+    'Gerado ' + relativeDate(idx.generatedAt)
+
+  let totalVisas = 0
+  let totalSources = 0
+  const countries = []
+
+  for (const c of idx.countries) {
+    totalVisas += c.visaTypesCount
+    countries.push(c)
+  }
+
+  document.getElementById('stat-countries').textContent = idx.countries.length
+  document.getElementById('stat-visas').textContent = totalVisas
+
+  const grid = document.getElementById('country-grid')
+  grid.innerHTML = ''
+
+  for (const c of countries) {
+    const card = document.createElement('div')
+    card.className = 'feature-card-dark'
+    card.style.cursor = 'pointer'
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:var(--s-md);margin-bottom:var(--s-lg)">
+        <span style="font-size:36px">${FLAGS[c.code] || '🏳️'}</span>
+        <div>
+          <div class="title-lg">${NAMES[c.code] || c.name}</div>
+          <div class="body-sm" style="color:var(--muted)">${c.code.toUpperCase()}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:var(--s-sm);flex-wrap:wrap;margin-bottom:var(--s-lg)">
+        ${confidenceBadge(c.confidence)}
+        <span class="badge">${c.visaTypesCount} tipos de visto</span>
+      </div>
+      <div class="body-sm" style="color:var(--muted)">Atualizado ${relativeDate(c.lastUpdated)}</div>
+    `
+    card.addEventListener('click', () => loadDetail(c.code))
+    grid.appendChild(card)
+  }
+
+  // conta fontes somando todas
+  try {
+    let src = 0
+    for (const c of idx.countries) {
+      const d = await fetch(`/data/${c.code}.json`).then(r => r.json())
+      src += d.meta.sources.length
+    }
+    document.getElementById('stat-sources').textContent = src
+  } catch {}
+}
+
+// ---- carrega detalhe ----
+async function loadDetail(cc) {
+  showDetail()
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+  document.querySelectorAll('.tab-panel').forEach(p => { p.classList.remove('active'); p.innerHTML = '<div class="loading">Carregando...</div>' })
+  document.querySelector('[data-tab="vistos"]').classList.add('active')
+  document.getElementById('tab-vistos').classList.add('active')
+
+  const d = await fetch(`/data/${cc}.json`).then(r => r.json())
+
+  // header
+  document.getElementById('detail-header').innerHTML = `
+    <span class="flag">${FLAGS[cc] || '🏳️'}</span>
+    <div>
+      <h1 class="display-md">${NAMES[cc] || d.meta.countryName}</h1>
+      <div style="display:flex;gap:var(--s-sm);margin-top:var(--s-xs)">
+        ${confidenceBadge(d.reliability.extractionConfidence)}
+        <span class="badge">${d.visaTypes.length} tipos de visto</span>
+        <span class="badge">Atualizado ${relativeDate(d.meta.lastUpdated)}</span>
+      </div>
+    </div>
+  `
+
+  renderVistos(d)
+  renderBrasileiros(d)
+  renderRequisitos(d)
+  renderMudancas(d)
+  renderFontes(d)
+}
+
+function renderVistos(d) {
+  const el = document.getElementById('tab-vistos')
+  if (!d.visaTypes.length) { el.innerHTML = '<div class="empty-state">Nenhum tipo de visto extraído.</div>'; return }
+
+  el.innerHTML = `<div class="visa-grid">${d.visaTypes.map(v => `
+    <div class="visa-card">
+      <h3>${v.name}</h3>
+      <div class="visa-meta">
+        ${v.category ? badge(v.category) : ''}
+        ${v.process?.applicationLocation ? badge(v.process.applicationLocation, 'new') : ''}
+      </div>
+      ${v.description ? `<p class="body-sm" style="color:var(--body);margin-bottom:var(--s-md)">${v.description}</p>` : ''}
+
+      ${v.requirements?.minimumSalary ? `
+        <div class="req-row">
+          <span class="req-label">Salário mínimo</span>
+          <span class="req-value">${money(v.requirements.minimumSalary)}/mês</span>
+        </div>` : ''}
+
+      ${v.requirements?.employmentContract != null ? `
+        <div class="req-row">
+          <span class="req-label">Contrato de trabalho</span>
+          <span class="req-value">${bool(v.requirements.employmentContract)}</span>
+        </div>` : ''}
+
+      ${v.fees?.applicationFee ? `
+        <div class="req-row">
+          <span class="req-label">Taxa de solicitação</span>
+          <span class="req-value">${money(v.fees.applicationFee)}</span>
+        </div>` : ''}
+
+      ${v.process?.estimatedDuration ? `
+        <div class="req-row">
+          <span class="req-label">Prazo estimado</span>
+          <span class="req-value">${v.process.estimatedDuration}</span>
+        </div>` : ''}
+
+      ${v.validity?.initialDuration ? `
+        <div class="req-row">
+          <span class="req-label">Duração inicial</span>
+          <span class="req-value">${v.validity.initialDuration}</span>
+        </div>` : ''}
+
+      ${v.rights?.workPermit != null ? `
+        <div class="req-row">
+          <span class="req-label">Permite trabalhar</span>
+          <span class="req-value">${bool(v.rights.workPermit)}</span>
+        </div>` : ''}
+
+      ${v.rights?.pathToResidency?.possible != null ? `
+        <div class="req-row">
+          <span class="req-label">Caminho para residência</span>
+          <span class="req-value">${bool(v.rights.pathToResidency.possible)}${v.rights.pathToResidency.yearsRequired ? ` (${v.rights.pathToResidency.yearsRequired} anos)` : ''}</span>
+        </div>` : ''}
+    </div>
+  `).join('')}</div>`
+}
+
+function renderBrasileiros(d) {
+  const fb = d.forBrazilians
+  const el = document.getElementById('tab-brasileiros')
+  el.innerHTML = `
+    <div class="info-band">
+      <div class="req-row">
+        <span class="req-label">Pode entrar sem visto (Schengen)</span>
+        <span class="req-value">${bool(fb.schengenVisaFree, 'Sim, até ' + fb.maxStayDaysAsTourist + ' dias', 'Não')}</span>
+      </div>
+      <div class="req-row">
+        <span class="req-label">Precisa de permissão de trabalho</span>
+        <span class="req-value">${bool(fb.workPermitNeeded, 'Sim', 'Não')}</span>
+      </div>
+      ${fb.specialAgreements?.length ? `
+        <div class="req-row">
+          <span class="req-label">Acordos especiais</span>
+          <span class="req-value">${fb.specialAgreements.map(a =>
+            `<div><strong>${a.name}</strong>: ${a.benefit}</div>`
+          ).join('')}</span>
+        </div>` : ''}
+      ${fb.notes ? `
+        <div style="padding-top:var(--s-md)">
+          <p class="body-sm" style="color:var(--body)">${fb.notes}</p>
+        </div>` : ''}
+    </div>
+  `
+}
+
+function renderRequisitos(d) {
+  const gr = d.generalRequirements
+  const hi = gr.healthInsurance
+  const el = document.getElementById('tab-requisitos')
+  el.innerHTML = `
+    <div class="info-band">
+      <div class="req-row">
+        <span class="req-label">Validade do passaporte</span>
+        <span class="req-value">${fmt(gr.passportValidity)}</span>
+      </div>
+      <div class="req-row">
+        <span class="req-label">Comprovação de recursos</span>
+        <span class="req-value">${gr.proofOfFunds ? money(gr.proofOfFunds) : '—'}</span>
+      </div>
+      <div class="req-row">
+        <span class="req-label">Antecedentes criminais limpos</span>
+        <span class="req-value">${bool(gr.cleanCriminalRecord)}</span>
+      </div>
+      <div class="req-row">
+        <span class="req-label">Seguro saúde obrigatório</span>
+        <span class="req-value">${bool(hi?.required)}${hi?.mustBeLocal ? ' (deve ser local)' : ''}${hi?.minimumCoverage ? ' — mín. ' + money(hi.minimumCoverage) : ''}</span>
+      </div>
+      ${hi?.notes ? `<div class="req-row"><span class="req-label">Obs. seguro</span><span class="req-value">${hi.notes}</span></div>` : ''}
+      ${gr.vaccinations?.length ? `
+        <div class="req-row">
+          <span class="req-label">Vacinas exigidas</span>
+          <span class="req-value">${gr.vaccinations.join(', ')}</span>
+        </div>` : ''}
+    </div>
+  `
+}
+
+function renderMudancas(d) {
+  const el = document.getElementById('tab-mudancas')
+  if (!d.recentChanges?.length) {
+    el.innerHTML = '<div class="empty-state">Nenhuma mudança recente registrada.</div>'
+    return
+  }
+  el.innerHTML = d.recentChanges.map(c => `
+    <div class="change-card">
+      <div class="change-date">${c.date}${c.relevance ? ` · relevância ${c.relevance}` : ''}</div>
+      <div class="change-title">${c.title}</div>
+      ${c.description ? `<div class="change-desc">${c.description}</div>` : ''}
+      ${c.affectedVisaTypes?.length ? `<div style="margin-top:var(--s-sm)">${c.affectedVisaTypes.map(v => `<span class="badge" style="margin-right:4px">${v}</span>`).join('')}</div>` : ''}
+    </div>
+  `).join('')
+}
+
+function renderFontes(d) {
+  const el = document.getElementById('tab-fontes')
+  if (d.reliability?.knownIssues?.length) {
+    el.innerHTML = `<div class="info-band" style="margin-bottom:var(--s-lg);border-color:var(--accent-rose)">
+      <div class="body-sm" style="color:var(--accent-rose)">
+        ${d.reliability.knownIssues.join('<br>')}
+      </div>
+    </div>`
+  } else {
+    el.innerHTML = ''
+  }
+  el.innerHTML += d.meta.sources.map(s => `
+    <div class="source-row">
+      <span class="badge ${s.status === 'ok' ? 'up' : s.status === 'partial' ? 'new' : 'down'}">${s.status}</span>
+      <div style="flex:1;min-width:0">
+        <div class="source-url">${s.url}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">
+          ${s.contentLanguage?.toUpperCase() ?? '—'} · buscado ${relativeDate(s.fetchedAt)}
+        </div>
+      </div>
+    </div>
+  `).join('')
+}
+
+loadList()
+</script>
+</body>
+</html>
