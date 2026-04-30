@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bélgica — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  .country-hero { padding: var(--s-xxl) 0; border-bottom: 1px solid var(--hairline); }
+  .hero-row { display: flex; align-items: center; gap: var(--s-xl); flex-wrap: wrap; }
+  .hero-flag { width: 64px; height: 46px; border-radius: 6px; display: block; flex-shrink: 0; }
+  .hero-info { flex: 1; min-width: 200px; }
+  .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: var(--on-dark); line-height: 1.1; margin: 0 0 var(--s-sm); }
+  .hero-badges { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
+  .country-sticky { position: sticky; top: 64px; z-index: 39; background: var(--canvas); border-bottom: 1px solid var(--hairline); }
+  .sticky-inner { display: flex; align-items: center; gap: var(--s-lg); height: 52px; }
+  .sticky-id { display: flex; align-items: center; gap: var(--s-sm); flex-shrink: 0; }
+  .sticky-flag { width: 24px; height: 18px; border-radius: 3px; display: block; }
+  .sticky-name { font-size: 14px; font-weight: 700; color: var(--on-dark); letter-spacing: -0.2px; }
+  .tabs { display: flex; gap: 0; margin-left: auto; height: 100%; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { height: 52px; padding: 0 var(--s-lg); font-size: 14px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap; transition: color 120ms ease, border-color 120ms ease; }
+  .tab-btn:hover { color: var(--body-strong); }
+  .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
+  .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
+  .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
+  .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
+  .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
+  .qs-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); line-height: 1.1; }
+  .qs-value.accent { color: var(--primary); }
+  .qs-value.positive { color: var(--accent-emerald); }
+  .qs-value.negative { color: var(--muted); }
+  .qs-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .diff-dots { display: flex; gap: 4px; align-items: center; margin-bottom: 2px; }
+  .diff-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .diff-dot.filled { background: var(--on-dark); }
+  .diff-dot.empty { background: var(--hairline-strong); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
+  .visa-card { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow: hidden; }
+  .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
+  .visa-head:hover { background: rgba(255,255,255,0.02); }
+  .visa-title-row { display: flex; flex-direction: column; gap: var(--s-xs); }
+  .visa-name { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); margin: 0; }
+  .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
+  .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
+  .visa-tag.hl { background: rgba(250,255,105,0.1); color: var(--primary); border-color: rgba(250,255,105,0.2); }
+  .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
+  .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
+  .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
+  .visa-card.open .visa-body { display: block; }
+  .visa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xl); margin-top: var(--s-lg); }
+  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--s-md); }
+  .visa-field { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s-md); }
+  .visa-field-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .visa-field-value { font-size: 14px; color: var(--body-strong); font-weight: 600; }
+  .visa-field-value.mono { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--primary); font-size: 16px; }
+  .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
+  .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
+  .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
+  .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-sm); }
+  .right-item { display: flex; align-items: center; gap: var(--s-xs); font-size: 13px; color: var(--body); }
+  .right-icon { font-size: 14px; width: 16px; text-align: center; }
+  .right-icon.yes { color: var(--accent-emerald); }
+  .right-icon.no { color: var(--muted-soft); }
+  .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
+  .br-card { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
+  .br-card.highlight { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+  .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
+  .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
+  .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
+  .br-value.yes { color: var(--accent-emerald); }
+  .br-value.no { color: var(--accent-rose); }
+  .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
+  .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
+  .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); }
+  .req-icon { font-size: 16px; width: 20px; text-align: center; }
+  .req-icon.ok { color: var(--accent-emerald); }
+  .req-icon.req { color: var(--accent-blue); }
+  .req-text { font-size: 14px; color: var(--body-strong); }
+  .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
+  .timeline-entry + .timeline-entry { border-top: 1px solid var(--hairline); }
+  .timeline-date { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); padding-top: 2px; }
+  .timeline-date-str { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .timeline-content { display: flex; flex-direction: column; gap: var(--s-xs); }
+  .timeline-title { font-size: 15px; font-weight: 700; color: var(--on-dark); margin: 0; }
+  .timeline-summary { font-size: 13px; color: var(--body); line-height: 1.55; margin: 0; }
+  .timeline-affects { font-size: 12px; color: var(--muted); display: flex; gap: var(--s-xs); flex-wrap: wrap; }
+  .affect-pill { padding: 2px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); border: 1px solid var(--hairline); }
+  .sev-high { background: rgba(239,68,68,0.12); color: var(--accent-rose); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  .sev-medium { background: rgba(59,130,246,0.12); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  .sev-low { background: var(--surface-elevated); color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
+  .source-item { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-lg); display: grid; grid-template-columns: 1fr auto; gap: var(--s-lg); align-items: start; }
+  .source-url { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; word-break: break-all; margin-bottom: var(--s-xs); }
+  .source-meta { font-size: 12px; color: var(--muted); }
+  .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
+  @media (max-width: 1024px) { .quick-summary { grid-template-columns: repeat(2, 1fr); } .qs-item:nth-child(2n+1) { border-left: none; } .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); } .visa-grid { grid-template-columns: 1fr; } .br-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .hero-name { font-size: 28px; } .tabs { margin-left: 0; } .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); } .sticky-id { padding-top: var(--s-xs); } .quick-summary { grid-template-columns: 1fr 1fr; } .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); } .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); } .req-item { grid-template-columns: auto 1fr; } .req-note { display: none; } .rights-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html"><span class="logo-dot"></span><span>Rota Legal</span></a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
+      <a class="btn btn-primary" href="comparar.html">Comparar</a>
+    </div>
+  </div>
+</nav>
+
+<div class="country-hero">
+  <div class="container">
+    <div class="hero-row">
+      <span class="hero-flag flag-be"></span>
+      <div class="hero-info">
+        <h1 class="hero-name">Bélgica</h1>
+        <div class="hero-badges">
+          <span class="badge">Confiança média</span>
+          <span class="badge">Schengen</span>
+          <span class="badge new">Single Permit</span>
+          <span class="badge new">Atualizado abr/2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="country-sticky" id="sticky">
+  <div class="container">
+    <div class="sticky-inner">
+      <div class="sticky-id">
+        <span class="sticky-flag flag-be"></span>
+        <span class="sticky-name">Bélgica</span>
+      </div>
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="vistos">Vistos</button>
+        <button class="tab-btn" data-tab="brasileiros">Para Brasileiros</button>
+        <button class="tab-btn" data-tab="requisitos">Requisitos Gerais</button>
+        <button class="tab-btn" data-tab="mudancas">Mudanças Recentes</button>
+        <button class="tab-btn" data-tab="fontes">Fontes</button>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="quick-summary">
+  <div class="qs-item">
+    <span class="qs-label">Dificuldade estimada</span>
+    <div class="diff-dots">
+      <span class="diff-dot filled"></span>
+      <span class="diff-dot filled"></span>
+      <span class="diff-dot empty"></span>
+    </div>
+    <span class="qs-sub">Média — processo iniciado pelo empregador</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Modelo de autorização</span>
+    <span class="qs-value accent">Single Permit</span>
+    <span class="qs-sub">Trabalho e residência em um único pedido</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Região processa o pedido</span>
+    <span class="qs-value" style="font-size: 16px;">Flandres / Valônia / Bruxelas</span>
+    <span class="qs-sub">Conforme localização do empregador</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Residência permanente</span>
+    <span class="qs-value positive">5 anos</span>
+    <span class="qs-sub">Com integração social e econômica</span>
+  </div>
+</div>
+
+<main>
+
+  <div class="tab-panel active" id="vistos">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">3 tipos de autorização monitorados</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Opções de autorização de trabalho</h2>
+        <div class="visa-list">
+
+          <div class="visa-card open">
+            <div class="visa-head" onclick="toggleVisa(this)">
+              <div class="visa-title-row">
+                <h3 class="visa-name">Permissão Única</h3>
+                <span class="visa-name-orig">Single Permit</span>
+                <div class="visa-tags">
+                  <span class="visa-tag hl">Principal — empregados</span>
+                  <span class="visa-tag">Processo regional</span>
+                  <span class="visa-tag">Trabalho + residência</span>
+                </div>
+              </div>
+              <span class="visa-toggle">+</span>
+            </div>
+            <div class="visa-body">
+              <div class="visa-grid">
+                <div>
+                  <p class="visa-section-title">Requisitos</p>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Para quem</span>
+                    <span class="visa-field-value">Trabalhadores assalariados com oferta de emprego na Bélgica</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Documentos principais</span>
+                    <span class="visa-field-value">Contrato de trabalho + passaporte + certidão de antecedentes + diplomas</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Quem inicia o processo</span>
+                    <span class="visa-field-value">O empregador belga solicita a autorização junto às autoridades regionais</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="visa-section-title">Processo</p>
+                  <div class="step-list">
+                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Empregador solicita a autorização única junto às autoridades regionais competentes</span></div>
+                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Autoridades regionais e federais analisam o pedido</span></div>
+                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Após aprovação, a permissão única é emitida</span></div>
+                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Trabalhador solicita visto de trabalho na Embaixada ou Consulado belga no Brasil</span></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: var(--s-lg);">
+                <p class="visa-section-title">Direitos</p>
+                <div class="rights-grid">
+                  <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar para o empregador declarado</div>
+                  <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+                  <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 5 anos</div>
+                  <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador sem novo pedido</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="visa-card">
+            <div class="visa-head" onclick="toggleVisa(this)">
+              <div class="visa-title-row">
+                <h3 class="visa-name">Profissional Altamente Qualificado</h3>
+                <span class="visa-name-orig">Highly Qualified Professional</span>
+                <div class="visa-tags">
+                  <span class="visa-tag">Alta qualificação</span>
+                  <span class="visa-tag">Dados limitados</span>
+                </div>
+              </div>
+              <span class="visa-toggle">+</span>
+            </div>
+            <div class="visa-body">
+              <p style="font-size: 14px; color: var(--body); line-height: 1.6; margin-top: var(--s-lg);">
+                Categoria específica para profissionais com qualificações elevadas. Os dados disponíveis sobre esta modalidade são limitados — consulte
+                diretamente o Escritório de Imigração da Bélgica (DOFI) em <span style="font-family: 'JetBrains Mono', monospace; color: var(--primary);">dofi.ibz.be</span> para informações atualizadas sobre critérios de qualificação e processo.
+              </p>
+              <div style="margin-top: var(--s-lg);">
+                <p class="visa-section-title">Direitos confirmados</p>
+                <div class="rights-grid">
+                  <div class="right-item"><span class="right-icon yes">✓</span>Trabalho autorizado</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="visa-card">
+            <div class="visa-head" onclick="toggleVisa(this)">
+              <div class="visa-title-row">
+                <h3 class="visa-name">Trabalhador Sazonal</h3>
+                <span class="visa-name-orig">Seasonal Worker</span>
+                <div class="visa-tags">
+                  <span class="visa-tag">Trabalho temporário</span>
+                  <span class="visa-tag">Dados limitados</span>
+                </div>
+              </div>
+              <span class="visa-toggle">+</span>
+            </div>
+            <div class="visa-body">
+              <p style="font-size: 14px; color: var(--body); line-height: 1.6; margin-top: var(--s-lg);">
+                Autorização para trabalhadores sazonais na Bélgica. Os dados disponíveis sobre critérios e processo são limitados. Consulte
+                diretamente as autoridades regionais (Flandres, Valônia ou Bruxelas) conforme a localização do empregador.
+              </p>
+              <div style="margin-top: var(--s-lg);">
+                <p class="visa-section-title">Direitos confirmados</p>
+                <div class="rights-grid">
+                  <div class="right-item"><span class="right-icon yes">✓</span>Trabalho autorizado</div>
+                  <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="brasileiros">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Condições específicas para brasileiros</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que muda para você</h2>
+        <div class="br-grid">
+          <div class="br-card highlight">
+            <span class="br-label">Schengen — entrada sem visto</span>
+            <span class="br-value yes">Sim</span>
+            <p class="br-desc">Passaporte brasileiro permite entrada na Bélgica e nos países do Espaço Schengen por até 90 dias a cada 180, sem visto de turismo.</p>
+          </div>
+          <div class="br-card warning">
+            <span class="br-label">Processo dependente do empregador</span>
+            <span class="br-value no">Atenção</span>
+            <p class="br-desc">O processo do Single Permit é iniciado pelo empregador belga, não pelo trabalhador. Sem uma oferta de emprego formal, não há como avançar com a autorização.</p>
+          </div>
+          <div class="br-card">
+            <span class="br-label">Três regiões, três processos</span>
+            <span class="br-value" style="font-size: 18px;">Regional</span>
+            <p class="br-desc">Flandres, Valônia e Bruxelas têm autoridades de trabalho próprias. A região do empregador determina qual órgão processa o pedido. Isso pode criar diferenças nos critérios e prazos.</p>
+          </div>
+          <div class="br-card">
+            <span class="br-label">Idiomas oficiais</span>
+            <span class="br-value" style="font-size: 16px;">Holandês / Francês / Alemão</span>
+            <p class="br-desc">A Bélgica tem três idiomas oficiais. O francês é o mais próximo ao português para aprendizado, mas a região do emprego define qual idioma é necessário no dia a dia.</p>
+          </div>
+          <div class="br-card" style="grid-column: 1 / -1;">
+            <span class="br-label">Cidadania — prazo e condições</span>
+            <span class="br-value" style="font-size: 18px;">5 anos de residência legal</span>
+            <p class="br-desc">Após 5 anos de residência legal com integração social e econômica, é possível solicitar residência permanente. A cidadania belga requer conhecimento de um dos idiomas oficiais (holandês, francês ou alemão), além de integração comprovada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="requisitos">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Válidos para todas as autorizações</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
+        <div class="req-list">
+          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte válido — recomendado mínimo 6 meses de validade após a entrada</span><span class="req-note">Verificar validade</span></div>
+          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Certidão de antecedentes criminais do Brasil apostilada</span><span class="req-note">Apostila de Haia</span></div>
+          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Contrato de trabalho ou oferta de emprego válida com empregador belga</span><span class="req-note">Obrigatório</span></div>
+          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Diplomas e comprovações de qualificações profissionais</span><span class="req-note">Conforme vaga</span></div>
+        </div>
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg);">
+          <p class="body-sm" style="color: var(--muted); margin: 0;">
+            Dados extraídos de <a class="text-link" href="#">dofi.ibz.be</a> e <a class="text-link" href="#">employment.belgium.be</a> em abril de 2026.
+            Requisitos variam por região e modalidade — confirme sempre na fonte oficial.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="mudancas">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Histórico de alterações detectadas</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
+        <div class="timeline">
+          <div class="timeline-entry">
+            <div class="timeline-date">
+              <span class="timeline-date-str">2026-03-16</span>
+              <span class="sev-low">Baixa relevância</span>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Mudança de localização do Escritório de Imigração</h3>
+              <p class="timeline-summary">Pessoas convocadas para entrevista de Proteção Internacional, outro procedimento de residência ou acompanhamento ICAM não devem mais se reportar ao PASSAGE 44. A nova localização foi anunciada pelo Escritório de Imigração belga (DOFI).</p>
+              <div class="timeline-affects">
+                <span class="affect-pill">Procedimentos de residência</span>
+                <span class="affect-pill">Proteção Internacional</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: var(--s-xl); text-align: center;">
+          <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="fontes">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Transparência total</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
+        <p class="body-md" style="max-width: 600px; margin-bottom: var(--s-xl);">Dados extraídos das URLs abaixo em abril de 2026.</p>
+        <div class="sources-list">
+          <div class="source-item">
+            <div><div class="source-url">dofi.ibz.be/en</div><div class="source-meta">Escritório de Imigração da Bélgica — portal oficial de imigração</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+          </div>
+          <div class="source-item">
+            <div><div class="source-url">employment.belgium.be/en</div><div class="source-meta">Serviço Público Federal Emprego, Trabalho e Diálogo Social</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+          </div>
+          <div class="source-item">
+            <div><div class="source-url">belgium.be/en</div><div class="source-meta">Portal oficial do governo federal belga</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+          </div>
+        </div>
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg);">
+          <div style="display:flex;align-items:center;gap:var(--s-md);">
+            <span class="badge">Confiança média</span>
+            <span class="body-sm" style="color: var(--muted);">Extração realizada por Claude Haiku 4.5 com schema Zod v1.0.0. Algumas páginas forneceram conteúdo limitado — confirme detalhes na fonte oficial.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<section>
+  <div class="container">
+    <div class="cta-band-yellow">
+      <div>
+        <h2>Comparar com outros países</h2>
+        <p>Veja a Bélgica lado a lado com Países Baixos, Alemanha ou Irlanda. Todos os critérios na mesma tabela.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
+        <a class="btn btn-on-yellow" href="comparar.html">Abrir comparador</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;"><span class="logo-dot"></span><span>Rota Legal</span></a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.</p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-be.html" style="color:var(--on-dark);">Bélgica</a></li>
+          <li><a href="pais-at.html">Áustria</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn')
+  const tabPanels = document.querySelectorAll('.tab-panel')
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'))
+      tabPanels.forEach(p => p.classList.remove('active'))
+      btn.classList.add('active')
+      document.getElementById(btn.dataset.tab).classList.add('active')
+      document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  })
+  function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
+</script>
+</body>
+</html>

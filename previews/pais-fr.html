@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>França — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  .country-hero { padding: var(--s-xxl) 0; border-bottom: 1px solid var(--hairline); }
+  .hero-row { display: flex; align-items: center; gap: var(--s-xl); flex-wrap: wrap; }
+  .hero-flag { width: 64px; height: 46px; border-radius: 6px; display: block; flex-shrink: 0; }
+  .hero-info { flex: 1; min-width: 200px; }
+  .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: var(--on-dark); line-height: 1.1; margin: 0 0 var(--s-sm); }
+  .hero-badges { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
+  .country-sticky { position: sticky; top: 64px; z-index: 39; background: var(--canvas); border-bottom: 1px solid var(--hairline); }
+  .sticky-inner { display: flex; align-items: center; gap: var(--s-lg); height: 52px; }
+  .sticky-id { display: flex; align-items: center; gap: var(--s-sm); flex-shrink: 0; }
+  .sticky-flag { width: 24px; height: 18px; border-radius: 3px; display: block; }
+  .sticky-name { font-size: 14px; font-weight: 700; color: var(--on-dark); letter-spacing: -0.2px; }
+  .tabs { display: flex; gap: 0; margin-left: auto; height: 100%; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { height: 52px; padding: 0 var(--s-lg); font-size: 14px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap; transition: color 120ms ease, border-color 120ms ease; }
+  .tab-btn:hover { color: var(--body-strong); }
+  .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
+  .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
+  .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
+  .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
+  .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
+  .qs-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); line-height: 1.1; }
+  .qs-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .diff-dots { display: flex; gap: 4px; align-items: center; margin-bottom: 2px; }
+  .diff-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .diff-dot.filled { background: var(--on-dark); }
+  .diff-dot.empty { background: var(--hairline-strong); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
+  .visa-card { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow: hidden; }
+  .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
+  .visa-head:hover { background: rgba(255,255,255,0.02); }
+  .visa-title-row { display: flex; flex-direction: column; gap: var(--s-xs); }
+  .visa-name { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); margin: 0; }
+  .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
+  .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
+  .visa-tag.hl { background: rgba(250,255,105,0.1); color: var(--primary); border-color: rgba(250,255,105,0.2); }
+  .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
+  .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
+  .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
+  .visa-card.open .visa-body { display: block; }
+  .visa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xl); margin-top: var(--s-lg); }
+  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--s-md); }
+  .visa-field { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s-md); }
+  .visa-field-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .visa-field-value { font-size: 14px; color: var(--body-strong); font-weight: 600; }
+  .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
+  .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
+  .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
+  .br-card { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
+  .br-card.highlight { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+  .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
+  .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
+  .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
+  .br-value.yes { color: var(--accent-emerald); }
+  .br-value.no { color: var(--accent-rose); }
+  .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
+  .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
+  .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); }
+  .req-icon { font-size: 16px; width: 20px; text-align: center; }
+  .req-icon.ok { color: var(--accent-emerald); }
+  .req-icon.req { color: var(--accent-blue); }
+  .req-text { font-size: 14px; color: var(--body-strong); }
+  .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
+  .source-item { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-lg); display: grid; grid-template-columns: 1fr auto; gap: var(--s-lg); align-items: start; }
+  .source-url { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; word-break: break-all; margin-bottom: var(--s-xs); }
+  .source-meta { font-size: 12px; color: var(--muted); }
+  .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
+  @media (max-width: 1024px) { .quick-summary { grid-template-columns: repeat(2, 1fr); } .qs-item:nth-child(2n+1) { border-left: none; } .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); } .visa-grid { grid-template-columns: 1fr; } .br-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .hero-name { font-size: 28px; } .tabs { margin-left: 0; } .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); } .quick-summary { grid-template-columns: 1fr 1fr; } .req-item { grid-template-columns: auto 1fr; } .req-note { display: none; } }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html"><span class="logo-dot"></span><span>Rota Legal</span></a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
+      <a class="btn btn-primary" href="comparar.html">Comparar</a>
+    </div>
+  </div>
+</nav>
+
+<div class="country-hero">
+  <div class="container">
+    <div class="hero-row">
+      <span class="hero-flag flag-fr"></span>
+      <div class="hero-info">
+        <h1 class="hero-name">França</h1>
+        <div class="hero-badges">
+          <span class="badge" style="background:rgba(239,68,68,0.12);color:var(--accent-rose);border-color:rgba(239,68,68,0.2);">Dados parciais</span>
+          <span class="badge">Schengen</span>
+          <span class="badge">Work Permit exigido</span>
+          <span class="badge new">Atualizado abr/2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="country-sticky" id="sticky">
+  <div class="container">
+    <div class="sticky-inner">
+      <div class="sticky-id">
+        <span class="sticky-flag flag-fr"></span>
+        <span class="sticky-name">França</span>
+      </div>
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="vistos">Vistos</button>
+        <button class="tab-btn" data-tab="brasileiros">Para Brasileiros</button>
+        <button class="tab-btn" data-tab="requisitos">Requisitos Gerais</button>
+        <button class="tab-btn" data-tab="mudancas">Mudanças Recentes</button>
+        <button class="tab-btn" data-tab="fontes">Fontes</button>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="quick-summary">
+  <div class="qs-item">
+    <span class="qs-label">Dificuldade estimada</span>
+    <div class="diff-dots">
+      <span class="diff-dot filled"></span>
+      <span class="diff-dot filled"></span>
+      <span class="diff-dot filled"></span>
+    </div>
+    <span class="qs-sub">Alta — processo burocrático, dados limitados</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Renda mínima</span>
+    <span class="qs-value" style="color:var(--muted);">N/D</span>
+    <span class="qs-sub">Não extraído nesta versão</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Schengen — entrada sem visto</span>
+    <span class="qs-value positive">Sim</span>
+    <span class="qs-sub">Até 90 dias turismo</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Cobertura desta extração</span>
+    <span class="qs-value" style="color:var(--accent-rose);">Parcial</span>
+    <span class="qs-sub">3 de 4 URLs falharam</span>
+  </div>
+</div>
+
+<main>
+
+  <div class="tab-panel active" id="vistos">
+    <section class="section-tight">
+      <div class="container">
+        <div style="margin-bottom: var(--s-xl); padding: var(--s-lg); background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r-lg);">
+          <p style="font-size:13px;color:var(--accent-rose);margin:0;font-weight:600;">Dados parciais</p>
+          <p style="font-size:13px;color:var(--body);margin:var(--s-xs) 0 0;">Nesta extração, 3 das 4 URLs monitoradas para a França falharam (france-visas.gouv.fr, immigration.interieur.gouv.fr, ofii.fr). Os dados abaixo foram extraídos de service-public.fr e podem estar incompletos. Consulte as fontes oficiais para informações completas.</p>
+        </div>
+        <div class="eyebrow">2 tipos de título extraídos (cobertura parcial)</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Títulos de residência para trabalho</h2>
+        <div class="visa-list">
+
+          <div class="visa-card open">
+            <div class="visa-head" onclick="toggleVisa(this)">
+              <div class="visa-title-row">
+                <h3 class="visa-name">Carte de Séjour Temporaire — Salarié</h3>
+                <span class="visa-name-orig">Carte de séjour temporaire mention salarié</span>
+                <div class="visa-tags">
+                  <span class="visa-tag hl">Empregados</span>
+                  <span class="visa-tag">Contrato de trabalho</span>
+                  <span class="visa-tag">Válida 1 ano</span>
+                </div>
+              </div>
+              <span class="visa-toggle">+</span>
+            </div>
+            <div class="visa-body">
+              <div class="visa-grid">
+                <div>
+                  <p class="visa-section-title">Requisitos</p>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Para quem</span>
+                    <span class="visa-field-value">Trabalhadores assalariados de países não-UE com contrato de trabalho assinado</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Validade</span>
+                    <span class="visa-field-value">Geralmente 1 ano, renovável</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="visa-section-title">Processo</p>
+                  <div class="step-list">
+                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Empregador solicita autorização prévia de trabalho na Direção do Trabalho</span></div>
+                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Com autorização, solicitar a carte de séjour na prefeitura</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="visa-card">
+            <div class="visa-head" onclick="toggleVisa(this)">
+              <div class="visa-title-row">
+                <h3 class="visa-name">Carte de Séjour Pluriannuelle</h3>
+                <span class="visa-name-orig">Carte de séjour pluriannuelle</span>
+                <div class="visa-tags">
+                  <span class="visa-tag">Longa duração</span>
+                  <span class="visa-tag">Válida 4 anos</span>
+                </div>
+              </div>
+              <span class="visa-toggle">+</span>
+            </div>
+            <div class="visa-body">
+              <p style="font-size:14px;color:var(--body);line-height:1.6;margin-top:var(--s-lg);">
+                Título de residência de longa duração (geralmente 4 anos) para nacionais de países não-UE com laços duradouros com a França.
+                Exige comprovante de recursos estáveis e suficientes, comprovante de moradia estável, e passaporte válido.
+                Renovável e permite exercer atividade profissional.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="brasileiros">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Condições específicas para brasileiros</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que muda para você</h2>
+        <div class="br-grid">
+          <div class="br-card highlight">
+            <span class="br-label">Schengen — entrada sem visto</span>
+            <span class="br-value yes">Sim</span>
+            <p class="br-desc">A França integra o Espaço Schengen. Brasileiros podem entrar sem visto para turismo por até 90 dias a cada 180 dias.</p>
+          </div>
+          <div class="br-card warning">
+            <span class="br-label">Work permit exigido</span>
+            <span class="br-value no">Sim</span>
+            <p class="br-desc">Brasileiros precisam de autorização de trabalho e carte de séjour válidos para exercer qualquer atividade remunerada na França. O processo exige que o empregador inicie o pedido junto às autoridades francesas.</p>
+          </div>
+          <div class="br-card">
+            <span class="br-label">Idioma necessário</span>
+            <span class="br-value" style="font-size: 18px;">Francês</span>
+            <p class="br-desc">A França exige comprovante de idioma francês para a maioria dos processos de integração e naturalização. Conhecimento de francês é praticamente indispensável no mercado de trabalho local.</p>
+          </div>
+          <div class="br-card">
+            <span class="br-label">Acordo especial Brasil-França</span>
+            <span class="br-value" style="color:var(--muted);font-size:18px;">Nenhum</span>
+            <p class="br-desc">Não existe acordo bilateral de Working Holiday ou facilidade especial entre Brasil e França. Os dados desta extração são parciais, por isso recomendamos consultar france-visas.gouv.fr diretamente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="requisitos">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Dados parciais — confirmar nas fontes oficiais</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
+        <div class="req-list">
+          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte válido</span><span class="req-note">Obrigatório</span></div>
+          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Contrato de trabalho assinado com empregador francês</span><span class="req-note">Para Carte Salarié</span></div>
+          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Autorização prévia de trabalho (solicitada pelo empregador na Direction du Travail)</span><span class="req-note">Obrigatória</span></div>
+          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Comprovante de recursos estáveis e moradia (para Carte Pluriannuelle)</span><span class="req-note">Ver cada modalidade</span></div>
+        </div>
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r-lg);">
+          <p class="body-sm" style="color: var(--muted); margin: 0;">Dados limitados nesta extração. Consulte france-visas.gouv.fr para informações completas e atualizadas.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="mudancas">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Histórico de alterações detectadas</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
+        <div style="padding: var(--s-xl); background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); text-align: center;">
+          <p style="font-size: 14px; color: var(--muted); margin: 0;">Nenhuma mudança detectada nesta extração. Dados parciais — 3 URLs falharam.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="tab-panel" id="fontes">
+    <section class="section-tight">
+      <div class="container">
+        <div class="eyebrow">Transparência total</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
+        <div class="sources-list">
+          <div class="source-item">
+            <div><div class="source-url">service-public.fr/particuliers/vosdroits/N110</div><div class="source-meta">Service-Public.fr — direitos dos estrangeiros na França</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+          </div>
+          <div class="source-item">
+            <div><div class="source-url">france-visas.gouv.fr</div><div class="source-meta">Portal oficial de vistos da França — falhou na extração</div></div>
+            <div class="source-status"><span class="badge down">falhou</span></div>
+          </div>
+        </div>
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r-lg);">
+          <div style="display:flex;align-items:center;gap:var(--s-md);">
+            <span class="badge down">Dados parciais</span>
+            <span class="body-sm" style="color: var(--muted);">3 de 4 URLs falharam na extração de abr/2026. Consulte as fontes oficiais para informações completas.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<section>
+  <div class="container">
+    <div class="cta-band-yellow">
+      <div>
+        <h2>Comparar com outros países</h2>
+        <p>Veja a França lado a lado com outros destinos. Todos os critérios na mesma tabela.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
+        <a class="btn btn-on-yellow" href="comparar.html">Abrir comparador</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;"><span class="logo-dot"></span><span>Rota Legal</span></a><p class="body-sm" style="max-width:300px;color:var(--muted);">Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.</p></div>
+      <div><h4>Países</h4><ul><li><a href="pais-nl.html">Países Baixos</a></li><li><a href="pais-pt.html">Portugal</a></li><li><a href="pais-de.html">Alemanha</a></li><li><a href="pais-fr.html" style="color:var(--on-dark);">França</a></li><li><a href="paises.html">Ver todos →</a></li></ul></div>
+      <div><h4>Ferramentas</h4><ul><li><a href="comparar.html">Comparar países</a></li><li><a href="qual-pais.html">Qual país é o meu?</a></li><li><a href="calculadora.html">Calculadora</a></li><li><a href="historico.html">Histórico</a></li></ul></div>
+      <div><h4>Projeto</h4><ul><li><a href="sobre.html">Sobre</a></li><li><a href="sobre.html#metodologia">Metodologia</a></li><li><a href="sobre.html#contribuir">Contribuir</a></li></ul></div>
+      <div><h4>Dados</h4><ul><li><a href="#">GitHub</a></li><li><a href="#">JSON direto</a></li><li><a href="historico.html">RSS de mudanças</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Rota Legal · HenryZuka · MIT</span><span class="caption-up">Última extração: abr/2026</span></div>
+  </div>
+</footer>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn')
+  const tabPanels = document.querySelectorAll('.tab-panel')
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'))
+      tabPanels.forEach(p => p.classList.remove('active'))
+      btn.classList.add('active')
+      document.getElementById(btn.dataset.tab).classList.add('active')
+      document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  })
+  function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
+</script>
+</body>
+</html>
