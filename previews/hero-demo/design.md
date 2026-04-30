@@ -10,7 +10,7 @@ mode: dark
 | canvas        | #0a0a0a  | background                 |
 | surface-card  | #1a1a1a  | cards                      |
 | surface-bar   | #131313  | card header bars           |
-| primary       | #ff6b00  | accent, CTA, highlight     |
+| primary       | #f0b429  | accent, CTA, highlight     |
 | on-dark       | #ffffff  | primary text               |
 | body          | #cccccc  | running text               |
 | body-strong   | #e6e6e6  | secondary headings         |
@@ -18,6 +18,7 @@ mode: dark
 | hairline      | #2a2a2a  | borders                    |
 | hairline-str  | #3a3a3a  | stronger borders           |
 | emerald       | #22c55e  | success, checkmarks        |
+| amber         | #f0b429  | primary accent             |
 | rose          | #ef4444  | error, cross marks         |
 
 ## Typography
