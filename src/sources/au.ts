@@ -3,7 +3,7 @@ import type { SourceConfig } from '@/types'
 // A Austrália não faz parte do Schengen. Qualquer entrada exige visto.
 // O Working Holiday Visa subclass 462 é o caminho mais acessível para brasileiros:
 // tem limite de idade (18 a 30 anos, até 35 em casos específicos) e cota anual limitada.
-// audienceFit: 'narrow' - o público-alvo principal do HenryZuka é Europa.
+// audienceFit: 'narrow' - o público-alvo principal do projeto é Europa.
 // schengenVisaFree: false, maxStayDaysAsTourist: 0 (exige visto até para turismo).
 export const auSource: SourceConfig = {
   countryCode: 'au',

@@ -2,7 +2,7 @@
 
 > Monitor mensal automatizado das condições de imigração legal em 10 países (9 europeus e Austrália) para brasileiros que pretendem trabalhar legalmente no exterior.
 
-Parte do ecossistema **HenryZuka**. Este repositório alimenta de dados frescos a ferramenta web *Rota Legal* e fornece a fonte de verdade que o e-book *Rota Holanda* referencia.
+Projeto criado por [Vitorcode1](https://github.com/Vitorcode1). Este repositório alimenta de dados frescos a ferramenta web *Rota Legal* e fornece a fonte de verdade que o e-book *Rota Holanda* referencia.
 
 ---
 

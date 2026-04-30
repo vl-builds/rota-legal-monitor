@@ -45,7 +45,7 @@ Sempre rode `bun run typecheck` antes de finalizar qualquer alteração em códi
 
 ## Regras de escrita em prosa (docs, README, mensagens de commit)
 
-São regras do projeto HenryZuka que valem aqui também:
+São regras do projeto que valem aqui também:
 
 - Nunca usar travessão (—). Substituir por dois pontos, vírgula, parênteses ou frase nova.
 - Nunca usar ponto e vírgula (;) em texto corrido. Em código TypeScript, ponto e vírgula é normal.

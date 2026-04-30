@@ -28,7 +28,7 @@ Para evitar escopo solto, isto **não** é parte do projeto:
 
 **Como brasileiro com cidadania portuguesa em vista**, eu quero entender se a CPLP me dá vantagem real para trabalhar em Portugal e em quanto tempo.
 
-**Como autor do e-book HenryZuka**, eu quero referenciar valores no texto sem que eles fiquem desatualizados em 6 meses.
+**Como autor do e-book Rota Holanda**, eu quero referenciar valores no texto sem que eles fiquem desatualizados em 6 meses.
 
 **Como desenvolvedor da ferramenta web Rota Legal**, eu quero consumir um JSON estável com schema previsível para popular a interface sem precisar fazer scraping no frontend.
 
@@ -149,7 +149,7 @@ Se algum gate falhar, o pipeline **não** comita e abre issue de erro.
 
 Lista de decisões já tomadas para evitar relitígio:
 
-- **TypeScript em vez de Python:** consistência com o resto do ecossistema HenryZuka, melhor suporte do Claude Code, npm é ágil para scraping.
+- **TypeScript em vez de Python:** consistência com o ecossistema do projeto, melhor suporte do Claude Code, npm é ágil para scraping.
 - **Bun em vez de Node:** mais rápido, instalação trivial, fetch nativo, runtime de testes embutido.
 - **JSON em Git em vez de banco de dados:** zero infraestrutura, histórico grátis, diff visual no GitHub, fácil para terceiros consumirem.
 - **LLM extraction em vez de scrapers rígidos:** sobrevive a redesigns, mais barato a longo prazo do que manter seletores CSS quebrados.

@@ -179,7 +179,7 @@ Idiomas: inglês.
 
 - O Working Holiday Visa subclass 462 é o caminho mais acessível para brasileiros. Tem limite de idade (18 a 30 anos, até 35 em casos específicos) e cota anual limitada. Documentar essas condições em `forBrazilians.notes`.
 - A Austrália não faz parte do Schengen. Qualquer entrada exige visto. Marcar `schengenVisaFree: false` e `maxStayDaysAsTourist: 0` (exige visto para turismo também).
-- Marcar `audienceFit: 'narrow'` no source config: o mercado de delivery existe mas o público-alvo principal do HenryZuka é Europa.
+- Marcar `audienceFit: 'narrow'` no source config: o mercado de delivery existe mas o público-alvo principal do projeto é Europa.
 
 ## Como adicionar novas fontes
 
