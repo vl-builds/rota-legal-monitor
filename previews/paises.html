@@ -171,6 +171,7 @@
     align-items: center;
   }
   .carousel-dot {
+    position: relative;
     width: 8px;
     height: 8px;
     border-radius: 4px;
@@ -179,6 +180,12 @@
     cursor: pointer;
     padding: 0;
     transition: background 240ms ease, width 240ms ease;
+  }
+  /* extended touch target without enlarging the visual dot */
+  .carousel-dot::after {
+    content: '';
+    position: absolute;
+    inset: -16px;
   }
   .carousel-dot:hover { background: var(--muted); }
   .carousel-dot.active {
@@ -355,8 +362,12 @@
     .legend-grid  { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
-    .country-card { flex: 0 0 100%; min-height: 320px; }
+    .country-card { flex: 0 0 100%; min-height: 280px; padding: var(--s-lg); }
     .count-label  { display: none; }
+    .carousel-controls { gap: var(--s-md); margin-top: var(--s-lg); }
+    .carousel-btn { width: 44px; height: 44px; }
+    .filter-bar .container { gap: var(--s-xs); }
+    .filter-chip { padding: 7px 14px; }
   }
 </style>
 </head>
@@ -1014,8 +1025,8 @@
     visibleCards.forEach((c, i) => {
       const inView = i >= currentIdx && i < currentIdx + perView
       const isCenter = perView === 1 ? inView : i === centerIdx
-      c.classList.toggle('is-center', isCenter && perView >= 3)
-      c.classList.toggle('is-side', inView && !isCenter && perView >= 3)
+      c.classList.toggle('is-center', isCenter)
+      c.classList.toggle('is-side', inView && !isCenter && perView >= 2)
     })
   }
 
@@ -1056,8 +1067,10 @@
     renderDots()
   }
 
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   function startAuto() {
     stopAuto()
+    if (reducedMotion) return
     if (visibleCards.length <= getCardsPerView() || isPaused) return
     autoTimer = setInterval(next, ROTATE_MS)
   }
