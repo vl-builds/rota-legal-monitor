@@ -112,8 +112,34 @@
       <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
       <a class="btn btn-primary" href="comparar.html">Comparar</a>
     </div>
+      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span><span></span><span></span>
+      </button>
   </div>
 </nav>
+<!-- ============== MOBILE DRAWER ============== -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
+  <div class="mobile-drawer-backdrop" data-close></div>
+  <aside class="mobile-drawer-panel">
+    <div class="mobile-drawer-header">
+      <span class="caption-up">Menu</span>
+      <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="home.html">Início</a>
+      <a href="paises.html">Países</a>
+      <a href="comparar.html">Comparar</a>
+      <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="calculadora.html">Calculadora</a>
+      <a href="historico.html">Histórico</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+    <div class="mobile-drawer-cta">
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
+      <a class="btn btn-secondary" href="comparar.html">Comparar países</a>
+    </div>
+  </aside>
+</div>
 
 <div class="country-hero">
   <div class="container">
@@ -603,5 +629,6 @@
   })
   function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
 </script>
+<script src="assets/nav.js" defer></script>
 </body>
 </html>
