@@ -452,79 +452,12 @@
 <!-- ============== COMO FUNCIONA ============== -->
 <section>
   <div class="container">
-    <div class="eyebrow">Por baixo dos panos</div>
-    <h2 class="display-md" style="margin-bottom: var(--s-xxl);">Como os dados chegam até você</h2>
-    <div class="how-grid">
-
-      <div class="steps">
-        <div class="step">
-          <span class="step-n">01</span>
-          <div>
-            <h3 class="step-title">Fontes visitadas</h3>
-            <p class="step-desc">
-              No dia 1 de cada mês, URLs oficiais de imigração de 10 países são visitadas
-              automaticamente via GitHub Actions. Sem intervenção manual, sem conteúdo de segunda mão.
-            </p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">02</span>
-          <div>
-            <h3 class="step-title">IA extrai e valida</h3>
-            <p class="step-desc">
-              Claude analisa o HTML e extrai vistos, requisitos, prazos e taxas em formato
-              estruturado. Cada campo é validado contra um schema Zod antes de ser salvo.
-              Falha na validação? Nada é publicado.
-            </p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-n">03</span>
-          <div>
-            <h3 class="step-title">Publicado como JSON</h3>
-            <p class="step-desc">
-              Os dados ficam disponíveis via GitHub Pages com CORS aberto. O site consome
-              direto, sem servidor intermediário. Cada JSON carrega a data exata da verificação.
-            </p>
-          </div>
-        </div>
-      </div>
-
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-lg);">
       <div>
-        <div class="code-window">
-          <div class="code-bar">
-            <span class="dot r"></span>
-            <span class="dot y"></span>
-            <span class="dot g"></span>
-            <span class="file">.github/workflows/monthly-update.yml</span>
-          </div>
-          <pre class="code-body"><span class="pl"> 1</span><span class="kw">on:</span>
-<span class="pl"> 2</span>  <span class="kw">schedule:</span>
-<span class="pl"> 3</span>    <span class="com"># Dia 1 de cada mês, 06:00 UTC</span>
-<span class="pl"> 4</span>    - <span class="kw">cron:</span> <span class="str">'0 6 1 * *'</span>
-<span class="pl"> 5</span>
-<span class="pl"> 6</span><span class="kw">jobs:</span>
-<span class="pl"> 7</span>  <span class="kw">update:</span>
-<span class="pl"> 8</span>    <span class="kw">runs-on:</span> <span class="str">ubuntu-latest</span>
-<span class="pl"> 9</span>    <span class="kw">steps:</span>
-<span class="pl">10</span>      - <span class="kw">name:</span> <span class="str">Extrair todos os países</span>
-<span class="pl">11</span>        <span class="kw">run:</span> <span class="fn">bun run extract</span>
-<span class="pl">12</span>
-<span class="pl">13</span>      - <span class="kw">name:</span> <span class="str">Detectar mudanças</span>
-<span class="pl">14</span>        <span class="kw">run:</span> <span class="fn">bun run diff</span>
-<span class="pl">15</span>
-<span class="pl">16</span>      - <span class="kw">name:</span> <span class="str">Publicar no GitHub Pages</span>
-<span class="pl">17</span>        <span class="kw">uses:</span> <span class="str">peaceiris/actions-gh-pages@v4</span>
-<span class="pl">18</span>        <span class="kw">with:</span>
-<span class="pl">19</span>          <span class="kw">publish_dir:</span> <span class="str">./data/current</span>
-<span class="pl">20</span>          <span class="kw">publish_branch:</span> <span class="str">gh-pages</span></pre>
-        </div>
-        <p class="body-sm" style="margin-top: var(--s-md); color: var(--muted);">
-          O código é open-source. Você pode inspecionar exatamente o que é extraído
-          e como é validado antes de ser publicado.
-        </p>
+        <div class="eyebrow">Por baixo dos panos</div>
+        <h2 class="display-sm" style="margin: 0;">Fontes oficiais. IA extrai. Zod valida. Git versionia.</h2>
       </div>
-
+      <a class="btn btn-secondary" href="dev.html">Ver como funciona →</a>
     </div>
   </div>
 </section>
@@ -652,6 +585,7 @@
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="sobre.html#metodologia">Metodologia</a></li>
           <li><a href="sobre.html#contribuir">Contribuir</a></li>
+          <li><a href="dev.html">Dev</a></li>
         </ul>
       </div>
       <div>

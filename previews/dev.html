@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Como funciona — Rota Legal Dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .pipeline-step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: var(--s-xl);
+    padding: var(--s-xl) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .pipeline-step:last-child { border-bottom: none; }
+  .pipeline-n {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    padding-top: 3px;
+    letter-spacing: 0.5px;
+  }
+  .pipeline-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--on-dark);
+    margin: 0 0 var(--s-xs);
+    letter-spacing: -0.3px;
+  }
+  .pipeline-desc {
+    font-size: 14px;
+    color: var(--body);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 640px;
+  }
+  .pipeline-detail {
+    margin-top: var(--s-md);
+    padding: var(--s-md);
+    background: var(--surface-elevated);
+    border-radius: var(--r-md);
+    font-size: 13px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", monospace;
+    line-height: 1.6;
+  }
+
+  .stack-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--s-xl);
+  }
+  .stack-table th {
+    text-align: left;
+    padding: var(--s-xs) var(--s-md);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .stack-table td {
+    padding: var(--s-sm) var(--s-md);
+    border-bottom: 1px solid var(--hairline);
+    font-size: 13px;
+    color: var(--body);
+    vertical-align: top;
+  }
+  .stack-table tr:last-child td { border-bottom: none; }
+  .stack-table tr:hover td { background: var(--surface-soft); }
+  .stack-tech {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--on-dark);
+    font-weight: 500;
+  }
+
+  .decision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--s-md);
+    margin-top: var(--s-xl);
+  }
+  .decision-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+  }
+  .decision-q {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--s-sm);
+  }
+  .decision-a {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--on-dark);
+    margin-bottom: var(--s-xs);
+    letter-spacing: -0.2px;
+  }
+  .decision-why { font-size: 13px; color: var(--body); line-height: 1.6; margin: 0; }
+
+  .schema-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-lg);
+    margin-top: var(--s-xl);
+  }
+  @media (max-width: 900px) {
+    .schema-grid { grid-template-columns: 1fr; }
+    .pipeline-step { grid-template-columns: 40px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">Ver países</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é o meu?</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span class="dot"></span>Transparência técnica</div>
+    <h1 class="display-xl">
+      Como os dados chegam<br/>
+      <span class="accent">até você.</span>
+    </h1>
+    <p class="lede">
+      Cada número neste site foi extraído de uma fonte oficial de imigração por um pipeline
+      automático. Esta página explica exatamente como.
+    </p>
+  </div>
+</section>
+
+<!-- ============== PIPELINE ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="eyebrow">Pipeline de extração</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-xxl);">Do site oficial ao JSON em 4 etapas</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xxl); align-items: start;">
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <span class="pipeline-n">01</span>
+          <div>
+            <h3 class="pipeline-title">GitHub Actions dispara o cron</h3>
+            <p class="pipeline-desc">
+              No dia 1 de cada mês às 06:00 UTC, o workflow <code>monthly-update.yml</code> inicia.
+              Nenhuma intervenção manual é necessária. O histórico de execuções fica visível
+              na aba Actions do repositório.
+            </p>
+            <div class="pipeline-detail">cron: '0 6 1 * *'  →  Ubuntu latest</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-n">02</span>
+          <div>
+            <h3 class="pipeline-title">Fetcher visita as URLs oficiais</h3>
+            <p class="pipeline-desc">
+              Para cada país, o fetcher acessa as URLs declaradas em <code>src/sources/{cc}.ts</code>
+              usando <code>fetch</code> nativo do Bun. Sites que exigem JavaScript recebem
+              fallback via Playwright headless. Mínimo de 2 segundos entre requests no mesmo domínio.
+            </p>
+            <div class="pipeline-detail">fetch nativo  →  Playwright (fallback JS-heavy)  →  HTML bruto</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-n">03</span>
+          <div>
+            <h3 class="pipeline-title">LLM extrai dados estruturados</h3>
+            <p class="pipeline-desc">
+              O HTML é processado pelo <code>@mozilla/readability</code> para isolar o conteúdo
+              principal. O texto limpo é enviado para a API da Anthropic. Claude Haiku 4.5 processa
+              a maioria das URLs. URLs marcadas como críticas usam Claude Sonnet 4.5.
+              O output é um JSON seguindo o schema declarado.
+            </p>
+            <div class="pipeline-detail">Haiku 4.5 (80%)  →  Sonnet 4.5 (20% URLs críticas)</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-n">04</span>
+          <div>
+            <h3 class="pipeline-title">Zod valida, Git versionia</h3>
+            <p class="pipeline-desc">
+              Cada campo do JSON é validado contra o schema Zod antes de qualquer escrita.
+              Falha na validação interrompe o processo — nada inválido é publicado.
+              O snapshot vai para <code>data/current/</code> e uma cópia arquivada para
+              <code>data/history/</code>. Se houver mudança significativa, uma issue é aberta
+              automaticamente no GitHub.
+            </p>
+            <div class="pipeline-detail">Zod schema  →  data/current/  →  data/history/  →  GitHub Issue</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="code-window">
+          <div class="code-bar">
+            <span class="dot r"></span>
+            <span class="dot y"></span>
+            <span class="dot g"></span>
+            <span class="file">.github/workflows/monthly-update.yml</span>
+          </div>
+          <pre class="code-body"><span class="pl"> 1</span><span class="kw">on:</span>
+<span class="pl"> 2</span>  <span class="kw">schedule:</span>
+<span class="pl"> 3</span>    <span class="com"># Dia 1 de cada mês, 06:00 UTC</span>
+<span class="pl"> 4</span>    - <span class="kw">cron:</span> <span class="str">'0 6 1 * *'</span>
+<span class="pl"> 5</span>  <span class="kw">workflow_dispatch:</span> <span class="com"># disparo manual</span>
+<span class="pl"> 6</span>
+<span class="pl"> 7</span><span class="kw">jobs:</span>
+<span class="pl"> 8</span>  <span class="kw">update:</span>
+<span class="pl"> 9</span>    <span class="kw">runs-on:</span> <span class="str">ubuntu-latest</span>
+<span class="pl">10</span>    <span class="kw">steps:</span>
+<span class="pl">11</span>      - <span class="kw">name:</span> <span class="str">Checkout</span>
+<span class="pl">12</span>        <span class="kw">uses:</span> <span class="str">actions/checkout@v4</span>
+<span class="pl">13</span>
+<span class="pl">14</span>      - <span class="kw">name:</span> <span class="str">Setup Bun</span>
+<span class="pl">15</span>        <span class="kw">uses:</span> <span class="str">oven-sh/setup-bun@v2</span>
+<span class="pl">16</span>
+<span class="pl">17</span>      - <span class="kw">name:</span> <span class="str">Instalar dependências</span>
+<span class="pl">18</span>        <span class="kw">run:</span> <span class="fn">bun install</span>
+<span class="pl">19</span>
+<span class="pl">20</span>      - <span class="kw">name:</span> <span class="str">Extrair todos os países</span>
+<span class="pl">21</span>        <span class="kw">run:</span> <span class="fn">bun run extract</span>
+<span class="pl">22</span>        <span class="kw">env:</span>
+<span class="pl">23</span>          <span class="kw">ANTHROPIC_API_KEY:</span> <span class="str">${{ secrets.ANTHROPIC_API_KEY }}</span>
+<span class="pl">24</span>
+<span class="pl">25</span>      - <span class="kw">name:</span> <span class="str">Detectar mudanças</span>
+<span class="pl">26</span>        <span class="kw">run:</span> <span class="fn">bun run diff</span>
+<span class="pl">27</span>
+<span class="pl">28</span>      - <span class="kw">name:</span> <span class="str">Publicar no GitHub Pages</span>
+<span class="pl">29</span>        <span class="kw">uses:</span> <span class="str">peaceiris/actions-gh-pages@v4</span>
+<span class="pl">30</span>        <span class="kw">with:</span>
+<span class="pl">31</span>          <span class="kw">publish_dir:</span> <span class="str">./data/current</span>
+<span class="pl">32</span>          <span class="kw">publish_branch:</span> <span class="str">gh-pages</span></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== SCHEMA ============== -->
+<section class="section-tight" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+  <div class="container">
+    <div class="eyebrow">Contrato de dados</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-md);">O que cada JSON contém</h2>
+    <p class="body-md" style="color: var(--body); max-width: 640px; margin-bottom: 0;">
+      Todos os 10 países seguem o mesmo schema. Os campos são validados pelo Zod antes de qualquer
+      publicação. Se um campo obrigatório vier vazio ou com tipo errado, o snapshot inteiro é rejeitado.
+    </p>
+    <div class="schema-grid">
+      <div class="code-window">
+        <div class="code-bar">
+          <span class="dot r"></span>
+          <span class="dot y"></span>
+          <span class="dot g"></span>
+          <span class="file">data/current/nl.json (resumido)</span>
+        </div>
+        <pre class="code-body"><span class="pl"> 1</span><span class="kw">{</span>
+<span class="pl"> 2</span>  <span class="str">"country"</span><span class="kw">:</span> <span class="str">"nl"</span><span class="kw">,</span>
+<span class="pl"> 3</span>  <span class="str">"lastUpdated"</span><span class="kw">:</span> <span class="str">"2026-04-01T06:00:00Z"</span><span class="kw">,</span>
+<span class="pl"> 4</span>  <span class="str">"visaTypes"</span><span class="kw">: [{</span>
+<span class="pl"> 5</span>    <span class="str">"id"</span><span class="kw">:</span> <span class="str">"highly-skilled-migrant"</span><span class="kw">,</span>
+<span class="pl"> 6</span>    <span class="str">"name"</span><span class="kw">:</span> <span class="str">"Altamente Qualificado"</span><span class="kw">,</span>
+<span class="pl"> 7</span>    <span class="str">"processingTime"</span><span class="kw">:</span> <span class="str">"2-4 semanas"</span><span class="kw">,</span>
+<span class="pl"> 8</span>    <span class="str">"requirements"</span><span class="kw">: {</span>
+<span class="pl"> 9</span>      <span class="str">"incomeRequirement"</span><span class="kw">: {</span>
+<span class="pl">10</span>        <span class="str">"amount"</span><span class="kw">:</span> <span class="num">5688</span><span class="kw">,</span>
+<span class="pl">11</span>        <span class="str">"currency"</span><span class="kw">:</span> <span class="str">"EUR"</span><span class="kw">,</span>
+<span class="pl">12</span>        <span class="str">"period"</span><span class="kw">:</span> <span class="str">"monthly"</span>
+<span class="pl">13</span>      <span class="kw">}</span>
+<span class="pl">14</span>    <span class="kw">}</span>
+<span class="pl">15</span>  <span class="kw">}],</span>
+<span class="pl">16</span>  <span class="str">"reliability"</span><span class="kw">: {</span>
+<span class="pl">17</span>    <span class="str">"extractionConfidence"</span><span class="kw">:</span> <span class="str">"high"</span><span class="kw">,</span>
+<span class="pl">18</span>    <span class="str">"lastVerified"</span><span class="kw">:</span> <span class="str">"2026-04-01"</span>
+<span class="pl">19</span>  <span class="kw">}</span>
+<span class="pl">20</span><span class="kw">}</span></pre>
+      </div>
+      <div class="code-window">
+        <div class="code-bar">
+          <span class="dot r"></span>
+          <span class="dot y"></span>
+          <span class="dot g"></span>
+          <span class="file">src/extractors/schema.ts (campos principais)</span>
+        </div>
+        <pre class="code-body"><span class="pl"> 1</span><span class="kw">const</span> <span class="fn">VisaTypeSchema</span> <span class="kw">=</span> z.object<span class="kw">({</span>
+<span class="pl"> 2</span>  <span class="str">id</span><span class="kw">:</span>            z.string<span class="kw">(),</span>
+<span class="pl"> 3</span>  <span class="str">name</span><span class="kw">:</span>          z.string<span class="kw">(),</span>
+<span class="pl"> 4</span>  <span class="str">processingTime</span><span class="kw">:</span> z.string().optional<span class="kw">(),</span>
+<span class="pl"> 5</span>  <span class="str">requirements</span><span class="kw">:</span>  z.object<span class="kw">({</span>
+<span class="pl"> 6</span>    <span class="str">incomeRequirement</span><span class="kw">:</span> z.object<span class="kw">({</span>
+<span class="pl"> 7</span>      <span class="str">amount</span><span class="kw">:</span>   z.number<span class="kw">(),</span>
+<span class="pl"> 8</span>      <span class="str">currency</span><span class="kw">:</span> z.literal<span class="kw">(</span><span class="str">'EUR'</span><span class="kw">),</span>
+<span class="pl"> 9</span>      <span class="str">period</span><span class="kw">:</span>   z.enum<span class="kw">([</span><span class="str">'monthly'</span><span class="kw">,</span><span class="str">'annual'</span><span class="kw">])</span>
+<span class="pl">10</span>    <span class="kw">}).optional()</span>
+<span class="pl">11</span>  <span class="kw">})</span>
+<span class="pl">12</span><span class="kw">})</span>
+<span class="pl">13</span>
+<span class="pl">14</span><span class="kw">const</span> <span class="fn">CountrySchema</span> <span class="kw">=</span> z.object<span class="kw">({</span>
+<span class="pl">15</span>  <span class="str">country</span><span class="kw">:</span>     z.string().length<span class="kw">(</span><span class="num">2</span><span class="kw">),</span>
+<span class="pl">16</span>  <span class="str">lastUpdated</span><span class="kw">:</span> z.string().datetime<span class="kw">(),</span>
+<span class="pl">17</span>  <span class="str">visaTypes</span><span class="kw">:</span>   z.array<span class="kw">(</span>VisaTypeSchema<span class="kw">),</span>
+<span class="pl">18</span>  <span class="str">reliability</span><span class="kw">:</span> ReliabilitySchema
+<span class="pl">19</span><span class="kw">})</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STACK ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="eyebrow">Stack técnico</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-md);">Tecnologias e por que cada uma</h2>
+    <p class="body-md" style="color: var(--body); max-width: 640px; margin-bottom: 0;">
+      Cada decisão foi tomada para minimizar infraestrutura, maximizar confiabilidade
+      e manter o custo mensal abaixo de USD 1.
+    </p>
+
+    <div class="decision-grid">
+      <div class="decision-card">
+        <div class="decision-q">Runtime</div>
+        <div class="decision-a">Bun 1.1+</div>
+        <p class="decision-why">
+          Fetch nativo sem polyfill, runtime de testes embutido, instalação única.
+          Compatível com Node 20+ se necessário.
+        </p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">Linguagem</div>
+        <div class="decision-a">TypeScript estrito</div>
+        <p class="decision-why">
+          Schema tipado impede campos ausentes silenciosos. O <code>tsc --noEmit</code>
+          roda no CI antes de qualquer extração.
+        </p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">LLM</div>
+        <div class="decision-a">Anthropic API — estratégia 80/20</div>
+        <p class="decision-why">
+          Haiku 4.5 para a maioria das URLs (barato, rápido). Sonnet 4.5 apenas para
+          URLs marcadas como críticas. Custo estimado: USD 4 a 10 por ano.
+        </p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">Validação</div>
+        <div class="decision-a">Zod</div>
+        <p class="decision-why">
+          Schema declarativo colocado em <code>src/extractors/schema.ts</code>.
+          Falha de parse lança exceção e impede publicação de dados inválidos.
+        </p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">Storage</div>
+        <div class="decision-a">JSON versionado no Git</div>
+        <p class="decision-why">
+          Zero infraestrutura. O histórico mensal é o próprio <code>data/history/</code>.
+          Diff visual no GitHub. Qualquer um pode consumir via CDN sem autenticação.
+        </p>
+      </div>
+      <div class="decision-card">
+        <div class="decision-q">CI</div>
+        <div class="decision-a">GitHub Actions</div>
+        <p class="decision-why">
+          Free tier cobre folgadamente um cron mensal. O log de cada extração
+          fica arquivado por 90 dias na aba Actions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONSUMIR OS DADOS ============== -->
+<section class="section-tight" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+  <div class="container">
+    <div class="eyebrow">Dados abertos</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-md);">Como consumir o JSON</h2>
+    <p class="body-md" style="color: var(--body); max-width: 640px; margin-bottom: 0;">
+      Os snapshots ficam disponíveis publicamente via GitHub Pages, com CORS aberto.
+      Nenhuma chave de API necessária.
+    </p>
+    <div class="code-window" style="margin-top: var(--s-xl);">
+      <div class="code-bar">
+        <span class="dot r"></span>
+        <span class="dot y"></span>
+        <span class="dot g"></span>
+        <span class="file">Endpoints disponíveis</span>
+      </div>
+      <pre class="code-body"><span class="com"># País específico</span>
+<span class="fn">https://Vitorcode1.github.io/rota-legal-monitor/nl.json</span>
+<span class="fn">https://Vitorcode1.github.io/rota-legal-monitor/pt.json</span>
+<span class="fn">https://Vitorcode1.github.io/rota-legal-monitor/de.json</span>
+
+<span class="com"># Índice de todos os países</span>
+<span class="fn">https://Vitorcode1.github.io/rota-legal-monitor/index.json</span>
+
+<span class="com"># Países disponíveis: nl pt de es ie it fr be at au</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-band-yellow">
+      <div>
+        <h2>O código é aberto</h2>
+        <p>
+          Inspecione o pipeline, proponha melhorias ou adicione um novo país.
+          Todo o processo está no repositório público.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-on-yellow" href="sobre.html#contribuir">Como contribuir</a>
+        <a class="btn btn-on-yellow" href="paises.html">Ver os dados</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+          <li><a href="dev.html">Dev</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
