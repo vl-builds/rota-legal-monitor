@@ -96,8 +96,10 @@
     margin-top: var(--s-xl);
   }
   .decision-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
   }
@@ -131,6 +133,7 @@
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">

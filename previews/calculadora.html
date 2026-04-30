@@ -27,8 +27,10 @@
   .inputs-panel {
     position: sticky;
     top: 80px;
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
   }
@@ -117,8 +119,10 @@
 
   /* total card */
   .total-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
     margin-bottom: var(--s-lg);
@@ -155,8 +159,10 @@
 
   /* breakdown card */
   .breakdown-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
     margin-bottom: var(--s-lg);
@@ -238,6 +244,7 @@
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">
@@ -376,7 +383,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s-lg);">
       <div>
         <div style="font-size:28px;font-weight:700;letter-spacing:-0.8px;color:var(--on-primary);margin-bottom:var(--s-xs);">Próximo passo: escolher o destino certo</div>
-        <p style="color:rgba(0,0,0,0.55);font-size:15px;margin:0;">Responda 6 perguntas e receba uma recomendação personalizada.</p>
+        <p class="cta-subtitle">Responda 6 perguntas e receba uma recomendação personalizada.</p>
       </div>
       <a class="btn btn-on-yellow" href="qual-pais.html">Descobrir meu país</a>
     </div>

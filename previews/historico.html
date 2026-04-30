@@ -35,8 +35,10 @@
   .filter-bar {
     position: sticky;
     top: 64px; z-index: 40;
-    background: var(--canvas);
-    border-bottom: 1px solid var(--hairline);
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    border-bottom: 1px solid var(--glass-border);
     padding: var(--s-md) 0;
   }
   .filter-inner {
@@ -88,8 +90,10 @@
 
   /* ---- alert signup card ---- */
   .alert-signup {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg) var(--s-xl);
     margin-bottom: var(--s-xl);
@@ -111,8 +115,10 @@
   .timeline-area { min-width: 0; }
   .empty-state {
     padding: var(--s-xl) var(--s-lg);
-    text-align: center; background: var(--surface-card);
-    border: 1px solid var(--hairline); border-radius: var(--r-lg);
+    text-align: center; background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border); border-radius: var(--r-lg);
     color: var(--muted); font-size: 14px;
   }
 
@@ -134,8 +140,10 @@
 
   .entry-card {
     position: relative;
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg) var(--s-xl);
   }
@@ -149,9 +157,9 @@
     border-radius: 50%;
     border: 2px solid var(--canvas);
   }
-  .entry-card.sev-major::before { background: var(--accent-rose); box-shadow: 0 0 0 2px rgba(239,68,68,0.2); }
-  .entry-card.sev-minor::before { background: var(--primary); box-shadow: 0 0 0 2px rgba(240, 180, 41,0.2); }
-  .entry-card.sev-info::before  { background: var(--accent-blue); box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+  .entry-card.sev-major::before { background: var(--accent-rose); }
+  .entry-card.sev-minor::before { background: var(--primary); }
+  .entry-card.sev-info::before  { background: var(--accent-blue); }
 
   .entry-meta {
     display: flex; align-items: center; gap: var(--s-xs);
@@ -200,8 +208,10 @@
   /* ---- sidebar ---- */
   .sidebar { position: sticky; top: 116px; display: flex; flex-direction: column; gap: var(--s-md); }
   .sidebar-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg);
   }
@@ -243,6 +253,7 @@
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">
@@ -329,7 +340,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s-lg);">
       <div>
         <div style="font-size:28px;font-weight:700;letter-spacing:-0.8px;color:var(--on-primary);margin-bottom:var(--s-xs);">Compare os países afetados</div>
-        <p style="color:rgba(0,0,0,0.55);font-size:15px;margin:0;">Veja as regras atuais de cada país lado a lado.</p>
+        <p class="cta-subtitle">Veja as regras atuais de cada país lado a lado.</p>
       </div>
       <a class="btn btn-on-yellow" href="comparar.html">Abrir comparador</a>
     </div>

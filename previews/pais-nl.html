@@ -46,8 +46,10 @@
     position: sticky;
     top: 64px;
     z-index: 39;
-    background: var(--canvas);
-    border-bottom: 1px solid var(--hairline);
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    border-bottom: 1px solid var(--glass-border);
   }
   .sticky-inner {
     display: flex;
@@ -134,8 +136,10 @@
   /* ---- visa cards ---- */
   .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
   .visa-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     overflow: hidden;
   }
@@ -228,8 +232,10 @@
   /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
     display: flex;
@@ -252,8 +258,10 @@
     gap: var(--s-md);
     align-items: center;
     padding: var(--s-md) var(--s-lg);
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
   }
   .req-icon { font-size: 16px; width: 20px; text-align: center; }
@@ -297,8 +305,10 @@
   /* ---- fontes ---- */
   .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
   .source-item {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg);
     display: grid;
@@ -341,6 +351,7 @@
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">
@@ -794,7 +805,7 @@
             <span class="req-note">Igual ao passaporte</span>
           </div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg);">
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
           <p class="body-sm" style="color: var(--muted); margin: 0;">
             Estes requisitos foram extraídos de <a class="text-link" href="#">ind.nl</a> e
             <a class="text-link" href="#">government.nl</a> em abril de 2026.
@@ -968,7 +979,7 @@
           </div>
 
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg);">
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
           <div style="display:flex; align-items:center; gap:var(--s-md);">
             <span class="badge up"><span class="pulse"></span>Alta confiança</span>
             <span class="body-sm" style="color: var(--muted);">

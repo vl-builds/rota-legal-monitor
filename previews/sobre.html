@@ -44,8 +44,10 @@
     margin-top: var(--s-xl);
   }
   .step-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
   }
@@ -94,8 +96,10 @@
     display: grid;
     grid-template-columns: 3px 1fr;
     gap: var(--s-lg);
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     overflow: hidden;
   }
@@ -116,8 +120,10 @@
     margin-top: var(--s-xl);
   }
   .stack-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg);
   }
@@ -139,8 +145,10 @@
 
   /* ---- contribuir ---- */
   .contrib-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
     margin-top: var(--s-xl);
@@ -165,8 +173,10 @@
   /* ---- code window ---- */
   .schema-window {
     margin-top: var(--s-xl);
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     overflow: hidden;
   }
@@ -199,8 +209,10 @@
     margin-top: var(--s-xl);
   }
   .metric-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg);
     text-align: center;
@@ -218,6 +230,7 @@
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">
@@ -288,7 +301,7 @@
 </section>
 
 <!-- ============== METODOLOGIA ============== -->
-<section class="section" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+<section id="metodologia" class="section" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
   <div class="container">
     <span class="section-header">Metodologia</span>
     <h2 class="section-title">Como os dados são extraídos</h2>
@@ -578,7 +591,7 @@
 </section>
 
 <!-- ============== CONTRIBUIR ============== -->
-<section class="section">
+<section id="contribuir" class="section">
   <div class="container">
     <span class="section-header">Como contribuir</span>
     <h2 class="section-title">O projeto é aberto</h2>
@@ -616,11 +629,11 @@
     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-lg);">
       <div>
         <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.8px; color: var(--on-primary); margin-bottom: var(--s-xs);">Pronto para explorar os dados?</div>
-        <p style="color: rgba(0,0,0,0.55); font-size: 15px; margin: 0;">Veja os países disponíveis ou compare dois destinos lado a lado.</p>
+        <p class="cta-subtitle">Veja os países disponíveis ou compare dois destinos lado a lado.</p>
       </div>
       <div style="display: flex; gap: var(--s-sm); flex-wrap: wrap;">
         <a class="btn btn-on-yellow" href="paises.html">Ver países</a>
-        <a class="btn btn-secondary" href="comparar.html" style="background: rgba(0,0,0,0.1); border-color: rgba(0,0,0,0.2); color: var(--on-primary);">Comparar</a>
+        <a class="btn btn-on-yellow" href="comparar.html">Comparar</a>
       </div>
     </div>
   </div>

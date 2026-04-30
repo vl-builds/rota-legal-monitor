@@ -56,8 +56,10 @@
     gap: var(--s-lg);
   }
   .path-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
     display: flex;
@@ -117,8 +119,10 @@
     gap: var(--s-md);
   }
   .cf-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg);
     display: flex;
@@ -149,35 +153,12 @@
     letter-spacing: 0.2px;
   }
 
-  /* ---- how it works ---- */
-  .how-grid {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: var(--s-xxl);
-    align-items: start;
-  }
-  .steps { display: flex; flex-direction: column; }
-  .step {
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: var(--s-md);
-    padding: var(--s-lg) 0;
-  }
-  .step + .step { border-top: 1px solid var(--hairline); }
-  .step-n {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    padding-top: 3px;
-  }
-  .step-title { font-size: 16px; font-weight: 700; color: var(--on-dark); margin: 0 0 var(--s-xxs); letter-spacing: -0.2px; }
-  .step-desc { font-size: 14px; color: var(--body); line-height: 1.6; margin: 0; }
-
   /* ---- recent changes ---- */
   .changes-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     overflow: hidden;
   }
@@ -187,7 +168,7 @@
     justify-content: space-between;
     padding: var(--s-md) var(--s-lg);
     border-bottom: 1px solid var(--hairline);
-    background: #131313;
+    background: rgba(19, 19, 19, 0.4);
   }
   .changes-body { padding: var(--s-xxs) 0; }
   .change-row {
@@ -255,7 +236,6 @@
     .trust-item:nth-child(2n) { border-left: 1px solid var(--hairline); }
     .path-grid { grid-template-columns: 1fr; gap: var(--s-md); }
     .country-focus-grid { grid-template-columns: repeat(3, 1fr); }
-    .how-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .trust-items { grid-template-columns: repeat(2, 1fr); }
@@ -268,6 +248,7 @@
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">

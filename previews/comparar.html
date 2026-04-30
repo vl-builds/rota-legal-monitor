@@ -18,8 +18,10 @@
     position: sticky;
     top: 64px;
     z-index: 40;
-    background: var(--canvas);
-    border-bottom: 1px solid var(--hairline);
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    border-bottom: 1px solid var(--glass-border);
     padding: var(--s-md) 0;
   }
   .selector-inner {
@@ -98,117 +100,175 @@
     line-height: 1.6;
   }
 
-  /* ---- comparison table ---- */
-  .compare-outer {
-    overflow-x: auto;
-    border: 1px solid var(--hairline);
-    border-radius: var(--r-lg);
-    background: var(--canvas);
+  /* ---- comparison cards (one column per country) ---- */
+  .compare-cards {
+    display: grid;
+    gap: var(--s-md);
+    align-items: stretch;
   }
-  .compare-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 500px;
+  .compare-cards.cols-1 {
+    grid-template-columns: minmax(280px, 480px);
+    justify-content: center;
   }
-  .compare-table td,
-  .compare-table th {
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--hairline);
-    vertical-align: middle;
-  }
-  .compare-table tbody tr:last-child td { border-bottom: none; }
-  .compare-table tbody tr:hover .col-label { background: var(--surface-soft); }
+  .compare-cards.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .compare-cards.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-  /* sticky label column */
-  .col-label {
-    position: sticky;
-    left: 0;
-    background: var(--canvas);
-    z-index: 2;
-    min-width: 176px;
-    width: 176px;
-    max-width: 176px;
-    text-align: left;
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 500;
-    white-space: normal;
-    line-height: 1.4;
-  }
-
-  /* country header cells */
-  .col-country {
-    background: var(--surface-card);
-    text-align: center;
-    border-left: 1px solid var(--hairline);
-    min-width: 168px;
-    padding: 20px;
-  }
-  .col-country-inner {
+  /* column wrapper (stacks the section cards) */
+  .cc-column {
+    position: relative;
+    z-index: 0;
     display: flex;
     flex-direction: column;
+    gap: var(--s-sm);
+  }
+  /* glow behind highlighted column */
+  .cc-column.cc-highlight::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(ellipse at center, rgba(240, 180, 41, 0.20) 0%, transparent 65%);
+    filter: blur(28px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* the floating glass card (now used per section) */
+  .cc-card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-lg);
+    padding: var(--s-md) var(--s-lg);
+    transition: border-color 240ms ease, background 240ms ease;
+    overflow: hidden;
+  }
+  .cc-column.cc-highlight .cc-card {
+    border-color: rgba(240, 180, 41, 0.45);
+    background: rgba(240, 180, 41, 0.05);
+  }
+  .cc-card:hover { border-color: var(--glass-border-strong); }
+  .cc-column.cc-highlight .cc-card:hover { border-color: var(--primary); }
+
+  /* header card */
+  .cc-card-head {
+    display: flex;
     align-items: center;
-    gap: var(--s-xs);
+    justify-content: space-between;
+    gap: var(--s-sm);
+  }
+  .cc-head-row {
+    display: flex;
+    align-items: center;
+    gap: var(--s-sm);
+    flex: 1;
+    min-width: 0;
+  }
+  .cc-head-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
   }
   .col-flag-lg {
-    width: 40px;
-    height: 28px;
-    border-radius: 4px;
+    width: 44px;
+    height: 32px;
+    border-radius: 6px;
     display: block;
+    flex-shrink: 0;
   }
   .col-country-name {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--on-dark);
-    letter-spacing: -0.3px;
-    line-height: 1;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin: 0;
   }
   .col-detail-link {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--primary);
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
     font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.3px;
+  }
+  .cc-best-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 10px;
+    border-radius: var(--r-pill);
+    background: var(--primary);
+    color: var(--on-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .col-partial-badge {
     font-size: 10px;
     color: var(--muted);
     font-family: "JetBrains Mono", monospace;
-    padding: 2px 6px;
-    border: 1px solid var(--hairline);
+    padding: 3px 8px;
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
   }
 
-  /* section header rows */
-  .row-section .col-label {
-    background: var(--surface-soft);
-    font-size: 10px;
+  /* section card title */
+  .cc-section-title {
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--muted);
-    padding: 8px 20px;
-    z-index: 3;
-  }
-  .row-section .col-section-fill {
-    background: var(--surface-soft);
-    border-left: 1px solid var(--hairline);
-    padding: 8px;
+    margin-bottom: var(--s-sm);
   }
 
-  /* data cells */
-  .col-value {
-    text-align: center;
-    border-left: 1px solid var(--hairline);
-    font-size: 14px;
-    color: var(--body);
+  /* stat grid inside section card */
+  .cc-grid {
+    display: grid;
+    gap: var(--s-md) var(--s-sm);
   }
-  .col-value:hover { background: rgba(255,255,255,0.015); }
+  .cc-grid-1 { grid-template-columns: 1fr; }
+  .cc-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .cc-grid-3 { grid-template-columns: repeat(3, 1fr); }
 
-  /* value types */
-  .val-yes { color: var(--accent-emerald); font-weight: 600; font-size: 13px; }
-  .val-no  { color: var(--accent-rose);    font-weight: 600; font-size: 13px; }
-  .val-dash { color: var(--muted-soft); font-size: 16px; }
+  .cc-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .cc-stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+  .cc-stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--on-dark);
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* value variants tuned for stat layout */
+  .val-yes { color: var(--accent-emerald); font-weight: 700; font-size: 18px; }
+  .val-no  { color: var(--accent-rose);    font-weight: 700; font-size: 18px; }
+  .val-dash { color: var(--muted-soft); font-size: 20px; }
   .val-num {
     font-size: 22px;
     font-weight: 700;
@@ -217,42 +277,51 @@
     line-height: 1;
   }
   .val-unit {
-    display: block;
-    font-size: 11px;
+    display: inline;
+    font-size: 12px;
     color: var(--muted);
-    font-weight: 400;
-    margin-top: 2px;
+    font-weight: 500;
+    margin-left: 4px;
   }
   .val-income {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--primary);
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
+    font-family: "JetBrains Mono", monospace;
   }
-  .val-text { font-size: 13px; color: var(--body); line-height: 1.4; }
-  .val-lang-yes { color: var(--accent-rose); font-size: 11px; font-weight: 600; display: block; margin-bottom: 3px; }
-  .val-lang-no  { color: var(--accent-emerald); font-size: 11px; font-weight: 600; display: block; margin-bottom: 3px; }
-  .val-date { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", monospace; }
+  .val-text { font-size: 14px; color: var(--body-strong); line-height: 1.35; font-weight: 500; }
+  .val-lang-yes { color: var(--accent-rose); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+  .val-lang-no  { color: var(--accent-emerald); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+  .val-date { font-size: 14px; color: var(--body-strong); font-family: "JetBrains Mono", monospace; font-weight: 500; }
 
   /* empty state */
   .empty-state {
     padding: var(--s-section) var(--s-lg);
     text-align: center;
-    border: 1px solid var(--hairline);
-    border-radius: var(--r-lg);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-xl);
   }
 
   /* responsive */
+  @media (max-width: 1024px) {
+    .compare-cards.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 768px) {
     .compare-hero-title { font-size: 28px; }
-    .col-label { min-width: 130px; width: 130px; font-size: 12px; padding: 10px 12px; }
-    .col-country { min-width: 120px; }
+    .compare-cards.cols-2,
+    .compare-cards.cols-3 { grid-template-columns: 1fr; }
+    .compare-cards.cols-1 { grid-template-columns: 1fr; }
     .selector-label { display: none; }
   }
 
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">
@@ -420,23 +489,37 @@ let selected = ['nl', 'de', 'pt'];
 // ---- definição das linhas ----
 const ROWS = [
   { type: 'section', label: 'Entrada' },
-  { type: 'bool',     label: 'Schengen (sem visto turista)',     key: 'schengen' },
-  { type: 'days',     label: 'Estadia máx. como turista',        key: 'touristDays' },
-  { type: 'boolinv',  label: 'Exige permissão de trabalho',      key: 'workPermit' },
+  { type: 'bool',     label: 'Schengen (sem visto turista)',     short: 'Schengen',          key: 'schengen' },
+  { type: 'days',     label: 'Estadia máx. como turista',        short: 'Estadia máx.',      key: 'touristDays' },
+  { type: 'boolinv',  label: 'Exige permissão de trabalho',      short: 'Permissão',         key: 'workPermit' },
   { type: 'section', label: 'Vistos de trabalho' },
-  { type: 'count',    label: 'Opções mapeadas no banco',          key: 'visaCount', unit: 'vistos' },
+  { type: 'count',    label: 'Opções mapeadas no banco',          short: 'Opções',            key: 'visaCount', unit: 'vistos' },
   { type: 'section', label: 'Requisitos financeiros' },
-  { type: 'income',   label: 'Renda mínima (principal opção)',    key: 'minIncomeText', hlKey: 'minIncomeHighlight' },
+  { type: 'income',   label: 'Renda mínima (principal opção)',    short: 'Renda mínima',      key: 'minIncomeText', hlKey: 'minIncomeHighlight' },
   { type: 'section', label: 'Idioma' },
-  { type: 'lang',     label: 'Idioma para residir',               key: 'langText', boolKey: 'langRequired' },
+  { type: 'lang',     label: 'Idioma para residir',               short: 'Idioma',            key: 'langText', boolKey: 'langRequired' },
   { type: 'section', label: 'Direitos' },
-  { type: 'bool',     label: 'Pode trazer família',               key: 'family' },
-  { type: 'bool',     label: 'Pode trocar de empregador',         key: 'changeEmployer' },
-  { type: 'bool',     label: 'Caminho para residência permanente',key: 'permanentPath' },
+  { type: 'bool',     label: 'Pode trazer família',               short: 'Família',           key: 'family' },
+  { type: 'bool',     label: 'Pode trocar de empregador',         short: 'Trocar emprego',    key: 'changeEmployer' },
+  { type: 'bool',     label: 'Caminho para residência permanente',short: 'Residência perm.',  key: 'permanentPath' },
   { type: 'section', label: 'Sobre os dados' },
-  { type: 'date',     label: 'Última atualização',               key: 'lastUpdated' },
+  { type: 'date',     label: 'Última atualização',               short: 'Atualizado em',     key: 'lastUpdated' },
   { type: 'link',     label: 'Detalhe completo',                 key: 'detailUrl' },
 ];
+
+// ---- score de facilidade para brasileiros ----
+function calcEasinessScore(c) {
+  if (c.partial) return -1000;
+  let score = 0;
+  if (c.schengen === true) score += 2;
+  if (c.workPermit === false) score += 3;          // sem permissão = enorme vantagem
+  if (c.langRequired === false) score += 2;
+  if (c.flag === 'pt') score += 3;                  // língua compartilhada
+  if (c.family === true) score += 1;
+  if (c.changeEmployer === true) score += 1;
+  if (c.permanentPath === true) score += 1;
+  return score;
+}
 
 // ---- helpers de célula ----
 function cellBool(v) {
@@ -501,7 +584,7 @@ function renderChips() {
   }).join('');
 }
 
-// ---- render tabela ----
+// ---- render cards (one column per country, multiple cards per column) ----
 function renderTable() {
   const area = document.getElementById('compare-area');
 
@@ -517,40 +600,74 @@ function renderTable() {
   const cols = selected.map(code => COUNTRIES[code]);
   const colCount = cols.length;
 
-  let html = `<div class="compare-outer"><table class="compare-table">`;
+  // determine the best country (highlight)
+  let bestIdx = -1;
+  let bestScore = -Infinity;
+  cols.forEach((c, idx) => {
+    const score = calcEasinessScore(c);
+    if (score > bestScore) {
+      bestScore = score;
+      bestIdx = idx;
+    }
+  });
+  // require minimum score to highlight (avoid highlighting partial-data only)
+  if (bestScore < 3) bestIdx = -1;
 
-  // thead
-  html += `<thead><tr>
-    <th class="col-label" style="background:var(--surface-card);border-bottom:1px solid var(--hairline);"></th>
-    ${cols.map(c => `
-      <th class="col-country">
-        <div class="col-country-inner">
-          <span class="col-flag-lg flag-${c.flag}"></span>
-          <span class="col-country-name">${c.name}</span>
-          ${c.partial ? '<span class="col-partial-badge">parcial</span>' : ''}
-          <a href="${c.detailUrl}" class="col-detail-link">ver detalhe →</a>
-        </div>
-      </th>
-    `).join('')}
-  </tr></thead>`;
-
-  // tbody
-  html += `<tbody>`;
+  // group rows by section, skip the duplicate "link" row
+  const sections = [];
+  let current = null;
   for (const row of ROWS) {
     if (row.type === 'section') {
-      html += `<tr class="row-section">
-        <td class="col-label">${row.label}</td>
-        ${cols.map(() => '<td class="col-section-fill"></td>').join('')}
-      </tr>`;
+      current = { title: row.label, rows: [] };
+      sections.push(current);
+    } else if (row.type === 'link') {
       continue;
+    } else if (current) {
+      current.rows.push(row);
     }
-    html += `<tr>
-      <td class="col-label">${row.label}</td>
-      ${cols.map(c => `<td class="col-value">${cellValue(row, c)}</td>`).join('')}
-    </tr>`;
   }
-  html += `</tbody></table></div>`;
 
+  let html = `<div class="compare-cards cols-${colCount}">`;
+
+  cols.forEach((c, idx) => {
+    const isBest = idx === bestIdx;
+    html += `<div class="cc-column${isBest ? ' cc-highlight' : ''}">`;
+
+    // header card
+    html += `<div class="cc-card cc-card-head">
+      <div class="cc-head-row">
+        <span class="col-flag-lg flag-${c.flag}"></span>
+        <div class="cc-head-info">
+          <h3 class="col-country-name">${c.name}</h3>
+          <a href="${c.detailUrl}" class="col-detail-link">ver detalhe →</a>
+        </div>
+      </div>
+      ${isBest ? '<span class="cc-best-badge">Mais fácil</span>' : ''}
+      ${c.partial ? '<span class="col-partial-badge">parcial</span>' : ''}
+    </div>`;
+
+    // section cards
+    for (const sec of sections) {
+      if (!sec.rows.length) continue;
+      const cnt = sec.rows.length;
+      const gridCls = cnt >= 3 ? 'cc-grid-3' : cnt === 2 ? 'cc-grid-2' : 'cc-grid-1';
+      html += `<div class="cc-card">
+        <div class="cc-section-title">${sec.title}</div>
+        <div class="cc-grid ${gridCls}">`;
+      for (const row of sec.rows) {
+        const lbl = row.short || row.label;
+        html += `<div class="cc-stat">
+          <span class="cc-stat-label">${lbl}</span>
+          <span class="cc-stat-value">${cellValue(row, c)}</span>
+        </div>`;
+      }
+      html += `</div></div>`;
+    }
+
+    html += `</div>`;
+  });
+
+  html += `</div>`;
   area.innerHTML = html;
 }
 

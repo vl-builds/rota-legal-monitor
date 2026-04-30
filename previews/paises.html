@@ -17,8 +17,10 @@
     position: sticky;
     top: 64px;
     z-index: 40;
-    background: var(--canvas);
-    border-bottom: 1px solid var(--hairline);
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+    border-bottom: 1px solid var(--glass-border);
     padding: var(--s-md) 0;
   }
   .filter-bar .container {
@@ -73,26 +75,116 @@
   }
   .count-label span { color: var(--on-dark); font-weight: 600; }
 
-  /* ---- country grid ---- */
-  .country-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--s-lg);
+  /* ---- country carousel ---- */
+  .country-carousel {
+    position: relative;
   }
+  .carousel-viewport {
+    overflow: hidden;
+    margin: 0 calc(var(--s-lg) * -1);
+    padding: var(--s-lg) var(--s-lg);
+  }
+  .country-grid {
+    display: flex;
+    gap: var(--s-lg);
+    transition: transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
+    will-change: transform;
+  }
+  .country-grid.no-anim { transition: none; }
+
   .country-card {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
-    border-radius: var(--r-lg);
+    flex: 0 0 calc((100% - var(--s-lg) * 2) / 3);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-xl);
     padding: var(--s-xl);
     display: flex;
     flex-direction: column;
     gap: var(--s-md);
     text-decoration: none;
     color: inherit;
-    transition: border-color 150ms ease, transform 120ms ease;
+    min-height: 360px;
+    transition: border-color 320ms ease, transform 480ms cubic-bezier(0.32, 0.72, 0, 1), opacity 480ms ease, background 320ms ease;
+    transform: scale(0.94);
+    opacity: 0.55;
   }
-  .country-card:hover { border-color: var(--hairline-strong); transform: translateY(-2px); }
-  .country-card[style*="display: none"] { display: none !important; }
+  .country-card.is-center {
+    transform: scale(1);
+    opacity: 1;
+    border-color: rgba(240, 180, 41, 0.40);
+    background: rgba(240, 180, 41, 0.04);
+  }
+  .country-card.is-side {
+    transform: scale(0.96);
+    opacity: 0.78;
+  }
+  .country-card.is-center:hover { border-color: var(--primary); }
+  .country-card[hidden] { display: none !important; }
+
+  /* center card glow ring */
+  .country-card.is-center::before {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    background: radial-gradient(ellipse at center, rgba(240, 180, 41, 0.18) 0%, transparent 65%);
+    filter: blur(24px);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .country-card { position: relative; z-index: 0; }
+
+  /* ---- carousel controls ---- */
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-lg);
+    margin-top: var(--s-xl);
+  }
+  .carousel-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    color: var(--on-dark);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 20px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    transition: background 200ms ease, border-color 200ms ease, transform 120ms ease;
+  }
+  .carousel-btn:hover {
+    background: var(--glass-bg-elevated);
+    border-color: var(--glass-border-strong);
+  }
+  .carousel-btn:active { transform: scale(0.93); }
+  .carousel-dots {
+    display: flex;
+    gap: var(--s-xs);
+    align-items: center;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--hairline-strong);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 240ms ease, width 240ms ease;
+  }
+  .carousel-dot:hover { background: var(--muted); }
+  .carousel-dot.active {
+    background: var(--primary);
+    width: 28px;
+  }
 
   .cc-header {
     display: flex;
@@ -196,7 +288,7 @@
     display: inline-block;
     flex-shrink: 0;
   }
-  .confidence-dot.alta   { background: var(--accent-emerald); box-shadow: 0 0 6px rgba(240, 180, 41,0.5); }
+  .confidence-dot.alta   { background: var(--accent-emerald); }
   .confidence-dot.media  { background: var(--accent-blue); }
   .confidence-dot.baixa  { background: var(--muted-soft); }
 
@@ -207,8 +299,10 @@
     gap: var(--s-lg);
   }
   .legend-item {
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg);
     display: flex;
@@ -239,9 +333,13 @@
   /* ---- empty state ---- */
   .empty-state {
     display: none;
-    grid-column: 1 / -1;
     padding: var(--s-xxl);
     text-align: center;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-xl);
   }
   .empty-state .empty-title {
     font-size: 18px;
@@ -252,18 +350,18 @@
   .empty-state .empty-desc { font-size: 14px; color: var(--muted); }
 
   /* ---- responsive ---- */
-  @media (max-width: 1280px) { .country-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 1024px) {
-    .country-grid { grid-template-columns: repeat(2, 1fr); }
+    .country-card { flex: 0 0 calc((100% - var(--s-lg)) / 2); }
     .legend-grid  { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
-    .country-grid { grid-template-columns: 1fr; }
+    .country-card { flex: 0 0 100%; min-height: 320px; }
     .count-label  { display: none; }
   }
 </style>
 </head>
 <body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
 <!-- ============== NAV ============== -->
 <nav class="top-nav">
@@ -313,10 +411,12 @@
   </div>
 </section>
 
-<!-- ============== GRID DE PAÍSES ============== -->
+<!-- ============== CARROSSEL DE PAÍSES ============== -->
 <section style="padding-top: 0;">
   <div class="container">
-    <div class="country-grid" id="country-grid">
+    <div class="country-carousel" id="country-carousel">
+      <div class="carousel-viewport">
+        <div class="country-grid" id="country-grid">
 
       <!-- NL -->
       <a class="country-card"
@@ -717,12 +817,20 @@
         </div>
       </a>
 
-      <!-- empty state -->
-      <div class="empty-state" id="empty-state">
-        <p class="empty-title">Nenhum país encontrado</p>
-        <p class="empty-desc">Nenhum dos 10 países monitoriados corresponde a esse filtro.</p>
+        </div>
       </div>
 
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Anterior">‹</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn" id="carousel-next" aria-label="Próximo">›</button>
+      </div>
+    </div>
+
+    <!-- empty state -->
+    <div class="empty-state" id="empty-state">
+      <p class="empty-title">Nenhum país encontrado</p>
+      <p class="empty-desc">Nenhum dos 10 países monitoriados corresponde a esse filtro.</p>
     </div>
   </div>
 </section>
@@ -850,22 +958,134 @@
 </footer>
 
 <script>
-  const chips = document.querySelectorAll('.filter-chip')
-  const cards = document.querySelectorAll('.country-card')
+  const chips      = document.querySelectorAll('.filter-chip')
+  const allCards   = Array.from(document.querySelectorAll('.country-card'))
   const countLabel = document.getElementById('visible-count')
   const emptyState = document.getElementById('empty-state')
+  const carousel   = document.getElementById('country-carousel')
+  const track      = document.getElementById('country-grid')
+  const viewport   = document.querySelector('.carousel-viewport')
+  const dotsEl     = document.getElementById('carousel-dots')
+  const prevBtn    = document.getElementById('carousel-prev')
+  const nextBtn    = document.getElementById('carousel-next')
+
+  const VISIBLE  = 3
+  const ROTATE_MS = 5000
+
+  let visibleCards = []
+  let currentIdx   = 0
+  let autoTimer    = null
+  let isPaused     = false
+
+  function getCardsPerView() {
+    if (window.innerWidth <= 640) return 1
+    if (window.innerWidth <= 1024) return 2
+    return VISIBLE
+  }
+
+  function rebuildVisible() {
+    visibleCards = allCards.filter(card => !card.hidden)
+  }
+
+  function maxIdx() {
+    return Math.max(0, visibleCards.length - getCardsPerView())
+  }
+
+  function updateTransform(animated = true) {
+    if (!visibleCards.length) {
+      track.style.transform = 'translateX(0)'
+      return
+    }
+    const card = visibleCards[0]
+    const cardWidth = card.getBoundingClientRect().width
+    const gap = parseFloat(getComputedStyle(track).gap) || 24
+    const offset = currentIdx * (cardWidth + gap)
+    if (!animated) track.classList.add('no-anim')
+    track.style.transform = `translateX(-${offset}px)`
+    if (!animated) {
+      requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove('no-anim')))
+    }
+    updateClasses()
+  }
+
+  function updateClasses() {
+    const perView = getCardsPerView()
+    const centerIdx = currentIdx + Math.floor(perView / 2)
+    visibleCards.forEach((c, i) => {
+      const inView = i >= currentIdx && i < currentIdx + perView
+      const isCenter = perView === 1 ? inView : i === centerIdx
+      c.classList.toggle('is-center', isCenter && perView >= 3)
+      c.classList.toggle('is-side', inView && !isCenter && perView >= 3)
+    })
+  }
+
+  function renderDots() {
+    const total = maxIdx() + 1
+    if (total <= 1) {
+      dotsEl.innerHTML = ''
+      return
+    }
+    let html = ''
+    for (let i = 0; i < total; i++) {
+      html += `<button class="carousel-dot${i === currentIdx ? ' active' : ''}" data-idx="${i}" aria-label="Ir para slide ${i + 1}"></button>`
+    }
+    dotsEl.innerHTML = html
+    dotsEl.querySelectorAll('.carousel-dot').forEach(d => {
+      d.addEventListener('click', () => {
+        currentIdx = parseInt(d.dataset.idx, 10)
+        updateTransform()
+        renderDots()
+        restartAuto()
+      })
+    })
+  }
+
+  function next() {
+    const max = maxIdx()
+    if (max <= 0) return
+    currentIdx = currentIdx >= max ? 0 : currentIdx + 1
+    updateTransform()
+    renderDots()
+  }
+
+  function prev() {
+    const max = maxIdx()
+    if (max <= 0) return
+    currentIdx = currentIdx <= 0 ? max : currentIdx - 1
+    updateTransform()
+    renderDots()
+  }
+
+  function startAuto() {
+    stopAuto()
+    if (visibleCards.length <= getCardsPerView() || isPaused) return
+    autoTimer = setInterval(next, ROTATE_MS)
+  }
+  function stopAuto() {
+    if (autoTimer) clearInterval(autoTimer)
+    autoTimer = null
+  }
+  function restartAuto() { startAuto() }
 
   function applyFilter(filter) {
     let visible = 0
-    cards.forEach(card => {
+    allCards.forEach(card => {
       const show = filter === 'todos' || card.dataset[filter] === 'true'
-      card.style.display = show ? '' : 'none'
+      card.hidden = !show
       if (show) visible++
     })
     countLabel.textContent = visible
     emptyState.style.display = visible === 0 ? 'block' : 'none'
+    carousel.style.display = visible === 0 ? 'none' : ''
+
+    rebuildVisible()
+    currentIdx = 0
+    updateTransform(false)
+    renderDots()
+    restartAuto()
   }
 
+  // chip filters
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       chips.forEach(c => c.classList.remove('active'))
@@ -873,6 +1093,37 @@
       applyFilter(chip.dataset.filter)
     })
   })
+
+  // carousel buttons
+  prevBtn.addEventListener('click', () => { prev(); restartAuto() })
+  nextBtn.addEventListener('click', () => { next(); restartAuto() })
+
+  // pause on hover
+  viewport.addEventListener('mouseenter', () => { isPaused = true; stopAuto() })
+  viewport.addEventListener('mouseleave', () => { isPaused = false; startAuto() })
+
+  // pause when tab hidden (perf + battery)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAuto()
+    else startAuto()
+  })
+
+  // resize
+  let resizeTimer = null
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(() => {
+      currentIdx = Math.min(currentIdx, maxIdx())
+      updateTransform(false)
+      renderDots()
+    }, 120)
+  })
+
+  // init
+  rebuildVisible()
+  updateTransform(false)
+  renderDots()
+  startAuto()
 </script>
 
 </body>
