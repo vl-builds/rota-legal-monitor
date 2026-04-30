@@ -228,6 +228,31 @@
   .severity-high { color: var(--accent-rose); font-size: 11px; font-weight: 600; }
   .severity-medium { color: var(--accent-blue); font-size: 11px; font-weight: 600; }
 
+  /* ---- hero full-bleed ---- */
+  .hero-full {
+    background-image: url('assets/images/bg.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 580px;
+    padding: 0;
+  }
+  .hero-right-layout {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 580px;
+    padding-top: var(--s-xxl);
+    padding-bottom: var(--s-xxl);
+  }
+  .hero-text-panel {
+    max-width: 500px;
+    background: rgba(10, 10, 10, 0.82);
+    padding: var(--s-xxl);
+    border-radius: var(--r-lg);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
   /* ---- responsive ---- */
   @media (max-width: 1024px) {
     .trust-items { grid-template-columns: repeat(2, 1fr); gap: var(--s-lg) 0; }
@@ -273,25 +298,20 @@
 </nav>
 
 <!-- ============== HERO ============== -->
-<section class="hero" style="padding-bottom: var(--s-xxl);">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow"><span class="dot"></span>Atualizado em abril de 2026</div>
-        <h1 class="display-xl">
-          Sua rota para a Europa existe.<br/>
-          <span class="accent">A gente ajuda a traçar.</span>
-        </h1>
-        <p class="lede">
-          Informações oficiais de imigração para 10 países, em português, atualizadas todo mês.
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="comparar.html">Comparar países</a>
-          <a class="btn btn-secondary" href="qual-pais.html">Qual país é o meu?</a>
-        </div>
-      </div>
-      <div style="display:flex; align-items:center; justify-content:center;">
-        <img src="assets/images/bg.png" alt="Rota Legal" style="width:100%; max-width:640px; border-radius:var(--r-lg); display:block;">
+<section class="hero hero-full">
+  <div class="container hero-right-layout">
+    <div class="hero-text-panel">
+      <div class="eyebrow"><span class="dot"></span>Atualizado em abril de 2026</div>
+      <h1 class="display-xl">
+        Sua rota para a Europa existe.<br/>
+        <span class="accent">A gente ajuda a traçar.</span>
+      </h1>
+      <p class="lede">
+        Informações oficiais de imigração para 10 países, em português, atualizadas todo mês.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="comparar.html">Comparar países</a>
+        <a class="btn btn-secondary" href="qual-pais.html">Qual país é o meu?</a>
       </div>
     </div>
   </div>
