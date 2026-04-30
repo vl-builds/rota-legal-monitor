@@ -112,7 +112,7 @@ Emoção alvo: competência tranquila. Não impressionar, gerar confiança.
 
 ### Direção Estética
 
-Dark mode. Canvas `#0a0a0a`, amarelo elétrico `#faff69` como único accent. Inter + JetBrains Mono. Inspiração: ClickHouse docs — denso, preciso, sem decoração. Anti-referências: sites de agência de imigração com stock photos, portais gov.br confusos, guias de blog informal.
+Dark mode. Canvas `#0a0a0a`, laranja elétrico `#ff6b00` como único accent. Inter + JetBrains Mono. Inspiração: ClickHouse docs — denso, preciso, sem decoração. Anti-referências: sites de agência de imigração com stock photos, portais gov.br confusos, guias de blog informal.
 
 ### Princípios de Design
 

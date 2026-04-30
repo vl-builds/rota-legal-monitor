@@ -11,10 +11,10 @@
   --surface-card: #1a1a1a;
   --surface-elevated: #242424;
 
-  /* primary (electric yellow) */
-  --primary: #faff69;
-  --primary-active: #e6eb52;
-  --primary-disabled: #3a3a1f;
+  /* primary (electric orange) */
+  --primary: #ff6b00;
+  --primary-active: #e55f00;
+  --primary-disabled: #3a1a00;
 
   /* hairlines */
   --hairline: #2a2a2a;
@@ -275,7 +275,7 @@ section { padding: var(--s-section) 0; }
 }
 .code-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--hairline-strong); }
 .code-bar .dot.r { background: #ef4444; }
-.code-bar .dot.y { background: #faff69; }
+.code-bar .dot.y { background: #ff6b00; }
 .code-bar .dot.g { background: #22c55e; }
 .code-bar .file { margin-left: var(--s-md); font-size: 12px; color: var(--muted); letter-spacing: 0.2px; }
 .code-body {
@@ -285,7 +285,7 @@ section { padding: var(--s-section) 0; }
   color: var(--body-strong);
   overflow-x: auto;
 }
-.code-body .kw  { color: #faff69; }
+.code-body .kw  { color: #ff6b00; }
 .code-body .fn  { color: #3b82f6; }
 .code-body .str { color: #22c55e; }
 .code-body .com { color: var(--muted-soft); }

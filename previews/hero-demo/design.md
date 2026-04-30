@@ -10,7 +10,7 @@ mode: dark
 | canvas        | #0a0a0a  | background                 |
 | surface-card  | #1a1a1a  | cards                      |
 | surface-bar   | #131313  | card header bars           |
-| primary       | #faff69  | accent, CTA, highlight     |
+| primary       | #ff6b00  | accent, CTA, highlight     |
 | on-dark       | #ffffff  | primary text               |
 | body          | #cccccc  | running text               |
 | body-strong   | #e6e6e6  | secondary headings         |
@@ -37,6 +37,6 @@ mode: dark
 
 - No box-shadow (depth comes from surface contrast)
 - No inline hex values (always use tokens)
-- Yellow is scarce: max one accent use per section
+- Orange is scarce: max one accent use per section
 - No emoji in UI text
 - No semicolons in prose

@@ -13,7 +13,7 @@ previews/
 └── CLAUDE.md                 este ficheiro
 ```
 
-A estética é baseada no sistema visual da ClickHouse: canvas preto, accent amarelo elétrico, tipografia Inter weight 700 com letter-spacing negativo, código em JetBrains Mono. Todos os tokens estão em `assets/design-system.css`.
+A estética é baseada no sistema visual da ClickHouse: canvas preto, accent laranja elétrico, tipografia Inter weight 700 com letter-spacing negativo, código em JetBrains Mono. Todos os tokens estão em `assets/design-system.css`.
 
 ## Como criar uma página nova (passo a passo)
 
@@ -83,7 +83,7 @@ Todos definidos em `:root` no início de `assets/design-system.css`. Sempre usa 
 | `--canvas` | #0a0a0a | fundo principal |
 | `--surface-card` | #1a1a1a | cards |
 | `--surface-elevated` | #242424 | cards aninhados |
-| `--primary` | #faff69 | accent amarelo, CTAs, stats |
+| `--primary` | #ff6b00 | accent laranja, CTAs, stats |
 | `--on-primary` | #0a0a0a | texto sobre amarelo |
 | `--hairline` | #2a2a2a | bordas finas de cards |
 | `--on-dark` | #ffffff | texto principal |
@@ -156,4 +156,4 @@ O ficheiro `.claude/launch.json` na raiz tem a configuração do servidor estát
 - Se não souberes que classe usar, abre `clickhouse-style.html`, procura um exemplo análogo, copia.
 - Se nenhuma classe encaixa, prefere adicionar uma classe nova ao `design-system.css` em vez de inline styles.
 - Se a página parece monótona, alterna superfícies (canvas, dark card, yellow card, code window) entre bandas consecutivas.
-- Se quiseres mudar a paleta, mexe só nos tokens em `:root`. Não procures `#faff69` no resto do CSS, ele está só lá uma vez.
+- Se quiseres mudar a paleta, mexe só nos tokens em `:root`. Não procures `#ff6b00` no resto do CSS, ele está só lá uma vez.

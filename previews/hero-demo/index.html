@@ -8,7 +8,7 @@
   --canvas:       #0a0a0a;
   --surface-card: #1a1a1a;
   --surface-bar:  #131313;
-  --primary:      #faff69;
+  --primary:      #ff6b00;
   --on-dark:      #ffffff;
   --body:         #cccccc;
   --body-strong:  #e6e6e6;
@@ -36,8 +36,8 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 1000px 640px at 50% 58%,
-    rgba(250,255,105,0.08) 0%,
-    rgba(250,255,105,0.03) 40%,
+    rgba(255, 107, 0,0.08) 0%,
+    rgba(255, 107, 0,0.03) 40%,
     transparent 70%);
   pointer-events: none;
 }
@@ -50,7 +50,7 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 340px;
   font-weight: 700;
-  color: rgba(250,255,105,0.04);
+  color: rgba(255, 107, 0,0.04);
   letter-spacing: -14px;
   white-space: nowrap;
   pointer-events: none;
@@ -92,8 +92,8 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--primary);
-  background: rgba(250,255,105,0.10);
-  border: 1px solid rgba(250,255,105,0.25);
+  background: rgba(255, 107, 0,0.10);
+  border: 1px solid rgba(255, 107, 0,0.25);
   border-radius: 9999px;
   padding: 3px 12px;
   letter-spacing: 0.5px;
@@ -184,8 +184,8 @@
   font-size: 15px;
   font-weight: 500;
   color: var(--primary);
-  background: rgba(250,255,105,0.08);
-  border: 1px solid rgba(250,255,105,0.20);
+  background: rgba(255, 107, 0,0.08);
+  border: 1px solid rgba(255, 107, 0,0.20);
   border-radius: 9999px;
   padding: 5px 16px;
 }
@@ -366,7 +366,7 @@
 #income-hl {
   position: absolute;
   inset: 0;
-  background: rgba(250,255,105,0.025);
+  background: rgba(255, 107, 0,0.025);
   pointer-events: none;
 }
 
@@ -376,8 +376,8 @@
   font-size: 14px;
   font-weight: 700;
   color: var(--primary);
-  background: rgba(250,255,105,0.10);
-  border: 1px solid rgba(250,255,105,0.30);
+  background: rgba(255, 107, 0,0.10);
+  border: 1px solid rgba(255, 107, 0,0.30);
   border-radius: 9999px;
   padding: 5px 14px;
   margin-left: 12px;
@@ -717,17 +717,17 @@
     );
     tl.fromTo("#income-nl",
       { color: "#e6e6e6" },
-      { color: "#faff69", duration: 0.40, ease: "power2.out" },
+      { color: "#ff6b00", duration: 0.40, ease: "power2.out" },
       7.15
     );
     tl.fromTo("#income-de",
       { color: "#e6e6e6" },
-      { color: "#faff69", duration: 0.40, ease: "power2.out" },
+      { color: "#ff6b00", duration: 0.40, ease: "power2.out" },
       7.30
     );
     tl.fromTo("#income-pt",
       { color: "#e6e6e6" },
-      { color: "#faff69", duration: 0.40, ease: "power2.out" },
+      { color: "#ff6b00", duration: 0.40, ease: "power2.out" },
       7.45
     );
     tl.fromTo("#badge-menor",
