@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculadora de Reserva — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+
+  .calc-body {
+    padding: var(--s-xl) 0 var(--s-section);
+  }
+  .calc-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--s-xl);
+    align-items: start;
+  }
+
+  /* ---- inputs panel ---- */
+  .inputs-panel {
+    position: sticky;
+    top: 80px;
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+  }
+  .inputs-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: var(--s-lg);
+  }
+
+  /* form groups */
+  .form-group { margin-bottom: var(--s-lg); }
+  .form-group:last-child { margin-bottom: 0; }
+  .form-label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--muted); letter-spacing: 0.3px; margin-bottom: var(--s-xs);
+  }
+
+  /* select */
+  .form-select {
+    width: 100%; padding: 10px var(--s-md);
+    background: var(--surface-elevated);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    color: var(--on-dark); font-family: inherit;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    transition: border-color 120ms ease;
+  }
+  .form-select:focus { outline: none; border-color: var(--primary); }
+
+  /* toggle group */
+  .toggle-group {
+    display: flex;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    overflow: hidden;
+  }
+  .toggle-btn {
+    flex: 1; padding: 9px 4px;
+    background: var(--surface-elevated);
+    border: none; border-right: 1px solid var(--hairline);
+    color: var(--muted); font-family: inherit;
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+    line-height: 1.3;
+  }
+  .toggle-btn:last-child { border-right: none; }
+  .toggle-btn:hover:not(.active) { background: var(--hairline); color: var(--body); }
+  .toggle-btn.active { background: var(--on-dark); color: var(--canvas); font-weight: 700; }
+
+  /* range slider */
+  .range-wrap { display: flex; align-items: center; gap: var(--s-sm); }
+  .form-range {
+    flex: 1; -webkit-appearance: none; appearance: none;
+    height: 4px; background: var(--hairline); border-radius: 2px; outline: none;
+  }
+  .form-range::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 18px; height: 18px;
+    background: var(--primary); border-radius: 50%; cursor: pointer;
+    transition: transform 120ms ease;
+  }
+  .form-range::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  .range-val {
+    font-size: 15px; font-weight: 700; color: var(--on-dark);
+    font-family: "JetBrains Mono", monospace;
+    min-width: 28px; text-align: right;
+  }
+
+  /* brl rate */
+  .rate-input {
+    width: 80px; padding: 6px 8px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    color: var(--on-dark); font-family: "JetBrains Mono", monospace;
+    font-size: 13px; text-align: right;
+  }
+  .rate-input:focus { outline: none; border-color: var(--primary); }
+
+  /* ---- result panel ---- */
+  .result-panel {}
+
+  /* total card */
+  .total-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    margin-bottom: var(--s-lg);
+  }
+  .total-card-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: var(--s-md);
+  }
+  .total-amounts {
+    display: flex; align-items: baseline; gap: var(--s-lg); flex-wrap: wrap;
+    margin-bottom: var(--s-md);
+  }
+  .total-eur {
+    font-size: 52px; font-weight: 700; letter-spacing: -2px;
+    color: var(--primary); line-height: 1; font-family: "JetBrains Mono", monospace;
+  }
+  .total-brl {
+    font-size: 22px; font-weight: 600; letter-spacing: -0.5px;
+    color: var(--muted); font-family: "JetBrains Mono", monospace;
+  }
+  .total-context {
+    font-size: 13px; color: var(--muted); line-height: 1.5;
+  }
+  .total-monthly {
+    display: flex; align-items: baseline; gap: var(--s-xs);
+    padding-top: var(--s-md); border-top: 1px solid var(--hairline); margin-top: var(--s-md);
+  }
+  .monthly-val {
+    font-size: 20px; font-weight: 700; color: var(--on-dark);
+    font-family: "JetBrains Mono", monospace; letter-spacing: -0.5px;
+  }
+  .monthly-label { font-size: 13px; color: var(--muted); }
+
+  /* breakdown card */
+  .breakdown-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    margin-bottom: var(--s-lg);
+  }
+  .breakdown-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: var(--s-lg);
+  }
+  .breakdown-row { margin-bottom: var(--s-md); }
+  .breakdown-row:last-child { margin-bottom: 0; }
+  .breakdown-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .breakdown-name { font-size: 13px; color: var(--body); font-weight: 500; }
+  .breakdown-amt {
+    font-size: 13px; font-weight: 700; color: var(--on-dark);
+    font-family: "JetBrains Mono", monospace;
+  }
+  .breakdown-track {
+    height: 4px; background: var(--hairline); border-radius: 2px;
+  }
+  .breakdown-fill {
+    height: 4px; border-radius: 2px;
+    transition: width 350ms cubic-bezier(.4,0,.2,1);
+  }
+
+  /* onetime card */
+  .onetime-card {
+    background: var(--surface-soft);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg) var(--s-xl);
+    margin-bottom: var(--s-lg);
+  }
+  .onetime-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: var(--s-xs) 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 13px;
+  }
+  .onetime-row:last-child { border-bottom: none; }
+  .onetime-row-label { color: var(--body); }
+  .onetime-row-val { color: var(--on-dark); font-weight: 600; font-family: "JetBrains Mono", monospace; }
+  .onetime-row-val.total-row { color: var(--primary); font-size: 15px; }
+
+  /* alert */
+  .calc-alert {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: var(--r-md);
+    padding: var(--s-md) var(--s-lg);
+    font-size: 13px; color: var(--body); line-height: 1.5;
+    margin-bottom: var(--s-lg);
+    display: none;
+  }
+  .calc-alert.visible { display: block; }
+  .alert-label { font-weight: 700; color: var(--accent-rose); display: block; margin-bottom: 4px; }
+
+  /* disclaimer */
+  .calc-disclaimer {
+    font-size: 11px; color: var(--muted-soft);
+    font-family: "JetBrains Mono", monospace;
+    line-height: 1.6;
+  }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    .calc-layout { grid-template-columns: 1fr; }
+    .inputs-panel { position: static; }
+    .total-eur { font-size: 36px; }
+  }
+  @media (max-width: 640px) {
+    .total-eur { font-size: 30px; }
+    .total-brl { font-size: 18px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <span class="logo-dot"></span>
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html" style="color: var(--on-dark);">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="comparar.html">Comparar</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<div class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Calculadora</span>
+    <h1 class="page-title">Quanto você precisa juntar?</h1>
+    <p class="page-sub">Estime a reserva financeira necessária para os primeiros meses no exterior, com base em custos reais do país de destino.</p>
+  </div>
+</div>
+
+<!-- ============== CALCULATOR ============== -->
+<div class="calc-body">
+  <div class="container">
+    <div class="calc-layout">
+
+      <!-- ---- INPUTS ---- -->
+      <aside class="inputs-panel">
+        <p class="inputs-title">Configurar cenário</p>
+
+        <!-- país -->
+        <div class="form-group">
+          <label class="form-label" for="sel-country">País de destino</label>
+          <select class="form-select" id="sel-country" onchange="recalc()">
+            <option value="nl">Holanda</option>
+            <option value="de">Alemanha</option>
+            <option value="pt">Portugal</option>
+            <option value="es">Espanha</option>
+            <option value="ie">Irlanda</option>
+            <option value="fr">França</option>
+            <option value="it">Itália</option>
+            <option value="be">Bélgica</option>
+            <option value="at">Áustria</option>
+            <option value="au">Austrália</option>
+          </select>
+        </div>
+
+        <!-- meses até a renda -->
+        <div class="form-group">
+          <label class="form-label">Meses até a primeira renda: <span id="months-val" style="color:var(--on-dark);font-weight:700;">3</span></label>
+          <div class="range-wrap">
+            <span style="font-size:12px;color:var(--muted);">1</span>
+            <input type="range" class="form-range" id="sel-months"
+              min="1" max="12" value="3"
+              oninput="document.getElementById('months-val').textContent=this.value;recalc()"
+            />
+            <span style="font-size:12px;color:var(--muted);">12</span>
+          </div>
+        </div>
+
+        <!-- estilo de vida -->
+        <div class="form-group">
+          <label class="form-label">Estilo de vida</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-group="lifestyle" data-val="frugal" onclick="setToggle('lifestyle','frugal',this)">Frugal</button>
+            <button class="toggle-btn" data-group="lifestyle" data-val="balanced" onclick="setToggle('lifestyle','balanced',this)">Equilibrado</button>
+            <button class="toggle-btn" data-group="lifestyle" data-val="comfortable" onclick="setToggle('lifestyle','comfortable',this)">Confortável</button>
+          </div>
+        </div>
+
+        <!-- moradia -->
+        <div class="form-group">
+          <label class="form-label">Moradia</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-group="housing" data-val="shared" onclick="setToggle('housing','shared',this)">Dividido</button>
+            <button class="toggle-btn" data-group="housing" data-val="solo" onclick="setToggle('housing','solo',this)">Apto próprio</button>
+          </div>
+        </div>
+
+        <!-- família -->
+        <div class="form-group">
+          <label class="form-label">Quem vai junto?</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-group="family" data-val="alone" onclick="setToggle('family','alone',this)">Sozinho(a)</button>
+            <button class="toggle-btn" data-group="family" data-val="partner" onclick="setToggle('family','partner',this)">Casal</button>
+            <button class="toggle-btn" data-group="family" data-val="full" onclick="setToggle('family','full',this)">Família</button>
+          </div>
+        </div>
+
+        <!-- passagens -->
+        <div class="form-group">
+          <label class="form-label">Passagens aéreas (R$): <span id="flights-val" style="color:var(--on-dark);font-weight:700;">4.500</span></label>
+          <div class="range-wrap">
+            <span style="font-size:12px;color:var(--muted);">1k</span>
+            <input type="range" class="form-range" id="sel-flights"
+              min="1000" max="20000" step="500" value="4500"
+              oninput="document.getElementById('flights-val').textContent=Number(this.value).toLocaleString('pt-BR');recalc()"
+            />
+            <span style="font-size:12px;color:var(--muted);">20k</span>
+          </div>
+        </div>
+
+        <!-- taxa -->
+        <div class="form-group" style="border-top:1px solid var(--hairline);padding-top:var(--s-lg);">
+          <label class="form-label" style="display:flex;align-items:center;justify-content:space-between;">
+            <span>Taxa EUR/BRL (referência)</span>
+            <input type="number" class="rate-input" id="sel-rate" value="6.0" step="0.1" min="1" onchange="recalc()" />
+          </label>
+          <p style="font-size:11px;color:var(--muted-soft);margin-top:4px;font-family:'JetBrains Mono',monospace;">apenas para conversão indicativa</p>
+        </div>
+      </aside>
+
+      <!-- ---- RESULT ---- -->
+      <div class="result-panel" id="result-panel">
+        <!-- preenchido por JS -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== CTA BAND ============== -->
+<div class="cta-band-yellow">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s-lg);">
+      <div>
+        <div style="font-size:28px;font-weight:700;letter-spacing:-0.8px;color:var(--on-primary);margin-bottom:var(--s-xs);">Próximo passo: escolher o destino certo</div>
+        <p style="color:rgba(0,0,0,0.55);font-size:15px;margin:0;">Responda 6 perguntas e receba uma recomendação personalizada.</p>
+      </div>
+      <a class="btn btn-on-yellow" href="qual-pais.html">Descobrir meu país</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <span class="logo-dot"></span>
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- dados de custo de vida por país (EUR/mês) ----
+const COSTS = {
+  nl: { name:'Holanda',   city:'Amsterdam', flag:'nl', rent_shared:950,  rent_solo:1450, food:350, transport:100, health:150, misc:200, visa:400,  detail:'pais-nl.html' },
+  de: { name:'Alemanha',  city:'Berlim',    flag:'de', rent_shared:720,  rent_solo:1150, food:300, transport: 90, health:120, misc:180, visa:350,  detail:'paises.html' },
+  pt: { name:'Portugal',  city:'Lisboa',    flag:'pt', rent_shared:720,  rent_solo:1100, food:250, transport: 50, health: 80, misc:150, visa:250,  detail:'paises.html' },
+  es: { name:'Espanha',   city:'Madrid',    flag:'es', rent_shared:580,  rent_solo: 950, food:280, transport: 60, health: 80, misc:150, visa:300,  detail:'paises.html' },
+  ie: { name:'Irlanda',   city:'Dublin',    flag:'ie', rent_shared:980,  rent_solo:1550, food:380, transport:130, health:100, misc:200, visa:400,  detail:'paises.html' },
+  fr: { name:'França',    city:'Paris',     flag:'fr', rent_shared:780,  rent_solo:1250, food:320, transport: 90, health:100, misc:180, visa:350,  detail:'paises.html' },
+  it: { name:'Itália',    city:'Milão',     flag:'it', rent_shared:580,  rent_solo: 950, food:270, transport: 80, health:100, misc:150, visa:280,  detail:'paises.html' },
+  be: { name:'Bélgica',   city:'Bruxelas',  flag:'be', rent_shared:670,  rent_solo: 980, food:300, transport: 90, health:100, misc:180, visa:350,  detail:'paises.html' },
+  at: { name:'Áustria',   city:'Viena',     flag:'at', rent_shared:720,  rent_solo:1150, food:300, transport:100, health:120, misc:180, visa:350,  detail:'paises.html' },
+  au: { name:'Austrália', city:'Sydney',    flag:'au', rent_shared:1050, rent_solo:1650, food:400, transport:150, health:150, misc:250, visa:600,  detail:'paises.html' },
+};
+
+// ---- estado dos toggles ----
+const toggleState = {
+  lifestyle: 'frugal',
+  housing:   'shared',
+  family:    'alone',
+};
+
+function setToggle(group, val, btn) {
+  toggleState[group] = val;
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  recalc();
+}
+
+// ---- formatação ----
+function eur(n) {
+  return 'EUR ' + Math.round(n).toLocaleString('de-DE');
+}
+function brl(n) {
+  return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+}
+
+// ---- cálculo ----
+function recalc() {
+  const country  = document.getElementById('sel-country').value;
+  const months   = parseInt(document.getElementById('sel-months').value);
+  const rate     = parseFloat(document.getElementById('sel-rate').value) || 6.0;
+  const flights  = parseInt(document.getElementById('sel-flights').value) || 0;
+  const { lifestyle, housing, family } = toggleState;
+
+  const c = COSTS[country];
+
+  // multiplicadores
+  const lm = { frugal:0.75, balanced:1.0, comfortable:1.40 }[lifestyle];
+  const fm = { alone:1.0, partner:1.65, full:2.2 }[family];
+  // moradia: casal/família em apto compartilhado paga mais; em solo continua igual
+  const rentFm = housing === 'solo'
+    ? 1.0
+    : { alone:1.0, partner:1.5, full:2.0 }[family];
+
+  const rent      = (housing === 'shared' ? c.rent_shared : c.rent_solo) * lm * rentFm;
+  const food      = c.food      * lm * fm;
+  const transport = c.transport * lm * fm;
+  const health    = c.health    * lm * fm;
+  const misc      = c.misc      * lm * fm;
+
+  const monthly   = rent + food + transport + health + misc;
+  const living    = monthly * months;
+  const emergency = monthly * 2;
+  const visa      = c.visa;
+  const flightsEur = flights / rate;
+
+  const grand = living + emergency + visa + flightsEur;
+  const grandBrl = grand * rate;
+
+  // breakdown bars (max = rent para referência de escala)
+  const maxBar = Math.max(rent * months, emergency);
+
+  function bar(amt, color) {
+    const pct = Math.min(100, Math.round((amt / maxBar) * 100));
+    return `<div class="breakdown-track"><div class="breakdown-fill" style="width:${pct}%;background:${color};"></div></div>`;
+  }
+
+  const alertVisible = months > 6;
+
+  const html = `
+    <div class="total-card">
+      <p class="total-card-label">Reserva recomendada para ${months} ${months === 1 ? 'mês' : 'meses'} em ${c.city}</p>
+      <div class="total-amounts">
+        <span class="total-eur">${eur(grand)}</span>
+        <span class="total-brl">${brl(grandBrl)}</span>
+      </div>
+      <p class="total-context">Inclui custo de vida, margem de emergência, burocracia e passagens. Taxa usada: 1 EUR = ${rate.toFixed(1)} BRL.</p>
+      <div class="total-monthly">
+        <span class="monthly-val">${eur(monthly)}</span>
+        <span class="monthly-label">/mês de custo estimado</span>
+      </div>
+    </div>
+
+    <div class="calc-alert${alertVisible ? ' visible' : ''}">
+      <span class="alert-label">Atenção: janela longa</span>
+      Seis meses ou mais sem renda é um cenário de alto risco. Considere ter uma oferta de emprego antes de partir, ou reduzir o período-alvo.
+    </div>
+
+    <div class="breakdown-card">
+      <p class="breakdown-title">Custo de vida: ${months} ${months === 1 ? 'mês' : 'meses'}</p>
+
+      <div class="breakdown-row">
+        <div class="breakdown-meta">
+          <span class="breakdown-name">Moradia</span>
+          <span class="breakdown-amt">${eur(rent * months)}</span>
+        </div>
+        ${bar(rent * months, 'var(--primary)')}
+      </div>
+
+      <div class="breakdown-row">
+        <div class="breakdown-meta">
+          <span class="breakdown-name">Alimentação</span>
+          <span class="breakdown-amt">${eur(food * months)}</span>
+        </div>
+        ${bar(food * months, 'var(--accent-blue)')}
+      </div>
+
+      <div class="breakdown-row">
+        <div class="breakdown-meta">
+          <span class="breakdown-name">Transporte</span>
+          <span class="breakdown-amt">${eur(transport * months)}</span>
+        </div>
+        ${bar(transport * months, 'var(--accent-blue)')}
+      </div>
+
+      <div class="breakdown-row">
+        <div class="breakdown-meta">
+          <span class="breakdown-name">Saúde e seguro</span>
+          <span class="breakdown-amt">${eur(health * months)}</span>
+        </div>
+        ${bar(health * months, 'var(--accent-blue)')}
+      </div>
+
+      <div class="breakdown-row">
+        <div class="breakdown-meta">
+          <span class="breakdown-name">Gastos variados</span>
+          <span class="breakdown-amt">${eur(misc * months)}</span>
+        </div>
+        ${bar(misc * months, 'var(--accent-blue)')}
+      </div>
+
+      <div class="breakdown-row" style="border-top:1px solid var(--hairline);padding-top:var(--s-md);margin-top:var(--s-md);">
+        <div class="breakdown-meta">
+          <span class="breakdown-name" style="font-weight:600;color:var(--on-dark);">Subtotal custo de vida</span>
+          <span class="breakdown-amt" style="color:var(--primary);">${eur(living)}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="onetime-card">
+      <p class="breakdown-title" style="margin-bottom:var(--s-sm);">Custos adicionais</p>
+      <div class="onetime-row">
+        <span class="onetime-row-label">Reserva de emergência (2 meses extra)</span>
+        <span class="onetime-row-val">${eur(emergency)}</span>
+      </div>
+      <div class="onetime-row">
+        <span class="onetime-row-label">Burocracia: vistos, traduções e taxas</span>
+        <span class="onetime-row-val">${eur(visa)}</span>
+      </div>
+      <div class="onetime-row">
+        <span class="onetime-row-label">Passagens aéreas (estimativa)</span>
+        <span class="onetime-row-val">${eur(flightsEur)}</span>
+      </div>
+      <div class="onetime-row" style="padding-top:var(--s-sm);">
+        <span class="onetime-row-label" style="font-weight:700;color:var(--on-dark);">Total geral</span>
+        <span class="onetime-row-val total-row">${eur(grand)}</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:var(--s-md);flex-wrap:wrap;margin-bottom:var(--s-lg);">
+      <a class="btn btn-primary" href="${c.detail}">Ver vistos para ${c.name} →</a>
+      <a class="btn btn-secondary" href="comparar.html">Comparar países</a>
+    </div>
+
+    <p class="calc-disclaimer">
+      Estimativas baseadas em médias de custo de vida em ${c.city} para ${new Date().getFullYear()}.
+      Valores reais variam por bairro, estilo pessoal e momento do mercado.
+      Não inclui: matrícula escolar, carro, mobília, cursos de idioma.
+      Consulte fontes locais antes de planejar.
+    </p>
+  `;
+
+  document.getElementById('result-panel').innerHTML = html;
+}
+
+// ---- inicializa ----
+recalc();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Histórico de mudanças — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+
+  /* ---- stats strip ---- */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--surface-soft);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .stat-cell {
+    padding: var(--s-lg) var(--s-xl);
+    display: flex; flex-direction: column; gap: var(--s-xxs);
+  }
+  .stat-cell + .stat-cell { border-left: 1px solid var(--hairline); }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .stat-val { font-size: 22px; font-weight: 700; color: var(--on-dark); letter-spacing: -0.5px; line-height: 1; }
+  .stat-val.accent { color: var(--primary); }
+  .stat-val.rose   { color: var(--accent-rose); }
+  .stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ---- filter bar ---- */
+  .filter-bar {
+    position: sticky;
+    top: 64px; z-index: 40;
+    background: var(--canvas);
+    border-bottom: 1px solid var(--hairline);
+    padding: var(--s-md) 0;
+  }
+  .filter-inner {
+    display: flex; align-items: center; gap: var(--s-lg); flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 12px; font-weight: 600; color: var(--muted);
+    letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0;
+  }
+  .filter-divider {
+    width: 1px; height: 20px; background: var(--hairline); flex-shrink: 0;
+  }
+  .filter-chips { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
+
+  .fchip {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 12px; border-radius: var(--r-pill);
+    font-size: 12px; font-weight: 500; color: var(--body);
+    background: transparent; border: 1px solid var(--hairline);
+    cursor: pointer; font-family: inherit;
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    line-height: 1;
+  }
+  .fchip:hover { border-color: var(--hairline-strong); color: var(--on-dark); }
+  .fchip.active { background: var(--on-dark); color: var(--canvas); border-color: var(--on-dark); font-weight: 600; }
+  .fchip-flag { width: 16px; height: 11px; border-radius: 2px; display: block; flex-shrink: 0; }
+
+  .sev-toggle { display: flex; border: 1px solid var(--hairline); border-radius: var(--r-pill); overflow: hidden; }
+  .sev-btn {
+    padding: 5px 14px; font-size: 12px; font-weight: 500;
+    color: var(--muted); background: transparent;
+    border: none; border-right: 1px solid var(--hairline);
+    cursor: pointer; font-family: inherit;
+    transition: background 120ms ease, color 120ms ease;
+    white-space: nowrap;
+  }
+  .sev-btn:last-child { border-right: none; }
+  .sev-btn:hover:not(.active) { color: var(--body); }
+  .sev-btn.active { background: var(--on-dark); color: var(--canvas); font-weight: 700; }
+
+  /* ---- main layout ---- */
+  .hist-body { padding: var(--s-xl) 0 var(--s-section); }
+  .hist-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: var(--s-xl);
+    align-items: start;
+  }
+
+  /* ---- alert signup card ---- */
+  .alert-signup {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg) var(--s-xl);
+    margin-bottom: var(--s-xl);
+  }
+  .alert-signup-title { font-size: 15px; font-weight: 700; color: var(--on-dark); margin: 0 0 var(--s-xs); }
+  .alert-signup-sub { font-size: 13px; color: var(--body); margin: 0 0 var(--s-md); line-height: 1.5; }
+  .alert-signup-form { display: flex; gap: var(--s-xs); }
+  .alert-email-input {
+    flex: 1; padding: 9px var(--s-md);
+    background: var(--surface-elevated); border: 1px solid var(--hairline);
+    border-radius: var(--r-md); color: var(--on-dark);
+    font-family: inherit; font-size: 13px;
+  }
+  .alert-email-input::placeholder { color: var(--muted); }
+  .alert-email-input:focus { outline: none; border-color: var(--primary); }
+  .alert-note { font-size: 11px; color: var(--muted-soft); margin-top: var(--s-xs); font-family: "JetBrains Mono", monospace; }
+
+  /* ---- timeline ---- */
+  .timeline-area { min-width: 0; }
+  .empty-state {
+    padding: var(--s-xl) var(--s-lg);
+    text-align: center; background: var(--surface-card);
+    border: 1px solid var(--hairline); border-radius: var(--r-lg);
+    color: var(--muted); font-size: 14px;
+  }
+
+  .month-group { margin-bottom: var(--s-xl); }
+  .month-header {
+    display: flex; align-items: center; gap: var(--s-md);
+    margin-bottom: var(--s-lg);
+  }
+  .month-name { font-size: 13px; font-weight: 700; color: var(--on-dark); white-space: nowrap; }
+  .month-line { flex: 1; height: 1px; background: var(--hairline); }
+  .month-count { font-size: 11px; color: var(--muted); font-family: "JetBrains Mono", monospace; white-space: nowrap; }
+
+  .timeline-track {
+    position: relative;
+    padding-left: var(--s-xl);
+    border-left: 2px solid var(--hairline);
+    display: flex; flex-direction: column; gap: var(--s-md);
+  }
+
+  .entry-card {
+    position: relative;
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg) var(--s-xl);
+  }
+  /* timeline dot */
+  .entry-card::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--s-xl) - 5px);
+    top: 18px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--canvas);
+  }
+  .entry-card.sev-major::before { background: var(--accent-rose); box-shadow: 0 0 0 2px rgba(239,68,68,0.2); }
+  .entry-card.sev-minor::before { background: var(--primary); box-shadow: 0 0 0 2px rgba(250,255,105,0.2); }
+  .entry-card.sev-info::before  { background: var(--accent-blue); box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+
+  .entry-meta {
+    display: flex; align-items: center; gap: var(--s-xs);
+    margin-bottom: var(--s-sm); flex-wrap: wrap;
+  }
+  .entry-flag { width: 18px; height: 13px; border-radius: 2px; display: block; flex-shrink: 0; }
+  .entry-country-name { font-size: 12px; font-weight: 600; color: var(--muted); }
+  .entry-sep { color: var(--hairline-strong); font-size: 10px; }
+  .entry-date { font-size: 11px; color: var(--muted); font-family: "JetBrains Mono", monospace; }
+  .entry-date-spacer { flex: 1; }
+  .entry-sev-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    padding: 2px 8px; border-radius: var(--r-pill);
+    text-transform: uppercase;
+  }
+  .sev-major .entry-sev-badge { background: rgba(239,68,68,0.12); color: var(--accent-rose); }
+  .sev-minor .entry-sev-badge { background: rgba(250,255,105,0.12); color: var(--primary); }
+  .sev-info  .entry-sev-badge { background: rgba(59,130,246,0.10); color: var(--accent-blue); }
+  .entry-new-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    padding: 2px 8px; border-radius: var(--r-pill);
+    background: rgba(250,255,105,0.15); color: var(--primary);
+    text-transform: uppercase;
+  }
+
+  .entry-title { font-size: 15px; font-weight: 700; color: var(--on-dark); margin: 0 0 var(--s-xs); letter-spacing: -0.2px; line-height: 1.3; }
+  .entry-summary { font-size: 13px; color: var(--body); line-height: 1.6; margin-bottom: var(--s-md); }
+
+  .entry-affects { display: flex; gap: var(--s-xxs); flex-wrap: wrap; margin-bottom: var(--s-sm); }
+  .entry-affect-tag {
+    font-size: 11px; color: var(--muted);
+    background: var(--surface-elevated);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
+    padding: 2px 8px;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .entry-source {
+    font-size: 11px; color: var(--muted); font-family: "JetBrains Mono", monospace;
+    text-decoration: underline; text-underline-offset: 2px;
+    word-break: break-all;
+  }
+  .entry-source:hover { color: var(--primary); }
+
+  /* ---- sidebar ---- */
+  .sidebar { position: sticky; top: 116px; display: flex; flex-direction: column; gap: var(--s-md); }
+  .sidebar-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg);
+  }
+  .sidebar-card-title { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s-md); }
+  .sidebar-country-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--s-xs) 0; border-bottom: 1px solid var(--hairline);
+  }
+  .sidebar-country-row:last-child { border-bottom: none; }
+  .sidebar-country-left { display: flex; align-items: center; gap: var(--s-xs); }
+  .sidebar-flag { width: 18px; height: 13px; border-radius: 2px; display: block; }
+  .sidebar-country-name { font-size: 13px; color: var(--body); }
+  .sidebar-count {
+    font-size: 12px; font-weight: 700; color: var(--on-dark);
+    font-family: "JetBrains Mono", monospace;
+  }
+  .sidebar-legend { display: flex; flex-direction: column; gap: var(--s-sm); }
+  .legend-row { display: flex; align-items: center; gap: var(--s-sm); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend-text { font-size: 12px; color: var(--body); }
+  .legend-sub { font-size: 11px; color: var(--muted); display: block; }
+
+
+  /* responsive */
+  @media (max-width: 960px) {
+    .hist-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+    .sidebar-card { flex: 1; min-width: 200px; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell:nth-child(3) { border-left: none; border-top: 1px solid var(--hairline); }
+    .stat-cell:nth-child(4) { border-top: 1px solid var(--hairline); }
+  }
+  @media (max-width: 640px) {
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+    .filter-divider { display: none; }
+    .filter-label { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <span class="logo-dot"></span>
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html" style="color: var(--on-dark);">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">Ver países</a>
+      <a class="btn btn-primary" href="comparar.html">Comparar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<div class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Histórico</span>
+    <h1 class="page-title">Mudanças nas regras de imigração</h1>
+    <p class="page-sub">Registro cronológico de alterações em vistos, requisitos e taxas detectadas pelas extrações mensais automatizadas.</p>
+  </div>
+</div>
+
+<!-- ============== STATS STRIP ============== -->
+<div class="stats-strip" id="stats-strip">
+  <!-- preenchido por JS -->
+</div>
+
+<!-- ============== FILTER BAR ============== -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <span class="filter-label">Filtrar:</span>
+      <div class="filter-chips" id="country-chips"></div>
+      <div class="filter-divider"></div>
+      <div class="sev-toggle" id="sev-toggle">
+        <button class="sev-btn active" onclick="setSev('all',this)">Todas</button>
+        <button class="sev-btn" onclick="setSev('major',this)">Grandes</button>
+        <button class="sev-btn" onclick="setSev('minor',this)">Menores</button>
+        <button class="sev-btn" onclick="setSev('info',this)">Info</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== BODY ============== -->
+<div class="hist-body">
+  <div class="container">
+    <div class="hist-layout">
+
+      <!-- timeline -->
+      <div class="timeline-area">
+        <div class="alert-signup">
+          <p class="alert-signup-title">Receba alertas quando algo mudar</p>
+          <p class="alert-signup-sub">Notificação por email a cada ciclo mensal com as mudanças detectadas nos países que você acompanha.</p>
+          <div class="alert-signup-form">
+            <input type="email" class="alert-email-input" placeholder="seu@email.com" />
+            <button class="btn btn-primary" style="white-space:nowrap;">Ativar alertas</button>
+          </div>
+          <p class="alert-note">Funcionalidade em desenvolvimento. Sem spam, cancelamento a qualquer momento.</p>
+        </div>
+        <div id="timeline"></div>
+      </div>
+
+      <!-- sidebar -->
+      <aside class="sidebar" id="sidebar"></aside>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== CTA BAND ============== -->
+<div class="cta-band-yellow">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s-lg);">
+      <div>
+        <div style="font-size:28px;font-weight:700;letter-spacing:-0.8px;color:var(--on-primary);margin-bottom:var(--s-xs);">Compare os países afetados</div>
+        <p style="color:rgba(0,0,0,0.55);font-size:15px;margin:0;">Veja as regras atuais de cada país lado a lado.</p>
+      </div>
+      <a class="btn btn-on-yellow" href="comparar.html">Abrir comparador</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <span class="logo-dot"></span>
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- dados de mudanças (reais + sintéticos plausíveis) ----
+const CHANGES = [
+  // NL — sintético, baseado em example.json (limiar 2026)
+  {
+    country: 'nl', date: '2026-04-29', severity: 'info',
+    title: 'Extração mensal concluída: 21 tipos de visto mapeados',
+    summary: 'Ciclo de extração de abril/2026 finalizado. Foram confirmados 21 tipos de visto vigentes na Holanda, incluindo o Migrante Altamente Qualificado e o Visto de Orientação para Pessoas Altamente Qualificadas. Sem novas mudanças detectadas neste ciclo.',
+    affects: [],
+    sourceUrl: 'https://ind.nl/en/residence-permits/work',
+  },
+  // DE — sintético
+  {
+    country: 'de', date: '2026-04-29', severity: 'info',
+    title: 'Extração mensal concluída: 12 tipos de visto mapeados',
+    summary: 'Ciclo de extração de abril/2026 finalizado. Cartão Azul da UE e Chancenkarte confirmados como principais vias para profissionais de fora da UE. Sem novas mudanças detectadas neste ciclo.',
+    affects: [],
+    sourceUrl: 'https://www.make-it-in-germany.com/en/visa-residence/types',
+  },
+  // PT — sintético
+  {
+    country: 'pt', date: '2026-04-29', severity: 'info',
+    title: 'Extração mensal concluída: 12 tipos de visto mapeados',
+    summary: 'Ciclo de extração de abril/2026 finalizado. Identificadas 12 autorizações de residência vigentes, incluindo o regime de trabalho remoto e a autorização para atividade altamente qualificada.',
+    affects: [],
+    sourceUrl: 'https://aima.gov.pt/pt/trabalhar',
+  },
+  // BE — real
+  {
+    country: 'be', date: '2026-03-16', severity: 'minor',
+    title: 'Mudança de localização do Office of Immigration da Bélgica',
+    summary: 'Pessoas convocadas para entrevista de Proteção Internacional, outro procedimento de residência ou acompanhamento ICAM não devem mais se reportar ao PASSAGE 44 a partir de 16 de março de 2026. Nova localização comunicada individualmente.',
+    affects: ['Proteção Internacional', 'Procedimentos de residência', 'Acompanhamento ICAM'],
+    sourceUrl: 'https://dofi.ibz.be/en',
+  },
+  // NL — sintético, baseado em example.json
+  {
+    country: 'nl', date: '2026-01-01', severity: 'major',
+    title: 'Novos limiares salariais do IND para 2026',
+    summary: 'O IND publicou os valores mínimos de salário para o visto de Migrante Altamente Qualificado em 2026. Para profissionais acima de 30 anos: EUR 5.688/mês (antes EUR 5.331). Para profissionais abaixo de 30 anos: EUR 4.171/mês (antes EUR 3.909). Valores em vigor a partir de 1 de janeiro de 2026.',
+    affects: ['Migrante Altamente Qualificado'],
+    sourceUrl: 'https://ind.nl/en/news/normbedragen-2026',
+  },
+  // DE — sintético
+  {
+    country: 'de', date: '2026-01-01', severity: 'major',
+    title: 'Cartão Azul da UE: novo limiar salarial de EUR 50.700 em vigor',
+    summary: 'Reajuste anual do salário mínimo bruto para o EU Blue Card na Alemanha. Para profissões não consideradas de escassez: EUR 50.700/ano. Para profissões de escassez e profissionais em início de carreira: EUR 45.934. Valores em vigor desde 1 de janeiro de 2026.',
+    affects: ['Cartão Azul da UE'],
+    sourceUrl: 'https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card',
+  },
+  // IE — real
+  {
+    country: 'ie', date: '2024-09-02', severity: 'major',
+    title: 'Critical Skills Occupations List atualizada (SI 444/2024)',
+    summary: 'Nova versão da Critical Skills Occupations List entrou em vigor com a aprovação do SI 444 de 2024. A lista foi reorganizada para refletir as ocupações críticas elegíveis para o Employment Permit de Habilidades Críticas. Profissões em TI, ciências, engenharia, saúde e educação foram revisadas.',
+    affects: ['Critical Skills Employment Permit', 'TI e Tecnologia', 'Engenharia', 'Saúde', 'Educação'],
+    sourceUrl: 'https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/',
+  },
+  // PT — real
+  {
+    country: 'pt', date: '2024-06-04', severity: 'major',
+    title: 'Revogação das autorizações de residência com dispensa de visto',
+    summary: 'Revogadas as autorizações de residência para exercício de atividade profissional subordinada e independente com dispensa de visto de residência, a partir de 4 de junho de 2024. Continuam a aplicar-se aos pedidos anteriores a esta data. Afeta especialmente brasileiros que trabalhavam em Portugal sem documentação prévia.',
+    affects: ['AR Subordinada com Dispensa de Visto', 'AR Independente com Dispensa de Visto'],
+    sourceUrl: 'https://aima.gov.pt/pt/trabalhar',
+  },
+  // PT — real
+  {
+    country: 'pt', date: '2024-06-04', severity: 'major',
+    title: 'Revogação do Artigo 88º, nº 2 do REPSAE',
+    summary: 'O artigo 88º, nº 2 do REPSAE, que permitia a regularização sem visto prévio mediante promessa de contrato de trabalho, foi revogado pelo Decreto-Lei n.º 37-A/2024, de 3 de junho. Encerra uma via de regularização muito usada por brasileiros que já estavam no país.',
+    affects: ['AR Subordinada com Dispensa de Visto'],
+    sourceUrl: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-',
+  },
+  // IE — real
+  {
+    country: 'ie', date: '2024-01-01', severity: 'major',
+    title: 'Employment Permits Act 2024 entra em vigor',
+    summary: 'A nova lei consolida e atualiza todos os tipos de Employment Permits na Irlanda, agora regulados por um único instrumento legal. Nove categorias de vistos de trabalho definidas. Simplifica o processo para empregadores e candidatos estrangeiros.',
+    affects: ['Todos os tipos de Employment Permit'],
+    sourceUrl: 'https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html',
+  },
+  // ES — real
+  {
+    country: 'es', date: '2022-12-01', severity: 'major',
+    title: 'Lei de Startups cria visto de nômade digital na Espanha',
+    summary: 'A Lei 28/2022 de promoção do ecossistema de startups, em vigor desde dezembro de 2022, criou o visto e a autorização de residência para nômades digitais. Permite trabalho remoto na Espanha para empresas estrangeiras ou como autônomo, com benefícios fiscais no regime especial.',
+    affects: ['Visto de Nômade Digital', 'Trabalhadores Remotos', 'Autônomos'],
+    sourceUrl: 'https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion',
+  },
+];
+
+const COUNTRY_META = {
+  nl: { name:'Holanda',  flag:'nl' },
+  de: { name:'Alemanha', flag:'de' },
+  pt: { name:'Portugal', flag:'pt' },
+  es: { name:'Espanha',  flag:'es' },
+  ie: { name:'Irlanda',  flag:'ie' },
+  be: { name:'Bélgica',  flag:'be' },
+};
+
+const SEV_LABEL = { major:'Grande', minor:'Menor', info:'Info' };
+
+// ---- estado dos filtros ----
+const activeCountries = new Set(Object.keys(COUNTRY_META));
+let activeSev = 'all';
+
+// ---- "novo" = últimos 90 dias ----
+const NOW = new Date('2026-04-30');
+function isNew(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00Z');
+  return (NOW - d) / (1000 * 60 * 60 * 24) <= 90;
+}
+
+// ---- agrupamento por mês ----
+function groupByMonth(items) {
+  const groups = {};
+  for (const c of items) {
+    const d = new Date(c.date + 'T12:00:00Z');
+    const sortKey = c.date.substring(0, 7);
+    const label = d.toLocaleDateString('pt-BR', { year:'numeric', month:'long', timeZone:'UTC' });
+    const capitalized = label.charAt(0).toUpperCase() + label.slice(1);
+    if (!groups[sortKey]) groups[sortKey] = { label: capitalized, sortKey, items: [] };
+    groups[sortKey].items.push(c);
+  }
+  return Object.values(groups).sort((a, b) => b.sortKey.localeCompare(a.sortKey));
+}
+
+// ---- filtro ----
+function filtered() {
+  return CHANGES.filter(c => {
+    if (!activeCountries.has(c.country)) return false;
+    if (activeSev !== 'all' && c.severity !== activeSev) return false;
+    return true;
+  });
+}
+
+// ---- render chips de país ----
+function renderCountryChips() {
+  const el = document.getElementById('country-chips');
+  el.innerHTML = Object.entries(COUNTRY_META).map(([code, m]) => {
+    const active = activeCountries.has(code);
+    return `<button class="fchip${active ? ' active' : ''}" onclick="toggleCountry('${code}',this)">
+      <span class="fchip-flag flag-${m.flag}"></span>${m.name}
+    </button>`;
+  }).join('');
+}
+
+function toggleCountry(code, btn) {
+  if (activeCountries.has(code)) {
+    if (activeCountries.size <= 1) return; // manter ao menos 1
+    activeCountries.delete(code);
+    btn.classList.remove('active');
+  } else {
+    activeCountries.add(code);
+    btn.classList.add('active');
+  }
+  render();
+}
+
+function setSev(val, btn) {
+  activeSev = val;
+  document.querySelectorAll('.sev-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+// ---- render stats strip ----
+function renderStats() {
+  const all = CHANGES;
+  const majors = all.filter(c => c.severity === 'major').length;
+  const recent = all.filter(c => isNew(c.date)).length;
+  const countries = new Set(all.map(c => c.country)).size;
+  document.getElementById('stats-strip').innerHTML = `
+    <div class="stat-cell">
+      <span class="stat-label">Total de registros</span>
+      <span class="stat-val">${all.length}</span>
+      <span class="stat-sub">mudanças rastreadas</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Países monitorados</span>
+      <span class="stat-val accent">${countries}</span>
+      <span class="stat-sub">com mudanças documentadas</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Mudanças grandes</span>
+      <span class="stat-val rose">${majors}</span>
+      <span class="stat-sub">alterações significativas</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-label">Últ. atualização</span>
+      <span class="stat-val" style="font-size:16px;">abr/2026</span>
+      <span class="stat-sub">${recent} novas nos últimos 90 dias</span>
+    </div>
+  `;
+}
+
+// ---- render sidebar ----
+function renderSidebar() {
+  // contagem por país
+  const countByCountry = {};
+  for (const c of CHANGES) countByCountry[c.country] = (countByCountry[c.country] || 0) + 1;
+  const sorted = Object.entries(countByCountry).sort((a, b) => b[1] - a[1]);
+
+  document.getElementById('sidebar').innerHTML = `
+    <div class="sidebar-card">
+      <p class="sidebar-card-title">Por país</p>
+      ${sorted.map(([code, count]) => {
+        const m = COUNTRY_META[code];
+        if (!m) return '';
+        return `<div class="sidebar-country-row">
+          <div class="sidebar-country-left">
+            <span class="sidebar-flag flag-${m.flag}"></span>
+            <span class="sidebar-country-name">${m.name}</span>
+          </div>
+          <span class="sidebar-count">${count}</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="sidebar-card">
+      <p class="sidebar-card-title">Legenda</p>
+      <div class="sidebar-legend">
+        <div class="legend-row">
+          <span class="legend-dot" style="background:var(--accent-rose)"></span>
+          <span class="legend-text">Grande<span class="legend-sub">Mudança significativa nas regras</span></span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-dot" style="background:var(--primary)"></span>
+          <span class="legend-text">Menor<span class="legend-sub">Ajuste em taxas ou detalhes</span></span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-dot" style="background:var(--accent-blue)"></span>
+          <span class="legend-text">Info<span class="legend-sub">Extração mensal concluída</span></span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ---- render timeline ---- */
+function renderTimeline() {
+  const items = filtered();
+  const el = document.getElementById('timeline');
+
+  if (items.length === 0) {
+    el.innerHTML = `<div class="empty-state">Nenhuma mudança encontrada para os filtros selecionados.</div>`;
+    return;
+  }
+
+  const groups = groupByMonth(items);
+
+  el.innerHTML = groups.map(g => {
+    const entries = g.items
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .map(c => {
+        const m = COUNTRY_META[c.country] || { name: c.country, flag: c.country };
+        const novo = isNew(c.date);
+        const dateLabel = new Date(c.date + 'T12:00:00Z')
+          .toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric', timeZone:'UTC' });
+
+        const affects = c.affects.length
+          ? `<div class="entry-affects">${c.affects.map(a => `<span class="entry-affect-tag">${a}</span>`).join('')}</div>`
+          : '';
+
+        return `
+          <div class="entry-card sev-${c.severity}">
+            <div class="entry-meta">
+              <span class="entry-flag flag-${m.flag}"></span>
+              <span class="entry-country-name">${m.name}</span>
+              <span class="entry-sep">·</span>
+              <span class="entry-sev-badge">${SEV_LABEL[c.severity]}</span>
+              ${novo ? '<span class="entry-new-badge">Novo</span>' : ''}
+              <span class="entry-date-spacer"></span>
+              <span class="entry-date">${dateLabel}</span>
+            </div>
+            <h3 class="entry-title">${c.title}</h3>
+            <p class="entry-summary">${c.summary}</p>
+            ${affects}
+            <a href="${c.sourceUrl}" class="entry-source" target="_blank" rel="noopener">${c.sourceUrl}</a>
+          </div>`;
+      }).join('');
+
+    return `
+      <div class="month-group">
+        <div class="month-header">
+          <span class="month-name">${g.label}</span>
+          <span class="month-line"></span>
+          <span class="month-count">${g.items.length} ${g.items.length === 1 ? 'entrada' : 'entradas'}</span>
+        </div>
+        <div class="timeline-track">${entries}</div>
+      </div>`;
+  }).join('');
+}
+
+// ---- render geral ----
+function render() {
+  renderTimeline();
+}
+
+// ---- init ----
+renderStats();
+renderCountryChips();
+renderSidebar();
+render();
+</script>
+
+</body>
+</html>

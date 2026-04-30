@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sobre — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+
+  /* ---- hero ---- */
+  .sobre-intro {
+    font-size: 17px; color: var(--body); max-width: 620px;
+    margin: 0; line-height: 1.7;
+  }
+
+  /* ---- seções ---- */
+  .section-header {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--muted);
+    display: block; margin-bottom: var(--s-sm);
+  }
+  .section-title {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.6px;
+    color: var(--on-dark); margin: 0 0 var(--s-md); line-height: 1.2;
+  }
+  .section-body {
+    font-size: 15px; color: var(--body); line-height: 1.7;
+    max-width: 680px;
+  }
+  .section-body p { margin: 0 0 var(--s-md); }
+  .section-body p:last-child { margin-bottom: 0; }
+
+  /* ---- passos da metodologia ---- */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--s-md);
+    margin-top: var(--s-xl);
+  }
+  .step-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+  }
+  .step-num {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    color: var(--primary); font-family: "JetBrains Mono", monospace;
+    margin-bottom: var(--s-sm);
+  }
+  .step-title {
+    font-size: 15px; font-weight: 700; color: var(--on-dark);
+    margin: 0 0 var(--s-xs); letter-spacing: -0.2px;
+  }
+  .step-body { font-size: 13px; color: var(--body); line-height: 1.6; margin: 0; }
+
+  /* ---- fontes ---- */
+  .sources-table {
+    width: 100%; border-collapse: collapse;
+    margin-top: var(--s-xl);
+  }
+  .sources-table th {
+    text-align: left; padding: var(--s-xs) var(--s-md);
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .sources-table td {
+    padding: var(--s-sm) var(--s-md);
+    border-bottom: 1px solid var(--hairline);
+    vertical-align: middle;
+    font-size: 13px; color: var(--body);
+  }
+  .sources-table tr:last-child td { border-bottom: none; }
+  .sources-table tr:hover td { background: var(--surface-soft); }
+  .source-flag { width: 18px; height: 13px; border-radius: 2px; display: inline-block; vertical-align: middle; margin-right: 8px; }
+  .source-country { font-weight: 600; color: var(--on-dark); }
+  .source-url {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    color: var(--primary); text-decoration: underline; text-underline-offset: 2px;
+    word-break: break-all;
+  }
+  .source-note { font-size: 11px; color: var(--muted); }
+
+  /* ---- limitações ---- */
+  .limit-list { margin-top: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-md); }
+  .limit-card {
+    display: grid;
+    grid-template-columns: 3px 1fr;
+    gap: var(--s-lg);
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .limit-accent { background: var(--accent-rose); }
+  .limit-accent.yellow { background: var(--primary); }
+  .limit-content { padding: var(--s-lg) var(--s-lg) var(--s-lg) 0; }
+  .limit-title {
+    font-size: 14px; font-weight: 700; color: var(--on-dark);
+    margin: 0 0 var(--s-xxs);
+  }
+  .limit-body { font-size: 13px; color: var(--body); line-height: 1.6; margin: 0; }
+
+  /* ---- stack ---- */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--s-md);
+    margin-top: var(--s-xl);
+  }
+  .stack-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg);
+  }
+  .stack-role { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; margin-bottom: var(--s-xxs); }
+  .stack-name { font-size: 15px; font-weight: 700; color: var(--on-dark); margin-bottom: var(--s-xxs); }
+  .stack-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ---- decisões ---- */
+  .decisions-list { margin-top: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-md); }
+  .decision-row {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: var(--s-lg); padding: var(--s-md) 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 13px;
+  }
+  .decision-row:last-child { border-bottom: none; }
+  .decision-tech { font-weight: 700; color: var(--on-dark); font-family: "JetBrains Mono", monospace; font-size: 12px; }
+  .decision-reason { color: var(--body); line-height: 1.5; }
+
+  /* ---- contribuir ---- */
+  .contrib-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    margin-top: var(--s-xl);
+  }
+  .contrib-step {
+    display: flex; gap: var(--s-md);
+    padding: var(--s-md) 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 14px;
+  }
+  .contrib-step:last-child { border-bottom: none; }
+  .contrib-step-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--surface-elevated); border: 1px solid var(--hairline);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .contrib-step-text { color: var(--body); line-height: 1.6; }
+  .contrib-step-text strong { color: var(--on-dark); }
+
+  /* ---- code window ---- */
+  .schema-window {
+    margin-top: var(--s-xl);
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .schema-bar {
+    display: flex; align-items: center; gap: var(--s-xs);
+    padding: var(--s-sm) var(--s-md);
+    background: var(--surface-elevated);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .schema-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--hairline-strong); }
+  .schema-filename { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", monospace; margin-left: var(--s-sm); }
+  .schema-body {
+    padding: var(--s-xl);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; line-height: 1.7;
+    overflow-x: auto;
+  }
+  .kw  { color: #c792ea; }
+  .fn  { color: #82aaff; }
+  .ty  { color: #ffcb6b; }
+  .str { color: #c3e88d; }
+  .com { color: var(--muted); font-style: italic; }
+  .num { color: #f78c6c; }
+
+  /* ---- métricas ---- */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--s-md);
+    margin-top: var(--s-xl);
+  }
+  .metric-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg);
+    text-align: center;
+  }
+  .metric-val { font-size: 28px; font-weight: 700; color: var(--primary); letter-spacing: -1px; line-height: 1; margin-bottom: var(--s-xs); font-family: "JetBrains Mono", monospace; }
+  .metric-label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+
+  /* responsive */
+  @media (max-width: 768px) {
+    .section-title { font-size: 22px; }
+    .decision-row { grid-template-columns: 1fr; gap: var(--s-xs); }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <span class="logo-dot"></span>
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html" style="color: var(--on-dark);">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">Ver países</a>
+      <a class="btn btn-primary" href="comparar.html">Comparar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<div class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Sobre o projeto</span>
+    <h1 class="page-title">Rota Legal</h1>
+    <p class="sobre-intro">Banco de dados de imigração para trabalhadores brasileiros. Atualizado automaticamente todo mês por um pipeline de extração com LLM a partir de fontes oficiais de 10 países.</p>
+  </div>
+</div>
+
+<!-- ============== O QUE É ============== -->
+<section class="section">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xxl); align-items: start;">
+      <div>
+        <span class="section-header">O projeto</span>
+        <h2 class="section-title">O que é e para quem serve</h2>
+        <div class="section-body">
+          <p>O Rota Legal mantém um conjunto de arquivos JSON estruturados com as condições oficiais de imigração de 10 países na perspectiva de um cidadão brasileiro que quer trabalhar no exterior.</p>
+          <p>Os dados cobrem tipos de visto disponíveis, requisitos de entrada, renda mínima exigida, direitos trabalhistas e mudanças recentes detectadas. Cada campo é extraído diretamente de páginas oficiais de governo.</p>
+          <p>O projeto serve dois propósitos: alimentar a ferramenta web Rota Legal (esta interface) e servir como fonte viva para o e-book HenryZuka, que referencia os dados sem precisar atualizá-los manualmente.</p>
+        </div>
+      </div>
+      <div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-val">10</div>
+            <div class="metric-label">países monitorados</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">12×</div>
+            <div class="metric-label">execuções por ano</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">&lt; $1</div>
+            <div class="metric-label">custo mensal de API</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">0</div>
+            <div class="metric-label">banco de dados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== METODOLOGIA ============== -->
+<section class="section" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+  <div class="container">
+    <span class="section-header">Metodologia</span>
+    <h2 class="section-title">Como os dados são extraídos</h2>
+    <p class="section-body" style="max-width: 560px;">Cada execução percorre todas as URLs configuradas por país, extrai o conteúdo com LLM, valida o resultado com Zod e salva no Git.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Fontes configuradas</h3>
+        <p class="step-body">Cada país tem uma lista de URLs em <code style="font-size:11px;color:var(--primary);">src/sources/{cc}.ts</code>. Apenas páginas de governo oficial. Nenhuma fonte de terceiros como fonte primária.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Fetch com fallback</h3>
+        <p class="step-body">Primeiro tenta <code style="font-size:11px;color:var(--primary);">fetch</code> nativo do Bun. Se a página for JS-pesada e retornar HTML vazio, usa Playwright (browser headless) como fallback.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Readability filtra ruído</h3>
+        <p class="step-body">O HTML cru passa pelo <code style="font-size:11px;color:var(--primary);">@mozilla/readability</code>, que extrai só o conteúdo principal da página. Menus, rodapés e banners são descartados antes de ir para o LLM.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3 class="step-title">LLM extrai campos</h3>
+        <p class="step-body">Claude Haiku 4.5 por padrão. URLs marcadas como críticas usam Claude Sonnet 4.5. O modelo recebe o texto limpo e retorna o JSON estruturado conforme o schema.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h3 class="step-title">Zod valida o resultado</h3>
+        <p class="step-body">O JSON retornado pelo LLM é validado com Zod. Campos obrigatórios faltando ou com tipo errado causam falha alta: o pipeline para e registra o erro sem comitar um snapshot parcial.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <h3 class="step-title">Diff e versionamento</h3>
+        <p class="step-body">O snapshot novo é comparado com o anterior. Mudanças de alta relevância abrem uma issue automática no GitHub. Tudo é versionado em Git, sem banco de dados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SCHEMA ============== -->
+<section class="section">
+  <div class="container">
+    <span class="section-header">Schema de dados</span>
+    <h2 class="section-title">Estrutura de cada arquivo de país</h2>
+    <p class="section-body">Todos os países seguem o mesmo schema TypeScript. Um arquivo por país em <code style="color:var(--primary);">data/current/{cc}.json</code>, sobrescrito a cada execução.</p>
+
+    <div class="schema-window">
+      <div class="schema-bar">
+        <span class="schema-dot"></span>
+        <span class="schema-dot"></span>
+        <span class="schema-dot"></span>
+        <span class="schema-filename">src/extractors/schema.ts</span>
+      </div>
+      <div class="schema-body">
+<span class="kw">interface</span> <span class="ty">CountryData</span> {
+  <span class="fn">meta</span>: {
+    <span class="fn">country</span>: <span class="ty">string</span>             <span class="com">// código ISO alpha-2: 'nl', 'de', 'pt'</span>
+    <span class="fn">countryName</span>: <span class="ty">string</span>         <span class="com">// nome em PT-BR</span>
+    <span class="fn">lastUpdated</span>: <span class="ty">string</span>         <span class="com">// ISO 8601</span>
+    <span class="fn">schemaVersion</span>: <span class="ty">string</span>      <span class="com">// semver</span>
+    <span class="fn">sources</span>: <span class="ty">SourceRef</span>[]       <span class="com">// URLs verificadas nesta extração</span>
+  }
+
+  <span class="fn">forBrazilians</span>: {
+    <span class="fn">schengenVisaFree</span>: <span class="ty">boolean</span>
+    <span class="fn">maxStayDaysAsTourist</span>: <span class="ty">number</span>
+    <span class="fn">workPermitNeeded</span>: <span class="ty">boolean</span>
+    <span class="fn">specialAgreements</span>: <span class="ty">string</span>[]  <span class="com">// ex: 'CPLP', 'Tratado de Amizade'</span>
+    <span class="fn">notes</span>: <span class="ty">string</span>
+  }
+
+  <span class="fn">visaTypes</span>: <span class="ty">VisaType</span>[]         <span class="com">// lista de vistos disponíveis</span>
+
+  <span class="fn">generalRequirements</span>: {
+    <span class="fn">passportValidity</span>: <span class="ty">string</span>
+    <span class="fn">proofOfFunds</span>: <span class="ty">MoneyAmount</span> | <span class="kw">null</span>
+    <span class="fn">healthInsurance</span>: <span class="ty">HealthInsuranceReq</span>
+    <span class="fn">cleanCriminalRecord</span>: <span class="ty">boolean</span>
+  }
+
+  <span class="fn">recentChanges</span>: <span class="ty">PolicyChange</span>[]   <span class="com">// mudanças dos últimos 6 meses</span>
+
+  <span class="fn">reliability</span>: {
+    <span class="fn">extractedBy</span>: <span class="str">'llm'</span> | <span class="str">'manual'</span>
+    <span class="fn">extractionConfidence</span>: <span class="str">'high'</span> | <span class="str">'medium'</span> | <span class="str">'low'</span>
+    <span class="fn">humanReviewedAt</span>: <span class="ty">string</span> | <span class="kw">null</span>
+  }
+}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FONTES ============== -->
+<section class="section" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+  <div class="container">
+    <span class="section-header">Fontes de dados</span>
+    <h2 class="section-title">De onde vêm as informações</h2>
+    <p class="section-body">Apenas fontes oficiais de governo. Sites informativos oficiais como make-it-in-germany.com são aceitos como fonte secundária. Blogs de advogados e portais não-oficiais nunca entram como fonte primária.</p>
+
+    <div style="margin-top: var(--s-xl); background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow: hidden;">
+      <table class="sources-table">
+        <thead>
+          <tr>
+            <th>País</th>
+            <th>Fonte principal</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="source-flag flag-nl"></span><span class="source-country">Holanda</span></td>
+            <td><a href="https://ind.nl/en/residence-permits/work" class="source-url">ind.nl/en/residence-permits/work</a></td>
+            <td class="source-note">IND — serviço oficial de imigração holandês</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-de"></span><span class="source-country">Alemanha</span></td>
+            <td><a href="https://www.make-it-in-germany.com/en/visa-residence/types" class="source-url">make-it-in-germany.com</a></td>
+            <td class="source-note">Portal oficial do governo federal alemão</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-pt"></span><span class="source-country">Portugal</span></td>
+            <td><a href="https://aima.gov.pt/pt/trabalhar" class="source-url">aima.gov.pt/pt/trabalhar</a></td>
+            <td class="source-note">AIMA — Agência para a Integração, Migrações e Asilo</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-es"></span><span class="source-country">Espanha</span></td>
+            <td><a href="https://www.inclusion.gob.es/web/migraciones" class="source-url">inclusion.gob.es</a></td>
+            <td class="source-note">Ministerio de Inclusión, Seguridad Social y Migraciones</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-ie"></span><span class="source-country">Irlanda</span></td>
+            <td><a href="https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/" class="source-url">enterprise.gov.ie</a></td>
+            <td class="source-note">Department of Enterprise, Trade and Employment</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-be"></span><span class="source-country">Bélgica</span></td>
+            <td><a href="https://dofi.ibz.be/en" class="source-url">dofi.ibz.be</a></td>
+            <td class="source-note">Office of Foreigners — Immigration Office Belgium</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-fr"></span><span class="source-country">França</span></td>
+            <td style="color: var(--muted); font-size: 12px; font-family: 'JetBrains Mono', monospace;">em mapeamento</td>
+            <td class="source-note">Previsto para próxima extração</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-it"></span><span class="source-country">Itália</span></td>
+            <td style="color: var(--muted); font-size: 12px; font-family: 'JetBrains Mono', monospace;">em mapeamento</td>
+            <td class="source-note">Previsto para próxima extração</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-at"></span><span class="source-country">Áustria</span></td>
+            <td style="color: var(--muted); font-size: 12px; font-family: 'JetBrains Mono', monospace;">em mapeamento</td>
+            <td class="source-note">Previsto para próxima extração</td>
+          </tr>
+          <tr>
+            <td><span class="source-flag flag-au"></span><span class="source-country">Austrália</span></td>
+            <td style="color: var(--muted); font-size: 12px; font-family: 'JetBrains Mono', monospace;">em mapeamento</td>
+            <td class="source-note">Previsto para próxima extração</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LIMITAÇÕES ============== -->
+<section class="section">
+  <div class="container">
+    <span class="section-header">Limitações</span>
+    <h2 class="section-title">O que estes dados não garantem</h2>
+    <p class="section-body">Transparência sobre o que o sistema faz e não faz é parte do produto. Leia antes de tomar qualquer decisão baseada nos dados desta ferramenta.</p>
+
+    <div class="limit-list">
+      <div class="limit-card">
+        <div class="limit-accent"></div>
+        <div class="limit-content">
+          <p class="limit-title">Não é assessoria jurídica</p>
+          <p class="limit-body">Nenhuma informação aqui constitui parecer jurídico personalizado. Para processos reais de visto e imigração, consulte um advogado de imigração licenciado no país de destino.</p>
+        </div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-accent"></div>
+        <div class="limit-content">
+          <p class="limit-title">Confiança média na extração por LLM</p>
+          <p class="limit-body">Todos os países têm <code style="font-size:11px;color:var(--primary);">extractionConfidence: "medium"</code>. Nenhum passou por revisão humana completa. O LLM pode interpretar incorretamente passagens ambíguas nas fontes. Sempre confirme em <a href="#fontes" class="text-link">na fonte oficial</a> antes de agir.</p>
+        </div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-accent"></div>
+        <div class="limit-content">
+          <p class="limit-title">Campos vazios são ausência de dado, não ausência de requisito</p>
+          <p class="limit-body">Se um campo como <code style="font-size:11px;color:var(--primary);">incomeRequirement</code> está <code style="font-size:11px;color:var(--primary);">null</code>, significa que a fonte não especificou ou o LLM não conseguiu extrair. Não significa que o requisito não existe.</p>
+        </div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-accent yellow"></div>
+        <div class="limit-content">
+          <p class="limit-title">Ciclo mensal: mudanças entre execuções não são capturadas imediatamente</p>
+          <p class="limit-body">O pipeline roda dia 1 de cada mês. Alterações publicadas pelo governo no dia 15, por exemplo, só aparecem aqui a partir do dia 1 do mês seguinte. Para países com histórico de mudanças frequentes, consulte a fonte oficial diretamente.</p>
+        </div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-accent yellow"></div>
+        <div class="limit-content">
+          <p class="limit-title">Não cobre processos específicos por consulado ou cidade de origem</p>
+          <p class="limit-body">Os dados refletem as regras gerais do país. Consulados individuais podem ter agendas, taxas e requisitos extras que não estão documentados aqui. O processo real de solicitação varia por cidade de origem no Brasil.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STACK ============== -->
+<section class="section" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+  <div class="container">
+    <span class="section-header">Stack técnica</span>
+    <h2 class="section-title">Como o projeto é construído</h2>
+    <p class="section-body">Decisões tomadas para minimizar custo, maximizar confiabilidade e manter zero infraestrutura própria.</p>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-role">Runtime</div>
+        <div class="stack-name">Bun 1.1+</div>
+        <div class="stack-note">Fetch nativo, testes embutidos, mais rápido que Node para scraping</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">Linguagem</div>
+        <div class="stack-name">TypeScript strict</div>
+        <div class="stack-note">Schema de dados em TypeScript serve como documentação viva</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">LLM</div>
+        <div class="stack-name">Claude Haiku 4.5</div>
+        <div class="stack-note">Padrão. URLs críticas usam Sonnet 4.5. Estratégia 80/20 reduz custo de $21 para $9,66 por ano</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">Validação</div>
+        <div class="stack-name">Zod</div>
+        <div class="stack-note">Schema runtime. Se o LLM retornar algo inválido, o pipeline para antes de comitar</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">Fetch</div>
+        <div class="stack-name">Nativo + Playwright</div>
+        <div class="stack-note">Playwright só como fallback para sites JS-pesados. Evita overhead em 90% dos casos</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">Parser HTML</div>
+        <div class="stack-name">@mozilla/readability</div>
+        <div class="stack-note">Extrai só o conteúdo principal antes de enviar ao LLM. Reduz tokens e ruído</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">CI/CD</div>
+        <div class="stack-name">GitHub Actions</div>
+        <div class="stack-note">Cron dia 1 de cada mês, 06h UTC. Zero custo de hospedagem. Issues automáticas para mudanças</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-role">Storage</div>
+        <div class="stack-name">JSON no Git</div>
+        <div class="stack-note">Zero banco de dados. Histórico grátis. Diff visual no GitHub. Fácil para terceiros consumirem</div>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--s-xl);">
+      <p style="font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s-md);">Decisões de arquitetura</p>
+      <div style="background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow: hidden;">
+        <div class="decision-row" style="padding: var(--s-md) var(--s-lg);">
+          <span class="decision-tech">LLM vs scrapers</span>
+          <span class="decision-reason">Extração por LLM sobrevive a redesigns de site. Manter seletores CSS quebrados custa mais a longo prazo do que o custo de API.</span>
+        </div>
+        <div class="decision-row" style="padding: var(--s-md) var(--s-lg);">
+          <span class="decision-tech">JSON vs banco</span>
+          <span class="decision-reason">Zero infraestrutura. Histórico grátis via Git. Qualquer desenvolvedor pode consumir sem SDK ou autenticação.</span>
+        </div>
+        <div class="decision-row" style="padding: var(--s-md) var(--s-lg);">
+          <span class="decision-tech">Haiku 80% / Sonnet 20%</span>
+          <span class="decision-reason">A maioria das páginas tem estrutura previsível. Sonnet fica para URLs com dados críticos (renda mínima, taxas) onde precisão vale o custo extra.</span>
+        </div>
+        <div class="decision-row" style="padding: var(--s-md) var(--s-lg);">
+          <span class="decision-tech">Sem painel admin</span>
+          <span class="decision-reason">Se precisar editar manualmente, faça PR. Mantém o projeto simples e auditável.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTRIBUIR ============== -->
+<section class="section">
+  <div class="container">
+    <span class="section-header">Como contribuir</span>
+    <h2 class="section-title">O projeto é aberto</h2>
+    <p class="section-body">Correções, novos países e melhorias no schema são bem-vindas. O processo é simples.</p>
+
+    <div class="contrib-card">
+      <div class="contrib-step">
+        <div class="contrib-step-num">1</div>
+        <div class="contrib-step-text"><strong>Reportar um erro nos dados.</strong> Se encontrar um valor incorreto ou desatualizado, abra uma issue no GitHub com o país, o campo e a fonte oficial que contradiz o dado.</div>
+      </div>
+      <div class="contrib-step">
+        <div class="contrib-step-num">2</div>
+        <div class="contrib-step-text"><strong>Sugerir um país novo.</strong> Os 10 países da v1.0 estão definidos. Para sugerir adições à v1.1, abra uma issue com o código ISO do país e links para as fontes oficiais de imigração.</div>
+      </div>
+      <div class="contrib-step">
+        <div class="contrib-step-num">3</div>
+        <div class="contrib-step-text"><strong>Corrigir uma extração.</strong> Clone o repositório, edite o arquivo <code style="font-size:12px;color:var(--primary);">data/current/{cc}.json</code> com o valor correto e abra um PR com link para a fonte. Alterações em <code style="font-size:12px;color:var(--primary);">src/</code> exigem que os testes passem.</div>
+      </div>
+      <div class="contrib-step">
+        <div class="contrib-step-num">4</div>
+        <div class="contrib-step-text"><strong>Melhorar o schema.</strong> Mudanças no schema exigem migração simultânea de <code style="font-size:12px;color:var(--primary);">src/extractors/schema.ts</code>, <code style="font-size:12px;color:var(--primary);">docs/data-schema.md</code> e de todos os arquivos em <code style="font-size:12px;color:var(--primary);">data/current/</code>.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--s-xl); display: flex; gap: var(--s-md); flex-wrap: wrap;">
+      <a class="btn btn-secondary" href="#" style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">Ver repositório no GitHub</a>
+      <a class="btn btn-secondary" href="historico.html">Ver histórico de mudanças</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<div class="cta-band-yellow">
+  <div class="container">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-lg);">
+      <div>
+        <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.8px; color: var(--on-primary); margin-bottom: var(--s-xs);">Pronto para explorar os dados?</div>
+        <p style="color: rgba(0,0,0,0.55); font-size: 15px; margin: 0;">Veja os países disponíveis ou compare dois destinos lado a lado.</p>
+      </div>
+      <div style="display: flex; gap: var(--s-sm); flex-wrap: wrap;">
+        <a class="btn btn-on-yellow" href="paises.html">Ver países</a>
+        <a class="btn btn-secondary" href="comparar.html" style="background: rgba(0,0,0,0.1); border-color: rgba(0,0,0,0.2); color: var(--on-primary);">Comparar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <span class="logo-dot"></span>
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

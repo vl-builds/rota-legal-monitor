@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Comparar países — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+
+  /* ---- selector bar ---- */
+  .selector-bar {
+    position: sticky;
+    top: 64px;
+    z-index: 40;
+    background: var(--canvas);
+    border-bottom: 1px solid var(--hairline);
+    padding: var(--s-md) 0;
+  }
+  .selector-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--s-md);
+    flex-wrap: wrap;
+  }
+  .selector-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .country-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--body);
+    background: transparent;
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    font-family: inherit;
+    line-height: 1;
+  }
+  .country-chip:hover:not([disabled]) { border-color: var(--hairline-strong); color: var(--on-dark); }
+  .country-chip.active {
+    background: var(--on-dark);
+    color: var(--canvas);
+    border-color: var(--on-dark);
+    font-weight: 600;
+  }
+  .country-chip.active .chip-partial { color: rgba(0,0,0,0.45); }
+  .chip-flag { width: 18px; height: 13px; border-radius: 2px; display: block; flex-shrink: 0; }
+  .chip-partial {
+    font-size: 10px;
+    color: var(--muted-soft);
+    font-family: "JetBrains Mono", monospace;
+    margin-left: 2px;
+  }
+
+  /* ---- hero ---- */
+  .compare-hero {
+    padding: var(--s-xxl) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .compare-hero-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    display: block;
+    margin-bottom: var(--s-sm);
+  }
+  .compare-hero-title {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -1.2px;
+    color: var(--on-dark);
+    margin: 0 0 var(--s-md);
+    line-height: 1.1;
+  }
+  .compare-hero-sub {
+    font-size: 16px;
+    color: var(--body);
+    max-width: 580px;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ---- comparison table ---- */
+  .compare-outer {
+    overflow-x: auto;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    background: var(--canvas);
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+  }
+  .compare-table td,
+  .compare-table th {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--hairline);
+    vertical-align: middle;
+  }
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-table tbody tr:hover .col-label { background: var(--surface-soft); }
+
+  /* sticky label column */
+  .col-label {
+    position: sticky;
+    left: 0;
+    background: var(--canvas);
+    z-index: 2;
+    min-width: 176px;
+    width: 176px;
+    max-width: 176px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  /* country header cells */
+  .col-country {
+    background: var(--surface-card);
+    text-align: center;
+    border-left: 1px solid var(--hairline);
+    min-width: 168px;
+    padding: 20px;
+  }
+  .col-country-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-xs);
+  }
+  .col-flag-lg {
+    width: 40px;
+    height: 28px;
+    border-radius: 4px;
+    display: block;
+  }
+  .col-country-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--on-dark);
+    letter-spacing: -0.3px;
+    line-height: 1;
+  }
+  .col-detail-link {
+    font-size: 11px;
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .col-partial-badge {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", monospace;
+    padding: 2px 6px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
+  }
+
+  /* section header rows */
+  .row-section .col-label {
+    background: var(--surface-soft);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 20px;
+    z-index: 3;
+  }
+  .row-section .col-section-fill {
+    background: var(--surface-soft);
+    border-left: 1px solid var(--hairline);
+    padding: 8px;
+  }
+
+  /* data cells */
+  .col-value {
+    text-align: center;
+    border-left: 1px solid var(--hairline);
+    font-size: 14px;
+    color: var(--body);
+  }
+  .col-value:hover { background: rgba(255,255,255,0.015); }
+
+  /* value types */
+  .val-yes { color: var(--accent-emerald); font-weight: 600; font-size: 13px; }
+  .val-no  { color: var(--accent-rose);    font-weight: 600; font-size: 13px; }
+  .val-dash { color: var(--muted-soft); font-size: 16px; }
+  .val-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--on-dark);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .val-unit {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .val-income {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -0.3px;
+  }
+  .val-text { font-size: 13px; color: var(--body); line-height: 1.4; }
+  .val-lang-yes { color: var(--accent-rose); font-size: 11px; font-weight: 600; display: block; margin-bottom: 3px; }
+  .val-lang-no  { color: var(--accent-emerald); font-size: 11px; font-weight: 600; display: block; margin-bottom: 3px; }
+  .val-date { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", monospace; }
+
+  /* empty state */
+  .empty-state {
+    padding: var(--s-section) var(--s-lg);
+    text-align: center;
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+  }
+
+  /* responsive */
+  @media (max-width: 768px) {
+    .compare-hero-title { font-size: 28px; }
+    .col-label { min-width: 130px; width: 130px; font-size: 12px; padding: 10px 12px; }
+    .col-country { min-width: 120px; }
+    .selector-label { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <span class="logo-dot"></span>
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html" style="color: var(--on-dark);">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">Ver todos</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<div class="compare-hero">
+  <div class="container">
+    <span class="compare-hero-label">Comparação</span>
+    <h1 class="compare-hero-title">Compare países lado a lado</h1>
+    <p class="compare-hero-sub">Selecione até 3 países para ver requisitos de entrada, renda mínima e opções de visto em paralelo. Dados atualizados mensalmente de fontes oficiais.</p>
+  </div>
+</div>
+
+<!-- ============== SELECTOR BAR ============== -->
+<div class="selector-bar">
+  <div class="container">
+    <div class="selector-inner">
+      <span class="selector-label">Países (máx. 3):</span>
+      <div id="chips" style="display: flex; gap: var(--s-xs); flex-wrap: wrap;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== COMPARISON TABLE ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div id="compare-area"></div>
+    <p style="font-size: 12px; color: var(--muted-soft); margin-top: var(--s-md); text-align: right; font-family: 'JetBrains Mono', monospace;">
+      Dados extraídos automaticamente por LLM. Podem conter imprecisões. Consulte as fontes oficiais antes de tomar decisões.
+    </p>
+  </div>
+</section>
+
+<!-- ============== CTA BAND ============== -->
+<div class="cta-band-yellow">
+  <div class="container">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-lg);">
+      <div>
+        <div style="font-size: 32px; font-weight: 700; letter-spacing: -1px; color: var(--on-primary); margin-bottom: var(--s-xs);">Não sabe qual escolher?</div>
+        <p style="color: rgba(0,0,0,0.55); font-size: 16px; margin: 0;">Responda 6 perguntas e receba uma recomendação personalizada.</p>
+      </div>
+      <a class="btn btn-on-yellow" href="qual-pais.html">Encontrar meu país</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ---- dados dos países ----
+const COUNTRIES = {
+  nl: {
+    name: 'Holanda', nameLocal: 'Nederland', flag: 'nl',
+    schengen: true, touristDays: 90, workPermit: true,
+    visaCount: 21, directCount: 9,
+    minIncomeText: 'Não especificado', minIncomeHighlight: false,
+    langRequired: false, langText: 'Não exigido',
+    family: true, changeEmployer: true, permanentPath: true,
+    lastUpdated: '2026-04-29', partial: false, detailUrl: 'pais-nl.html',
+  },
+  de: {
+    name: 'Alemanha', nameLocal: 'Deutschland', flag: 'de',
+    schengen: false, touristDays: 90, workPermit: true,
+    visaCount: 12, directCount: 10,
+    minIncomeText: '€ 50.700/ano', minIncomeHighlight: true,
+    langRequired: true, langText: 'Alemão A1+ (para fixar)',
+    family: true, changeEmployer: true, permanentPath: true,
+    lastUpdated: '2026-04-29', partial: false, detailUrl: 'paises.html',
+  },
+  pt: {
+    name: 'Portugal', nameLocal: 'Portugal', flag: 'pt',
+    schengen: true, touristDays: 90, workPermit: false,
+    visaCount: 12, directCount: 8,
+    minIncomeText: '€ 25.884/ano', minIncomeHighlight: true,
+    langRequired: false, langText: 'Não exigido',
+    family: false, changeEmployer: false, permanentPath: true,
+    lastUpdated: '2026-04-29', partial: false, detailUrl: 'paises.html',
+  },
+  es: {
+    name: 'Espanha', nameLocal: 'España', flag: 'es',
+    schengen: true, touristDays: 90, workPermit: true,
+    visaCount: 4, directCount: 3,
+    minIncomeText: '—', minIncomeHighlight: false,
+    langRequired: null, langText: '—',
+    family: null, changeEmployer: null, permanentPath: null,
+    lastUpdated: '2026-04-29', partial: true, detailUrl: 'paises.html',
+  },
+  ie: {
+    name: 'Irlanda', nameLocal: 'Ireland', flag: 'ie',
+    schengen: false, touristDays: 90, workPermit: true,
+    visaCount: 17, directCount: 10,
+    minIncomeText: '—', minIncomeHighlight: false,
+    langRequired: null, langText: 'Inglês (prático)',
+    family: null, changeEmployer: null, permanentPath: null,
+    lastUpdated: '2026-04-29', partial: true, detailUrl: 'paises.html',
+  },
+  fr: {
+    name: 'França', nameLocal: 'France', flag: 'fr',
+    schengen: true, touristDays: 90, workPermit: true,
+    visaCount: null, directCount: null,
+    minIncomeText: '—', minIncomeHighlight: false,
+    langRequired: null, langText: '—',
+    family: null, changeEmployer: null, permanentPath: null,
+    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+  },
+  it: {
+    name: 'Itália', nameLocal: 'Italia', flag: 'it',
+    schengen: true, touristDays: 90, workPermit: true,
+    visaCount: null, directCount: null,
+    minIncomeText: '—', minIncomeHighlight: false,
+    langRequired: null, langText: '—',
+    family: null, changeEmployer: null, permanentPath: null,
+    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+  },
+  be: {
+    name: 'Bélgica', nameLocal: 'België', flag: 'be',
+    schengen: true, touristDays: 90, workPermit: true,
+    visaCount: null, directCount: null,
+    minIncomeText: '—', minIncomeHighlight: false,
+    langRequired: null, langText: '—',
+    family: null, changeEmployer: null, permanentPath: null,
+    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+  },
+  at: {
+    name: 'Áustria', nameLocal: 'Österreich', flag: 'at',
+    schengen: true, touristDays: 90, workPermit: true,
+    visaCount: null, directCount: null,
+    minIncomeText: '—', minIncomeHighlight: false,
+    langRequired: null, langText: '—',
+    family: null, changeEmployer: null, permanentPath: null,
+    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+  },
+  au: {
+    name: 'Austrália', nameLocal: 'Australia', flag: 'au',
+    schengen: false, touristDays: 90, workPermit: true,
+    visaCount: null, directCount: null,
+    minIncomeText: '—', minIncomeHighlight: false,
+    langRequired: true, langText: 'Inglês (obrigatório)',
+    family: null, changeEmployer: null, permanentPath: null,
+    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+  },
+};
+
+const ORDER = ['nl', 'de', 'pt', 'es', 'ie', 'fr', 'it', 'be', 'at', 'au'];
+const MAX = 3;
+let selected = ['nl', 'de', 'pt'];
+
+// ---- definição das linhas ----
+const ROWS = [
+  { type: 'section', label: 'Entrada' },
+  { type: 'bool',     label: 'Schengen (sem visto turista)',     key: 'schengen' },
+  { type: 'days',     label: 'Estadia máx. como turista',        key: 'touristDays' },
+  { type: 'boolinv',  label: 'Exige permissão de trabalho',      key: 'workPermit' },
+  { type: 'section', label: 'Vistos de trabalho' },
+  { type: 'count',    label: 'Opções mapeadas no banco',          key: 'visaCount', unit: 'vistos' },
+  { type: 'section', label: 'Requisitos financeiros' },
+  { type: 'income',   label: 'Renda mínima (principal opção)',    key: 'minIncomeText', hlKey: 'minIncomeHighlight' },
+  { type: 'section', label: 'Idioma' },
+  { type: 'lang',     label: 'Idioma para residir',               key: 'langText', boolKey: 'langRequired' },
+  { type: 'section', label: 'Direitos' },
+  { type: 'bool',     label: 'Pode trazer família',               key: 'family' },
+  { type: 'bool',     label: 'Pode trocar de empregador',         key: 'changeEmployer' },
+  { type: 'bool',     label: 'Caminho para residência permanente',key: 'permanentPath' },
+  { type: 'section', label: 'Sobre os dados' },
+  { type: 'date',     label: 'Última atualização',               key: 'lastUpdated' },
+  { type: 'link',     label: 'Detalhe completo',                 key: 'detailUrl' },
+];
+
+// ---- helpers de célula ----
+function cellBool(v) {
+  if (v === null) return '<span class="val-dash">—</span>';
+  return v ? '<span class="val-yes">Sim</span>' : '<span class="val-no">Não</span>';
+}
+function cellBoolInv(v) {
+  if (v === null) return '<span class="val-dash">—</span>';
+  return v ? '<span class="val-no">Sim</span>' : '<span class="val-yes">Não</span>';
+}
+
+function cellValue(row, c) {
+  switch (row.type) {
+    case 'bool':
+      return cellBool(c[row.key]);
+    case 'boolinv':
+      return cellBoolInv(c[row.key]);
+    case 'days':
+      return `<span class="val-num">${c[row.key]}<span class="val-unit">dias</span></span>`;
+    case 'count': {
+      const n = c[row.key];
+      if (n === null) return '<span class="val-dash">—</span>';
+      return `<span class="val-num">${n}<span class="val-unit">${row.unit}</span></span>`;
+    }
+    case 'income':
+      if (!c[row.hlKey]) return `<span class="val-text">${c[row.key]}</span>`;
+      return `<span class="val-income">${c[row.key]}</span>`;
+    case 'lang': {
+      const b = c[row.boolKey];
+      if (b === null) return `<span class="val-text" style="color:var(--muted-soft)">${c[row.key]}</span>`;
+      const marker = b
+        ? '<span class="val-lang-yes">Exigido</span>'
+        : '<span class="val-lang-no">Não exigido</span>';
+      return marker + `<span class="val-text" style="color:var(--muted)">${c[row.key]}</span>`;
+    }
+    case 'date':
+      return `<span class="val-date">${c[row.key]}</span>`;
+    case 'link':
+      return `<a href="${c[row.key]}" class="col-detail-link">ver país →</a>`;
+    default:
+      return '';
+  }
+}
+
+// ---- render chips ----
+function renderChips() {
+  const el = document.getElementById('chips');
+  el.innerHTML = ORDER.map(code => {
+    const c = COUNTRIES[code];
+    const active = selected.includes(code);
+    const disabled = !active && selected.length >= MAX;
+    return `<button
+      class="country-chip${active ? ' active' : ''}"
+      onclick="toggleCountry('${code}')"
+      ${disabled ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}
+      title="${c.name}${c.partial ? ' — dados parciais' : ''}"
+    >
+      <span class="chip-flag flag-${c.flag}"></span>
+      ${c.name}
+      ${c.partial ? '<span class="chip-partial">parcial</span>' : ''}
+    </button>`;
+  }).join('');
+}
+
+// ---- render tabela ----
+function renderTable() {
+  const area = document.getElementById('compare-area');
+
+  if (selected.length === 0) {
+    area.innerHTML = `<div class="empty-state">
+      <p style="font-size:36px;color:var(--muted);margin:0 0 var(--s-md)">●○○</p>
+      <p class="title-md" style="margin:0 0 var(--s-xs)">Nenhum país selecionado</p>
+      <p class="body-md" style="color:var(--muted);margin:0">Clique nos chips acima para adicionar países à comparação.</p>
+    </div>`;
+    return;
+  }
+
+  const cols = selected.map(code => COUNTRIES[code]);
+  const colCount = cols.length;
+
+  let html = `<div class="compare-outer"><table class="compare-table">`;
+
+  // thead
+  html += `<thead><tr>
+    <th class="col-label" style="background:var(--surface-card);border-bottom:1px solid var(--hairline);"></th>
+    ${cols.map(c => `
+      <th class="col-country">
+        <div class="col-country-inner">
+          <span class="col-flag-lg flag-${c.flag}"></span>
+          <span class="col-country-name">${c.name}</span>
+          ${c.partial ? '<span class="col-partial-badge">parcial</span>' : ''}
+          <a href="${c.detailUrl}" class="col-detail-link">ver detalhe →</a>
+        </div>
+      </th>
+    `).join('')}
+  </tr></thead>`;
+
+  // tbody
+  html += `<tbody>`;
+  for (const row of ROWS) {
+    if (row.type === 'section') {
+      html += `<tr class="row-section">
+        <td class="col-label">${row.label}</td>
+        ${cols.map(() => '<td class="col-section-fill"></td>').join('')}
+      </tr>`;
+      continue;
+    }
+    html += `<tr>
+      <td class="col-label">${row.label}</td>
+      ${cols.map(c => `<td class="col-value">${cellValue(row, c)}</td>`).join('')}
+    </tr>`;
+  }
+  html += `</tbody></table></div>`;
+
+  area.innerHTML = html;
+}
+
+// ---- toggle país ----
+function toggleCountry(code) {
+  const idx = selected.indexOf(code);
+  if (idx !== -1) {
+    selected.splice(idx, 1);
+  } else {
+    if (selected.length >= MAX) return;
+    selected.push(code);
+  }
+  renderChips();
+  renderTable();
+}
+
+// ---- inicializa ----
+renderChips();
+renderTable();
+</script>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <span class="logo-dot"></span>
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

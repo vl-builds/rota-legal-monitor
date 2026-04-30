@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Qual país é o certo para você? — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+
+  /* ---- shell ---- */
+  .quiz-shell {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- progress bar ---- */
+  .progress-track {
+    height: 2px;
+    background: var(--hairline);
+    width: 100%;
+  }
+  .progress-fill {
+    height: 2px;
+    background: var(--primary);
+    transition: width 300ms ease;
+  }
+
+  /* ---- step wrapper (transition target) ---- */
+  #app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  #app.fade-out {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  /* ---- intro ---- */
+  .intro-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: var(--s-section) 0;
+  }
+  .intro-inner { max-width: 600px; }
+  .intro-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    display: block;
+    margin-bottom: var(--s-sm);
+  }
+  .intro-title {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -1.8px;
+    color: var(--on-dark);
+    margin: 0 0 var(--s-md);
+    line-height: 1.05;
+  }
+  .intro-sub {
+    font-size: 16px;
+    color: var(--body);
+    margin: 0 0 var(--s-xl);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .intro-meta {
+    display: flex;
+    gap: var(--s-lg);
+    margin-bottom: var(--s-xl);
+    flex-wrap: wrap;
+  }
+  .intro-meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--s-xs);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .meta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+    flex-shrink: 0;
+  }
+
+  /* ---- question step ---- */
+  .question-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--s-xxl) 0 var(--s-section);
+  }
+  .question-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--s-md);
+  }
+  .question-text {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--on-dark);
+    margin: 0 0 var(--s-xl);
+    line-height: 1.2;
+    max-width: 640px;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--s-md);
+    margin-bottom: var(--s-xl);
+  }
+  .opt-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg) var(--s-xl);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--s-md);
+    transition: border-color 120ms ease, background 120ms ease;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    width: 100%;
+  }
+  .opt-card:hover { border-color: var(--hairline-strong); background: var(--surface-elevated); }
+  .opt-card.selected {
+    border-color: var(--primary);
+    background: rgba(250,255,105,0.06);
+  }
+  .opt-marker {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--hairline-strong);
+    flex-shrink: 0;
+    transition: background 120ms ease, border-color 120ms ease;
+  }
+  .opt-card.selected .opt-marker {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .opt-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--body-strong);
+    line-height: 1.4;
+  }
+  .opt-card.selected .opt-label { color: var(--on-dark); font-weight: 600; }
+
+  /* ---- step nav ---- */
+  .step-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--s-md);
+    margin-top: auto;
+    padding-top: var(--s-lg);
+    border-top: 1px solid var(--hairline);
+  }
+  .step-back {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 10px 0;
+    transition: color 120ms ease;
+  }
+  .step-back:hover { color: var(--body); }
+  .step-next {
+    margin-left: auto;
+  }
+  .step-next:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  /* ---- result ---- */
+  .result-wrap {
+    padding: var(--s-xxl) 0 var(--s-section);
+  }
+  .result-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    display: block;
+    margin-bottom: var(--s-sm);
+  }
+  .result-title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--on-dark);
+    margin: 0 0 var(--s-xl);
+    line-height: 1.2;
+  }
+
+  /* top result card */
+  .result-top {
+    background: var(--surface-card);
+    border: 1px solid var(--primary);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    margin-bottom: var(--s-lg);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--s-lg);
+    align-items: start;
+  }
+  .result-top-flag { width: 52px; height: 36px; border-radius: 6px; display: block; flex-shrink: 0; }
+  .result-top-body { min-width: 0; }
+  .result-top-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--on-primary);
+    background: var(--primary);
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    margin-bottom: var(--s-xs);
+  }
+  .result-top-name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    color: var(--on-dark);
+    margin: 0 0 var(--s-xxs);
+  }
+  .result-top-tagline {
+    font-size: 14px;
+    color: var(--body);
+    margin: 0 0 var(--s-md);
+  }
+  .result-pros { display: flex; flex-direction: column; gap: var(--s-xs); margin-bottom: var(--s-md); }
+  .result-pro {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-xs);
+    font-size: 13px;
+    color: var(--body);
+  }
+  .result-pro-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-emerald); flex-shrink: 0; margin-top: 6px; }
+  .result-con {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-xs);
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: var(--s-sm);
+    border-top: 1px solid var(--hairline);
+  }
+  .result-con-label { font-weight: 600; flex-shrink: 0; color: var(--muted-soft); }
+  .result-score {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--s-xxs);
+    flex-shrink: 0;
+  }
+  .result-score-num {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .result-score-label { font-size: 11px; color: var(--muted); text-align: right; }
+
+  /* secondary result cards */
+  .result-others { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--s-md); margin-bottom: var(--s-xl); }
+  .result-other {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg);
+  }
+  .result-other-head { display: flex; align-items: center; gap: var(--s-sm); margin-bottom: var(--s-md); }
+  .result-other-flag { width: 32px; height: 22px; border-radius: 4px; display: block; }
+  .result-other-name { font-size: 18px; font-weight: 700; color: var(--on-dark); letter-spacing: -0.3px; }
+  .result-other-rank { font-size: 11px; color: var(--muted); font-family: "JetBrains Mono", monospace; margin-left: auto; }
+  .result-other-tagline { font-size: 13px; color: var(--body); margin-bottom: var(--s-sm); line-height: 1.4; }
+  .result-other-pro { font-size: 12px; color: var(--muted); display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+  .result-other-pro-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-emerald); flex-shrink: 0; margin-top: 5px; }
+
+  /* result actions */
+  .result-actions { display: flex; gap: var(--s-md); flex-wrap: wrap; }
+
+  /* restart */
+  .restart-btn {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 120ms ease;
+  }
+  .restart-btn:hover { color: var(--body); }
+
+  /* responsive */
+  @media (max-width: 640px) {
+    .intro-title { font-size: 32px; }
+    .question-text { font-size: 22px; }
+    .options-grid { grid-template-columns: 1fr; }
+    .result-top { grid-template-columns: auto 1fr; }
+    .result-score { display: none; }
+    .result-others { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <span class="logo-dot"></span>
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html" style="color: var(--on-dark);">Qual país?</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">Ver todos</a>
+      <a class="btn btn-primary" href="comparar.html">Comparar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== PROGRESS BAR ============== -->
+<div class="progress-track">
+  <div class="progress-fill" id="progress" style="width: 0%"></div>
+</div>
+
+<!-- ============== APP ============== -->
+<div class="quiz-shell">
+  <div id="app"></div>
+</div>
+
+<script>
+// ---- dados ----
+
+const QUESTIONS = [
+  {
+    id: 'status',
+    q: 'Qual é sua situação profissional hoje?',
+    options: [
+      { id: 'employee',  label: 'Empregado com contrato formal',    scores: { de:2, nl:2, ie:1, pt:1 } },
+      { id: 'freelancer',label: 'Freelancer ou autônomo',           scores: { pt:3, nl:2, ie:2, es:1 } },
+      { id: 'founder',   label: 'Empreendedor ou sócio de empresa', scores: { nl:3, pt:2, ie:2, de:1 } },
+      { id: 'graduate',  label: 'Estudante ou recém-formado',       scores: { nl:3, de:2, ie:2, pt:1 } },
+    ],
+  },
+  {
+    id: 'area',
+    q: 'Em que área você trabalha?',
+    options: [
+      { id: 'tech',        label: 'TI e tecnologia',                 scores: { de:3, nl:2, ie:3, au:2, pt:1 } },
+      { id: 'health',      label: 'Saúde (médico, enfermeiro...)',    scores: { de:3, pt:2, es:2, ie:2 } },
+      { id: 'engineering', label: 'Engenharia e construção',          scores: { de:3, nl:2, at:2, au:2 } },
+      { id: 'hospitality', label: 'Gastronomia e hospitalidade',      scores: { es:3, pt:2, it:2, ie:1 } },
+      { id: 'research',    label: 'Educação e pesquisa',              scores: { nl:3, de:2, pt:1, fr:1 } },
+      { id: 'other',       label: 'Outra área',                       scores: { pt:2, nl:1, de:1, es:1 } },
+    ],
+  },
+  {
+    id: 'english',
+    q: 'Como está seu inglês?',
+    options: [
+      { id: 'fluent',   label: 'Fluente ou avançado',              scores: { ie:3, nl:3, au:3, de:1 } },
+      { id: 'workable', label: 'Consigo trabalhar em inglês',       scores: { nl:2, ie:2, au:2, de:1, pt:1 } },
+      { id: 'basic',    label: 'Básico ou ainda aprendendo',        scores: { pt:3, es:3, it:2 } },
+      { id: 'none',     label: 'Prefiro evitar o inglês',           scores: { pt:3, es:3, it:2, fr:2 } },
+    ],
+  },
+  {
+    id: 'goal',
+    q: 'Qual é seu objetivo principal?',
+    options: [
+      { id: 'job',       label: 'Conseguir emprego formal logo',        scores: { de:3, nl:2, ie:2, au:1 } },
+      { id: 'business',  label: 'Abrir meu próprio negócio',           scores: { nl:3, pt:2, ie:2, de:1 } },
+      { id: 'temporary', label: 'Experiência temporária (1-2 anos)',    scores: { au:3, nl:2, ie:2, pt:2 } },
+      { id: 'permanent', label: 'Fixar residência e buscar cidadania',  scores: { de:3, pt:3, nl:2 } },
+    ],
+  },
+  {
+    id: 'family',
+    q: 'Você vai levar família junto?',
+    options: [
+      { id: 'alone',      label: 'Não, vou sozinho(a)',               scores: { ie:2, nl:2, au:2, pt:2 } },
+      { id: 'partner',    label: 'Sim, cônjuge ou parceiro(a)',        scores: { de:2, nl:2, pt:2, es:1 } },
+      { id: 'fullFamily', label: 'Sim, família com filhos',            scores: { de:3, nl:2, pt:2, fr:1 } },
+    ],
+  },
+  {
+    id: 'finance',
+    q: 'Qual é sua prioridade financeira?',
+    options: [
+      { id: 'lowCost',   label: 'Custo de vida mais baixo possível', scores: { pt:3, es:3, it:2 } },
+      { id: 'balanced',  label: 'Equilíbrio entre renda e custo',    scores: { nl:2, de:2, ie:2, pt:1 } },
+      { id: 'highSalary',label: 'Salário alto (aceito custo alto)',   scores: { de:3, nl:2, ie:3, au:2 } },
+    ],
+  },
+];
+
+const COUNTRY_META = {
+  nl: {
+    name: 'Holanda', flag: 'nl',
+    tagline: 'Hub tecnológico com mercado aberto a estrangeiros',
+    pros: ['Forte demanda por TI e startups', 'Inglês amplamente aceito no trabalho', 'Ano de orientação para recém-formados'],
+    con: 'Custo de moradia elevado, especialmente em Amsterdam',
+    detailUrl: 'pais-nl.html',
+  },
+  de: {
+    name: 'Alemanha', flag: 'de',
+    tagline: 'Maior mercado de trabalho da Europa',
+    pros: ['Salários entre os mais altos da região', 'Chancenkarte para busca de emprego', 'Caminho rápido para residência permanente'],
+    con: 'Alemão necessário para integração real no mercado',
+    detailUrl: 'paises.html',
+  },
+  pt: {
+    name: 'Portugal', flag: 'pt',
+    tagline: 'Porta de entrada da Europa sem barreira de idioma',
+    pros: ['Sem barreira de idioma para brasileiros', 'Custo de vida menor que Europa Central', 'Tech Visa e opção de trabalho remoto'],
+    con: 'Salários entre os mais baixos da Europa Ocidental',
+    detailUrl: 'paises.html',
+  },
+  es: {
+    name: 'Espanha', flag: 'es',
+    tagline: 'Cultura próxima e mercado em crescimento',
+    pros: ['Idioma próximo do português', 'Custo de vida moderado', 'Forte em turismo, gastronomia e agricultura'],
+    con: 'Burocracia mais complexa para estrangeiros não-UE',
+    detailUrl: 'paises.html',
+  },
+  ie: {
+    name: 'Irlanda', flag: 'ie',
+    tagline: 'Sede europeia das grandes techs, em inglês',
+    pros: ['Inglês como língua de trabalho', 'Sede europeia de Google, Meta e Apple', 'Mercado de TI muito ativo'],
+    con: 'Custo de habitação em Dublin entre os mais altos da Europa',
+    detailUrl: 'paises.html',
+  },
+  fr: {
+    name: 'França', flag: 'fr',
+    tagline: 'Economia diversificada no coração da Europa',
+    pros: ['Grande mercado consumidor', 'Polo de moda, gastronomia e luxo', 'Acesso a toda a zona Schengen'],
+    con: 'Francês é quase obrigatório para trabalho e integração',
+    detailUrl: 'paises.html',
+  },
+  it: {
+    name: 'Itália', flag: 'it',
+    tagline: 'Custo de vida variado e idioma próximo',
+    pros: ['Sul da Itália com custo de vida acessível', 'Idioma próximo do português', 'Forte em gastronomia, moda e manufatura'],
+    con: 'Mercado de trabalho menos dinâmico para estrangeiros',
+    detailUrl: 'paises.html',
+  },
+  be: {
+    name: 'Bélgica', flag: 'be',
+    tagline: 'Centro administrativo da União Europeia',
+    pros: ['Sede de instituições da UE e OTANs', 'Trilíngue: francês, neerlandês e alemão', 'Localização central na Europa'],
+    con: 'Mercado de trabalho menor, concorrência alta',
+    detailUrl: 'paises.html',
+  },
+  at: {
+    name: 'Áustria', flag: 'at',
+    tagline: 'Qualidade de vida entre as mais altas da Europa',
+    pros: ['Índices de qualidade de vida excelentes', 'Forte em engenharia e manufatura', 'Acesso aos mercados da Europa Central'],
+    con: 'Alemão obrigatório para a maioria das vagas',
+    detailUrl: 'paises.html',
+  },
+  au: {
+    name: 'Austrália', flag: 'au',
+    tagline: 'Mercado anglófono com salários altos',
+    pros: ['Working Holiday Visa disponível', 'Salários entre os mais altos do mundo', 'Grande demanda em engenharia, saúde e TI'],
+    con: 'Distância do Brasil e fora do mercado europeu',
+    detailUrl: 'paises.html',
+  },
+};
+
+// ---- estado ----
+let step = 0; // 0=intro, 1-6=perguntas, 7=resultado
+const answers = {};
+
+// ---- pontuação ----
+function calcScores() {
+  const scores = {};
+  for (const code of Object.keys(COUNTRY_META)) scores[code] = 0;
+  for (const q of QUESTIONS) {
+    const sel = answers[q.id];
+    if (!sel) continue;
+    const opt = q.options.find(o => o.id === sel);
+    if (!opt) continue;
+    for (const [code, pts] of Object.entries(opt.scores)) {
+      scores[code] = (scores[code] || 0) + pts;
+    }
+  }
+  return Object.entries(scores).sort((a, b) => b[1] - a[1]);
+}
+
+// ---- navegação com fade ----
+function goTo(target) {
+  const app = document.getElementById('app');
+  app.classList.add('fade-out');
+  setTimeout(() => {
+    step = target;
+    render();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => app.classList.remove('fade-out'));
+    });
+  }, 180);
+}
+
+function selectOption(qId, optId) {
+  answers[qId] = optId;
+  // re-render sem fade para resposta imediata
+  render();
+}
+
+// ---- barra de progresso ----
+function updateProgress() {
+  const pct = step === 0 ? 0 : step > QUESTIONS.length ? 100 : Math.round((step / QUESTIONS.length) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+}
+
+// ---- render intro ----
+function renderIntro() {
+  return `
+    <div class="intro-wrap">
+      <div class="container">
+        <div class="intro-inner">
+          <span class="intro-label">Descubra</span>
+          <h1 class="intro-title">Qual país combina com você?</h1>
+          <p class="intro-sub">Responda 6 perguntas sobre seu perfil e objetivos. O sistema cruza suas respostas com os dados reais de 10 países e indica as melhores opções.</p>
+          <div class="intro-meta">
+            <span class="intro-meta-item"><span class="meta-dot"></span>6 perguntas</span>
+            <span class="intro-meta-item"><span class="meta-dot"></span>Menos de 2 minutos</span>
+            <span class="intro-meta-item"><span class="meta-dot"></span>Top 3 países com justificativa</span>
+          </div>
+          <button class="btn btn-primary" onclick="goTo(1)">Começar →</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ---- render pergunta ----
+function renderQuestion(qIndex) {
+  const q = QUESTIONS[qIndex - 1];
+  const selected = answers[q.id];
+  const hasSelection = !!selected;
+
+  const opts = q.options.map(opt => `
+    <button
+      class="opt-card${selected === opt.id ? ' selected' : ''}"
+      onclick="selectOption('${q.id}', '${opt.id}')"
+    >
+      <span class="opt-marker"></span>
+      <span class="opt-label">${opt.label}</span>
+    </button>
+  `).join('');
+
+  return `
+    <div class="question-wrap">
+      <div class="container" style="display:flex;flex-direction:column;height:100%;flex:1">
+        <div class="question-label">Pergunta ${qIndex} de ${QUESTIONS.length}</div>
+        <h2 class="question-text">${q.q}</h2>
+        <div class="options-grid">${opts}</div>
+        <div class="step-nav">
+          ${qIndex > 1
+            ? `<button class="step-back" onclick="goTo(${qIndex - 1})">← Voltar</button>`
+            : `<button class="step-back" onclick="goTo(0)">← Voltar</button>`
+          }
+          <button
+            class="btn btn-primary step-next"
+            onclick="goTo(${qIndex < QUESTIONS.length ? qIndex + 1 : QUESTIONS.length + 1})"
+            ${!hasSelection ? 'disabled' : ''}
+          >${qIndex < QUESTIONS.length ? 'Próxima →' : 'Ver resultado →'}</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ---- render resultado ----
+function renderResult() {
+  const ranked = calcScores();
+  const maxScore = ranked[0][1] || 1;
+  const top3 = ranked.slice(0, 3).map(([code, score]) => ({ code, score, ...COUNTRY_META[code] }));
+
+  const [first, second, third] = top3;
+
+  function prosList(pros) {
+    return pros.map(p => `
+      <div class="result-pro">
+        <span class="result-pro-dot"></span>
+        <span>${p}</span>
+      </div>`).join('');
+  }
+
+  function othersCard(c, rank) {
+    return `
+      <div class="result-other">
+        <div class="result-other-head">
+          <span class="result-other-flag flag-${c.flag}"></span>
+          <span class="result-other-name">${c.name}</span>
+          <span class="result-other-rank">#${rank}</span>
+        </div>
+        <p class="result-other-tagline">${c.tagline}</p>
+        ${c.pros.slice(0,2).map(p => `
+          <div class="result-other-pro">
+            <span class="result-other-pro-dot"></span>
+            <span>${p}</span>
+          </div>`).join('')}
+        <div style="margin-top:var(--s-md);">
+          <a href="${c.detailUrl}" class="body-sm" style="color:var(--primary);text-decoration:underline;text-underline-offset:2px;">ver detalhe →</a>
+        </div>
+      </div>`;
+  }
+
+  return `
+    <div class="result-wrap">
+      <div class="container">
+        <span class="result-label">Resultado</span>
+        <h2 class="result-title">Com base no seu perfil, o destino mais indicado é:</h2>
+
+        <div class="result-top">
+          <span class="result-top-flag flag-${first.flag}"></span>
+          <div class="result-top-body">
+            <span class="result-top-badge">Melhor correspondência</span>
+            <p class="result-top-name">${first.name}</p>
+            <p class="result-top-tagline">${first.tagline}</p>
+            <div class="result-pros">${prosList(first.pros)}</div>
+            <div class="result-con">
+              <span class="result-con-label">Atenção:</span>
+              <span>${first.con}</span>
+            </div>
+          </div>
+          <div class="result-score">
+            <span class="result-score-num">${first.score}</span>
+            <span class="result-score-label">pontos</span>
+            <a href="${first.detailUrl}" class="btn btn-secondary" style="font-size:13px;padding:8px 16px;margin-top:var(--s-md);">Ver detalhe →</a>
+          </div>
+        </div>
+
+        ${(second || third) ? `
+          <p style="font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.5px;margin-bottom:var(--s-md);">TAMBÉM COMPATÍVEIS</p>
+          <div class="result-others">
+            ${second ? othersCard(second, 2) : ''}
+            ${third  ? othersCard(third,  3) : ''}
+          </div>
+        ` : ''}
+
+        <div class="result-actions">
+          <a class="btn btn-primary" href="comparar.html?cc=${top3.map(c=>c.code).join(',')}">Comparar esses países</a>
+          <a class="btn btn-secondary" href="paises.html">Ver todos os países</a>
+          <button class="restart-btn" onclick="restart()">Refazer questionário</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ---- reiniciar ----
+function restart() {
+  for (const k of Object.keys(answers)) delete answers[k];
+  goTo(0);
+}
+
+// ---- render principal ----
+function render() {
+  const app = document.getElementById('app');
+  if (step === 0) {
+    app.innerHTML = renderIntro();
+  } else if (step <= QUESTIONS.length) {
+    app.innerHTML = renderQuestion(step);
+  } else {
+    app.innerHTML = renderResult();
+  }
+  updateProgress();
+}
+
+render();
+</script>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <span class="logo-dot"></span>
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · HenryZuka · MIT</span>
+      <span class="caption-up">Última extração: abr/2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

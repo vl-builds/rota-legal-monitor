@@ -227,6 +227,36 @@ section { padding: var(--s-section) 0; }
 }
 .hero-cta { display: flex; gap: var(--s-sm); flex-wrap: wrap; }
 
+/* ===================== PAGE HERO ===================== */
+.page-hero {
+  padding: var(--s-xxl) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.page-eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--s-sm);
+}
+.page-title {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  color: var(--on-dark);
+  margin: 0 0 var(--s-xs);
+  line-height: 1.1;
+}
+.page-sub {
+  font-size: 15px;
+  color: var(--body);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
 /* ===================== CODE WINDOW ===================== */
 .code-window {
   background: var(--surface-card);
@@ -510,6 +540,7 @@ footer {
   .display-xl  { font-size: 36px; letter-spacing: -1px; }
   .display-md  { font-size: 28px; }
   .stat-display { font-size: 40px; }
+  .page-title  { font-size: 28px; }
   .nav-links   { display: none; }
   .feature-grid { grid-template-columns: 1fr; }
   section { padding: var(--s-xxl) 0; }
