@@ -12,25 +12,25 @@ export const beSource: SourceConfig = {
 
   urls: [
     {
-      url: 'https://dofi.ibz.be/en',
+      url: 'https://dofi.ibz.be/en/themas/onderdanen-van-derde-landen/werk/single-permit',
       contentType: 'visa-overview',
       promptHint:
-        'Office des Etrangers belga (Escritorio de Estrangeiros). Extraia: visao geral dos tipos de autorizacao de trabalho e residencia disponiveis para brasileiros (Single Permit, Profissional Altamente Qualificado, trabalhadores sazonais), diferenca entre autorizacao federal e regional, e como dar entrada no processo.',
-      fetchFrequency: 'monthly',
-    },
-    {
-      url: 'https://employment.belgium.be/en',
-      contentType: 'visa-requirements',
-      promptHint:
-        'Servico Federal de Emprego belga. Extraia: tipos de autorizacao de trabalho por regiao (Flandres, Valonia, Bruxelas), o Single Permit (autorizacao unica de trabalho e residencia) como caminho federal, salario minimo exigido, setores com escassez de mao de obra e se ha acordo bilateral com o Brasil.',
+        'Pagina oficial do IBZ (Escritorio de Imigracao belga) sobre o Single Permit — autorizacao unica de trabalho e residencia para nao-cidadaos da UE que querem ficar mais de 90 dias. Extraia: quem deve solicitar, como funciona o processo conjunto entre IBZ e regiao, documentos, prazo, validade e renovacao. Este e o caminho principal para brasileiros trabalharem na Belgica.',
       fetchFrequency: 'monthly',
       model: 'sonnet',
     },
     {
-      url: 'https://www.belgium.be/en',
+      url: 'https://dofi.ibz.be/en/themes/third-country-nationals/work',
       contentType: 'visa-requirements',
       promptHint:
-        'Portal oficial do governo belga. Para brasileiros querendo trabalhar na Belgica, extraia: requisitos gerais de entrada (visto necessario ou nao), onde solicitar o visto de trabalho (consulado), documentos exigidos, seguro saude obrigatorio e percurso para residencia permanente apos trabalho continuado.',
+        'Secao de trabalho do IBZ para cidadaos de paises terceiros. Extraia: todos os tipos de autorizacao de trabalho listados (Single Permit, ICT, pesquisadores, estagiarios, profissionais altamente qualificados), qual autoridade e responsavel por cada tipo e se ha exigencia de oferta de emprego.',
+      fetchFrequency: 'monthly',
+    },
+    {
+      url: 'https://dofi.ibz.be/en/themes/ressortissants-dun-pays-tiers/travail/professional-card',
+      contentType: 'visa-requirements',
+      promptHint:
+        'Pagina do IBZ sobre o cartao profissional belga (trabalho autonomo/por conta propria). Extraia: requisitos para brasileiro trabalhar como autonomo na Belgica, valor minimo de investimento ou rendimento esperado, documentos exigidos, quem emite o cartao e diferenca em relacao ao Single Permit para empregados.',
       fetchFrequency: 'monthly',
     },
   ],

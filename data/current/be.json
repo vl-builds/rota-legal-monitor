@@ -1,8 +1,8 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Página não contém informações detalhadas sobre requisitos de visto para trabalhadores brasileiros. Conteúdo disponível refere-se apenas a oportunidades de emprego no setor público belga através da plataforma workingfor.be.",
-    "schengenVisaFree": true,
+    "notes": "Brasileiros são nacionais de países terceiros e precisam de cartão profissional para trabalhar como autônomos. Para permanência superior a 90 dias, é necessário visto D de longa permanência. O cartão profissional é processado pelas autoridades regionais belgas. Não há menção a acordos especiais Brasil-Bélgica nesta página.",
+    "schengenVisaFree": false,
     "specialAgreements": [],
     "workPermitNeeded": true
   },
@@ -11,7 +11,7 @@
     "healthInsurance": {
       "minimumCoverage": null,
       "mustBeLocal": false,
-      "notes": "",
+      "notes": "Não especificado para cartão profissional nesta página",
       "required": false
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
@@ -21,41 +21,30 @@
   "meta": {
     "country": "be",
     "countryName": "Belgica",
-    "lastUpdated": "2026-04-29T21:04:32.704Z",
+    "lastUpdated": "2026-05-01T21:23:06.366Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T21:04:04.666Z",
+        "fetchedAt": "2026-05-01T21:22:18.537Z",
         "status": "ok",
-        "url": "https://dofi.ibz.be/en"
+        "url": "https://dofi.ibz.be/en/themas/onderdanen-van-derde-landen/werk/single-permit"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T21:04:12.892Z",
+        "fetchedAt": "2026-05-01T21:22:20.551Z",
         "status": "ok",
-        "url": "https://employment.belgium.be/en"
+        "url": "https://dofi.ibz.be/en/themes/third-country-nationals/work"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T21:04:29.698Z",
+        "fetchedAt": "2026-05-01T21:22:22.563Z",
         "status": "ok",
-        "url": "https://www.belgium.be/en"
+        "url": "https://dofi.ibz.be/en/themes/ressortissants-dun-pays-tiers/travail/professional-card"
       }
     ]
   },
-  "recentChanges": [
-    {
-      "affects": [
-        "immigration-office-location"
-      ],
-      "date": "2026-03-16",
-      "severity": "minor",
-      "sourceUrl": "https://dofi.ibz.be/en",
-      "summary": "Pessoas convidadas para entrevista de Proteção Internacional, outro procedimento de residência ou acompanhamento ICAM não devem mais se reportar ao PASSAGE 44 a partir de segunda-feira, 16 de março",
-      "title": "Mudança de Localização do Office of Immigration"
-    }
-  ],
+  "recentChanges": [],
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
@@ -64,42 +53,43 @@
   },
   "visaTypes": [
     {
-      "description": "Autorização federal que combina permissão de trabalho e residência em um único procedimento. Válida em todo o território belga (Flandres, Valônia e Bruxelas).",
+      "description": "Autorização única de trabalho e residência para cidadãos não-UE que desejam trabalhar e residir na Bélgica por mais de 90 dias. Combina a permissão de trabalho (emitida pela Região) e a permissão de residência (emitida pelo Escritório de Imigração) em um único procedimento.",
       "eligibility": [
-        "Trabalhadores assalariados com oferta de emprego na Bélgica",
-        "Profissionais qualificados"
+        "Cidadãos de países terceiros (não-UE) que desejam trabalhar na Bélgica",
+        "Trabalhadores com oferta de emprego de empregador belga",
+        "Pessoas que pretendem permanecer por mais de 90 dias"
       ],
       "id": "single-permit",
-      "name": "Permissão Única",
+      "name": "Permissão Única (Single Permit)",
       "nameOriginal": "Single Permit",
-      "notes": "O Single Permit é o caminho federal principal para trabalhar na Bélgica. As autoridades regionais (Flandres, Valônia, Bruxelas) são responsáveis por processar os pedidos conforme a localização do empregador.",
+      "notes": "A permissão de residência concedida pelo Escritório de Imigração permanece limitada a 5 anos. Após 5 anos, a permissão de residência pode ser renovada por período ilimitado, desde que o trabalhador atenda às condições. O trabalhador autorizado a permanecer por período ilimitado recebe cartão B com indicação 'Labour market: unlimited'. A renovação deve ser solicitada pelo empregador à Região no máximo 2 meses antes da expiração.",
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "A determinar",
+        "applicationLocation": "ambos",
+        "estimatedDuration": "até 4 meses (prorrogável)",
         "fees": [],
         "steps": [
           {
-            "description": "O empregador belga inicia o processo solicitando a autorização única junto às autoridades regionais competentes",
+            "description": "O trabalhador deve solicitar a renovação da permissão de trabalho à Região (através do empregador) no máximo 2 meses antes da expiração do cartão A",
             "estimatedDays": null,
-            "name": "Empregador solicita autorização",
+            "name": "Solicitação de renovação à Região",
             "order": 1
           },
           {
-            "description": "Autoridades regionais e federais analisam o pedido",
-            "estimatedDays": null,
-            "name": "Análise do pedido",
+            "description": "Se a Região e o Escritório de Imigração não decidirem antes da expiração do cartão A, a administração municipal emitirá um Anexo 49, desde que o trabalhador apresente documento da Região atestando admissibilidade e completude da solicitação. Anexo 49 cobre a estadia temporariamente por 30 dias e pode ser estendido duas vezes (2 x 30 dias). Anexo 49 não autoriza trabalho (indicação 'Labour Market: No'), a menos que a Região tenha renovado a permissão de trabalho",
+            "estimatedDays": 30,
+            "name": "Emissão de Anexo 49 (se necessário)",
             "order": 2
           },
           {
-            "description": "Após aprovação, a permissão única é emitida",
+            "description": "Quando a Região concede permissão de trabalho por período ilimitado dentro dos primeiros 5 anos, o trabalhador deve solicitar apenas a renovação da permissão de residência à administração municipal, no máximo 2 meses antes da data de expiração do cartão A. A administração municipal fornecerá Anexo 50 (válido por 30 dias, prorrogável 2 x 30 dias) e enviará a solicitação ao Escritório de Imigração",
             "estimatedDays": null,
-            "name": "Emissão da permissão",
+            "name": "Renovação da permissão de residência (trabalho por tempo ilimitado)",
             "order": 3
           },
           {
-            "description": "O trabalhador solicita visto de trabalho na embaixada/consulado belga no país de origem",
-            "estimatedDays": null,
-            "name": "Solicitação de visto",
+            "description": "O Escritório de Imigração toma sua decisão dentro de 4 meses, que pode ser estendido. Se aprovado, emite cartão A (estadia limitada) ou cartão B (estadia ilimitada) com indicação 'Labour market: unlimited'. Se não houver decisão negativa dentro do prazo, o cartão é automaticamente emitido",
+            "estimatedDays": 120,
+            "name": "Decisão do Escritório de Imigração",
             "order": 4
           }
         ]
@@ -108,67 +98,26 @@
       "requirements": {
         "documents": [
           {
-            "description": "Oferta de emprego ou contrato de trabalho válido com empregador belga",
+            "description": "Cópia do passaporte válido ou documento de viagem equivalente",
             "isCritical": true,
-            "name": "Contrato de trabalho"
+            "name": "Passaporte válido ou documento de viagem"
           },
           {
-            "description": "Passaporte com validade mínima de 3 meses",
+            "description": "Prova de meios de subsistência suficientes, incluindo duração do emprego como trabalhador e, quando aplicável, número de IVA do empregador",
             "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Comprovante de meios de subsistência suficientes"
           },
           {
-            "description": "Certificado de antecedentes criminais do país de origem",
-            "isCritical": false,
-            "name": "Certificado de antecedentes criminais"
+            "description": "Comprovante de seguro de saúde cobrindo todos os riscos na Bélgica para o solicitante e membros da família",
+            "isCritical": true,
+            "name": "Seguro de saúde"
           },
           {
-            "description": "Comprovação de qualificações profissionais e acadêmicas",
-            "isCritical": false,
-            "name": "Diplomas e qualificações"
+            "description": "Decisão da Região autorizando o trabalho (para renovações com permissão de trabalho por tempo ilimitado)",
+            "isCritical": true,
+            "name": "Autorização de trabalho da Região"
           }
         ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Residência legal por 5 anos",
-            "Conhecimento de uma das línguas oficiais (holandês, francês ou alemão)",
-            "Integração social e econômica"
-          ],
-          "yearsRequired": 5
-        },
-        "pathToResidency": {
-          "conditions": [
-            "Residência legal contínua por 5 anos",
-            "Integração adequada"
-          ],
-          "yearsRequired": 5
-        }
-      }
-    },
-    {
-      "description": "Categoria de visto para profissionais com qualificações elevadas em Bélgica",
-      "eligibility": [],
-      "id": "highly-qualified-professional",
-      "name": "Profissional Altamente Qualificado",
-      "nameOriginal": "Highly Qualified Professional",
-      "notes": null,
-      "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [],
-        "steps": []
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": []
@@ -178,25 +127,122 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToResidency": {
+          "conditions": [
+            "Não estar em nenhum dos casos previstos no Artigo 3, 5° a 10° da lei",
+            "Não depender do sistema de bem-estar social belga",
+            "Não estar permanecendo para fins diferentes daqueles para os quais foi autorizado"
+          ],
+          "yearsRequired": 5
+        }
       }
     },
     {
-      "description": "Autorização de trabalho para trabalhadores sazonais em Bélgica",
+      "description": "Autorização para trabalhar na Bélgica por mais de 90 dias. Cidadãos de países terceiros que obtenham autorização de trabalho por mais de 90 dias também devem ser autorizados a residir na Bélgica pelo mesmo período.",
       "eligibility": [],
-      "id": "seasonal-worker",
-      "name": "Trabalhador Sazonal",
-      "nameOriginal": "Seasonal Worker",
-      "notes": null,
+      "id": "work-authorization-belgium",
+      "name": "Autorização de Trabalho",
+      "nameOriginal": "Work authorisation",
+      "notes": "Cidadãos de países terceiros autorizados a trabalhar e residir na Bélgica por mais de 90 dias podem ser acompanhados ou reunidos com o cônjuge ou parceiro (parceria registrada por lei) e filhos menores, sob certas condições. Para mais informações sobre procedimentos, condições, documentos e tempo de processamento, consulte o site da Região competente.",
       "process": {
-        "applicationLocation": "destino",
+        "applicationLocation": "ambos",
         "estimatedDuration": "A determinar",
         "fees": [],
-        "steps": []
+        "steps": [
+          {
+            "description": "A autorização de trabalho na Bélgica deve ser solicitada à Região competente (Região Flamenga, Região de Bruxelas-Capital, Região Valona ou Comunidade de Língua Alemã)",
+            "estimatedDays": null,
+            "name": "Solicitar Autorização de Trabalho",
+            "order": 1
+          },
+          {
+            "description": "O requerente deve solicitar autorização de residência na Bélgica à embaixada competente do país onde reside no exterior, ou à administração municipal do local de residência se já reside legalmente na Bélgica. A decisão é tomada pela Immigration Office.",
+            "estimatedDays": null,
+            "name": "Solicitar Autorização de Residência",
+            "order": 2
+          }
+        ]
       },
       "relevanceForDelivery": "direct",
       "requirements": {
         "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão para estrangeiros de países terceiros exercerem atividades por conta própria (trabalho autônomo) na Bélgica",
+      "eligibility": [
+        "Nacionais de países terceiros",
+        "Que desejam exercer atividades de trabalho autônomo na Bélgica"
+      ],
+      "id": "professional-card",
+      "name": "Cartão Profissional",
+      "nameOriginal": "Professional Card",
+      "notes": "O cartão profissional é emitido pelas administrações regionais (Região Flamenga, Região de Bruxelas-Capital, Região Valona e Comunidade Germanófona). Para permanência superior a 90 dias, é necessário obter um visto D de longa permanência. Esta categoria é distinta do Single Permit, que se aplica a empregados (trabalho por conta de outrem). Existem casos de isenção do cartão profissional que não são detalhados nesta página.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Solicitar o cartão profissional junto à administração regional competente (Flanders, Bruxelas, Valônia ou Comunidade Germanófona)",
+            "estimatedDays": null,
+            "name": "Obtenção do Cartão Profissional",
+            "order": 1
+          },
+          {
+            "description": "Aplicar para um visto D (visto nacional de longa permanência) na embaixada belga ou consulado geral responsável pela residência do solicitante",
+            "estimatedDays": null,
+            "name": "Solicitação do Visto D",
+            "order": 2
+          },
+          {
+            "description": "Apresentar os documentos exigidos (comprovante de pagamento de contribuição, decisão de concessão do cartão profissional, certificado médico e extrato criminal)",
+            "estimatedDays": null,
+            "name": "Entrega da Documentação",
+            "order": 3
+          },
+          {
+            "description": "Após chegada na Bélgica com visto D, ir ao balcão de empresa indicado no formulário de solicitação do cartão profissional para recolher o cartão",
+            "estimatedDays": null,
+            "name": "Recolhimento do Cartão Profissional",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Prova de pagamento da contribuição, se aplicável",
+            "isCritical": false,
+            "name": "Comprovante de pagamento da taxa de contribuição"
+          },
+          {
+            "description": "Atestado médico comprovando que o solicitante não sofre de nenhuma das doenças listadas no apêndice da lei de 15 de dezembro de 1980",
+            "isCritical": true,
+            "name": "Certificado médico"
+          },
+          {
+            "description": "Extrato do registro criminal ou documento equivalente emitido pelo país de origem ou última residência, com menos de 6 meses de idade, atestando que não foi condenado por crimes ou delitos comuns",
+            "isCritical": true,
+            "name": "Extrato de registro criminal"
+          },
+          {
+            "description": "Decisão da região concedendo o cartão profissional, necessária para solicitação do visto D",
+            "isCritical": true,
+            "name": "Decisão do visto D"
+          }
+        ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": []

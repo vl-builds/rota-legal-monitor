@@ -1,7 +1,7 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "",
+    "notes": "Brasileiros necessitam de visto para trabalhar na Espanha. Ambas as modalidades requerem permiso de residência emitido pela Unidade de Grandes Empresas e Grupos Estratégicos",
     "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
@@ -14,62 +14,37 @@
       "notes": "",
       "required": false
     },
-    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "passportValidity": "Mínimo 1 ano de validade. Passaportes emitidos há mais de 10 anos não serão aceitos. Deve conter duas páginas em branco",
     "proofOfFunds": null,
     "vaccinations": []
   },
   "meta": {
     "country": "es",
     "countryName": "Espanha",
-    "lastUpdated": "2026-04-29T20:33:32.669Z",
+    "lastUpdated": "2026-05-01T21:24:50.983Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:32:08.731Z",
+        "fetchedAt": "2026-05-01T21:22:18.543Z",
         "status": "ok",
-        "url": "https://www.inclusion.gob.es/en/web/migraciones/tipos-de-autorizacion"
+        "url": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Visado-de-trabajo-por-cuenta-ajena.aspx"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:32:12.456Z",
+        "fetchedAt": "2026-05-01T21:22:31.336Z",
         "status": "ok",
-        "url": "https://www.inclusion.gob.es/en/web/migraciones"
+        "url": "https://www.exteriores.gob.es/Consulados/houston/en/ServiciosConsulares/Paginas/Consular/TELEWORK-Visa-(Digital-Nomad-Visa)-.aspx"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:32:15.813Z",
+        "fetchedAt": "2026-05-01T21:22:34.212Z",
         "status": "ok",
-        "url": "https://www.inclusion.gob.es/web/migraciones/vivir-en-espana"
-      },
-      {
-        "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:32:18.631Z",
-        "status": "ok",
-        "url": "https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion"
-      },
-      {
-        "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:33:29.400Z",
-        "status": "ok",
-        "url": "https://www.inclusion.gob.es/web/migraciones/informacion-util"
+        "url": "https://www.exteriores.gob.es/Embajadas/abudhabi/en/ServiciosConsulares/Paginas/Consular/Visado-para-trabajador-altamente-cualificado-y-para-traslado-intraempresarial.aspx"
       }
     ]
   },
-  "recentChanges": [
-    {
-      "affects": [
-        "nomades-digitais",
-        "trabalhadores-remotos",
-        "autonomos"
-      ],
-      "date": "2022-12-01",
-      "severity": "major",
-      "sourceUrl": "https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion",
-      "summary": "Entrada em vigor da Lei 28/2022 de promoção do ecossistema de startups, que criou o novo visto e autorização de residência para nômades digitais (teletrabalhadores internacionais). Permite que profissionais trabalhem remotamente na Espanha para empresas estrangeiras ou como autônomos com benefícios fiscais.",
-      "title": "Lei de Startups (Lei 28/2022) - Criação do Visto de Nômade Digital"
-    }
-  ],
+  "recentChanges": [],
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
@@ -78,44 +53,69 @@
   },
   "visaTypes": [
     {
-      "description": "Autorização para residir e trabalhar na Espanha como trabalhador assalariado (empregado).",
+      "description": "Visto para pessoas com 16 anos ou mais que desejam trabalhar como empregados na Espanha (com contrato de trabalho). Este visto também cobre atividades de trabalho sazonal.",
       "eligibility": [
-        "Ter uma oferta de emprego de empresa estabelecida na Espanha",
-        "O empregador deve iniciar o processo de autorização",
-        "Não ter antecedentes criminais"
+        "Maiores de 16 anos",
+        "Possuir contrato de trabalho na Espanha",
+        "Ter autorização prévia de residência e trabalho concedida ao empregador",
+        "Aplicável para trabalho sazonal"
       ],
-      "id": "autorizacion-residencia-trabajo-cuenta-ajena",
-      "name": "Autorização de Residência e Trabalho por Conta Alheia",
-      "nameOriginal": "Autorización de residencia y trabajo por cuenta ajena",
-      "notes": "Esta autorização vincula o trabalhador ao empregador que solicitou a autorização. Para mudar de empregador é necessário solicitar modificação da autorização.",
+      "id": "trabalho-conta-alheia",
+      "name": "Visto de Residência e Trabalho por Conta Alheia",
+      "nameOriginal": "Residence and Employment Work Visa (TRA)",
+      "notes": "A solicitação de visto deve ser apresentada dentro de 1 mês a partir da notificação ao empregador da concessão da autorização. O visto é válido por 90 dias para contratos de um ano. Cada agendamento é apenas para uma pessoa e passaporte, portanto membros da família precisam agendar consultas adicionais. Agendamentos devem ser cancelados com pelo menos 4 dias de antecedência. Não são aceitos intermediários. Em caso de recusa, é possível apresentar recurso de reconsideração ao consulado dentro de 1 mês, ou recurso judicial ao Tribunal Superior de Justiça de Madri dentro de 2 meses.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "3 a 6 meses",
+        "estimatedDuration": "1 mês a partir da data de apresentação da solicitação, podendo ser estendido se entrevista ou documentos adicionais forem solicitados",
         "fees": [],
         "steps": [
           {
-            "description": "O empregador deve solicitar a autorização na Oficina de Extranjería correspondente na Espanha",
+            "description": "O empregador na Espanha deve solicitar e obter a autorização de residência e trabalho por conta alheia junto às autoridades espanholas competentes.",
             "estimatedDays": null,
-            "name": "Solicitação pelo empregador",
+            "name": "Obtenção da autorização prévia pelo empregador",
             "order": 1
           },
           {
-            "description": "A administração analisa a documentação e emite decisão",
-            "estimatedDays": 90,
-            "name": "Análise e decisão",
+            "description": "Enviar e-mail para cog.londres.viscp@maec.es com dados pessoais (nome completo, número do passaporte, e-mail, telefone, local de residência no Reino Unido, tipo de visto) e anexar a autorização inicial de residência e trabalho. Após verificação, receberá e-mail com usuário e senha para agendar data e horário.",
+            "estimatedDays": null,
+            "name": "Agendamento de consulta",
             "order": 2
           },
           {
-            "description": "Com a autorização aprovada, o trabalhador solicita o visto no consulado espanhol em seu país",
-            "estimatedDays": 30,
-            "name": "Obtenção do visto",
+            "description": "Reunir todos os documentos exigidos: formulário de solicitação, fotografia, passaporte, cópia da autorização, contrato de trabalho, certidão de antecedentes criminais, certificado médico, comprovante de residência, envelope pré-pago Special Delivery para devolução do passaporte.",
+            "estimatedDays": null,
+            "name": "Preparação de documentos",
             "order": 3
           },
           {
-            "description": "Após entrar na Espanha, deve solicitar o cartão de identidade de estrangeiro (TIE)",
-            "estimatedDays": 30,
-            "name": "Entrada na Espanha e emissão do cartão",
+            "description": "Comparecer pessoalmente ao consulado na data agendada para apresentar a solicitação e todos os documentos. O passaporte será retido durante o processamento. Pagamento da taxa de visto deve ser feito neste momento.",
+            "estimatedDays": null,
+            "name": "Apresentação presencial da solicitação",
             "order": 4
+          },
+          {
+            "description": "O consulado analisará a solicitação. Pode solicitar documentos adicionais ou dados complementares, ou convocar o solicitante para entrevista pessoal. O solicitante receberá comprovante de recebimento com código para acompanhar o status.",
+            "estimatedDays": 30,
+            "name": "Análise do consulado",
+            "order": 5
+          },
+          {
+            "description": "O consulado tomará decisão e notificará o solicitante. Em caso de recusa, será notificado por escrito com fundamentos da decisão.",
+            "estimatedDays": null,
+            "name": "Decisão e notificação",
+            "order": 6
+          },
+          {
+            "description": "Se aprovado, o visto deve ser retirado pessoalmente pelo solicitante ou representante legal (se menor) dentro de no máximo 1 mês contado a partir do dia seguinte à notificação da decisão favorável. O passaporte será devolvido com o visto.",
+            "estimatedDays": null,
+            "name": "Retirada do visto",
+            "order": 7
+          },
+          {
+            "description": "Se o contrato for de um ano, o visto será válido por 90 dias. Uma vez na Espanha, o trabalhador deve se registrar na Segurança Social.",
+            "estimatedDays": null,
+            "name": "Entrada na Espanha e registro na Segurança Social",
+            "order": 8
           }
         ]
       },
@@ -123,24 +123,54 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte completo em vigor",
+            "description": "Cada solicitante deve preencher e assinar um formulário de visto, preenchendo todas as seções. Se o solicitante for menor, um dos pais deve assinar.",
+            "isCritical": true,
+            "name": "Formulário de solicitação de visto nacional"
+          },
+          {
+            "description": "Foto recente, tamanho passaporte, colorida, tirada contra fundo claro, de frente, sem óculos escuros ou reflexivos, ou roupas que ocultem o oval do rosto.",
+            "isCritical": true,
+            "name": "Fotografia"
+          },
+          {
+            "description": "Original e fotocópia das páginas do passaporte que contêm dados biométricos. O passaporte deve ter validade mínima de 4 meses (no caso de contrato temporário, o período de validade deve cobrir a duração do contrato) e conter duas páginas em branco. Passaportes emitidos há mais de 10 anos não serão aceitos. O passaporte deve ser deixado no consulado durante o processamento.",
             "isCritical": true,
             "name": "Passaporte válido"
           },
           {
-            "description": "Contrato ou proposta formal de trabalho por parte do empregador espanhol",
+            "description": "A solicitação de visto deve ser apresentada dentro de UM MÊS a partir da notificação ao empregador da concessão da autorização.",
             "isCritical": true,
-            "name": "Contrato de trabalho ou oferta de emprego"
+            "name": "Cópia da Autorização de Residência e Trabalho por Conta Alheia (AUTORIZACIÓN DE RESIDENCIA Y TRABAJO POR CUENTA AJENA)"
           },
           {
-            "description": "Certificado de antecedentes penais do país de origem ou dos países onde tenha residido nos últimos 5 anos",
+            "description": "Cópia do contrato de trabalho carimbado pela Oficina de Estrangeiros (Foreign Nationals' Office).",
             "isCritical": true,
-            "name": "Certificado de antecedentes criminais"
+            "name": "Contrato de trabalho"
           },
           {
-            "description": "Atestado médico comprovando não sofrer de doenças que possam ter repercussões de saúde pública",
-            "isCritical": false,
+            "description": "Solicitantes maiores de idade devem apresentar original e cópia do(s) certificado(s) de antecedentes criminais emitido(s) pelo país ou países de residência nos últimos 5 anos. Documentos estrangeiros devem ser legalizados ou apostilados e, quando aplicável, apresentados com tradução juramentada para o espanhol. Este certificado não pode ter mais de 3 meses, a menos que o próprio certificado especifique prazo maior de validade.",
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais"
+          },
+          {
+            "description": "Original e cópia de certificado médico atestando que o solicitante não sofre de nenhuma doença que possa causar repercussões graves para a saúde pública de acordo com o Regulamento Sanitário Internacional de 2005. Deve ser emitido por médico registrado no máximo 3 meses antes da data da solicitação. Documentos estrangeiros devem ser legalizados ou apostilados e traduzidos para o espanhol. Certificados emitidos em países diferentes do Reino Unido ou Espanha não serão aceitos (quando aplicado via Consulado de Londres).",
+            "isCritical": true,
             "name": "Certificado médico"
+          },
+          {
+            "description": "O solicitante deve fornecer prova de sua residência legal no distrito consular ou que está frequentando aulas presencialmente no distrito consular.",
+            "isCritical": true,
+            "name": "Comprovante de residência no distrito consular"
+          },
+          {
+            "description": "Se o solicitante for menor, será necessário apresentar originais e cópias do documento de identidade ou passaporte de um dos pais, bem como do documento que comprove o parentesco. Documentos estrangeiros devem ser legalizados ou apostilados e traduzidos para o espanhol quando aplicável.",
+            "isCritical": false,
+            "name": "Comprovante de identidade e capacidade do representante"
+          },
+          {
+            "description": "O pagamento da taxa de visto é obrigatório e deve ser feito no momento da apresentação da solicitação de visto. A taxa deve ser paga em moeda local e está sujeita a alterações regulares devido a flutuações cambiais.",
+            "isCritical": true,
+            "name": "Comprovante de pagamento da taxa de visto"
           }
         ],
         "incomeRequirement": null,
@@ -148,175 +178,230 @@
         "qualificationsRequired": []
       },
       "rights": {
-        "canBringFamily": true,
+        "canBringFamily": false,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Para cidadãos de países ibero-americanos, o prazo é reduzido para 2 anos",
-            "Aprovar exame de conhecimentos constitucionais e socioculturais (CCSE)",
-            "Aprovar exame de língua espanhola (DELE A2 ou superior)"
-          ],
-          "yearsRequired": 10
-        },
-        "pathToResidency": {
-          "conditions": [
-            "Residência legal e contínua na Espanha",
-            "Meios econômicos suficientes",
-            "Não ter antecedentes criminais"
-          ],
-          "yearsRequired": 5
-        }
+        "pathToCitizenship": null,
+        "pathToResidency": null
       }
     },
     {
-      "description": "Autorização para residir e trabalhar na Espanha como trabalhador autônomo ou empresário.",
+      "description": "Visto de residência para casos específicos que estão isentos da exigência de autorização de trabalho, incluindo técnicos e cientistas, professores universitários, pessoal de gestão/ensino de instituições culturais, funcionários públicos estrangeiros, correspondentes de mídia, membros de missões científicas internacionais, ministros religiosos e membros de sindicatos/organizações empresariais.",
       "eligibility": [
-        "Ter projeto de atividade empresarial ou profissional na Espanha",
-        "Demonstrar qualificações profissionais necessárias",
-        "Comprovar recursos econômicos suficientes"
+        "Técnicos e cientistas convidados/contratados por autoridades espanholas ou instituições públicas para pesquisa",
+        "Professores, técnicos, pesquisadores e cientistas convidados/contratados por universidade espanhola",
+        "Pessoal de gestão, ensino ou pesquisa de instituições culturais/educacionais de renome oficialmente reconhecidas pela Espanha",
+        "Funcionários civis ou militares de administrações de Estados estrangeiros para atividades sob acordos de cooperação com a Administração Espanhola",
+        "Correspondentes de mídia estrangeira devidamente credenciados pelas autoridades espanholas"
       ],
-      "id": "autorizacion-residencia-trabajo-cuenta-propia",
-      "name": "Autorização de Residência e Trabalho por Conta Própria",
-      "nameOriginal": "Autorización de residencia y trabajo por cuenta propia",
-      "notes": "O trabalhador autônomo tem liberdade para desenvolver sua atividade profissional ou empresarial sem estar vinculado a um empregador específico.",
+      "id": "residencia-isencao-autorizacao-trabalho",
+      "name": "Visto de Residência com Isenção de Autorização de Trabalho",
+      "nameOriginal": "Residence Visa with Working Permit Exemption (TRE) - More than 90 days",
+      "notes": "Este visto é para casos específicos de isenção de autorização de trabalho. Cada agendamento é apenas para uma pessoa e passaporte, portanto membros da família precisam agendar consultas adicionais. Agendamentos devem ser cancelados com pelo menos 4 dias de antecedência. Não são aceitos intermediários. Em caso de recusa, é possível apresentar recurso de reconsideração ao consulado dentro de 1 mês, ou recurso judicial ao Tribunal Superior de Justiça de Madri dentro de 2 meses.",
       "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "3 a 6 meses",
+        "applicationLocation": "origem",
+        "estimatedDuration": "Não especificado na página",
         "fees": [],
         "steps": [
           {
-            "description": "O interessado apresenta a solicitação na Oficina de Extranjería na Espanha ou no consulado espanhol em seu país",
+            "description": "Confirmar que se enquadra em uma das categorias de isenção de autorização de trabalho e obter a documentação comprobatória necessária (convite, contrato, credenciamento, autorização, etc.).",
             "estimatedDays": null,
-            "name": "Apresentação da solicitação",
+            "name": "Verificação de elegibilidade",
             "order": 1
           },
           {
-            "description": "A administração avalia o projeto empresarial e a documentação apresentada",
-            "estimatedDays": 90,
-            "name": "Análise do projeto",
+            "description": "Preencher o formulário de autoavaliação de taxa 790-052 e o formulário EX-09.",
+            "estimatedDays": null,
+            "name": "Preenchimento de formulários",
             "order": 2
           },
           {
-            "description": "Com a autorização aprovada, solicita-se o visto no consulado espanhol",
-            "estimatedDays": 30,
-            "name": "Obtenção do visto",
+            "description": "Enviar e-mail para cog.londres.viscp@maec.es com dados pessoais (nome completo, número do passaporte, e-mail, telefone, local de residência no Reino Unido, tipo de visto). Após verificação, receberá e-mail com usuário e senha para agendar data e horário.",
+            "estimatedDays": null,
+            "name": "Agendamento de consulta",
             "order": 3
           },
           {
-            "description": "Entrada na Espanha e solicitação do cartão de identidade de estrangeiro",
-            "estimatedDays": 30,
-            "name": "Entrada e emissão do TIE",
+            "description": "Reunir todos os documentos exigidos: formulário de solicitação, fotografia, passaporte, formulários 790-052 e EX-09, comprovantes de enquadramento na isenção, certidão de antecedentes criminais, certificado médico, comprovante de residência, envelope pré-pago Special Delivery para devolução do passaporte.",
+            "estimatedDays": null,
+            "name": "Preparação de documentos",
             "order": 4
+          },
+          {
+            "description": "Comparecer pessoalmente ao consulado na data agendada para apresentar a solicitação e todos os documentos. O passaporte será retido durante o processamento. Pagamento da taxa de visto e taxa 790-052 devem ser feitos neste momento.",
+            "estimatedDays": null,
+            "name": "Apresentação presencial da solicitação",
+            "order": 5
+          },
+          {
+            "description": "O consulado analisará a solicitação. Pode solicitar documentos adicionais ou dados complementares, ou convocar o solicitante para entrevista pessoal. O solicitante receberá comprovante de recebimento com código para acompanhar o status.",
+            "estimatedDays": null,
+            "name": "Análise do consulado",
+            "order": 6
+          },
+          {
+            "description": "O consulado tomará decisão e notificará o solicitante. Em caso de recusa, será notificado por escrito com fundamentos da decisão.",
+            "estimatedDays": null,
+            "name": "Decisão e notificação",
+            "order": 7
+          },
+          {
+            "description": "Se aprovado, o visto deve ser retirado pessoalmente pelo solicitante ou representante legal (se menor) dentro de no máximo 1 mês contado a partir do dia seguinte à notificação da decisão favorável. O passaporte será devolvido com o visto.",
+            "estimatedDays": null,
+            "name": "Retirada do visto",
+            "order": 8
           }
         ]
       },
-      "relevanceForDelivery": "direct",
+      "relevanceForDelivery": "indirect",
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte completo em vigor",
+            "description": "Cada solicitante deve preencher e assinar um formulário de visto, preenchendo todas as seções. Se o solicitante for menor, um dos pais deve assinar.",
+            "isCritical": true,
+            "name": "Formulário de solicitação de visto nacional"
+          },
+          {
+            "description": "Foto recente, tamanho passaporte, colorida, tirada contra fundo claro, de frente, sem óculos escuros ou reflexivos, ou roupas que ocultem o oval do rosto.",
+            "isCritical": true,
+            "name": "Fotografia"
+          },
+          {
+            "description": "Original e fotocópia das páginas do passaporte que contêm dados biométricos. O passaporte deve ter validade mínima de 4 meses (no caso de contrato temporário, o período de validade deve cobrir a duração do contrato) e conter duas páginas em branco. Passaportes emitidos há mais de 10 anos não serão aceitos. O passaporte deve ser deixado no consulado durante o processamento.",
             "isCritical": true,
             "name": "Passaporte válido"
           },
           {
-            "description": "Descrição detalhada da atividade a desenvolver, investimento necessário e rendimentos esperados",
+            "description": "Formulário 'Autorización inicial de residencia temporal' a ser pago no consulado no dia em que a solicitação for aceita.",
             "isCritical": true,
-            "name": "Projeto de atividade empresarial"
+            "name": "Formulário de autoavaliação de taxa 790-052"
           },
           {
-            "description": "Documentação que acredite as qualificações necessárias para o exercício da atividade",
+            "description": "Formulário 'Autorización de estancia o residencia temporal con excepción de la autorización de trabajo'.",
             "isCritical": true,
-            "name": "Títulos ou qualificações profissionais"
+            "name": "Formulário EX-09"
           },
           {
-            "description": "Certificado de antecedentes penais do país de origem ou dos países onde tenha residido nos últimos 5 anos",
+            "description": "Documentos específicos conforme a categoria: convite ou contrato de trabalho endossado, credenciamento, autorização da administração espanhola, certificado do Ministério da Justiça (para religiosos), certificado de sindicato/organização empresarial, ou prova de tutela e proposta de integração social (para menores).",
             "isCritical": true,
-            "name": "Certificado de antecedentes criminais"
+            "name": "Comprovante de enquadramento em caso de isenção"
           },
           {
-            "description": "Documentação que comprove dispor de recursos suficientes para o investimento e manutenção",
+            "description": "Solicitantes maiores de idade devem apresentar original e cópia do(s) certificado(s) de antecedentes criminais emitido(s) pelo país ou países de residência nos últimos 5 anos. Documentos estrangeiros devem ser legalizados ou apostilados e, quando aplicável, apresentados com tradução juramentada para o espanhol. Este certificado não pode ter mais de 3 meses, a menos que o próprio certificado especifique prazo maior de validade.",
             "isCritical": true,
-            "name": "Comprovante de recursos econômicos"
+            "name": "Certidão de antecedentes criminais"
+          },
+          {
+            "description": "Original e cópia de certificado médico atestando que o solicitante não sofre de nenhuma doença que possa causar repercussões graves para a saúde pública de acordo com o Regulamento Sanitário Internacional de 2005. Deve ser emitido por médico registrado no máximo 3 meses antes da data da solicitação. Documentos estrangeiros devem ser legalizados ou apostilados e traduzidos para o espanhol. Certificados emitidos em países diferentes do Reino Unido ou Espanha não serão aceitos (quando aplicado via Consulado de Londres).",
+            "isCritical": true,
+            "name": "Certificado médico"
+          },
+          {
+            "description": "O solicitante deve fornecer prova de sua residência legal no distrito consular ou que está frequentando aulas presencialmente no distrito consular.",
+            "isCritical": true,
+            "name": "Comprovante de residência no distrito consular"
+          },
+          {
+            "description": "Se o solicitante for menor, será necessário apresentar originais e cópias do documento de identidade ou passaporte de um dos pais, bem como do documento que comprove o parentesco. Documentos estrangeiros devem ser legalizados ou apostilados e traduzidos para o espanhol quando aplicável.",
+            "isCritical": false,
+            "name": "Comprovante de identidade e capacidade do representante"
+          },
+          {
+            "description": "O pagamento da taxa de visto é obrigatório e deve ser feito no momento da apresentação da solicitação de visto. A taxa deve ser paga em moeda local e está sujeita a alterações regulares devido a flutuações cambiais.",
+            "isCritical": true,
+            "name": "Comprovante de pagamento da taxa de visto"
           }
         ],
         "incomeRequirement": null,
         "languageRequired": null,
-        "qualificationsRequired": [
-          "Qualificações profissionais ou empresariais adequadas à atividade a desenvolver"
-        ]
+        "qualificationsRequired": []
       },
       "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": true,
+        "canBringFamily": false,
+        "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Para cidadãos de países ibero-americanos, o prazo é reduzido para 2 anos",
-            "Aprovar exame de conhecimentos constitucionais e socioculturais (CCSE)",
-            "Aprovar exame de língua espanhola (DELE A2 ou superior)"
-          ],
-          "yearsRequired": 10
-        },
-        "pathToResidency": {
-          "conditions": [
-            "Residência legal e contínua na Espanha",
-            "Meios econômicos suficientes",
-            "Não ter antecedentes criminais"
-          ],
-          "yearsRequired": 5
-        }
+        "pathToCitizenship": null,
+        "pathToResidency": null
       }
     },
     {
-      "description": "Visto e autorização de residência para trabalho à distância, criado pela Lei de Startups (Lei 28/2022), destinado a profissionais que trabalham remotamente para empresas não estabelecidas na Espanha ou como autônomos para clientes fora da Espanha.",
+      "description": "Visto destinado a estrangeiros que desejam viver na Espanha trabalhando remotamente para uma empresa localizada fora da Espanha, utilizando exclusivamente meios de computador, telemática ou telecomunicação.",
       "eligibility": [
-        "Trabalhar remotamente para empresas estabelecidas fora da Espanha",
-        "Ou exercer atividade profissional autônoma predominantemente para clientes fora da Espanha",
-        "Comprovar experiência profissional ou qualificações adequadas",
-        "Ter contrato de trabalho ou relação comercial válida"
+        "Ser estrangeiro não-cidadão da União Europeia",
+        "Possuir diploma de Bachelor ou Pós-graduação de universidade ou escola de negócios reconhecida, ou demonstrar pelo menos 3 anos de experiência profissional no seu campo",
+        "Trabalhar remotamente para empresa localizada fora da Espanha",
+        "Se autônomo: podem trabalhar para empresa na Espanha desde que não ultrapasse 20% da atividade profissional total",
+        "Manter relacionamento profissional com empresa(s) fora da Espanha por pelo menos 3 meses e com continuidade de pelo menos 1 ano"
       ],
-      "id": "visa-nomada-digital",
-      "name": "Visto de Nômade Digital",
-      "nameOriginal": "Visado de nómada digital (Ley de Startups 28/2022)",
-      "notes": "Este visto permite trabalhar remotamente para empresas ou clientes estrangeiros enquanto reside na Espanha. Também permite trabalhar até 20% do tempo para empresas espanholas. Validade inicial de até 1 ano, renovável por até 5 anos. A Lei de Startups (28/2022) oferece benefícios fiscais especiais (regime de 'impatriados') com tributação reduzida nos primeiros anos.",
+      "id": "telework-digital-nomad-es",
+      "name": "Visto de Teletrabaho (Nômade Digital)",
+      "nameOriginal": "TELEWORK Visa (Digital Nomad Visa)",
+      "notes": "Cidadãos americanos atualmente não requerem visto para entrar na Espanha por estadas de até 90 dias. Estrangeiros que viajam ou já estão na Espanha podem solicitar diretamente no país um permiso de residência para teletrabaho, sem necessidade de visto prévio. Para trabalhadores assalariados, só é permitido trabalhar para empresas localizadas fora da Espanha. Para autônomos/freelancers, é permitido trabalhar também para empresas na Espanha desde que não ultrapasse 20% da atividade profissional total. A validade do visto é de 1 ano.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "1 a 3 meses",
+        "estimatedDuration": "A determinar",
         "fees": [
           {
-            "amount": 80,
-            "currency": "EUR",
-            "notes": "Taxa de tramitação do visto (valor aproximado)",
+            "amount": 190,
+            "currency": "USD",
+            "notes": "Taxa de visto para cidadãos americanos",
+            "period": "one-time"
+          },
+          {
+            "amount": 106,
+            "currency": "USD",
+            "notes": "Taxa de visto para outras nacionalidades. Taxas diferentes podem se aplicar baseadas em reciprocidade para Austrália, Etiópia, Canadá, Reino Unido e outros.",
             "period": "one-time"
           }
         ],
         "steps": [
           {
-            "description": "Apresentar solicitação do visto de nômade digital no consulado espanhol no país de residência",
+            "description": "Antes de solicitar o visto, o aplicante deve obter um número de N.I.E. (Número de Identidad de Extranjero) na Espanha",
             "estimatedDays": null,
-            "name": "Solicitação do visto",
+            "name": "Obtenção do número N.I.E.",
             "order": 1
           },
           {
-            "description": "O consulado analisa a documentação e decide sobre a concessão do visto",
-            "estimatedDays": 30,
-            "name": "Análise e decisão",
+            "description": "Reunir todos os documentos necessários conforme especificado. Verificar a lista de verificação fornecida pelo consulado.",
+            "estimatedDays": null,
+            "name": "Coleta de documentos",
             "order": 2
           },
           {
-            "description": "Com o visto concedido, entrada no território espanhol",
+            "description": "Enviar a aplicação pelo correio para o Consulado Geral da Espanha em Houston com todos os documentos necessários",
             "estimatedDays": null,
-            "name": "Entrada na Espanha",
+            "name": "Envio da aplicação",
             "order": 3
           },
           {
-            "description": "Solicitar o cartão de identidade de estrangeiro (TIE) em até 1 mês após a entrada",
-            "estimatedDays": 30,
-            "name": "Solicitação do TIE",
+            "description": "O Consulado fornecerá um comprovante de recebimento com um código para verificar o status da solicitação através do portal https://sutramiteconsular.maec.es/",
+            "estimatedDays": null,
+            "name": "Recebimento e processamento",
             "order": 4
+          },
+          {
+            "description": "O Consulado pode solicitar documentos faltantes, dados adicionais ou uma entrevista pessoal",
+            "estimatedDays": null,
+            "name": "Entrevista ou solicitação de documentos adicionais",
+            "order": 5
+          },
+          {
+            "description": "O período legal para decisão é 10 dias após a data de submissão, podendo ser estendido se for necessária entrevista ou documentos adicionais",
+            "estimatedDays": 10,
+            "name": "Decisão",
+            "order": 6
+          },
+          {
+            "description": "O Consulado informará o procedimento para devolução do passaporte e outras documentações originais",
+            "estimatedDays": null,
+            "name": "Coleta do passaporte e documentação",
+            "order": 7
+          },
+          {
+            "description": "Se recusado, pode-se apresentar recurso de reconsideração dentro de 1 mês ou apelar ao Tribunal Superior de Justiça de Madrid dentro de 2 meses",
+            "estimatedDays": null,
+            "name": "Recurso (se recusado)",
+            "order": 8
           }
         ]
       },
@@ -324,111 +409,149 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte em vigor com validade mínima de 1 ano",
+            "description": "Formulário preenchido com todas as seções e assinado pelo aplicante (ou pelos pais se menor de idade)",
+            "isCritical": true,
+            "name": "Formulário de aplicação de visto nacional"
+          },
+          {
+            "description": "Fotografia colorida recente com fundo claro, de frente, sem óculos escuros ou refletivos, colada ao formulário de aplicação",
+            "isCritical": true,
+            "name": "Fotografia"
+          },
+          {
+            "description": "Passaporte original e cópia das páginas com dados biométricos. Deve ter validade mínima de 1 ano e pelo menos duas páginas em branco consecutivas. Passaportes emitidos há mais de 10 anos não são aceitos.",
             "isCritical": true,
             "name": "Passaporte válido"
           },
           {
-            "description": "Certificado de antecedentes penais do país de origem ou países onde residiu nos últimos 5 anos",
+            "description": "Cópia autenticada de ID estadual, carteira de motorista ou ID estudantil de um dos estados: Alabama, Arkansas, Louisiana, Mississippi, New Mexico, Oklahoma, Tennessee e Texas",
+            "isCritical": true,
+            "name": "Comprovante de residência na jurisdição consular"
+          },
+          {
+            "description": "Cópia autenticada de Green Card ou visto válido dos EUA. Titulares de visto B-1/B-2 não podem solicitar nos EUA; devem solicitar no país de residência.",
+            "isCritical": false,
+            "name": "Comprovante de residência legal nos EUA (para não-cidadãos dos EUA)"
+          },
+          {
+            "description": "Para funcionários: antiguidade na empresa (mínimo 3 meses), consentimento explícito para trabalho remoto na Espanha e renda do funcionário. Para autônomos: duração do relacionamento contratual e termos para trabalho remoto na Espanha.",
+            "isCritical": true,
+            "name": "Certificado da Empresa"
+          },
+          {
+            "description": "Documento comprovando a data de incorporação da empresa e tipo de atividade comercial, demonstrando atividade real e contínua. Deve ser apostilado e acompanhado de tradução oficial para o espanhol.",
+            "isCritical": true,
+            "name": "Certificado da Divisão de Corporações do Estado"
+          },
+          {
+            "description": "Declaração comprometendo-se a cumprir as obrigações da Segurança Social Espanhola antes de iniciar a atividade de trabalho ou profissional",
+            "isCritical": true,
+            "name": "Declaração de responsabilidade da empresa ou trabalhador autônomo"
+          },
+          {
+            "description": "Documentos comprovando meios financeiros suficientes ou fonte regular de renda (contrato de trabalho, oferta firme de emprego ou outros). Valores mínimos mensais baseados no SMI 2026 de €1.221: Aplicante: €2.442 (200% SMI), 1º familiar: €916 (75% SMI), familiar adicional: €305 (25% SMI)",
+            "isCritical": true,
+            "name": "Comprovante de meios financeiros"
+          },
+          {
+            "description": "Para funcionários: comprovante de aplicação da empresa ao registro na Segurança Social Espanhola e prova de afiliação do funcionário. Para autônomos: prova de registro no RETA.",
+            "isCritical": true,
+            "name": "Comprovante de cobertura na Segurança Social Espanhola"
+          },
+          {
+            "description": "Cópia original e cópia do diploma de Bachelor ou Pós-graduação de universidade ou escola de negócios reconhecida, ou documentos comprovando pelo menos 3 anos de experiência profissional. Para profissões reguladas, qualificações necessárias devem ser demonstradas.",
+            "isCritical": true,
+            "name": "Cópia de diploma de Bachelor ou comprovante de experiência profissional"
+          },
+          {
+            "description": "Original e cópia do certificado de antecedentes criminais emitido pelo FBI nos últimos 6 meses, legalizado com Apostila Federal da Convenção de Haia. Certificados de verificação de antecedentes de estados locais não são válidos. Deve incluir certificados de antecedentes de todos os países de residência dos últimos 5 anos, traduzidos por tradutor certificado.",
             "isCritical": true,
             "name": "Certificado de antecedentes criminais"
           },
           {
-            "description": "Contrato de trabalho com empresa estrangeira ou documentação que comprove relação comercial como autônomo",
+            "description": "Declaração assinada confirmando ausência de condenações criminais nos últimos 5 anos",
             "isCritical": true,
-            "name": "Comprovante de trabalho remoto"
+            "name": "Declaração de responsabilidade sobre ausência de antecedentes criminais"
           },
           {
-            "description": "Titulação universitária ou formação profissional, ou pelo menos 3 anos de experiência profissional",
+            "description": "Certificado de seguro de saúde público ou privado de companhia de seguros autorizada a operar na Espanha. Deve cobrir todos os riscos cobertos pelo sistema de saúde pública espanhol, com cobertura de 100% de despesas médicas, hospitalares e ambulatoriais, sem franquias, copagamento ou limites de cobertura. Seguro de viagem não é aceito.",
             "isCritical": true,
-            "name": "Títulos ou experiência profissional"
-          },
-          {
-            "description": "Comprovação de recursos econômicos suficientes",
-            "isCritical": true,
-            "name": "Comprovante de recursos econômicos"
-          },
-          {
-            "description": "Seguro de saúde público ou privado com cobertura na Espanha",
-            "isCritical": true,
-            "name": "Seguro de saúde"
+            "name": "Comprovante de seguro de saúde"
           }
         ],
         "incomeRequirement": {
-          "amount": 2400,
+          "amount": 2442,
           "currency": "EUR",
-          "notes": "Rendimentos mínimos de 200% do Salário Mínimo Interprofissional (SMI) espanhol, aproximadamente 2.400 EUR/mês em 2024",
+          "notes": "200% do SMI (Salário Mínimo Interprofissional) para o aplicante. SMI 2026 é €1.221. Valores adicionais para familiares: 1º familiar €916 (75% SMI), familiar adicional €305 (25% SMI)",
           "period": "monthly"
         },
         "languageRequired": null,
         "qualificationsRequired": [
-          "Titulação universitária ou Formação Profissional",
-          "Ou experiência profissional de pelo menos 3 anos na área de atuação"
+          "Diploma de Bachelor ou Pós-graduação de universidade ou escola de negócios reconhecida",
+          "OU pelo menos 3 anos de experiência profissional no seu campo"
         ]
       },
       "rights": {
         "canBringFamily": true,
-        "canChangeEmployer": true,
+        "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Para cidadãos de países ibero-americanos, o prazo é reduzido para 2 anos",
-            "Aprovar exame de conhecimentos constitucionais e socioculturais (CCSE)",
-            "Aprovar exame de língua espanhola (DELE A2 ou superior)"
-          ],
-          "yearsRequired": 10
-        },
-        "pathToResidency": {
-          "conditions": [
-            "Após 3 anos com a autorização de nômade digital, pode solicitar autorização de residência de longa duração",
-            "Comprovar meios econômicos suficientes",
-            "Não ter antecedentes criminais"
-          ],
-          "yearsRequired": 3
-        }
+        "pathToCitizenship": null,
+        "pathToResidency": null
       }
     },
     {
-      "description": "Autorização de residência e trabalho para profissionais altamente qualificados, harmonizada a nível europeu, destinada a trabalhadores com qualificações de nível superior.",
+      "description": "Visto para exercer atividade de trabalho como empregado na Espanha na qualidade de profissional altamente qualificado, membro de pessoal de gestão sênior que atenda critérios específicos da legislação vigente, ou como graduado de universidade prestigiada e/ou escola de negócios",
       "eligibility": [
-        "Ter titulação de ensino superior (universitário)",
-        "Ter oferta de emprego qualificado na Espanha",
-        "Salário mínimo estabelecido por lei",
-        "Contrato de trabalho de pelo menos 1 ano"
+        "Profissional altamente qualificado",
+        "Membro de pessoal de gestão sênior atendendo critérios específicos",
+        "Graduado de universidade prestigiada",
+        "Pós-graduado de universidade prestigiada ou escola de negócios"
       ],
-      "id": "eu-blue-card",
-      "name": "Cartão Azul da UE (Profissionais Altamente Qualificados)",
-      "nameOriginal": "Tarjeta Azul UE (profesionales altamente cualificados)",
-      "notes": "O Cartão Azul UE facilita a mobilidade dentro da União Europeia. Após 18 meses na Espanha, o titular pode solicitar trabalhar em outro país da UE. Permite mudança de empregador após 12 meses. Validade inicial de 1 a 2 anos, renovável. Oferece processo mais rápido de reagrupamento familiar.",
+      "id": "highly-qualified-worker-spain",
+      "name": "Visto para trabalhador altamente qualificado",
+      "nameOriginal": "Visa for highly qualified workers",
+      "notes": "Visto válido por 1 ano ou pelo mesmo período do permiso de residência concedido (se inferior a 1 ano). Membros da família podem acompanhar: cônjuge ou parceiro não casado; filhos e filhos adultos financeiramente dependentes; parentes em linha ascendente sob cuidado do trabalhador",
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "3 a 5 meses",
-        "fees": [],
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 80,
+            "currency": "EUR",
+            "notes": "Taxas diferentes aplicáveis para cidadãos de Austrália, Bangladesh, Canadá, Estados Unidos e Reino Unido por razões de reciprocidade - consultar o consulado",
+            "period": "one-time"
+          }
+        ],
         "steps": [
           {
-            "description": "O empregador ou o próprio trabalhador pode solicitar a autorização na Oficina de Extranjería",
+            "description": "Agendar consulta no consulado para submeter a candidatura",
             "estimatedDays": null,
-            "name": "Solicitação pelo empregador ou trabalhador",
+            "name": "Agendamento de atendimento",
             "order": 1
           },
           {
-            "description": "A administração verifica os requisitos de qualificação e salarial",
-            "estimatedDays": 90,
-            "name": "Análise da documentação",
+            "description": "Apresentar pessoalmente todos os documentos no consulado ou através de representante devidamente acreditado",
+            "estimatedDays": null,
+            "name": "Submissão da candidatura",
             "order": 2
           },
           {
-            "description": "Com a autorização aprovada, o trabalhador solicita o visto no consulado espanhol",
-            "estimatedDays": 30,
-            "name": "Solicitação do visto",
+            "description": "O consulado analisa a candidatura. Podem ser solicitados documentos adicionais ou entrevista pessoal",
+            "estimatedDays": null,
+            "name": "Avaliação e análise",
             "order": 3
           },
           {
-            "description": "Entrada na Espanha e solicitação do Cartão Azul UE (TIE)",
-            "estimatedDays": 30,
-            "name": "Entrada e obtenção do Cartão Azul",
+            "description": "Prazo legal de 10 dias após submissão, podendo ser estendido se houver solicitação de documentos ou entrevista",
+            "estimatedDays": 10,
+            "name": "Decisão",
             "order": 4
+          },
+          {
+            "description": "Coleta pessoal do passaporte com visto ou por representante, dentro de 1 mês após notificação da decisão favorável",
+            "estimatedDays": 30,
+            "name": "Coleta do visto",
+            "order": 5
           }
         ]
       },
@@ -436,64 +559,173 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte completo em vigor",
+            "description": "Formulário preenchido e assinado pelo candidato ou seu representante, com todas as seções completas",
             "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Formulário de candidatura de visto nacional"
           },
           {
-            "description": "Diploma de ensino superior universitário ou equivalente, com duração mínima de 3 anos. Pode ser necessário homologação ou reconhecimento na Espanha",
+            "description": "Fotografia recente, tamanho passaporte, colorida, fundo claro, frontal, sem óculos escuros ou reflexivos, sem indumentária que conceal o óvalo do rosto",
             "isCritical": true,
-            "name": "Título universitário"
+            "name": "Fotografia"
           },
           {
-            "description": "Contrato de trabalho ou oferta vinculante de emprego por pelo menos 1 ano",
+            "description": "Original e fotocópia das páginas contendo dados biométricos. Validade mínima de 1 ano. Deve conter duas páginas em branco. Passaportes emitidos há mais de 10 anos não serão aceitos",
             "isCritical": true,
-            "name": "Contrato de trabalho"
+            "name": "Passaporte válido e não expirado"
           },
           {
-            "description": "Certificado de antecedentes penais do país de origem ou países onde residiu nos últimos 5 anos",
+            "description": "Original e cópia do permiso emitido pela Unidade de Grandes Empresas e Grupos Estratégicos",
+            "isCritical": true,
+            "name": "Permiso de residência"
+          },
+          {
+            "description": "Original e cópia do certificado de antecedentes criminais emitido pelo país ou países de residência dos últimos 5 anos. Documentos estrangeiros devem ser legalizados ou apostilados, com tradução oficial para o espanhol se aplicável",
             "isCritical": true,
             "name": "Certificado de antecedentes criminais"
           },
           {
-            "description": "Atestado médico de não sofrer doenças de relevância para saúde pública",
+            "description": "Documento comprovando residência na área de jurisdição do consulado",
+            "isCritical": true,
+            "name": "Comprovante de residência no distrito consular"
+          },
+          {
+            "description": "Se aplicável, cópia do documento de identidade ou passaporte do representante e do poder notarial ou documento acreditando representação. Originais devem ser apresentados na submissão",
             "isCritical": false,
-            "name": "Certificado médico"
+            "name": "Comprovante de identidade e capacidade do representante"
+          },
+          {
+            "description": "Taxa equivalente a 80 euros (taxas diferentes aplicáveis para cidadãos de Austrália, Bangladesh, Canadá, Estados Unidos e Reino Unido por razões de reciprocidade)",
+            "isCritical": true,
+            "name": "Comprovante de pagamento da taxa de visto"
           }
         ],
-        "incomeRequirement": {
-          "amount": 43000,
-          "currency": "EUR",
-          "notes": "Salário bruto anual mínimo de 160% do salário médio anual na Espanha, aproximadamente 43.000 EUR/ano em 2024. Para profissões com escassez, pode ser reduzido para 120% (aprox. 32.000 EUR/ano)",
-          "period": "yearly"
-        },
+        "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": [
-          "Diploma de ensino superior universitário com duração mínima de 3 anos",
-          "Ou qualificação profissional de nível equivalente reconhecida na Espanha"
+          "Formação em universidade prestigiosa ou escola de negócios (nível graduado ou pós-graduado)"
         ]
       },
       "rights": {
         "canBringFamily": true,
-        "canChangeEmployer": true,
+        "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Para cidadãos de países ibero-americanos, o prazo é reduzido para 2 anos",
-            "Aprovar exame de conhecimentos constitucionais e socioculturais (CCSE)",
-            "Aprovar exame de língua espanhola (DELE A2 ou superior)"
-          ],
-          "yearsRequired": 10
-        },
-        "pathToResidency": {
-          "conditions": [
-            "Residência legal e contínua na Espanha com Cartão Azul UE",
-            "Após 5 anos, pode solicitar autorização de residência de longa duração UE",
-            "Meios econômicos suficientes"
-          ],
-          "yearsRequired": 5
-        }
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para exercer atividade de trabalho como empregado na Espanha na qualidade de membro de pessoal de gestão sênior, especialista ou estagiário, para executar contrato ou em relação profissional, quando a transferência ocorre dentro da mesma empresa ou grupo de empresas",
+      "eligibility": [
+        "Membro de pessoal de gestão sênior",
+        "Especialista",
+        "Estagiário",
+        "Profissional em contrato ou relação profissional",
+        "Transferência dentro da mesma empresa ou grupo de empresas"
+      ],
+      "id": "intra-company-transfer-spain",
+      "name": "Visto para transferência intraempresarial",
+      "nameOriginal": "Visa for intra-company transfers",
+      "notes": "Visto válido por 1 ano ou pelo mesmo período do permiso de residência concedido (se inferior a 1 ano). Membros da família podem acompanhar: cônjuge ou parceiro não casado; filhos e filhos adultos financeiramente dependentes; parentes em linha ascendente sob cuidado do trabalhador",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 80,
+            "currency": "EUR",
+            "notes": "Taxas diferentes aplicáveis para cidadãos de Austrália, Bangladesh, Canadá, Estados Unidos e Reino Unido por razões de reciprocidade - consultar o consulado",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Agendar consulta no consulado para submeter a candidatura",
+            "estimatedDays": null,
+            "name": "Agendamento de atendimento",
+            "order": 1
+          },
+          {
+            "description": "Apresentar pessoalmente todos os documentos no consulado ou através de representante devidamente acreditado",
+            "estimatedDays": null,
+            "name": "Submissão da candidatura",
+            "order": 2
+          },
+          {
+            "description": "O consulado analisa a candidatura. Podem ser solicitados documentos adicionais ou entrevista pessoal",
+            "estimatedDays": null,
+            "name": "Avaliação e análise",
+            "order": 3
+          },
+          {
+            "description": "Prazo legal de 10 dias após submissão, podendo ser estendido se houver solicitação de documentos ou entrevista",
+            "estimatedDays": 10,
+            "name": "Decisão",
+            "order": 4
+          },
+          {
+            "description": "Coleta pessoal do passaporte com visto ou por representante, dentro de 1 mês após notificação da decisão favorável",
+            "estimatedDays": 30,
+            "name": "Coleta do visto",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Formulário preenchido e assinado pelo candidato ou seu representante, com todas as seções completas",
+            "isCritical": true,
+            "name": "Formulário de candidatura de visto nacional"
+          },
+          {
+            "description": "Fotografia recente, tamanho passaporte, colorida, fundo claro, frontal, sem óculos escuros ou reflexivos, sem indumentária que conceal o óvalo do rosto",
+            "isCritical": true,
+            "name": "Fotografia"
+          },
+          {
+            "description": "Original e fotocópia das páginas contendo dados biométricos. Validade mínima de 1 ano. Deve conter duas páginas em branco. Passaportes emitidos há mais de 10 anos não serão aceitos",
+            "isCritical": true,
+            "name": "Passaporte válido e não expirado"
+          },
+          {
+            "description": "Original e cópia do permiso emitido pela Unidade de Grandes Empresas e Grupos Estratégicos",
+            "isCritical": true,
+            "name": "Permiso de residência"
+          },
+          {
+            "description": "Original e cópia do certificado de antecedentes criminais emitido pelo país ou países de residência dos últimos 5 anos. Documentos estrangeiros devem ser legalizados ou apostilados, com tradução oficial para o espanhol se aplicável",
+            "isCritical": true,
+            "name": "Certificado de antecedentes criminais"
+          },
+          {
+            "description": "Documento comprovando residência na área de jurisdição do consulado",
+            "isCritical": true,
+            "name": "Comprovante de residência no distrito consular"
+          },
+          {
+            "description": "Se aplicável, cópia do documento de identidade ou passaporte do representante e do poder notarial ou documento acreditando representação. Originais devem ser apresentados na submissão",
+            "isCritical": false,
+            "name": "Comprovante de identidade e capacidade do representante"
+          },
+          {
+            "description": "Taxa equivalente a 80 euros (taxas diferentes aplicáveis para cidadãos de Austrália, Bangladesh, Canadá, Estados Unidos e Reino Unido por razões de reciprocidade)",
+            "isCritical": true,
+            "name": "Comprovante de pagamento da taxa de visto"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação apropriada para cargo de gestor sênior, especialista ou estagiário"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
       }
     }
   ]

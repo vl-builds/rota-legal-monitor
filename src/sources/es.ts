@@ -1,57 +1,37 @@
 import type { SourceConfig } from '@/types'
 
-// www.inclusion.gob.es e um portal Liferay com conteudo renderizado via JS.
-// O fetch nativo recebe apenas os bundles JS (sem conteudo util).
-// Playwright renderiza o conteudo real e funciona corretamente no CI (Ubuntu).
-// extranjeros.inclusion.gob.es/en/* foi descontinuado e redireciona para 404.
-// ignoreSSL: true necessario para CA propria do governo espanhol.
+// Fontes: exteriores.gob.es (Ministerio de Asuntos Exteriores) — paginas estaticas
+// das secoes consulares, sem JS obrigatorio, acessiveis com UA padrao.
+// inclusion.gob.es usa Liferay CMS e retorna conteudo vazio sem renderizacao JS real,
+// por isso foi abandonado em favor das paginas consulares do exteriores.
 export const esSource: SourceConfig = {
   countryCode: 'es',
   countryName: 'Espanha',
-  primaryLanguage: 'es',
-  acceptableLanguages: ['es', 'en'],
+  primaryLanguage: 'en',
+  acceptableLanguages: ['en', 'es'],
 
   urls: [
     {
-      url: 'https://www.inclusion.gob.es/en/web/migraciones/tipos-de-autorizacion',
+      url: 'https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Visado-de-trabajo-por-cuenta-ajena.aspx',
       contentType: 'visa-overview',
       promptHint:
-        'Portal oficial espanhol sobre tipos de autorizacao de residencia e trabalho para cidadaos de fora da UE. Liste todos os tipos de autorizacao relevantes para brasileiros que querem trabalhar na Espanha: autorizacao inicial de trabalho, trabalho por conta propria, profissionais altamente qualificados, nomade digital.',
-      fetchFrequency: 'monthly',
-      ignoreSSL: true,
-    },
-    {
-      url: 'https://www.inclusion.gob.es/en/web/migraciones',
-      contentType: 'visa-overview',
-      promptHint:
-        'Portal principal do Ministerio de Inclusao espanhol sobre migracao. Extraia informacoes gerais sobre requisitos de entrada e residencia para cidadaos de fora da UE, incluindo requisitos de seguro saude, prova de meios de subsistencia e antecedentes criminais. Indique se brasileiros precisam de visto.',
-      fetchFrequency: 'monthly',
-      ignoreSSL: true,
-    },
-    {
-      url: 'https://www.inclusion.gob.es/web/migraciones/vivir-en-espana',
-      contentType: 'visa-requirements',
-      promptHint:
-        'Pagina sobre como viver na Espanha para cidadaos estrangeiros. Extraia: tipos de autorizacao de residencia disponíveis para trabalhadores, documentos exigidos, requisitos de renda, prazo de processamento e qualquer tratamento especial para cidadaos ibero-americanos ou de paises com acordos bilaterais com a Espanha.',
-      fetchFrequency: 'monthly',
-      ignoreSSL: true,
-    },
-    {
-      url: 'https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion',
-      contentType: 'visa-requirements',
-      promptHint:
-        'Tipos de autorizacao de residencia e trabalho na Espanha. Extraia para cada tipo: requisitos, documentos, salario minimo em EUR, prazo de validade e como renovar. Inclua especificamente o visto de nomade digital (Ley de Startups 28/2022) e autorizacao para profissionais altamente qualificados (EU Blue Card).',
+        'Pagina do Consulado Espanhol em Londres sobre o visto de trabalho por conta alheia (empregado). Extraia: requisitos completos, documentos exigidos, exigencia de oferta de emprego, processo de autorizacao previa pela SEPE, salario minimo exigido em EUR, prazo de validade e renovacao. Este e o tipo de visto mais comum para brasileiros.',
       fetchFrequency: 'monthly',
       model: 'sonnet',
-      ignoreSSL: true,
     },
     {
-      url: 'https://www.inclusion.gob.es/web/migraciones/informacion-util',
-      contentType: 'fees',
+      url: 'https://www.exteriores.gob.es/Consulados/houston/en/ServiciosConsulares/Paginas/Consular/TELEWORK-Visa-(Digital-Nomad-Visa)-.aspx',
+      contentType: 'visa-requirements',
       promptHint:
-        'Informacoes uteis sobre taxas e custos de autorizacoes de residencia e trabalho na Espanha (modelo 790). Extraia cada valor em EUR por tipo de autorizacao. Nao estime: use apenas valores explicitamente listados.',
+        'Pagina do Consulado Espanhol em Houston sobre o visto de teletrabajo (nomade digital), criado pela Ley de Startups 28/2022. Extraia: requisitos de renda minima mensal em EUR, documentos exigidos, prazo de validade, se permite trazer familia e como renovar. Publico-alvo: profissionais que trabalham remotamente para empresas fora da Espanha.',
       fetchFrequency: 'monthly',
-      ignoreSSL: true,
+    },
+    {
+      url: 'https://www.exteriores.gob.es/Embajadas/abudhabi/en/ServiciosConsulares/Paginas/Consular/Visado-para-trabajador-altamente-cualificado-y-para-traslado-intraempresarial.aspx',
+      contentType: 'visa-requirements',
+      promptHint:
+        'Pagina da Embaixada Espanhola em Abu Dhabi sobre o visto para trabalhador altamente qualificado (EU Blue Card espanhola) e transferencia intraempresarial. Extraia: criterios de qualificacao (nivel academico, salario minimo), documentos, prazo, validade e diferencas entre as duas modalidades.',
+      fetchFrequency: 'monthly',
     },
   ],
 

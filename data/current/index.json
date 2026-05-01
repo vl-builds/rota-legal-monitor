@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-01T21:09:53.915Z",
+  "generatedAt": "2026-05-01T21:25:20.679Z",
   "schemaVersion": "1.0.0",
   "countries": [
     {
@@ -21,7 +21,7 @@
     {
       "code": "be",
       "name": "Belgica",
-      "lastUpdated": "2026-04-29T21:04:32.704Z",
+      "lastUpdated": "2026-05-01T21:23:06.366Z",
       "schemaVersion": "1.0.0",
       "visaTypesCount": 3,
       "confidence": "medium"
@@ -37,9 +37,9 @@
     {
       "code": "es",
       "name": "Espanha",
-      "lastUpdated": "2026-04-29T20:33:32.669Z",
+      "lastUpdated": "2026-05-01T21:24:50.983Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 4,
+      "visaTypesCount": 5,
       "confidence": "medium"
     },
     {
