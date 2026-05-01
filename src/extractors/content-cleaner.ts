@@ -8,7 +8,7 @@ export function extractMainContent(html: string, sourceUrl: string): string {
     const reader = new Readability(dom.window.document as unknown as Document)
     const article = reader.parse()
     if (article?.textContent) {
-      return article.textContent.trim()
+      return article.textContent.trim().substring(0, 20_000)
     }
     log.debug('readability nao extraiu conteudo, usando fallback', { url: sourceUrl })
   } catch (err) {

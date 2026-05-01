@@ -7,6 +7,7 @@ import type { PartialExtraction, PartialVisaType, PartialMoneyAmount } from '@/e
 import { CountryDataSchema } from '@/extractors/schema'
 import type { CountryData, SourceRef, PolicyChange, MoneyAmount } from '@/extractors/schema'
 import { readCurrent, writeCurrent, archiveCurrent } from '@/storage/snapshot'
+import { hashContent, isUnchanged, updateHashes } from '@/lib/content-cache'
 import { log } from '@/lib/log'
 import type { ModelKey } from '@/lib/models'
 import type { SourceConfig } from '@/types'
@@ -159,6 +160,14 @@ function buildCountryData(
 
 // ---- per-country extraction ----------------------------------------------
 
+interface FetchedPage {
+  urlConfig: SourceConfig['urls'][number]
+  ref: SourceRef
+  cleanContent: string
+  contentHash: string
+  ok: boolean
+}
+
 async function extractCountry(countryCode: string, forceModel?: ModelKey): Promise<boolean> {
   const config = sources[countryCode]
   if (!config) {
@@ -172,57 +181,73 @@ async function extractCountry(countryCode: string, forceModel?: ModelKey): Promi
     ...(forceModel ? { forceModel } : {}),
   })
 
-  archiveCurrent(countryCode)
-
-  const partials: PartialExtraction[] = []
-  const sourceRefs: SourceRef[] = []
-
+  // Fase 1: buscar todas as paginas e calcular hashes (sem chamar LLM ainda)
+  const pages: FetchedPage[] = []
   for (const urlConfig of config.urls) {
     let fetchedAt = new Date().toISOString()
-    let contentLanguage = config.primaryLanguage
-    const ref: SourceRef = {
-      url: urlConfig.url,
-      fetchedAt,
-      status: 'ok',
-      contentLanguage: contentLanguage as SourceRef['contentLanguage'],
-    }
-    sourceRefs.push(ref)
+    let contentLanguage = config.primaryLanguage as SourceRef['contentLanguage']
+    const ref: SourceRef = { url: urlConfig.url, fetchedAt, status: 'ok', contentLanguage }
 
-    let html: string
     try {
       const result = await fetchPage(urlConfig.url, urlConfig.ignoreSSL)
-      html = result.html
       fetchedAt = result.fetchedAt
-      contentLanguage = result.contentLanguage
+      contentLanguage = result.contentLanguage as SourceRef['contentLanguage']
       ref.fetchedAt = fetchedAt
-      ref.contentLanguage = contentLanguage as SourceRef['contentLanguage']
+      ref.contentLanguage = contentLanguage
+      const cleanContent = extractMainContent(result.html, urlConfig.url)
+      const contentHash = hashContent(cleanContent)
+      log.debug('pagina buscada', { url: urlConfig.url, chars: cleanContent.length, hash: contentHash.slice(0, 8) })
+      pages.push({ urlConfig, ref, cleanContent, contentHash, ok: true })
     } catch (err) {
       log.warn('fetch falhou, pulando URL', { url: urlConfig.url, error: String(err) })
       ref.status = 'failed'
-      continue
-    }
-
-    const cleanContent = extractMainContent(html, urlConfig.url)
-    log.debug('conteudo limpo', { url: urlConfig.url, chars: cleanContent.length })
-
-    try {
-      const resolvedModel = forceModel ?? urlConfig.model
-      const partial = await extractFromHtml(cleanContent, PartialExtractionSchema, {
-        country: config.countryCode,
-        countryName: config.countryName,
-        contentType: urlConfig.contentType,
-        sourceUrl: urlConfig.url,
-        contentLanguage,
-        promptHint: urlConfig.promptHint,
-        ...(resolvedModel ? { model: resolvedModel } : {}),
-      })
-      partials.push(partial)
-    } catch (err) {
-      log.warn('extracao LLM falhou', { url: urlConfig.url, error: String(err) })
-      ref.status = 'partial'
+      pages.push({ urlConfig, ref, cleanContent: '', contentHash: '', ok: false })
     }
   }
 
+  // Fase 2: pular LLM se nenhum conteudo mudou desde o ultimo run
+  if (!forceModel) {
+    const fetchedOk = pages.filter((p) => p.ok)
+    const allUnchanged =
+      fetchedOk.length > 0 && fetchedOk.every((p) => isUnchanged(p.urlConfig.url, p.contentHash))
+    if (allUnchanged && readCurrent(countryCode) !== null) {
+      log.info('conteudo identico ao ultimo run, reutilizando snapshot sem chamar LLM', {
+        country: countryCode,
+        urls: fetchedOk.length,
+      })
+      return true
+    }
+  }
+
+  // Fase 3: arquivar snapshot anterior e extrair com LLM
+  archiveCurrent(countryCode)
+
+  const partials: PartialExtraction[] = []
+  const newHashes: Record<string, string> = {}
+
+  for (const page of pages) {
+    if (!page.ok) continue
+
+    try {
+      const resolvedModel = forceModel ?? page.urlConfig.model
+      const partial = await extractFromHtml(page.cleanContent, PartialExtractionSchema, {
+        country: config.countryCode,
+        countryName: config.countryName,
+        contentType: page.urlConfig.contentType,
+        sourceUrl: page.urlConfig.url,
+        contentLanguage: page.ref.contentLanguage,
+        promptHint: page.urlConfig.promptHint,
+        ...(resolvedModel ? { model: resolvedModel } : {}),
+      })
+      partials.push(partial)
+      newHashes[page.urlConfig.url] = page.contentHash
+    } catch (err) {
+      log.warn('extracao LLM falhou', { url: page.urlConfig.url, error: String(err) })
+      page.ref.status = 'partial'
+    }
+  }
+
+  const sourceRefs = pages.map((p) => p.ref)
   const okCount = sourceRefs.filter((r) => r.status === 'ok').length
   if (okCount === 0) {
     log.error('todas as URLs falharam, abortando sem sobrescrever snapshot', {
@@ -246,6 +271,7 @@ async function extractCountry(countryCode: string, forceModel?: ModelKey): Promi
     return false
   }
 
+  updateHashes(newHashes)
   writeCurrent(countryCode, validation.data)
   log.info('extracao finalizada', {
     country: countryCode,

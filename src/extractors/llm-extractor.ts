@@ -77,6 +77,7 @@ export async function extractFromHtml<T>(
     name: "submit_extraction",
     description: "Retorna os dados estruturados de imigracao extraidos da pagina.",
     input_schema: rawSchema as Anthropic.Messages.Tool["input_schema"],
+    cache_control: { type: "ephemeral" },
   };
 
   const selectedModel = MODELS[context.model ?? "haiku"];
@@ -96,7 +97,7 @@ export async function extractFromHtml<T>(
       const message = await client.messages.create({
         model: selectedModel,
         max_tokens: 8192,
-        system: SYSTEM_PROMPT,
+        system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
         tools: [tool],
         tool_choice: { type: "tool", name: "submit_extraction" },
         messages: [{ role: "user", content: userContent }],

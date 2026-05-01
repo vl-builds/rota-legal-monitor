@@ -24,7 +24,7 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.0",
+    "@anthropic-ai/sdk": "^0.92.0",
     "@mozilla/readability": "^0.5.0",
     "jsdom": "^25.0.0",
     "pdf-parse": "^1.1.1",
