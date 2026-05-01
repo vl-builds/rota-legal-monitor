@@ -139,10 +139,11 @@
       <div class="hero-info">
         <h1 class="hero-name">França</h1>
         <div class="hero-badges">
-          <span class="badge down">Dados parciais</span>
+          <span class="badge up"><span class="pulse"></span>Confiança média</span>
           <span class="badge">Schengen</span>
           <span class="badge">Work Permit exigido</span>
-          <span class="badge new">Atualizado abr/2026</span>
+          <span class="badge new">Working Holiday Brasil</span>
+          <span class="badge new">Atualizado mai/2026</span>
         </div>
       </div>
     </div>
@@ -175,12 +176,12 @@
       <span class="diff-dot filled"></span>
       <span class="diff-dot filled"></span>
     </div>
-    <span class="qs-sub">Alta — processo burocrático, dados limitados</span>
+    <span class="qs-sub">Alta — processo multietapas, burocracia elevada</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Renda mínima</span>
-    <span class="qs-value" style="color:var(--muted);">N/D</span>
-    <span class="qs-sub">Não extraído nesta versão</span>
+    <span class="qs-label">Renda mínima (Carte Talent)</span>
+    <span class="qs-value">EUR 39.582</span>
+    <span class="qs-sub">por ano bruto (assalariado qualificado)</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Schengen — entrada sem visto</span>
@@ -188,9 +189,9 @@
     <span class="qs-sub">Até 90 dias turismo</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Cobertura desta extração</span>
-    <span class="qs-value" style="color:var(--accent-rose);">Parcial</span>
-    <span class="qs-sub">3 de 4 URLs falharam</span>
+    <span class="qs-label">Working Holiday Brasil</span>
+    <span class="qs-value positive">Sim</span>
+    <span class="qs-sub">Para brasileiros de 18 a 30 anos</span>
   </div>
 </div>
 
@@ -199,23 +200,19 @@
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div style="margin-bottom: var(--s-xl); padding: var(--s-lg); background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r-lg);">
-          <p style="font-size:13px;color:var(--accent-rose);margin:0;font-weight:600;">Dados parciais</p>
-          <p style="font-size:13px;color:var(--body);margin:var(--s-xs) 0 0;">Nesta extração, 3 das 4 URLs monitoradas para a França falharam (france-visas.gouv.fr, immigration.interieur.gouv.fr, ofii.fr). Os dados abaixo foram extraídos de service-public.fr e podem estar incompletos. Consulte as fontes oficiais para informações completas.</p>
-        </div>
-        <div class="eyebrow">2 tipos de título extraídos (cobertura parcial)</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Títulos de residência para trabalho</h2>
+        <div class="eyebrow">4 tipos principais — 24 extraídos no total</div>
+        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Vistos e títulos de trabalho</h2>
         <div class="visa-list">
 
           <div class="visa-card open">
             <div class="visa-head" onclick="toggleVisa(this)">
               <div class="visa-title-row">
-                <h3 class="visa-name">Carte de Séjour Temporaire — Salarié</h3>
-                <span class="visa-name-orig">Carte de séjour temporaire mention salarié</span>
+                <h3 class="visa-name">VLS-TS — Assalariado (Visto de Longa Duração)</h3>
+                <span class="visa-name-orig">Visa de long séjour valant titre de séjour (VLS-TS) - Salarié</span>
                 <div class="visa-tags">
-                  <span class="visa-tag hl">Empregados</span>
-                  <span class="visa-tag">Contrato de trabalho</span>
-                  <span class="visa-tag">Válida 1 ano</span>
+                  <span class="visa-tag hl">Principal — empregados CDI</span>
+                  <span class="visa-tag">Dispensa carte de séjour</span>
+                  <span class="visa-tag">4 a 12 meses</span>
                 </div>
               </div>
               <span class="visa-toggle">+</span>
@@ -226,18 +223,24 @@
                   <p class="visa-section-title">Requisitos</p>
                   <div class="visa-field">
                     <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Trabalhadores assalariados de países não-UE com contrato de trabalho assinado</span>
+                    <span class="visa-field-value">Trabalhadores com contrato por tempo indeterminado (CDI) com empregador francês</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Documentos principais</span>
+                    <span class="visa-field-value">Passaporte (mín. 3 meses de validade após o visto, emitido há menos de 10 anos) + CDI assinado</span>
                   </div>
                   <div class="visa-field">
                     <span class="visa-field-label">Validade</span>
-                    <span class="visa-field-value">Geralmente 1 ano, renovável</span>
+                    <span class="visa-field-value">4 a 12 meses — dispensa solicitação de carte de séjour na prefecture</span>
                   </div>
                 </div>
                 <div>
                   <p class="visa-section-title">Processo</p>
                   <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Empregador solicita autorização prévia de trabalho na Direção do Trabalho</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Com autorização, solicitar a carte de séjour na prefeitura</span></div>
+                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Verificar documentos no portal France-Visas (máx. 3 meses antes da partida)</span></div>
+                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Depositar pedido de visto no consulado francês no Brasil</span></div>
+                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Registro biométrico (foto e impressões digitais) no sistema Visabio</span></div>
+                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Dentro de 90 dias após a chegada: validar o VLS-TS online e pagar a taxa correspondente</span></div>
                   </div>
                 </div>
               </div>
@@ -247,21 +250,150 @@
           <div class="visa-card">
             <div class="visa-head" onclick="toggleVisa(this)">
               <div class="visa-title-row">
-                <h3 class="visa-name">Carte de Séjour Pluriannuelle</h3>
-                <span class="visa-name-orig">Carte de séjour pluriannuelle</span>
+                <h3 class="visa-name">Visto Vacances-Travail (Working Holiday)</h3>
+                <span class="visa-name-orig">Visa Vacances-Travail - Brésil</span>
                 <div class="visa-tags">
-                  <span class="visa-tag">Longa duração</span>
-                  <span class="visa-tag">Válida 4 anos</span>
+                  <span class="visa-tag hl">Exclusivo brasileiros 18-30 anos</span>
+                  <span class="visa-tag">Acordo bilateral França-Brasil</span>
+                  <span class="visa-tag">12 meses</span>
                 </div>
               </div>
               <span class="visa-toggle">+</span>
             </div>
             <div class="visa-body">
-              <p style="font-size:14px;color:var(--body);line-height:1.6;margin-top:var(--s-lg);">
-                Título de residência de longa duração (geralmente 4 anos) para nacionais de países não-UE com laços duradouros com a França.
-                Exige comprovante de recursos estáveis e suficientes, comprovante de moradia estável, e passaporte válido.
-                Renovável e permite exercer atividade profissional.
-              </p>
+              <div class="visa-grid">
+                <div>
+                  <p class="visa-section-title">Requisitos</p>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Elegibilidade</span>
+                    <span class="visa-field-value">Brasileiros entre 18 e 30 anos com acordo bilateral França-Brasil ativo</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Duração</span>
+                    <span class="visa-field-value">Máximo 12 meses — sem prorrogação</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Trabalho</span>
+                    <span class="visa-field-value">Permite mudar de empregador livremente durante a estadia</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="visa-section-title">Processo</p>
+                  <div class="step-list">
+                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Confirmar que possui entre 18 e 30 anos e que o acordo bilateral está vigente</span></div>
+                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Verificar documentos no portal France-Visas</span></div>
+                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Depositar pedido no consulado francês no Brasil (máx. 3 meses antes da partida)</span></div>
+                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Registro biométrico (Visabio)</span></div>
+                  </div>
+                  <p style="font-size:12px;color:var(--muted);margin-top:var(--s-md);">Dispensa solicitação de carte de séjour ao chegar. Não é renovável.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="visa-card">
+            <div class="visa-head" onclick="toggleVisa(this)">
+              <div class="visa-title-row">
+                <h3 class="visa-name">Carte Talent — Assalariado Qualificado</h3>
+                <span class="visa-name-orig">Carte de séjour talent-salarié qualifié</span>
+                <div class="visa-tags">
+                  <span class="visa-tag hl">Profissional com mestrado</span>
+                  <span class="visa-tag">Até 4 anos</span>
+                  <span class="visa-tag">Família incluída</span>
+                </div>
+              </div>
+              <span class="visa-toggle">+</span>
+            </div>
+            <div class="visa-body">
+              <div class="visa-grid">
+                <div>
+                  <p class="visa-section-title">Requisitos</p>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Renda mínima anual</span>
+                    <span class="visa-field-value mono">EUR 39.582</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Qualificação</span>
+                    <span class="visa-field-value">Diploma obtido na França equivalente a mestrado ou superior</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Taxa</span>
+                    <span class="visa-field-value mono">EUR 350</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Validade</span>
+                    <span class="visa-field-value">Duração do contrato, máx. 4 anos</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="visa-section-title">Processo</p>
+                  <div class="step-list">
+                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Confirmar diploma qualificado e remuneração mínima</span></div>
+                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Solicitar visto no consulado francês no Brasil</span></div>
+                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Solicitar carte de séjour online (ANEF) após chegada</span></div>
+                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Aguardar confirmação da prefecture (prazo: 4 meses)</span></div>
+                    <div class="step-item"><span class="step-n">5</span><span class="step-text">Comprar timbre fiscal de EUR 350 e retirar o cartão</span></div>
+                  </div>
+                  <div style="margin-top:var(--s-md);">
+                    <p class="visa-section-title">Direitos</p>
+                    <div class="rights-grid">
+                      <div class="right-item"><span class="right-icon yes">✓</span>Trazer cônjuge e filhos (talent-famille)</div>
+                      <div class="right-item"><span class="right-icon yes">✓</span>Trabalho autorizado</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="visa-card">
+            <div class="visa-head" onclick="toggleVisa(this)">
+              <div class="visa-title-row">
+                <h3 class="visa-name">Carte Bleue Européenne</h3>
+                <span class="visa-name-orig">Carte de séjour talent-carte bleue européenne</span>
+                <div class="visa-tags">
+                  <span class="visa-tag">Diploma Bac+3 ou 5 anos de experiência</span>
+                  <span class="visa-tag">Mobilidade na UE</span>
+                  <span class="visa-tag">Até 4 anos</span>
+                </div>
+              </div>
+              <span class="visa-toggle">+</span>
+            </div>
+            <div class="visa-body">
+              <div class="visa-grid">
+                <div>
+                  <p class="visa-section-title">Requisitos</p>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Renda mínima anual</span>
+                    <span class="visa-field-value mono">EUR 59.373</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Qualificação</span>
+                    <span class="visa-field-value">Diploma Bac+3 ou 5 anos de experiência profissional equivalente</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Contrato mínimo</span>
+                    <span class="visa-field-value">6 meses com empregador francês</span>
+                  </div>
+                  <div class="visa-field">
+                    <span class="visa-field-label">Taxa</span>
+                    <span class="visa-field-value mono">EUR 350</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="visa-section-title">Vantagem principal</p>
+                  <p style="font-size:13px;color:var(--body);line-height:1.6;">
+                    Após 1 ano na França com a Carte Bleue, pode solicitar trabalhar em outro país da UE com processo simplificado (mobilidade intra-UE). Permite mudar de empregador após 12 meses.
+                  </p>
+                  <div style="margin-top:var(--s-md);">
+                    <p class="visa-section-title">Direitos</p>
+                    <div class="rights-grid">
+                      <div class="right-item"><span class="right-icon yes">✓</span>Trazer família (talent-famille)</div>
+                      <div class="right-item"><span class="right-icon yes">✓</span>Mobilidade intra-UE após 1 ano</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -279,22 +411,27 @@
           <div class="br-card highlight">
             <span class="br-label">Schengen — entrada sem visto</span>
             <span class="br-value yes">Sim</span>
-            <p class="br-desc">A França integra o Espaço Schengen. Brasileiros podem entrar sem visto para turismo por até 90 dias a cada 180 dias.</p>
+            <p class="br-desc">A França integra o Espaço Schengen. Brasileiros podem entrar sem visto para turismo por até 90 dias a cada 180 dias — mas para trabalhar é necessário visto de longa duração.</p>
+          </div>
+          <div class="br-card highlight">
+            <span class="br-label">Working Holiday Brasil-França</span>
+            <span class="br-value yes">Sim</span>
+            <p class="br-desc">Existe acordo bilateral entre Brasil e França para o Visto Vacances-Travail. Brasileiros de 18 a 30 anos podem trabalhar livremente por até 12 meses, sem vínculo a um único empregador e sem solicitar carte de séjour.</p>
           </div>
           <div class="br-card warning">
-            <span class="br-label">Work permit exigido</span>
-            <span class="br-value no">Sim</span>
-            <p class="br-desc">Brasileiros precisam de autorização de trabalho e carte de séjour válidos para exercer qualquer atividade remunerada na França. O processo exige que o empregador inicie o pedido junto às autoridades francesas.</p>
+            <span class="br-label">Processo multietapas</span>
+            <span class="br-value no">Atenção</span>
+            <p class="br-desc">O processo francês é dividido em fases: visto consular no Brasil, validação online do VLS-TS após a chegada, e (em alguns casos) solicitação de carte de séjour na prefecture. Cada etapa tem prazo próprio.</p>
           </div>
           <div class="br-card">
             <span class="br-label">Idioma necessário</span>
             <span class="br-value" style="font-size: 18px;">Francês</span>
-            <p class="br-desc">A França exige comprovante de idioma francês para a maioria dos processos de integração e naturalização. Conhecimento de francês é praticamente indispensável no mercado de trabalho local.</p>
+            <p class="br-desc">Francês é praticamente obrigatório no mercado de trabalho local e exigido nos processos de naturalização. Para a Carte Talent, alguns exigem diploma obtido na França.</p>
           </div>
-          <div class="br-card">
-            <span class="br-label">Acordo especial Brasil-França</span>
-            <span class="br-value" style="color:var(--muted);font-size:18px;">Nenhum</span>
-            <p class="br-desc">Não existe acordo bilateral de Working Holiday ou facilidade especial entre Brasil e França. Os dados desta extração são parciais, por isso recomendamos consultar france-visas.gouv.fr diretamente.</p>
+          <div class="br-card" style="grid-column: 1 / -1;">
+            <span class="br-label">Passos para naturalização</span>
+            <span class="br-value" style="font-size: 18px;">5 anos de residência legal</span>
+            <p class="br-desc">Após 5 anos de residência regular na França, é possível solicitar a naturalização. Exige-se comprovante de domínio do francês (nível B1 ou superior), integração na sociedade francesa, e ausência de antecedentes criminais.</p>
           </div>
         </div>
       </div>
@@ -304,16 +441,18 @@
   <div class="tab-panel" id="requisitos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">Dados parciais — confirmar nas fontes oficiais</div>
+        <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
         <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
         <div class="req-list">
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte válido</span><span class="req-note">Obrigatório</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Contrato de trabalho assinado com empregador francês</span><span class="req-note">Para Carte Salarié</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Autorização prévia de trabalho (solicitada pelo empregador na Direction du Travail)</span><span class="req-note">Obrigatória</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Comprovante de recursos estáveis e moradia (para Carte Pluriannuelle)</span><span class="req-note">Ver cada modalidade</span></div>
+          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte válido com mínimo 3 meses após o fim do visto, pelo menos 2 páginas em branco, emitido há menos de 10 anos</span><span class="req-note">Obrigatório</span></div>
+          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Foto biométrica registrada no sistema Visabio no momento do pedido de visto</span><span class="req-note">Presencial no consulado</span></div>
+          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Contrato de trabalho assinado com empregador francês (CDI para VLS-TS salarié, mín. 6 meses para Carte Bleue)</span><span class="req-note">Conforme modalidade</span></div>
+          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Diploma equivalente a mestrado ou Bac+3 (exigido para Carte Talent e Carte Bleue)</span><span class="req-note">Apostilado e traduzido</span></div>
+          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Timbre fiscal de EUR 350 (EUR 50 de direito + EUR 300 de taxa) para emissão de Carte Talent ou Carte Bleue</span><span class="req-note">Pago na prefecture</span></div>
+          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Compromisso assinado de respeitar os princípios da República Francesa (para Carte Talent)</span><span class="req-note">Modelo disponível online</span></div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r-lg);">
-          <p class="body-sm" style="color: var(--muted); margin: 0;">Dados limitados nesta extração. Consulte france-visas.gouv.fr para informações completas e atualizadas.</p>
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
+          <p class="body-sm" style="color: var(--muted); margin: 0;">Dados extraídos de service-public.fr em maio de 2026. Requisitos variam por modalidade — confirme a lista completa no portal France-Visas antes de solicitar.</p>
         </div>
       </div>
     </section>
@@ -325,7 +464,10 @@
         <div class="eyebrow">Histórico de alterações detectadas</div>
         <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
         <div style="padding: var(--s-xl); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); text-align: center;">
-          <p style="font-size: 14px; color: var(--muted); margin: 0;">Nenhuma mudança detectada nesta extração. Dados parciais — 3 URLs falharam.</p>
+          <p style="font-size: 14px; color: var(--muted); margin: 0;">Nenhuma mudança detectada na extração de maio de 2026. O monitor compara hashes de conteúdo a cada ciclo mensal.</p>
+        </div>
+        <div style="margin-top: var(--s-xl); text-align: center;">
+          <a class="text-link body-sm" href="historico.html">Ver histórico completo →</a>
         </div>
       </div>
     </section>
@@ -336,20 +478,29 @@
       <div class="container">
         <div class="eyebrow">Transparência total</div>
         <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
+        <p class="body-md" style="max-width: 600px; margin-bottom: var(--s-xl);">Dados extraídos das URLs abaixo em maio de 2026. Todas as 4 fontes retornaram conteúdo completo.</p>
         <div class="sources-list">
           <div class="source-item">
-            <div><div class="source-url">service-public.fr/particuliers/vosdroits/N110</div><div class="source-meta">Service-Public.fr — direitos dos estrangeiros na França</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+            <div><div class="source-url">service-public.fr/particuliers/vosdroits/F16162</div><div class="source-meta">Service-Public.fr — vistos de longa duração Tipo D (VLS-TS, sazonal, Working Holiday)</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">france-visas.gouv.fr</div><div class="source-meta">Portal oficial de vistos da França — falhou na extração</div></div>
-            <div class="source-status"><span class="badge down">falhou</span></div>
+            <div><div class="source-url">service-public.fr/particuliers/vosdroits/N110</div><div class="source-meta">Service-Public.fr — índice de títulos de permanência para estrangeiros</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+          </div>
+          <div class="source-item">
+            <div><div class="source-url">service-public.fr/particuliers/vosdroits/F16922</div><div class="source-meta">Service-Public.fr — Carte Talent (Passeport Talent), todas as categorias e requisitos de remuneração</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+          </div>
+          <div class="source-item">
+            <div><div class="source-url">service-public.fr/particuliers/vosdroits/F2728</div><div class="source-meta">Service-Public.fr — autorização de trabalho para não-UE, titre de séjour associado</div></div>
+            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
           </div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r-lg);">
+        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
           <div style="display:flex;align-items:center;gap:var(--s-md);">
-            <span class="badge down">Dados parciais</span>
-            <span class="body-sm" style="color: var(--muted);">3 de 4 URLs falharam na extração de abr/2026. Consulte as fontes oficiais para informações completas.</span>
+            <span class="badge up"><span class="pulse"></span>4/4 fontes ok</span>
+            <span class="body-sm" style="color: var(--muted);">Extração realizada com Sonnet 4.5 (F16162, F16922) e Haiku 4.5 (N110, F2728). Confiança média — confirme dados críticos nas fontes oficiais.</span>
           </div>
         </div>
       </div>
@@ -383,7 +534,7 @@
           <li><a href="dev.html">Dev</a></li></ul></div>
       <div><h4>Dados</h4><ul><li><a href="#">GitHub</a></li><li><a href="#">JSON direto</a></li><li><a href="historico.html">RSS de mudanças</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span><span class="caption-up">Última extração: abr/2026</span></div>
+    <div class="footer-bottom"><span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span><span class="caption-up">Última extração: mai/2026</span></div>
   </div>
 </footer>
 
