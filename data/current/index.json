@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-01T21:25:20.679Z",
+  "generatedAt": "2026-05-01T21:34:55.200Z",
   "schemaVersion": "1.0.0",
   "countries": [
     {
@@ -45,9 +45,9 @@
     {
       "code": "fr",
       "name": "Franca",
-      "lastUpdated": "2026-05-01T21:07:02.808Z",
+      "lastUpdated": "2026-05-01T21:34:43.284Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 3,
+      "visaTypesCount": 24,
       "confidence": "medium"
     },
     {

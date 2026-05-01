@@ -3,41 +3,44 @@ import type { SourceConfig } from '@/types'
 // O processo francês é multietapas: visto consular no Brasil, validação pelo OFII
 // ao chegar, depois solicitação de titre de séjour. O LLM deve capturar essa sequência
 // e não tratar "visto" e "titre de séjour" como a mesma coisa.
-// URLs do Ministério do Interior têm terminologia jurídica densa: usar Sonnet.
+// france-visas.gouv.fr e immigration.interieur.gouv.fr retornam 403 para bots.
+// ofii.fr retorna 200 mas só 222 bytes (JS-only). Substituídos por páginas estáticas
+// do service-public.fr que servem HTML completo sem renderização JS.
 export const frSource: SourceConfig = {
   countryCode: 'fr',
   countryName: 'Franca',
-  primaryLanguage: 'en',
+  primaryLanguage: 'fr',
   acceptableLanguages: ['en', 'fr'],
 
   urls: [
     {
-      url: 'https://france-visas.gouv.fr/en/web/france-visas/',
+      url: 'https://www.service-public.fr/particuliers/vosdroits/F16162',
       contentType: 'visa-overview',
       promptHint:
-        'Portal oficial de vistos da Franca. Liste os tipos de visto de trabalho para brasileiros: visto de longa duracao (VLS-TS), visto talento (Passeport Talent), visto trabalhador sazonal. Para cada tipo indique se permite trabalhar imediatamente, duracao maxima e se permite trazer familia.',
+        'Pagina do service-public.fr sobre vistos de longa duracao para a Franca (Tipo D). Extraia: tipos de visto de trabalho para brasileiros (VLS-TS valendo titre de sejour, visto sazonal, working holiday), para cada tipo indique duracao, se permite trabalhar imediatamente, documentos exigidos no consulado e se permite trazer familia.',
       fetchFrequency: 'monthly',
+      model: 'sonnet',
     },
     {
       url: 'https://www.service-public.fr/particuliers/vosdroits/N110',
       contentType: 'visa-requirements',
       promptHint:
-        'Direitos de estrangeiros no portal de servicos publicos da Franca. Extraia: tipos de titre de séjour para trabalhadores de paises nao-UE, documentos necessarios, onde solicitar (prefecture), prazo de validade e como renovar. Inclua carte de séjour temporaire mention salarié e carte pluriannuelle.',
+        'Indice de titulos de permanencia para estrangeiros no portal de servicos publicos da Franca. Extraia: tipos de titre de sejour para trabalhadores de paises nao-UE, documentos necessarios, onde solicitar (prefecture), prazo de validade e como renovar. Inclua carte de sejour temporaire mention salarie e carte pluriannuelle.',
       fetchFrequency: 'monthly',
     },
     {
-      url: 'https://www.immigration.interieur.gouv.fr/Immigration/L-immigration-en-France',
+      url: 'https://www.service-public.fr/particuliers/vosdroits/F16922',
       contentType: 'visa-requirements',
       promptHint:
-        'Ministerio do Interior frances sobre imigracao. Extraia: processo completo de imigracao para trabalhadores (visto consular, validacao OFII, titre de séjour), tipos de autorizacao de trabalho, salario minimo para Passeport Talent, diferenca entre trabalho assalariado e independente.',
+        'Pagina do service-public.fr sobre a Carte Talent (Passeport Talent frances). Extraia: todas as categorias elegiveis (salarie qualifie, Carte Bleue Europeia, pesquisador, artista, empreendedor, profissional de saude), requisitos de remuneracao minima em EUR por categoria, processo de solicitacao, taxa e extensao para familia.',
       fetchFrequency: 'monthly',
       model: 'sonnet',
     },
     {
-      url: 'https://www.ofii.fr/',
-      contentType: 'agreements',
+      url: 'https://www.service-public.fr/particuliers/vosdroits/F2728',
+      contentType: 'visa-requirements',
       promptHint:
-        'OFII, organismo frances de integracao de imigrantes. Extraia: o que acontece no processo de validacao do visto apos chegada, quais documentos o imigrante precisa apresentar ao OFII, quais servicos o OFII oferece (aulas de frances, integracao) e se ha algum acordo especial para brasileiros.',
+        'Pagina do service-public.fr sobre autorizacao de trabalho para nao-UE na Franca. Extraia: condicoes de elegibilidade, tipos de titre de sejour associados (salarie, etudiant, ICT), procedimento de solicitacao, quem paga as taxas (empregador) e sancoes por trabalho irregular.',
       fetchFrequency: 'monthly',
     },
   ],
