@@ -1,7 +1,7 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Les ressortissants brésiliens ressortissants de pays non-UE doivent obtenir une autorisation préalable de travail et une carte de séjour pour travailler en France.",
+    "notes": "",
     "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
@@ -14,37 +14,37 @@
       "notes": "",
       "required": false
     },
-    "passportValidity": "Passeport valide requis",
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
     "proofOfFunds": null,
     "vaccinations": []
   },
   "meta": {
     "country": "fr",
     "countryName": "Franca",
-    "lastUpdated": "2026-04-29T20:58:19.486Z",
+    "lastUpdated": "2026-05-01T21:07:02.808Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:55:05.308Z",
+        "fetchedAt": "2026-05-01T21:03:43.116Z",
         "status": "failed",
         "url": "https://france-visas.gouv.fr/en/web/france-visas/"
       },
       {
         "contentLanguage": "fr",
-        "fetchedAt": "2026-04-29T20:56:06.196Z",
+        "fetchedAt": "2026-05-01T21:04:48.785Z",
         "status": "ok",
         "url": "https://www.service-public.fr/particuliers/vosdroits/N110"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:56:18.613Z",
+        "fetchedAt": "2026-05-01T21:04:49.864Z",
         "status": "failed",
         "url": "https://www.immigration.interieur.gouv.fr/Immigration/L-immigration-en-France"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T20:57:19.050Z",
+        "fetchedAt": "2026-05-01T21:05:50.320Z",
         "status": "failed",
         "url": "https://www.ofii.fr/"
       }
@@ -61,30 +61,31 @@
   },
   "visaTypes": [
     {
-      "description": "Titre de séjour temporaire pour travailleurs étrangers salariés ressortissants de pays non-UE",
+      "description": "Permissão de residência temporária para trabalhadores estrangeiros de países não-UE com contrato de trabalho na França",
       "eligibility": [
-        "Travailleurs salariés ressortissants de pays non-UE",
-        "Titulaires d'un contrat de travail"
+        "Cidadão de país não-UE",
+        "Possuir contrato de trabalho válido na França",
+        "Ter oferta de emprego aprovada"
       ],
-      "id": "carte-sejour-temporaire-salarie",
-      "name": "Carte de séjour temporaire - Mention salarié",
+      "id": "carte-de-sejour-temporaire-salarie",
+      "name": "Carte de séjour temporaire mention salarié",
       "nameOriginal": "Carte de séjour temporaire mention salarié",
-      "notes": "Valable généralement pour 1 an, renouvelable. Titre de séjour permettant l'exercice d'une activité professionnelle salariée.",
+      "notes": "Válida por 1 ano, renovável. Vinculada a empregador específico. Menção de 'salarié' indica vínculo de emprego.",
       "process": {
         "applicationLocation": "destino",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "L'employeur doit demander une autorisation préalable auprès de la Direction du travail, de l'emploi et de la formation professionnelle",
+            "description": "Apresentar formulário e documentos na prefeitura (direction générale des finances publiques ou prefecture) do local de residência",
             "estimatedDays": null,
-            "name": "Demande d'autorisation de travail",
+            "name": "Solicitação na prefeitura",
             "order": 1
           },
           {
-            "description": "Après obtention de l'autorisation de travail, demander la carte de séjour temporaire auprès de la préfecture",
+            "description": "Análise da documentação pelo órgão competente",
             "estimatedDays": null,
-            "name": "Demande de carte de séjour",
+            "name": "Análise do pedido",
             "order": 2
           }
         ]
@@ -93,19 +94,19 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passeport valide pour l'entrée et le séjour en France",
+            "description": "Contrato de trabalho válido com empregador francês",
             "isCritical": true,
-            "name": "Passeport valide"
+            "name": "Contrato de trabalho"
           },
           {
-            "description": "Contrat de travail signé avec l'employeur français",
+            "description": "Documento de viagem válido",
             "isCritical": true,
-            "name": "Contrat de travail"
+            "name": "Passaporte válido"
           },
           {
-            "description": "Autorisation préalable de travail délivrée par l'administration",
-            "isCritical": true,
-            "name": "Autorisation de travail"
+            "description": "Prova de meios financeiros suficientes",
+            "isCritical": false,
+            "name": "Comprovante de recursos financeiros"
           }
         ],
         "incomeRequirement": null,
@@ -121,38 +122,32 @@
       }
     },
     {
-      "description": "Titre de séjour de longue durée pour ressortissants de pays non-UE remplissant certaines conditions",
+      "description": "Permissão de residência de longa duração para trabalhadores estrangeiros que atendem requisitos específicos",
       "eligibility": [
-        "Ressortissants de pays non-UE",
-        "Ayant un lien durable avec la France",
-        "Remplissant les conditions de ressources et d'intégration"
+        "Cidadão de país não-UE",
+        "Possuir situação econômica estável na França",
+        "Antecedentes favoráveis"
       ],
-      "id": "carte-sejour-pluriannuelle",
+      "id": "carte-de-sejour-pluriannuelle",
       "name": "Carte de séjour pluriannuelle",
       "nameOriginal": "Carte de séjour pluriannuelle",
-      "notes": "Valable généralement 4 ans. Permet l'exercice d'une activité professionnelle. Renouvelable.",
+      "notes": "Válida por vários anos (2 a 4 anos conforme caso). Maior flexibilidade profissional que a carte temporaire. Permite mudança de empregador.",
       "process": {
         "applicationLocation": "destino",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Réunir tous les documents justificatifs requis",
+            "description": "Apresentar formulário e documentos na prefecture do local de residência",
             "estimatedDays": null,
-            "name": "Constitution du dossier",
+            "name": "Solicitação na prefeitura",
             "order": 1
           },
           {
-            "description": "Déposer la demande auprès de la préfecture du lieu de résidence",
+            "description": "Análise da documentação e situação do requerente",
             "estimatedDays": null,
-            "name": "Dépôt de la demande",
+            "name": "Análise do pedido",
             "order": 2
-          },
-          {
-            "description": "Instruction de la demande par les services préfectoraux",
-            "estimatedDays": null,
-            "name": "Instruction du dossier",
-            "order": 3
           }
         ]
       },
@@ -160,19 +155,19 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passeport valide",
+            "description": "Documento de viagem válido",
             "isCritical": true,
-            "name": "Passeport valide"
+            "name": "Passaporte válido"
           },
           {
-            "description": "Justificatifs de ressources stables et suffisantes",
+            "description": "Prova de domicílio na França",
             "isCritical": true,
-            "name": "Justificatifs de ressources"
+            "name": "Comprovante de residência"
           },
           {
-            "description": "Justificatif de logement stable",
-            "isCritical": true,
-            "name": "Justificatif de logement"
+            "description": "Certificado de antecedentes ou declaração de ausência de condenações",
+            "isCritical": false,
+            "name": "Antecedentes criminais limpos"
           }
         ],
         "incomeRequirement": null,
@@ -181,7 +176,57 @@
       },
       "rights": {
         "canBringFamily": false,
-        "canChangeEmployer": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de residência de longa duração para residentes de longo prazo na França",
+      "eligibility": [
+        "Cidadão de país não-UE",
+        "Residente na França por período prolongado",
+        "Integração bem-sucedida"
+      ],
+      "id": "carte-de-sejour-resident",
+      "name": "Carte de séjour resident",
+      "nameOriginal": "Carte de séjour resident",
+      "notes": "Status de residente de longo prazo. Máxima flexibilidade profissional.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Apresentar formulário e documentos na prefecture",
+            "estimatedDays": null,
+            "name": "Solicitação na prefeitura",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documento de viagem válido",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Prova de domicílio na França",
+            "isCritical": true,
+            "name": "Comprovante de residência"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": null,
         "pathToResidency": null

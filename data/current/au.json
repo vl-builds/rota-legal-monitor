@@ -1,7 +1,7 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Brasil é parte do programa Working Holiday com Austrália. Brasileiros podem acessar vistos temporários de trabalho e vistos permanentes baseados em habilidades.",
+    "notes": "Brasileiros são elegíveis para vistos de trabalho australianos. Necessário visto específico para trabalhar.",
     "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
@@ -21,30 +21,30 @@
   "meta": {
     "country": "au",
     "countryName": "Australia",
-    "lastUpdated": "2026-04-29T21:07:03.291Z",
+    "lastUpdated": "2026-05-01T21:09:10.845Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T21:04:59.522Z",
+        "fetchedAt": "2026-05-01T21:07:44.474Z",
         "status": "ok",
         "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/work-holiday-462"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T21:05:07.327Z",
-        "status": "partial",
+        "fetchedAt": "2026-05-01T21:07:46.481Z",
+        "status": "ok",
         "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-independent-189"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T21:05:58.605Z",
-        "status": "partial",
+        "fetchedAt": "2026-05-01T21:07:48.481Z",
+        "status": "ok",
         "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/temporary-skill-shortage-482"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T21:06:48.015Z",
+        "fetchedAt": "2026-05-01T21:07:50.494Z",
         "status": "ok",
         "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-finder"
       }
@@ -55,62 +55,97 @@
     "extractedBy": "llm",
     "extractionConfidence": "medium",
     "humanReviewedAt": null,
-    "knownIssues": [
-      "2 URL(s) falharam na extracao"
-    ]
+    "knownIssues": []
   },
   "visaTypes": [
     {
-      "description": "Visto que permite trabalhar e viajar na Austrália para jovens brasileiros",
-      "eligibility": [],
+      "description": "Visto que permite a jovens de países elegíveis, incluindo o Brasil, trabalhar e viajar na Austrália por até 12 meses, promovendo intercâmbio cultural e experiências de trabalho temporário.",
+      "eligibility": [
+        "Ser cidadão de país elegível (incluindo Brasil)",
+        "Ter idade entre 18 e 30 anos (verificar se há extensão até 35 anos para brasileiros - informação não disponível no conteúdo fornecido)",
+        "Não estar acompanhado de filhos dependentes durante a estadia",
+        "Possuir passaporte válido do país elegível",
+        "Não ter recebido anteriormente um visto Work and Holiday (subclass 462) ou Working Holiday (subclass 417)"
+      ],
       "id": "work-holiday-462",
-      "name": "Working Holiday Visa",
-      "nameOriginal": "Working Holiday Visa subclass 462",
-      "notes": "Conteúdo da página fornecido não contém informações detalhadas sobre requisitos, processos e restrições",
+      "name": "Visto de Trabalho e Férias",
+      "nameOriginal": "Work and Holiday Visa subclass 462",
+      "notes": "RESTRIÇÕES DE TRABALHO: Máximo de 6 meses de trabalho para o mesmo empregador (informação mencionada na solicitação mas não confirmada no conteúdo fornecido). COTA ANUAL: Informação sobre cota anual específica para brasileiros não disponível no conteúdo fornecido. SEGUNDA E TERCEIRA VISA: Possibilidade de extensão mediante trabalho em áreas regionais qualificadas. SOLICITAÇÃO: Deve ser feita online através do sistema ImmiAccount. IDADE: Limite confirmado entre 18 e 30 anos, mas informação sobre possível extensão até 35 anos para brasileiros não está disponível no conteúdo fornecido.",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
-        "steps": []
+        "steps": [
+          {
+            "description": "Verificar se atende aos critérios de idade, nacionalidade, educação e proficiência em inglês",
+            "estimatedDays": null,
+            "name": "Verificação de elegibilidade",
+            "order": 1
+          },
+          {
+            "description": "Reunir todos os documentos necessários incluindo passaporte, comprovantes financeiros, educacionais e de proficiência em inglês",
+            "estimatedDays": null,
+            "name": "Preparação de documentos",
+            "order": 2
+          },
+          {
+            "description": "Submeter a candidatura através do sistema online ImmiAccount do Department of Home Affairs",
+            "estimatedDays": null,
+            "name": "Solicitação online",
+            "order": 3
+          },
+          {
+            "description": "Efetuar o pagamento da taxa de solicitação em AUD (valor específico não disponível no conteúdo fornecido)",
+            "estimatedDays": null,
+            "name": "Pagamento da taxa",
+            "order": 4
+          },
+          {
+            "description": "Aguardar a análise da solicitação pelo Department of Home Affairs",
+            "estimatedDays": null,
+            "name": "Análise e decisão",
+            "order": 5
+          }
+        ]
       },
       "relevanceForDelivery": "direct",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "description": "Passaporte válido do país de origem (Brasil) durante todo o período de estadia",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Comprovação de recursos financeiros suficientes para se manter durante a estadia inicial na Austrália",
+            "isCritical": true,
+            "name": "Comprovante de fundos"
+          },
+          {
+            "description": "Comprovação de conclusão de pelo menos 2 anos de estudos universitários ou equivalente",
+            "isCritical": true,
+            "name": "Nível educacional"
+          },
+          {
+            "description": "Comprovação de nível funcional de inglês através de testes aceitos",
+            "isCritical": true,
+            "name": "Proficiência em inglês"
+          }
+        ],
         "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Visto temporário que permite a brasileiros trabalhar e viajar na Austrália por até 12 meses",
-      "eligibility": [
-        "Cidadão brasileiro",
-        "Idade entre 18 e 30 anos",
-        "Passaporte válido"
-      ],
-      "id": "working-holiday-462",
-      "name": "Working Holiday",
-      "nameOriginal": "Working Holiday Visa 462",
-      "notes": "Visto temporário para trabalho e férias. Requer patrocínio de empregador para extensão.",
-      "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [],
-        "steps": []
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
+        "languageRequired": {
+          "language": "Inglês",
+          "level": "Funcional",
+          "testsAccepted": [
+            "IELTS",
+            "TOEFL iBT",
+            "PTE Academic",
+            "Cambridge English Advanced"
+          ]
+        },
+        "qualificationsRequired": [
+          "Conclusão de pelo menos 2 anos de estudos universitários ou equivalente"
+        ]
       },
       "rights": {
         "canBringFamily": false,
@@ -121,61 +156,268 @@
       }
     },
     {
-      "description": "Visto temporário que permite que empregadores australianos contratem trabalhadores estrangeiros para preencher lacunas de habilidades",
+      "description": "Visto de migração permanente para profissionais qualificados sem patrocínio de estado ou empregador",
       "eligibility": [
-        "Ser patrocinado por um empregador australiano",
-        "Possuir habilidades relevantes para a posição",
-        "Atender aos requisitos de idioma inglês"
+        "Ter ocupação na lista de profissões qualificadas",
+        "Atender pontos de teste de habilidades",
+        "Ter avaliação positiva de qualificações"
+      ],
+      "id": "skilled-independent-189",
+      "name": "Skilled Independent 189",
+      "nameOriginal": "Skilled Independent 189",
+      "notes": "Não requer patrocínio de empregador ou estado. Visto de residência permanente.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Submeter qualificações para avaliação por organismo reconhecido",
+            "estimatedDays": null,
+            "name": "Obter avaliação de ocupação",
+            "order": 1
+          },
+          {
+            "description": "Registrar perfil no sistema SkillSelect",
+            "estimatedDays": null,
+            "name": "Criar perfil Expression of Interest",
+            "order": 2
+          },
+          {
+            "description": "Aguardar convite baseado em pontos",
+            "estimatedDays": null,
+            "name": "Receber convite para aplicar",
+            "order": 3
+          },
+          {
+            "description": "Apresentar candidatura formal com documentação",
+            "estimatedDays": null,
+            "name": "Submeter candidatura completa",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Avaliação positiva da ocupação por organismo reconhecido",
+            "isCritical": true,
+            "name": "Avaliação de qualificações"
+          },
+          {
+            "description": "Passaporte ou documento de identidade válido",
+            "isCritical": true,
+            "name": "Prova de identidade"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Inglês",
+          "level": "Competente ou superior",
+          "testsAccepted": [
+            "IELTS",
+            "TOEFL",
+            "PTE",
+            "CAE"
+          ]
+        },
+        "qualificationsRequired": [
+          "Qualificações reconhecidas em ocupação da lista qualificada"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": {
+          "conditions": [
+            "Ter residência permanente",
+            "Estar fisicamente na Austrália"
+          ],
+          "yearsRequired": 4
+        },
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto que permite aos empregadores australianos patrocinar trabalhadores estrangeiros qualificados para preencher escassez de habilidades a curto e médio prazo. Oferece dois fluxos: Short-term stream (até 2 anos) e Medium-term stream (até 4 anos).",
+      "eligibility": [
+        "Ser um trabalhador estrangeiro qualificado",
+        "Ser patrocinado por um empregador australiano aprovado",
+        "Ter qualificações relevantes para a profissão patrocinada",
+        "Cumprir requisitos de saúde e caráter"
       ],
       "id": "tss-482",
       "name": "Temporary Skill Shortage",
-      "nameOriginal": "Temporary Skill Shortage Visa 482",
-      "notes": "Visto temporário que requer patrocínio obrigatório de empregador. Válido por até 4 anos.",
+      "nameOriginal": "Temporary Skill Shortage visa subclass 482",
+      "notes": "A página fornecida contém apenas o cabeçalho e não inclui conteúdo específico sobre os dois fluxos (Short-term e Medium-term streams), profissões elegíveis por stream, ou detalhes específicos do TSMIT. Os dados acima baseiam-se no contexto geral do visto TSS 482, mas devem ser verificados na página completa do IMMI para informações atualizadas e específicas sobre diferenças entre os fluxos.",
       "process": {
-        "applicationLocation": "ambos",
+        "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
-        "steps": []
+        "steps": [
+          {
+            "description": "O empregador australiano aprovou submete uma solicitação de patrocínio à imigração",
+            "estimatedDays": null,
+            "name": "Patrocínio do empregador",
+            "order": 1
+          },
+          {
+            "description": "Imigração avalia e aprova o patrocínio do empregador",
+            "estimatedDays": null,
+            "name": "Aprovação de patrocínio",
+            "order": 2
+          },
+          {
+            "description": "Trabalhador recebe convite para solicitar o visto após aprovação do patrocínio",
+            "estimatedDays": null,
+            "name": "Convite para solicitar",
+            "order": 3
+          },
+          {
+            "description": "Candidato submete solicitação completa do visto com documentação de apoio",
+            "estimatedDays": null,
+            "name": "Submissão da candidatura",
+            "order": 4
+          },
+          {
+            "description": "Imigração avalia todos os requisitos, documentos e elegibilidade",
+            "estimatedDays": null,
+            "name": "Avaliação da candidatura",
+            "order": 5
+          },
+          {
+            "description": "Visto é aprovado ou rejeitado",
+            "estimatedDays": null,
+            "name": "Decisão do visto",
+            "order": 6
+          }
+        ]
       },
       "relevanceForDelivery": "direct",
       "requirements": {
-        "documents": [],
-        "incomeRequirement": null,
-        "languageRequired": {
-          "language": "English",
-          "level": "Funcional",
-          "testsAccepted": []
+        "documents": [
+          {
+            "description": "Comprovação de que um empregador australiano aprovado patrocina sua candidatura",
+            "isCritical": true,
+            "name": "Comprovante de patrocínio do empregador"
+          },
+          {
+            "description": "Certificados, diplomas ou evidência de qualificações relevantes para a profissão",
+            "isCritical": true,
+            "name": "Qualificações profissionais"
+          },
+          {
+            "description": "Avaliação positiva de uma organização de avaliação de qualificações reconhecida para sua profissão",
+            "isCritical": true,
+            "name": "Avaliação da profissão"
+          },
+          {
+            "description": "Prova de competência em inglês (IELTS, TOEFL ou similar)",
+            "isCritical": true,
+            "name": "Teste de idioma inglês"
+          },
+          {
+            "description": "Avaliação médica por médico aprovado pela imigração",
+            "isCritical": true,
+            "name": "Certificado de saúde"
+          },
+          {
+            "description": "Comprovação de antecedentes criminais limpos",
+            "isCritical": true,
+            "name": "Certificado de caráter"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 53900,
+          "currency": "AUD",
+          "notes": "TSMIT (Temporary Skilled Migration Income Threshold) - salário mínimo que o empregador deve pagar. Este é o valor base; pode variar conforme a profissão e localização.",
+          "period": "yearly"
         },
-        "qualificationsRequired": []
+        "languageRequired": {
+          "language": "Inglês",
+          "level": "Competência funcional (geralmente IELTS 5.0 ou equivalente)",
+          "testsAccepted": [
+            "IELTS",
+            "TOEFL",
+            "PTE Academic",
+            "Cambridge English"
+          ]
+        },
+        "qualificationsRequired": [
+          "Qualificação reconhecida pela profissão (diploma, certificado ou equivalente)",
+          "Avaliação positiva de qualificações por organismo reconhecido"
+        ]
       },
       "rights": {
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": {
+          "conditions": [
+            "Primeiro obter residência permanente",
+            "Cumprir período mínimo de residência permanente (geralmente 1 ano)",
+            "Teste de idioma inglês satisfatório",
+            "Teste de conhecimento cívico da Austrália"
+          ],
+          "yearsRequired": 4
+        },
+        "pathToResidency": {
+          "conditions": [
+            "Completar o período de patrocínio com sucesso",
+            "Atender a critérios de residência permanente (Skilled Independent Visa ou outras categorias)",
+            "Demonstrar integração à comunidade australiana"
+          ],
+          "yearsRequired": 2
+        }
       }
     },
     {
-      "description": "Visto temporário para graduados recentes que completaram estudos na Austrália, permitindo trabalho e residência temporária",
+      "description": "Visto temporário que permite aos titulares trabalhar e viajar na Austrália por um período determinado",
       "eligibility": [
-        "Ter completado qualificação elegível na Austrália nos últimos 6 meses",
-        "Ter visto de estudante válido ou anterior",
-        "Estar fisicamente na Austrália"
+        "Ser cidadão de país elegível (Brasil incluído)",
+        "Ter entre 18 e 30 anos",
+        "Ter passaporte válido"
       ],
-      "id": "graduate-485",
-      "name": "Temporary Graduate",
-      "nameOriginal": "Temporary Graduate Visa 485",
-      "notes": "Visto temporário pós-estudo. Não requer patrocínio de empregador.",
+      "id": "working-holiday-462",
+      "name": "Working Holiday 462",
+      "nameOriginal": "Working Holiday 462",
+      "notes": "Visto temporário sem patrocínio obrigatório de empregador",
       "process": {
-        "applicationLocation": "destino",
+        "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
-        "steps": []
+        "steps": [
+          {
+            "description": "Criar uma conta no sistema de imigração online",
+            "estimatedDays": null,
+            "name": "Criar conta ImmiAccount",
+            "order": 1
+          },
+          {
+            "description": "Completar formulário de pedido de visto",
+            "estimatedDays": null,
+            "name": "Preencher formulário de candidatura",
+            "order": 2
+          },
+          {
+            "description": "Enviar documentos necessários",
+            "estimatedDays": null,
+            "name": "Submeter documentação",
+            "order": 3
+          }
+        ]
       },
-      "relevanceForDelivery": "indirect",
+      "relevanceForDelivery": "direct",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "description": "Passaporte com validade suficiente",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          }
+        ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": []
@@ -189,38 +431,144 @@
       }
     },
     {
-      "description": "Visto de residência permanente para profissionais qualificados cujas habilidades estão em demanda na Austrália, sem necessidade de patrocínio estadual ou de empregador",
+      "description": "Visto temporário que permite que empregadores australianos patrocinem trabalhadores estrangeiros com habilidades específicas",
       "eligibility": [
-        "Profissão listada na occupation list",
-        "Atender aos requisitos de pontuação do sistema de pontos",
-        "Competência em inglês",
-        "Estar com menos de 45 anos (geralmente)"
+        "Ter habilidades em ocupações da lista de profissões carentes",
+        "Ter patrocínio de empregador australiano"
       ],
-      "id": "skilled-independent-189",
-      "name": "Skilled Independent",
-      "nameOriginal": "Skilled Independent Visa 189",
-      "notes": "Visto permanente que não requer patrocínio de empregador. Utiliza sistema de pontos para seleção.",
+      "id": "temporary-skill-shortage-482",
+      "name": "Temporary Skill Shortage 482",
+      "nameOriginal": "Temporary Skill Shortage 482",
+      "notes": "Requer patrocínio obrigatório de empregador australiano. Visto temporário.",
       "process": {
-        "applicationLocation": "origem",
+        "applicationLocation": "destino",
         "estimatedDuration": "A determinar",
         "fees": [],
-        "steps": []
+        "steps": [
+          {
+            "description": "Conseguir que empregador australiano processe pedido de patrocínio",
+            "estimatedDays": null,
+            "name": "Obter patrocínio de empregador",
+            "order": 1
+          },
+          {
+            "description": "Apresentar candidatura com patrocínio aprovado",
+            "estimatedDays": null,
+            "name": "Submeter candidatura de visto",
+            "order": 2
+          }
+        ]
       },
       "relevanceForDelivery": "direct",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "description": "Comprovação de patrocínio por empresa australiana registrada",
+            "isCritical": true,
+            "name": "Patrocínio de empregador"
+          },
+          {
+            "description": "Certificação de qualificações profissionais",
+            "isCritical": true,
+            "name": "Avaliação de qualificações"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificações relevantes para ocupação patrocinada"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de migração permanente para profissionais qualificados patrocinados por estado australiano",
+      "eligibility": [
+        "Ter ocupação na lista de profissões qualificadas",
+        "Atender pontos de teste de habilidades",
+        "Ter patrocínio de estado australiano",
+        "Ter avaliação positiva de qualificações"
+      ],
+      "id": "skilled-nominated-190",
+      "name": "Skilled Nominated 190",
+      "nameOriginal": "Skilled Nominated 190",
+      "notes": "Requer patrocínio obrigatório de estado/território australiano. Visto de residência permanente.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Submeter qualificações para avaliação por organismo reconhecido",
+            "estimatedDays": null,
+            "name": "Obter avaliação de ocupação",
+            "order": 1
+          },
+          {
+            "description": "Registrar perfil no sistema SkillSelect",
+            "estimatedDays": null,
+            "name": "Criar perfil Expression of Interest",
+            "order": 2
+          },
+          {
+            "description": "Aplicar para nomeação com estado específico",
+            "estimatedDays": null,
+            "name": "Submeter pedido de nomeação estadual",
+            "order": 3
+          },
+          {
+            "description": "Aguardar convite após nomeação aprovada",
+            "estimatedDays": null,
+            "name": "Receber convite para aplicar",
+            "order": 4
+          },
+          {
+            "description": "Apresentar candidatura formal com documentação",
+            "estimatedDays": null,
+            "name": "Submeter candidatura completa",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Aprovação de nomeação por estado ou território australiano",
+            "isCritical": true,
+            "name": "Patrocínio de estado"
+          },
+          {
+            "description": "Avaliação positiva da ocupação por organismo reconhecido",
+            "isCritical": true,
+            "name": "Avaliação de qualificações"
+          },
+          {
+            "description": "Passaporte ou documento de identidade válido",
+            "isCritical": true,
+            "name": "Prova de identidade"
+          }
+        ],
         "incomeRequirement": null,
         "languageRequired": {
-          "language": "English",
-          "level": "Competent",
+          "language": "Inglês",
+          "level": "Competente ou superior",
           "testsAccepted": [
             "IELTS",
             "TOEFL",
             "PTE",
-            "Cambridge"
+            "CAE"
           ]
         },
-        "qualificationsRequired": []
+        "qualificationsRequired": [
+          "Qualificações reconhecidas em ocupação da lista qualificada"
+        ]
       },
       "rights": {
         "canBringFamily": true,
@@ -228,8 +576,8 @@
         "canWork": true,
         "pathToCitizenship": {
           "conditions": [
-            "Manter residência permanente por 4 anos",
-            "Cumprir requisitos de presença física"
+            "Ter residência permanente",
+            "Estar fisicamente na Austrália"
           ],
           "yearsRequired": 4
         },
@@ -237,50 +585,66 @@
       }
     },
     {
-      "description": "Visto de residência permanente para profissionais qualificados patrocinados por um estado ou território australiano cuja profissão está em demanda regional",
+      "description": "Visto temporário para graduados qualificados em instituições australianas que desejam trabalhar na Austrália",
       "eligibility": [
-        "Profissão listada na occupation list",
-        "Ser patrocinado por estado ou território australiano",
-        "Atender aos requisitos de pontuação do sistema de pontos",
-        "Competência em inglês"
+        "Ter completado qualificação elegível em instituição australiana",
+        "Ter avaliação positiva de qualificações",
+        "Estar dentro de prazo após graduação"
       ],
-      "id": "skilled-nominated-190",
-      "name": "Skilled Nominated",
-      "nameOriginal": "Skilled Nominated Visa 190",
-      "notes": "Visto permanente que requer patrocínio de estado/território australiano. Oferece 5 pontos adicionais no sistema de pontos.",
+      "id": "skilled-graduate-485",
+      "name": "Skilled Graduate 485",
+      "nameOriginal": "Skilled Graduate 485",
+      "notes": "Visto temporário para graduados recentes. Não requer patrocínio de empregador. Disponível apenas para graduados de instituições australianas.",
       "process": {
-        "applicationLocation": "ambos",
+        "applicationLocation": "destino",
         "estimatedDuration": "A determinar",
         "fees": [],
-        "steps": []
+        "steps": [
+          {
+            "description": "Finalizar curso em instituição australiana reconhecida",
+            "estimatedDays": null,
+            "name": "Completar qualificação australiana",
+            "order": 1
+          },
+          {
+            "description": "Submeter qualificações para avaliação por organismo reconhecido",
+            "estimatedDays": null,
+            "name": "Obter avaliação de ocupação",
+            "order": 2
+          },
+          {
+            "description": "Apresentar pedido de visto na Austrália",
+            "estimatedDays": null,
+            "name": "Submeter candidatura de visto",
+            "order": 3
+          }
+        ]
       },
       "relevanceForDelivery": "direct",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "description": "Certificado de conclusão de qualificação australiana elegível",
+            "isCritical": true,
+            "name": "Comprovante de conclusão de curso"
+          },
+          {
+            "description": "Avaliação positiva da ocupação por organismo reconhecido",
+            "isCritical": true,
+            "name": "Avaliação de qualificações"
+          }
+        ],
         "incomeRequirement": null,
-        "languageRequired": {
-          "language": "English",
-          "level": "Competent",
-          "testsAccepted": [
-            "IELTS",
-            "TOEFL",
-            "PTE",
-            "Cambridge"
-          ]
-        },
-        "qualificationsRequired": []
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação australiana em ocupação da lista qualificada"
+        ]
       },
       "rights": {
-        "canBringFamily": true,
+        "canBringFamily": false,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Manter residência permanente por 4 anos",
-            "Cumprir requisitos de presença física"
-          ],
-          "yearsRequired": 4
-        },
+        "pathToCitizenship": null,
         "pathToResidency": null
       }
     }

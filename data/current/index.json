@@ -1,45 +1,85 @@
 {
-  "generatedAt": "2026-04-29T12:35:04.502Z",
+  "generatedAt": "2026-05-01T21:09:53.915Z",
   "schemaVersion": "1.0.0",
   "countries": [
     {
+      "code": "at",
+      "name": "Austria",
+      "lastUpdated": "2026-05-01T21:07:44.472Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 4,
+      "confidence": "medium"
+    },
+    {
+      "code": "au",
+      "name": "Australia",
+      "lastUpdated": "2026-05-01T21:09:10.845Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 7,
+      "confidence": "medium"
+    },
+    {
+      "code": "be",
+      "name": "Belgica",
+      "lastUpdated": "2026-04-29T21:04:32.704Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 3,
+      "confidence": "medium"
+    },
+    {
       "code": "de",
       "name": "Alemanha",
-      "lastUpdated": "2026-04-29T12:29:18.698Z",
+      "lastUpdated": "2026-05-01T21:00:32.751Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 12,
+      "visaTypesCount": 11,
       "confidence": "medium"
     },
     {
       "code": "es",
       "name": "Espanha",
-      "lastUpdated": "2026-04-29T12:31:03.479Z",
+      "lastUpdated": "2026-04-29T20:33:32.669Z",
       "schemaVersion": "1.0.0",
       "visaTypesCount": 4,
+      "confidence": "medium"
+    },
+    {
+      "code": "fr",
+      "name": "Franca",
+      "lastUpdated": "2026-05-01T21:07:02.808Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 3,
       "confidence": "medium"
     },
     {
       "code": "ie",
       "name": "Irlanda",
-      "lastUpdated": "2026-04-29T12:35:04.424Z",
+      "lastUpdated": "2026-05-01T21:02:28.113Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 17,
+      "visaTypesCount": 11,
+      "confidence": "medium"
+    },
+    {
+      "code": "it",
+      "name": "Italia",
+      "lastUpdated": "2026-05-01T21:03:43.112Z",
+      "schemaVersion": "1.0.0",
+      "visaTypesCount": 4,
       "confidence": "medium"
     },
     {
       "code": "nl",
       "name": "Holanda",
-      "lastUpdated": "2026-04-29T12:21:02.293Z",
+      "lastUpdated": "2026-05-01T20:55:33.687Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 21,
+      "visaTypesCount": 15,
       "confidence": "medium"
     },
     {
       "code": "pt",
       "name": "Portugal",
-      "lastUpdated": "2026-04-29T12:25:32.910Z",
+      "lastUpdated": "2026-05-01T20:57:27.235Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 4,
+      "visaTypesCount": 14,
       "confidence": "medium"
     }
   ]

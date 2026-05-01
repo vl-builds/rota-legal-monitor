@@ -8,7 +8,6 @@ node_modules/
 
 # Cache de runtime
 .cache/
-data/cache/
 data/.diff-summary.md
 
 # Builds e artefatos

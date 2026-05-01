@@ -1,0 +1,191 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Les ressortissants brésiliens ressortissants de pays non-UE doivent obtenir une autorisation préalable de travail et une carte de séjour pour travailler en France.",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "",
+      "required": false
+    },
+    "passportValidity": "Passeport valide requis",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "fr",
+    "countryName": "Franca",
+    "lastUpdated": "2026-04-29T20:58:19.486Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:55:05.308Z",
+        "status": "failed",
+        "url": "https://france-visas.gouv.fr/en/web/france-visas/"
+      },
+      {
+        "contentLanguage": "fr",
+        "fetchedAt": "2026-04-29T20:56:06.196Z",
+        "status": "ok",
+        "url": "https://www.service-public.fr/particuliers/vosdroits/N110"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:56:18.613Z",
+        "status": "failed",
+        "url": "https://www.immigration.interieur.gouv.fr/Immigration/L-immigration-en-France"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:57:19.050Z",
+        "status": "failed",
+        "url": "https://www.ofii.fr/"
+      }
+    ]
+  },
+  "recentChanges": [],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": [
+      "3 URL(s) falharam na extracao"
+    ]
+  },
+  "visaTypes": [
+    {
+      "description": "Titre de séjour temporaire pour travailleurs étrangers salariés ressortissants de pays non-UE",
+      "eligibility": [
+        "Travailleurs salariés ressortissants de pays non-UE",
+        "Titulaires d'un contrat de travail"
+      ],
+      "id": "carte-sejour-temporaire-salarie",
+      "name": "Carte de séjour temporaire - Mention salarié",
+      "nameOriginal": "Carte de séjour temporaire mention salarié",
+      "notes": "Valable généralement pour 1 an, renouvelable. Titre de séjour permettant l'exercice d'une activité professionnelle salariée.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "L'employeur doit demander une autorisation préalable auprès de la Direction du travail, de l'emploi et de la formation professionnelle",
+            "estimatedDays": null,
+            "name": "Demande d'autorisation de travail",
+            "order": 1
+          },
+          {
+            "description": "Après obtention de l'autorisation de travail, demander la carte de séjour temporaire auprès de la préfecture",
+            "estimatedDays": null,
+            "name": "Demande de carte de séjour",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passeport valide pour l'entrée et le séjour en France",
+            "isCritical": true,
+            "name": "Passeport valide"
+          },
+          {
+            "description": "Contrat de travail signé avec l'employeur français",
+            "isCritical": true,
+            "name": "Contrat de travail"
+          },
+          {
+            "description": "Autorisation préalable de travail délivrée par l'administration",
+            "isCritical": true,
+            "name": "Autorisation de travail"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Titre de séjour de longue durée pour ressortissants de pays non-UE remplissant certaines conditions",
+      "eligibility": [
+        "Ressortissants de pays non-UE",
+        "Ayant un lien durable avec la France",
+        "Remplissant les conditions de ressources et d'intégration"
+      ],
+      "id": "carte-sejour-pluriannuelle",
+      "name": "Carte de séjour pluriannuelle",
+      "nameOriginal": "Carte de séjour pluriannuelle",
+      "notes": "Valable généralement 4 ans. Permet l'exercice d'une activité professionnelle. Renouvelable.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Réunir tous les documents justificatifs requis",
+            "estimatedDays": null,
+            "name": "Constitution du dossier",
+            "order": 1
+          },
+          {
+            "description": "Déposer la demande auprès de la préfecture du lieu de résidence",
+            "estimatedDays": null,
+            "name": "Dépôt de la demande",
+            "order": 2
+          },
+          {
+            "description": "Instruction de la demande par les services préfectoraux",
+            "estimatedDays": null,
+            "name": "Instruction du dossier",
+            "order": 3
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passeport valide",
+            "isCritical": true,
+            "name": "Passeport valide"
+          },
+          {
+            "description": "Justificatifs de ressources stables et suffisantes",
+            "isCritical": true,
+            "name": "Justificatifs de ressources"
+          },
+          {
+            "description": "Justificatif de logement stable",
+            "isCritical": true,
+            "name": "Justificatif de logement"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}

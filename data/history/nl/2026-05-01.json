@@ -1,0 +1,681 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Brasileiros não cidadãos da UE/EEA precisam de permissão de residência e, em muitos casos, de permissão de trabalho (GVVA) para trabalhar na Holanda. Não foram encontrados acordos bilaterais específicos com o Brasil na página fornecida.",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "",
+      "required": false
+    },
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "nl",
+    "countryName": "Holanda",
+    "lastUpdated": "2026-04-29T20:27:50.170Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:26:21.234Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/residence-permits/work"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:26:43.397Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/residence-permits/work/highly-skilled-migrant"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:27:09.701Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:27:25.629Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/fees-costs-of-an-application"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:27:28.156Z",
+        "status": "ok",
+        "url": "https://ind.nl/en/work"
+      }
+    ]
+  },
+  "recentChanges": [],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "Visto para trabalhar na Holanda como migrante altamente qualificado",
+      "eligibility": [],
+      "id": "highly-skilled-migrant",
+      "name": "Migrante altamente qualificado",
+      "nameOriginal": "Highly skilled migrant",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalhadores altamente educados na Holanda sob o esquema do Cartão Azul Europeu",
+      "eligibility": [
+        "Trabalhador altamente educado"
+      ],
+      "id": "european-blue-card",
+      "name": "Cartão Azul Europeu",
+      "nameOriginal": "European blue card residence permit",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para gerentes, especialistas ou aprendizes transferidos para a Holanda por uma empresa de fora da UE",
+      "eligibility": [
+        "Gerente",
+        "Especialista",
+        "Aprendiz"
+      ],
+      "id": "intra-corporate-transferee",
+      "name": "Transferência intraempresarial",
+      "nameOriginal": "Intra-corporate transferee residence permit (Directive 2014/66/EU)",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalhar como pesquisador na Holanda",
+      "eligibility": [],
+      "id": "researcher",
+      "name": "Pesquisador",
+      "nameOriginal": "Residence permit researcher (Directive (EU) 2016/801)",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalhar em emprego remunerado na Holanda com permissão de trabalho (GVVA)",
+      "eligibility": [],
+      "id": "paid-employment-gvva",
+      "name": "Emprego remunerado: visto de trabalho (GVVA)",
+      "nameOriginal": "Paid employment: residence permit with work permit (GVVA)",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalhar em emprego remunerado na Holanda sem necessidade de GVVA ou quando não é possível requerer GVVA",
+      "eligibility": [],
+      "id": "paid-employment-only",
+      "name": "Emprego remunerado: apenas permissão de residência",
+      "nameOriginal": "Paid employment: residence permit only",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para procurar emprego na Holanda após graduação, promoção ou pesquisa científica",
+      "eligibility": [],
+      "id": "orientation-year",
+      "name": "Ano de orientação",
+      "nameOriginal": "Residence permit for orientation year",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalhar como autônomo na Holanda",
+      "eligibility": [],
+      "id": "self-employed",
+      "name": "Permissão de residência para trabalhador autônomo",
+      "nameOriginal": "Residence permit self-employed person",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalhar como estagiário ou aprendiz na Holanda",
+      "eligibility": [],
+      "id": "intern-apprentice",
+      "name": "Estagiário ou aprendiz",
+      "nameOriginal": "Intern or apprentice in the Netherlands",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalho temporário na Holanda para empresa baseada em país da UE/EEA ou Suíça",
+      "eligibility": [],
+      "id": "cross-border-service-provider",
+      "name": "Prestador de serviço transfronteiriço",
+      "nameOriginal": "Residence permit cross-border service provider",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalho sazonal no setor agrícola da Holanda por máximo de 6 meses",
+      "eligibility": [],
+      "id": "seasonal-work",
+      "name": "Trabalho sazonal",
+      "nameOriginal": "Residence permit for seasonal work",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "You want to perform seafaring service on board a seagoing vessel in a Dutch seaport for longer than 90 days.",
+      "eligibility": [
+        "Crew member",
+        "Seagoing vessel",
+        "Duration longer than 90 days"
+      ],
+      "id": "seafarer",
+      "name": "Seafarer",
+      "nameOriginal": "Seafaring service as a crew member on board a seagoing vessel",
+      "notes": "For maritime work longer than 90 days",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Seafaring qualifications"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para iniciar uma empresa inovadora na Holanda",
+      "eligibility": [],
+      "id": "start-up-founder",
+      "name": "Fundador de startup inovadora",
+      "nameOriginal": "Innovative start-up residence permit",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "You want to hire a foreign employee who is essential to your start-up.",
+      "eligibility": [
+        "Essential employee for start-up",
+        "Hired by start-up founder"
+      ],
+      "id": "start-up-essential-personnel",
+      "name": "Essential Start-Up Personnel",
+      "nameOriginal": "Residence permit for essential start-up personnel",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto que permite que recém-graduados, doutores ou pesquisadores procurem emprego na Holanda após conclusão de estudos ou pesquisa",
+      "eligibility": [
+        "Ter conduzido pesquisa científica na Holanda nos 3 anos anteriores à data de solicitação, com visto de pesquisa segundo Diretiva (EU) 2016/801 ou como migrante altamente qualificado em pesquisa científica",
+        "Ter obtido mestrado em programa Erasmus Mundus Joint Master nos 3 anos anteriores",
+        "Ter completado programas de estudo nos 3 anos anteriores: diploma de bacharel ou mestrado acreditado em instituição holandesa, pós-mestrado na Holanda (mínimo 10 meses), programa na Holanda sob Ato de Política Cultural ou cooperação para desenvolvimento do Ministério de Relações Exteriores holandês",
+        "Ter diploma de mestrado, doutorado ou pós-mestrado de instituição estrangeira designada (instituição em top 200 de rankings de Times Higher Education, QS ou ShanghaiRanking)",
+        "Atender requisitos de inglês: mínimo 6.0 em IELTS (Academic ou General Training), ou mínimo em TOEFL, TOEIC ou Cambridge English, ou programa estudado em inglês/holandês"
+      ],
+      "id": "orientation-year-highly-educated",
+      "name": "Visto de Orientação para Pessoas Altamente Qualificadas",
+      "nameOriginal": "Residence Permit for Orientation Year for Highly Educated Persons",
+      "notes": "Válido por 1 ano, não prorrogável. Permite trabalho livre sem necessidade de tewerkstellingsvergunning (TWV). Pode ser convertido para outro visto de trabalho após conseguir emprego durante o ano de orientação. Pode trabalhar durante o processo de inscrição se atender certas condições e possuir Residence Endorsement sticker. Diploma estrangeiro deve estar no top 200 de pelo menos 2 de 3 publishers (Times Higher Education, QS ou ShanghaiRanking). Requisitos especiais podem aplicar para cidadãos turcos.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Reunir diploma, certificados, avaliação Nuffic (se aplicável), evidência de pesquisa ou visto anterior",
+            "estimatedDays": null,
+            "name": "Preparar documentação",
+            "order": 1
+          },
+          {
+            "description": "Preencher formulário online de inscrição para visto de orientação com DigiD e verificação SMS. Alternativa: enviar formulário escrito por correio",
+            "estimatedDays": null,
+            "name": "Submeter inscrição online",
+            "order": 2
+          },
+          {
+            "description": "Agendar consulta com IND para colocar adesivo Residence Endorsement no passaporte permitindo trabalho livre",
+            "estimatedDays": null,
+            "name": "Obter Residence Endorsement sticker",
+            "order": 3
+          },
+          {
+            "description": "Fazer agendamento com serviço de saúde pública (GGD) e completar teste de TB dentro de 3 meses após receber visto",
+            "estimatedDays": 90,
+            "name": "Teste de tuberculose",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documento comprovando conclusão de programas de estudo ou pesquisa na Holanda",
+            "isCritical": true,
+            "name": "Cópia de diploma holandês ou certificado de conclusão de estudo"
+          },
+          {
+            "description": "Avaliação de credencial internacional para diplomas estrangeiros (exceto instituições acreditadas de Flanders, Bélgica)",
+            "isCritical": true,
+            "name": "Avaliação de diploma estrangeiro por Nuffic"
+          },
+          {
+            "description": "Documentação comprovando pesquisa científica conduzida na Holanda nos últimos 3 anos",
+            "isCritical": false,
+            "name": "Evidência de pesquisa científica"
+          },
+          {
+            "description": "Cópia de visto anterior de pesquisa ou trabalho altamente qualificado",
+            "isCritical": false,
+            "name": "Comprovante de visto anterior"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Inglês",
+          "level": "6.0 IELTS ou equivalente",
+          "testsAccepted": [
+            "IELTS (Academic ou General Training) - mínimo 6.0",
+            "TOEFL",
+            "TOEIC",
+            "Cambridge English",
+            "Programa estudado em inglês ou holandês"
+          ]
+        },
+        "qualificationsRequired": [
+          "Diploma de educação superior (bacharel ou mestrado)",
+          "Pesquisa científica conduzida ou em andamento",
+          "Proficiência em inglês (mínimo IELTS 6.0 ou equivalente)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para contratação de funcionário estrangeiro essencial para uma startup",
+      "eligibility": [],
+      "id": "start-up-personnel",
+      "name": "Pessoal essencial de startup",
+      "nameOriginal": "Residence permit for essential start-up personnel",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para viver e trabalhar temporariamente na Holanda sob a Regulação de Comércio Internacional",
+      "eligibility": [],
+      "id": "international-trade-regulation",
+      "name": "Regulação de Comércio Internacional",
+      "nameOriginal": "International Trade Regulation",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para estagiário ou aprendiz que ganham experiência profissional através de programa da UE na Holanda",
+      "eligibility": [],
+      "id": "eu-work-experience",
+      "name": "Experiência profissional sob programa da UE",
+      "nameOriginal": "Residence permit for work experience under EU programme",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto para trabalhar como tripulante em navio em porto holandês por mais de 90 dias",
+      "eligibility": [],
+      "id": "seafaring-crew",
+      "name": "Tripulante marítimo",
+      "nameOriginal": "Seafaring service as a crew member on board a seagoing vessel",
+      "notes": null,
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}

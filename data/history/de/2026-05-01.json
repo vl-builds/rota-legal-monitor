@@ -1,0 +1,855 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Brazilians are third-country nationals and require work residence permits to work in Germany. Settlement permits (Niederlassungserlaubnis) and permanent EU residence permits are the permanent residence options available after meeting the specific requirements outlined in the visa types",
+    "schengenVisaFree": false,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": null,
+      "mustBeLocal": false,
+      "notes": "",
+      "required": false
+    },
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "proofOfFunds": null,
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "de",
+    "countryName": "Alemanha",
+    "lastUpdated": "2026-04-29T20:32:08.116Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:29:52.781Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/types"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:30:18.620Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:30:32.969Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/opportunity-card"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:30:38.462Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-04-29T20:30:52.717Z",
+        "status": "ok",
+        "url": "https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit"
+      }
+    ]
+  },
+  "recentChanges": [],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "O Cartão Azul da UE é um visto de residência para profissionais qualificados com um diploma acadêmico ou qualificação de nível superior comparável, que possuem uma oferta de emprego em empresa alemã com salário bruto anual mínimo de €50.700 (ou €45.934,20 em profissões de escassez).",
+      "eligibility": [
+        "Possuir qualificação acadêmica alemã ou estrangeira comparável a alemã",
+        "Ter qualificação de nível terciário com pelo menos 3 anos de duração (ISCED 2011 nível 6 ou EQF nível 6)",
+        "Ter oferta de emprego específica de no mínimo 6 meses",
+        "O emprego deve corresponder à qualificação acadêmica",
+        "Possuir licença para exercer profissão regulamentada, se necessário"
+      ],
+      "id": "eu-blue-card",
+      "name": "Cartão Azul da UE",
+      "nameOriginal": "EU Blue Card",
+      "notes": "O Cartão Azul da UE é emitido pela duração do contrato de trabalho mais 3 meses, máximo 4 anos. Profissionais de TI sem diploma formal podem se qualificar com experiência de trabalho em nível universitário. É possível trocar de empregador após 1 ano sem notificação adicional; dentro do primeiro ano, deve notificar a autoridade de assuntos estrangeiros.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Assegurar oferta de emprego específica em empresa alemã com duração mínima de 6 meses que corresponda à sua qualificação",
+            "estimatedDays": null,
+            "name": "Obter oferta de emprego",
+            "order": 1
+          },
+          {
+            "description": "Se em profissão de escassez ou profissional em início de carreira, obter aprovação do BA",
+            "estimatedDays": null,
+            "name": "Obter aprovação da Agência Federal de Emprego (BA)",
+            "order": 2
+          },
+          {
+            "description": "Reunir qualificações acadêmicas, oferta de emprego e documentos necessários",
+            "estimatedDays": null,
+            "name": "Preparar documentação",
+            "order": 3
+          },
+          {
+            "description": "Apresentar candidatura junto à repartição de assuntos estrangeiros (Ausländerbehörde) ou consulado alemão",
+            "estimatedDays": null,
+            "name": "Solicitar visto",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Diploma acadêmico alemão ou qualificação estrangeira comparável, ou qualificação de nível terciário com mínimo 3 anos de duração",
+            "isCritical": true,
+            "name": "Qualificação acadêmica"
+          },
+          {
+            "description": "Oferta de emprego específica com duração mínima de 6 meses",
+            "isCritical": true,
+            "name": "Oferta de emprego"
+          },
+          {
+            "description": "Licença para exercer profissão regulamentada, se aplicável",
+            "isCritical": false,
+            "name": "Licença profissional"
+          },
+          {
+            "description": "Necessária para profissões de escassez e para profissionais em início de carreira",
+            "isCritical": true,
+            "name": "Aprovação da Agência Federal de Emprego (BA)"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 50700,
+          "currency": "EUR",
+          "notes": "Valor para profissões não consideradas de escassez. Em vigor desde 2026. Para profissões de escassez e profissionais em início de carreira (há menos de 3 anos formados): €45.934,20",
+          "period": "yearly"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação acadêmica comparável a diploma alemão",
+          "Profissões de escassez: gestores de manufatura/mineração/construção/distribuição, gestores de serviços TIC, gestores de serviços profissionais, profissionais acadêmicos em STEM, profissionais em arquitetura/planejamento espacial/transporte, médicos, veterinários, dentistas, farmacêuticos, profissionais em enfermagem/obstetrícia, professores",
+          "Para TI sem diploma: mínimo 3 anos de experiência em TI nos últimos 7 anos"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": {
+          "conditions": [
+            "Após 27 meses com Cartão Azul da UE, pode solicitar Permissão de Assentamento (Niederlassungserlaubnis) com comprovação de alemão nível A1 CEFR",
+            "Com alemão nível B1 CEFR, pode solicitar após 21 meses"
+          ],
+          "yearsRequired": 27
+        },
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permite que nacionais de países terceiros com qualificação estrangeira e extensa experiência profissional trabalhem em uma profissão não regulamentada na Alemanha, mesmo que sua qualificação não seja formalmente reconhecida.",
+      "eligibility": [
+        "Nacionais de países terceiros",
+        "Qualificação estrangeira",
+        "Extensa experiência profissional",
+        "Profissão não regulamentada"
+      ],
+      "id": "skilled-worker-experienced",
+      "name": "Visto para Trabalhadores com Experiência Profissional",
+      "nameOriginal": "Visa for professionally experienced workers",
+      "notes": "Permite trabalhar mesmo sem reconhecimento formal da qualificação, desde que seja para profissão não regulamentada.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação estrangeira",
+          "Extensa experiência profissional"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Trabalhadores qualificados e experientes em TI estão em alta demanda na Alemanha. Existem várias opções para receber um visto de trabalho - com ou sem certificado de qualificação formal.",
+      "eligibility": [
+        "Profissionais qualificados em TI",
+        "Profissionais experientes em TI",
+        "Com ou sem certificado de qualificação formal"
+      ],
+      "id": "it-professionals-visa",
+      "name": "Visto para Profissionais de TI",
+      "nameOriginal": "Visa options for IT professionals",
+      "notes": "Alta demanda por profissionais de TI na Alemanha. Várias opções disponíveis, mesmo sem certificação formal.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação ou experiência em TI"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de residência para profissionais qualificados que completaram estudos acadêmicos ou treinamento vocacional qualificado e desejam trabalhar como trabalhadores especializados na Alemanha.",
+      "eligibility": [
+        "Ter concluído estudos acadêmicos ou treinamento vocacional qualificado na Alemanha ou no exterior",
+        "Ter uma qualificação reconhecida na Alemanha ou comparável a uma qualificação acadêmica alemã",
+        "Possuir uma oferta de emprego específica de um empregador na Alemanha",
+        "O cargo deve ser uma posição qualificada que exija qualificação acadêmica ou treinamento vocacional qualificado",
+        "Para profissões regulamentadas, é necessária licença para praticar"
+      ],
+      "id": "qualified-professionals-work-visa",
+      "name": "Visto de trabalho para profissionais qualificados",
+      "nameOriginal": "Work visa for qualified professionals",
+      "notes": "Permissão de residência emitida por máximo 4 anos. Se o contrato de trabalho for mais curto, a permissão será emitida pela duração do contrato mais 3 meses adicionais. Família pode ser trazida mediante cumprimento de requisitos específicos de reunião familiar.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Obter reconhecimento de sua qualificação acadêmica ou treinamento vocacional na Alemanha, ou comprovação de que é comparável a uma qualificação alemã",
+            "estimatedDays": null,
+            "name": "Reconhecimento de qualificação",
+            "order": 1
+          },
+          {
+            "description": "Garantir uma oferta de emprego específica de um empregador na Alemanha para uma posição qualificada",
+            "estimatedDays": null,
+            "name": "Obtenção de oferta de emprego qualificada",
+            "order": 2
+          },
+          {
+            "description": "O empregador ou candidato deve solicitar aprovação à Agência Federal de Emprego (BA), que avaliará as condições de trabalho",
+            "estimatedDays": null,
+            "name": "Aprovação da Agência Federal de Emprego",
+            "order": 3
+          },
+          {
+            "description": "Solicitar o visto de residência na representação diplomática alemã no país de origem",
+            "estimatedDays": null,
+            "name": "Solicitação de visto",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Sua qualificação deve ser reconhecida na Alemanha ou comparável a uma qualificação acadêmica alemã. Para profissões regulamentadas, é necessária licença para praticar.",
+            "isCritical": true,
+            "name": "Reconhecimento de qualificação/diploma"
+          },
+          {
+            "description": "Oferta específica de emprego de um empregador na Alemanha para uma posição qualificada",
+            "isCritical": true,
+            "name": "Oferta de emprego"
+          },
+          {
+            "description": "A Agência Federal de Emprego (BA) deve aprovar o emprego, avaliando se as condições de trabalho correspondem às de empregados domésticos",
+            "isCritical": true,
+            "name": "Aprovação da Agência Federal de Emprego"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 55770,
+          "currency": "EUR",
+          "notes": "Aplicável apenas para candidatos com mais de 45 anos que estão trabalhando na Alemanha pela primeira vez, a partir de 2026",
+          "period": "yearly"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação acadêmica ou treinamento vocacional qualificado",
+          "Qualificação reconhecida na Alemanha ou comparável"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Ter mantido um visto de residência para fins de emprego por pelo menos 3 anos"
+          ],
+          "yearsRequired": 3
+        }
+      }
+    },
+    {
+      "description": "Visto para busca de emprego na Alemanha para trabalhadores qualificados reconhecidos ou via sistema de pontos",
+      "eligibility": [
+        "Trabalhador qualificado reconhecido",
+        "Atender aos critérios do sistema de pontos"
+      ],
+      "id": "opportunity-card-chancenkarte",
+      "name": "Opportunity Card (Chancenkarte)",
+      "nameOriginal": "Chancenkarte",
+      "notes": "Visto designado para busca de emprego na Alemanha. Requer reconhecimento como trabalhador qualificado ou aprovação via sistema de pontos. Detalhes específicos sobre pontuação, critérios de elegibilidade, duração, restrições durante a busca e processo de conversão para visto de trabalho não estão disponíveis no conteúdo fornecido.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificação de trabalhador qualificado reconhecido ou pontuação suficiente no sistema de pontos"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permanent residence permit for skilled workers who have completed qualified vocational education/training in Germany or hold equivalent foreign qualifications, German/recognized university degrees, EU Blue Card status, or are international researchers",
+      "eligibility": [
+        "Persons who have successfully completed qualified vocational education and training in Germany or hold equivalent foreign qualifications",
+        "Persons with German university degree, recognized foreign university degree or comparable foreign degree",
+        "EU Blue Card holders",
+        "International researchers in accordance with Directive (EU) 2016/801"
+      ],
+      "id": "settlement-permit-skilled-worker",
+      "name": "Settlement Permit for Skilled Workers",
+      "nameOriginal": "Niederlassungserlaubnis für Fachkräfte",
+      "notes": "This is a permanent residence permit allowing indefinite stay in Germany. Holders can work as employees or self-employed persons without restrictions. Three-year minimum residence on temporary permit before applying (except for facilitated conditions groups)",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Approximate fee that varies according to status group. Contact your local foreigners authority for exact amount",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Prepare all required documents including proof of residence title duration, employment contract, pension contributions, language certificate, and proof of financial means",
+            "estimatedDays": null,
+            "name": "Gather required documents",
+            "order": 1
+          },
+          {
+            "description": "Make an appointment with your local foreigners authority (Ausländerbehörde) to apply for the settlement permit",
+            "estimatedDays": null,
+            "name": "Schedule appointment",
+            "order": 2
+          },
+          {
+            "description": "Submit your application and all required documents to the local foreigners authority",
+            "estimatedDays": null,
+            "name": "Submit application",
+            "order": 3
+          },
+          {
+            "description": "The foreigners authority reviews your application and issues the settlement permit if all requirements are met",
+            "estimatedDays": null,
+            "name": "Decision and issuance",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Evidence of holding a residence title under Sections 18a, 18b, 18d or 18g of the Residence Act (AufenthG) for at least three years",
+            "isCritical": true,
+            "name": "Proof of residence title"
+          },
+          {
+            "description": "Documentation of a job that the residence permit allows you to perform",
+            "isCritical": true,
+            "name": "Employment contract"
+          },
+          {
+            "description": "Evidence of paid compulsory or voluntary contributions to statutory pension insurance for at least 36 months",
+            "isCritical": true,
+            "name": "Pension insurance contributions proof"
+          },
+          {
+            "description": "Proof of German language skills at level B1 of the Common European Framework of Reference for Languages (CEFR)",
+            "isCritical": true,
+            "name": "German language certificate"
+          },
+          {
+            "description": "Certificate demonstrating basic knowledge of the legal and social system and way of life in Germany",
+            "isCritical": true,
+            "name": "Living in Germany test certificate"
+          },
+          {
+            "description": "Documentation of sufficient living space for yourself and any family members living with you",
+            "isCritical": true,
+            "name": "Proof of living space"
+          },
+          {
+            "description": "Evidence that you are able to cover your living costs without assistance from the state",
+            "isCritical": true,
+            "name": "Proof of financial means"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "German",
+          "level": "B1 CEFR",
+          "testsAccepted": [
+            "Official German language proficiency tests at B1 level"
+          ]
+        },
+        "qualificationsRequired": [
+          "Qualified vocational education and training completed in Germany or equivalent foreign qualification",
+          "OR German university degree, recognized foreign university degree or comparable foreign degree",
+          "OR EU Blue Card status",
+          "OR Status as international researcher"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Accelerated permanent residence permit for EU Blue Card holders under facilitated conditions",
+      "eligibility": [
+        "EU Blue Card holders under Section 18g of the Residence Act (AufenthG)"
+      ],
+      "id": "settlement-permit-eu-blue-card",
+      "name": "Settlement Permit for EU Blue Card Holders",
+      "nameOriginal": "Niederlassungserlaubnis für EU-Blaukarteninhaber",
+      "notes": "Facilitated conditions with reduced requirements. Minimum 27 months of qualified employment and pension contributions required (reduced to 21 months if B1 German language level demonstrated). Requires only A1 German language level instead of B1",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Approximate fee. Contact your local foreigners authority for exact amount",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Prepare EU Blue Card and supporting documents",
+            "estimatedDays": null,
+            "name": "Gather required documents",
+            "order": 1
+          },
+          {
+            "description": "Make an appointment with your local foreigners authority",
+            "estimatedDays": null,
+            "name": "Schedule appointment",
+            "order": 2
+          },
+          {
+            "description": "Submit your application to the local foreigners authority",
+            "estimatedDays": null,
+            "name": "Submit application",
+            "order": 3
+          },
+          {
+            "description": "The foreigners authority reviews your application and issues the settlement permit",
+            "estimatedDays": null,
+            "name": "Decision and issuance",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Valid EU Blue Card",
+            "isCritical": true,
+            "name": "EU Blue Card"
+          },
+          {
+            "description": "Evidence of at least 27 months of qualified employment and statutory pension insurance contributions",
+            "isCritical": true,
+            "name": "Pension insurance contributions proof"
+          },
+          {
+            "description": "Proof of German language skills at level A1 CEFR (or B1 CEFR to reduce period from 27 to 21 months)",
+            "isCritical": true,
+            "name": "German language certificate"
+          },
+          {
+            "description": "Certificate demonstrating basic knowledge of the legal and social system and way of life in Germany",
+            "isCritical": true,
+            "name": "Living in Germany test certificate"
+          },
+          {
+            "description": "Documentation of sufficient living space",
+            "isCritical": true,
+            "name": "Proof of living space"
+          },
+          {
+            "description": "Evidence that you are able to cover your living costs",
+            "isCritical": true,
+            "name": "Proof of financial means"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "German",
+          "level": "A1 CEFR (or B1 CEFR to reduce period to 21 months)",
+          "testsAccepted": [
+            "Official German language proficiency tests at A1 or B1 level"
+          ]
+        },
+        "qualificationsRequired": [
+          "EU Blue Card status"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permanent residence permit for those who completed higher education or vocational training in Germany",
+      "eligibility": [
+        "Persons who have successfully completed higher education or vocational training in Germany"
+      ],
+      "id": "settlement-permit-vocational-academic",
+      "name": "Settlement Permit after Vocational Training or Academic Studies",
+      "nameOriginal": "Niederlassungserlaubnis nach Berufsausbildung oder akademischem Studium",
+      "notes": "Facilitated conditions for those who completed education in Germany. Requires only two years of skilled worker employment residence (instead of three) and 24 months pension contributions (instead of 36)",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Approximate fee. Contact your local foreigners authority for exact amount",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Prepare diploma/certificate, employment proof, pension contributions, language certificate and other documents",
+            "estimatedDays": null,
+            "name": "Gather required documents",
+            "order": 1
+          },
+          {
+            "description": "Make an appointment with your local foreigners authority",
+            "estimatedDays": null,
+            "name": "Schedule appointment",
+            "order": 2
+          },
+          {
+            "description": "Submit your application to the local foreigners authority",
+            "estimatedDays": null,
+            "name": "Submit application",
+            "order": 3
+          },
+          {
+            "description": "The foreigners authority reviews your application and issues the settlement permit",
+            "estimatedDays": null,
+            "name": "Decision and issuance",
+            "order": 4
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Diploma or certificate of successfully completed vocational training or higher education in Germany",
+            "isCritical": true,
+            "name": "Proof of training completion"
+          },
+          {
+            "description": "Evidence of holding employment residence permit as skilled worker under Sections 18a, 18b, 18d or 18g for at least two years",
+            "isCritical": true,
+            "name": "Employment permit proof"
+          },
+          {
+            "description": "Evidence of statutory pension insurance contributions for 24 months",
+            "isCritical": true,
+            "name": "Pension insurance contributions proof"
+          },
+          {
+            "description": "Proof of German language skills at level B1 CEFR",
+            "isCritical": true,
+            "name": "German language certificate"
+          },
+          {
+            "description": "Certificate demonstrating basic knowledge of the legal and social system and way of life in Germany",
+            "isCritical": true,
+            "name": "Living in Germany test certificate"
+          },
+          {
+            "description": "Documentation of a job that your residence permit allows you to do",
+            "isCritical": true,
+            "name": "Employment contract"
+          },
+          {
+            "description": "Documentation of sufficient living space",
+            "isCritical": true,
+            "name": "Proof of living space"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "German",
+          "level": "B1 CEFR",
+          "testsAccepted": [
+            "Official German language proficiency tests at B1 level"
+          ]
+        },
+        "qualificationsRequired": [
+          "Successfully completed higher education or vocational training in Germany"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Immediate permanent residence permit for highly skilled workers such as scientists with special technical knowledge or prominent teachers with several years of professional experience",
+      "eligibility": [
+        "Scientists with special technical knowledge",
+        "Teachers in prominent positions with several years of professional experience",
+        "Other highly skilled workers in special cases"
+      ],
+      "id": "settlement-permit-highly-skilled",
+      "name": "Settlement Permit for Highly Skilled Workers",
+      "nameOriginal": "Niederlassungserlaubnis für hochqualifizierte Fachkräfte",
+      "notes": "Exceptional category allowing immediate settlement permit upon entry to Germany without required residence period. Requires proof of academic training and financial independence. German language requirement not specified",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Approximate fee. Contact your local foreigners authority for exact amount",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Gather all necessary documents before entering Germany, including academic credentials and proof of integration ability",
+            "estimatedDays": null,
+            "name": "Prepare documentation",
+            "order": 1
+          },
+          {
+            "description": "Submit settlement permit application immediately upon entering Germany to the local foreigners authority",
+            "estimatedDays": null,
+            "name": "Apply upon entry",
+            "order": 2
+          },
+          {
+            "description": "The foreigners authority reviews your application and issues the settlement permit immediately",
+            "estimatedDays": null,
+            "name": "Decision and issuance",
+            "order": 3
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documentation of completed academic training",
+            "isCritical": true,
+            "name": "Proof of academic training"
+          },
+          {
+            "description": "Evidence of years of professional experience in your field",
+            "isCritical": false,
+            "name": "Professional experience documentation"
+          },
+          {
+            "description": "Evidence that you will be able to integrate into the way of life in Germany and cover living costs without state assistance",
+            "isCritical": true,
+            "name": "Proof of integration ability"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Completed academic training",
+          "Special technical knowledge or prominent professional position"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permanent residence permit generally comparable to settlement permit, allowing migration to almost every EU country with facilitated conditions",
+      "eligibility": [
+        "Any third-country national who meets the requirements and does not hold certain excluded residence titles"
+      ],
+      "id": "permanent-eu-residence-permit",
+      "name": "Permanent EU Residence Permit",
+      "nameOriginal": "Daueraufenthalt-EU",
+      "notes": "Permanent residence permit comparable to settlement permit with special advantage of allowing migration to almost every EU country with facilitated conditions. Not available for those with educational residence permits or certain humanitarian residence titles. Requires 5 years legal residence and 60 months (5 years) of pension insurance contributions",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 150,
+            "currency": "EUR",
+            "notes": "Approximate fee. Contact your local foreigners authority for exact amount",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Maintain legal residence in Germany for at least five years",
+            "estimatedDays": 1825,
+            "name": "Accumulate residence period",
+            "order": 1
+          },
+          {
+            "description": "Prepare proof of legal residence, pension contributions, language proficiency, and financial means",
+            "estimatedDays": null,
+            "name": "Gather required documents",
+            "order": 2
+          },
+          {
+            "description": "Make an appointment with your local foreigners authority",
+            "estimatedDays": null,
+            "name": "Schedule appointment",
+            "order": 3
+          },
+          {
+            "description": "Submit your application to the local foreigners authority",
+            "estimatedDays": null,
+            "name": "Submit application",
+            "order": 4
+          },
+          {
+            "description": "The foreigners authority reviews your application and issues the permanent EU residence permit",
+            "estimatedDays": null,
+            "name": "Decision and issuance",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Evidence of having legally lived in Germany for at least five years",
+            "isCritical": true,
+            "name": "Proof of legal residence"
+          },
+          {
+            "description": "Evidence of compulsory or voluntary contributions to statutory pension insurance for at least 60 months",
+            "isCritical": true,
+            "name": "Pension insurance contributions proof"
+          },
+          {
+            "description": "Proof of sufficient German language command",
+            "isCritical": true,
+            "name": "German language certificate"
+          },
+          {
+            "description": "Certificate demonstrating basic knowledge of the legal and social system and way of life in Germany",
+            "isCritical": true,
+            "name": "Living in Germany test certificate"
+          },
+          {
+            "description": "Documentation of enough living space for yourself and your family",
+            "isCritical": true,
+            "name": "Proof of living space"
+          },
+          {
+            "description": "Evidence that you can financially support yourself and your family members",
+            "isCritical": true,
+            "name": "Proof of financial means"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "German",
+          "level": "Sufficient command of German",
+          "testsAccepted": [
+            "Official German language proficiency tests"
+          ]
+        },
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}
