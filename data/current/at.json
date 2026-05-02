@@ -1,60 +1,69 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Página de conteúdo sobre trabalho temporário na Áustria indisponível no momento da extração. Informações sobre tipos de autorização (Saisonnier, Rotationskraft, trabalho transfronteirico) não puderam ser extraídas.",
-    "schengenVisaFree": true,
+    "notes": "",
+    "schengenVisaFree": false,
     "specialAgreements": [],
     "workPermitNeeded": true
   },
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": {
-        "amount": 30000,
-        "currency": "EUR",
-        "period": "one-time",
-        "notes": "Cobertura mínima por ocorrência para visto Schengen; cobertura austríaca obrigatória após chegada."
-      },
+      "minimumCoverage": { "amount": 30000, "currency": "EUR", "period": "one-time", "notes": "Cobertura mínima por ocorrência para visto Schengen. Krankenversicherung austríaco obrigatório após chegada." },
       "mustBeLocal": false,
-      "notes": "Seguro saúde austríaco (Krankenversicherung) é obrigatório. Para Red-White-Red Card: deve estar registrado no sistema de saúde austríaco. Para visto Schengen: cobertura mínima de EUR 30.000.",
+      "notes": "Seguro saúde obrigatório cobrindo todos os riscos (seguro saúde compulsório ou apólice de seguro equivalente)",
       "required": true
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": {
-      "amount": 2685,
-      "currency": "EUR",
-      "period": "monthly",
-      "notes": "Salário mínimo conforme categoria: profissionais qualificados EUR 2.685/mês bruto em 2024; Very Highly Qualified Workers EUR 3.224/mês. Para Start-up Founders: plano de negócios demonstrando viabilidade financeira."
-    },
+    "proofOfFunds": { "amount": 2685, "currency": "EUR", "period": "monthly", "notes": "Red-White-Red Card profissionais qualificados: EUR 2.685/mês bruto mínimo (2024). Very Highly Qualified Workers: EUR 3.224/mês. Start-up Founders: plano de negócios demonstrando viabilidade financeira." },
     "vaccinations": []
   },
   "meta": {
     "country": "at",
     "countryName": "Austria",
-    "lastUpdated": "2026-05-01T21:07:44.472Z",
+    "lastUpdated": "2026-05-02T22:44:39.049Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-05-01T21:07:16.527Z",
+        "fetchedAt": "2026-05-02T22:42:26.781Z",
         "status": "ok",
         "url": "https://www.migration.gv.at/en/"
       },
       {
-        "contentLanguage": "de",
-        "fetchedAt": "2026-05-01T21:07:18.548Z",
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-02T22:42:28.783Z",
         "status": "ok",
-        "url": "https://www.migration.gv.at/en/types-of-immigration/permanent-immigration/red-white-red-card/"
+        "url": "https://www.migration.gv.at/index.php?id=1049"
       },
       {
-        "contentLanguage": "de",
-        "fetchedAt": "2026-05-01T21:07:20.555Z",
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-02T22:42:30.795Z",
         "status": "ok",
-        "url": "https://www.migration.gv.at/en/types-of-immigration/temporary-work/"
+        "url": "https://www.migration.gv.at/index.php?id=1050"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-02T22:42:32.818Z",
+        "status": "ok",
+        "url": "https://www.migration.gv.at/index.php?id=1051"
       }
     ]
   },
-  "recentChanges": [],
+  "recentChanges": [
+    {
+      "affects": [
+        "Lista de profissões elegíveis",
+        "Critérios de elegibilidade",
+        "Requisitos de qualificação"
+      ],
+      "date": "2025-01-01",
+      "severity": "major",
+      "sourceUrl": "https://www.migration.gv.at/index.php?id=1050",
+      "summary": "A Fachkräfteverordnung (Regulamento de Profissões Especializadas) é promulgada anualmente pelo Ministério Federal do Trabalho e Economia (Arbeits- und Wirschaftsminister), determinando quais ocupações são consideradas profissões em escassez com base na evolução do mercado de trabalho austríaco.",
+      "title": "Lista anual de profissões em escassez (Mangelberufe) para 2025"
+    }
+  ],
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
@@ -63,43 +72,53 @@
   },
   "visaTypes": [
     {
-      "description": "Modelo flexível de imigração austriaco que oferece um único documento para trabalhadores qualificados de países terceirizados e seus familiares, permitindo trabalhar e se estabelecer permanentemente na Áustria.",
+      "description": "Cartão de autorização de residência e trabalho flexível para trabalhadores qualificados de países terceiros e seus familiares, oferecendo um único permisso para trabalhar e estabelecer-se permanentemente na Áustria.",
       "eligibility": [
-        "Trabalhadores altamente qualificados de países terceirizados",
-        "Outros trabalhadores-chave com oferta de emprego",
-        "Fundadores de startups",
-        "Atender aos critérios de admissão verificáveis através da Calculadora de Pontos"
+        "Trabalhadores qualificados de países terceiros",
+        "Ter contrato de trabalho ou oferta de emprego",
+        "Atender aos critérios de admissão da calculadora de pontos"
       ],
       "id": "red-white-red-card",
       "name": "Red-White-Red Card",
       "nameOriginal": "Red-White-Red Card",
-      "notes": "Portal oferece suporte através da ABA WORK in AUSTRIA, um centro de aconselhamento para empresas e trabalhadores qualificados. A calculadora de pontos é ferramenta essencial para verificar elegibilidade.",
+      "notes": "Apresenta um modelo flexível de imigração para trabalhadores qualificados. A ABA WORK in AUSTRIA oferece suporte e orientação durante o procedimento. Calculadora de pontos disponível para verificar elegibilidade.",
       "process": {
         "applicationLocation": "ambos",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Usar a Calculadora de Pontos para verificar se você atende aos critérios de admissão",
+            "description": "Verificar se atende aos critérios de admissão usando a calculadora de pontos",
             "estimatedDays": null,
-            "name": "Verificação de elegibilidade",
+            "name": "Consulta da calculadora de pontos",
             "order": 1
           },
           {
-            "description": "Apresentar candidatura através das autoridades competentes (Serviço Público de Emprego e autoridades de residência)",
+            "description": "Submeter candidatura com documentos necessários",
             "estimatedDays": null,
-            "name": "Submissão de candidatura",
+            "name": "Apresentação de candidatura",
             "order": 2
           }
         ]
       },
       "relevanceForDelivery": "direct",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "description": "Documentação comprovando a oferta ou contrato de trabalho",
+            "isCritical": true,
+            "name": "Contrato de trabalho ou oferta de emprego"
+          },
+          {
+            "description": "Certificados e diplomas de qualificações",
+            "isCritical": true,
+            "name": "Qualificações profissionais"
+          }
+        ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": [
-          "Qualificações reconhecidas ou experiência profissional relevante"
+          "Qualificações profissionais reconhecidas"
         ]
       },
       "rights": {
@@ -111,24 +130,24 @@
       }
     },
     {
-      "description": "Visto de procura de emprego e documento de residência para trabalhadores muito altamente qualificados na Áustria.",
+      "description": "Visto de procura de emprego e permisso de residência para trabalhadores muito qualificados, permitindo procurar emprego na Áustria.",
       "eligibility": [
-        "Trabalhadores com qualificações muito elevadas",
-        "Profissionais em busca de oportunidades de emprego na Áustria"
+        "Trabalhadores muito qualificados",
+        "Qualificações universitárias ou equivalentes altamente especializadas"
       ],
-      "id": "very-highly-qualified-workers",
-      "name": "Very Highly Qualified Workers",
+      "id": "highly-qualified-workers",
+      "name": "Autorização para Trabalhadores Muito Qualificados",
       "nameOriginal": "Very Highly Qualified Workers",
-      "notes": "Informações disponíveis em guia dedicado no portal de migração. Categoria designada especificamente para trabalhadores com qualificações superiores.",
+      "notes": "Visto de procura de emprego que permite aos trabalhadores muito qualificados procurar oportunidades de trabalho na Áustria.",
       "process": {
-        "applicationLocation": "ambos",
+        "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Apresentar candidatura para visto de procura de emprego para trabalhadores altamente qualificados",
+            "description": "Solicitar visto de procura de emprego como trabalhador muito qualificado",
             "estimatedDays": null,
-            "name": "Solicitação de visto de procura de emprego",
+            "name": "Candidatura para Visto de Procura de Emprego",
             "order": 1
           }
         ]
@@ -139,7 +158,8 @@
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": [
-          "Nível muito elevado de qualificação"
+          "Qualificações universitárias",
+          "Especializações altamente qualificadas"
         ]
       },
       "rights": {
@@ -151,31 +171,25 @@
       }
     },
     {
-      "description": "Categoria de trabalhadores-chave que já possuem oferta de emprego confirmada e podem solicitar o Red-White-Red Card.",
+      "description": "Autorização para trabalhadores-chave que já possuem contrato de trabalho e desejam aplicar para o Red-White-Red Card.",
       "eligibility": [
-        "Já ter uma oferta de emprego confirmada",
-        "Ser considerado um trabalhador-chave conforme critérios austríacos"
+        "Profissionais com contrato de trabalho existente",
+        "Trabalhadores considerados críticos para o mercado de trabalho austríaco"
       ],
       "id": "other-key-workers",
-      "name": "Other Key Workers",
+      "name": "Outros Trabalhadores-Chave",
       "nameOriginal": "Other Key Workers",
-      "notes": "Caminho mais acessível para trabalhadores que já têm oferta de emprego. Não requer qualificações europias reconhecidas se aprovado como trabalhador-chave.",
+      "notes": "Categoria para trabalhadores com contrato de trabalho já estabelecido. Aplicam através do Red-White-Red Card.",
       "process": {
-        "applicationLocation": "ambos",
+        "applicationLocation": "destino",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Reunir documentação necessária, incluindo oferta de emprego confirmada",
+            "description": "Submeter candidatura para Red-White-Red Card com contrato de trabalho",
             "estimatedDays": null,
-            "name": "Preparação de candidatura",
+            "name": "Apresentação de candidatura para Red-White-Red Card",
             "order": 1
-          },
-          {
-            "description": "Submeter candidatura para Red-White-Red Card com oferta de emprego",
-            "estimatedDays": null,
-            "name": "Submissão do Red-White-Red Card",
-            "order": 2
           }
         ]
       },
@@ -183,9 +197,9 @@
       "requirements": {
         "documents": [
           {
-            "description": "Documento comprovando a oferta de emprego de um empregador austriaco",
+            "description": "Contrato de trabalho válido com empregador austríaco",
             "isCritical": true,
-            "name": "Oferta de emprego"
+            "name": "Contrato de trabalho"
           }
         ],
         "incomeRequirement": null,
@@ -201,24 +215,24 @@
       }
     },
     {
-      "description": "Categoria para fundadores de startups que desenvolveram um produto inovador e desejam realizá-lo na Áustria.",
+      "description": "Autorização para fundadores de start-ups que desejam desenvolver e realizar uma ideia inovadora na Áustria.",
       "eligibility": [
-        "Ter desenvolvido uma ideia para um produto inovador",
-        "Desejo de implementar o produto na Áustria"
+        "Empreendedores com ideia inovadora para um produto",
+        "Intenção de estabelecer negócio na Áustria"
       ],
       "id": "startup-founders",
-      "name": "Start-up Founders",
+      "name": "Fundadores de Start-ups",
       "nameOriginal": "Start-up Founders",
-      "notes": "Página contém informações detalhadas sobre esta categoria de imigração para empreendedores.",
+      "notes": "Programa para empreendedores que desejam estabelecer start-ups inovadoras na Áustria.",
       "process": {
         "applicationLocation": "ambos",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Demonstrar que você desenvolveu uma ideia para um produto inovador",
+            "description": "Descrever a ideia inovadora e plano de implementação",
             "estimatedDays": null,
-            "name": "Apresentação do conceito inovador",
+            "name": "Apresentação de plano de negócio",
             "order": 1
           }
         ]
@@ -228,8 +242,577 @@
         "documents": [],
         "incomeRequirement": null,
         "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Cartão de residência e trabalho para trabalhadores de terceiros países com alta qualificação. Requer oferta de emprego e mínimo de 70 pontos segundo critérios específicos (educação, experiência, idioma, idade). Válido por 24 meses e vinculado ao empregador especificado.",
+      "eligibility": [
+        "Graduação em instituição de ensino superior (programa mínimo de 4 anos)",
+        "Oferta de emprego concreta compatível com a qualificação",
+        "Mínimo de 70 pontos segundo sistema de pontuação",
+        "Remuneração adequada à qualificação"
+      ],
+      "id": "red-white-red-card-very-highly-qualified",
+      "name": "Cartão Vermelho-Branco-Vermelho para Trabalhadores Muito Altamente Qualificados",
+      "nameOriginal": "Red-White-Red Card for Very Highly Qualified Workers",
+      "notes": "O Red-White-Red Card é geralmente emitido por 24 meses e vinculado ao empregador especificado na aplicação. Trabalho autônomo é permitido se for subsidiário ao emprego assalariado e todos os requisitos legais forem cumpridos. Reconhecimento formal de qualificações é obrigatório APENAS para profissões regulamentadas (como profissões de saúde, professores em escolas públicas, professores de pré-escola, advogados). Sistema de pontuação detalhado disponível com máximos por categoria: qualificações especiais (40), experiência (20), idiomas (10), idade (20), estudos na Áustria (10). Exemplo: graduada russa de 30 anos em informática com 6+ anos de experiência e inglês A2 recebe 72 pontos (30+12+10+20).",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 156,
+            "currency": "EUR",
+            "notes": "Taxa de aplicação do Red-White-Red Card",
+            "period": "one-time"
+          },
+          {
+            "amount": 26,
+            "currency": "EUR",
+            "notes": "Taxa de concessão do Red-White-Red Card",
+            "period": "one-time"
+          },
+          {
+            "amount": 20,
+            "currency": "EUR",
+            "notes": "Custos de personalização (impressões digitais, digitalização de foto e assinatura)",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Preparar todos os documentos necessários conforme lista de requisitos, incluindo comprovantes de qualificação, experiência, idioma e oferta de emprego. Originais e cópias devem ser apresentados. Documentos que não estejam em alemão ou inglês devem ser traduzidos.",
+            "estimatedDays": null,
+            "name": "Reunir documentação",
+            "order": 1
+          },
+          {
+            "description": "Aplicar pessoalmente na representação austríaca competente (embaixada ou consulado) no país de origem ou residência. Alternativamente, o empregador pode submeter a aplicação junto à autoridade de residência competente na Áustria (Provincial Governor/Landeshauptmann, Regional Administrative Authority/Bezirkshauptmannschaft, ou Local Administrative Authority/Magistrat). Em Viena, solicitar na MA 35.",
+            "estimatedDays": null,
+            "name": "Submeter aplicação",
+            "order": 2
+          },
+          {
+            "description": "A representação austríaca examina os documentos quanto à completude e os envia ao AMS (Serviço Público de Emprego - Arbeitsmarktservice) para avaliação e atribuição de pontos.",
+            "estimatedDays": null,
+            "name": "Análise pela representação austríaca",
+            "order": 3
+          },
+          {
+            "description": "O AMS verifica se os requisitos são atendidos: oferta de emprego concreta, emprego compatível com qualificação, remuneração adequada e mínimo de 70 pontos. Se atendidos, emite avaliação positiva.",
+            "estimatedDays": null,
+            "name": "Avaliação pelo AMS",
+            "order": 4
+          },
+          {
+            "description": "Mediante avaliação positiva do AMS e atendimento dos requisitos gerais da lei de residência austríaca, o Red-White-Red Card é emitido. Inclui coleta de impressões digitais, digitalização de foto e assinatura.",
+            "estimatedDays": null,
+            "name": "Emissão do cartão",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passaporte válido",
+            "isCritical": true,
+            "name": "Documento de viagem válido"
+          },
+          {
+            "description": "Foto com dimensões 45x35mm, não mais antiga que seis meses",
+            "isCritical": true,
+            "name": "Foto"
+          },
+          {
+            "description": "Contrato de aluguel, acordo preliminar de locação ou evidência de propriedade",
+            "isCritical": true,
+            "name": "Comprovante de acomodação"
+          },
+          {
+            "description": "Seguro saúde cobrindo todos os riscos (seguro obrigatório ou apólice equivalente)",
+            "isCritical": true,
+            "name": "Comprovante de seguro saúde"
+          },
+          {
+            "description": "Holerites, certificados salariais, contratos de trabalho, certificados de benefícios de seguro, evidência de aposentadoria ou outros benefícios, capital de investimento ou ativos próprios suficientes",
+            "isCritical": true,
+            "name": "Comprovante de meios de subsistência"
+          },
+          {
+            "description": "Documento comprovando conclusão de programa de 4 anos em universidade ou instituição de ensino superior",
+            "isCritical": true,
+            "name": "Comprovante de graduação"
+          },
+          {
+            "description": "Documento refletindo o status da universidade ou instituição de ensino superior",
+            "isCritical": false,
+            "name": "Documento de status da instituição"
+          },
+          {
+            "description": "Documento comprovando conclusão de programa em matemática, informática, ciências naturais ou tecnologia (se aplicável)",
+            "isCritical": false,
+            "name": "Comprovante de graduação em MINT"
+          },
+          {
+            "description": "Documento comprovando habilitação (pós-doutorado) ou PhD (se aplicável)",
+            "isCritical": false,
+            "name": "Comprovante de habilitação ou PhD"
+          },
+          {
+            "description": "Aviso de apuração fiscal ou certificado salarial para cargos de alta gestão (se aplicável)",
+            "isCritical": false,
+            "name": "Comprovante de salário bruto anual"
+          },
+          {
+            "description": "Confirmação do empregador anterior de trabalho em posição de alta gestão",
+            "isCritical": false,
+            "name": "Confirmação de cargo de alta gestão"
+          },
+          {
+            "description": "Prova de que a empresa está listada em bolsa de valores ou relatório positivo do escritório austríaco de comércio exterior",
+            "isCritical": false,
+            "name": "Comprovante de empresa listada em bolsa ou relatório positivo"
+          },
+          {
+            "description": "Prova de publicações científicas com títulos e fontes, certificado de universidade ou instituição de pesquisa sobre trabalho em P&D ou ensino acadêmico",
+            "isCritical": false,
+            "name": "Comprovante de atividades de pesquisa e inovação"
+          },
+          {
+            "description": "Extratos de registros nacionais ou regionais de patentes",
+            "isCritical": false,
+            "name": "Comprovante de pedidos de patente"
+          },
+          {
+            "description": "Documento comprovando a concessão do prêmio",
+            "isCritical": false,
+            "name": "Comprovante de prêmios reconhecidos"
+          },
+          {
+            "description": "Documentos comprovando experiência de trabalho",
+            "isCritical": true,
+            "name": "Atestados e certificados de trabalho"
+          },
+          {
+            "description": "Diploma ou certificado de curso de idioma nos níveis A1, A2 ou B1 do Quadro Europeu Comum de Referência para Línguas. O certificado não deve ter mais de cinco anos. Para alemão: ÖSD, Goethe-Institut, Telc GmbH, ÖIF. Para inglês: Cambridge Certificate, TELC, IELTS, TOEIC, TOEFL",
+            "isCritical": false,
+            "name": "Certificado de idioma"
+          },
+          {
+            "description": "Histórico escolar e certificados de exames, documento de conclusão de programa de estudos na Áustria (se aplicável)",
+            "isCritical": false,
+            "name": "Documentos de estudos na Áustria"
+          },
+          {
+            "description": "Declaração com detalhes específicos sobre o futuro local de trabalho",
+            "isCritical": true,
+            "name": "Declaração do empregador (Arbeitgebererklärung)"
+          },
+          {
+            "description": "Contrato de trabalho ou oferta formal de emprego",
+            "isCritical": true,
+            "name": "Oferta de emprego (contrato de trabalho)"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Alemão ou Inglês",
+          "level": "A1 (uso elementar básico da língua) para 5 pontos, A2 (uso elementar intensificado) para 10 pontos. Francês, Espanhol ou Bósnio/Croata/Sérvio nível B1 para 5 pontos adicionais",
+          "testsAccepted": [
+            "Alemão: ÖSD, Goethe-Institut, Telc GmbH, Austrian Integration Fund (ÖIF)",
+            "Inglês: Cambridge Certificate, TELC, IELTS, TOEIC, TOEFL"
+          ]
+        },
         "qualificationsRequired": [
-          "Inovação comprovável do produto/serviço"
+          "Graduação em instituição de ensino superior com programa mínimo de 4 anos (20 pontos base, 30 para MINT, 40 para habilitação/PhD)",
+          "Sistema de pontuação: mínimo 70 pontos de 100 possíveis",
+          "Critérios: qualificações especiais (máx 40 pontos), experiência de trabalho (máx 20 pontos), idiomas (máx 10 pontos), idade (máx 20 pontos), estudos na Áustria (máx 10 pontos)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Estar empregado de acordo com os critérios de elegibilidade por no mínimo 21 meses durante os 24 meses anteriores",
+            "Avaliação pelo AMS (Serviço Público de Emprego)",
+            "Pode solicitar Red-White-Red Card plus, que concede residência por tempo determinado e acesso ilimitado ao mercado de trabalho"
+          ],
+          "yearsRequired": 2
+        }
+      }
+    },
+    {
+      "description": "Visto de categoria D que permite entrada na Áustria por até 6 meses para procurar emprego compatível com qualificação. Requer mínimo de 70 pontos no sistema de pontuação. Se encontrar emprego durante a validade do visto, pode solicitar o Red-White-Red Card na Áustria.",
+      "eligibility": [
+        "Trabalhador altamente qualificado de terceiro país",
+        "Mínimo de 70 pontos segundo sistema de pontuação",
+        "Ainda não possui oferta de emprego"
+      ],
+      "id": "job-seeker-visa",
+      "name": "Visto de Procura de Emprego",
+      "nameOriginal": "Job Seeker Visa",
+      "notes": "Válido por 6 meses. Se entrou na Áustria sob regime de isenção de visto, não precisa do Job Seeker Visa. Se encontrar emprego compatível com qualificação durante estadia legal sem visto, pode solicitar o Red-White-Red Card durante este período na Áustria. O visto permite procurar emprego, mas não autoriza trabalhar.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 195,
+            "currency": "EUR",
+            "notes": "Taxa do Job Seeker Visa",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "Reunir todos os documentos necessários, incluindo comprovantes de qualificação, experiência, idioma, acomodação na Áustria, seguro saúde e meios de subsistência",
+            "estimatedDays": null,
+            "name": "Preparar documentação",
+            "order": 1
+          },
+          {
+            "description": "Aplicar para o Job Seeker Visa (visto categoria D) pessoalmente na representação austríaca competente (embaixada ou consulado) no país de origem ou residência. Formulários de aplicação estão disponíveis na autoridade representante austríaca.",
+            "estimatedDays": null,
+            "name": "Aplicar pessoalmente na representação austríaca",
+            "order": 2
+          },
+          {
+            "description": "A representação austríaca envia documentos ao AMS (Serviço Público de Emprego). O AMS confirma à autoridade representante se os pontos necessários para admissão foram alcançados.",
+            "estimatedDays": null,
+            "name": "Confirmação do AMS",
+            "order": 3
+          },
+          {
+            "description": "Recebimento do Job Seeker Visa se o AMS confirmar que os pontos requeridos foram alcançados",
+            "estimatedDays": null,
+            "name": "Recebimento do visto",
+            "order": 4
+          },
+          {
+            "description": "Entrar na Áustria com o visto e procurar emprego compatível com qualificação durante até 6 meses",
+            "estimatedDays": 180,
+            "name": "Procurar emprego na Áustria",
+            "order": 5
+          },
+          {
+            "description": "Se receber oferta de emprego durante o período de validade do visto, pode solicitar o Red-White-Red Card junto à autoridade de residência competente na Áustria",
+            "estimatedDays": null,
+            "name": "Solicitar Red-White-Red Card",
+            "order": 6
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passaporte válido",
+            "isCritical": true,
+            "name": "Documento de viagem válido"
+          },
+          {
+            "description": "Foto com dimensões 45x35mm, não mais antiga que seis meses",
+            "isCritical": true,
+            "name": "Foto"
+          },
+          {
+            "description": "Contrato de aluguel, acordo preliminar de locação ou evidência de propriedade na Áustria",
+            "isCritical": true,
+            "name": "Comprovante de acomodação"
+          },
+          {
+            "description": "Seguro saúde cobrindo todos os riscos (seguro obrigatório ou apólice equivalente)",
+            "isCritical": true,
+            "name": "Comprovante de seguro saúde"
+          },
+          {
+            "description": "Holerites, certificados salariais, contratos de trabalho, certificados de benefícios de seguro, evidência de aposentadoria ou outros benefícios, capital de investimento ou ativos próprios suficientes",
+            "isCritical": true,
+            "name": "Comprovante de meios de subsistência"
+          },
+          {
+            "description": "Todos os documentos necessários para exame dos critérios individuais do sistema de pontuação: comprovantes de qualificação, experiência de trabalho, certificados de idioma, documentos de estudos na Áustria (se aplicável)",
+            "isCritical": true,
+            "name": "Documentos para avaliação de pontos"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Alemão ou Inglês",
+          "level": "A1 (uso elementar básico da língua) para 5 pontos, A2 (uso elementar intensificado) para 10 pontos",
+          "testsAccepted": [
+            "Alemão: ÖSD, Goethe-Institut, Telc GmbH, Austrian Integration Fund (ÖIF)",
+            "Inglês: Cambridge Certificate, TELC, IELTS, TOEIC, TOEFL"
+          ]
+        },
+        "qualificationsRequired": [
+          "Graduação em instituição de ensino superior com programa mínimo de 4 anos",
+          "Sistema de pontuação: mínimo 70 pontos de 100 possíveis",
+          "Mesmos critérios do Red-White-Red Card para Very Highly Qualified Workers"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": false,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de longa duração válido por 24 meses para trabalhadores qualificados em profissões em escassez na Áustria, desde que atendam aos critérios de pontuação mínima de 55 pontos e possuam oferta de trabalho vinculante com salário mínimo conforme lei, regulamento ou acordo coletivo.",
+      "eligibility": [
+        "Ser cidadão de país terceiro (não-UE/EEE)",
+        "Possuir qualificação profissional completa em profissão em escassez (Mangelberuf)",
+        "Ter oferta de trabalho vinculante na Áustria",
+        "Atingir mínimo de 55 pontos no sistema de pontuação",
+        "Aceitar o salário mínimo conforme lei, regulamento ou acordo coletivo"
+      ],
+      "id": "red-white-red-card-skilled-worker",
+      "name": "Red-White-Red Card para Trabalhador Qualificado em Profissão em Escassez",
+      "nameOriginal": "Red-White-Red Card for Skilled Workers in Shortage Occupations",
+      "notes": "O visto é geralmente válido por 24 meses. Titular tem direito a trabalho autônomo subsidiário se todos os requisitos legais forem cumpridos. Pode solicitar Red-White-Red Card plus após 21 meses de emprego nos últimos 24 meses, o que concede acesso ilimitado ao mercado de trabalho.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "A candidatura pode ser feita pessoalmente na representação austríaca (embaixada ou consulado) do país de origem/residência, ou pelo potencial empregador junto à autoridade de residência competente na Áustria (Provincial Governor, Regional Administrative Authority autorizada ou Local Administrative Authority). Após entrada legal e permanência legal, pode ser feita diretamente com a autoridade de residência competente na Áustria.",
+            "estimatedDays": null,
+            "name": "Submissão da candidatura",
+            "order": 1
+          },
+          {
+            "description": "A representação austríaca ou autoridade de residência encaminha a candidatura e documentos ao Public Employment Service (AMS - Arbeitmarktservice), que examina se foram atingidos os pontos requeridos, se a qualificação em profissão em escassez foi completada e se o salário é adequado.",
+            "estimatedDays": null,
+            "name": "Análise pela AMS",
+            "order": 2
+          },
+          {
+            "description": "Se todos os requisitos forem atendidos, a AMS envia confirmação à autoridade de residência, que emite o Red-White-Red Card. Se sujeito a requisitos de visto, é necessário solicitar visto categoria D para entrada e coleta do título de residência.",
+            "estimatedDays": null,
+            "name": "Emissão do visto",
+            "order": 3
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passaporte ou documento de viagem equivalente",
+            "isCritical": true,
+            "name": "Documento de viagem válido"
+          },
+          {
+            "description": "Dimensões 45x35mm, não mais antiga que 6 meses",
+            "isCritical": true,
+            "name": "Fotografia"
+          },
+          {
+            "description": "Prova de seguro de saúde cobrindo todos os riscos (seguro de saúde compulsório ou equivalente)",
+            "isCritical": true,
+            "name": "Seguro de saúde"
+          },
+          {
+            "description": "Extrato oficial de antecedentes criminais do país de origem ou última residência habitual (recomenda-se não mais antiga que 3 meses). Necessário se residência prévia maior que 6 meses em outro país.",
+            "isCritical": false,
+            "name": "Extrato de antecedentes criminais"
+          },
+          {
+            "description": "Certificado ou diploma de formação profissional concluída, ou comprovante de elegibilidade para admissão à universidade (Matura, Abitur, certificado de matrícula), ou certificado de conclusão de programa de 3 anos em instituição de ensino superior",
+            "isCritical": true,
+            "name": "Certificado ou diploma de qualificação profissional"
+          },
+          {
+            "description": "Atestados e certificados de trabalho",
+            "isCritical": true,
+            "name": "Documentos de experiência de trabalho"
+          },
+          {
+            "description": "Diploma de idioma ou certificado de curso de idioma do Quadro Europeu Comum de Referência para Línguas (mínimo A1), obtidos de instituições como ÖSD, Goethe-Institut, Telc GmbH, ou Austrian Integration Fund (ÖIF)",
+            "isCritical": true,
+            "name": "Certificado de proficiência linguística em alemão"
+          },
+          {
+            "description": "Diploma ou certificado de idioma (mínimo A2) - Cambridge Certificate, TELC, IELTS, TOEIC ou TOEFL. Certificado não mais antigo que 5 anos.",
+            "isCritical": false,
+            "name": "Certificado de proficiência linguística em inglês"
+          },
+          {
+            "description": "Arbeitgebererklärung com detalhes específicos sobre o local futuro de trabalho",
+            "isCritical": true,
+            "name": "Declaração do empregador"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Alemão",
+          "level": "A1 (mínimo), com possibilidade de ganhar até 15 pontos com A2 ou B1",
+          "testsAccepted": [
+            "ÖSD",
+            "Goethe-Institut",
+            "Telc GmbH",
+            "Austrian Integration Fund (ÖIF)"
+          ]
+        },
+        "qualificationsRequired": [
+          "Formação profissional completa em profissão em escassez (Mangelberuf)",
+          "Para profissões regulamentadas: reconhecimento formal da qualificação conforme regulamentações austríacas",
+          "Para profissões de transporte público: qualificações e exames específicos podem ser adquiridos na empresa austríaca"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Cartão de residência e trabalho de 24 meses para cidadãos de terceiros países que trabalham como trabalhadores-chave qualificados em empresas austriacas, sujeito a teste de mercado de trabalho e pontuação mínima de 55 pontos",
+      "eligibility": [
+        "Cidadão de país terceiro",
+        "Emprego como trabalhador-chave em empresa na Áustria",
+        "Salário bruto mínimo: EUR 3.465 mensais (2026)",
+        "Pontuação mínima de 55 pontos segundo critérios de elegibilidade",
+        "Nenhuma pessoa igualmente qualificada registrada como desempregada no AMS (teste de mercado de trabalho)"
+      ],
+      "id": "rwr-card-other-key-workers",
+      "name": "Red-White-Red Card - Outros Trabalhadores Chave",
+      "nameOriginal": "Red-White-Red Card - Other Key Workers",
+      "notes": "O Red-White-Red Card é geralmente emitido por 24 meses. O titular pode também trabalhar como autônomo se este emprego for subsidiário e todos os demais requisitos legais forem cumpridos. A diferença principal em relação a outras categorias RWR Card é o sistema de pontuação obrigatório com critério base de qualificação (máx. 30 pontos), experiência profissional (máx. 20 pontos), proficiência linguística (máx. 25 pontos) e idade (máx. 15 pontos), totalizando até 90 pontos, com 55 como mínimo exigido. Aprova também 5 pontos adicionais se inglês for a língua predominante da empresa e 20 pontos de bônus para atletas profissionais e treinadores de esportes profissionais. Possibilidade de upgrade para Red-White-Red Card plus após 21 meses de emprego nos 24 meses anteriores, concedendo acesso ilimitado ao mercado de trabalho",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Preparar documentação necessária incluindo prova de qualificações, experiência de trabalho, proficiência linguística e declaração do empregador",
+            "estimatedDays": null,
+            "name": "Preparação da candidatura",
+            "order": 1
+          },
+          {
+            "description": "Submeter candidatura pessoalmente à representação austriaca (embaixada ou consulado) do país de residência, ou o empregador pode submeter à autoridade de residência competente na Áustria (Governador Provincial, Autoridade Administrativa Regional ou Autoridade Administrativa Local). Alternativamente, após entrada legal, pode submeter-se diretamente à autoridade de residência competente na Áustria",
+            "estimatedDays": null,
+            "name": "Submissão da candidatura",
+            "order": 2
+          },
+          {
+            "description": "O AMS (Serviço Público de Emprego) examina se foram atingidos os pontos necessários, se o salário prospectado está em conformidade com o mínimo legal, e se nenhuma pessoa igualmente qualificada registrada como desempregada pode ser colocada (teste de mercado de trabalho)",
+            "estimatedDays": null,
+            "name": "Exame pelo AMS",
+            "order": 3
+          },
+          {
+            "description": "Se todos os requisitos forem atendidos, o AMS envia confirmação à autoridade de residência que então emite o Red-White-Red Card, desde que os requisitos gerais da lei austriaca de assentamento e residência sejam cumpridos (cobertura de seguro saúde)",
+            "estimatedDays": null,
+            "name": "Confirmação de aprovação",
+            "order": 4
+          },
+          {
+            "description": "Se sujeito a requisitos de visto, deve solicitar visto da categoria D para fins de entrada na Áustria para coletar o título de residência",
+            "estimatedDays": null,
+            "name": "Solicitação de visto se necessário",
+            "order": 5
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Passaporte ou documento de viagem equivalente",
+            "isCritical": true,
+            "name": "Documento de viagem válido"
+          },
+          {
+            "description": "Dimensões 45x35mm, não mais antiga que 6 meses",
+            "isCritical": true,
+            "name": "Fotografia"
+          },
+          {
+            "description": "Cobertura de todos os riscos (seguro saúde compulsório ou apólice equivalente)",
+            "isCritical": true,
+            "name": "Comprovante de seguro saúde"
+          },
+          {
+            "description": "Do país de origem ou residência habitual anterior. Recomendado não mais de 3 meses de idade. Obrigatório se viveu em outro país por mais de 6 meses antes de vir para a Áustria",
+            "isCritical": false,
+            "name": "Extrato de antecedentes criminais"
+          },
+          {
+            "description": "Para qualificações profissionais: diploma de educação/treinamento profissional concluído",
+            "isCritical": false,
+            "name": "Certificado de educação/treinamento profissional"
+          },
+          {
+            "description": "Matura, Abitur ou certificado equivalente",
+            "isCritical": false,
+            "name": "Prova de elegibilidade para admissão universitária"
+          },
+          {
+            "description": "Prova de conclusão bem-sucedida de programa de 3 anos em universidade ou instituição de educação terciária",
+            "isCritical": false,
+            "name": "Diploma de conclusão de curso"
+          },
+          {
+            "description": "Atestados e certificados de trabalho",
+            "isCritical": false,
+            "name": "Documentos de experiência profissional"
+          },
+          {
+            "description": "Diplomas ou certificados de cursos nos níveis A1, A2 ou B1 do CEFR, não mais antigos que 5 anos. Para alemão: ÖSD, Goethe-Institut, Telc GmbH, Austrian Integration Fund (ÖIF). Para inglês: Cambridge, TELC, IELTS, TOEIC, TOEFL",
+            "isCritical": false,
+            "name": "Certificados de proficiência linguística"
+          },
+          {
+            "description": "Arbeitgebererklärung com detalhes específicos do futuro local de trabalho",
+            "isCritical": true,
+            "name": "Declaração do empregador"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 3465,
+          "currency": "EUR",
+          "notes": "Salário bruto mínimo mensal a ser pago pelo empregador prospecto, valor de 2026",
+          "period": "monthly"
+        },
+        "languageRequired": {
+          "language": "Alemão",
+          "level": "A1 (nível básico elementar) mínimo para elegibilidade; pontos adicionais para A2 e B1",
+          "testsAccepted": [
+            "ÖSD",
+            "Goethe-Institut",
+            "Telc GmbH",
+            "Austrian Integration Fund (ÖIF)",
+            "Cambridge (para inglês)",
+            "TELC (para inglês)",
+            "IELTS",
+            "TOEIC",
+            "TOEFL"
+          ]
+        },
+        "qualificationsRequired": [
+          "Educação profissional concluída e/ou conhecimento/habilidades especiais na ocupação prospectada",
+          "Ou elegibilidade geral para admissão universitária",
+          "Ou conclusão de programa de estudos com duração mínima de 3 anos em instituição de educação terciária"
         ]
       },
       "rights": {

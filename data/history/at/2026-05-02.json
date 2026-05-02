@@ -1,0 +1,244 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Página de conteúdo sobre trabalho temporário na Áustria indisponível no momento da extração. Informações sobre tipos de autorização (Saisonnier, Rotationskraft, trabalho transfronteirico) não puderam ser extraídas.",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": "one-time",
+        "notes": "Cobertura mínima por ocorrência para visto Schengen; cobertura austríaca obrigatória após chegada."
+      },
+      "mustBeLocal": false,
+      "notes": "Seguro saúde austríaco (Krankenversicherung) é obrigatório. Para Red-White-Red Card: deve estar registrado no sistema de saúde austríaco. Para visto Schengen: cobertura mínima de EUR 30.000.",
+      "required": true
+    },
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "proofOfFunds": {
+      "amount": 2685,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Salário mínimo conforme categoria: profissionais qualificados EUR 2.685/mês bruto em 2024; Very Highly Qualified Workers EUR 3.224/mês. Para Start-up Founders: plano de negócios demonstrando viabilidade financeira."
+    },
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "at",
+    "countryName": "Austria",
+    "lastUpdated": "2026-05-01T21:07:44.472Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-01T21:07:16.527Z",
+        "status": "ok",
+        "url": "https://www.migration.gv.at/en/"
+      },
+      {
+        "contentLanguage": "de",
+        "fetchedAt": "2026-05-01T21:07:18.548Z",
+        "status": "ok",
+        "url": "https://www.migration.gv.at/en/types-of-immigration/permanent-immigration/red-white-red-card/"
+      },
+      {
+        "contentLanguage": "de",
+        "fetchedAt": "2026-05-01T21:07:20.555Z",
+        "status": "ok",
+        "url": "https://www.migration.gv.at/en/types-of-immigration/temporary-work/"
+      }
+    ]
+  },
+  "recentChanges": [],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "Modelo flexível de imigração austriaco que oferece um único documento para trabalhadores qualificados de países terceirizados e seus familiares, permitindo trabalhar e se estabelecer permanentemente na Áustria.",
+      "eligibility": [
+        "Trabalhadores altamente qualificados de países terceirizados",
+        "Outros trabalhadores-chave com oferta de emprego",
+        "Fundadores de startups",
+        "Atender aos critérios de admissão verificáveis através da Calculadora de Pontos"
+      ],
+      "id": "red-white-red-card",
+      "name": "Red-White-Red Card",
+      "nameOriginal": "Red-White-Red Card",
+      "notes": "Portal oferece suporte através da ABA WORK in AUSTRIA, um centro de aconselhamento para empresas e trabalhadores qualificados. A calculadora de pontos é ferramenta essencial para verificar elegibilidade.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Usar a Calculadora de Pontos para verificar se você atende aos critérios de admissão",
+            "estimatedDays": null,
+            "name": "Verificação de elegibilidade",
+            "order": 1
+          },
+          {
+            "description": "Apresentar candidatura através das autoridades competentes (Serviço Público de Emprego e autoridades de residência)",
+            "estimatedDays": null,
+            "name": "Submissão de candidatura",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificações reconhecidas ou experiência profissional relevante"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Visto de procura de emprego e documento de residência para trabalhadores muito altamente qualificados na Áustria.",
+      "eligibility": [
+        "Trabalhadores com qualificações muito elevadas",
+        "Profissionais em busca de oportunidades de emprego na Áustria"
+      ],
+      "id": "very-highly-qualified-workers",
+      "name": "Very Highly Qualified Workers",
+      "nameOriginal": "Very Highly Qualified Workers",
+      "notes": "Informações disponíveis em guia dedicado no portal de migração. Categoria designada especificamente para trabalhadores com qualificações superiores.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Apresentar candidatura para visto de procura de emprego para trabalhadores altamente qualificados",
+            "estimatedDays": null,
+            "name": "Solicitação de visto de procura de emprego",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Nível muito elevado de qualificação"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Categoria de trabalhadores-chave que já possuem oferta de emprego confirmada e podem solicitar o Red-White-Red Card.",
+      "eligibility": [
+        "Já ter uma oferta de emprego confirmada",
+        "Ser considerado um trabalhador-chave conforme critérios austríacos"
+      ],
+      "id": "other-key-workers",
+      "name": "Other Key Workers",
+      "nameOriginal": "Other Key Workers",
+      "notes": "Caminho mais acessível para trabalhadores que já têm oferta de emprego. Não requer qualificações europias reconhecidas se aprovado como trabalhador-chave.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Reunir documentação necessária, incluindo oferta de emprego confirmada",
+            "estimatedDays": null,
+            "name": "Preparação de candidatura",
+            "order": 1
+          },
+          {
+            "description": "Submeter candidatura para Red-White-Red Card com oferta de emprego",
+            "estimatedDays": null,
+            "name": "Submissão do Red-White-Red Card",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documento comprovando a oferta de emprego de um empregador austriaco",
+            "isCritical": true,
+            "name": "Oferta de emprego"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Categoria para fundadores de startups que desenvolveram um produto inovador e desejam realizá-lo na Áustria.",
+      "eligibility": [
+        "Ter desenvolvido uma ideia para um produto inovador",
+        "Desejo de implementar o produto na Áustria"
+      ],
+      "id": "startup-founders",
+      "name": "Start-up Founders",
+      "nameOriginal": "Start-up Founders",
+      "notes": "Página contém informações detalhadas sobre esta categoria de imigração para empreendedores.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Demonstrar que você desenvolveu uma ideia para um produto inovador",
+            "estimatedDays": null,
+            "name": "Apresentação do conceito inovador",
+            "order": 1
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Inovação comprovável do produto/serviço"
+        ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}

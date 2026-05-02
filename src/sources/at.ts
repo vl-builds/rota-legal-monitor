@@ -20,18 +20,28 @@ export const atSource: SourceConfig = {
       fetchFrequency: 'monthly',
     },
     {
-      url: 'https://www.migration.gv.at/en/types-of-immigration/permanent-immigration/red-white-red-card/',
+      // URL PHP direta — as "pretty URLs" do migration.gv.at redirecionam 303 e retornam 100 chars
+      url: 'https://www.migration.gv.at/index.php?id=1049',
       contentType: 'visa-requirements',
       promptHint:
-        'Red-White-Red Card (RWR Card) da Austria, sistema de pontuacao para trabalhadores qualificados. Para cada subcategoria (Very Highly Qualified Workers, Skilled Workers in Shortage Occupations, Other Key Workers, Self-Employed Key Workers) extraia: pontuacao minima, criterios de pontuacao, salario minimo em EUR, requisito de idioma alemao (nível CEFR) e lista de profissoes em escassez se disponivel.',
+        'Pagina do Red-White-Red Card para Very Highly Qualified Workers (trabalhadores altamente qualificados) na Austria. Extraia: pontuacao minima exigida (geralmente 70 pontos), tabela de criterios de pontuacao (idade, educacao, experiencia, idioma), salario minimo em EUR por mes, nivel CEFR de alemao exigido, documentos necessarios e onde solicitar (MA 35 em Viena ou Landeshauptmann fora de Viena).',
       fetchFrequency: 'monthly',
       model: 'sonnet',
     },
     {
-      url: 'https://www.migration.gv.at/en/types-of-immigration/temporary-work/',
+      // URL PHP direta — Skilled Workers in Shortage Occupations (Mangelberuf)
+      url: 'https://www.migration.gv.at/index.php?id=1050',
       contentType: 'visa-requirements',
       promptHint:
-        'Portal de migracao austriaco sobre trabalho temporario. Extraia: tipos de autorizacao para trabalho temporario (Saisonnier, Rotationskraft, trabalho transfronteirico), documentos exigidos para cada tipo, prazo de validade, onde solicitar e requisitos de idioma alemao quando aplicavel.',
+        'Pagina do Red-White-Red Card para Skilled Workers in Shortage Occupations (profissoes em escassez) na Austria. Extraia: lista de profissoes Mangelberuf elegíveis, pontuacao minima exigida, criterios de pontuacao, salario minimo em EUR, nivel CEFR de alemao exigido (geralmente A2 ou B1), documentos necessarios e tempo medio de processamento.',
+      fetchFrequency: 'monthly',
+    },
+    {
+      // URL PHP direta — Other Key Workers
+      url: 'https://www.migration.gv.at/index.php?id=1051',
+      contentType: 'visa-requirements',
+      promptHint:
+        'Pagina do Red-White-Red Card para Other Key Workers (outros trabalhadores chave) na Austria. Extraia: salario minimo bruto anual exigido em EUR, pontuacao minima (geralmente 55 pontos), tabela de criterios de pontuacao, nivel CEFR de alemao, documentos necessarios e diferenca principal em relacao as outras categorias RWR Card.',
       fetchFrequency: 'monthly',
     },
   ],
