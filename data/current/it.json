@@ -1,7 +1,7 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "",
+    "notes": "Brasileiros podem entrar na Itália sem visto por até 90 dias (Espaço Schengen). Para trabalhar, é necessário visto de trabalho (D) vinculado ao Decreto Flussi, que abre vagas anuais por quota. O EU Blue Card é alternativa para profissionais altamente qualificados. Brasileiros de descendência italiana podem solicitar cidadania italiana por jus sanguinis.",
     "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
@@ -9,13 +9,23 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": "one-time",
+        "notes": "Por ocorrência para visto Schengen; cobertura pelo SSN após permesso di soggiorno"
+      },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.",
+      "required": true
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "proofOfFunds": {
+      "amount": 8500,
+      "currency": "EUR",
+      "period": "yearly",
+      "notes": "Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado."
+    },
     "vaccinations": []
   },
   "meta": {

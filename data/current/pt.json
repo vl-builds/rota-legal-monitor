@@ -1,21 +1,52 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "",
+    "notes": "Brasileiros podem entrar em Portugal sem visto por até 90 dias (Espaço Schengen). Para trabalhar, é necessária autorização de residência. Após 2 anos de residência legal, brasileiros podem solicitar o Estatuto de Igualdade de Direitos, que equipara os direitos ao de cidadãos portugueses. A CPLP e o Tratado de Amizade Luso-Brasileiro (2000) facilitam processos de regularização e reconhecimento de qualificações.",
     "schengenVisaFree": true,
-    "specialAgreements": [],
-    "workPermitNeeded": false
+    "specialAgreements": [
+      {
+        "name": "Estatuto de Igualdade de Direitos",
+        "fullName": "Estatuto de Igualdade de Direitos entre Brasileiros e Portugueses",
+        "benefits": [
+          "Equiparação total de direitos a cidadãos portugueses após 2 anos de residência legal",
+          "Acesso simplificado ao mercado de trabalho e serviços públicos",
+          "Reconhecimento de qualificações profissionais"
+        ],
+        "appliesToWork": true
+      },
+      {
+        "name": "Tratado de Amizade Luso-Brasileiro (2000)",
+        "fullName": "Tratado de Amizade, Cooperação e Consulta entre a República Portuguesa e a República Federativa do Brasil",
+        "benefits": [
+          "Facilita mobilidade entre Brasil e Portugal",
+          "Simplifica processos de regularização de brasileiros em Portugal",
+          "Facilita reconhecimento de qualificações acadêmicas e profissionais"
+        ],
+        "appliesToWork": true
+      }
+    ],
+    "workPermitNeeded": true
   },
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": "one-time",
+        "notes": "Cobertura mínima por ocorrência exigida para candidatura ao visto D"
+      },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Seguro saúde com cobertura mínima de EUR 30.000 é exigido na candidatura ao visto D. Após regularização, acesso ao SNS (Serviço Nacional de Saúde) português.",
+      "required": true
     },
-    "passportValidity": "válido",
-    "proofOfFunds": null,
+    "passportValidity": "Mínimo 6 meses após a data de entrada",
+    "proofOfFunds": {
+      "amount": 760,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Para D2/D3 (trabalho independente): mínimo EUR 760/mês (salário mínimo português de 2024). Para D1 (trabalho subordinado): contrato de trabalho suficiente. Para vistos de procura de emprego: EUR 1.020/mês recomendado."
+    },
     "vaccinations": []
   },
   "meta": {

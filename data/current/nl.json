@@ -9,13 +9,13 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": { "amount": 30000, "currency": "EUR", "period": null, "notes": "Cobertura mínima por ocorrência para visto Schengen" },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Seguro saúde é obrigatório para residentes na Holanda. Após chegada, deve-se contratar seguro holandês (zorgverzekering) dentro de 4 meses. Para o período de visto, cobertura internacional de EUR 30.000 mínima.",
+      "required": true
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "proofOfFunds": { "amount": 865, "currency": "EUR", "period": "monthly", "notes": "Comprovante de renda ou fundos suficientes. Para visto de busca de emprego: mínimo EUR 865/mês (salário mínimo holandês). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente." },
     "vaccinations": []
   },
   "meta": {

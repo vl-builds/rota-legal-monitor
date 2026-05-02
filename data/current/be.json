@@ -9,13 +9,13 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": { "amount": 30000, "currency": "EUR", "period": null, "notes": "Cobertura mínima por ocorrência para visto Schengen." },
       "mustBeLocal": false,
-      "notes": "Não especificado para cartão profissional nesta página",
+      "notes": "Para visto de longa duração: seguro saúde exigido. Após Single Permit: acesso ao sistema de saúde belga via mutualidade (mutualité).",
       "required": false
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "proofOfFunds": { "amount": 1985, "currency": "EUR", "period": "monthly", "notes": "Single Permit: contrato de trabalho com salário mínimo belga (EUR 1.985/mês bruto em 2024) é suficiente. Cartão Profissional (autônomos): demonstração de viabilidade econômica do projeto." },
     "vaccinations": []
   },
   "meta": {

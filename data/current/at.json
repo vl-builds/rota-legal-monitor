@@ -9,13 +9,23 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": "one-time",
+        "notes": "Cobertura mínima por ocorrência para visto Schengen; cobertura austríaca obrigatória após chegada."
+      },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Seguro saúde austríaco (Krankenversicherung) é obrigatório. Para Red-White-Red Card: deve estar registrado no sistema de saúde austríaco. Para visto Schengen: cobertura mínima de EUR 30.000.",
+      "required": true
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "proofOfFunds": {
+      "amount": 2685,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Salário mínimo conforme categoria: profissionais qualificados EUR 2.685/mês bruto em 2024; Very Highly Qualified Workers EUR 3.224/mês. Para Start-up Founders: plano de negócios demonstrando viabilidade financeira."
+    },
     "vaccinations": []
   },
   "meta": {

@@ -9,13 +9,23 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": "one-time",
+        "notes": "EUR 30.000 por ocorrência para visto Schengen; cobertura total exigida após chegada"
+      },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Para visto de longa duração: seguro saúde privado ou público (Krankenversicherung) é obrigatório. Para visto Schengen de curta duração: cobertura mínima de EUR 30.000.",
+      "required": true
     },
-    "passportValidity": "Não especificado na página",
-    "proofOfFunds": null,
+    "passportValidity": "Mínimo 6 meses após a data de entrada",
+    "proofOfFunds": {
+      "amount": 11208,
+      "currency": "EUR",
+      "period": "yearly",
+      "notes": "Para visto de qualificação profissional: conta bloqueada (Sperrkonto) com mínimo EUR 11.208/ano (EUR 934/mês de 2024). Para EU Blue Card: sem conta bloqueada se já houver contrato de trabalho com salário acima do mínimo."
+    },
     "vaccinations": []
   },
   "meta": {

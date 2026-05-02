@@ -9,13 +9,23 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": null,
+        "notes": "Cobertura mínima por ocorrência, exigida para visto D de longa duração e visto Schengen. Seguro deve ser válido em toda a Espanha e sem copagamentos."
+      },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Seguro saúde com cobertura mínima de EUR 30.000 é obrigatório para solicitação de visto D de longa duração. Deve ser válido em toda a Espanha e sem copagamentos.",
+      "required": true
     },
     "passportValidity": "Mínimo 1 ano de validade. Passaportes emitidos há mais de 10 anos não serão aceitos. Deve conter duas páginas em branco",
-    "proofOfFunds": null,
+    "proofOfFunds": {
+      "amount": 2646,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Varia por modalidade: conta alheia aceita contrato de trabalho como comprovante; autônomos (cuenta propia) devem demonstrar mínimo EUR 2.400/mês; nômades digitais (Telework) precisam de EUR 2.646/mês (200% do SMI espanhol de 2026)."
+    },
     "vaccinations": []
   },
   "meta": {

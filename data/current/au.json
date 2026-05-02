@@ -1,8 +1,8 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Brasileiros são elegíveis para vistos de trabalho australianos. Necessário visto específico para trabalhar.",
-    "schengenVisaFree": true,
+    "notes": "Brasileiros precisam de visto para entrar na Austrália, inclusive para turismo (ETA subclasse 601 ou visto de turista). A Austrália não faz parte do Espaço Schengen. O Working Holiday Visa (subclasse 462) é o principal caminho para brasileiros de 18 a 30 anos. Vistos de trabalho qualificado exigem patrocínio de empregador australiano.",
+    "schengenVisaFree": false,
     "specialAgreements": [],
     "workPermitNeeded": true
   },
@@ -11,7 +11,7 @@
     "healthInsurance": {
       "minimumCoverage": null,
       "mustBeLocal": false,
-      "notes": "",
+      "notes": "Para Working Holiday (462): seguro saúde não é obrigatório mas é fortemente recomendado (OVHC). Para vistos de trabalho qualificado: seguro saúde privado recomendado até acesso ao Medicare australiano.",
       "required": false
     },
     "passportValidity": "Mínimo 6 meses de validade recomendado",
@@ -74,7 +74,7 @@
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
-        "fees": [],
+        "fees": [{"amount": 635, "currency": "AUD", "period": "one-time", "notes": "Taxa de solicitação do Working Holiday Visa (subclasse 462) — 2024"}],
         "steps": [
           {
             "description": "Verificar se atende aos critérios de idade, nacionalidade, educação e proficiência em inglês",
@@ -169,7 +169,7 @@
       "process": {
         "applicationLocation": "ambos",
         "estimatedDuration": "A determinar",
-        "fees": [],
+        "fees": [{"amount": 4640, "currency": "AUD", "period": "one-time", "notes": "Taxa de solicitação do Skilled Independent Visa (subclasse 189) — 2024"}],
         "steps": [
           {
             "description": "Submeter qualificações para avaliação por organismo reconhecido",
@@ -371,63 +371,6 @@
           ],
           "yearsRequired": 2
         }
-      }
-    },
-    {
-      "description": "Visto temporário que permite aos titulares trabalhar e viajar na Austrália por um período determinado",
-      "eligibility": [
-        "Ser cidadão de país elegível (Brasil incluído)",
-        "Ter entre 18 e 30 anos",
-        "Ter passaporte válido"
-      ],
-      "id": "working-holiday-462",
-      "name": "Working Holiday 462",
-      "nameOriginal": "Working Holiday 462",
-      "notes": "Visto temporário sem patrocínio obrigatório de empregador",
-      "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "A determinar",
-        "fees": [],
-        "steps": [
-          {
-            "description": "Criar uma conta no sistema de imigração online",
-            "estimatedDays": null,
-            "name": "Criar conta ImmiAccount",
-            "order": 1
-          },
-          {
-            "description": "Completar formulário de pedido de visto",
-            "estimatedDays": null,
-            "name": "Preencher formulário de candidatura",
-            "order": 2
-          },
-          {
-            "description": "Enviar documentos necessários",
-            "estimatedDays": null,
-            "name": "Submeter documentação",
-            "order": 3
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Passaporte com validade suficiente",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          }
-        ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": true,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
       }
     },
     {

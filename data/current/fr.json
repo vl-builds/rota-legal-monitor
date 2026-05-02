@@ -9,18 +9,28 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": null,
+        "notes": "EUR 30.000 por ocorrência para visto Schengen; cobertura completa após chegada via Sécurité Sociale"
+      },
       "mustBeLocal": false,
-      "notes": "",
+      "notes": "Para VLS-TS: seguro saúde privado exigido até inscrição na Sécurité Sociale francesa (CPAM). Após 3 meses de residência legal, trabalhadores têm acesso ao sistema público.",
       "required": false
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "proofOfFunds": {
+      "amount": 1383,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Para VLS-TS por trabalho: contrato de trabalho é suficiente. Para trabalho independente: mínimo EUR 1.383/mês (SMIC francês de 2024). Para estudantes e buscadores de emprego: extrato bancário demonstrando fundos suficientes."
+    },
     "vaccinations": []
   },
   "meta": {
     "country": "fr",
-    "countryName": "Franca",
+    "countryName": "França",
     "lastUpdated": "2026-05-01T21:34:43.284Z",
     "schemaVersion": "1.0.0",
     "sources": [

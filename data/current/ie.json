@@ -9,13 +9,23 @@
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": null,
+        "notes": "Por ocorrência, recomendado para entrada"
+      },
       "mustBeLocal": false,
-      "notes": "",
+      "notes": "A Irlanda não exige seguro saúde privado para entrada, mas é fortemente recomendado. Residentes podem acessar o sistema público de saúde (HSE) após registro.",
       "required": false
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "proofOfFunds": {
+      "amount": 34000,
+      "currency": "EUR",
+      "period": "yearly",
+      "notes": "Salário mínimo exigido para Critical Skills EP. General EP requer EUR 30.000/ano. Para entrada como turista: mínimo EUR 50/dia recomendado."
+    },
     "vaccinations": []
   },
   "meta": {
