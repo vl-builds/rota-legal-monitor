@@ -839,6 +839,53 @@ footer {
   .top-nav { backdrop-filter: blur(12px) saturate(120%); -webkit-backdrop-filter: blur(12px) saturate(120%); }
 }
 
+/* =========================================================
+   Guia Prático — componentes de passo a passo por país
+   ========================================================= */
+
+.guide-intro { max-width: 640px; margin-bottom: var(--s-xxl); }
+.guide-intro p { font-size: 15px; color: var(--body); line-height: 1.6; margin: var(--s-sm) 0 0; }
+
+.guide-phases { display: flex; flex-direction: column; gap: var(--s-xxl); }
+
+.guide-phase { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
+
+.phase-header { display: flex; align-items: flex-start; gap: var(--s-lg); padding: var(--s-xl); border-bottom: 1px solid var(--hairline); }
+.phase-num { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; font-weight: 700; color: var(--primary); background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.2); border-radius: var(--r-pill); padding: 3px 10px; flex-shrink: 0; margin-top: 3px; letter-spacing: 1px; }
+.phase-title { font-size: 18px; font-weight: 700; color: var(--on-dark); margin: 0 0 4px; letter-spacing: -0.3px; }
+.phase-subtitle { font-size: 13px; color: var(--muted); margin: 0; }
+
+.guide-steps { padding: var(--s-lg) var(--s-xl); display: flex; flex-direction: column; gap: 0; }
+
+.guide-step { display: grid; grid-template-columns: 36px 1fr; gap: var(--s-md); padding: var(--s-lg) 0; position: relative; }
+.guide-step + .guide-step { border-top: 1px solid var(--hairline); }
+
+.guide-step-left { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.step-circle { width: 28px; height: 28px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline-strong); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; z-index: 1; }
+.guide-step.highlight .step-circle { background: rgba(240,180,41,0.15); border-color: rgba(240,180,41,0.4); color: var(--primary); }
+.step-line { flex: 1; width: 1px; background: var(--hairline); margin-top: 4px; min-height: 16px; }
+.guide-step:last-child .step-line { display: none; }
+
+.step-body { padding-top: 3px; padding-bottom: var(--s-sm); }
+.step-heading { font-size: 15px; font-weight: 700; color: var(--on-dark); margin: 0 0 6px; letter-spacing: -0.2px; }
+.guide-step.highlight .step-heading { color: var(--primary); }
+.step-desc { font-size: 13px; color: var(--body); line-height: 1.6; margin: 0 0 var(--s-sm); }
+.step-tags { display: flex; gap: var(--s-xs); flex-wrap: wrap; margin-top: var(--s-xs); }
+.step-tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); border: 1px solid var(--hairline); background: var(--surface-elevated); color: var(--muted); }
+.step-tag.prazo { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.2); color: var(--accent-blue); }
+.step-tag.custo { background: rgba(240,180,41,0.08); border-color: rgba(240,180,41,0.2); color: var(--primary); }
+.step-tag.orgao { background: var(--surface-elevated); border-color: var(--hairline-strong); color: var(--body-strong); }
+.step-tag.alerta { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.2); color: var(--accent-rose); }
+
+.guide-disclaimer { margin-top: var(--s-xxl); padding: var(--s-lg); background: rgba(255,255,255,0.02); border: 1px solid var(--hairline); border-radius: var(--r-lg); }
+.guide-disclaimer p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+@media (max-width: 640px) {
+  .phase-header { flex-direction: column; gap: var(--s-sm); }
+  .guide-steps { padding: var(--s-md); }
+  .guide-step { grid-template-columns: 28px 1fr; gap: var(--s-sm); }
+}
+
 /* narrow phones: collapse remaining 2-col grids and tighten paddings */
 @media (max-width: 480px) {
   .quick-summary { grid-template-columns: 1fr !important; }

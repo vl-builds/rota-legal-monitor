@@ -16,7 +16,6 @@ permissions:
   contents: write
   issues: write
   pages: write
-  id-token: write
 
 jobs:
   update:
@@ -25,12 +24,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
           fetch-depth: 2
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7  # v1
         with:
           bun-version: latest
 
@@ -49,13 +48,16 @@ jobs:
           ANTHROPIC_MODEL_DEFAULT: claude-haiku-4-5
           ANTHROPIC_MODEL_PREMIUM: claude-sonnet-4-5
           NODE_ENV: production
+          COUNTRY_INPUT: ${{ inputs.country }}
         run: |
-          COUNTRY="${{ inputs.country }}"
-          if [ -n "$COUNTRY" ]; then
-            bun run extract "--country=$COUNTRY"
+          if [ -n "$COUNTRY_INPUT" ]; then
+            bun run extract "--country=$COUNTRY_INPUT"
           else
             bun run extract
           fi
+
+      - name: Validate extracted data
+        run: bun run validate
 
       - name: Generate index.json
         run: bun run index
@@ -95,7 +97,7 @@ jobs:
           fi
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@e9c66a37f080288a11235e32cbe2dc5fb3a679cc  # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./data/current

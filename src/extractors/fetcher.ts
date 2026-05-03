@@ -1,6 +1,6 @@
 import { log } from '@/lib/log'
 
-const UA = 'Rota-Legal-Monitor/0.1 (+https://github.com/USER/rota-legal-monitor)'
+const UA = 'Rota-Legal-Monitor/0.1 (+https://github.com/henryzuca/rota-legal-monitor)'
 const FETCH_TIMEOUT_MS = 30_000
 const RATE_LIMIT_MS = 2_000
 
@@ -18,6 +18,20 @@ async function enforceRateLimit(url: string): Promise<void> {
     await sleep(RATE_LIMIT_MS - elapsed)
   }
   lastFetchByHost.set(host, Date.now())
+}
+
+// Bloqueia schemas nao-HTTPS e IPs de ranges privados/reservados (protecao SSRF)
+const PRIVATE_HOST_RE =
+  /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.|::1$)/i
+
+function assertSafeUrl(url: string): void {
+  const parsed = new URL(url)
+  if (parsed.protocol !== 'https:') {
+    throw new Error(`URL bloqueada: schema nao permitido '${parsed.protocol}'`)
+  }
+  if (PRIVATE_HOST_RE.test(parsed.hostname)) {
+    throw new Error(`URL bloqueada: hostname privado ou reservado '${parsed.hostname}'`)
+  }
 }
 
 const CONTENT_LANG_RE = /^(en|pt|de|es|nl|fr|it)/
@@ -113,6 +127,7 @@ async function fetchPlaywright(url: string): Promise<string | null> {
 }
 
 export async function fetchPage(url: string, ignoreSSL = false): Promise<FetchResult> {
+  assertSafeUrl(url)
   await enforceRateLimit(url)
 
   const fetchedAt = new Date().toISOString()

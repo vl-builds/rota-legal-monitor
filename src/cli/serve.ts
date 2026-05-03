@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, resolve, sep } from 'node:path'
 
 const DATA_DIR = join(import.meta.dir, '..', '..', 'data', 'current')
 const PREVIEWS_DIR = join(import.meta.dir, '..', '..', 'previews')
@@ -33,10 +33,12 @@ const server = Bun.serve({
     // /data/* → data/current/
     if (path.startsWith('/data/')) {
       const filename = path.slice('/data/'.length)
-      if (!filename || filename.includes('..')) {
+      if (!filename) return new Response('Not found', { status: 404 })
+      const resolved = resolve(DATA_DIR, filename)
+      if (!resolved.startsWith(DATA_DIR + sep) && resolved !== DATA_DIR) {
         return new Response('Not found', { status: 404 })
       }
-      const file = Bun.file(join(DATA_DIR, filename))
+      const file = Bun.file(resolved)
       if (!(await file.exists())) {
         return new Response('Not found', { status: 404 })
       }
@@ -50,10 +52,11 @@ const server = Bun.serve({
 
     // Arquivos estáticos de previews/
     const filename = path.slice(1)
-    if (filename.includes('..')) {
+    const resolved = resolve(PREVIEWS_DIR, filename)
+    if (!resolved.startsWith(PREVIEWS_DIR + sep) && resolved !== PREVIEWS_DIR) {
       return new Response('Not found', { status: 404 })
     }
-    const file = Bun.file(join(PREVIEWS_DIR, filename))
+    const file = Bun.file(resolved)
     if (!(await file.exists())) {
       return new Response('Not found', { status: 404 })
     }

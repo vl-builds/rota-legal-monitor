@@ -34,7 +34,6 @@ export const frSource: SourceConfig = {
       promptHint:
         'Pagina do service-public.fr sobre a Carte Talent (Passeport Talent frances). Extraia: todas as categorias elegiveis (salarie qualifie, Carte Bleue Europeia, pesquisador, artista, empreendedor, profissional de saude), requisitos de remuneracao minima em EUR por categoria, processo de solicitacao, taxa e extensao para familia.',
       fetchFrequency: 'monthly',
-      model: 'sonnet',
     },
     {
       url: 'https://www.service-public.fr/particuliers/vosdroits/F2728',
