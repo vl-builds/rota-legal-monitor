@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
+  /* ---- country hero ---- */
   .country-hero { padding: var(--s-xxl) 0; border-bottom: 1px solid var(--hairline); }
   .hero-row { display: flex; align-items: center; gap: var(--s-xl); flex-wrap: wrap; }
   .hero-flag { width: 64px; height: 46px; border-radius: 6px; display: block; flex-shrink: 0; }
   .hero-info { flex: 1; min-width: 200px; }
   .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: var(--on-dark); line-height: 1.1; margin: 0 0 var(--s-sm); }
   .hero-badges { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
-  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10, 10, 10, 0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
+  /* ---- sticky subheader + tabs ---- */
+  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10,10,10,0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
   .sticky-inner { display: flex; align-items: center; gap: var(--s-lg); height: 52px; }
   .sticky-id { display: flex; align-items: center; gap: var(--s-sm); flex-shrink: 0; }
   .sticky-flag { width: 24px; height: 18px; border-radius: 3px; display: block; }
@@ -25,19 +27,20 @@
   .tab-btn { height: 52px; padding: 0 var(--s-lg); font-size: 14px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap; transition: color 120ms ease, border-color 120ms ease; }
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
+  /* ---- quick summary ---- */
   .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
   .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
   .qs-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); line-height: 1.1; }
+  .qs-value.accent { color: var(--primary); }
   .qs-value.positive { color: var(--accent-emerald); }
+  .qs-value.negative { color: var(--muted); }
   .qs-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .diff-dots { display: flex; gap: 4px; align-items: center; margin-bottom: 2px; }
-  .diff-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .diff-dot.filled { background: var(--on-dark); }
-  .diff-dot.empty { background: var(--hairline-strong); }
+  /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+  /* ---- visa cards ---- */
   .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
   .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
   .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
@@ -47,7 +50,7 @@
   .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
   .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240, 180, 41,0.1); color: var(--primary); border-color: rgba(240, 180, 41,0.2); }
+  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
   .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
   .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
   .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
@@ -67,15 +70,17 @@
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
-  .br-card.highlight { border-color: rgba(240, 180, 41,0.3); background: rgba(240, 180, 41,0.05); }
+  .br-card.highlight { border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.05); }
   .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
   .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
   .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
   .br-value.yes { color: var(--accent-emerald); }
   .br-value.no { color: var(--accent-rose); }
   .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
+  /* ---- requisitos gerais ---- */
   .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); }
   .req-icon { font-size: 16px; width: 20px; text-align: center; }
@@ -83,6 +88,7 @@
   .req-icon.req { color: var(--accent-blue); }
   .req-text { font-size: 14px; color: var(--body-strong); }
   .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  /* ---- mudanças recentes ---- */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
   .timeline-entry + .timeline-entry { border-top: 1px solid var(--hairline); }
@@ -91,24 +97,50 @@
   .timeline-content { display: flex; flex-direction: column; gap: var(--s-xs); }
   .timeline-title { font-size: 15px; font-weight: 700; color: var(--on-dark); margin: 0; }
   .timeline-summary { font-size: 13px; color: var(--body); line-height: 1.55; margin: 0; }
+  .timeline-affects { font-size: 12px; color: var(--muted); display: flex; gap: var(--s-xs); flex-wrap: wrap; }
+  .affect-pill { padding: 2px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); border: 1px solid var(--hairline); }
+  .sev-high { background: rgba(239,68,68,0.12); color: var(--accent-rose); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  .sev-medium { background: rgba(59,130,246,0.12); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
   .sev-low { background: var(--surface-elevated); color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  /* ---- fontes ---- */
   .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
   .source-item { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-lg); display: grid; grid-template-columns: 1fr auto; gap: var(--s-lg); align-items: start; }
   .source-url { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; word-break: break-all; margin-bottom: var(--s-xs); }
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
-  @media (max-width: 1024px) { .quick-summary { grid-template-columns: repeat(2, 1fr); } .qs-item:nth-child(2n+1) { border-left: none; } .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); } .visa-grid { grid-template-columns: 1fr; } .br-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .hero-name { font-size: 28px; } .tabs { margin-left: 0; } .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); } .sticky-id { padding-top: var(--s-xs); } .quick-summary { grid-template-columns: 1fr 1fr; } .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); } .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); } .req-item { grid-template-columns: auto 1fr; } .req-note { display: none; } .rights-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1024px) {
+    .quick-summary { grid-template-columns: repeat(2, 1fr); }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .visa-grid { grid-template-columns: 1fr; }
+    .br-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero-name { font-size: 28px; }
+    .tabs { margin-left: 0; }
+    .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
+    .sticky-id { padding-top: var(--s-xs); }
+    .quick-summary { grid-template-columns: 1fr 1fr; }
+    .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
+    .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
+    .req-item { grid-template-columns: auto 1fr; }
+    .req-note { display: none; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
+<!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="home.html"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
+    <a class="logo" href="home.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+      <span>Rota Legal</span>
+    </a>
     <div class="nav-links">
-      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
@@ -119,12 +151,13 @@
       <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
       <a class="btn btn-primary" href="comparar.html">Comparar</a>
     </div>
-      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<!-- ============== MOBILE DRAWER ============== -->
+
+<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
   <div class="mobile-drawer-backdrop" data-close></div>
   <aside class="mobile-drawer-panel">
@@ -148,6 +181,7 @@
   </aside>
 </div>
 
+<!-- COUNTRY HERO -->
 <div class="country-hero">
   <div class="container">
     <div class="hero-row">
@@ -155,10 +189,10 @@
       <div class="hero-info">
         <h1 class="hero-name">Alemanha</h1>
         <div class="hero-badges">
-          <span class="badge up"><span class="pulse"></span>Alta confiança</span>
-          <span class="badge">Schengen</span>
+          <span class="badge up"><span class="pulse"></span>Confiança média</span>
+          
           <span class="badge">Work Permit exigido</span>
-          <span class="badge">Chancenkarte disponível</span>
+          
           <span class="badge new">Atualizado mai/2026</span>
         </div>
       </div>
@@ -166,6 +200,7 @@
   </div>
 </div>
 
+<!-- STICKY SUBHEADER + TABS -->
 <div class="country-sticky" id="sticky">
   <div class="container">
     <div class="sticky-inner">
@@ -185,407 +220,1066 @@
   </div>
 </div>
 
+<!-- QUICK SUMMARY -->
 <div class="quick-summary">
   <div class="qs-item">
-    <span class="qs-label">Dificuldade estimada</span>
-    <div class="diff-dots">
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot filled"></span>
-    </div>
-    <span class="qs-sub">Alta — reconhecimento de diploma exigido</span>
+    <span class="qs-label">Entrada sem visto (Schengen)</span>
+    <span class="qs-value negative">Não</span>
+    <span class="qs-sub">Visto de turista necessário</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Renda mínima (EU Blue Card)</span>
-    <span class="qs-value">EUR 50.700</span>
-    <span class="qs-sub">por ano (profissões gerais em 2026)</span>
+    <span class="qs-label">Tipos de visto monitorados</span>
+    <span class="qs-value accent">11</span>
+    <span class="qs-sub">10 de relevância direta</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Trabalho autônomo</span>
-    <span class="qs-value" style="color: var(--muted);">Restrito</span>
-    <span class="qs-sub">Requer permissão específica</span>
+    <span class="qs-label">Work permit exigido</span>
+    <span class="qs-value negative">Sim</span>
+    <span class="qs-sub">Autorização obrigatória para trabalhar</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Prazo estimado</span>
-    <span class="qs-value">3 a 6 meses</span>
-    <span class="qs-sub">Do reconhecimento à chegada</span>
+    <span class="qs-label">Dados atualizados em</span>
+    <span class="qs-value">mai/2026</span>
+    <span class="qs-sub">Extração automática mensal</span>
   </div>
 </div>
 
+<!-- TAB CONTENT -->
 <main>
 
+  <!-- ABA: VISTOS -->
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">5 tipos de visto monitorados</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Opções de visto de trabalho</h2>
+        <div class="eyebrow">11 tipos de visto monitorados</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
         <div class="visa-list">
-
-          <div class="visa-card open">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Cartão Azul da UE</h3>
-                <span class="visa-name-orig">EU Blue Card</span>
-                <div class="visa-tags">
-                  <span class="visa-tag hl">Principal</span>
-                  <span class="visa-tag">Diploma universitário</span>
-                  <span class="visa-tag">TI</span>
-                  <span class="visa-tag">Engenharia</span>
-                  <span class="visa-tag">Saúde</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Renda mínima anual (geral)</span>
-                    <span class="visa-field-value mono">EUR 50.700</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Renda mínima (profissões escassas)</span>
-                    <span class="visa-field-value mono">EUR 45.934</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Qualificação</span>
-                    <span class="visa-field-value">Diploma universitário ou equivalente (mínimo 3 anos, ISCED nível 6)</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Contrato mínimo</span>
-                    <span class="visa-field-value">6 meses com empregador alemão</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">TI sem diploma formal</span>
-                    <span class="visa-field-value">Aceito com mínimo 3 anos de experiência nos últimos 7</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Obter oferta de emprego qualificada com duração mínima de 6 meses</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Obter aprovação da Agência Federal de Emprego (BA) se necessário</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Solicitar visto na Ausländerbehörde ou consulado alemão no Brasil</span></div>
-                  </div>
-                  <div style="margin-top: var(--s-lg);">
-                    <p class="visa-section-title">Residência permanente</p>
-                    <p style="font-size:13px;color:var(--body);">Após 27 meses com alemão A1, ou 21 meses com alemão B1.</p>
-                  </div>
-                </div>
-              </div>
-              <div style="margin-top: var(--s-lg);">
-                <p class="visa-section-title">Direitos</p>
-                <div class="rights-grid">
-                  <div class="right-item"><span class="right-icon yes">✓</span>Trazer cônjuge e filhos</div>
-                  <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador após 1 ano</div>
-                  <div class="right-item"><span class="right-icon yes">✓</span>Caminho para residência permanente</div>
-                  <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador no primeiro ano sem notificação</div>
-                </div>
+          
+        <div class="visa-card open">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">EU Blue Card</h3>
+              <span class="visa-name-orig">EU Blue Card</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Possuir qualificação acadêmica alemã ou estrangeira comparável ao nível alemão</span>
+                <span class="visa-tag">Qualificação de nível terciário com duração mínima de 3 anos (ISCED 2011 nível 6 ou European Qualifications Framework nível 6)</span>
+                <span class="visa-tag">Inclui qualificações de mestrado profissional e qualificações vocacionais não-acadêmicas em profissões educacionais</span>
+                <span class="visa-tag">Ter contrato de trabalho específico com empresa na Alemanha com duração mínima de 6 meses</span>
+                <span class="visa-tag">Trabalho deve corresponder à qualificação profissional</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Visto para Profissionais Qualificados</h3>
-                <span class="visa-name-orig">Work visa for qualified professionals</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Diploma reconhecido</span>
-                  <span class="visa-tag">Formação profissional</span>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto de residência para profissionais qualificados com diploma acadêmico ou qualificação de nível terciário equivalente que possuem contrato de trabalho em profissões de escassez ou como profissionais iniciantes. Permite trabalho remunerado na Alemanha.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                <div class="visa-field">
+              <span class="visa-field-label">Renda mínima</span>
+              <span class="visa-field-value mono">EUR 50.700/ano</span>
+            </div>
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Qualificação acadêmica alemã ou comparável a nível alemão; Ou qualificação de nível terciário (ISCED 2011 nível 6 / European Qualifications Framework nível 6) com duração mínima de 3 anos; Para IT professionals sem diploma formal: experiência profissional mínima de 3 dos últimos 7 anos em IT com nível de universidade</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Encontrar e assegurar contrato de trabalho específico com empresa na Alemanha com duração mínima de 6 meses que corresponde à sua qualificação</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Para qualificações estrangeiras, obter reconhecimento de equivalência com qualificação alemã ou confirmar correspondência com ISCED 2011 nível 6</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Preparar documentação incluindo qualificação acadêmica, contrato de trabalho, prova de salário e outros documentos obrigatórios</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Se for profissão de escassez ou profissional iniciante, obter aprovação da Federal Employment Agency (BA)</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">5</span>
+                <span class="step-text">Submeter aplicação do visto junto à embaixada ou consulado alemão no país de origem</span>
+              </div>
             </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Qualificação</span>
-                    <span class="visa-field-value">Diploma universitário ou formação profissional reconhecida na Alemanha</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Renda especial (acima de 45 anos)</span>
-                    <span class="visa-field-value mono">EUR 55.770/ano</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Reconhecimento do diploma na Alemanha (anabin ou processo formal)</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Obter oferta de emprego qualificada</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Aprovação da Agência Federal de Emprego e solicitação do visto</span></div>
-                  </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
                 </div>
               </div>
             </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 27 anos</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">O EU Blue Card é emitido pela duração do contrato de trabalho mais 3 meses adicionais, válido por máximo 4 anos. Pode ser estendido se certas condições forem atendidas. Com nível B1 de alemão, settlement permit pode ser obtido após apenas 21 meses. Permite mudança de empregador após 1º ano sem cancelamento do visto, mas requer notificação à autoridade de estrangeiros localmente. Existem disposições especiais para profissionais de IT sem qualificação formal que cumpram requisitos específicos de experiência.</div>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Opportunity Card (Chancenkarte)</h3>
-                <span class="visa-name-orig">Chancenkarte</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Busca de emprego</span>
-                  <span class="visa-tag">Sistema de pontos</span>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto para Trabalhador Qualificado</h3>
+              <span class="visa-name-orig">Visa for Skilled Workers</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Trabalhadores qualificados</span>
+                <span class="visa-tag">Profissionais com qualificacao formal ou experiencia profissional</span>
+                <span class="visa-tag">Oferta de emprego na Alemanha</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto para trabalhadores qualificados que desejam trabalhar na Alemanha. Adequado para profissionais com qualificacao reconhecida.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Qualificacao profissional reconhecida ou experiencia profissional extensa</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
             </div>
-            <div class="visa-body">
-              <p style="font-size: 14px; color: var(--body); line-height: 1.6; margin-top: var(--s-lg);">
-                Visto para busca de emprego na Alemanha. Permite entrar no país e buscar trabalho por até 1 ano.
-                Exige qualificação reconhecida como trabalhador qualificado ou pontuação suficiente em sistema de pontos
-                que considera idioma alemão, experiência, qualificação e laços com a Alemanha.
-                Após conseguir emprego, converte para visto de trabalho.
-              </p>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
             </div>
+            
           </div>
-
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto para Trabalhadores com Experiencia Profissional</h3>
+              <span class="visa-name-orig">Visa for Professionally Experienced Workers</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Profissionais com qualificacao estrangeira</span>
+                <span class="visa-tag">Experiencia profissional extensa</span>
+                <span class="visa-tag">Trabalho em profissao nao regulamentada</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Nacionais de paises terceiros com qualificacao estrangeira e experiencia profissional extensa tem a oportunidade de trabalhar em uma profissao nao regulamentada na Alemanha, mesmo que sua qualificacao nao seja formalmente reconhecida.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Qualificacao estrangeira; Experiencia profissional extensa</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Adequado para profissionais cuja qualificacao nao foi formalmente reconhecida na Alemanha, mas que possuem experiencia profissional relevante.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto para Profissionais de TI</h3>
+              <span class="visa-name-orig">Visa Options for IT Professionals</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Profissionais qualificados em TI</span>
+                <span class="visa-tag">Profissionais experientes em TI</span>
+                <span class="visa-tag">Com ou sem certificado de qualificacao formal</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Na Alemanha, trabalhadores qualificados e experientes em TI estao em alta demanda. Vindos do exterior, ha muitas opcoes para receber um visto de trabalho - com ou sem certificado de qualificacao formal.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Qualificacao ou experiencia em TI (certificado formal nao e sempre obrigatorio)</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Profissionais de TI tem multiplas opcoes de visto, mesmo sem qualificacao formal. Alta demanda no mercado alemao.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto de trabalho para profissionais qualificados</h3>
+              <span class="visa-name-orig">Work visa for qualified professionals</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Conclusão de estudos acadêmicos ou treinamento vocacional qualificado na Alemanha ou no exterior</span>
+                <span class="visa-tag">Qualificação reconhecida na Alemanha ou comparável a uma qualificação acadêmica alemã</span>
+                <span class="visa-tag">Oferta de trabalho específica de um empregador na Alemanha</span>
+                <span class="visa-tag">O emprego deve ser uma posição qualificada (requer qualificação acadêmica ou treinamento vocacional qualificado)</span>
+                <span class="visa-tag">Se maiores de 45 anos em primeira vinda: salário bruto anual mínimo de € 55.770 (a partir de 2026) ou comprovação de provisão de pensão adequada</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto de residência para profissionais qualificados que concluíram estudos acadêmicos ou treinamento vocacional qualificado na Alemanha ou no exterior e desejam trabalhar em empregos qualificados na Alemanha.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                <div class="visa-field">
+              <span class="visa-field-label">Renda mínima</span>
+              <span class="visa-field-value mono">EUR 55.770/ano</span>
+            </div>
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Qualificação acadêmica ou treinamento vocacional qualificado reconhecido; Licença de prática profissional para profissões regulamentadas</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">A Agência Federal de Emprego (BA) deve aprovar seu emprego. Durante este processo, a BA avaliará se suas condições de emprego (salário, horário de trabalho, etc.) correspondem às dos colaboradores domésticos.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Após aprovação da BA, solicitar o visto de residência junto às autoridades competentes</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 3 anos</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">A licença de residência é emitida por um máximo de 4 anos. Se o contrato de trabalho for por período mais curto, a licença será emitida pela duração do contrato mais 3 meses adicionais. O emprego deve estar relacionado a uma posição qualificada; tarefas auxiliares não são suficientes. Nenhum requisito específico de nível de idioma alemão foi mencionado na página. O conteúdo não forneceu informações sobre tempo médio de processamento detalhado.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Opportunity Card</h3>
+              <span class="visa-name-orig">Chancenkarte</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Trabalhador qualificado reconhecido</span>
+                <span class="visa-tag">Elegível pelo sistema de pontos</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto para busca de emprego na Alemanha. Permite que trabalhadores qualificados e pessoas elegíveis pelo sistema de pontos procurem por uma oferta de trabalho na Alemanha sem ter um emprego já contratado.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil ou no destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">A página menciona que existem critérios de elegibilidade relacionados a diploma, experiência, idioma e idade, bem como um sistema de pontos, mas os detalhes específicos não estão disponíveis no conteúdo fornecido. A página convida o usuário a usar uma ferramenta de auto-verificação para verificar a elegibilidade.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Residência Permanente (Skilled Worker)</h3>
+              <span class="visa-name-orig">Niederlassungserlaubnis für Fachkräfte</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ter completado treinamento vocacional qualificado na Alemanha ou possuir qualificação vocacional estrangeira equivalente</span>
+                <span class="visa-tag">Possuir diploma universitário alemão, reconhecido ou comparável</span>
+                <span class="visa-tag">Ser titular de EU Blue Card</span>
+                <span class="visa-tag">Ser pesquisador internacional conforme Diretiva (EU) 2016/801</span>
+                <span class="visa-tag">Ter um contrato de trabalho na Alemanha</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência permanente para trabalhadoras qualificadas que já estejam residindo na Alemanha com um visto temporário. Permite viver permanentemente na Alemanha com a família e trabalhar como empregado ou autônomo sem restrições.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Formação vocacional qualificada completa na Alemanha ou equivalente estrangeiro reconhecido; Ou diploma universitário alemão ou equivalente estrangeiro reconhecido</span>
+            </div>
+                <div class="visa-field">
+              <span class="visa-field-label">Idioma</span>
+              <span class="visa-field-value">Alemão — B1 (CEFR)</span>
+            </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Compilar todos os documentos necessários conforme exigido pela autoridade de estrangeiros local</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Agendar consulta na autoridade de estrangeiros (Ausländerbehörde) local para requerer a permissão de residência permanente</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Apresentar todos os documentos necessários na autoridade de estrangeiros</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">A autoridade de estrangeiros processa a aplicação</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 150</span><div class="visa-field-label" style="margin-top:4px;">Taxa de aproximadamente €150, o valor exato varia de acordo com o status e deve ser confirmado com a autoridade de estrangeiros local no momento da aplicação</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Esta é a autorização de residência permanente principal na Alemanha. Requer 3 anos de residência anterior com um visto de trabalho qualificado (Seções 18a, 18b, 18d ou 18g da Lei de Residência). Permite liberdade total de emprego e residência familiar.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Residência Permanente (EU Blue Card)</h3>
+              <span class="visa-name-orig">Niederlassungserlaubnis für EU Blue Card Inhaber</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ser titular de EU Blue Card (conforme Seção 18g da Lei de Residência)</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência permanente com condições facilitadas para titulares de EU Blue Card, permitindo residência permanente e trabalho após período reduzido.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Ser titular de EU Blue Card</span>
+            </div>
+                <div class="visa-field">
+              <span class="visa-field-label">Idioma</span>
+              <span class="visa-field-value">Alemão — A1 (CEFR) ou B1 para redução de período</span>
+            </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Compilar documentos necessários, principalmente comprovante de EU Blue Card e contribuições ao seguro social</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Agendar consulta na autoridade de estrangeiros local</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Apresentar documentação na autoridade de estrangeiros</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Condições facilitadas para titulares de EU Blue Card. Requer apenas 27 meses de emprego qualificado e contribuições ao seguro social (reduzível para 21 meses com alemão B1). Nível de alemão A1 mínimo (comparado a B1 para outros skilled workers).</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Residência Permanente (Formação Vocacional ou Acadêmica)</h3>
+              <span class="visa-name-orig">Niederlassungserlaubnis nach Berufsausbildung oder Hochschulabschluss</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ter completado com sucesso educação superior ou treinamento vocacional na Alemanha</span>
+                <span class="visa-tag">Ter um visto de trabalho como skilled worker (Seções 18a, 18b, 18d ou 18g)</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência permanente com condições facilitadas para aqueles que completaram treinamento vocacional ou educação superior na Alemanha.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Conclusão bem-sucedida de educação superior na Alemanha; Ou conclusão bem-sucedida de treinamento vocacional na Alemanha</span>
+            </div>
+                <div class="visa-field">
+              <span class="visa-field-label">Idioma</span>
+              <span class="visa-field-value">Alemão — B1 (CEFR)</span>
+            </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Compilar certificados de conclusão e documentos de contribuições ao seguro social</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Agendar consulta na autoridade de estrangeiros local</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Apresentar documentação na autoridade de estrangeiros</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 150</span><div class="visa-field-label" style="margin-top:4px;">Taxa de aproximadamente €150, o valor exato varia e deve ser confirmado com a autoridade de estrangeiros local</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Requer apenas 2 anos de visto de trabalho de skilled worker (em vez de 3) e 24 meses de contribuições ao seguro social (em vez de 36). Aplicável apenas para quem completou formação na Alemanha.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Residência Permanente (Profissionais Altamente Qualificados)</h3>
+              <span class="visa-name-orig">Niederlassungserlaubnis für hochqualifizierte Arbeitskräfte</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ser cientista com conhecimento técnico especial</span>
+                <span class="visa-tag">Ser professor em posição proeminente com vários anos de experiência profissional</span>
+                <span class="visa-tag">Outros profissionais altamente qualificados em casos especiais</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência permanente que pode ser concedida imediatamente mediante entrada na Alemanha para profissionais altamente qualificados em casos especiais, sem período de espera obrigatório.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Educação acadêmica/treinamento de nível superior; Conhecimento técnico especial ou posição proeminente; Anos de experiência profissional relevante</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil ou no destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Reunir todos os documentos necessários (idealmente antes de entrar na Alemanha)</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Requerimento de visto para entrada na Alemanha ou contato com autoridade de estrangeiros</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">A permissão de residência permanente pode ser concedida imediatamente mediante entrada</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Categoria especial que permite concessão imediata de permissão permanente sem período obrigatório de residência anterior. Aplicável a cientistas com conhecimento técnico especial e professores em posições proeminentes com experiência profissional comprovada.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Residência Permanente da UE</h3>
+              <span class="visa-name-orig">Dauerhafte Aufenthaltserlaubnis in der EU</span>
+              <div class="visa-tags">
+                <span class="visa-tag">Ter residência legal na Alemanha por pelo menos 5 anos</span>
+                <span class="visa-tag">Ser capaz de se autossustentar financeiramente e sustentar membros da família</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência permanente comparável à Niederlassungserlaubnis que permite migração para quase todos os países da UE com condições facilitadas de residência.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Idioma</span>
+              <span class="visa-field-value">Alemão — Suficiente (nível específico não determinado)</span>
+            </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Residir legalmente na Alemanha por pelo menos 5 anos</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Compilar documentos comprovando residência legal e cumprimento de requisitos</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Apresentar documentação na autoridade de estrangeiros</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Requer 5 anos de residência legal (comparado a 3 anos para Niederlassungserlaubnis de skilled workers) e 60 meses de contribuições ao seguro social (comparado a 36 meses). Não disponível para certos vistos (educação, razões humanitárias específicas). Permite migração facilitada dentro da UE.</div>
+          </div>
+        </div>
         </div>
       </div>
     </section>
   </div>
 
+  
   <div class="tab-panel" id="brasileiros">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Condições específicas para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que muda para você</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
         <div class="br-grid">
-          <div class="br-card highlight">
-            <span class="br-label">Schengen — entrada</span>
-            <span class="br-value yes">Sim</span>
-            <p class="br-desc">A Alemanha integra o Espaço Schengen. Brasileiros podem entrar sem visto para turismo por até 90 dias em cada período de 180.</p>
-          </div>
-          <div class="br-card warning">
-            <span class="br-label">Work permit exigido</span>
-            <span class="br-value no">Sim</span>
-            <p class="br-desc">Brasileiros precisam de visto de trabalho válido para exercer qualquer atividade remunerada na Alemanha. O visto de turismo não permite trabalhar.</p>
-          </div>
-          <div class="br-card warning">
-            <span class="br-label">Reconhecimento de diploma</span>
-            <span class="br-value no">Obrigatório</span>
-            <p class="br-desc">O diploma brasileiro precisa ser reconhecido na Alemanha para a maioria dos vistos. O processo pode levar de semanas a meses via anabin ou processo formal de reconhecimento.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Idioma necessário</span>
-            <span class="br-value" style="font-size: 18px;">Alemão (integração)</span>
-            <p class="br-desc">Não há exigência formal de alemão para o visto de trabalho inicial (especialmente Blue Card). Porém, alemão A1 ou B1 acelera o acesso à residência permanente. Muitas multinacionais operam em inglês.</p>
-          </div>
-          <div class="br-card" style="grid-column: 1 / -1;">
-            <span class="br-label">Acordo especial Brasil-Alemanha</span>
-            <span class="br-value" style="color: var(--muted); font-size: 18px;">Nenhum</span>
-            <p class="br-desc">Não existe acordo bilateral específico entre Brasil e Alemanha para reconhecimento de diplomas ou Working Holiday. O caminho é pelos vistos padrões da UE. Brasileiros são tratados como nacionais de países terceiros.</p>
-          </div>
+          
+        <div class="br-card warning">
+          <span class="br-label">Schengen — entrada sem visto</span>
+          <span class="br-value no">Não</span>
+          <p class="br-desc">Alemanha não é parte do Espaço Schengen. Brasileiros precisam de visto de turista separado.</p>
+        </div>
+          
+        <div class="br-card warning">
+          <span class="br-label">Trabalhar sem autorização</span>
+          <span class="br-value no">Não permitido</span>
+          <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Permanência máxima como turista</span>
+          <span class="br-value">90 dias</span>
+          <p class="br-desc">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Acordos bilaterais com o Brasil</span>
+          <span class="br-value no" style="color:var(--muted);">Nenhum</span>
+          <p class="br-desc">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e Alemanha. O caminho é pelos vistos padrão.</p>
+        </div>
+          
+        <div class="br-card" style="grid-column:1/-1;">
+          <span class="br-label">Observações para brasileiros</span>
+          <p class="br-desc">Brasileiros requerem visto de trabalho para a Alemanha. As informações nesta página referem-se aos requisitos para residência permanente após obtenção de um visto de trabalho temporário como skilled worker (fachkraft) ou EU Blue Card holder.</p>
+        </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="requisitos">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Requisitos gerais</h2>
         <div class="req-list">
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte com validade mínima de 6 meses após a data de entrada</span><span class="req-note">Obrigatório</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Reconhecimento de qualificação — diploma universitário ou formação profissional equivalente na Alemanha</span><span class="req-note">Ver anabin.kmk.org</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Oferta de emprego específica de empregador alemão para posição qualificada</span><span class="req-note">Por escrito</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Certidão de antecedentes criminais</span><span class="req-note">Apostilada</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Comprovante de fundos: conta bloqueada (Sperrkonto) com mínimo EUR 11.208/ano (EUR 934/mês) para visto de qualificação profissional. Para EU Blue Card com contrato de trabalho acima do salário mínimo, conta bloqueada não é exigida.</span><span class="req-note">EUR 11.208/ano</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Seguro saúde (Krankenversicherung) obrigatório. Para visto Schengen de curta duração: cobertura mínima de EUR 30.000. Para visto de longa duração: seguro privado ou público com cobertura total.</span><span class="req-note">Mín. EUR 30.000</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Aprovação da Agência Federal de Emprego (Bundesagentur für Arbeit) — exigida para algumas categorias</span><span class="req-note">Ver cada visto</span></div>
+          
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Passaporte — Mínimo 6 meses após a data de entrada</span>
+            <span class="req-note">Verificar antes de iniciar</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 11.208/ano. Para visto de qualificação profissional: conta bloqueada (Sperrkonto) com mínimo EUR 11.208/ano (EUR 934/mês de 2024). Para EU Blue Card: sem conta bloqueada se já houver contrato de trabalho com salário acima do mínimo.</span>
+            <span class="req-note">Ver cada visto</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Seguro saúde obrigatório. Para visto de longa duração: seguro saúde privado ou público (Krankenversicherung) é obrigatório. Para visto Schengen de curta duração: cobertura mínima de EUR 30.000.</span>
+            <span class="req-note">Cobertura mín. EUR 30.000</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Certidão de antecedentes criminais (apostilada)</span>
+            <span class="req-note">Apostila de Haia</span>
+          </div>
+        </div>
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p class="body-sm" style="color:var(--muted);margin:0;">
+            Requisitos extraídos de <span style="color:var(--primary);">www.make-it-in-germany.com, www.make-it-in-germany.com</span> em mai/2026.
+            Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.
+          </p>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="mudancas">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Histórico de alterações detectadas</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
-        <div style="padding: var(--s-xl); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); text-align: center;">
-          <p style="font-size: 14px; color: var(--muted); margin: 0;">Nenhuma mudança detectada nesta extração (mai/2026). Os limiares de renda do EU Blue Card são atualizados anualmente.</p>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Mudanças recentes</h2>
+        <div class="timeline">
+          
+          <div class="timeline-entry">
+            <div class="timeline-date">
+              <span class="timeline-date-str">2026-01-01</span>
+              <span class="sev-medium">Relevância média</span>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Atualização do salário mínimo para maiores de 45 anos</h3>
+              <p class="timeline-summary">O salário bruto anual mínimo para candidatos maiores de 45 anos em primeira vinda foi estabelecido em € 55.770 a partir de 2026.</p>
+              <div class="timeline-affects"><span class="affect-pill">salário mínimo</span><span class="affect-pill">elegibilidade para maiores de 45 anos</span></div>
+            </div>
+          </div>
         </div>
-        <div style="margin-top: var(--s-xl); text-align: center;">
+        <div style="margin-top:var(--s-xl);text-align:center;">
           <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="fontes">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Transparência total</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Fontes usadas na extração</h2>
+        <p class="body-md" style="max-width:600px;margin-bottom:var(--s-xl);">
+          Todos os dados foram extraídos das URLs abaixo em mai/2026. Clique para ver a fonte original.
+        </p>
         <div class="sources-list">
+          
           <div class="source-item">
-            <div><div class="source-url">make-it-in-germany.com/en/visa-residence/types</div><div class="source-meta">Portal oficial do governo alemão para imigração de profissionais qualificados</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.make-it-in-germany.com/en/visa-residence/types" target="_blank" rel="noopener noreferrer">www.make-it-in-germany.com/en/visa-residence/types</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">make-it-in-germany.com/en/visa-residence/types/eu-blue-card</div><div class="source-meta">EU Blue Card — portal make-it-in-germany</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals" target="_blank" rel="noopener noreferrer">www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">make-it-in-germany.com/en/visa-residence/opportunity-card</div><div class="source-meta">Chancenkarte (Opportunity Card)</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.make-it-in-germany.com/en/visa-residence/opportunity-card" target="_blank" rel="noopener noreferrer">www.make-it-in-germany.com/en/visa-residence/opportunity-card</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <div>
+              <a class="source-url" href="https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card" target="_blank" rel="noopener noreferrer">www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <div>
+              <a class="source-url" href="https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit" target="_blank" rel="noopener noreferrer">www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <div style="display:flex;align-items:center;gap:var(--s-md);">
+            <span class="badge">Confiança média</span>
+            <span class="body-sm" style="color:var(--muted);">
+              Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
+            </span>
           </div>
         </div>
       </div>
     </section>
   </div>
-
-
+  
   <div class="tab-panel" id="guia">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Guia prático para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Como se legalizar na Alemanha</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Como se legalizar em Alemanha</h2>
         <div class="guide-intro">
-          <p>A Alemanha tem um dos processos de imigração mais organizados da Europa, mas também um dos mais burocráticos. A boa notícia: com documentos corretos e paciência, o processo é previsível. A Chancenkarte (Cartão de Oportunidade) abriu uma nova via para brasileiros qualificados desde 2024.</p>
+          <p>Resumo das etapas principais baseado em dados extraídos em mai/2026. Este guia é simplificado, consulte sempre as fontes oficiais para o seu caso específico.</p>
         </div>
 
         <div class="guide-phases">
-
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 01</span>
               <div>
-                <h3 class="phase-title">Antes de embarcar</h3>
-                <p class="phase-subtitle">Visto obrigatório — sem exceção para trabalho</p>
+                <h3 class="phase-title">Documentação essencial</h3>
+                <p class="phase-subtitle">Prepare estes documentos antes de iniciar o processo</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Solicitar visto de trabalho ou Chancenkarte no Consulado Alemão</h4>
-                  <p class="step-desc">Para trabalhadores qualificados: visto de Fachkräfte (trabalhador especializado) com oferta de emprego confirmada. Para a Chancenkarte: sistema de pontos baseado em qualificação, experiência, idade e alemão — sem precisar de oferta de emprego, mas com comprovação de subsistência por 12 meses. Documentos: diplomas reconhecidos (ou com avaliação anabin/KMK), contrato, comprovantes financeiros e passaporte.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 4 a 12 semanas</span>
-                    <span class="step-tag custo">Custo: €75</span>
-                    <span class="step-tag orgao">Consulado Alemão no Brasil</span>
-                  </div>
+                  <h4 class="step-heading">Passaporte válido</h4>
+                  <p class="step-desc">Validade mínima: Mínimo 6 meses após a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Certidão de antecedentes criminais</h4>
+                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">2</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Reconhecimento de diplomas (Anerkennung)</h4>
-                  <p class="step-desc">Diplomas brasileiros precisam ser reconhecidos pela autoridade alemã competente antes ou durante o pedido de visto. Use o portal anabin.kmk.org para verificar o status do seu diploma. Para profissões regulamentadas (medicina, engenharia, etc.) o processo é mais demorado e pode exigir exame de equivalência.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 1 a 6 meses</span>
-                    <span class="step-tag orgao">Anabin / ANABIN / IHK</span>
-                  </div>
+                  <h4 class="step-heading">Seguro saúde</h4>
+                  <p class="step-desc">Para visto de longa duração: seguro saúde privado ou público (Krankenversicherung) é obrigatório. Para visto Schengen de curta duração: cobertura mínima de EUR 30.000.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Comprovante de fundos</h4>
+                  <p class="step-desc">Mínimo EUR 11.208/ano. Para visto de qualificação profissional: conta bloqueada (Sperrkonto) com mínimo EUR 11.208/ano (EUR 934/mês de 2024). Para EU Blue Card: sem conta bloqueada se já houver contrato de trabalho com salário acima do mínimo.</p>
                 </div>
               </div>
             </div>
           </div>
 
+          
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 02</span>
               <div>
-                <h3 class="phase-title">Primeiros dias na Alemanha</h3>
-                <p class="phase-subtitle">Registro obrigatório nas primeiras semanas</p>
+                <h3 class="phase-title">Processo do visto: EU Blue Card</h3>
+                <p class="phase-subtitle">Realizado no Brasil antes de embarcar</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">3</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Anmeldung: registrar endereço no Einwohnermeldeamt</h4>
-                  <p class="step-desc">O Anmeldung é o registro de endereço obrigatório na repartição municipal (Bürgeramt / Einwohnermeldeamt). Sem ele, não é possível abrir conta, obter número fiscal ou assinar contratos. Leve passaporte, visto e Wohnungsgeberbestätigung (confirmação do senhorio). Obrigatório em até 14 dias da chegada.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Obrigatório em até 14 dias</span>
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">Bürgeramt / Einwohnermeldeamt</span>
-                  </div>
+                  <h4 class="step-heading">Obtenção de contrato de trabalho</h4>
+                  <p class="step-desc">Encontrar e assegurar contrato de trabalho específico com empresa na Alemanha com duração mínima de 6 meses que corresponde à sua qualificação</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">4</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Receber Steueridentifikationsnummer (número fiscal)</h4>
-                  <p class="step-desc">Após o Anmeldung, o Finanzamt envia automaticamente por carta o número de identificação fiscal em 2 a 4 semanas. Este número é necessário para o empregador calcular o imposto de renda. Guarde-o com cuidado — é permanente e não muda.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 2 a 4 semanas (carta)</span>
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">Finanzamt</span>
-                  </div>
+                  <h4 class="step-heading">Reconhecimento de qualificação (se necessário)</h4>
+                  <p class="step-desc">Para qualificações estrangeiras, obter reconhecimento de equivalência com qualificação alemã ou confirmar correspondência com ISCED 2011 nível 6</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">5</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Abrir conta bancária</h4>
-                  <p class="step-desc">Com Anmeldung e passaporte, abra conta em um banco alemão. Opções acessíveis: Deutsche Bank, Commerzbank, ING Deutschland (online, sem taxa). Neobancos como N26 e DKB são populares entre imigrantes por serem 100% digitais e sem anuidade.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 1 a 7 dias</span>
-                  </div>
+                  <h4 class="step-heading">Preparação de documentação</h4>
+                  <p class="step-desc">Preparar documentação incluindo qualificação acadêmica, contrato de trabalho, prova de salário e outros documentos obrigatórios</p>
+                  
                 </div>
               </div>
-              <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">6</div><div class="step-line"></div></div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Contratar seguro de saúde obrigatório (Krankenversicherung)</h4>
-                  <p class="step-desc">O seguro de saúde é obrigatório na Alemanha. Para empregados, o empregador inscreve automaticamente no sistema público (gesetzliche Krankenversicherung — GKV) e desconta cerca de 7,3% do salário. As principais seguradoras públicas são AOK, TK (Techniker), Barmer. Trabalhadores autônomos podem optar pelo seguro privado.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Obrigatório para todos os residentes</span>
-                    <span class="step-tag custo">Custo: ~14,6% do salário (50% empregador)</span>
-                    <span class="step-tag orgao">Gesetzliche Krankenkasse (TK, AOK, Barmer)</span>
-                  </div>
+                  <h4 class="step-heading">Aprovação da Federal Employment Agency (se aplicável)</h4>
+                  <p class="step-desc">Se for profissão de escassez ou profissional iniciante, obter aprovação da Federal Employment Agency (BA)</p>
+                  
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">5</div>
+                  
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Aplicação do visto</h4>
+                  <p class="step-desc">Submeter aplicação do visto junto à embaixada ou consulado alemão no país de origem</p>
+                  
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 03</span>
-              <div>
-                <h3 class="phase-title">Autorização de residência (Aufenthaltstitel)</h3>
-                <p class="phase-subtitle">Regularização formal junto à Ausländerbehörde</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">7</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Agendar na Ausländerbehörde para converter visto em Aufenthaltstitel</h4>
-                  <p class="step-desc">O visto de entrada (emitido no Brasil) deve ser convertido em Aufenthaltstitel (autorização de residência alemã) antes de vencer. Agende no site da Ausländerbehörde da sua cidade assim que chegar — as filas são longas especialmente em Berlim, Munique e Frankfurt. Leve: passaporte, Anmeldung, contrato de trabalho, biometria e foto.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Agendar imediatamente após chegada</span>
-                    <span class="step-tag custo">Custo: €100 a €147</span>
-                    <span class="step-tag orgao">Ausländerbehörde da cidade</span>
-                  </div>
-                </div>
-              </div>
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">8</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Renovar antes do vencimento e planejar residência permanente</h4>
-                  <p class="step-desc">Após 4 anos de residência com contribuição ao seguro de pensão e proficiência em alemão B1, é possível solicitar a Niederlassungserlaubnis (permissão de residência permanente). Trabalhadores de alta qualificação podem solicitá-la em apenas 21 meses.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Residência permanente: após 21 a 48 meses</span>
-                    <span class="step-tag orgao">Ausländerbehörde</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <div class="guide-disclaimer">
-          <p>Este guia é informativo e baseado nas regras vigentes em mai/2026. A legislação de imigração alemã (Aufenthaltsgesetz) muda com frequência. Confirme sempre em bamf.de e make-it-in-germany.com, e consulte um Rechtsanwalt (advogado) de direito de imigração se necessário.</p>
+          <p>Guia gerado automaticamente a partir de dados de mai/2026. Requisitos e prazos mudam com frequência por regulamentação do governo de Alemanha. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
         </div>
       </div>
     </section>
@@ -593,12 +1287,13 @@
 
 </main>
 
+<!-- CTA BAND -->
 <section>
   <div class="container">
     <div class="cta-band-yellow">
       <div>
         <h2>Comparar com outros países</h2>
-        <p>Veja a Alemanha lado a lado com Países Baixos, Portugal ou Irlanda. Todos os critérios na mesma tabela.</p>
+        <p>Veja Alemanha lado a lado com outros destinos. Todos os critérios na mesma tabela.</p>
       </div>
       <div class="actions">
         <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
@@ -608,29 +1303,59 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
-        <p class="body-sm" style="max-width: 300px; color: var(--muted);">Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.</p>
+        <a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width:300px;color:var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.
+        </p>
       </div>
       <div>
         <h4>Países</h4>
         <ul>
           <li><a href="pais-nl.html">Países Baixos</a></li>
           <li><a href="pais-pt.html">Portugal</a></li>
-          <li><a href="pais-de.html" style="color:var(--on-dark);">Alemanha</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
           <li><a href="pais-ie.html">Irlanda</a></li>
           <li><a href="paises.html">Ver todos →</a></li>
         </ul>
       </div>
-      <div><h4>Ferramentas</h4><ul><li><a href="comparar.html">Comparar países</a></li><li><a href="qual-pais.html">Qual país é o meu?</a></li><li><a href="calculadora.html">Calculadora</a></li><li><a href="historico.html">Histórico</a></li></ul></div>
-      <div><h4>Projeto</h4><ul><li><a href="sobre.html">Sobre</a></li><li><a href="sobre.html#metodologia">Metodologia</a></li><li><a href="sobre.html#contribuir">Contribuir</a></li>
-          <li><a href="dev.html">Dev</a></li></ul></div>
-      <div><h4>Dados</h4><ul><li><a href="#">GitHub</a></li><li><a href="#">JSON direto</a></li><li><a href="historico.html">RSS de mudanças</a></li></ul></div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span><span class="caption-up">Última extração: mai/2026</span></div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span class="caption-up">Última extração: mai/2026</span>
+    </div>
   </div>
 </footer>
 
@@ -646,7 +1371,9 @@
       document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   })
-  function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
+  function toggleVisa(head) {
+    head.closest('.visa-card').classList.toggle('open')
+  }
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
+  /* ---- country hero ---- */
   .country-hero { padding: var(--s-xxl) 0; border-bottom: 1px solid var(--hairline); }
   .hero-row { display: flex; align-items: center; gap: var(--s-xl); flex-wrap: wrap; }
   .hero-flag { width: 64px; height: 46px; border-radius: 6px; display: block; flex-shrink: 0; }
   .hero-info { flex: 1; min-width: 200px; }
   .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: var(--on-dark); line-height: 1.1; margin: 0 0 var(--s-sm); }
   .hero-badges { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
-  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10, 10, 10, 0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
+  /* ---- sticky subheader + tabs ---- */
+  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10,10,10,0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
   .sticky-inner { display: flex; align-items: center; gap: var(--s-lg); height: 52px; }
   .sticky-id { display: flex; align-items: center; gap: var(--s-sm); flex-shrink: 0; }
   .sticky-flag { width: 24px; height: 18px; border-radius: 3px; display: block; }
@@ -25,19 +27,20 @@
   .tab-btn { height: 52px; padding: 0 var(--s-lg); font-size: 14px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap; transition: color 120ms ease, border-color 120ms ease; }
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
+  /* ---- quick summary ---- */
   .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
   .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
   .qs-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); line-height: 1.1; }
+  .qs-value.accent { color: var(--primary); }
   .qs-value.positive { color: var(--accent-emerald); }
+  .qs-value.negative { color: var(--muted); }
   .qs-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .diff-dots { display: flex; gap: 4px; align-items: center; margin-bottom: 2px; }
-  .diff-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .diff-dot.filled { background: var(--on-dark); }
-  .diff-dot.empty { background: var(--hairline-strong); }
+  /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+  /* ---- visa cards ---- */
   .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
   .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
   .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
@@ -47,7 +50,7 @@
   .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
   .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240, 180, 41,0.1); color: var(--primary); border-color: rgba(240, 180, 41,0.2); }
+  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
   .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
   .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
   .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
@@ -60,22 +63,24 @@
   .visa-field-value.mono { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--primary); font-size: 16px; }
   .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
-  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
   .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
   .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-sm); }
   .right-item { display: flex; align-items: center; gap: var(--s-xs); font-size: 13px; color: var(--body); }
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
-  .br-card.highlight { border-color: rgba(240, 180, 41,0.3); background: rgba(240, 180, 41,0.05); }
+  .br-card.highlight { border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.05); }
   .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
   .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
   .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
   .br-value.yes { color: var(--accent-emerald); }
   .br-value.no { color: var(--accent-rose); }
   .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
+  /* ---- requisitos gerais ---- */
   .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); }
   .req-icon { font-size: 16px; width: 20px; text-align: center; }
@@ -83,6 +88,7 @@
   .req-icon.req { color: var(--accent-blue); }
   .req-text { font-size: 14px; color: var(--body-strong); }
   .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  /* ---- mudanças recentes ---- */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
   .timeline-entry + .timeline-entry { border-top: 1px solid var(--hairline); }
@@ -94,23 +100,47 @@
   .timeline-affects { font-size: 12px; color: var(--muted); display: flex; gap: var(--s-xs); flex-wrap: wrap; }
   .affect-pill { padding: 2px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); border: 1px solid var(--hairline); }
   .sev-high { background: rgba(239,68,68,0.12); color: var(--accent-rose); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  .sev-medium { background: rgba(59,130,246,0.12); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  .sev-low { background: var(--surface-elevated); color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  /* ---- fontes ---- */
   .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
   .source-item { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-lg); display: grid; grid-template-columns: 1fr auto; gap: var(--s-lg); align-items: start; }
   .source-url { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; word-break: break-all; margin-bottom: var(--s-xs); }
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
-  @media (max-width: 1024px) { .quick-summary { grid-template-columns: repeat(2, 1fr); } .qs-item:nth-child(2n+1) { border-left: none; } .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); } .visa-grid { grid-template-columns: 1fr; } .br-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .hero-name { font-size: 28px; } .tabs { margin-left: 0; } .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); } .quick-summary { grid-template-columns: 1fr 1fr; } .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); } .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); } .req-item { grid-template-columns: auto 1fr; } .req-note { display: none; } .rights-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1024px) {
+    .quick-summary { grid-template-columns: repeat(2, 1fr); }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .visa-grid { grid-template-columns: 1fr; }
+    .br-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero-name { font-size: 28px; }
+    .tabs { margin-left: 0; }
+    .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
+    .sticky-id { padding-top: var(--s-xs); }
+    .quick-summary { grid-template-columns: 1fr 1fr; }
+    .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
+    .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
+    .req-item { grid-template-columns: auto 1fr; }
+    .req-note { display: none; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
+<!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="home.html"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
+    <a class="logo" href="home.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+      <span>Rota Legal</span>
+    </a>
     <div class="nav-links">
-      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
@@ -121,12 +151,13 @@
       <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
       <a class="btn btn-primary" href="comparar.html">Comparar</a>
     </div>
-      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<!-- ============== MOBILE DRAWER ============== -->
+
+<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
   <div class="mobile-drawer-backdrop" data-close></div>
   <aside class="mobile-drawer-panel">
@@ -150,6 +181,7 @@
   </aside>
 </div>
 
+<!-- COUNTRY HERO -->
 <div class="country-hero">
   <div class="container">
     <div class="hero-row">
@@ -157,10 +189,10 @@
       <div class="hero-info">
         <h1 class="hero-name">Espanha</h1>
         <div class="hero-badges">
-          <span class="badge up"><span class="pulse"></span>Alta confiança</span>
+          <span class="badge up"><span class="pulse"></span>Confiança média</span>
           <span class="badge">Schengen</span>
-          <span class="badge new">Visto Nômade Digital</span>
-          <span class="badge">Vantagem ibero-americana</span>
+          <span class="badge">Work Permit exigido</span>
+          
           <span class="badge new">Atualizado mai/2026</span>
         </div>
       </div>
@@ -168,6 +200,7 @@
   </div>
 </div>
 
+<!-- STICKY SUBHEADER + TABS -->
 <div class="country-sticky" id="sticky">
   <div class="container">
     <div class="sticky-inner">
@@ -187,517 +220,776 @@
   </div>
 </div>
 
+<!-- QUICK SUMMARY -->
 <div class="quick-summary">
   <div class="qs-item">
-    <span class="qs-label">Dificuldade estimada</span>
-    <div class="diff-dots">
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot empty"></span>
-    </div>
-    <span class="qs-sub">Média — 3 a 6 meses de processo</span>
-  </div>
-  <div class="qs-item">
-    <span class="qs-label">Renda mínima (Nômade Digital)</span>
-    <span class="qs-value">EUR 2.646</span>
-    <span class="qs-sub">por mês (200% do SMI 2026: EUR 1.323)</span>
-  </div>
-  <div class="qs-item">
-    <span class="qs-label">Trabalho autônomo</span>
+    <span class="qs-label">Entrada sem visto (Schengen)</span>
     <span class="qs-value positive">Sim</span>
-    <span class="qs-sub">Via conta própria ou Nômade Digital</span>
+    <span class="qs-sub">Até 90 dias por turismo</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Cidadania ibero-americana</span>
-    <span class="qs-value">2 anos</span>
-    <span class="qs-sub">Prazo reduzido para brasileiros</span>
+    <span class="qs-label">Tipos de visto monitorados</span>
+    <span class="qs-value accent">5</span>
+    <span class="qs-sub">4 de relevância direta</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Work permit exigido</span>
+    <span class="qs-value negative">Sim</span>
+    <span class="qs-sub">Autorização obrigatória para trabalhar</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Dados atualizados em</span>
+    <span class="qs-value">mai/2026</span>
+    <span class="qs-sub">Extração automática mensal</span>
   </div>
 </div>
 
+<!-- TAB CONTENT -->
 <main>
 
+  <!-- ABA: VISTOS -->
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">5 tipos de autorização monitorados</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Opções de visto de trabalho</h2>
+        <div class="eyebrow">5 tipos de visto monitorados</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
         <div class="visa-list">
-
-          <div class="visa-card open">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Visto de Nômade Digital</h3>
-                <span class="visa-name-orig">Visado de nómada digital (Ley de Startups 28/2022)</span>
-                <div class="visa-tags">
-                  <span class="visa-tag hl">Destaque</span>
-                  <span class="visa-tag">Trabalho remoto</span>
-                  <span class="visa-tag">Empresa estrangeira</span>
-                  <span class="visa-tag">Benefício fiscal</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Renda mínima mensal</span>
-                    <span class="visa-field-value mono">EUR 2.646</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Empregador</span>
-                    <span class="visa-field-value">Empresa fora da Espanha (até 20% do tempo pode ser para empresa espanhola)</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Qualificação</span>
-                    <span class="visa-field-value">Diploma universitário ou formação profissional, ou mínimo 3 anos de experiência</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Validade inicial</span>
-                    <span class="visa-field-value">Até 1 ano, renovável por até 5 anos</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Solicitar visto no consulado espanhol no Brasil</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Análise e decisão em até 30 dias</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Entrada na Espanha e solicitação do TIE em até 1 mês</span></div>
-                  </div>
-                  <div style="margin-top:var(--s-md);">
-                    <p class="visa-section-title">Taxa</p>
-                    <span class="visa-field-value mono" style="font-size:20px;">EUR 80</span>
-                    <div style="font-size:12px;color:var(--muted);margin-top:4px;">taxa de tramitação (valor aproximado)</div>
-                  </div>
-                </div>
-              </div>
-              <div style="margin-top: var(--s-lg);">
-                <p class="visa-section-title">Direitos</p>
-                <div class="rights-grid">
-                  <div class="right-item"><span class="right-icon yes">✓</span>Trazer família (reagrupamento)</div>
-                  <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador estrangeiro</div>
-                  <div class="right-item"><span class="right-icon yes">✓</span>Regime fiscal especial (impatriados)</div>
-                  <div class="right-item"><span class="right-icon yes">✓</span>Caminho para residência permanente após 3 anos</div>
-                </div>
+          
+        <div class="visa-card open">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto de Residência e Trabalho por Conta Alheia</h3>
+              <span class="visa-name-orig">Residence and Employment Work Visa (TRA)</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Maiores de 16 anos</span>
+                <span class="visa-tag">Possuir contrato de trabalho na Espanha</span>
+                <span class="visa-tag">Ter autorização prévia de residência e trabalho concedida ao empregador</span>
+                <span class="visa-tag">Aplicável para trabalho sazonal</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Autorização por Conta Alheia (Empregado)</h3>
-                <span class="visa-name-orig">Autorización de residencia y trabajo por cuenta ajena</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Empregado</span>
-                  <span class="visa-tag">Empregador espanhol</span>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto para pessoas com 16 anos ou mais que desejam trabalhar como empregados na Espanha (com contrato de trabalho). Este visto também cobre atividades de trabalho sazonal.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">1 mês a partir da data de apresentação da solicitação, podendo ser estendido se entrevista ou documentos adicionais forem solicitados</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">O empregador na Espanha deve solicitar e obter a autorização de residência e trabalho por conta alheia junto às autoridades espanholas competentes.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Enviar e-mail para cog.londres.viscp@maec.es com dados pessoais (nome completo, número do passaporte, e-mail, telefone, local de residência no Reino Unido, tipo de visto) e anexar a autorização inicial de residência e trabalho. Após verificação, receberá e-mail com usuário e senha para agendar data e horário.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Reunir todos os documentos exigidos: formulário de solicitação, fotografia, passaporte, cópia da autorização, contrato de trabalho, certidão de antecedentes criminais, certificado médico, comprovante de residência, envelope pré-pago Special Delivery para devolução do passaporte.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Comparecer pessoalmente ao consulado na data agendada para apresentar a solicitação e todos os documentos. O passaporte será retido durante o processamento. Pagamento da taxa de visto deve ser feito neste momento.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">5</span>
+                <span class="step-text">O consulado analisará a solicitação. Pode solicitar documentos adicionais ou dados complementares, ou convocar o solicitante para entrevista pessoal. O solicitante receberá comprovante de recebimento com código para acompanhar o status.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">6</span>
+                <span class="step-text">O consulado tomará decisão e notificará o solicitante. Em caso de recusa, será notificado por escrito com fundamentos da decisão.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">7</span>
+                <span class="step-text">Se aprovado, o visto deve ser retirado pessoalmente pelo solicitante ou representante legal (se menor) dentro de no máximo 1 mês contado a partir do dia seguinte à notificação da decisão favorável. O passaporte será devolvido com o visto.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">8</span>
+                <span class="step-text">Se o contrato for de um ano, o visto será válido por 90 dias. Uma vez na Espanha, o trabalhador deve se registrar na Segurança Social.</span>
+              </div>
             </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Iniciado por</span>
-                    <span class="visa-field-value">Empregador na Oficina de Extranjería espanhola</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Prazo estimado</span>
-                    <span class="visa-field-value">3 a 6 meses do início ao visto</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Empregador solicita autorização na Oficina de Extranjería</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Análise em até 90 dias</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Trabalhador solicita visto no consulado espanhol no Brasil</span></div>
-                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Chegada e obtenção do TIE</span></div>
-                  </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
                 </div>
               </div>
             </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">A solicitação de visto deve ser apresentada dentro de 1 mês a partir da notificação ao empregador da concessão da autorização. O visto é válido por 90 dias para contratos de um ano. Cada agendamento é apenas para uma pessoa e passaporte, portanto membros da família precisam agendar consultas adicionais. Agendamentos devem ser cancelados com pelo menos 4 dias de antecedência. Não são aceitos intermediários. Em caso de recusa, é possível apresentar recurso de reconsideração ao consulado dentro de 1 mês, ou recurso judicial ao Tribunal Superior de Justiça de Madri dentro de 2 meses.</div>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Autorização por Conta Própria (Autônomo)</h3>
-                <span class="visa-name-orig">Autorización de residencia y trabajo por cuenta propia</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Autônomo</span>
-                  <span class="visa-tag">Empreendedor</span>
-                </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto de Teletrabaho (Nômade Digital)</h3>
+              <span class="visa-name-orig">TELEWORK Visa (Digital Nomad Visa)</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ser estrangeiro não-cidadão da União Europeia</span>
+                <span class="visa-tag">Possuir diploma de Bachelor ou Pós-graduação de universidade ou escola de negócios reconhecida, ou demonstrar pelo menos 3 anos de experiência profissional no seu campo</span>
+                <span class="visa-tag">Trabalhar remotamente para empresa localizada fora da Espanha</span>
+                <span class="visa-tag">Se autônomo: podem trabalhar para empresa na Espanha desde que não ultrapasse 20% da atividade profissional total</span>
+                <span class="visa-tag">Manter relacionamento profissional com empresa(s) fora da Espanha por pelo menos 3 meses e com continuidade de pelo menos 1 ano</span>
               </div>
-              <span class="visa-toggle">+</span>
             </div>
-            <div class="visa-body">
-              <p style="font-size:14px;color:var(--body);line-height:1.6;margin-top:var(--s-lg);">
-                Para quem deseja trabalhar como autônomo ou empresário na Espanha. Exige projeto de atividade empresarial
-                detalhado, comprovante de qualificações e de recursos econômicos suficientes. Prazo de 3 a 6 meses.
-                Permite trazer família e mudança de atividade sem vínculo a empregador.
-              </p>
-            </div>
+            <span class="visa-toggle">+</span>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Trabalhador Altamente Qualificado</h3>
-                <span class="visa-name-orig">Visa for highly qualified workers</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Diploma universitário</span>
-                  <span class="visa-tag">Família incluída</span>
-                  <span class="visa-tag">1 ano</span>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto destinado a estrangeiros que desejam viver na Espanha trabalhando remotamente para uma empresa localizada fora da Espanha, utilizando exclusivamente meios de computador, telemática ou telecomunicação.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                <div class="visa-field">
+              <span class="visa-field-label">Renda mínima</span>
+              <span class="visa-field-value mono">EUR 2.442/mês</span>
+            </div>
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Diploma de Bachelor ou Pós-graduação de universidade ou escola de negócios reconhecida; OU pelo menos 3 anos de experiência profissional no seu campo</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Antes de solicitar o visto, o aplicante deve obter um número de N.I.E. (Número de Identidad de Extranjero) na Espanha</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Reunir todos os documentos necessários conforme especificado. Verificar a lista de verificação fornecida pelo consulado.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Enviar a aplicação pelo correio para o Consulado Geral da Espanha em Houston com todos os documentos necessários</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">O Consulado fornecerá um comprovante de recebimento com um código para verificar o status da solicitação através do portal https://sutramiteconsular.maec.es/</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">5</span>
+                <span class="step-text">O Consulado pode solicitar documentos faltantes, dados adicionais ou uma entrevista pessoal</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">6</span>
+                <span class="step-text">O período legal para decisão é 10 dias após a data de submissão, podendo ser estendido se for necessária entrevista ou documentos adicionais</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">7</span>
+                <span class="step-text">O Consulado informará o procedimento para devolução do passaporte e outras documentações originais</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">8</span>
+                <span class="step-text">Se recusado, pode-se apresentar recurso de reconsideração dentro de 1 mês ou apelar ao Tribunal Superior de Justiça de Madrid dentro de 2 meses</span>
+              </div>
             </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Profissionais altamente qualificados, pessoal de gestão sênior ou graduados de universidade reconhecida</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Permiso de residência</span>
-                    <span class="visa-field-value">Emitido pela Unidade de Grandes Empresas e Grupos Estratégicos</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Taxa</span>
-                    <span class="visa-field-value mono">EUR 80</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Agendar consulta no consulado espanhol</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Apresentar documentos pessoalmente (ou por representante credenciado)</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Decisão em 10 dias, podendo ser estendido</span></div>
-                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Retirar passaporte com visto dentro de 1 mês após aprovação</span></div>
-                  </div>
-                  <div style="margin-top:var(--s-md);">
-                    <p class="visa-section-title">Direitos</p>
-                    <div class="rights-grid">
-                      <div class="right-item"><span class="right-icon yes">✓</span>Trazer cônjuge e filhos</div>
-                      <div class="right-item"><span class="right-icon yes">✓</span>Parentes em linha ascendente sob cuidado</div>
-                    </div>
-                  </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">USD 190</span><div class="visa-field-label" style="margin-top:4px;">Taxa de visto para cidadãos americanos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">USD 106</span><div class="visa-field-label" style="margin-top:4px;">Taxa de visto para outras nacionalidades. Taxas diferentes podem se aplicar baseadas em reciprocidade para Austrália, Etiópia, Canadá, Reino Unido e outros.</div></div>
                 </div>
               </div>
             </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Cidadãos americanos atualmente não requerem visto para entrar na Espanha por estadas de até 90 dias. Estrangeiros que viajam ou já estão na Espanha podem solicitar diretamente no país um permiso de residência para teletrabaho, sem necessidade de visto prévio. Para trabalhadores assalariados, só é permitido trabalhar para empresas localizadas fora da Espanha. Para autônomos/freelancers, é permitido trabalhar também para empresas na Espanha desde que não ultrapasse 20% da atividade profissional total. A validade do visto é de 1 ano.</div>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Transferência Intraempresarial</h3>
-                <span class="visa-name-orig">Visa for intra-company transfers</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Mesma empresa ou grupo</span>
-                  <span class="visa-tag">Gestores / Especialistas</span>
-                  <span class="visa-tag">1 ano</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Gestores sênior, especialistas ou estagiários transferidos dentro da mesma empresa ou grupo</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Permiso de residência</span>
-                    <span class="visa-field-value">Emitido pela Unidade de Grandes Empresas e Grupos Estratégicos</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Taxa</span>
-                    <span class="visa-field-value mono">EUR 80</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Agendar consulta no consulado espanhol</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Apresentar documentos (permiso + passaporte + antecedentes)</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Decisão em 10 dias</span></div>
-                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Retirar passaporte com visto dentro de 1 mês</span></div>
-                  </div>
-                  <div style="margin-top:var(--s-md);">
-                    <p class="visa-section-title">Direitos</p>
-                    <div class="rights-grid">
-                      <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-                    </div>
-                  </div>
-                </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto para trabalhador altamente qualificado</h3>
+              <span class="visa-name-orig">Visa for highly qualified workers</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Profissional altamente qualificado</span>
+                <span class="visa-tag">Membro de pessoal de gestão sênior atendendo critérios específicos</span>
+                <span class="visa-tag">Graduado de universidade prestigiada</span>
+                <span class="visa-tag">Pós-graduado de universidade prestigiada ou escola de negócios</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto para exercer atividade de trabalho como empregado na Espanha na qualidade de profissional altamente qualificado, membro de pessoal de gestão sênior que atenda critérios específicos da legislação vigente, ou como graduado de universidade prestigiada e/ou escola de negócios</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Formação em universidade prestigiosa ou escola de negócios (nível graduado ou pós-graduado)</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Agendar consulta no consulado para submeter a candidatura</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Apresentar pessoalmente todos os documentos no consulado ou através de representante devidamente acreditado</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">O consulado analisa a candidatura. Podem ser solicitados documentos adicionais ou entrevista pessoal</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Prazo legal de 10 dias após submissão, podendo ser estendido se houver solicitação de documentos ou entrevista</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">5</span>
+                <span class="step-text">Coleta pessoal do passaporte com visto ou por representante, dentro de 1 mês após notificação da decisão favorável</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 80</span><div class="visa-field-label" style="margin-top:4px;">Taxas diferentes aplicáveis para cidadãos de Austrália, Bangladesh, Canadá, Estados Unidos e Reino Unido por razões de reciprocidade - consultar o consulado</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Visto válido por 1 ano ou pelo mesmo período do permiso de residência concedido (se inferior a 1 ano). Membros da família podem acompanhar: cônjuge ou parceiro não casado; filhos e filhos adultos financeiramente dependentes; parentes em linha ascendente sob cuidado do trabalhador</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto para transferência intraempresarial</h3>
+              <span class="visa-name-orig">Visa for intra-company transfers</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Membro de pessoal de gestão sênior</span>
+                <span class="visa-tag">Especialista</span>
+                <span class="visa-tag">Estagiário</span>
+                <span class="visa-tag">Profissional em contrato ou relação profissional</span>
+                <span class="visa-tag">Transferência dentro da mesma empresa ou grupo de empresas</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto para exercer atividade de trabalho como empregado na Espanha na qualidade de membro de pessoal de gestão sênior, especialista ou estagiário, para executar contrato ou em relação profissional, quando a transferência ocorre dentro da mesma empresa ou grupo de empresas</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Qualificação apropriada para cargo de gestor sênior, especialista ou estagiário</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Agendar consulta no consulado para submeter a candidatura</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Apresentar pessoalmente todos os documentos no consulado ou através de representante devidamente acreditado</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">O consulado analisa a candidatura. Podem ser solicitados documentos adicionais ou entrevista pessoal</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Prazo legal de 10 dias após submissão, podendo ser estendido se houver solicitação de documentos ou entrevista</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">5</span>
+                <span class="step-text">Coleta pessoal do passaporte com visto ou por representante, dentro de 1 mês após notificação da decisão favorável</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 80</span><div class="visa-field-label" style="margin-top:4px;">Taxas diferentes aplicáveis para cidadãos de Austrália, Bangladesh, Canadá, Estados Unidos e Reino Unido por razões de reciprocidade - consultar o consulado</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Visto válido por 1 ano ou pelo mesmo período do permiso de residência concedido (se inferior a 1 ano). Membros da família podem acompanhar: cônjuge ou parceiro não casado; filhos e filhos adultos financeiramente dependentes; parentes em linha ascendente sob cuidado do trabalhador</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Visto de Residência com Isenção de Autorização de Trabalho</h3>
+              <span class="visa-name-orig">Residence Visa with Working Permit Exemption (TRE) - More than 90 days</span>
+              <div class="visa-tags">
+                <span class="visa-tag">Técnicos e cientistas convidados/contratados por autoridades espanholas ou instituições públicas para pesquisa</span>
+                <span class="visa-tag">Professores, técnicos, pesquisadores e cientistas convidados/contratados por universidade espanhola</span>
+                <span class="visa-tag">Pessoal de gestão, ensino ou pesquisa de instituições culturais/educacionais de renome oficialmente reconhecidas pela Espanha</span>
+                <span class="visa-tag">Funcionários civis ou militares de administrações de Estados estrangeiros para atividades sob acordos de cooperação com a Administração Espanhola</span>
+                <span class="visa-tag">Correspondentes de mídia estrangeira devidamente credenciados pelas autoridades espanholas</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto de residência para casos específicos que estão isentos da exigência de autorização de trabalho, incluindo técnicos e cientistas, professores universitários, pessoal de gestão/ensino de instituições culturais, funcionários públicos estrangeiros, correspondentes de mídia, membros de missões científicas internacionais, ministros religiosos e membros de sindicatos/organizações empresariais.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">Não especificado na página</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Confirmar que se enquadra em uma das categorias de isenção de autorização de trabalho e obter a documentação comprobatória necessária (convite, contrato, credenciamento, autorização, etc.).</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Preencher o formulário de autoavaliação de taxa 790-052 e o formulário EX-09.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Enviar e-mail para cog.londres.viscp@maec.es com dados pessoais (nome completo, número do passaporte, e-mail, telefone, local de residência no Reino Unido, tipo de visto). Após verificação, receberá e-mail com usuário e senha para agendar data e horário.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Reunir todos os documentos exigidos: formulário de solicitação, fotografia, passaporte, formulários 790-052 e EX-09, comprovantes de enquadramento na isenção, certidão de antecedentes criminais, certificado médico, comprovante de residência, envelope pré-pago Special Delivery para devolução do passaporte.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">5</span>
+                <span class="step-text">Comparecer pessoalmente ao consulado na data agendada para apresentar a solicitação e todos os documentos. O passaporte será retido durante o processamento. Pagamento da taxa de visto e taxa 790-052 devem ser feitos neste momento.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">6</span>
+                <span class="step-text">O consulado analisará a solicitação. Pode solicitar documentos adicionais ou dados complementares, ou convocar o solicitante para entrevista pessoal. O solicitante receberá comprovante de recebimento com código para acompanhar o status.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">7</span>
+                <span class="step-text">O consulado tomará decisão e notificará o solicitante. Em caso de recusa, será notificado por escrito com fundamentos da decisão.</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">8</span>
+                <span class="step-text">Se aprovado, o visto deve ser retirado pessoalmente pelo solicitante ou representante legal (se menor) dentro de no máximo 1 mês contado a partir do dia seguinte à notificação da decisão favorável. O passaporte será devolvido com o visto.</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Este visto é para casos específicos de isenção de autorização de trabalho. Cada agendamento é apenas para uma pessoa e passaporte, portanto membros da família precisam agendar consultas adicionais. Agendamentos devem ser cancelados com pelo menos 4 dias de antecedência. Não são aceitos intermediários. Em caso de recusa, é possível apresentar recurso de reconsideração ao consulado dentro de 1 mês, ou recurso judicial ao Tribunal Superior de Justiça de Madri dentro de 2 meses.</div>
+          </div>
+        </div>
         </div>
       </div>
     </section>
   </div>
 
+  
   <div class="tab-panel" id="brasileiros">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Condições específicas para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que muda para você</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
         <div class="br-grid">
-          <div class="br-card highlight">
-            <span class="br-label">Schengen — entrada sem visto</span>
-            <span class="br-value yes">Sim</span>
-            <p class="br-desc">Passaporte brasileiro permite entrada na Espanha e nos países do Espaço Schengen por até 90 dias a cada 180 dias, sem visto de turismo.</p>
-          </div>
-          <div class="br-card highlight">
-            <span class="br-label">Cidadania ibero-americana</span>
-            <span class="br-value yes">2 anos</span>
-            <p class="br-desc">Cidadãos de países ibero-americanos, incluindo brasileiros, têm prazo de residência para naturalização reduzido de 10 para 2 anos na Espanha. Uma das maiores vantagens para brasileiros na Europa.</p>
-          </div>
-          <div class="br-card warning">
-            <span class="br-label">Trabalhar sem autorização</span>
-            <span class="br-value no">Não</span>
-            <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de residência e trabalho é ilegal. O visto de turismo Schengen não permite exercer atividade remunerada.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Idioma necessário</span>
-            <span class="br-value" style="font-size: 18px;">Espanhol</span>
-            <p class="br-desc">Espanhol é exigido na maioria dos vistos de longa duração como parte do processo de naturalização (DELE A2 e exame CCSE). Para o visto de trabalho inicial, não há requisito formal de idioma.</p>
-          </div>
-          <div class="br-card" style="grid-column: 1 / -1;">
-            <span class="br-label">Benefício fiscal — Regime de Impatriados (Lei Beckham)</span>
-            <span class="br-value" style="font-size: 18px;">24% sobre rendimentos na Espanha</span>
-            <p class="br-desc">Trabalhadores que se mudam para a Espanha por motivo de trabalho podem, nos primeiros 6 anos, pagar imposto de renda reduzido de 24% (em vez da alíquota progressiva normal de até 47%) sobre rendimentos obtidos na Espanha. O Visto de Nômade Digital é compatível com este regime.</p>
-          </div>
+          
+        <div class="br-card highlight">
+          <span class="br-label">Schengen — entrada sem visto</span>
+          <span class="br-value yes">Sim</span>
+          <p class="br-desc">O passaporte brasileiro permite entrada em Espanha por até 90 dias em qualquer período de 180 dias, sem visto de turista.</p>
+        </div>
+          
+        <div class="br-card warning">
+          <span class="br-label">Trabalhar sem autorização</span>
+          <span class="br-value no">Não permitido</span>
+          <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Permanência máxima como turista</span>
+          <span class="br-value">90 dias</span>
+          <p class="br-desc">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Acordos bilaterais com o Brasil</span>
+          <span class="br-value no" style="color:var(--muted);">Nenhum</span>
+          <p class="br-desc">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e Espanha. O caminho é pelos vistos padrão.</p>
+        </div>
+          
+        <div class="br-card" style="grid-column:1/-1;">
+          <span class="br-label">Observações para brasileiros</span>
+          <p class="br-desc">Brasileiros necessitam de visto para trabalhar na Espanha. Ambas as modalidades requerem permiso de residência emitido pela Unidade de Grandes Empresas e Grupos Estratégicos</p>
+        </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="requisitos">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Requisitos gerais</h2>
         <div class="req-list">
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte em vigor com validade mínima de 1 ano</span><span class="req-note">Obrigatório</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Certificado de antecedentes criminais dos países onde residiu nos últimos 5 anos</span><span class="req-note">Apostilada</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Comprovante de recursos econômicos: conta alheia aceita contrato de trabalho como comprovante; autônomo (cuenta propia) deve demonstrar mínimo EUR 2.400/mês; nômade digital (Telework) exige EUR 2.646/mês (200% do SMI espanhol de 2026)</span><span class="req-note">Varia por modalidade</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Seguro de saúde com cobertura mínima de EUR 30.000 por ocorrência, válido em toda a Espanha e sem copagamentos (obrigatório para visto D de longa duração)</span><span class="req-note">Público ou privado</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Diploma universitário ou formação profissional, ou 3 anos de experiência (para Nômade Digital)</span><span class="req-note">Traduzido e apostilado</span></div>
+          
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Passaporte — Mínimo 1 ano de validade. Passaportes emitidos há mais de 10 anos não serão aceitos. Deve conter duas páginas em branco</span>
+            <span class="req-note">Verificar antes de iniciar</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 2.646/mês. Varia por modalidade: conta alheia aceita contrato de trabalho como comprovante; autônomos (cuenta propia) devem demonstrar mínimo EUR 2.400/mês; nômades digitais (Telework) precisam de EUR 2.646/mês (200% do SMI espanhol de 2026).</span>
+            <span class="req-note">Ver cada visto</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Seguro saúde obrigatório. Seguro saúde com cobertura mínima de EUR 30.000 é obrigatório para solicitação de visto D de longa duração. Deve ser válido em toda a Espanha e sem copagamentos.</span>
+            <span class="req-note">Cobertura mín. EUR 30.000</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Certidão de antecedentes criminais (apostilada)</span>
+            <span class="req-note">Apostila de Haia</span>
+          </div>
+        </div>
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p class="body-sm" style="color:var(--muted);margin:0;">
+            Requisitos extraídos de <span style="color:var(--primary);">www.exteriores.gob.es, www.exteriores.gob.es</span> em mai/2026.
+            Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.
+          </p>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="mudancas">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Histórico de alterações detectadas</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
-        <div class="timeline">
-          <div class="timeline-entry">
-            <div class="timeline-date">
-              <span class="timeline-date-str">2022-12-01</span>
-              <span class="sev-high">Alta relevância</span>
-            </div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">Lei de Startups (Lei 28/2022) — Visto de Nômade Digital criado</h3>
-              <p class="timeline-summary">A Lei 28/2022 criou o visto e autorização de residência para teletrabalhadores internacionais. Permite que profissionais trabalhem remotamente na Espanha para empresas estrangeiras ou como autônomos para clientes no exterior, com benefícios fiscais especiais pelo regime de impatriados.</p>
-              <div class="timeline-affects">
-                <span class="affect-pill">Nômades Digitais</span>
-                <span class="affect-pill">Teletrabalhadores</span>
-                <span class="affect-pill">Autônomos internacionais</span>
-              </div>
-            </div>
-          </div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Mudanças recentes</h2>
+        <div style="padding:var(--s-xxl);text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p style="color:var(--muted);margin:0;">Nenhuma mudança detectada no último ciclo de extração.</p>
         </div>
-        <div style="margin-top: var(--s-xl); text-align: center;">
-          <a class="text-link body-sm" href="historico.html">Ver histórico completo →</a>
+        <div style="margin-top:var(--s-xl);text-align:center;">
+          <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="fontes">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Transparência total</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
-        <p class="body-md" style="max-width: 600px; margin-bottom: var(--s-xl);">Dados extraídos das URLs abaixo em maio de 2026. As fontes antigas (inclusion.gob.es, Liferay CMS) foram substituídas por páginas consulares estáticas de exteriores.gob.es.</p>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Fontes usadas na extração</h2>
+        <p class="body-md" style="max-width:600px;margin-bottom:var(--s-xl);">
+          Todos os dados foram extraídos das URLs abaixo em mai/2026. Clique para ver a fonte original.
+        </p>
         <div class="sources-list">
+          
           <div class="source-item">
-            <div><div class="source-url">exteriores.gob.es/Consulados/londres/.../Visado-de-trabajo-por-cuenta-ajena.aspx</div><div class="source-meta">Consulado Espanhol em Londres — visto de trabalho por conta alheia (empregado)</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Visado-de-trabajo-por-cuenta-ajena.aspx" target="_blank" rel="noopener noreferrer">www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Visado-de-trabajo-por-cuenta-ajena.aspx</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">exteriores.gob.es/Consulados/houston/.../TELEWORK-Visa-(Digital-Nomad-Visa)-.aspx</div><div class="source-meta">Consulado Espanhol em Houston — visto de teletrabajo (nômade digital)</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.exteriores.gob.es/Consulados/houston/en/ServiciosConsulares/Paginas/Consular/TELEWORK-Visa-(Digital-Nomad-Visa)-.aspx" target="_blank" rel="noopener noreferrer">www.exteriores.gob.es/Consulados/houston/en/ServiciosConsulares/Paginas/Consular/TELEWORK-Visa-(Digital-Nomad-Visa)-.aspx</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">exteriores.gob.es/Embajadas/abudhabi/.../Visado-para-trabajador-altamente-cualificado...aspx</div><div class="source-meta">Embaixada Espanhola em Abu Dhabi — trabalhador altamente qualificado e transferência intraempresarial</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.exteriores.gob.es/Embajadas/abudhabi/en/ServiciosConsulares/Paginas/Consular/Visado-para-trabajador-altamente-cualificado-y-para-traslado-intraempresarial.aspx" target="_blank" rel="noopener noreferrer">www.exteriores.gob.es/Embajadas/abudhabi/en/ServiciosConsulares/Paginas/Consular/Visado-para-trabajador-altamente-cualificado-y-para-traslado-intraempresarial.aspx</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
           <div style="display:flex;align-items:center;gap:var(--s-md);">
-            <span class="badge up"><span class="pulse"></span>3/3 fontes ok</span>
-            <span class="body-sm" style="color: var(--muted);">Extração realizada com Sonnet 4.5 (conta alheia) e Haiku 4.5 (nômade digital e altamente qualificado). Confiança média — confirme dados críticos nas fontes oficiais.</span>
+            <span class="badge">Confiança média</span>
+            <span class="body-sm" style="color:var(--muted);">
+              Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
+            </span>
           </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="guia">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Guia prático para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Como se legalizar na Espanha</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Como se legalizar em Espanha</h2>
         <div class="guide-intro">
-          <p>A Espanha é atraente pelo clima, custo de vida e demanda por profissionais qualificados. O processo de imigração tem melhorado com iniciativas como o visto nômade digital e a lei de startups, mas ainda exige paciência com a burocracia local, que varia por comunidade autônoma.</p>
+          <p>Resumo das etapas principais baseado em dados extraídos em mai/2026. Este guia é simplificado, consulte sempre as fontes oficiais para o seu caso específico.</p>
         </div>
 
         <div class="guide-phases">
-
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 01</span>
               <div>
-                <h3 class="phase-title">Antes de embarcar</h3>
-                <p class="phase-subtitle">Autorização de trabalho obrigatória antes da entrada</p>
+                <h3 class="phase-title">Documentação essencial</h3>
+                <p class="phase-subtitle">Prepare estes documentos antes de iniciar o processo</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Obter autorização de trabalho pela empresa espanhola (regime geral)</h4>
-                  <p class="step-desc">No regime geral, o empregador espanhol solicita a autorização de trabalho junto à Delegación de Gobierno da comunidade autônoma. É necessário provar que não há candidato europeu para a vaga (lista de ocupações de difícil cobertura facilita). Após aprovação, você solicita o visto no Consulado Espanhol no Brasil.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 2 a 4 meses</span>
-                    <span class="step-tag orgao">Delegación de Gobierno + Consulado Espanhol</span>
-                  </div>
+                  <h4 class="step-heading">Passaporte válido</h4>
+                  <p class="step-desc">Validade mínima: Mínimo 1 ano de validade. Passaportes emitidos há mais de 10 anos não serão aceitos. Deve conter duas páginas em branco. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Certidão de antecedentes criminais</h4>
+                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">2</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Alternativa: Visto para Profissionais Altamente Qualificados (EU Blue Card)</h4>
-                  <p class="step-desc">Para salários acima de €37.000/ano em áreas de escassez: processo mais rápido e sem necessidade de provar ausência de candidato europeu. Solicite direto no Consulado Espanhol com oferta de contrato, diploma apostilado e histórico profissional.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 4 a 8 semanas</span>
-                    <span class="step-tag custo">Custo: €80</span>
-                  </div>
+                  <h4 class="step-heading">Seguro saúde</h4>
+                  <p class="step-desc">Seguro saúde com cobertura mínima de EUR 30.000 é obrigatório para solicitação de visto D de longa duração. Deve ser válido em toda a Espanha e sem copagamentos.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Comprovante de fundos</h4>
+                  <p class="step-desc">Mínimo EUR 2.646/mês. Varia por modalidade: conta alheia aceita contrato de trabalho como comprovante; autônomos (cuenta propia) devem demonstrar mínimo EUR 2.400/mês; nômades digitais (Telework) precisam de EUR 2.646/mês (200% do SMI espanhol de 2026).</p>
                 </div>
               </div>
             </div>
           </div>
 
+          
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 02</span>
               <div>
-                <h3 class="phase-title">Primeiros dias na Espanha</h3>
-                <p class="phase-subtitle">Registro e documentos essenciais (semanas 1 a 4)</p>
+                <h3 class="phase-title">Processo do visto: Visto de Residência e Trabalho por Conta Alheia</h3>
+                <p class="phase-subtitle">Realizado no Brasil antes de embarcar</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">3</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Empadronamiento: registro no ayuntamiento (prefeitura)</h4>
-                  <p class="step-desc">O empadronamento é o registro de residência obrigatório na prefeitura do município. Apresente: passaporte, autorização de trabalho/visto e contrato de aluguel ou declaração do proprietário. O certificado de empadronamiento é exigido em quase todos os trâmites seguintes.</p>
-                  <div class="step-tags">
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">Ayuntamiento do município</span>
-                  </div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
                 </div>
-              </div>
-              <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">4</div><div class="step-line"></div></div>
                 <div class="step-body">
-                  <h4 class="step-heading">Obter NIE (Número de Identidad de Extranjero)</h4>
-                  <p class="step-desc">O NIE é o número de identificação fiscal para estrangeiros, equivalente ao CPF. É obrigatório para assinar contratos, abrir conta, comprar imóvel e pagar impostos. Agende na Comisaría de Policía (Brigada Provincial de Extranjería) pelo sistema cita-previa.ses.mir.es. O processo costuma ter longas filas.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Agendar assim que chegar</span>
-                    <span class="step-tag custo">Custo: ~€12</span>
-                    <span class="step-tag orgao">Comisaría / Brigada de Extranjería</span>
-                  </div>
+                  <h4 class="step-heading">Obtenção da autorização prévia pelo empregador</h4>
+                  <p class="step-desc">O empregador na Espanha deve solicitar e obter a autorização de residência e trabalho por conta alheia junto às autoridades espanholas competentes.</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">5</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Obter número de Seguridad Social</h4>
-                  <p class="step-desc">O número de Seguridad Social dá acesso ao sistema de saúde público (via cartão SIP/tarjeta sanitaria) e acumula contribuições para pensão e desemprego. O empregador normalmente faz o registro. Caso contrário, vá à Tesorería General de la Seguridad Social (TGSS).</p>
-                  <div class="step-tags">
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">TGSS — Seguridad Social</span>
-                  </div>
+                  <h4 class="step-heading">Agendamento de consulta</h4>
+                  <p class="step-desc">Enviar e-mail para cog.londres.viscp@maec.es com dados pessoais (nome completo, número do passaporte, e-mail, telefone, local de residência no Reino Unido, tipo de visto) e anexar a autorização inicial de residência e trabalho. Após verificação, receberá e-mail com usuário e senha para agendar data e horário.</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">6</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Abrir conta bancária</h4>
-                  <p class="step-desc">Com NIE, passaporte e empadronamiento, abra conta em banco espanhol. Opções: Banco Santander, BBVA, CaixaBank (agências em todo o país) ou neobancos como N26 espanhol. Alguns bancos aceitam sem NIE nos primeiros meses.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 1 a 3 dias</span>
-                  </div>
+                  <h4 class="step-heading">Preparação de documentos</h4>
+                  <p class="step-desc">Reunir todos os documentos exigidos: formulário de solicitação, fotografia, passaporte, cópia da autorização, contrato de trabalho, certidão de antecedentes criminais, certificado médico, comprovante de residência, envelope pré-pago Special Delivery para devolução do passaporte.</p>
+                  
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Apresentação presencial da solicitação</h4>
+                  <p class="step-desc">Comparecer pessoalmente ao consulado na data agendada para apresentar a solicitação e todos os documentos. O passaporte será retido durante o processamento. Pagamento da taxa de visto deve ser feito neste momento.</p>
+                  
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">5</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Análise do consulado</h4>
+                  <p class="step-desc">O consulado analisará a solicitação. Pode solicitar documentos adicionais ou dados complementares, ou convocar o solicitante para entrevista pessoal. O solicitante receberá comprovante de recebimento com código para acompanhar o status.</p>
+                  <div class="step-tags"><span class="step-tag prazo">Prazo estimado: 30 dias</span></div>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">6</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Decisão e notificação</h4>
+                  <p class="step-desc">O consulado tomará decisão e notificará o solicitante. Em caso de recusa, será notificado por escrito com fundamentos da decisão.</p>
+                  
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">7</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Retirada do visto</h4>
+                  <p class="step-desc">Se aprovado, o visto deve ser retirado pessoalmente pelo solicitante ou representante legal (se menor) dentro de no máximo 1 mês contado a partir do dia seguinte à notificação da decisão favorável. O passaporte será devolvido com o visto.</p>
+                  
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">8</div>
+                  
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Entrada na Espanha e registro na Segurança Social</h4>
+                  <p class="step-desc">Se o contrato for de um ano, o visto será válido por 90 dias. Uma vez na Espanha, o trabalhador deve se registrar na Segurança Social.</p>
+                  
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 03</span>
-              <div>
-                <h3 class="phase-title">TIE — Cartão de Identidade de Estrangeiro</h3>
-                <p class="phase-subtitle">O documento de residência definitivo</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">7</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Solicitar TIE na Extranjería</h4>
-                  <p class="step-desc">A TIE (Tarjeta de Identidad de Extranjero) é o cartão físico de residência. Deve ser solicitada dentro de 30 dias da entrada na Espanha com a autorização de trabalho. Leve: passaporte, visto, autorização de trabalho, empadronamiento, fotos e o formulário EX-17. O cartão leva 30 a 60 dias para ser emitido.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Dentro de 30 dias da entrada</span>
-                    <span class="step-tag custo">Custo: ~€16</span>
-                    <span class="step-tag orgao">Oficina de Extranjería</span>
-                  </div>
-                </div>
-              </div>
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">8</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Renovação e residência de longa duração</h4>
-                  <p class="step-desc">A autorização de trabalho é renovada a cada 1 ou 2 anos. Após 5 anos de residência legal e ininterrupta na Espanha, é possível solicitar a residência de longa duração (UE), que não precisa de renovação e vale em toda a União Europeia.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Residência permanente UE: após 5 anos</span>
-                    <span class="step-tag orgao">Extranjería</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <div class="guide-disclaimer">
-          <p>Este guia é informativo e baseado nas regras vigentes em mai/2026. Os processos variam por comunidade autônoma. Confirme sempre em extranjeros.inclusion.gob.es e consulte um gestor ou advogado de extranjería se necessário.</p>
+          <p>Guia gerado automaticamente a partir de dados de mai/2026. Requisitos e prazos mudam com frequência por regulamentação do governo de Espanha. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
         </div>
       </div>
     </section>
@@ -705,12 +997,13 @@
 
 </main>
 
+<!-- CTA BAND -->
 <section>
   <div class="container">
     <div class="cta-band-yellow">
       <div>
         <h2>Comparar com outros países</h2>
-        <p>Veja a Espanha lado a lado com Portugal, Países Baixos ou Alemanha. Todos os critérios na mesma tabela.</p>
+        <p>Veja Espanha lado a lado com outros destinos. Todos os critérios na mesma tabela.</p>
       </div>
       <div class="actions">
         <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
@@ -720,17 +1013,59 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div><a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a><p class="body-sm" style="max-width:300px;color:var(--muted);">Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.</p></div>
-      <div><h4>Países</h4><ul><li><a href="pais-nl.html">Países Baixos</a></li><li><a href="pais-pt.html">Portugal</a></li><li><a href="pais-de.html">Alemanha</a></li><li><a href="pais-es.html" style="color:var(--on-dark);">Espanha</a></li><li><a href="paises.html">Ver todos →</a></li></ul></div>
-      <div><h4>Ferramentas</h4><ul><li><a href="comparar.html">Comparar países</a></li><li><a href="qual-pais.html">Qual país é o meu?</a></li><li><a href="calculadora.html">Calculadora</a></li><li><a href="historico.html">Histórico</a></li></ul></div>
-      <div><h4>Projeto</h4><ul><li><a href="sobre.html">Sobre</a></li><li><a href="sobre.html#metodologia">Metodologia</a></li><li><a href="sobre.html#contribuir">Contribuir</a></li>
-          <li><a href="dev.html">Dev</a></li></ul></div>
-      <div><h4>Dados</h4><ul><li><a href="#">GitHub</a></li><li><a href="#">JSON direto</a></li><li><a href="historico.html">RSS de mudanças</a></li></ul></div>
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width:300px;color:var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span><span class="caption-up">Última extração: mai/2026</span></div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span class="caption-up">Última extração: mai/2026</span>
+    </div>
   </div>
 </footer>
 
@@ -746,7 +1081,9 @@
       document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   })
-  function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
+  function toggleVisa(head) {
+    head.closest('.visa-card').classList.toggle('open')
+  }
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

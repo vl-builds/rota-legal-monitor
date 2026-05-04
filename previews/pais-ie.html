@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
+  /* ---- country hero ---- */
   .country-hero { padding: var(--s-xxl) 0; border-bottom: 1px solid var(--hairline); }
   .hero-row { display: flex; align-items: center; gap: var(--s-xl); flex-wrap: wrap; }
   .hero-flag { width: 64px; height: 46px; border-radius: 6px; display: block; flex-shrink: 0; }
   .hero-info { flex: 1; min-width: 200px; }
   .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: var(--on-dark); line-height: 1.1; margin: 0 0 var(--s-sm); }
   .hero-badges { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
-  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10, 10, 10, 0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
+  /* ---- sticky subheader + tabs ---- */
+  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10,10,10,0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
   .sticky-inner { display: flex; align-items: center; gap: var(--s-lg); height: 52px; }
   .sticky-id { display: flex; align-items: center; gap: var(--s-sm); flex-shrink: 0; }
   .sticky-flag { width: 24px; height: 18px; border-radius: 3px; display: block; }
@@ -25,19 +27,20 @@
   .tab-btn { height: 52px; padding: 0 var(--s-lg); font-size: 14px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap; transition: color 120ms ease, border-color 120ms ease; }
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
+  /* ---- quick summary ---- */
   .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
   .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
   .qs-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); line-height: 1.1; }
+  .qs-value.accent { color: var(--primary); }
   .qs-value.positive { color: var(--accent-emerald); }
+  .qs-value.negative { color: var(--muted); }
   .qs-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .diff-dots { display: flex; gap: 4px; align-items: center; margin-bottom: 2px; }
-  .diff-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .diff-dot.filled { background: var(--on-dark); }
-  .diff-dot.empty { background: var(--hairline-strong); }
+  /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+  /* ---- visa cards ---- */
   .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
   .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
   .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
@@ -47,7 +50,7 @@
   .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
   .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240, 180, 41,0.1); color: var(--primary); border-color: rgba(240, 180, 41,0.2); }
+  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
   .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
   .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
   .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
@@ -58,20 +61,26 @@
   .visa-field-label { font-size: 12px; color: var(--muted); font-weight: 500; }
   .visa-field-value { font-size: 14px; color: var(--body-strong); font-weight: 600; }
   .visa-field-value.mono { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--primary); font-size: 16px; }
+  .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
+  .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
+  .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
   .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-sm); }
   .right-item { display: flex; align-items: center; gap: var(--s-xs); font-size: 13px; color: var(--body); }
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
-  .br-card.highlight { border-color: rgba(240, 180, 41,0.3); background: rgba(240, 180, 41,0.05); }
+  .br-card.highlight { border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.05); }
   .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
   .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
   .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
   .br-value.yes { color: var(--accent-emerald); }
   .br-value.no { color: var(--accent-rose); }
   .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
+  /* ---- requisitos gerais ---- */
   .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); }
   .req-icon { font-size: 16px; width: 20px; text-align: center; }
@@ -79,6 +88,7 @@
   .req-icon.req { color: var(--accent-blue); }
   .req-text { font-size: 14px; color: var(--body-strong); }
   .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  /* ---- mudanças recentes ---- */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
   .timeline-entry + .timeline-entry { border-top: 1px solid var(--hairline); }
@@ -91,23 +101,46 @@
   .affect-pill { padding: 2px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); border: 1px solid var(--hairline); }
   .sev-high { background: rgba(239,68,68,0.12); color: var(--accent-rose); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
   .sev-medium { background: rgba(59,130,246,0.12); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  .sev-low { background: var(--surface-elevated); color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  /* ---- fontes ---- */
   .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
   .source-item { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-lg); display: grid; grid-template-columns: 1fr auto; gap: var(--s-lg); align-items: start; }
   .source-url { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; word-break: break-all; margin-bottom: var(--s-xs); }
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
-  @media (max-width: 1024px) { .quick-summary { grid-template-columns: repeat(2, 1fr); } .qs-item:nth-child(2n+1) { border-left: none; } .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); } .visa-grid { grid-template-columns: 1fr; } .br-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .hero-name { font-size: 28px; } .tabs { margin-left: 0; } .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); } .quick-summary { grid-template-columns: 1fr 1fr; } .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); } .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); } .req-item { grid-template-columns: auto 1fr; } .req-note { display: none; } .rights-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1024px) {
+    .quick-summary { grid-template-columns: repeat(2, 1fr); }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .visa-grid { grid-template-columns: 1fr; }
+    .br-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero-name { font-size: 28px; }
+    .tabs { margin-left: 0; }
+    .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
+    .sticky-id { padding-top: var(--s-xs); }
+    .quick-summary { grid-template-columns: 1fr 1fr; }
+    .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
+    .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
+    .req-item { grid-template-columns: auto 1fr; }
+    .req-note { display: none; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
+<!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="home.html"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
+    <a class="logo" href="home.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+      <span>Rota Legal</span>
+    </a>
     <div class="nav-links">
-      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
@@ -118,12 +151,13 @@
       <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
       <a class="btn btn-primary" href="comparar.html">Comparar</a>
     </div>
-      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<!-- ============== MOBILE DRAWER ============== -->
+
+<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
   <div class="mobile-drawer-backdrop" data-close></div>
   <aside class="mobile-drawer-panel">
@@ -147,6 +181,7 @@
   </aside>
 </div>
 
+<!-- COUNTRY HERO -->
 <div class="country-hero">
   <div class="container">
     <div class="hero-row">
@@ -154,9 +189,10 @@
       <div class="hero-info">
         <h1 class="hero-name">Irlanda</h1>
         <div class="hero-badges">
-          <span class="badge up"><span class="pulse"></span>Alta confiança</span>
-          <span class="badge">Não-Schengen</span>
-          <span class="badge">Employment Permit exigido</span>
+          <span class="badge up"><span class="pulse"></span>Confiança média</span>
+          <span class="badge">Schengen</span>
+          <span class="badge">Work Permit exigido</span>
+          
           <span class="badge new">Atualizado mai/2026</span>
         </div>
       </div>
@@ -164,6 +200,7 @@
   </div>
 </div>
 
+<!-- STICKY SUBHEADER + TABS -->
 <div class="country-sticky" id="sticky">
   <div class="container">
     <div class="sticky-inner">
@@ -183,238 +220,694 @@
   </div>
 </div>
 
+<!-- QUICK SUMMARY -->
 <div class="quick-summary">
   <div class="qs-item">
-    <span class="qs-label">Dificuldade estimada</span>
-    <div class="diff-dots">
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot empty"></span>
-    </div>
-    <span class="qs-sub">Média — patrocinador obrigatório</span>
+    <span class="qs-label">Entrada sem visto (Schengen)</span>
+    <span class="qs-value positive">Sim</span>
+    <span class="qs-sub">Até 90 dias por turismo</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Taxa (Critical Skills — até 24 meses)</span>
-    <span class="qs-value">EUR 1.000</span>
-    <span class="qs-sub">Paga pelo empregador ou trabalhador</span>
+    <span class="qs-label">Tipos de visto monitorados</span>
+    <span class="qs-value accent">11</span>
+    <span class="qs-sub">8 de relevância direta</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Trabalho autônomo</span>
-    <span class="qs-value" style="color: var(--muted);">Não</span>
-    <span class="qs-sub">Employment Permit exige empregador</span>
+    <span class="qs-label">Work permit exigido</span>
+    <span class="qs-value negative">Sim</span>
+    <span class="qs-sub">Autorização obrigatória para trabalhar</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Espaço Schengen</span>
-    <span class="qs-value" style="color: var(--accent-rose);">Não</span>
-    <span class="qs-sub">Visto separado necessário</span>
+    <span class="qs-label">Dados atualizados em</span>
+    <span class="qs-value">mai/2026</span>
+    <span class="qs-sub">Extração automática mensal</span>
   </div>
 </div>
 
+<!-- TAB CONTENT -->
 <main>
 
+  <!-- ABA: VISTOS -->
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">9 tipos de Employment Permit (Employment Permits Act 2024)</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Opções de visto de trabalho</h2>
+        <div class="eyebrow">11 tipos de visto monitorados</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
         <div class="visa-list">
-
-          <div class="visa-card open">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Critical Skills Employment Permit</h3>
-                <span class="visa-name-orig">Critical Skills Employment Permit</span>
-                <div class="visa-tags">
-                  <span class="visa-tag hl">Principal</span>
-                  <span class="visa-tag">TI</span>
-                  <span class="visa-tag">Engenharia</span>
-                  <span class="visa-tag">Saúde</span>
-                  <span class="visa-tag">Ocupações da lista crítica</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Profissionais em ocupações listadas na Critical Skills Occupations List (atualizada em set/2024)</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Taxa (até 24 meses)</span>
-                    <span class="visa-field-value mono">EUR 1.000</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Patrocinador exigido</span>
-                    <span class="visa-field-value">Sim — empregador irlandês</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Vantagem principal</p>
-                  <p style="font-size:13px;color:var(--body);line-height:1.6;">
-                    O Critical Skills Permit permite trazer cônjuge/parceiro reconhecido, que pode também obter
-                    Employment Permit próprio (Dependant/Partner/Spouse). Após obter este permit, é possível
-                    solicitar residência permanente após 5 anos de residência legal na Irlanda.
-                  </p>
-                  <div style="margin-top:var(--s-md);">
-                    <p class="visa-section-title">Direitos</p>
-                    <div class="rights-grid">
-                      <div class="right-item"><span class="right-icon yes">✓</span>Cônjuge pode trabalhar</div>
-                      <div class="right-item"><span class="right-icon yes">✓</span>Trazer dependentes</div>
-                      <div class="right-item"><span class="right-icon no">✗</span>Renovação (apenas novo pedido)</div>
-                    </div>
-                  </div>
-                </div>
+          
+        <div class="visa-card open">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Trabalho em Habilidades Críticas</h3>
+              <span class="visa-name-orig">Critical Skills Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">General Employment Permit</h3>
-                <span class="visa-name-orig">General Employment Permit</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Ocupações gerais</span>
-                  <span class="visa-tag">Fora da lista crítica</span>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para profissionais com habilidades críticas</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Taxas</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Até 24 meses</span>
-                    <span class="visa-field-value mono">EUR 1.000</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">6 meses ou menos</span>
-                    <span class="visa-field-value mono">EUR 500</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Até 36 meses</span>
-                    <span class="visa-field-value mono">EUR 1.500</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Renovação (6 meses)</span>
-                    <span class="visa-field-value mono">EUR 750</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Observações</p>
-                  <p style="font-size:13px;color:var(--body);line-height:1.6;">
-                    Para ocupações que não constam na Critical Skills Occupations List. Exige que a vaga
-                    seja anunciada no mercado local antes de contratar estrangeiro. Pagamento exclusivamente
-                    por transferência eletrônica (desde out/2014).
-                  </p>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div>
                 </div>
               </div>
             </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Sem taxa de renovação (N/A)</div>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Intra-Company Transfer Employment Permit</h3>
-                <span class="visa-name-orig">Intra-Company Transfer Employment Permit</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Transferência interna</span>
-                  <span class="visa-tag">Multinacionais</span>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Trabalho Geral</h3>
+              <span class="visa-name-orig">General Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para emprego geral na Irlanda</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
+                </div>
+              </div>
             </div>
-            <div class="visa-body">
-              <p style="font-size:14px;color:var(--body);line-height:1.6;margin-top:var(--s-lg);">
-                Para trabalhadores sendo transferidos de uma filial estrangeira para a filial irlandesa da mesma empresa.
-                Taxas: EUR 1.000 (até 24 meses), EUR 500 (6 meses ou menos), EUR 1.500 (até 36 meses), EUR 500 renovação (6 meses), EUR 1.000 renovação (24 meses).
-              </p>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
             </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
           </div>
-
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Transferência Intra-Empresa</h3>
+              <span class="visa-name-orig">Intra-Company Transfer Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para transferência dentro da mesma empresa</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €500 para seis meses ou menos e €1000 até 24 meses</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Trabalho por Contrato de Serviços</h3>
+              <span class="visa-name-orig">Contract for Services Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para contratação de serviços</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Trabalho de Reativação</h3>
+              <span class="visa-name-orig">Reactivation Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para reativação de situação laboral</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Trabalho em Esporte e Cultura</h3>
+              <span class="visa-name-orig">Sport and Cultural Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para profissionais de esporte e cultura</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Stamp 1 - Employment Permit Holder</h3>
+              <span class="visa-name-orig">Stamp 1 (Employment Permit Holder)</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ter um employment permit válido</span>
+                <span class="visa-tag">Ter um contrato de trabalho</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão para trabalhar na Irlanda com um contrato de trabalho válido. Titular de um employment permit que permite trabalhar para um empregador específico.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">O empregador deve solicitar um employment permit junto ao departamento de imigração</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Ao chegar na Irlanda, registrar com Immigration Service Delivery nos primeiros dias</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Restrição de trabalho: apenas para o empregador especificado no employment permit. Mudança de empregador requer novo permit.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Stamp 4 - Direitos Expandidos</h3>
+              <span class="visa-name-orig">Stamp 4 (Expanded Rights)</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">5 anos de residência legal contínua na Irlanda</span>
+                <span class="visa-tag">Histórico de conformidade com leis de imigração</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão expandida concedida após 5 anos de residência legal contínua na Irlanda. Permite trabalho autonomamente, trazer família e direitos mais amplos.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Cumprir 5 anos de residência legal contínua na Irlanda</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Solicitar a mudança de permissão para Stamp 4 junto a Immigration Service Delivery</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 5 anos</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Permite trabalho autônomo e emprego, mudança de empregador sem restrições, e trazer dependentes familiares. Baseado em 5 anos de residência legal contínua.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Dependant/Partner/Spouse Employment Permit</h3>
+              <span class="visa-name-orig">Dependant/Partner/Spouse Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag">Dependentes de titulares de Critical Skills Employment Permit</span>
+                <span class="visa-tag">Parceiros reconhecidos de titulares de Critical Skills Employment Permit</span>
+                <span class="visa-tag">Parceiros civis de titulares de Critical Skills Employment Permit</span>
+                <span class="visa-tag">Cônjuges de titulares de Critical Skills Employment Permit</span>
+                <span class="visa-tag">Dependentes/parceiros/cônjuges de Researchers on Hosting Agreements</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permite que dependentes, parceiros reconhecidos (quando reconhecidos pelo Department of Justice and Equality), parceiros civis e cônjuges de titulares de Critical Skills Employment Permit (anteriormente Green Card employment permit) e de Researchers on Hosting Agreements solicitem permissão de trabalho para trabalhar no Estado. Geralmente, é ilegal para cônjuges e dependentes de titulares de permissão de trabalho serem empregados na Irlanda sem uma permissão de trabalho válida.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Anteriormente relacionado ao Green Card employment permit.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão de Trabalho para Estágio</h3>
+              <span class="visa-name-orig">Internship Employment Permit</span>
+              <div class="visa-tags">
+                
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para estágio profissional</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No país de destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 12 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Sem taxa de renovação (N/A)</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Exchange Agreement Employment Permit</h3>
+              <span class="visa-name-orig">Exchange Agreement Employment Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag">Baixa relevância</span>
+                <span class="visa-tag">Nacionais não-EEA de acordo com acordos prescritos</span>
+                <span class="visa-tag">Nacionais não-EEA de acordo com acordos internacionais dos quais a Irlanda é parte</span>
+                <span class="visa-tag">Participantes de acordos recíprocos internacionais</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Substitui o antigo Exchange Agreement type of Work Permit Employment Permit e também atende permissões de trabalho para acordos recíprocos internacionais. Projetado para facilitar o emprego no Estado de nacionais não-EEA de acordo com acordos prescritos ou outros acordos internacionais dos quais o Estado é parte.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Substitui o antigo Exchange Agreement type of Work Permit Employment Permit. Para acordos internacionais recíprocos.</div>
+          </div>
+        </div>
         </div>
       </div>
     </section>
   </div>
 
+  
   <div class="tab-panel" id="brasileiros">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Condições específicas para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que muda para você</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
         <div class="br-grid">
-          <div class="br-card warning">
-            <span class="br-label">Schengen — a Irlanda não integra</span>
-            <span class="br-value no">Não-Schengen</span>
-            <p class="br-desc">A Irlanda não faz parte do Espaço Schengen. Brasileiros precisam de visto de entrada específico para a Irlanda, separado de qualquer outro visto Schengen que possuam.</p>
-          </div>
-          <div class="br-card warning">
-            <span class="br-label">Employment Permit obrigatório</span>
-            <span class="br-value no">Sim</span>
-            <p class="br-desc">Cidadãos brasileiros são considerados nacionais de países terceiros na Irlanda. É ilegal trabalhar sem um Employment Permit válido, inclusive para cônjuges ou dependentes de titulares de outros tipos de permissão.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Permanência máxima sem visto</span>
-            <span class="br-value">90 dias</span>
-            <p class="br-desc">Brasileiros podem entrar na Irlanda sem visto para turismo por até 90 dias. Contudo, trabalhar durante esse período sem Employment Permit é proibido.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Idioma necessário</span>
-            <span class="br-value" style="font-size: 18px;">Inglês</span>
-            <p class="br-desc">A Irlanda opera exclusivamente em inglês no ambiente de trabalho. Não há requisito formal de certificação para a maioria dos Employment Permits, mas proficiência é assumida.</p>
-          </div>
-          <div class="br-card" style="grid-column: 1 / -1;">
-            <span class="br-label">Acordo especial Brasil-Irlanda</span>
-            <span class="br-value" style="color: var(--muted); font-size: 18px;">Nenhum</span>
-            <p class="br-desc">Não existe acordo bilateral de Working Holiday ou acordo preferencial entre Brasil e Irlanda. O caminho é exclusivamente pelos Employment Permits regulados pelo Employment Permits Act 2024.</p>
-          </div>
+          
+        <div class="br-card highlight">
+          <span class="br-label">Schengen — entrada sem visto</span>
+          <span class="br-value yes">Sim</span>
+          <p class="br-desc">O passaporte brasileiro permite entrada em Irlanda por até 90 dias em qualquer período de 180 dias, sem visto de turista.</p>
+        </div>
+          
+        <div class="br-card warning">
+          <span class="br-label">Trabalhar sem autorização</span>
+          <span class="br-value no">Não permitido</span>
+          <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Permanência máxima como turista</span>
+          <span class="br-value">90 dias</span>
+          <p class="br-desc">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Acordos bilaterais com o Brasil</span>
+          <span class="br-value no" style="color:var(--muted);">Nenhum</span>
+          <p class="br-desc">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e Irlanda. O caminho é pelos vistos padrão.</p>
+        </div>
+          
+        <div class="br-card" style="grid-column:1/-1;">
+          <span class="br-label">Observações para brasileiros</span>
+          <p class="br-desc">Cidadãos brasileiros não são nacionais do EEE e necessitam de Permissão de Trabalho (Employment Permit) para trabalhar na Irlanda</p>
+        </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="requisitos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">Válidos para todos os Employment Permits</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
+        <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Requisitos gerais</h2>
         <div class="req-list">
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte com validade mínima de 6 meses após a data de entrada</span><span class="req-note">Obrigatório</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Oferta de emprego de empregador irlandês registrado no Departamento de Empregos, Empresa e Inovação</span><span class="req-note">Por escrito</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Certidão de antecedentes criminais</span><span class="req-note">Apostilada</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Para Critical Skills: profissão listada na Critical Skills Occupations List (atualizada em set/2024)</span><span class="req-note">Verificar lista atual</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Comprovante de fundos: salário mínimo exigido de EUR 34.000/ano para Critical Skills EP e EUR 30.000/ano para General EP</span><span class="req-note">Por ano</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Seguro saúde com cobertura mínima de EUR 30.000 por ocorrência (recomendado para entrada). Residentes podem acessar o sistema público de saúde irlandês (HSE) após registro</span><span class="req-note">Recomendado</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Pagamento da taxa de Employment Permit por transferência eletrônica (cheques aceitos apenas para candidatos individuais)</span><span class="req-note">Desde out/2014</span></div>
+          
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Passaporte — Minimo 6 meses apos a data de entrada</span>
+            <span class="req-note">Verificar antes de iniciar</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 34.000/ano. Salário mínimo exigido para Critical Skills EP. General EP requer EUR 30.000/ano. Para entrada como turista: mínimo EUR 50/dia recomendado.</span>
+            <span class="req-note">Ver cada visto</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Certidão de antecedentes criminais (apostilada)</span>
+            <span class="req-note">Apostila de Haia</span>
+          </div>
+        </div>
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p class="body-sm" style="color:var(--muted);margin:0;">
+            Requisitos extraídos de <span style="color:var(--primary);">www.irishimmigration.ie, enterprise.gov.ie</span> em mai/2026.
+            Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.
+          </p>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="mudancas">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Histórico de alterações detectadas</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Mudanças recentes</h2>
         <div class="timeline">
+          
           <div class="timeline-entry">
             <div class="timeline-date">
               <span class="timeline-date-str">2024-09-02</span>
               <span class="sev-high">Alta relevância</span>
             </div>
             <div class="timeline-content">
-              <h3 class="timeline-title">Critical Skills Occupations List atualizada (SI 444 de 2024)</h3>
-              <p class="timeline-summary">Nova versão da lista de ocupações críticas entrou em vigor. A lista foi reorganizada para refletir ocupações com escassez real de mão de obra. Profissões de TI, ciências, engenharia, saúde e educação continuam listadas, mas a estrutura e os requisitos específicos por ocupação foram revisados.</p>
-              <div class="timeline-affects">
-                <span class="affect-pill">Critical Skills Employment Permit</span>
-                <span class="affect-pill">TI/Tecnologia</span>
-                <span class="affect-pill">Engenharia</span>
-                <span class="affect-pill">Saúde</span>
-              </div>
+              <h3 class="timeline-title">Atualização da Critical Skills Occupations List</h3>
+              <p class="timeline-summary">Entrada em vigor do SI 444 de 2024, atualizando a lista de ocupações elegíveis para o Critical Skills Employment Permit</p>
+              <div class="timeline-affects"><span class="affect-pill">Todas as candidaturas para Critical Skills Employment Permit</span></div>
             </div>
           </div>
           <div class="timeline-entry">
@@ -423,172 +916,179 @@
               <span class="sev-high">Alta relevância</span>
             </div>
             <div class="timeline-content">
-              <h3 class="timeline-title">Employment Permits Act 2024 — nova lei em vigor</h3>
-              <p class="timeline-summary">A nova lei consolidou e atualizou a estrutura de Employment Permits, passando a regular 9 tipos distintos. A lei substitui legislação anterior e introduz mudanças nos processos de solicitação e renovação.</p>
-              <div class="timeline-affects">
-                <span class="affect-pill">Todos os Employment Permits</span>
-              </div>
+              <h3 class="timeline-title">Employment Permits Act 2024</h3>
+              <p class="timeline-summary">O Employment Permits Act 2024, conforme alterado, permite que nove tipos diferentes de Employment Permits sejam concedidos.</p>
+              <div class="timeline-affects"><span class="affect-pill">Todos os tipos de Employment Permits</span></div>
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-date">
+              <span class="timeline-date-str">2021-03-22</span>
+              <span class="sev-medium">Relevância média</span>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Tabela de taxas de Permissão de Trabalho atualizada</h3>
+              <p class="timeline-summary">Tabela de taxas de permissão de trabalho foi atualizada com vigência a partir de 1 de outubro de 2014. Inclui diferentes categorias de permissão com diferentes valores de taxa conforme o período de validade</p>
+              <div class="timeline-affects"><span class="affect-pill">General Employment Permit</span><span class="affect-pill">Critical Skills Employment Permit</span><span class="affect-pill">Intra-Company Transfer Employment Permit</span><span class="affect-pill">Contract for Services Employment Permit</span><span class="affect-pill">Reactivation Employment Permit</span><span class="affect-pill">Sport and Cultural Employment Permit</span><span class="affect-pill">Internship Employment Permit</span></div>
             </div>
           </div>
         </div>
-        <div style="margin-top: var(--s-xl); text-align: center;">
-          <a class="text-link body-sm" href="historico.html">Ver histórico completo →</a>
+        <div style="margin-top:var(--s-xl);text-align:center;">
+          <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="fontes">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Transparência total</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Fontes usadas na extração</h2>
+        <p class="body-md" style="max-width:600px;margin-bottom:var(--s-xl);">
+          Todos os dados foram extraídos das URLs abaixo em mai/2026. Clique para ver a fonte original.
+        </p>
         <div class="sources-list">
+          
           <div class="source-item">
-            <div><div class="source-url">irishimmigration.ie/coming-to-work-in-ireland/</div><div class="source-meta">Irish Immigration Service — portal principal de imigração</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+            <div>
+              <a class="source-url" href="https://www.irishimmigration.ie/coming-to-work-in-ireland/" target="_blank" rel="noopener noreferrer">www.irishimmigration.ie/coming-to-work-in-ireland/</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/</div><div class="source-meta">Department of Enterprise — tipos de Employment Permit</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+            <div>
+              <a class="source-url" href="https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html" target="_blank" rel="noopener noreferrer">enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/</div><div class="source-meta">Critical Skills Occupations List (SI 444/2024)</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-04-29</span></div>
+            <div>
+              <a class="source-url" href="https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/" target="_blank" rel="noopener noreferrer">enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <div>
+              <a class="source-url" href="https://www.irishimmigration.ie/registering-your-immigration-permission/" target="_blank" rel="noopener noreferrer">www.irishimmigration.ie/registering-your-immigration-permission/</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <div>
+              <a class="source-url" href="https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/" target="_blank" rel="noopener noreferrer">enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <div style="display:flex;align-items:center;gap:var(--s-md);">
+            <span class="badge">Confiança média</span>
+            <span class="body-sm" style="color:var(--muted);">
+              Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
+            </span>
           </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="guia">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Guia prático para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Como se legalizar na Irlanda</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Como se legalizar em Irlanda</h2>
         <div class="guide-intro">
-          <p>A Irlanda não é membro do Espaço Schengen, opera com sistema de controle de fronteira próprio. Brasileiros não precisam de visto para entrar como turistas por até 90 dias, mas para trabalhar é obrigatório ter uma Employment Permit aprovada antes da chegada. Este é o ponto mais crítico do processo.</p>
+          <p>Resumo das etapas principais baseado em dados extraídos em mai/2026. Este guia é simplificado, consulte sempre as fontes oficiais para o seu caso específico.</p>
         </div>
 
         <div class="guide-phases">
-
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 01</span>
               <div>
-                <h3 class="phase-title">Antes de embarcar</h3>
-                <p class="phase-subtitle">A Employment Permit precisa ser aprovada antes de entrar</p>
+                <h3 class="phase-title">Documentação essencial</h3>
+                <p class="phase-subtitle">Prepare estes documentos antes de iniciar o processo</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Obter Employment Permit via empregador irlandês</h4>
-                  <p class="step-desc">O empregador irlandês solicita a Employment Permit ao DETE (Department of Enterprise, Trade and Employment). A mais comum para brasileiros qualificados é a Critical Skills Employment Permit (para funções em lista de escassez, salário mínimo de €38.000/ano) ou a General Employment Permit (para outras funções, salário mínimo de €34.000/ano, requer teste de mercado). O pedido é online em enterprise.gov.ie/employment-permits.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 4 a 12 semanas</span>
-                    <span class="step-tag custo">Custo: €1.000 (Critical Skills) / €500 (General)</span>
-                    <span class="step-tag orgao">DETE — enterprise.gov.ie</span>
-                  </div>
+                  <h4 class="step-heading">Passaporte válido</h4>
+                  <p class="step-desc">Validade mínima: Minimo 6 meses apos a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Certidão de antecedentes criminais</h4>
+                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">2</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Entrada na Irlanda</h4>
-                  <p class="step-desc">Com a Employment Permit aprovada, brasileiros podem entrar na Irlanda sem visto de entrada separado (direito a 90 dias de turismo). Na chegada, apresente ao agente de fronteira: passaporte, Employment Permit aprovada, carta de oferta de emprego e comprovante de meios de subsistência para os primeiros dias.</p>
-                  <div class="step-tags">
-                    <span class="step-tag orgao">GNIB — Garda National Immigration Bureau</span>
-                  </div>
+                  <h4 class="step-heading">Comprovante de fundos</h4>
+                  <p class="step-desc">Mínimo EUR 34.000/ano. Salário mínimo exigido para Critical Skills EP. General EP requer EUR 30.000/ano. Para entrada como turista: mínimo EUR 50/dia recomendado.</p>
                 </div>
               </div>
             </div>
           </div>
 
+          
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 02</span>
               <div>
-                <h3 class="phase-title">Primeiros dias na Irlanda</h3>
-                <p class="phase-subtitle">Registro de residência obrigatório em 90 dias</p>
+                <h3 class="phase-title">Processo do visto</h3>
+                <p class="phase-subtitle">Consulte as fontes oficiais para o passo a passo completo</p>
               </div>
             </div>
             <div class="guide-steps">
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">3</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Obter PPS Number (Personal Public Service Number)</h4>
-                  <p class="step-desc">O PPS Number é o equivalente irlandês do CPF, necessário para receber salário, pagar impostos, acessar serviços públicos e registrar-se no sistema de saúde. Solicite no seu Intreo Centre ou DSP (Department of Social Protection) local. Leve: passaporte, Employment Permit, comprovante de residência e carta do empregador.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 1 a 2 semanas</span>
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">DSP — Intreo Centre</span>
-                  </div>
-                </div>
-              </div>
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">4</div><div class="step-line"></div></div>
+                <div class="guide-step-left"><div class="step-circle">1</div></div>
                 <div class="step-body">
-                  <h4 class="step-heading">Registrar-se na Garda (IRP — Irish Residence Permit)</h4>
-                  <p class="step-desc">O IRP (Irish Residence Permit) é o cartão de residência irlandês. Você deve se registrar na Garda (polícia) dentro de 90 dias da chegada. Em Dublin: agende online em burghquayregistrationoffice.ie. Fora de Dublin: vá à delegacia da Garda local. Leve: passaporte, Employment Permit, PPS Number, comprovante de residência e fotos.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Obrigatório em até 90 dias da chegada</span>
-                    <span class="step-tag custo">Custo: €300</span>
-                    <span class="step-tag orgao">Garda National Immigration Bureau (GNIB)</span>
-                  </div>
-                </div>
-              </div>
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">5</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Abrir conta bancária</h4>
-                  <p class="step-desc">Com PPS Number e IRP, abra conta em banco irlandês. Opções: Bank of Ireland, AIB, Permanent TSB. Para abrir sem IRP nos primeiros dias, N26 e Revolut aceitam apenas passaporte. Conta bancária é necessária para receber o primeiro salário.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 3 a 10 dias</span>
-                  </div>
-                </div>
-              </div>
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">6</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Registrar-se no médico de clínica geral (GP)</h4>
-                  <p class="step-desc">O sistema de saúde irlandês funciona por GP (médico de família privado ou público). Portadores de Critical Skills Permit podem solicitar o Medical Card (acesso gratuito ao GP) se a renda for elegível. Caso contrário, consultas de GP custam €50 a €70. Hospitais públicos são acessíveis com taxa de €100 por visita a urgências.</p>
-                  <div class="step-tags">
-                    <span class="step-tag orgao">HSE — Health Service Executive</span>
-                  </div>
+                  <h4 class="step-heading">Consulte as fontes listadas na aba Fontes</h4>
+                  <p class="step-desc">As etapas detalhadas do processo estão em levantamento. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.</p>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 03</span>
-              <div>
-                <h3 class="phase-title">Renovação e residência permanente</h3>
-                <p class="phase-subtitle">Planejando a longo prazo na Irlanda</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">7</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Renovar IRP e Employment Permit</h4>
-                  <p class="step-desc">O IRP é renovado anualmente pela Garda. A Critical Skills Permit tem validade de 2 anos e pode ser renovada. Após 2 anos com Critical Skills Permit, você pode solicitar uma General Employment Permit sem depender de empregador específico. Após 5 anos de residência legal, é possível solicitar Stamp 4 (residência sem Employment Permit).</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Stamp 4 (residência livre): após 5 anos</span>
-                    <span class="step-tag orgao">GNIB + DETE</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <div class="guide-disclaimer">
-          <p>Este guia é informativo e baseado nas regras vigentes em mai/2026. As regras de imigração irlandesa mudam com frequência, especialmente as listas de ocupações em escassez. Confirme sempre em enterprise.gov.ie, irishimmigration.ie e gnib.ie. Para casos complexos, consulte um solicitor especializado em direito de imigração.</p>
+          <p>Guia gerado automaticamente a partir de dados de mai/2026. Requisitos e prazos mudam com frequência por regulamentação do governo de Irlanda. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
         </div>
       </div>
     </section>
@@ -596,12 +1096,13 @@
 
 </main>
 
+<!-- CTA BAND -->
 <section>
   <div class="container">
     <div class="cta-band-yellow">
       <div>
         <h2>Comparar com outros países</h2>
-        <p>Veja a Irlanda lado a lado com Países Baixos, Portugal ou Alemanha. Todos os critérios na mesma tabela.</p>
+        <p>Veja Irlanda lado a lado com outros destinos. Todos os critérios na mesma tabela.</p>
       </div>
       <div class="actions">
         <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
@@ -611,17 +1112,59 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div><a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a><p class="body-sm" style="max-width:300px;color:var(--muted);">Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.</p></div>
-      <div><h4>Países</h4><ul><li><a href="pais-nl.html">Países Baixos</a></li><li><a href="pais-pt.html">Portugal</a></li><li><a href="pais-de.html">Alemanha</a></li><li><a href="pais-ie.html" style="color:var(--on-dark);">Irlanda</a></li><li><a href="paises.html">Ver todos →</a></li></ul></div>
-      <div><h4>Ferramentas</h4><ul><li><a href="comparar.html">Comparar países</a></li><li><a href="qual-pais.html">Qual país é o meu?</a></li><li><a href="calculadora.html">Calculadora</a></li><li><a href="historico.html">Histórico</a></li></ul></div>
-      <div><h4>Projeto</h4><ul><li><a href="sobre.html">Sobre</a></li><li><a href="sobre.html#metodologia">Metodologia</a></li><li><a href="sobre.html#contribuir">Contribuir</a></li>
-          <li><a href="dev.html">Dev</a></li></ul></div>
-      <div><h4>Dados</h4><ul><li><a href="#">GitHub</a></li><li><a href="#">JSON direto</a></li><li><a href="historico.html">RSS de mudanças</a></li></ul></div>
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width:300px;color:var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span><span class="caption-up">Última extração: mai/2026</span></div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span class="caption-up">Última extração: mai/2026</span>
+    </div>
   </div>
 </footer>
 
@@ -637,7 +1180,9 @@
       document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   })
-  function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
+  function toggleVisa(head) {
+    head.closest('.visa-card').classList.toggle('open')
+  }
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

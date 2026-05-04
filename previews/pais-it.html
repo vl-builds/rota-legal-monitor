@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
+  /* ---- country hero ---- */
   .country-hero { padding: var(--s-xxl) 0; border-bottom: 1px solid var(--hairline); }
   .hero-row { display: flex; align-items: center; gap: var(--s-xl); flex-wrap: wrap; }
   .hero-flag { width: 64px; height: 46px; border-radius: 6px; display: block; flex-shrink: 0; }
   .hero-info { flex: 1; min-width: 200px; }
   .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: var(--on-dark); line-height: 1.1; margin: 0 0 var(--s-sm); }
   .hero-badges { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
-  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10, 10, 10, 0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
+  /* ---- sticky subheader + tabs ---- */
+  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10,10,10,0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
   .sticky-inner { display: flex; align-items: center; gap: var(--s-lg); height: 52px; }
   .sticky-id { display: flex; align-items: center; gap: var(--s-sm); flex-shrink: 0; }
   .sticky-flag { width: 24px; height: 18px; border-radius: 3px; display: block; }
@@ -25,6 +27,7 @@
   .tab-btn { height: 52px; padding: 0 var(--s-lg); font-size: 14px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap; transition: color 120ms ease, border-color 120ms ease; }
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
+  /* ---- quick summary ---- */
   .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
@@ -34,12 +37,10 @@
   .qs-value.positive { color: var(--accent-emerald); }
   .qs-value.negative { color: var(--muted); }
   .qs-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .diff-dots { display: flex; gap: 4px; align-items: center; margin-bottom: 2px; }
-  .diff-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .diff-dot.filled { background: var(--on-dark); }
-  .diff-dot.empty { background: var(--hairline-strong); }
+  /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+  /* ---- visa cards ---- */
   .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
   .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
   .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
@@ -49,7 +50,7 @@
   .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
   .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240, 180, 41,0.1); color: var(--primary); border-color: rgba(240, 180, 41,0.2); }
+  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
   .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
   .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
   .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
@@ -69,15 +70,17 @@
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
-  .br-card.highlight { border-color: rgba(240, 180, 41,0.3); background: rgba(240, 180, 41,0.05); }
+  .br-card.highlight { border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.05); }
   .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
   .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
   .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
   .br-value.yes { color: var(--accent-emerald); }
   .br-value.no { color: var(--accent-rose); }
   .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
+  /* ---- requisitos gerais ---- */
   .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); }
   .req-icon { font-size: 16px; width: 20px; text-align: center; }
@@ -85,6 +88,7 @@
   .req-icon.req { color: var(--accent-blue); }
   .req-text { font-size: 14px; color: var(--body-strong); }
   .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  /* ---- mudanças recentes ---- */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
   .timeline-entry + .timeline-entry { border-top: 1px solid var(--hairline); }
@@ -98,23 +102,45 @@
   .sev-high { background: rgba(239,68,68,0.12); color: var(--accent-rose); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
   .sev-medium { background: rgba(59,130,246,0.12); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
   .sev-low { background: var(--surface-elevated); color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  /* ---- fontes ---- */
   .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
   .source-item { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-lg); display: grid; grid-template-columns: 1fr auto; gap: var(--s-lg); align-items: start; }
   .source-url { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; word-break: break-all; margin-bottom: var(--s-xs); }
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
-  @media (max-width: 1024px) { .quick-summary { grid-template-columns: repeat(2, 1fr); } .qs-item:nth-child(2n+1) { border-left: none; } .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); } .visa-grid { grid-template-columns: 1fr; } .br-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .hero-name { font-size: 28px; } .tabs { margin-left: 0; } .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); } .sticky-id { padding-top: var(--s-xs); } .quick-summary { grid-template-columns: 1fr 1fr; } .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); } .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); } .req-item { grid-template-columns: auto 1fr; } .req-note { display: none; } .rights-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1024px) {
+    .quick-summary { grid-template-columns: repeat(2, 1fr); }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .visa-grid { grid-template-columns: 1fr; }
+    .br-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero-name { font-size: 28px; }
+    .tabs { margin-left: 0; }
+    .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
+    .sticky-id { padding-top: var(--s-xs); }
+    .quick-summary { grid-template-columns: 1fr 1fr; }
+    .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
+    .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
+    .req-item { grid-template-columns: auto 1fr; }
+    .req-note { display: none; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
+<!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="home.html"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
+    <a class="logo" href="home.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+      <span>Rota Legal</span>
+    </a>
     <div class="nav-links">
-      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
@@ -125,12 +151,13 @@
       <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
       <a class="btn btn-primary" href="comparar.html">Comparar</a>
     </div>
-      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<!-- ============== MOBILE DRAWER ============== -->
+
+<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
   <div class="mobile-drawer-backdrop" data-close></div>
   <aside class="mobile-drawer-panel">
@@ -154,6 +181,7 @@
   </aside>
 </div>
 
+<!-- COUNTRY HERO -->
 <div class="country-hero">
   <div class="container">
     <div class="hero-row">
@@ -161,9 +189,10 @@
       <div class="hero-info">
         <h1 class="hero-name">Itália</h1>
         <div class="hero-badges">
-          <span class="badge">Confiança média</span>
+          <span class="badge up"><span class="pulse"></span>Confiança média</span>
           <span class="badge">Schengen</span>
-          <span class="badge new">Decreto Flussi</span>
+          <span class="badge">Work Permit exigido</span>
+          
           <span class="badge new">Atualizado mai/2026</span>
         </div>
       </div>
@@ -171,6 +200,7 @@
   </div>
 </div>
 
+<!-- STICKY SUBHEADER + TABS -->
 <div class="country-sticky" id="sticky">
   <div class="container">
     <div class="sticky-inner">
@@ -190,483 +220,601 @@
   </div>
 </div>
 
+<!-- QUICK SUMMARY -->
 <div class="quick-summary">
   <div class="qs-item">
-    <span class="qs-label">Dificuldade estimada</span>
-    <div class="diff-dots">
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot filled"></span>
-    </div>
-    <span class="qs-sub">Alta — vagas limitadas pelo decreto flussi</span>
-  </div>
-  <div class="qs-item">
-    <span class="qs-label">Sistema de cotas</span>
-    <span class="qs-value accent">Decreto Flussi</span>
-    <span class="qs-sub">Vagas abertas anualmente por decreto</span>
-  </div>
-  <div class="qs-item">
-    <span class="qs-label">Trabalho autônomo</span>
+    <span class="qs-label">Entrada sem visto (Schengen)</span>
     <span class="qs-value positive">Sim</span>
-    <span class="qs-sub">Via visto para lavoro autonomo (sujeito a cotas)</span>
+    <span class="qs-sub">Até 90 dias por turismo</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Prazo estimado</span>
-    <span class="qs-value">3 a 9 meses</span>
-    <span class="qs-sub">Depende da abertura do decreto flussi</span>
+    <span class="qs-label">Tipos de visto monitorados</span>
+    <span class="qs-value accent">4</span>
+    <span class="qs-sub">3 de relevância direta</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Work permit exigido</span>
+    <span class="qs-value negative">Sim</span>
+    <span class="qs-sub">Autorização obrigatória para trabalhar</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Dados atualizados em</span>
+    <span class="qs-value">mai/2026</span>
+    <span class="qs-sub">Extração automática mensal</span>
   </div>
 </div>
 
+<!-- TAB CONTENT -->
 <main>
 
+  <!-- ABA: VISTOS -->
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">4 tipos de autorização monitorados</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Opções de autorização de trabalho</h2>
+        <div class="eyebrow">4 tipos de visto monitorados</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
         <div class="visa-list">
-
-          <div class="visa-card open">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Visto para Trabalho Subordinado</h3>
-                <span class="visa-name-orig">Visto per Lavoro Subordinato</span>
-                <div class="visa-tags">
-                  <span class="visa-tag hl">Principal — empregados CLT</span>
-                  <span class="visa-tag">Sujeito a cotas</span>
-                  <span class="visa-tag">Qualquer área</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Trabalhadores com oferta de emprego de empresa italiana, dentro das cotas do decreto flussi</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Pré-requisito do empregador</span>
-                    <span class="visa-field-value">Deve obter autorização (nulla osta) junto ao Sportello Unico per l'Immigrazione</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Empregador solicita autorização ao Sportello Unico dentro das cotas do decreto flussi</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Trabalhador recebe o nulla osta al lavoro após aprovação</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Solicitação do visto com documentação completa no Consulado italiano no Brasil</span></div>
-                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Dentro de 8 dias úteis após a chegada, solicitar o Permesso di Soggiorno</span></div>
-                  </div>
-                </div>
-              </div>
-              <div style="margin-top: var(--s-lg);">
-                <p class="visa-section-title">Direitos</p>
-                <div class="rights-grid">
-                  <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar para o empregador declarado</div>
-                  <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador sem novo pedido</div>
-                  <div class="right-item"><span class="right-icon no">✗</span>Trazer família automaticamente</div>
-                  <div class="right-item"><span class="right-icon no">✗</span>Trabalhar sem vínculo declarado</div>
-                </div>
+          
+        <div class="visa-card open">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Trabalho Subordinado</h3>
+              <span class="visa-name-orig">Lavoro Subordinato</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ter oferta de emprego de empregador italiano</span>
+                <span class="visa-tag">Empregador deve obter autorização prévia (nulla osta) da Sportello Unico per l'Immigrazione</span>
+                <span class="visa-tag">Vaga deve estar dentro das cotas estabelecidas pelo decreto flussi, salvo exceções</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Visto para Trabalho Autônomo</h3>
-                <span class="visa-name-orig">Visto per Lavoro Autonomo</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Autônomos e freelancers</span>
-                  <span class="visa-tag">Sujeito a cotas</span>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto nacional de longa duração para trabalho subordinado (emprego assalariado) na Itália. Sujeito ao sistema de cotas anuais (decreto flussi) estabelecido pelo governo italiano.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">O empregador italiano deve solicitar a autorização de trabalho (nulla osta) junto à Sportello Unico per l'Immigrazione da província onde a empresa está localizada</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Após a emissão do nulla osta, o trabalhador solicita o visto nacional de trabalho no Consulado italiano no Brasil</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Com o visto aprovado, o trabalhador pode entrar na Itália</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Dentro de 8 dias úteis após a entrada na Itália, o trabalhador deve solicitar a permissão de permanência (Permesso di Soggiorno) junto aos Correios (Poste Italiane) ou Questura</span>
+              </div>
             </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Profissionais que pretendem exercer atividade autônoma ou empresarial na Itália</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Condição</span>
-                    <span class="visa-field-value">Inclusão nas cotas para trabalho autônomo do decreto flussi</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Verificar disponibilidade de cotas no decreto flussi para trabalho autônomo</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Obter autorização das autoridades italianas (nulla osta)</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Solicitar visto no Consulado italiano no Brasil</span></div>
-                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Solicitar Permesso di Soggiorno em até 8 dias após a chegada</span></div>
-                  </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
                 </div>
               </div>
             </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Sujeito ao sistema de cotas anuais (decreto flussi). Algumas categorias de trabalhadores podem estar isentas das cotas. O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.</div>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Visto para Missão</h3>
-                <span class="visa-name-orig">Visto per Missione</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Transferência corporativa</span>
-                  <span class="visa-tag">Temporário</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Trabalhadores enviados em missão por empresa estrangeira para atuar temporariamente na Itália</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Documentos principais</span>
-                    <span class="visa-field-value">Carta de missão da empresa + contrato de trabalho no país de origem</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Empresa emite carta de missão com prazo e natureza da atividade</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Solicitação do visto no Consulado italiano no Brasil</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Solicitar Permesso di Soggiorno em até 8 dias úteis após a chegada</span></div>
-                  </div>
-                </div>
-              </div>
-              <div style="margin-top: var(--s-lg);">
-                <p class="visa-section-title">Direitos</p>
-                <div class="rights-grid">
-                  <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar na missão declarada</div>
-                  <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador (vínculo é com empresa de origem)</div>
-                </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Trabalho Autônomo</h3>
+              <span class="visa-name-orig">Lavoro Autonomo</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Demonstrar capacidade de exercer atividade autônoma na Itália</span>
+                <span class="visa-tag">Comprovar requisitos profissionais ou empresariais necessários</span>
+                <span class="visa-tag">Sujeito ao sistema de cotas anuais (decreto flussi), salvo exceções</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Cartão Azul UE</h3>
-                <span class="visa-name-orig">EU Blue Card</span>
-                <div class="visa-tags">
-                  <span class="visa-tag hl">Alta qualificação</span>
-                  <span class="visa-tag">Geralmente fora das cotas</span>
-                  <span class="visa-tag">Mobilidade UE</span>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto nacional de longa duração para trabalho autônomo na Itália, destinado a profissionais liberais, empresários e trabalhadores por conta própria.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Reunir toda a documentação necessária comprovando a atividade autônoma a ser exercida e meios econômicos</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Solicitar o visto nacional para trabalho autônomo no Consulado italiano no Brasil</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Com o visto aprovado, entrar na Itália</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Dentro de 8 dias úteis após a entrada na Itália, solicitar a permissão de permanência (Permesso di Soggiorno)</span>
+              </div>
             </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Profissionais altamente qualificados com diploma de ensino superior e contrato de trabalho por pelo menos 1 ano</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Salário mínimo</span>
-                    <span class="visa-field-value">Acima do limite mínimo estabelecido para o EU Blue Card na Itália</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Vantagem</span>
-                    <span class="visa-field-value">Geralmente não sujeito às cotas do decreto flussi</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Conseguir contrato vinculante de trabalho qualificado com salário adequado</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Solicitar visto com documentação completa no Consulado italiano no Brasil</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Solicitar Permesso di Soggiorno EU Blue Card em até 8 dias após a chegada</span></div>
-                  </div>
-                  <div style="margin-top: var(--s-lg);">
-                    <p class="visa-section-title">Direitos</p>
-                    <div class="rights-grid">
-                      <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador (após 2 anos)</div>
-                      <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-                      <div class="right-item"><span class="right-icon yes">✓</span>Mobilidade dentro da UE</div>
-                      <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 5 anos</div>
-                    </div>
-                  </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
                 </div>
               </div>
             </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Sujeito ao sistema de cotas anuais (decreto flussi). O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.</div>
           </div>
-
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Cartão Azul UE</h3>
+              <span class="visa-name-orig">EU Blue Card</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Ter diploma de ensino superior ou qualificação profissional de alto nível</span>
+                <span class="visa-tag">Ter oferta de emprego com salário mínimo estabelecido (geralmente acima de 1,5 vezes o salário médio italiano)</span>
+                <span class="visa-tag">O emprego deve requerer alta qualificação</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto de trabalho para profissionais altamente qualificados, que permite viver e trabalhar na Itália e facilita a mobilidade dentro da União Europeia.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                <div class="visa-field">
+              <span class="visa-field-label">Qualificação exigida</span>
+              <span class="visa-field-value">Diploma de ensino superior (mínimo 3 anos de estudo); Ou experiência profissional comprovada de pelo menos 5 anos em nível comparável</span>
+            </div>
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">O empregador italiano solicita a autorização de trabalho específica para EU Blue Card</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Após a emissão do nulla osta, solicitar o visto EU Blue Card no Consulado italiano no Brasil</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Com o visto aprovado, entrar na Itália</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Dentro de 8 dias úteis após a entrada na Itália, solicitar a permissão de permanência EU Blue Card</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 5 anos</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Facilita a mobilidade dentro da UE após 18 meses. Geralmente isento das cotas do decreto flussi. Oferece condições privilegiadas para reagrupamento familiar. O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Missão/Trabalho Temporário</h3>
+              <span class="visa-name-orig">Missione</span>
+              <div class="visa-tags">
+                <span class="visa-tag">Ser funcionário de empresa estrangeira enviado em missão para a Itália</span>
+                <span class="visa-tag">Ter documentação da empresa comprovando a missão temporária</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto para trabalho em missão temporária na Itália, geralmente para profissionais enviados por empresas estrangeiras para trabalhar temporariamente em filiais ou empresas parceiras italianas.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Obter carta da empresa estrangeira e convite da empresa italiana</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Solicitar o visto nacional para missão no Consulado italiano no Brasil</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Com o visto aprovado, entrar na Itália</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Dentro de 8 dias úteis após a entrada na Itália, solicitar a permissão de permanência (Permesso di Soggiorno)</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Destinado a trabalho temporário. O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.</div>
+          </div>
+        </div>
         </div>
       </div>
     </section>
   </div>
 
+  
   <div class="tab-panel" id="brasileiros">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Condições específicas para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que muda para você</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
         <div class="br-grid">
-          <div class="br-card highlight">
-            <span class="br-label">Schengen — entrada sem visto</span>
-            <span class="br-value yes">Sim</span>
-            <p class="br-desc">Passaporte brasileiro permite entrada na Itália e nos países do Espaço Schengen por até 90 dias a cada 180, sem visto de turismo.</p>
-          </div>
-          <div class="br-card warning">
-            <span class="br-label">Sistema de cotas obrigatório</span>
-            <span class="br-value no">Atenção</span>
-            <p class="br-desc">A maioria das autorizações de trabalho italiano está sujeita ao decreto flussi, um decreto anual que abre cotas limitadas. As vagas esgotam rapidamente após a publicação do decreto.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Descendência italiana</span>
-            <span class="br-value" style="font-size: 18px;">Vantagem possível</span>
-            <p class="br-desc">Brasileiros com ascendência italiana podem ter direito à cidadania italiana por jus sanguinis, o que elimina a necessidade de visto de trabalho. Este caminho é independente do processo migratório regular.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Idioma</span>
-            <span class="br-value" style="font-size: 18px;">Italiano</span>
-            <p class="br-desc">O italiano não é exigido formalmente para a maioria dos vistos, mas é essencial na prática para residir e trabalhar. O português facilita o aprendizado, mas não substitui o idioma local.</p>
-          </div>
-          <div class="br-card" style="grid-column: 1 / -1;">
-            <span class="br-label">Permesso di Soggiorno — obrigatório após chegada</span>
-            <span class="br-value" style="font-size: 18px;">8 dias úteis</span>
-            <p class="br-desc">Todo estrangeiro que ingressa na Itália com visto de trabalho deve solicitar o Permesso di Soggiorno (autorização de residência) em até 8 dias úteis após a chegada. O não cumprimento deste prazo pode resultar em irregularidade migratória.</p>
-          </div>
-          <div class="br-card" style="grid-column: 1 / -1; border-color: rgba(240, 180, 41,0.2); background: rgba(240, 180, 41,0.03);">
-            <span class="br-label">Resumo para brasileiros</span>
-            <p class="br-desc">Brasileiros podem entrar na Itália sem visto por até 90 dias (Espaço Schengen). Para trabalhar, é necessário visto de trabalho (D) vinculado ao Decreto Flussi, que abre vagas anuais por quota. O EU Blue Card é alternativa para profissionais altamente qualificados. Brasileiros de descendência italiana podem solicitar cidadania italiana por jus sanguinis.</p>
-          </div>
+          
+        <div class="br-card highlight">
+          <span class="br-label">Schengen — entrada sem visto</span>
+          <span class="br-value yes">Sim</span>
+          <p class="br-desc">O passaporte brasileiro permite entrada em Itália por até 90 dias em qualquer período de 180 dias, sem visto de turista.</p>
+        </div>
+          
+        <div class="br-card warning">
+          <span class="br-label">Trabalhar sem autorização</span>
+          <span class="br-value no">Não permitido</span>
+          <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Permanência máxima como turista</span>
+          <span class="br-value">90 dias</span>
+          <p class="br-desc">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Acordos bilaterais com o Brasil</span>
+          <span class="br-value no" style="color:var(--muted);">Nenhum</span>
+          <p class="br-desc">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e Itália. O caminho é pelos vistos padrão.</p>
+        </div>
+          
+        <div class="br-card" style="grid-column:1/-1;">
+          <span class="br-label">Observações para brasileiros</span>
+          <p class="br-desc">Brasileiros podem entrar na Itália sem visto por até 90 dias (Espaço Schengen). Para trabalhar, é necessário visto de trabalho (D) vinculado ao Decreto Flussi, que abre vagas anuais por quota. O EU Blue Card é alternativa para profissionais altamente qualificados. Brasileiros de descendência italiana podem solicitar cidadania italiana por jus sanguinis.</p>
+        </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="requisitos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">Válidos para todas as autorizações de trabalho</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
+        <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Requisitos gerais</h2>
         <div class="req-list">
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte válido com pelo menos 6 meses de validade após a data de entrada</span><span class="req-note">Verificar validade</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Certidão de antecedentes criminais apostilada, do Brasil e de países onde residiu</span><span class="req-note">Apostila de Haia</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Nulla osta al lavoro — autorização emitida pelo Sportello Unico per l'Immigrazione (para trabalho subordinado)</span><span class="req-note">Via empregador</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Contrato de trabalho ou proposta vinculante de empregador italiano</span><span class="req-note">Obrigatório</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Comprovante de moradia na Itália (contrato de locação ou declaração de hospedagem)</span><span class="req-note">Para o Permesso di Soggiorno</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Fotografias no padrão exigido pelo Consulado</span><span class="req-note">Confirmar no site</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Comprovante de fundos: mínimo EUR 8.500/ano para trabalho autônomo. Para EU Blue Card, salário bruto mínimo de EUR 43.056/ano. Para trabalho subordinado via Decreto Flussi, contrato com salário mínimo setorial é suficiente.</span><span class="req-note">Varia por modalidade</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Seguro saúde com cobertura mínima de EUR 30.000 por ocorrência para o visto Schengen. Após obtenção do Permesso di Soggiorno, o trabalhador passa a ter acesso ao Sistema Sanitario Nazionale (SSN).</span><span class="req-note">Até o Permesso di Soggiorno</span></div>
+          
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Passaporte — Minimo 6 meses apos a data de entrada</span>
+            <span class="req-note">Verificar antes de iniciar</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 8.500/ano. Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado.</span>
+            <span class="req-note">Ver cada visto</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Seguro saúde obrigatório. Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.</span>
+            <span class="req-note">Cobertura mín. EUR 30.000</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Certidão de antecedentes criminais (apostilada)</span>
+            <span class="req-note">Apostila de Haia</span>
+          </div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
-          <p class="body-sm" style="color: var(--muted); margin: 0;">
-            Dados extraídos de fontes oficiais italianas em maio de 2026.
-            Requisitos variam por modalidade e podem mudar com cada decreto flussi — confirme sempre na fonte oficial antes de iniciar.
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p class="body-sm" style="color:var(--muted);margin:0;">
+            Requisitos extraídos de <span style="color:var(--primary);">vistoperitalia.esteri.it, integrazionemigranti.gov.it</span> em mai/2026.
+            Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.
           </p>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="mudancas">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Histórico de alterações detectadas</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
-        <div style="padding: var(--s-xl); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); text-align: center;">
-          <p class="body-md" style="color: var(--muted); margin: 0;">Nenhuma mudança detectada desde o início do monitoramento (abril de 2026).</p>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Mudanças recentes</h2>
+        <div style="padding:var(--s-xxl);text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p style="color:var(--muted);margin:0;">Nenhuma mudança detectada no último ciclo de extração.</p>
         </div>
-        <div style="margin-top: var(--s-xl); text-align: center;">
+        <div style="margin-top:var(--s-xl);text-align:center;">
           <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="fontes">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Transparência total</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
-        <p class="body-md" style="max-width: 600px; margin-bottom: var(--s-xl);">Dados extraídos das URLs abaixo em maio de 2026.</p>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Fontes usadas na extração</h2>
+        <p class="body-md" style="max-width:600px;margin-bottom:var(--s-xl);">
+          Todos os dados foram extraídos das URLs abaixo em mai/2026. Clique para ver a fonte original.
+        </p>
         <div class="sources-list">
+          
           <div class="source-item">
-            <div><div class="source-url">vistoperitalia.esteri.it</div><div class="source-meta">Ministério das Relações Exteriores italiano — portal de vistos para a Itália</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://vistoperitalia.esteri.it/" target="_blank" rel="noopener noreferrer">vistoperitalia.esteri.it/</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">it</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">integrazionemigranti.gov.it/en-gb</div><div class="source-meta">Portal do governo italiano sobre imigração e integração</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://integrazionemigranti.gov.it/en-gb/" target="_blank" rel="noopener noreferrer">integrazionemigranti.gov.it/en-gb/</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">poliziadistato.it/tematiche/immigrazione</div><div class="source-meta">Polícia de Estado italiana — seção de imigração</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.poliziadistato.it/tematiche/immigrazione" target="_blank" rel="noopener noreferrer">www.poliziadistato.it/tematiche/immigrazione</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">lavoro.gov.it/en</div><div class="source-meta">Ministério do Trabalho e Políticas Sociais italiano</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://www.lavoro.gov.it/en" target="_blank" rel="noopener noreferrer">www.lavoro.gov.it/en</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
           <div style="display:flex;align-items:center;gap:var(--s-md);">
             <span class="badge">Confiança média</span>
-            <span class="body-sm" style="color: var(--muted);">Extração realizada por Claude Haiku 4.5 com schema Zod v1.0.0. Conteúdo parcial em algumas páginas — confirme detalhes na fonte oficial.</span>
+            <span class="body-sm" style="color:var(--muted);">
+              Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
+            </span>
           </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="guia">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Guia prático para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Como se legalizar na Itália</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Como se legalizar em Itália</h2>
         <div class="guide-intro">
-          <p>A Itália tem o processo mais complexo desta lista. O acesso para trabalhadores extracomunitários passa pelo Decreto Flussi, um sistema de cotas anuais que abre por poucos dias e tem demanda muito maior que a oferta. Preparação e timing são essenciais.</p>
+          <p>Resumo das etapas principais baseado em dados extraídos em mai/2026. Este guia é simplificado, consulte sempre as fontes oficiais para o seu caso específico.</p>
         </div>
 
         <div class="guide-phases">
-
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 01</span>
               <div>
-                <h3 class="phase-title">Antes de embarcar — monitorar o Decreto Flussi</h3>
-                <p class="phase-subtitle">O processo começa no Brasil, depende de janela anual</p>
+                <h3 class="phase-title">Documentação essencial</h3>
+                <p class="phase-subtitle">Prepare estes documentos antes de iniciar o processo</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Monitorar a abertura do Decreto Flussi (clicca day)</h4>
-                  <p class="step-desc">O Decreto Flussi é publicado pelo governo italiano anualmente (geralmente no início do ano). Define as cotas de trabalhadores não-comunitários para o ano. A abertura das candidaturas — chamada informalmente de "clicca day" — dura apenas algumas horas e esgota em minutos. Monitore o portal portaleservizi.lavoro.gov.it para não perder a janela.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Janela de candidatura dura horas — monitore o portal</span>
-                    <span class="step-tag orgao">portaleservizi.lavoro.gov.it</span>
-                  </div>
+                  <h4 class="step-heading">Passaporte válido</h4>
+                  <p class="step-desc">Validade mínima: Minimo 6 meses apos a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Certidão de antecedentes criminais</h4>
+                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">2</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Encontrar um empregador italiano disposto a patrocinar</h4>
-                  <p class="step-desc">O empregador italiano precisa submeter o pedido de nulla osta no Sportello Unico per l'Immigrazione (SUO) da prefeitura durante a janela do Decreto Flussi. Você precisa ter o empregador e a oferta de trabalho já definidos antes da abertura. Plataformas de busca de emprego: LinkedIn, InfoJobs, Subito.it e portais de recrutamento italiano.</p>
-                  <div class="step-tags">
-                    <span class="step-tag orgao">Sportello Unico per l'Immigrazione (SUO)</span>
-                  </div>
+                  <h4 class="step-heading">Seguro saúde</h4>
+                  <p class="step-desc">Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.</p>
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">3</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Receber o nulla osta e solicitar visto D no Consulado Italiano</h4>
-                  <p class="step-desc">Com o nulla osta em mãos (emitido pelo SUO após aprovação do Decreto Flussi), você vai ao Consulado Italiano no Brasil para solicitar o visto D de trabalho. Leve: nulla osta, passaporte, documentos pessoais apostilados, antecedentes criminais e comprovante de meios de subsistência.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo após nulla osta: 2 a 4 semanas</span>
-                    <span class="step-tag custo">Custo: €116</span>
-                    <span class="step-tag orgao">Consulado Italiano no Brasil</span>
-                  </div>
+                  <h4 class="step-heading">Comprovante de fundos</h4>
+                  <p class="step-desc">Mínimo EUR 8.500/ano. Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado.</p>
                 </div>
               </div>
             </div>
           </div>
 
+          
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 02</span>
               <div>
-                <h3 class="phase-title">Primeiros dias na Itália</h3>
-                <p class="phase-subtitle">Passos obrigatórios nas primeiras 48 horas</p>
+                <h3 class="phase-title">Processo do visto: Trabalho Subordinado</h3>
+                <p class="phase-subtitle">Realizado no Brasil antes de embarcar</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">4</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Dar entrada no Permesso di Soggiorno na Questura em até 8 dias</h4>
-                  <p class="step-desc">Dentro de 8 dias da chegada na Itália, você deve dar entrada no Permesso di Soggiorno (permissão de estadia) na Questura (delegacia) mais próxima. O kit de permesso é comprado em agências dos Correios Poste Italiane (€30) e entregue na Questura. Este prazo de 8 dias é estrito. Não cumpri-lo pode anular o processo.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Obrigatório em até 8 dias da chegada</span>
-                    <span class="step-tag custo">Custo: €30 (kit Poste) + taxa de emissão (~€100)</span>
-                    <span class="step-tag orgao">Questura local + Poste Italiane</span>
-                  </div>
+                  <h4 class="step-heading">Empregador solicita nulla osta</h4>
+                  <p class="step-desc">O empregador italiano deve solicitar a autorização de trabalho (nulla osta) junto à Sportello Unico per l'Immigrazione da província onde a empresa está localizada</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">5</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Obter o Codice Fiscale</h4>
-                  <p class="step-desc">O Codice Fiscale é o equivalente italiano do CPF. Solicitado na Agenzia delle Entrate com passaporte e visto. Necessário para abrir conta, assinar contratos, pagar impostos e acessar serviços. Em algumas cidades é possível obter no consulado italiano ainda no Brasil.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: no mesmo dia</span>
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">Agenzia delle Entrate</span>
-                  </div>
+                  <h4 class="step-heading">Solicitação do visto</h4>
+                  <p class="step-desc">Após a emissão do nulla osta, o trabalhador solicita o visto nacional de trabalho no Consulado italiano no Brasil</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">6</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Iscrizione anagrafica (registro municipal)</h4>
-                  <p class="step-desc">Registre-se no Comune (prefeitura) do município onde vai residir para obter a residência civil (residenza). Este registro é necessário para acessar o médico de família pelo SSN (Servizio Sanitario Nazionale), matricular filhos em escola e outros serviços municipais.</p>
-                  <div class="step-tags">
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">Comune do município</span>
-                  </div>
+                  <h4 class="step-heading">Entrada na Itália</h4>
+                  <p class="step-desc">Com o visto aprovado, o trabalhador pode entrar na Itália</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">7</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Obter Tessera Sanitaria (cartão de saúde)</h4>
-                  <p class="step-desc">Com Codice Fiscale e iscrição no Comune, inscreva-se no médico de família pelo SSN na ASL (Azienda Sanitaria Locale) da sua região. A Tessera Sanitaria chega por correio. O SSN cobre consultas médicas, internações e medicamentos subsidiados.</p>
-                  <div class="step-tags">
-                    <span class="step-tag orgao">ASL — Azienda Sanitaria Locale</span>
-                  </div>
+                  <h4 class="step-heading">Solicitação de Permesso di Soggiorno</h4>
+                  <p class="step-desc">Dentro de 8 dias úteis após a entrada na Itália, o trabalhador deve solicitar a permissão de permanência (Permesso di Soggiorno) junto aos Correios (Poste Italiane) ou Questura</p>
+                  <div class="step-tags"><span class="step-tag prazo">Prazo estimado: 8 dias</span></div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 03</span>
-              <div>
-                <h3 class="phase-title">Renovação e longo prazo</h3>
-                <p class="phase-subtitle">Manutenção do status e planejamento futuro</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">8</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Renovar o Permesso di Soggiorno antes do vencimento</h4>
-                  <p class="step-desc">O permesso tem validade de 1 a 2 anos. A renovação deve ser solicitada na Questura antes do vencimento — as filas são longas, solicite com 3 a 4 meses de antecedência. Após 5 anos de residência legal e ininterrupta, é possível solicitar o Permesso di Soggiorno UE per Soggiornanti di Lungo Periodo (residência permanente UE).</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Solicitar renovação com antecedência de 3 a 4 meses</span>
-                    <span class="step-tag prazo">Residência permanente UE: após 5 anos</span>
-                    <span class="step-tag orgao">Questura</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <div class="guide-disclaimer">
-          <p>Este guia é informativo e baseado nas regras vigentes em mai/2026. O sistema do Decreto Flussi muda a cada ano em termos de cotas e categorias. Confirme sempre em portaleservizi.lavoro.gov.it e poliziadistato.it. Para navegação no sistema SUO, considere contratar um patronato ou consultor de imigração italiano.</p>
+          <p>Guia gerado automaticamente a partir de dados de mai/2026. Requisitos e prazos mudam com frequência por regulamentação do governo de Itália. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
         </div>
       </div>
     </section>
@@ -674,12 +822,13 @@
 
 </main>
 
+<!-- CTA BAND -->
 <section>
   <div class="container">
     <div class="cta-band-yellow">
       <div>
         <h2>Comparar com outros países</h2>
-        <p>Veja a Itália lado a lado com Países Baixos, Alemanha ou Portugal. Todos os critérios na mesma tabela.</p>
+        <p>Veja Itália lado a lado com outros destinos. Todos os critérios na mesma tabela.</p>
       </div>
       <div class="actions">
         <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
@@ -689,20 +838,26 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
-        <p class="body-sm" style="max-width: 300px; color: var(--muted);">Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.</p>
+        <a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width:300px;color:var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.
+        </p>
       </div>
       <div>
         <h4>Países</h4>
         <ul>
           <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
           <li><a href="pais-de.html">Alemanha</a></li>
-          <li><a href="pais-it.html" style="color:var(--on-dark);">Itália</a></li>
-          <li><a href="pais-fr.html">França</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
           <li><a href="paises.html">Ver todos →</a></li>
         </ul>
       </div>
@@ -721,7 +876,6 @@
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="sobre.html#metodologia">Metodologia</a></li>
           <li><a href="sobre.html#contribuir">Contribuir</a></li>
-          <li><a href="dev.html">Dev</a></li>
         </ul>
       </div>
       <div>
@@ -752,7 +906,9 @@
       document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   })
-  function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
+  function toggleVisa(head) {
+    head.closest('.visa-card').classList.toggle('open')
+  }
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

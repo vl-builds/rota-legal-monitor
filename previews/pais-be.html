@@ -9,13 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
+  /* ---- country hero ---- */
   .country-hero { padding: var(--s-xxl) 0; border-bottom: 1px solid var(--hairline); }
   .hero-row { display: flex; align-items: center; gap: var(--s-xl); flex-wrap: wrap; }
   .hero-flag { width: 64px; height: 46px; border-radius: 6px; display: block; flex-shrink: 0; }
   .hero-info { flex: 1; min-width: 200px; }
   .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1.5px; color: var(--on-dark); line-height: 1.1; margin: 0 0 var(--s-sm); }
   .hero-badges { display: flex; gap: var(--s-xs); flex-wrap: wrap; }
-  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10, 10, 10, 0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
+  /* ---- sticky subheader + tabs ---- */
+  .country-sticky { position: sticky; top: 64px; z-index: 39; background: rgba(10,10,10,0.55); backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%); border-bottom: 1px solid var(--glass-border); }
   .sticky-inner { display: flex; align-items: center; gap: var(--s-lg); height: 52px; }
   .sticky-id { display: flex; align-items: center; gap: var(--s-sm); flex-shrink: 0; }
   .sticky-flag { width: 24px; height: 18px; border-radius: 3px; display: block; }
@@ -25,6 +27,7 @@
   .tab-btn { height: 52px; padding: 0 var(--s-lg); font-size: 14px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: inherit; white-space: nowrap; transition: color 120ms ease, border-color 120ms ease; }
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
+  /* ---- quick summary ---- */
   .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
@@ -34,12 +37,10 @@
   .qs-value.positive { color: var(--accent-emerald); }
   .qs-value.negative { color: var(--muted); }
   .qs-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .diff-dots { display: flex; gap: 4px; align-items: center; margin-bottom: 2px; }
-  .diff-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .diff-dot.filled { background: var(--on-dark); }
-  .diff-dot.empty { background: var(--hairline-strong); }
+  /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
+  /* ---- visa cards ---- */
   .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
   .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
   .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
@@ -49,7 +50,7 @@
   .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
   .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240, 180, 41,0.1); color: var(--primary); border-color: rgba(240, 180, 41,0.2); }
+  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
   .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
   .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
   .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
@@ -69,15 +70,17 @@
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
-  .br-card.highlight { border-color: rgba(240, 180, 41,0.3); background: rgba(240, 180, 41,0.05); }
+  .br-card.highlight { border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.05); }
   .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
   .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
   .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
   .br-value.yes { color: var(--accent-emerald); }
   .br-value.no { color: var(--accent-rose); }
   .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
+  /* ---- requisitos gerais ---- */
   .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); }
   .req-icon { font-size: 16px; width: 20px; text-align: center; }
@@ -85,6 +88,7 @@
   .req-icon.req { color: var(--accent-blue); }
   .req-text { font-size: 14px; color: var(--body-strong); }
   .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  /* ---- mudanças recentes ---- */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
   .timeline-entry + .timeline-entry { border-top: 1px solid var(--hairline); }
@@ -98,23 +102,45 @@
   .sev-high { background: rgba(239,68,68,0.12); color: var(--accent-rose); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
   .sev-medium { background: rgba(59,130,246,0.12); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
   .sev-low { background: var(--surface-elevated); color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-pill); }
+  /* ---- fontes ---- */
   .sources-list { display: flex; flex-direction: column; gap: var(--s-md); }
   .source-item { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-lg); display: grid; grid-template-columns: 1fr auto; gap: var(--s-lg); align-items: start; }
   .source-url { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--primary); text-decoration: underline; text-underline-offset: 3px; word-break: break-all; margin-bottom: var(--s-xs); }
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
-  @media (max-width: 1024px) { .quick-summary { grid-template-columns: repeat(2, 1fr); } .qs-item:nth-child(2n+1) { border-left: none; } .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); } .visa-grid { grid-template-columns: 1fr; } .br-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .hero-name { font-size: 28px; } .tabs { margin-left: 0; } .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); } .sticky-id { padding-top: var(--s-xs); } .quick-summary { grid-template-columns: 1fr 1fr; } .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); } .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); } .req-item { grid-template-columns: auto 1fr; } .req-note { display: none; } .rights-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1024px) {
+    .quick-summary { grid-template-columns: repeat(2, 1fr); }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .visa-grid { grid-template-columns: 1fr; }
+    .br-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero-name { font-size: 28px; }
+    .tabs { margin-left: 0; }
+    .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
+    .sticky-id { padding-top: var(--s-xs); }
+    .quick-summary { grid-template-columns: 1fr 1fr; }
+    .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
+    .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
+    .req-item { grid-template-columns: auto 1fr; }
+    .req-note { display: none; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
+<!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="home.html"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
+    <a class="logo" href="home.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+      <span>Rota Legal</span>
+    </a>
     <div class="nav-links">
-      <a class="nav-link" href="paises.html" style="color: var(--on-dark);">Países</a>
+      <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
@@ -125,12 +151,13 @@
       <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
       <a class="btn btn-primary" href="comparar.html">Comparar</a>
     </div>
-      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<!-- ============== MOBILE DRAWER ============== -->
+
+<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
   <div class="mobile-drawer-backdrop" data-close></div>
   <aside class="mobile-drawer-panel">
@@ -154,6 +181,7 @@
   </aside>
 </div>
 
+<!-- COUNTRY HERO -->
 <div class="country-hero">
   <div class="container">
     <div class="hero-row">
@@ -161,9 +189,10 @@
       <div class="hero-info">
         <h1 class="hero-name">Bélgica</h1>
         <div class="hero-badges">
-          <span class="badge">Confiança média</span>
-          <span class="badge">Schengen</span>
-          <span class="badge new">Single Permit</span>
+          <span class="badge up"><span class="pulse"></span>Confiança média</span>
+          
+          <span class="badge">Work Permit exigido</span>
+          
           <span class="badge new">Atualizado mai/2026</span>
         </div>
       </div>
@@ -171,6 +200,7 @@
   </div>
 </div>
 
+<!-- STICKY SUBHEADER + TABS -->
 <div class="country-sticky" id="sticky">
   <div class="container">
     <div class="sticky-inner">
@@ -190,428 +220,495 @@
   </div>
 </div>
 
+<!-- QUICK SUMMARY -->
 <div class="quick-summary">
   <div class="qs-item">
-    <span class="qs-label">Dificuldade estimada</span>
-    <div class="diff-dots">
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot filled"></span>
-      <span class="diff-dot empty"></span>
-    </div>
-    <span class="qs-sub">Média — processo iniciado pelo empregador</span>
+    <span class="qs-label">Entrada sem visto (Schengen)</span>
+    <span class="qs-value negative">Não</span>
+    <span class="qs-sub">Visto de turista necessário</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Modelo de autorização</span>
-    <span class="qs-value accent">Single Permit</span>
-    <span class="qs-sub">Trabalho e residência em um único pedido</span>
+    <span class="qs-label">Tipos de visto monitorados</span>
+    <span class="qs-value accent">3</span>
+    <span class="qs-sub">3 de relevância direta</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Região processa o pedido</span>
-    <span class="qs-value" style="font-size: 16px;">Flandres / Valônia / Bruxelas</span>
-    <span class="qs-sub">Conforme localização do empregador</span>
+    <span class="qs-label">Work permit exigido</span>
+    <span class="qs-value negative">Sim</span>
+    <span class="qs-sub">Autorização obrigatória para trabalhar</span>
   </div>
   <div class="qs-item">
-    <span class="qs-label">Residência permanente</span>
-    <span class="qs-value positive">5 anos</span>
-    <span class="qs-sub">Com integração social e econômica</span>
+    <span class="qs-label">Dados atualizados em</span>
+    <span class="qs-value">mai/2026</span>
+    <span class="qs-sub">Extração automática mensal</span>
   </div>
 </div>
 
+<!-- TAB CONTENT -->
 <main>
 
+  <!-- ABA: VISTOS -->
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">3 tipos de autorização monitorados</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Opções de autorização de trabalho</h2>
+        <div class="eyebrow">3 tipos de visto monitorados</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
         <div class="visa-list">
-
-          <div class="visa-card open">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Permissão Única</h3>
-                <span class="visa-name-orig">Single Permit</span>
-                <div class="visa-tags">
-                  <span class="visa-tag hl">Principal — empregados</span>
-                  <span class="visa-tag">Processo regional</span>
-                  <span class="visa-tag">Trabalho + residência</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Requisitos</p>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Para quem</span>
-                    <span class="visa-field-value">Trabalhadores assalariados com oferta de emprego na Bélgica</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Documentos principais</span>
-                    <span class="visa-field-value">Contrato de trabalho + passaporte + certidão de antecedentes + diplomas</span>
-                  </div>
-                  <div class="visa-field">
-                    <span class="visa-field-label">Quem inicia o processo</span>
-                    <span class="visa-field-value">O empregador belga solicita a autorização junto às autoridades regionais</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Empregador solicita a autorização única junto às autoridades regionais competentes</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Autoridades regionais e federais analisam o pedido</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Após aprovação, a permissão única é emitida</span></div>
-                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Trabalhador solicita visto de trabalho na Embaixada ou Consulado belga no Brasil</span></div>
-                  </div>
-                </div>
-              </div>
-              <div style="margin-top: var(--s-lg);">
-                <p class="visa-section-title">Direitos</p>
-                <div class="rights-grid">
-                  <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar para o empregador declarado</div>
-                  <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-                  <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 5 anos</div>
-                  <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador sem novo pedido</div>
-                </div>
+          
+        <div class="visa-card open">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Permissão Única (Single Permit)</h3>
+              <span class="visa-name-orig">Single Permit</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Cidadãos de países terceiros (não-UE) que desejam trabalhar na Bélgica</span>
+                <span class="visa-tag">Trabalhadores com oferta de emprego de empregador belga</span>
+                <span class="visa-tag">Pessoas que pretendem permanecer por mais de 90 dias</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Autorização de Trabalho</h3>
-                <span class="visa-name-orig">Work authorisation</span>
-                <div class="visa-tags">
-                  <span class="visa-tag">Requer autorização de residência</span>
-                  <span class="visa-tag">Família incluída</span>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização única de trabalho e residência para cidadãos não-UE que desejam trabalhar e residir na Bélgica por mais de 90 dias. Combina a permissão de trabalho (emitida pela Região) e a permissão de residência (emitida pelo Escritório de Imigração) em um único procedimento.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil ou no destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">até 4 meses (prorrogável)</span>
                 </div>
               </div>
-              <span class="visa-toggle">+</span>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">O trabalhador deve solicitar a renovação da permissão de trabalho à Região (através do empregador) no máximo 2 meses antes da expiração do cartão A</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Se a Região e o Escritório de Imigração não decidirem antes da expiração do cartão A, a administração municipal emitirá um Anexo 49, desde que o trabalhador apresente documento da Região atestando admissibilidade e completude da solicitação. Anexo 49 cobre a estadia temporariamente por 30 dias e pode ser estendido duas vezes (2 x 30 dias). Anexo 49 não autoriza trabalho (indicação 'Labour Market: No'), a menos que a Região tenha renovado a permissão de trabalho</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Quando a Região concede permissão de trabalho por período ilimitado dentro dos primeiros 5 anos, o trabalhador deve solicitar apenas a renovação da permissão de residência à administração municipal, no máximo 2 meses antes da data de expiração do cartão A. A administração municipal fornecerá Anexo 50 (válido por 30 dias, prorrogável 2 x 30 dias) e enviará a solicitação ao Escritório de Imigração</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">O Escritório de Imigração toma sua decisão dentro de 4 meses, que pode ser estendido. Se aprovado, emite cartão A (estadia limitada) ou cartão B (estadia ilimitada) com indicação 'Labour market: unlimited'. Se não houver decisão negativa dentro do prazo, o cartão é automaticamente emitido</span>
+              </div>
             </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Para quem</p>
-                  <p style="font-size:13px;color:var(--body);line-height:1.6;">
-                    Cidadãos de países terceiros autorizados a trabalhar por mais de 90 dias. A autorização de trabalho por mais de 90 dias obriga também à autorização de residência pelo mesmo período.
-                  </p>
-                  <div class="visa-field" style="margin-top:var(--s-md);">
-                    <span class="visa-field-label">Autoridade responsável</span>
-                    <span class="visa-field-value">Região competente (Flandres, Bruxelas, Valônia ou Comunidade de Língua Alemã)</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Solicitar autorização de trabalho à Região competente</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Solicitar autorização de residência: na embaixada belga no Brasil (se no exterior) ou na administração municipal (se já reside legalmente na Bélgica)</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Decisão de residência tomada pelo Escritório de Imigração (DOFI)</span></div>
-                  </div>
-                  <div style="margin-top:var(--s-md);">
-                    <p class="visa-section-title">Direitos</p>
-                    <div class="rights-grid">
-                      <div class="right-item"><span class="right-icon yes">✓</span>Trazer cônjuge e filhos menores</div>
-                      <div class="right-item"><span class="right-icon yes">✓</span>Trabalho autorizado</div>
-                    </div>
-                  </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
                 </div>
               </div>
             </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 5 anos</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">A permissão de residência concedida pelo Escritório de Imigração permanece limitada a 5 anos. Após 5 anos, a permissão de residência pode ser renovada por período ilimitado, desde que o trabalhador atenda às condições. O trabalhador autorizado a permanecer por período ilimitado recebe cartão B com indicação 'Labour market: unlimited'. A renovação deve ser solicitada pelo empregador à Região no máximo 2 meses antes da expiração.</div>
           </div>
-
-          <div class="visa-card">
-            <div class="visa-head" onclick="toggleVisa(this)">
-              <div class="visa-title-row">
-                <h3 class="visa-name">Cartão Profissional (Autônomo)</h3>
-                <span class="visa-name-orig">Professional Card</span>
-                <div class="visa-tags">
-                  <span class="visa-tag hl">Trabalho por conta própria</span>
-                  <span class="visa-tag">Visto D de longa permanência</span>
-                  <span class="visa-tag">Regional</span>
-                </div>
-              </div>
-              <span class="visa-toggle">+</span>
-            </div>
-            <div class="visa-body">
-              <div class="visa-grid">
-                <div>
-                  <p class="visa-section-title">Para quem</p>
-                  <p style="font-size:13px;color:var(--body);line-height:1.6;">
-                    Nacionais de países terceiros que desejam trabalhar como autônomos na Bélgica. Categoria distinta do Single Permit, que se aplica a empregados.
-                  </p>
-                  <div class="visa-field" style="margin-top:var(--s-md);">
-                    <span class="visa-field-label">Documentos obrigatórios</span>
-                    <span class="visa-field-value">Certificado médico + extrato de registro criminal (menos de 6 meses) + decisão da região concedendo o cartão</span>
-                  </div>
-                </div>
-                <div>
-                  <p class="visa-section-title">Processo</p>
-                  <div class="step-list">
-                    <div class="step-item"><span class="step-n">1</span><span class="step-text">Solicitar o cartão profissional à administração regional competente (Flandres, Bruxelas, Valônia ou Comunidade Germanófona)</span></div>
-                    <div class="step-item"><span class="step-n">2</span><span class="step-text">Solicitar visto D (longa permanência) na embaixada belga ou consulado responsável pelo Brasil</span></div>
-                    <div class="step-item"><span class="step-n">3</span><span class="step-text">Apresentar documentos exigidos (comprovante de contribuição, decisão regional, certidão médica, extrato criminal)</span></div>
-                    <div class="step-item"><span class="step-n">4</span><span class="step-text">Após chegada na Bélgica com visto D: retirar o cartão profissional no balcão indicado na solicitação</span></div>
-                  </div>
-                </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Autorização de Trabalho</h3>
+              <span class="visa-name-orig">Work authorisation</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
               </div>
             </div>
+            <span class="visa-toggle">+</span>
           </div>
-
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização para trabalhar na Bélgica por mais de 90 dias. Cidadãos de países terceiros que obtenham autorização de trabalho por mais de 90 dias também devem ser autorizados a residir na Bélgica pelo mesmo período.</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil ou no destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">A autorização de trabalho na Bélgica deve ser solicitada à Região competente (Região Flamenga, Região de Bruxelas-Capital, Região Valona ou Comunidade de Língua Alemã)</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">O requerente deve solicitar autorização de residência na Bélgica à embaixada competente do país onde reside no exterior, ou à administração municipal do local de residência se já reside legalmente na Bélgica. A decisão é tomada pela Immigration Office.</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Cidadãos de países terceiros autorizados a trabalhar e residir na Bélgica por mais de 90 dias podem ser acompanhados ou reunidos com o cônjuge ou parceiro (parceria registrada por lei) e filhos menores, sob certas condições. Para mais informações sobre procedimentos, condições, documentos e tempo de processamento, consulte o site da Região competente.</div>
+          </div>
+        </div>
+        <div class="visa-card">
+          <div class="visa-head" onclick="toggleVisa(this)">
+            <div class="visa-title-row">
+              <h3 class="visa-name">Cartão Profissional</h3>
+              <span class="visa-name-orig">Professional Card</span>
+              <div class="visa-tags">
+                <span class="visa-tag hl">Principal</span>
+                <span class="visa-tag">Nacionais de países terceiros</span>
+                <span class="visa-tag">Que desejam exercer atividades de trabalho autônomo na Bélgica</span>
+              </div>
+            </div>
+            <span class="visa-toggle">+</span>
+          </div>
+          <div class="visa-body">
+            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão para estrangeiros de países terceiros exercerem atividades por conta própria (trabalho autônomo) na Bélgica</p>
+            <div class="visa-grid">
+              <div>
+                <p class="visa-section-title">Requisitos</p>
+                
+                
+                
+                <div class="visa-field">
+                  <span class="visa-field-label">Local do pedido</span>
+                  <span class="visa-field-value">No Brasil ou no destino</span>
+                </div>
+                <div class="visa-field">
+                  <span class="visa-field-label">Prazo estimado</span>
+                  <span class="visa-field-value">A determinar</span>
+                </div>
+              </div>
+              <div>
+                <p class="visa-section-title">Processo</p>
+                <div class="step-list">
+              <div class="step-item">
+                <span class="step-n">1</span>
+                <span class="step-text">Solicitar o cartão profissional junto à administração regional competente (Flanders, Bruxelas, Valônia ou Comunidade Germanófona)</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">2</span>
+                <span class="step-text">Aplicar para um visto D (visto nacional de longa permanência) na embaixada belga ou consulado geral responsável pela residência do solicitante</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">3</span>
+                <span class="step-text">Apresentar os documentos exigidos (comprovante de pagamento de contribuição, decisão de concessão do cartão profissional, certificado médico e extrato criminal)</span>
+              </div>
+              <div class="step-item">
+                <span class="step-n">4</span>
+                <span class="step-text">Após chegada na Bélgica com visto D, ir ao balcão de empresa indicado no formulário de solicitação do cartão profissional para recolher o cartão</span>
+              </div>
+            </div>
+                <div style="margin-top:var(--s-lg);">
+                  <p class="visa-section-title">Taxa</p>
+                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);">
+              <p class="visa-section-title">Direitos</p>
+              <div class="rights-grid">
+                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+              </div>
+            </div>
+            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">O cartão profissional é emitido pelas administrações regionais (Região Flamenga, Região de Bruxelas-Capital, Região Valona e Comunidade Germanófona). Para permanência superior a 90 dias, é necessário obter um visto D de longa permanência. Esta categoria é distinta do Single Permit, que se aplica a empregados (trabalho por conta de outrem). Existem casos de isenção do cartão profissional que não são detalhados nesta página.</div>
+          </div>
+        </div>
         </div>
       </div>
     </section>
   </div>
 
+  
   <div class="tab-panel" id="brasileiros">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Condições específicas para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">O que muda para você</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
         <div class="br-grid">
-          <div class="br-card highlight">
-            <span class="br-label">Schengen — entrada sem visto</span>
-            <span class="br-value yes">Sim</span>
-            <p class="br-desc">Passaporte brasileiro permite entrada na Bélgica e nos países do Espaço Schengen por até 90 dias a cada 180, sem visto de turismo.</p>
-          </div>
-          <div class="br-card warning">
-            <span class="br-label">Processo dependente do empregador</span>
-            <span class="br-value no">Atenção</span>
-            <p class="br-desc">O processo do Single Permit é iniciado pelo empregador belga, não pelo trabalhador. Sem uma oferta de emprego formal, não há como avançar com a autorização.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Três regiões, três processos</span>
-            <span class="br-value" style="font-size: 18px;">Regional</span>
-            <p class="br-desc">Flandres, Valônia e Bruxelas têm autoridades de trabalho próprias. A região do empregador determina qual órgão processa o pedido. Isso pode criar diferenças nos critérios e prazos.</p>
-          </div>
-          <div class="br-card">
-            <span class="br-label">Idiomas oficiais</span>
-            <span class="br-value" style="font-size: 16px;">Holandês / Francês / Alemão</span>
-            <p class="br-desc">A Bélgica tem três idiomas oficiais. O francês é o mais próximo ao português para aprendizado, mas a região do emprego define qual idioma é necessário no dia a dia.</p>
-          </div>
-          <div class="br-card" style="grid-column: 1 / -1;">
-            <span class="br-label">Cidadania — prazo e condições</span>
-            <span class="br-value" style="font-size: 18px;">5 anos de residência legal</span>
-            <p class="br-desc">Após 5 anos de residência legal com integração social e econômica, é possível solicitar residência permanente. A cidadania belga requer conhecimento de um dos idiomas oficiais (holandês, francês ou alemão), além de integração comprovada.</p>
-          </div>
+          
+        <div class="br-card warning">
+          <span class="br-label">Schengen — entrada sem visto</span>
+          <span class="br-value no">Não</span>
+          <p class="br-desc">Bélgica não é parte do Espaço Schengen. Brasileiros precisam de visto de turista separado.</p>
+        </div>
+          
+        <div class="br-card warning">
+          <span class="br-label">Trabalhar sem autorização</span>
+          <span class="br-value no">Não permitido</span>
+          <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Permanência máxima como turista</span>
+          <span class="br-value">90 dias</span>
+          <p class="br-desc">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
+        </div>
+          
+        <div class="br-card">
+          <span class="br-label">Acordos bilaterais com o Brasil</span>
+          <span class="br-value no" style="color:var(--muted);">Nenhum</span>
+          <p class="br-desc">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e Bélgica. O caminho é pelos vistos padrão.</p>
+        </div>
+          
+        <div class="br-card" style="grid-column:1/-1;">
+          <span class="br-label">Observações para brasileiros</span>
+          <p class="br-desc">Brasileiros são nacionais de países terceiros e precisam de cartão profissional para trabalhar como autônomos. Para permanência superior a 90 dias, é necessário visto D de longa permanência. O cartão profissional é processado pelas autoridades regionais belgas. Não há menção a acordos especiais Brasil-Bélgica nesta página.</p>
+        </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="requisitos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">Válidos para todas as autorizações</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Requisitos gerais</h2>
+        <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Requisitos gerais</h2>
         <div class="req-list">
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Passaporte válido — recomendado mínimo 6 meses de validade após a entrada</span><span class="req-note">Verificar validade</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Certidão de antecedentes criminais do Brasil apostilada</span><span class="req-note">Apostila de Haia</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Contrato de trabalho ou oferta de emprego válida com empregador belga</span><span class="req-note">Obrigatório</span></div>
-          <div class="req-item"><span class="req-icon ok">✓</span><span class="req-text">Diplomas e comprovações de qualificações profissionais</span><span class="req-note">Conforme vaga</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Comprovante de fundos: Single Permit requer contrato com salário mínimo belga (EUR 1.985/mês bruto em 2024). Cartão Profissional requer demonstração de viabilidade econômica do projeto</span><span class="req-note">EUR 1.985/mês</span></div>
-          <div class="req-item"><span class="req-icon req">●</span><span class="req-text">Seguro saúde com cobertura mínima de EUR 30.000 por ocorrência para visto Schengen. Após Single Permit: acesso ao sistema de saúde belga via mutualidade (mutualité)</span><span class="req-note">EUR 30.000 mín.</span></div>
+          
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Passaporte — Minimo 6 meses apos a data de entrada</span>
+            <span class="req-note">Verificar antes de iniciar</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon req">●</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 1.985/mês. Single Permit: contrato de trabalho com salário mínimo belga (EUR 1.985/mês bruto em 2024) é suficiente. Cartão Profissional (autônomos): demonstração de viabilidade econômica do projeto.</span>
+            <span class="req-note">Ver cada visto</span>
+          </div>
+          <div class="req-item">
+            <span class="req-icon ok">✓</span>
+            <span class="req-text">Certidão de antecedentes criminais (apostilada)</span>
+            <span class="req-note">Apostila de Haia</span>
+          </div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
-          <p class="body-sm" style="color: var(--muted); margin: 0;">
-            Dados extraídos de dofi.ibz.be em maio de 2026 (single-permit, work authorisation e professional card).
-            Requisitos variam por região e modalidade — confirme sempre na fonte oficial.
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p class="body-sm" style="color:var(--muted);margin:0;">
+            Requisitos extraídos de <span style="color:var(--primary);">dofi.ibz.be, dofi.ibz.be</span> em mai/2026.
+            Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.
           </p>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="mudancas">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Histórico de alterações detectadas</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Mudanças recentes</h2>
-        <div class="timeline">
-          <div class="timeline-entry">
-            <div class="timeline-date">
-              <span class="timeline-date-str">2026-03-16</span>
-              <span class="sev-low">Baixa relevância</span>
-            </div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">Mudança de localização do Escritório de Imigração</h3>
-              <p class="timeline-summary">Pessoas convocadas para entrevista de Proteção Internacional, outro procedimento de residência ou acompanhamento ICAM não devem mais se reportar ao PASSAGE 44. A nova localização foi anunciada pelo Escritório de Imigração belga (DOFI).</p>
-              <div class="timeline-affects">
-                <span class="affect-pill">Procedimentos de residência</span>
-                <span class="affect-pill">Proteção Internacional</span>
-              </div>
-            </div>
-          </div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Mudanças recentes</h2>
+        <div style="padding:var(--s-xxl);text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);">
+          <p style="color:var(--muted);margin:0;">Nenhuma mudança detectada no último ciclo de extração.</p>
         </div>
-        <div style="margin-top: var(--s-xl); text-align: center;">
+        <div style="margin-top:var(--s-xl);text-align:center;">
           <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="fontes">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Transparência total</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Fontes usadas na extração</h2>
-        <p class="body-md" style="max-width: 600px; margin-bottom: var(--s-xl);">Dados extraídos das URLs abaixo em maio de 2026. As fontes anteriores (homepage genérica do DOFI e belgium.be) foram substituídas por páginas específicas de cada modalidade.</p>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Fontes usadas na extração</h2>
+        <p class="body-md" style="max-width:600px;margin-bottom:var(--s-xl);">
+          Todos os dados foram extraídos das URLs abaixo em mai/2026. Clique para ver a fonte original.
+        </p>
         <div class="sources-list">
+          
           <div class="source-item">
-            <div><div class="source-url">dofi.ibz.be/en/themas/onderdanen-van-derde-landen/werk/single-permit</div><div class="source-meta">IBZ — Single Permit: autorização única de trabalho e residência para não-UE</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://dofi.ibz.be/en/themas/onderdanen-van-derde-landen/werk/single-permit" target="_blank" rel="noopener noreferrer">dofi.ibz.be/en/themas/onderdanen-van-derde-landen/werk/single-permit</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">dofi.ibz.be/en/themes/third-country-nationals/work</div><div class="source-meta">IBZ — autorização de trabalho para nacionais de países terceiros, visão geral das modalidades</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://dofi.ibz.be/en/themes/third-country-nationals/work" target="_blank" rel="noopener noreferrer">dofi.ibz.be/en/themes/third-country-nationals/work</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
           <div class="source-item">
-            <div><div class="source-url">dofi.ibz.be/en/themes/ressortissants-dun-pays-tiers/travail/professional-card</div><div class="source-meta">IBZ — cartão profissional para trabalho autônomo por conta própria</div></div>
-            <div class="source-status"><span class="badge up"><span class="pulse"></span>ok</span><span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span></div>
+            <div>
+              <a class="source-url" href="https://dofi.ibz.be/en/themes/ressortissants-dun-pays-tiers/travail/professional-card" target="_blank" rel="noopener noreferrer">dofi.ibz.be/en/themes/ressortissants-dun-pays-tiers/travail/professional-card</a>
+            </div>
+            <div class="source-status">
+              <span class="badge up"><span class="pulse"></span>ok</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:11px;color:var(--muted);">en</span>
+            </div>
           </div>
         </div>
-        <div style="margin-top: var(--s-xl); padding: var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg);">
+        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
           <div style="display:flex;align-items:center;gap:var(--s-md);">
-            <span class="badge up"><span class="pulse"></span>3/3 fontes ok</span>
-            <span class="body-sm" style="color: var(--muted);">Extração realizada com Sonnet 4.5 (single-permit) e Haiku 4.5 (work, professional-card). Confiança média — confirme detalhes na fonte oficial dofi.ibz.be.</span>
+            <span class="badge">Confiança média</span>
+            <span class="body-sm" style="color:var(--muted);">
+              Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
+            </span>
           </div>
         </div>
       </div>
     </section>
   </div>
-
+  
   <div class="tab-panel" id="guia">
     <section class="section-tight">
       <div class="container">
         <div class="eyebrow">Guia prático para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom: var(--s-md);">Como se legalizar na Bélgica</h2>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Como se legalizar em Bélgica</h2>
         <div class="guide-intro">
-          <p>A Bélgica tem um processo de imigração estruturado em duas fases: o visto é obtido antes da chegada, e o registro municipal deve ocorrer nos primeiros dias. O país é trilingue (francês, holandês e alemão), o que afeta a documentação dependendo da região onde você vai residir.</p>
+          <p>Resumo das etapas principais baseado em dados extraídos em mai/2026. Este guia é simplificado, consulte sempre as fontes oficiais para o seu caso específico.</p>
         </div>
 
         <div class="guide-phases">
-
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 01</span>
               <div>
-                <h3 class="phase-title">Antes de embarcar</h3>
-                <p class="phase-subtitle">Visto D obrigatório antes da entrada</p>
+                <h3 class="phase-title">Documentação essencial</h3>
+                <p class="phase-subtitle">Prepare estes documentos antes de iniciar o processo</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Solicitar visto de longa duração (Type D) no Consulado Belga</h4>
-                  <p class="step-desc">O visto Type D (longa duração) é solicitado no Consulado Belga no Brasil. Para trabalho assalariado: necessário autorização prévia do employeur belga junto ao Département Emploi da região (VDAB para Flandres, Actiris para Bruxelas, FOREM para Valônia). Documentos: contrato de trabalho, passaporte, extrato criminal apostilado, comprovante financeiro e seguro médico.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 4 a 8 semanas</span>
-                    <span class="step-tag custo">Custo: €180</span>
-                    <span class="step-tag orgao">Consulado Belga no Brasil</span>
-                  </div>
+                  <h4 class="step-heading">Passaporte válido</h4>
+                  <p class="step-desc">Validade mínima: Minimo 6 meses apos a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Certidão de antecedentes criminais</h4>
+                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Comprovante de fundos</h4>
+                  <p class="step-desc">Mínimo EUR 1.985/mês. Single Permit: contrato de trabalho com salário mínimo belga (EUR 1.985/mês bruto em 2024) é suficiente. Cartão Profissional (autônomos): demonstração de viabilidade econômica do projeto.</p>
                 </div>
               </div>
             </div>
           </div>
 
+          
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 02</span>
               <div>
-                <h3 class="phase-title">Primeiros dias na Bélgica</h3>
-                <p class="phase-subtitle">Registro obrigatório em até 8 dias</p>
+                <h3 class="phase-title">Processo do visto: Permissão Única (Single Permit)</h3>
+                <p class="phase-subtitle">Pode ser iniciado no Brasil ou no destino</p>
               </div>
             </div>
             <div class="guide-steps">
+              
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">2</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Registrar-se na commune/gemeente em até 8 dias</h4>
-                  <p class="step-desc">Dentro de 8 dias da chegada, vá à prefeitura local (commune em francês, gemeente em holandês) para registrar sua residência. Leve: passaporte com visto D, contrato de locação ou declaração do proprietário. Um agente municipal fará uma visita ao seu endereço para confirmar a residência.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Obrigatório em até 8 dias da chegada</span>
-                    <span class="step-tag custo">Custo: gratuito</span>
-                    <span class="step-tag orgao">Commune / Gemeente local</span>
-                  </div>
+                  <h4 class="step-heading">Solicitação de renovação à Região</h4>
+                  <p class="step-desc">O trabalhador deve solicitar a renovação da permissão de trabalho à Região (através do empregador) no máximo 2 meses antes da expiração do cartão A</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">3</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Obter o Número de Registro Nacional (NRN)</h4>
-                  <p class="step-desc">Após o registro municipal e a confirmação da visita domiciliar, você recebe o Número de Registro Nacional (numéro de registre national / rijksregisternummer). Este número de 11 dígitos identifica você em todos os sistemas públicos belgas: impostos, seguridade social, saúde e serviços municipais.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 4 a 8 semanas após o registro</span>
-                    <span class="step-tag orgao">Commune / Gemeente</span>
-                  </div>
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
                 </div>
-              </div>
-              <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">4</div><div class="step-line"></div></div>
                 <div class="step-body">
-                  <h4 class="step-heading">Receber o cartão de estrangeiro (Carte E+ / F+ / CIRE)</h4>
-                  <p class="step-desc">Após confirmação da residência pela commune, você recebe um título provisório e, posteriormente, o cartão de estrangeiro (Carte pour étranger). Para trabalhadores assalariados: Carte A (1 ano, renovável). Após 5 anos: Carte B (estadia ilimitada). O cartão é seu documento de residência legal na Bélgica.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 1 a 4 meses</span>
-                    <span class="step-tag custo">Custo: ~€20</span>
-                    <span class="step-tag orgao">Office des Étrangers / Dienst Vreemdelingenzaken</span>
-                  </div>
+                  <h4 class="step-heading">Emissão de Anexo 49 (se necessário)</h4>
+                  <p class="step-desc">Se a Região e o Escritório de Imigração não decidirem antes da expiração do cartão A, a administração municipal emitirá um Anexo 49, desde que o trabalhador apresente documento da Região atestando admissibilidade e completude da solicitação. Anexo 49 cobre a estadia temporariamente por 30 dias e pode ser estendido duas vezes (2 x 30 dias). Anexo 49 não autoriza trabalho (indicação 'Labour Market: No'), a menos que a Região tenha renovado a permissão de trabalho</p>
+                  <div class="step-tags"><span class="step-tag prazo">Prazo estimado: 30 dias</span></div>
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">5</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Inscrever-se na mutualité/ziekenfonds (seguro de saúde)</h4>
-                  <p class="step-desc">O sistema de saúde belga é baseado em mutualidades (caisses d'assurance maladie). Os empregados são inscritos pelo empregador na ONSS (seguridade social), mas precisam escolher uma mutualidade para receber reembolsos de consultas. Principais: Mutualité Chrétienne (MC), Mutualité Neutre, CAAMI. Filiação é obrigatória.</p>
-                  <div class="step-tags">
-                    <span class="step-tag alerta">Filiação obrigatória</span>
-                    <span class="step-tag orgao">Mutualité / Ziekenfonds</span>
-                  </div>
+                  <h4 class="step-heading">Renovação da permissão de residência (trabalho por tempo ilimitado)</h4>
+                  <p class="step-desc">Quando a Região concede permissão de trabalho por período ilimitado dentro dos primeiros 5 anos, o trabalhador deve solicitar apenas a renovação da permissão de residência à administração municipal, no máximo 2 meses antes da data de expiração do cartão A. A administração municipal fornecerá Anexo 50 (válido por 30 dias, prorrogável 2 x 30 dias) e enviará a solicitação ao Escritório de Imigração</p>
+                  
                 </div>
               </div>
               <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">6</div><div class="step-line"></div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Abrir conta bancária e obter IBAN belga</h4>
-                  <p class="step-desc">Com NRN e passaporte, abra conta em banco belga. Principais bancos: BNP Paribas Fortis, ING Bélgica, KBC, Belfius. Muitas mutualidades e serviços públicos exigem IBAN belga (BE...) para pagamentos e reembolsos.</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Prazo: 3 a 7 dias</span>
-                  </div>
+                  <h4 class="step-heading">Decisão do Escritório de Imigração</h4>
+                  <p class="step-desc">O Escritório de Imigração toma sua decisão dentro de 4 meses, que pode ser estendido. Se aprovado, emite cartão A (estadia limitada) ou cartão B (estadia ilimitada) com indicação 'Labour market: unlimited'. Se não houver decisão negativa dentro do prazo, o cartão é automaticamente emitido</p>
+                  <div class="step-tags"><span class="step-tag prazo">Prazo estimado: 120 dias</span></div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 03</span>
-              <div>
-                <h3 class="phase-title">Longo prazo e residência permanente</h3>
-                <p class="phase-subtitle">Planejando o futuro na Bélgica</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              <div class="guide-step">
-                <div class="guide-step-left"><div class="step-circle">7</div><div class="step-line"></div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Renovações e caminho para residência permanente</h4>
-                  <p class="step-desc">A Carte A é renovada anualmente. Após 5 anos de residência legal e ininterrupta, a Carte B (residência ilimitada) pode ser solicitada. Após mais 5 anos com Carte B (total de 10 anos na Bélgica), é possível solicitar a nacionalidade belga com conhecimento básico de uma das línguas nacionais (francês, holandês ou alemão).</p>
-                  <div class="step-tags">
-                    <span class="step-tag prazo">Residência permanente: após 5 anos</span>
-                    <span class="step-tag prazo">Cidadania belga: após 10 anos</span>
-                    <span class="step-tag orgao">Office des Étrangers</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <div class="guide-disclaimer">
-          <p>Este guia é informativo e baseado nas regras vigentes em mai/2026. Os processos variam por região (Flandres, Valônia, Bruxelas). Confirme sempre em dofi.ibz.be (Office des Étrangers) e no site da commune onde vai residir.</p>
+          <p>Guia gerado automaticamente a partir de dados de mai/2026. Requisitos e prazos mudam com frequência por regulamentação do governo de Bélgica. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
         </div>
       </div>
     </section>
@@ -619,12 +716,13 @@
 
 </main>
 
+<!-- CTA BAND -->
 <section>
   <div class="container">
     <div class="cta-band-yellow">
       <div>
         <h2>Comparar com outros países</h2>
-        <p>Veja a Bélgica lado a lado com Países Baixos, Alemanha ou Irlanda. Todos os critérios na mesma tabela.</p>
+        <p>Veja Bélgica lado a lado com outros destinos. Todos os critérios na mesma tabela.</p>
       </div>
       <div class="actions">
         <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
@@ -634,20 +732,26 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;"><img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;"><span>Rota Legal</span></a>
-        <p class="body-sm" style="max-width: 300px; color: var(--muted);">Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.</p>
+        <a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width:300px;color:var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior. Dados de fontes oficiais, atualizados todo mês.
+        </p>
       </div>
       <div>
         <h4>Países</h4>
         <ul>
           <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
           <li><a href="pais-de.html">Alemanha</a></li>
-          <li><a href="pais-be.html" style="color:var(--on-dark);">Bélgica</a></li>
-          <li><a href="pais-at.html">Áustria</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
           <li><a href="paises.html">Ver todos →</a></li>
         </ul>
       </div>
@@ -666,7 +770,6 @@
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="sobre.html#metodologia">Metodologia</a></li>
           <li><a href="sobre.html#contribuir">Contribuir</a></li>
-          <li><a href="dev.html">Dev</a></li>
         </ul>
       </div>
       <div>
@@ -697,7 +800,9 @@
       document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   })
-  function toggleVisa(head) { head.closest('.visa-card').classList.toggle('open') }
+  function toggleVisa(head) {
+    head.closest('.visa-card').classList.toggle('open')
+  }
 </script>
 <script src="assets/nav.js" defer></script>
 </body>
