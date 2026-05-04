@@ -20,29 +20,16 @@
     flex-direction: column;
   }
 
-  /* ---- progress bar ---- */
-  .progress-track {
-    height: 2px;
-    background: var(--hairline);
-    width: 100%;
-  }
-  .progress-fill {
-    height: 2px;
-    background: var(--primary);
-    transition: width 300ms ease;
-  }
-
-  /* ---- step wrapper (transition target) ---- */
+  /* ---- step wrapper ---- */
   #app {
     flex: 1;
     display: flex;
     flex-direction: column;
-    transition: opacity 180ms ease, transform 180ms ease;
   }
-  #app.fade-out {
-    opacity: 0;
-    transform: translateY(8px);
-  }
+  #app.slide-out-left  { animation: slideOutLeft  320ms cubic-bezier(.2,.7,.2,1) both; }
+  #app.slide-out-right { animation: slideOutRight 320ms cubic-bezier(.2,.7,.2,1) both; }
+  #app.slide-in-right  { animation: slideInRight  320ms cubic-bezier(.2,.7,.2,1) both; }
+  #app.slide-in-left   { animation: slideInLeft   320ms cubic-bezier(.2,.7,.2,1) both; }
 
   /* ---- intro ---- */
   .intro-wrap {
@@ -125,7 +112,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: var(--s-md);
-    margin-bottom: var(--s-xl);
+    margin-bottom: var(--s-sm);
   }
   .opt-card {
     background: var(--glass-bg);
@@ -138,16 +125,42 @@
     display: flex;
     align-items: center;
     gap: var(--s-md);
-    transition: border-color 120ms ease, background 120ms ease;
     text-align: left;
     font-family: inherit;
     color: inherit;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp .4s cubic-bezier(.2,.7,.2,1) both;
+    background-image: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(240,180,41,.06) 0%, transparent 60%);
+    transition: border-color 120ms ease, background-color 120ms ease, transform 120ms ease;
   }
-  .opt-card:hover { border-color: var(--hairline-strong); background: var(--surface-elevated); }
+  .opt-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--primary);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 200ms cubic-bezier(.2,.7,.2,1);
+    border-radius: 0 2px 2px 0;
+  }
+  .opt-card:hover {
+    border-color: var(--hairline-strong);
+    background-color: var(--surface-elevated);
+    transform: translateY(-1px);
+  }
+  .opt-card:hover::before { transform: scaleY(1); }
   .opt-card.selected {
     border-color: var(--primary);
-    background: rgba(240, 180, 41,0.06);
+    background-color: rgba(240,180,41,.06);
+    animation: selectedPulse .5s ease both;
+  }
+  .opt-card.selected::before { transform: scaleY(1); }
+  .opt-card:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
   }
   .opt-marker {
     width: 18px;
@@ -156,10 +169,23 @@
     border: 2px solid var(--hairline-strong);
     flex-shrink: 0;
     transition: background 120ms ease, border-color 120ms ease;
+    position: relative;
+    overflow: hidden;
   }
   .opt-card.selected .opt-marker {
     background: var(--primary);
     border-color: var(--primary);
+  }
+  .check-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .check-line {
+    stroke-dasharray: 18;
+    stroke-dashoffset: 18;
+    animation: checkDraw 240ms cubic-bezier(.2,.7,.2,1) both;
   }
   .opt-label {
     font-size: 14px;
@@ -168,6 +194,14 @@
     line-height: 1.4;
   }
   .opt-card.selected .opt-label { color: var(--on-dark); font-weight: 600; }
+
+  /* auto-advance hint */
+  .auto-hint {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .3px;
+    margin-bottom: var(--s-md);
+  }
 
   /* ---- step nav ---- */
   .step-nav {
@@ -197,6 +231,7 @@
     opacity: 0.35;
     cursor: not-allowed;
   }
+  .btn-pulse { animation: btnPulse 320ms ease both; }
 
   /* ---- result ---- */
   .result-wrap {
@@ -228,13 +263,20 @@
     border: 1px solid var(--primary);
     border-radius: var(--r-lg);
     padding: var(--s-xl);
-    margin-bottom: var(--s-lg);
+    margin-bottom: 0;
     display: grid;
     grid-template-columns: auto 1fr auto;
     gap: var(--s-lg);
     align-items: start;
+    cursor: pointer;
+    transition: border-color 200ms ease;
   }
-  .result-top-flag { width: 52px; height: 36px; border-radius: 6px; display: block; flex-shrink: 0; }
+  .result-top:hover { border-color: rgba(240,180,41,.8); }
+  .result-top-flag {
+    width: 52px; height: 36px; border-radius: 6px; display: block; flex-shrink: 0;
+    transition: transform 240ms ease;
+  }
+  .result-top:hover .result-top-flag { transform: scale(1.05); }
   .result-top-body { min-width: 0; }
   .result-top-badge {
     display: inline-block;
@@ -247,6 +289,7 @@
     padding: 2px 8px;
     border-radius: var(--r-pill);
     margin-bottom: var(--s-xs);
+    perspective: 600px;
   }
   .result-top-name {
     font-size: 26px;
@@ -267,7 +310,9 @@
     gap: var(--s-xs);
     font-size: 13px;
     color: var(--body);
+    opacity: 0;
   }
+  .result-pro.reveal-in { opacity: 1; animation: revealIn .4s cubic-bezier(.2,.7,.2,1) both; }
   .result-pro-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-emerald); flex-shrink: 0; margin-top: 6px; }
   .result-con {
     display: flex;
@@ -295,6 +340,23 @@
   }
   .result-score-label { font-size: 11px; color: var(--muted); text-align: right; }
 
+  /* match bar */
+  .match-bar-track {
+    width: 100%;
+    height: 3px;
+    background: var(--hairline);
+    border-radius: 2px;
+    margin-bottom: var(--s-lg);
+    overflow: hidden;
+  }
+  .match-bar-fill {
+    height: 100%;
+    width: 0;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: width 600ms cubic-bezier(.2,.7,.2,1);
+  }
+
   /* secondary result cards */
   .result-others { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--s-md); margin-bottom: var(--s-xl); }
   .result-other {
@@ -304,7 +366,9 @@
     border: 1px solid var(--glass-border);
     border-radius: var(--r-lg);
     padding: var(--s-lg);
+    opacity: 0;
   }
+  .result-other.reveal-in { opacity: 1; animation: revealIn .4s cubic-bezier(.2,.7,.2,1) both; }
   .result-other-head { display: flex; align-items: center; gap: var(--s-sm); margin-bottom: var(--s-md); }
   .result-other-flag { width: 32px; height: 22px; border-radius: 4px; display: block; }
   .result-other-name { font-size: 18px; font-weight: 700; color: var(--on-dark); letter-spacing: -0.3px; }
@@ -312,6 +376,23 @@
   .result-other-tagline { font-size: 13px; color: var(--body); margin-bottom: var(--s-sm); line-height: 1.4; }
   .result-other-pro { font-size: 12px; color: var(--muted); display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
   .result-other-pro-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-emerald); flex-shrink: 0; margin-top: 5px; }
+
+  /* mini bar inside secondary cards */
+  .other-bar-track {
+    width: 100%;
+    height: 2px;
+    background: var(--hairline);
+    border-radius: 1px;
+    margin-top: var(--s-sm);
+    overflow: hidden;
+  }
+  .other-bar-fill {
+    height: 100%;
+    width: 0;
+    background: var(--hairline-strong);
+    border-radius: 1px;
+    transition: width 480ms cubic-bezier(.2,.7,.2,1);
+  }
 
   /* result actions */
   .result-actions { display: flex; gap: var(--s-md); flex-wrap: wrap; }
@@ -331,7 +412,184 @@
   }
   .restart-btn:hover { color: var(--body); }
 
-  /* responsive */
+  /* wash overlay for restart */
+  .wash-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(240,180,41,.08);
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+  }
+
+  /* ---- progress segments ---- */
+  .progress-segments {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px var(--s-lg);
+    background: var(--canvas);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .seg-wrap {
+    flex: 1;
+    position: relative;
+  }
+  .seg-track {
+    width: 100%;
+    height: 2px;
+    background: var(--hairline);
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+  }
+  .seg-fill {
+    height: 100%;
+    width: 0;
+    background: var(--primary);
+    border-radius: 1px;
+    transition: width 320ms cubic-bezier(.2,.7,.2,1);
+  }
+  .seg-wrap.active .seg-fill { width: 40%; }
+  .seg-wrap.active .seg-track::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(240,180,41,.35) 50%, transparent 100%);
+    animation: shimmer 1.6s linear infinite;
+  }
+  .seg-wrap.done .seg-fill { width: 100%; }
+  .seg-dot {
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--hairline);
+    border: 1.5px solid var(--hairline);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 320ms ease, border-color 320ms ease;
+  }
+  .seg-wrap.done .seg-dot {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .seg-check {
+    width: 6px;
+    height: 6px;
+    display: block;
+    opacity: 0;
+    transition: opacity 80ms 200ms ease;
+  }
+  .seg-wrap.done .seg-check { opacity: 1; }
+  .seg-check polyline {
+    stroke-dasharray: 18;
+    stroke-dashoffset: 18;
+  }
+  .seg-wrap.done .seg-check polyline {
+    animation: checkDraw 280ms cubic-bezier(.2,.7,.2,1) 220ms both;
+  }
+
+  /* ---- intro animated entrance ---- */
+  .intro-animated .intro-label { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 0ms; }
+  .intro-animated .intro-title { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 80ms; }
+  .intro-animated .intro-sub   { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 160ms; }
+  .intro-animated .intro-meta  { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 240ms; }
+  .intro-animated .btn         { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 320ms; }
+  .intro-meta-item .meta-dot { animation: dotPulse 2.4s ease-in-out infinite; }
+  .intro-meta-item:nth-child(2) .meta-dot { animation-delay: .8s; }
+  .intro-meta-item:nth-child(3) .meta-dot { animation-delay: 1.6s; }
+
+  /* intro floating flags */
+  .intro-flags {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-lg);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .intro-float-flag {
+    width: 60px;
+    height: 42px;
+    border-radius: 6px;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* ---- result reveal helpers ---- */
+  .reveal-in   { animation: revealIn    .4s cubic-bezier(.2,.7,.2,1) both; }
+  .reveal-flag { animation: revealFlagIn .36s cubic-bezier(.2,.7,.2,1) both; }
+  .reveal-badge { animation: badgeFlip  .32s cubic-bezier(.2,.7,.2,1) both; }
+
+  /* ---- keyframes ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideOutLeft {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(-24px); }
+  }
+  @keyframes slideOutRight {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(24px); }
+  }
+  @keyframes selectedPulse {
+    0%   { background-color: rgba(240,180,41,.22); }
+    100% { background-color: rgba(240,180,41,.06); }
+  }
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.5); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-5px); }
+  }
+  @keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+  @keyframes checkDraw {
+    from { stroke-dashoffset: 18; }
+    to   { stroke-dashoffset: 0; }
+  }
+  @keyframes badgeFlip {
+    from { opacity: 0; transform: rotateX(90deg); }
+    to   { opacity: 1; transform: rotateX(0); }
+  }
+  @keyframes revealIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes revealFlagIn {
+    from { opacity: 0; transform: scale(.88); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes btnPulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.04); }
+    100% { transform: scale(1); }
+  }
+  @keyframes washIn  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes washOut { from { opacity: 1; } to { opacity: 0; } }
+
+  /* ---- responsive ---- */
   @media (max-width: 640px) {
     .intro-title { font-size: 32px; }
     .question-text { font-size: 22px; }
@@ -339,6 +597,20 @@
     .result-top { grid-template-columns: auto 1fr; }
     .result-score { display: none; }
     .result-others { grid-template-columns: 1fr; }
+    .seg-dot { display: none; }
+    .progress-segments { gap: 3px; padding: 8px var(--s-md); }
+  }
+  @media (max-width: 900px) {
+    .intro-flags { display: none; }
+  }
+
+  /* ---- reduced motion ---- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-delay: .01ms !important;
+      transition-duration: .01ms !important;
+    }
   }
 
 </style>
@@ -394,9 +666,32 @@
   </aside>
 </div>
 
-<!-- ============== PROGRESS BAR ============== -->
-<div class="progress-track">
-  <div class="progress-fill" id="progress" style="width: 0%"></div>
+<!-- ============== PROGRESS SEGMENTS ============== -->
+<div class="progress-segments" id="progress-segments" aria-hidden="true">
+  <div class="seg-wrap" data-seg="1">
+    <div class="seg-track"><div class="seg-fill"></div></div>
+    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="seg-wrap" data-seg="2">
+    <div class="seg-track"><div class="seg-fill"></div></div>
+    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="seg-wrap" data-seg="3">
+    <div class="seg-track"><div class="seg-fill"></div></div>
+    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="seg-wrap" data-seg="4">
+    <div class="seg-track"><div class="seg-fill"></div></div>
+    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="seg-wrap" data-seg="5">
+    <div class="seg-track"><div class="seg-fill"></div></div>
+    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="seg-wrap" data-seg="6">
+    <div class="seg-track"><div class="seg-fill"></div></div>
+    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
 </div>
 
 <!-- ============== APP ============== -->
@@ -544,8 +839,10 @@ const COUNTRY_META = {
 };
 
 // ---- estado ----
-let step = 0; // 0=intro, 1-6=perguntas, 7=resultado
+let step = 0;
+let slideDir = 1;
 const answers = {};
+let autoAdvanceTimer = null;
 
 // ---- pontuação ----
 function calcScores() {
@@ -563,37 +860,75 @@ function calcScores() {
   return Object.entries(scores).sort((a, b) => b[1] - a[1]);
 }
 
-// ---- navegação com fade ----
+// ---- navegação com slide direcional ----
 function goTo(target) {
+  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+  slideDir = target >= step ? 1 : -1;
   const app = document.getElementById('app');
-  app.classList.add('fade-out');
-  setTimeout(() => {
+  const outClass = slideDir > 0 ? 'slide-out-left' : 'slide-out-right';
+  const inClass  = slideDir > 0 ? 'slide-in-right' : 'slide-in-left';
+  app.classList.add(outClass);
+  app.addEventListener('animationend', function handler() {
+    app.removeEventListener('animationend', handler);
+    app.classList.remove(outClass);
     step = target;
     render();
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => app.classList.remove('fade-out'));
+      app.classList.add(inClass);
+      app.addEventListener('animationend', () => app.classList.remove(inClass), { once: true });
     });
-  }, 180);
+  }, { once: true });
 }
 
 function selectOption(qId, optId) {
+  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+  const wasEmpty = !answers[qId];
   answers[qId] = optId;
-  // re-render sem fade para resposta imediata
   render();
+  if (wasEmpty) {
+    const btn = document.querySelector('.step-next');
+    if (btn) {
+      btn.classList.add('btn-pulse');
+      btn.addEventListener('animationend', () => btn.classList.remove('btn-pulse'), { once: true });
+    }
+  }
+  const currentQIndex = QUESTIONS.findIndex(q => q.id === qId);
+  const nextStep = currentQIndex + 1 < QUESTIONS.length ? currentQIndex + 2 : QUESTIONS.length + 1;
+  autoAdvanceTimer = setTimeout(() => { autoAdvanceTimer = null; goTo(nextStep); }, 480);
 }
 
-// ---- barra de progresso ----
+// ---- cursor follow ----
+function initCursorFollow() {
+  document.querySelectorAll('.opt-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+}
+
+// ---- barra de progresso segmentada ----
 function updateProgress() {
-  const pct = step === 0 ? 0 : step > QUESTIONS.length ? 100 : Math.round((step / QUESTIONS.length) * 100);
-  document.getElementById('progress').style.width = pct + '%';
+  document.querySelectorAll('.seg-wrap').forEach((seg, i) => {
+    const n = i + 1;
+    seg.classList.remove('done', 'active');
+    if (step > n) seg.classList.add('done');
+    else if (step === n) seg.classList.add('active');
+  });
 }
 
 // ---- render intro ----
 function renderIntro() {
   return `
     <div class="intro-wrap">
-      <div class="container">
-        <div class="intro-inner">
+      <div class="container" style="position:relative">
+        <div class="intro-flags" aria-hidden="true">
+          <span class="intro-float-flag flag-nl" style="animation-delay:0s"></span>
+          <span class="intro-float-flag flag-pt" style="animation-delay:.8s"></span>
+          <span class="intro-float-flag flag-de" style="animation-delay:1.6s"></span>
+        </div>
+        <div class="intro-inner intro-animated">
           <span class="intro-label">Descubra</span>
           <h1 class="intro-title">Qual país combina com você?</h1>
           <p class="intro-sub">Responda 6 perguntas sobre seu perfil e objetivos. O sistema cruza suas respostas com os dados reais de 10 países e indica as melhores opções.</p>
@@ -614,12 +949,17 @@ function renderQuestion(qIndex) {
   const selected = answers[q.id];
   const hasSelection = !!selected;
 
-  const opts = q.options.map(opt => `
+  const opts = q.options.map((opt, i) => `
     <button
+      role="radio"
+      aria-checked="${selected === opt.id ? 'true' : 'false'}"
       class="opt-card${selected === opt.id ? ' selected' : ''}"
+      style="animation-delay:${Math.min(i, 5) * 60}ms"
       onclick="selectOption('${q.id}', '${opt.id}')"
     >
-      <span class="opt-marker"></span>
+      <span class="opt-marker">
+        ${selected === opt.id ? `<svg class="check-svg" viewBox="0 0 12 12" fill="none"><polyline class="check-line" points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ''}
+      </span>
       <span class="opt-label">${opt.label}</span>
     </button>
   `).join('');
@@ -629,12 +969,10 @@ function renderQuestion(qIndex) {
       <div class="container" style="display:flex;flex-direction:column;height:100%;flex:1">
         <div class="question-label">Pergunta ${qIndex} de ${QUESTIONS.length}</div>
         <h2 class="question-text">${q.q}</h2>
-        <div class="options-grid">${opts}</div>
+        <div class="options-grid" role="radiogroup" aria-label="${q.q}">${opts}</div>
+        <p class="auto-hint">Selecionar avança automaticamente</p>
         <div class="step-nav">
-          ${qIndex > 1
-            ? `<button class="step-back" onclick="goTo(${qIndex - 1})">← Voltar</button>`
-            : `<button class="step-back" onclick="goTo(0)">← Voltar</button>`
-          }
+          <button class="step-back" onclick="goTo(${qIndex > 1 ? qIndex - 1 : 0})">← Voltar</button>
           <button
             class="btn btn-primary step-next"
             onclick="goTo(${qIndex < QUESTIONS.length ? qIndex + 1 : QUESTIONS.length + 1})"
@@ -650,7 +988,6 @@ function renderResult() {
   const ranked = calcScores();
   const maxScore = ranked[0][1] || 1;
   const top3 = ranked.slice(0, 3).map(([code, score]) => ({ code, score, ...COUNTRY_META[code] }));
-
   const [first, second, third] = top3;
 
   function prosList(pros) {
@@ -662,6 +999,7 @@ function renderResult() {
   }
 
   function othersCard(c, rank) {
+    const pct = Math.round((c.score / maxScore) * 100);
     return `
       <div class="result-other">
         <div class="result-other-head">
@@ -675,11 +1013,14 @@ function renderResult() {
             <span class="result-other-pro-dot"></span>
             <span>${p}</span>
           </div>`).join('')}
+        <div class="other-bar-track"><div class="other-bar-fill" data-pct="${pct}"></div></div>
         <div style="margin-top:var(--s-md);">
           <a href="${c.detailUrl}" class="body-sm" style="color:var(--primary);text-decoration:underline;text-underline-offset:2px;">ver detalhe →</a>
         </div>
       </div>`;
   }
+
+  const firstPct = Math.round((first.score / maxScore) * 100);
 
   return `
     <div class="result-wrap">
@@ -687,27 +1028,28 @@ function renderResult() {
         <span class="result-label">Resultado</span>
         <h2 class="result-title">Com base no seu perfil, o destino mais indicado é:</h2>
 
-        <div class="result-top">
-          <span class="result-top-flag flag-${first.flag}"></span>
+        <div class="result-top" onclick="window.location='${first.detailUrl}'">
+          <span class="result-top-flag flag-${first.flag}" id="rt-flag"></span>
           <div class="result-top-body">
-            <span class="result-top-badge">Melhor correspondência</span>
-            <p class="result-top-name">${first.name}</p>
+            <span class="result-top-badge" id="rt-badge">Melhor correspondência</span>
+            <p class="result-top-name" id="rt-name">${first.name}</p>
             <p class="result-top-tagline">${first.tagline}</p>
-            <div class="result-pros">${prosList(first.pros)}</div>
+            <div class="result-pros" id="rt-pros">${prosList(first.pros)}</div>
             <div class="result-con">
               <span class="result-con-label">Atenção:</span>
               <span>${first.con}</span>
             </div>
           </div>
           <div class="result-score">
-            <span class="result-score-num">${first.score}</span>
+            <span class="result-score-num" id="rt-score-num" data-target="${first.score}">0</span>
             <span class="result-score-label">pontos</span>
-            <a href="${first.detailUrl}" class="btn btn-secondary" style="font-size:13px;padding:8px 16px;margin-top:var(--s-md);">Ver detalhe →</a>
+            <a href="${first.detailUrl}" class="btn btn-secondary" style="font-size:13px;padding:8px 16px;margin-top:var(--s-md);" onclick="event.stopPropagation()">Ver detalhe →</a>
           </div>
         </div>
+        <div class="match-bar-track"><div class="match-bar-fill" id="match-bar" data-pct="${firstPct}"></div></div>
 
         ${(second || third) ? `
-          <p style="font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.5px;margin-bottom:var(--s-md);">TAMBÉM COMPATÍVEIS</p>
+          <p style="font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.5px;margin:var(--s-xl) 0 var(--s-md);">TAMBÉM COMPATÍVEIS</p>
           <div class="result-others">
             ${second ? othersCard(second, 2) : ''}
             ${third  ? othersCard(third,  3) : ''}
@@ -723,10 +1065,58 @@ function renderResult() {
     </div>`;
 }
 
-// ---- reiniciar ----
+// ---- animação de contagem do score ----
+function animateScore(el, target) {
+  const start = performance.now();
+  const dur = 700;
+  function tick(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(eased * target);
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ---- revelação encadeada do resultado ----
+function revealResult() {
+  const el = id => document.getElementById(id);
+  const delay = (fn, ms) => setTimeout(fn, ms);
+  delay(() => { const f = el('rt-flag');  if (f) f.classList.add('reveal-flag');  }, 200);
+  delay(() => { const n = el('rt-name');  if (n) n.classList.add('reveal-in');    }, 360);
+  delay(() => { const b = el('rt-badge'); if (b) b.classList.add('reveal-badge'); }, 540);
+  delay(() => {
+    document.querySelectorAll('#rt-pros .result-pro').forEach((p, i) =>
+      setTimeout(() => p.classList.add('reveal-in'), i * 80));
+  }, 700);
+  delay(() => {
+    const s = el('rt-score-num');
+    if (s) animateScore(s, parseInt(s.dataset.target, 10));
+  }, 900);
+  delay(() => {
+    const bar = el('match-bar');
+    if (bar) bar.style.width = bar.dataset.pct + '%';
+  }, 1400);
+  delay(() => {
+    document.querySelectorAll('.result-other').forEach((o, i) =>
+      setTimeout(() => o.classList.add('reveal-in'), i * 100));
+    document.querySelectorAll('.other-bar-fill').forEach((b, i) =>
+      setTimeout(() => { b.style.width = b.dataset.pct + '%'; }, i * 100 + 220));
+  }, 1600);
+}
+
+// ---- reiniciar com wash ----
 function restart() {
-  for (const k of Object.keys(answers)) delete answers[k];
-  goTo(0);
+  const wash = document.createElement('div');
+  wash.className = 'wash-overlay';
+  document.body.appendChild(wash);
+  wash.style.animation = 'washIn 180ms ease forwards';
+  setTimeout(() => {
+    for (const k of Object.keys(answers)) delete answers[k];
+    wash.style.animation = 'washOut 180ms ease forwards';
+    wash.addEventListener('animationend', () => wash.remove(), { once: true });
+    goTo(0);
+  }, 220);
 }
 
 // ---- render principal ----
@@ -736,8 +1126,10 @@ function render() {
     app.innerHTML = renderIntro();
   } else if (step <= QUESTIONS.length) {
     app.innerHTML = renderQuestion(step);
+    initCursorFollow();
   } else {
     app.innerHTML = renderResult();
+    revealResult();
   }
   updateProgress();
 }

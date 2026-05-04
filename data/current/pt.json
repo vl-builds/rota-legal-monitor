@@ -836,5 +836,149 @@
         }
       }
     }
-  ]
+  ],
+  "practicalGuide": {
+    "totalXP": 2400,
+    "estimatedTime": "3-6 meses",
+    "difficulty": 3,
+    "phases": [
+      {
+        "id": "p1",
+        "number": 1,
+        "title": "Documentação Essencial",
+        "subtitle": "Reúna o arsenal antes de partir",
+        "xp": 800,
+        "duration": "2-4 semanas",
+        "difficulty": 2,
+        "icon": "scroll",
+        "objectives": [
+          {
+            "id": "p1-passaporte",
+            "title": "Passaporte válido",
+            "summary": "Validade mínima de 6 meses após a data de entrada em Portugal.",
+            "detail": "Verifique com antecedência: renovação na Polícia Federal pode demorar semanas. Confirme também se há páginas em branco suficientes para vistos e carimbos.",
+            "tip": "Renovação online via Polícia Federal é mais rápida que nas delegacias.",
+            "tags": ["Obrigatório", "Brasil"]
+          },
+          {
+            "id": "p1-antecedentes",
+            "title": "Certidão de antecedentes criminais",
+            "summary": "Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia.",
+            "detail": "Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado. Validade de 90 dias após emissão.",
+            "tip": "Guarde a versão original: o consulado pode pedir o original junto da cópia apostilada.",
+            "tags": ["Obrigatório", "Apostila Haia"]
+          },
+          {
+            "id": "p1-seguro",
+            "title": "Seguro saúde internacional",
+            "summary": "Cobertura mínima de EUR 30.000 exigida na candidatura ao visto D.",
+            "detail": "Após regularização, você terá acesso ao SNS (Serviço Nacional de Saúde) português. O seguro privado cobre o período de transição até a regularização. Exija na apólice cobertura para toda a área Schengen.",
+            "tip": "Compare seguradoras com cobertura Schengen completa — algumas têm planos anuais acessíveis.",
+            "tags": ["EUR 30.000", "Visto D"]
+          },
+          {
+            "id": "p1-fundos",
+            "title": "Comprovante de meios financeiros",
+            "summary": "Demonstre pelo menos EUR 760/mês para o período de estadia solicitado.",
+            "detail": "O valor de referência é o salário mínimo português (EUR 760/mês). Para 12 meses: aproximadamente EUR 9.120. Extratos bancários dos últimos 3 meses são o documento padrão. Para visto de atividade independente ou nômade digital, os requisitos podem ser maiores.",
+            "tip": "Extratos dos últimos 3 meses com saldo médio mensal visível facilitam a análise consular.",
+            "tags": ["EUR 760/mês", "Financeiro"]
+          },
+          {
+            "id": "p1-morada",
+            "title": "Comprovante de morada em Portugal",
+            "summary": "Contrato de arrendamento ou termo de responsabilidade de residente legal.",
+            "detail": "O comprovante deve estar em seu nome ou acompanhado de um termo de responsabilidade assinado por residente legal em Portugal. Reservas de plataformas como Airbnb ou similares por 3 meses ou mais costumam ser aceitas, mas não são garantia.",
+            "tip": "Feche um contrato de arrendamento formal antes da entrevista consular, se possível.",
+            "tags": ["Em Portugal"]
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "number": 2,
+        "title": "Processo do Visto",
+        "subtitle": "Dossiê tático no consulado",
+        "xp": 1000,
+        "duration": "30-90 dias",
+        "difficulty": 3,
+        "icon": "stamp",
+        "objectives": [
+          {
+            "id": "p2-tipo-visto",
+            "title": "Escolher o tipo de visto adequado",
+            "summary": "Portugal monitora 14 tipos de visto. Os mais usados por brasileiros: subordinado, nômade digital e atividade altamente qualificada.",
+            "detail": "Cada tipo tem requisitos específicos de renda, contrato e documentação. O visto para trabalhador subordinado exige contrato com empresa portuguesa. O de nômade digital exige renda mensal comprovada de fonte estrangeira. O de atividade altamente qualificada (art. 90) exige qualificação reconhecida e contrato.",
+            "tip": "Consulte a aba Vistos desta página para ver os 14 tipos com requisitos detalhados.",
+            "tags": ["14 tipos monitorados"]
+          },
+          {
+            "id": "p2-vfs",
+            "title": "Agendar no VFS Global",
+            "summary": "Submissão do pedido presencialmente pelo VFS Global em São Paulo, Rio de Janeiro ou Brasília.",
+            "detail": "O agendamento é online pelo portal VFS Global. Leve todos os documentos originais mais cópias, além de traduções juramentadas quando aplicável. Chegue com antecedência — não é possível remarcar na mesma hora.",
+            "tip": "Vagas esgotam rapidamente — agende com 2 a 3 meses de antecedência em relação à data planejada de viagem.",
+            "tags": ["VFS Global"]
+          },
+          {
+            "id": "p2-taxas",
+            "title": "Pagar taxas consulares",
+            "summary": "Taxa do visto (EUR 90 aprox.) mais taxa de serviço VFS (consulte o portal para valor atual).",
+            "detail": "A taxa consular é paga em euro ou câmbio do dia. A taxa de serviço do VFS é paga separadamente. Valores podem mudar: sempre confirme no site oficial antes do agendamento.",
+            "tags": ["EUR 90 aprox.", "Taxa"]
+          },
+          {
+            "id": "p2-analise",
+            "title": "Aguardar análise consular",
+            "summary": "Prazo médio de 60 dias úteis para resposta após entrega dos documentos.",
+            "detail": "Acompanhe o status pelo portal VFS Global. Em caso de pedido de documentos adicionais, responda dentro do prazo indicado — não fazê-lo pode resultar em arquivamento do processo. Evite comprar passagens definitivas antes da aprovação.",
+            "tip": "Não compre passagens antes da aprovação: mudanças de plano são caras e evitáveis.",
+            "tags": ["~60 dias úteis"]
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "number": 3,
+        "title": "Chegada e Regularização",
+        "subtitle": "Sela o status final em território",
+        "xp": 600,
+        "duration": "30-60 dias",
+        "difficulty": 2,
+        "icon": "key",
+        "objectives": [
+          {
+            "id": "p3-nif",
+            "title": "Solicitar NIF",
+            "summary": "Número de Identificação Fiscal, equivalente ao CPF português.",
+            "detail": "Pode ser obtido presencialmente nas Finanças (AT) ou por procuração antes mesmo de chegar. É necessário para abrir conta bancária, alugar imóvel, contratar serviços e declarar IRS. Sem NIF, praticamente nada funciona em Portugal.",
+            "tip": "Solicitar via procurador antes de chegar economiza semanas. Qualquer residente com NIF pode ser seu procurador.",
+            "tags": ["Finanças", "Primeiro passo"]
+          },
+          {
+            "id": "p3-aima",
+            "title": "Agendar na AIMA",
+            "summary": "Agência para a Integração, Migrações e Asilo, que substituiu o SEF em 2023.",
+            "detail": "Após chegar, agende sua entrevista na AIMA dentro do prazo do seu visto. É nesta etapa que você recebe o título de residência. As filas são longas: agende imediatamente após a chegada. Leve todos os documentos originais usados no pedido de visto.",
+            "tip": "Agende imediatamente após chegar: esperas de meses são comuns sem agendamento prévio.",
+            "tags": ["AIMA", "Ex-SEF"]
+          },
+          {
+            "id": "p3-titulo",
+            "title": "Receber Título de Residência",
+            "summary": "Cartão físico com validade inicial de 2 anos, renovável por períodos de 3 anos.",
+            "detail": "Após 5 anos de residência legal e contínua, é possível solicitar residência permanente ou cidadania portuguesa. Cidadania portuguesa equivale a passaporte da União Europeia, com direito de residir e trabalhar em todos os países membros.",
+            "tip": "Cidadania portuguesa = passaporte europeu. Mantenha registros de presença em Portugal para o processo de cidadania.",
+            "tags": ["Recompensa final", "5 anos → cidadania UE"]
+          }
+        ]
+      }
+    ],
+    "stats": [
+      { "label": "Entrada sem visto (Schengen)", "value": "Sim", "note": "Até 90 dias por turismo", "tone": "green" },
+      { "label": "Tipos de visto monitorados", "value": "14", "note": "Dados atualizados mensalmente", "tone": "gold" },
+      { "label": "Work permit exigido", "value": "Não", "note": "Acordos luso-brasileiros facilitam regularização", "tone": "green" },
+      { "label": "Atualizado em", "value": "mai/2026", "note": "Extração automática mensal", "tone": "neutral" }
+    ]
+  }
 }

@@ -127,6 +127,42 @@ export const ReliabilitySchema = z.object({
   knownIssues: z.array(z.string()),
 });
 
+export const PracticalObjectiveSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  summary: z.string(),
+  detail: z.string(),
+  tip: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+});
+
+export const PracticalPhaseSchema = z.object({
+  id: z.string(),
+  number: z.number().int().positive(),
+  title: z.string(),
+  subtitle: z.string(),
+  xp: z.number().int().nonnegative(),
+  duration: z.string(),
+  difficulty: z.number().int().min(1).max(5),
+  icon: z.enum(["scroll", "stamp", "key", "shield", "compass", "map", "trophy"]),
+  objectives: z.array(PracticalObjectiveSchema),
+});
+
+export const PracticalGuideStatSchema = z.object({
+  label: z.string(),
+  value: z.string(),
+  note: z.string().optional(),
+  tone: z.enum(["green", "gold", "neutral"]),
+});
+
+export const PracticalGuideSchema = z.object({
+  totalXP: z.number().int().nonnegative(),
+  estimatedTime: z.string(),
+  difficulty: z.number().int().min(1).max(5),
+  phases: z.array(PracticalPhaseSchema).min(1),
+  stats: z.array(PracticalGuideStatSchema).max(4),
+});
+
 export const CountryDataSchema = z
   .object({
     meta: MetaSchema,
@@ -135,6 +171,7 @@ export const CountryDataSchema = z
     generalRequirements: GeneralRequirementsSchema,
     recentChanges: z.array(PolicyChangeSchema),
     reliability: ReliabilitySchema,
+    practicalGuide: PracticalGuideSchema.optional(),
   })
   .superRefine((data, ctx) => {
     if (data.forBrazilians.workPermitNeeded && data.visaTypes.length === 0) {
@@ -210,4 +247,8 @@ export type HealthInsuranceReq = z.infer<typeof HealthInsuranceReqSchema>;
 export type GeneralRequirements = z.infer<typeof GeneralRequirementsSchema>;
 export type PolicyChange = z.infer<typeof PolicyChangeSchema>;
 export type Reliability = z.infer<typeof ReliabilitySchema>;
+export type PracticalObjective = z.infer<typeof PracticalObjectiveSchema>;
+export type PracticalPhase = z.infer<typeof PracticalPhaseSchema>;
+export type PracticalGuideStat = z.infer<typeof PracticalGuideStatSchema>;
+export type PracticalGuide = z.infer<typeof PracticalGuideSchema>;
 export type CountryData = z.infer<typeof CountryDataSchema>;
