@@ -53,9 +53,12 @@
   .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
   /* ---- visa grid + cards ---- */
   .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card-wrap { display: flex; flex-direction: column; gap: 0; }
+  .visa-card-wrap[hidden] { display: none !important; }
+  .visa-card-page-link { display: block; text-align: right; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; padding: 5px 6px 0; transition: color 150ms ease; }
+  .visa-card-page-link:hover { color: var(--primary); }
   .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
   .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
-  .visa-card[hidden] { display: none !important; }
   .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
   .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
   .visa-illo-tile svg { width: 78%; height: 78%; }
@@ -333,110 +336,134 @@
           </div>
         <div class="visa-grid">
           
-        <button type="button" class="visa-card" data-visa-id="red-white-red-card" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Red-White-Red Card</h3>
-            <p class="visa-card-desc">Modelo flexível de imigração austríaco que oferece a trabalhadores qualificados de países terceiros e seus…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="very-highly-qualified-workers" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Very Highly Qualified Workers</h3>
-            <p class="visa-card-desc">Visto de busca de emprego e permiso de residência para trabalhadores altamente qualificados.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="red-white-red-card-highly-qualified" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Cartão Vermelho-Branco-Vermelho para…</h3>
-            <p class="visa-card-desc">Permissão de residência e trabalho para trabalhadores muito altamente qualificados com oferta de emprego na…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="red-white-red-card-plus" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Cartão Vermelho-Branco-Vermelho Plus</h3>
-            <p class="visa-card-desc">Permissão de residência temporária com acesso ilimitado ao mercado de trabalho para titulares de…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="red-white-red-card-skilled-shortage" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Red-White-Red Card - Skilled Worker in Shortage…</h3>
-            <p class="visa-card-desc">Visa válida por 24 meses para trabalhadores de países terceiros com qualificação em profissões em escassez…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="rwr-other-key-workers" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Other Key Workers</h3>
-            <p class="visa-card-desc">Cartão de residência e trabalho para trabalhadores chave de terceiros países que atuarão em empresas…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="startup-founders" data-visa-tag="empreendedores-com-ideias-inovadoras" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M20 78 Q40 70 50 50 T82 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="78" r="3" fill="currentColor" opacity="0.5"/><circle cx="50" cy="50" r="4" fill="currentColor" opacity="0.7"/><path d="M76 22 L82 22 L82 28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M82 22 L72 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="68" y="14" width="22" height="22" rx="2" stroke="currentColor" stroke-width="1" opacity="0.3" stroke-dasharray="2 2"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Start-up Founders</h3>
-            <p class="visa-card-desc">Permiso para empreendedores que desejam desenvolver e realizar ideias inovadoras na Áustria.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Empreendedores com ideias inovadoras</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="job-seeker-visa" data-visa-tag="trabalhadores-altamente-qualificados-de-paises-terceiros" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><circle cx="50" cy="50" r="22" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M50 30 L56 50 L50 56 L44 50 Z" fill="currentColor" opacity="0.85"/><path d="M50 70 L44 50 L50 44 L56 50 Z" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="2" fill="#000"/><circle cx="50" cy="22" r="1.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Procura de Emprego</h3>
-            <p class="visa-card-desc">Visto de categoria D que permite entrada na Áustria por 6 meses para procurar emprego adequado às…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Trabalhadores altamente qualificados de países terceiros</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="red-white-red-card">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Red-White-Red Card</h3>
+              <p class="visa-card-desc">Modelo flexível de imigração austríaco que oferece a trabalhadores qualificados de países terceiros e seus…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-red-white-red-card.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="very-highly-qualified-workers">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Very Highly Qualified Workers</h3>
+              <p class="visa-card-desc">Visto de busca de emprego e permiso de residência para trabalhadores altamente qualificados.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-very-highly-qualified-workers.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="red-white-red-card-highly-qualified">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Cartão Vermelho-Branco-Vermelho para…</h3>
+              <p class="visa-card-desc">Permissão de residência e trabalho para trabalhadores muito altamente qualificados com oferta de emprego na…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-red-white-red-card-highly-qualified.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="red-white-red-card-plus">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Cartão Vermelho-Branco-Vermelho Plus</h3>
+              <p class="visa-card-desc">Permissão de residência temporária com acesso ilimitado ao mercado de trabalho para titulares de…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-red-white-red-card-plus.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="red-white-red-card-skilled-shortage">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Red-White-Red Card - Skilled Worker in Shortage…</h3>
+              <p class="visa-card-desc">Visa válida por 24 meses para trabalhadores de países terceiros com qualificação em profissões em escassez…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-red-white-red-card-skilled-shortage.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="rwr-other-key-workers">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Other Key Workers</h3>
+              <p class="visa-card-desc">Cartão de residência e trabalho para trabalhadores chave de terceiros países que atuarão em empresas…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-rwr-other-key-workers.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="empreendedores-com-ideias-inovadoras" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="startup-founders">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M20 78 Q40 70 50 50 T82 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="78" r="3" fill="currentColor" opacity="0.5"/><circle cx="50" cy="50" r="4" fill="currentColor" opacity="0.7"/><path d="M76 22 L82 22 L82 28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M82 22 L72 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="68" y="14" width="22" height="22" rx="2" stroke="currentColor" stroke-width="1" opacity="0.3" stroke-dasharray="2 2"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Start-up Founders</h3>
+              <p class="visa-card-desc">Permiso para empreendedores que desejam desenvolver e realizar ideias inovadoras na Áustria.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Empreendedores com ideias inovadoras</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-startup-founders.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="trabalhadores-altamente-qualificados-de-paises-terceiros" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="job-seeker-visa">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><circle cx="50" cy="50" r="22" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M50 30 L56 50 L50 56 L44 50 Z" fill="currentColor" opacity="0.85"/><path d="M50 70 L44 50 L50 44 L56 50 Z" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="2" fill="#000"/><circle cx="50" cy="22" r="1.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Procura de Emprego</h3>
+              <p class="visa-card-desc">Visto de categoria D que permite entrada na Áustria por 6 meses para procurar emprego adequado às…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Trabalhadores altamente qualificados de países terceiros</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/at-job-seeker-visa.html" tabindex="0">Página completa →</a>
+        </div>
         </div>
         <template id="visa-detail-red-white-red-card">
         <div class="visa-modal-header">
@@ -506,8 +533,8 @@
         <div class="visa-modal-notes">Modelo de imigração principal da Áustria para trabalhadores qualificados. Oferece permiso único para trabalhar e residir permanentemente. A empresa empregadora e o trabalhador podem receber apoio através do ABA WORK in AUSTRIA.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-red-white-red-card.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-very-highly-qualified-workers">
         <div class="visa-modal-header">
@@ -573,8 +600,8 @@
         <div class="visa-modal-notes">Disponível para trabalhadores muito altamente qualificados. Inclui visto de busca de emprego e permiso de residência.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-very-highly-qualified-workers.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-red-white-red-card-highly-qualified">
         <div class="visa-modal-header">
@@ -656,8 +683,8 @@
         <div class="visa-modal-notes">Válido geralmente por 24 meses. Titular tem direito a residência temporária e emprego pelo empregador especificado na aplicação. Pode trabalhar como autônomo se emprego for subsidiário ao emprego remunerado e todos os outros requisitos legais forem cumpridos. Em Viena, aplicar no MA 35. Fora de Viena, aplicar no Landeshauptmann (Governador Provincial). Documentos devem ser apresentados em originais e cópias. Se não estiverem em alemão ou inglês, traduções devem ser fornecidas. Versões legalizadas podem ser solicitadas. Reconhecimento formal é obrigatório APENAS para profissões regulamentadas (profissões de saúde, professor em escola pública, professor de jardim de infância, advogado). Website Berufsanerkennung.at pode ajudar a descobrir se profissão é regulamentada.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-red-white-red-card-highly-qualified.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-red-white-red-card-plus">
         <div class="visa-modal-header">
@@ -728,8 +755,8 @@
         <div class="visa-modal-notes">Titular tem direito a residência temporária e acesso ilimitado ao mercado de trabalho. Pode mudar de empregador livremente.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-red-white-red-card-plus.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-red-white-red-card-skilled-shortage">
         <div class="visa-modal-header">
@@ -811,8 +838,8 @@
         <div class="visa-modal-notes">Sistema de pontuação: Qualificação (máx 30), Experiência de trabalho (máx 20), Habilidades de idioma (máx 25), Idade (máx 15). Mínimo exigido: 55 pontos. Card é geralmente válida por 24 meses. Após 21 meses de emprego durante 24 meses, pode-se solicitar Red-White-Red Card plus para acesso ilimitado ao mercado de trabalho. Pode-se trabalhar como autônomo se for atividade subsidiária e requisitos legais forem atendidos. O Red-White-Red Card plus permite acesso ilimitado ao mercado de trabalho austríaco.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-red-white-red-card-skilled-shortage.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-rwr-other-key-workers">
         <div class="visa-modal-header">
@@ -896,8 +923,8 @@
         <div class="visa-modal-notes">A Red-White-Red Card é válida por 24 meses. O titular pode trabalhar por conta própria se esse trabalho for subsidiário e todos os outros requisitos legais forem atendidos. Após mínimo de 21 meses de emprego nos últimos 24 meses, é possível solicitar Red-White-Red Card plus que oferece acesso ilimitado ao mercado de trabalho. Diferença principal em relação a outras categorias RWR Card: dirigida a trabalhadores chave em ocupações não especializadas, com requisitos de pontuação flexíveis e critérios mais acessíveis para profissionais com experiência significativa.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-rwr-other-key-workers.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-startup-founders">
         <div class="visa-modal-header">
@@ -963,8 +990,8 @@
         <div class="visa-modal-notes">Direcionado para empreendedores e fundadores de start-ups com ideias inovadoras.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-startup-founders.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-job-seeker-visa">
         <div class="visa-modal-header">
@@ -1041,8 +1068,8 @@
         <div class="visa-modal-notes">Válido por 6 meses. Não é necessário se já tiver oferta de emprego ou se entrou sob regime livre de visto. Durante estadia legal livre de visto, se encontrar emprego adequado à qualificação, pode solicitar o Red-White-Red Card na Áustria.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/at-job-seeker-visa.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
         <div class="visa-modal-dialog" role="document">
@@ -1549,18 +1576,18 @@
       if (lastFocus && lastFocus.focus) lastFocus.focus()
     }
 
-    grid.querySelectorAll('.visa-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    grid.querySelectorAll('.visa-card').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.visaId))
     })
 
     function applyFilter(tag) {
-      grid.querySelectorAll('.visa-card').forEach(card => {
-        const isActive = card.dataset.visaActive !== 'false'
+      grid.querySelectorAll('.visa-card-wrap').forEach(wrap => {
+        const isActive = wrap.dataset.visaActive !== 'false'
         let visible
         if (tag === 'all') visible = isActive
         else if (tag === 'inativos') visible = !isActive
-        else visible = isActive && card.dataset.visaTag === tag
-        card.hidden = !visible
+        else visible = isActive && wrap.dataset.visaTag === tag
+        wrap.hidden = !visible
       })
     }
     chips.forEach(chip => {

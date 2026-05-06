@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visto de Teletrabajo (Nômade Digital) — Espanha — Rota Legal</title>
+<meta name="description" content="Visto destinado a estrangeiros que desejam viver na Espanha trabalhando remotamente para uma empresa localizada fora da Espanha, utilizando exclusivamente meios" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/design-system.css" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .vp-hero {
+    padding: 96px 0 48px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .vp-breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; font-family: 'JetBrains Mono', monospace;
+    color: var(--muted); margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .vp-breadcrumb a { color: var(--muted); text-decoration: none; }
+  .vp-breadcrumb a:hover { color: var(--on-dark); }
+  .vp-breadcrumb-sep { opacity: 0.4; }
+
+  .vp-hero-top {
+    display: flex; align-items: flex-start; gap: 20px;
+    margin-bottom: 20px;
+  }
+  .vp-hero-flag {
+    width: 52px; height: 36px; flex-shrink: 0; border-radius: 4px;
+    overflow: hidden; margin-top: 4px;
+  }
+  .vp-hero-tag { margin-bottom: 8px; }
+  .vp-hero-title {
+    font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+    letter-spacing: -1px; color: var(--on-dark);
+    line-height: 1.15;
+  }
+  .vp-hero-original {
+    font-size: 13px; font-family: 'JetBrains Mono', monospace;
+    color: var(--muted); margin-top: 8px;
+  }
+
+  .vp-stats-strip {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border: 1px solid var(--hairline); border-radius: var(--r-lg);
+    overflow: hidden; margin-top: 32px;
+  }
+  .vp-stat {
+    flex: 1 1 160px; padding: 16px 20px;
+    border-right: 1px solid var(--hairline);
+  }
+  .vp-stat:last-child { border-right: none; }
+  .vp-stat-label {
+    font-size: 11px; font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .vp-stat-value {
+    font-size: 15px; font-weight: 600; color: var(--on-dark);
+  }
+  .vp-stat-value.accent { color: var(--primary); }
+  .vp-stat-value.yes { color: var(--accent-emerald); }
+  .vp-stat-value.no { color: var(--muted); }
+
+  .vp-body { padding: 64px 0 80px; }
+  .vp-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .vp-section { margin-bottom: 40px; }
+  .vp-section-title {
+    font-size: 11px; font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--muted); margin-bottom: 16px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--hairline);
+  }
+
+  /* Documents */
+  .doc-list { display: flex; flex-direction: column; gap: 10px; }
+  .doc-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; border-radius: var(--r-md);
+    background: var(--surface-card); border: 1px solid var(--hairline);
+  }
+  .doc-item.critical { border-color: var(--primary); }
+  .doc-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--muted); flex-shrink: 0; margin-top: 5px;
+  }
+  .doc-item.critical .doc-dot { background: var(--primary); }
+  .doc-name { font-size: 14px; font-weight: 600; color: var(--on-dark); }
+  .doc-desc { font-size: 13px; color: var(--body); margin-top: 2px; }
+
+  /* Steps */
+  .step-list { display: flex; flex-direction: column; gap: 0; }
+  .step-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 16px 0; border-bottom: 1px solid var(--hairline);
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-n {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--surface-card); border: 1px solid var(--hairline);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-family: 'JetBrains Mono', monospace;
+    color: var(--primary); flex-shrink: 0; margin-top: 1px;
+  }
+  .step-text { font-size: 14px; color: var(--body); line-height: 1.55; }
+
+  /* Fees */
+  .fee-row {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 12px 0; border-bottom: 1px solid var(--hairline);
+  }
+  .fee-row:last-child { border-bottom: none; }
+  .fee-amount {
+    font-size: 20px; font-weight: 700; font-family: 'JetBrains Mono', monospace;
+    color: var(--primary);
+  }
+  .fee-note { font-size: 13px; color: var(--muted); }
+
+  /* Rights */
+  .right-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 0; border-bottom: 1px solid var(--hairline);
+    font-size: 14px; color: var(--body);
+  }
+  .right-item:last-child { border-bottom: none; }
+  .right-icon {
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+  }
+  .right-icon.yes { background: rgba(34,197,94,.12); color: var(--accent-emerald); }
+  .right-icon.no  { background: rgba(136,136,136,.1); color: var(--muted); }
+
+  /* Sidebar */
+  .vp-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .vp-card {
+    background: var(--surface-card); border: 1px solid var(--hairline);
+    border-radius: var(--r-lg); padding: 20px;
+  }
+  .vp-card-title {
+    font-size: 11px; font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--muted); margin-bottom: 14px;
+  }
+  .vp-field { margin-bottom: 12px; }
+  .vp-field:last-child { margin-bottom: 0; }
+  .vp-field-label { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+  .vp-field-value { font-size: 14px; color: var(--on-dark); font-weight: 500; }
+  .vp-field-value.mono { font-family: 'JetBrains Mono', monospace; color: var(--primary); }
+
+  .vp-notes {
+    background: var(--surface-card); border: 1px solid var(--hairline);
+    border-left: 3px solid var(--primary); border-radius: var(--r-md);
+    padding: 16px 20px; font-size: 13px; color: var(--body); line-height: 1.6;
+    margin-top: 40px;
+  }
+  .vp-notes-label {
+    font-size: 11px; font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: var(--primary); margin-bottom: 8px;
+  }
+
+  .vp-cta-row {
+    display: flex; gap: 12px; flex-wrap: wrap; padding-top: 40px;
+    border-top: 1px solid var(--hairline); margin-top: 40px;
+  }
+  .vp-cta-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 20px; height: 40px; border-radius: var(--r-pill);
+    background: var(--primary); color: var(--on-primary);
+    font-size: 14px; font-weight: 600; text-decoration: none;
+  }
+  .vp-cta-secondary {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 20px; height: 40px; border-radius: var(--r-pill);
+    background: transparent; color: var(--on-dark);
+    border: 1px solid var(--hairline); font-size: 14px; text-decoration: none;
+  }
+  .vp-cta-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+  .empty-note {
+    font-size: 13px; color: var(--muted); padding: 12px 0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 900px) {
+    .vp-grid { grid-template-columns: 1fr; }
+    .vp-stats-strip { flex-direction: column; }
+    .vp-stat { border-right: none; border-bottom: 1px solid var(--hairline); }
+    .vp-stat:last-child { border-bottom: none; }
+  }
+  @media (max-width: 640px) {
+    .vp-hero { padding: 72px 0 32px; }
+    .vp-body { padding: 40px 0 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="../home.html">
+      <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="../paises.html">Países</a>
+      <a class="nav-link" href="../comparar.html">Comparar</a>
+      <a class="nav-link" href="../qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="../guia-pratico.html">Guia Prático</a>
+      <a class="nav-link" href="../calculadora.html">Calculadora</a>
+      <a class="nav-link" href="../historico.html">Histórico</a>
+      <a class="nav-link" href="../sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="../pais-es.html#vistos">← Espanha</a>
+      <a class="btn btn-primary" href="../comparar.html">Comparar</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
+  <div class="mobile-drawer-backdrop" data-close></div>
+  <aside class="mobile-drawer-panel">
+    <div class="mobile-drawer-header">
+      <span class="caption-up">Menu</span>
+      <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="../home.html">Início</a>
+      <a href="../paises.html">Países</a>
+      <a href="../comparar.html">Comparar</a>
+      <a href="../qual-pais.html">Qual país é meu?</a>
+      <a href="../guia-pratico.html">Guia Prático</a>
+      <a href="../calculadora.html">Calculadora</a>
+      <a href="../historico.html">Histórico</a>
+      <a href="../sobre.html">Sobre</a>
+    </nav>
+    <div class="mobile-drawer-cta">
+      <a class="btn btn-primary" href="../qual-pais.html">Qual país é meu?</a>
+      <a class="btn btn-secondary" href="../pais-es.html#vistos">← Espanha</a>
+    </div>
+  </aside>
+</div>
+
+<!-- HERO -->
+<section class="vp-hero">
+  <div class="container">
+    <nav class="vp-breadcrumb" aria-label="Navegação estrutural">
+      <a href="../paises.html">Países</a>
+      <span class="vp-breadcrumb-sep">/</span>
+      <a href="../pais-es.html">Espanha</a>
+      <span class="vp-breadcrumb-sep">/</span>
+      <a href="../pais-es.html#vistos">Vistos</a>
+      <span class="vp-breadcrumb-sep">/</span>
+      <span>Visto de Teletrabajo (Nômade Digital)</span>
+    </nav>
+
+    <div class="vp-hero-top">
+      <span class="flag flag-es vp-hero-flag" aria-hidden="true"></span>
+      <div>
+        <div class="vp-hero-tag"><span class="badge up">Principal</span></div>
+        <h1 class="vp-hero-title">Visto de Teletrabajo (Nômade Digital)</h1>
+        <p class="vp-hero-original">Telework Visa (Digital Nomad Visa)</p>
+      </div>
+    </div>
+
+    <div class="vp-stats-strip">
+      <div class="vp-stat">
+        <div class="vp-stat-label">Local do pedido</div>
+        <div class="vp-stat-value">No Brasil (antes de entrar)</div>
+      </div>
+      <div class="vp-stat">
+        <div class="vp-stat-label">Tempo médio</div>
+        <div class="vp-stat-value accent">A determinar</div>
+      </div>
+      <div class="vp-stat">
+        <div class="vp-stat-label">Pode trabalhar</div>
+        <div class="vp-stat-value yes">Sim</div>
+      </div>
+      <div class="vp-stat">
+        <div class="vp-stat-label">Trazer família</div>
+        <div class="vp-stat-value yes">Sim</div>
+      </div>
+      <div class="vp-stat">
+        <div class="vp-stat-label">Dados de</div>
+        <div class="vp-stat-value" style="font-size:13px;">mai/2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<div class="vp-body">
+  <div class="container">
+    <div class="vp-grid">
+
+      <!-- MAIN COLUMN -->
+      <div>
+        <p style="font-size:15px;color:var(--body);line-height:1.65;margin-bottom:40px;">Visto destinado a estrangeiros que desejam viver na Espanha trabalhando remotamente para uma empresa localizada fora da Espanha, utilizando exclusivamente meios informáticos, telemáticos ou de telecomunicação.</p>
+
+        <div class="vp-section">
+          <p class="vp-section-title">Documentos necessários</p>
+          <div class="doc-list">
+        
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Formulário de pedido de visto nacional</div>
+            <div class="doc-desc">Completar todas as seções e assinar. Menores de idade devem ter assinatura de um dos pais.</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Fotografia</div>
+            <div class="doc-desc">Recente, colorida, com fundo claro, rosto frontal, sem óculos escuros ou reflexivos, sem roupa que cubra o oval do rosto</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Passaporte válido</div>
+            <div class="doc-desc">Original e cópia das páginas com dados biométricos. Mínimo de 1 ano de validade e pelo menos 2 páginas em branco consecutivas. Passaportes emitidos há mais de 10 anos não são aceitos.</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Comprovante de residência na jurisdição consular</div>
+            <div class="doc-desc">Cópia autenticada de carteira de motorista, RG ou carteira de estudante de Alabama, Arkansas, Louisiana, Mississippi, New Mexico, Oklahoma, Tennessee ou Texas</div>
+          </div>
+        </div>
+        <div class="doc-item">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Comprovante de residência legal nos EUA</div>
+            <div class="doc-desc">Para não-cidadãos americanos: cópia autenticada de Green Card ou visto válido dos EUA. Portadores de visto B-1/B-2 não podem solicitar. Devem solicitar no país de residência.</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Taxa de visto</div>
+            <div class="doc-desc">Money Order pagável ao Consulado da Espanha em Houston. $ 190 para americanos, $ 106 para outras nacionalidades</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Certificado da empresa</div>
+            <div class="doc-desc">Se funcionário: antiguidade (mínimo 3 meses), consentimento explícito para teletrabaho na Espanha, renda do funcionário. Se autônomo: duração do contrato e condições para teletrabaho. Deve provar relacionamento profissional de pelo menos 3 meses e continuidade de 1 ano trabalhando remotamente.</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Certificado de incorporação da empresa</div>
+            <div class="doc-desc">Emitido pela State Division of Corporations, indicando data de incorporação, tipo de atividade comercial e atividade contínua e real. Deve ser apostilado e acompanhado de tradução oficial para espanhol.</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Declaração de responsabilidade da empresa</div>
+            <div class="doc-desc">Comprometimento em cumprir obrigações da Segurança Social espanhola antes de iniciar atividade profissional</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Comprovante de meios financeiros</div>
+            <div class="doc-desc">Documentos comprovando meios suficientes ou fonte regular de renda para requerente e familiares, conforme percentual do SMI (Salário Mínimo Interprofissional)</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Comprovante de cobertura Segurança Social espanhola</div>
+            <div class="doc-desc">Para funcionários: comprovante de registro da empresa na Segurança Social espanhola e afiliação do funcionário. Para autônomos: comprovante de registro na RETA (Régimen de Trabajadores Autónomos)</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Cópia do diploma de Bacharelado ou comprovação de experiência profissional</div>
+            <div class="doc-desc">Original e cópia de Bacharelado ou Mestrado de universidade reconhecida, ou documentos comprovando 3 anos de experiência profissional no campo atual</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Certificado de verificação de antecedentes criminais</div>
+            <div class="doc-desc">Maiores de 18 anos: original e cópia emitida pelo FBI nos últimos 6 meses, legalizada com Apostila Federal da Convenção de Haia pelo Department of State em Washington DC. Tradução para espanhol por tradutor certificado obrigatória. Verificações de antecedentes locais não são válidas.</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Declaração responsável de ausência de antecedentes criminais</div>
+            <div class="doc-desc">Declaração responsável da ausência de penalidades criminais nos últimos 5 anos</div>
+          </div>
+        </div>
+        <div class="doc-item critical">
+          <div class="doc-dot"></div>
+          <div>
+            <div class="doc-name">Comprovante de seguro saúde</div>
+            <div class="doc-desc">Certificado de seguro saúde público ou privado de empresa autorizada a operar na Espanha. Deve cobrir 100% de despesas médicas, hospitalares e extra-hospitalares, sem franquia, copagamento ou limite de cobertura. Cartão de seguro ou viagem não são aceitos.</div>
+          </div>
+        </div>
+      </div>
+        </div>
+
+        <div class="vp-section">
+          <p class="vp-section-title">Processo passo a passo</p>
+          <div class="step-list">
+        
+        <div class="step-item">
+          <span class="step-n">1</span>
+          <span class="step-text">Antes de solicitar o visto, o requerente deve obter o número N.I.E. (Número de Identidad de Extranjero) da Espanha</span>
+        </div>
+        <div class="step-item">
+          <span class="step-n">2</span>
+          <span class="step-text">Reunir todos os documentos necessários conforme checklist fornecido</span>
+        </div>
+        <div class="step-item">
+          <span class="step-n">3</span>
+          <span class="step-text">Enviar por correio a candidatura completa para o Consulado da Espanha em Houston com todos os documentos necessários</span>
+        </div>
+        <div class="step-item">
+          <span class="step-n">4</span>
+          <span class="step-text">O Consulado fornecerá comprovante de recebimento com código para rastrear status através de https://sutramiteconsular.maec.es/Home.aspx</span>
+        </div>
+        <div class="step-item">
+          <span class="step-n">5</span>
+          <span class="step-text">O Consulado pode solicitar documentos faltantes, dados adicionais ou entrevista pessoal</span>
+        </div>
+        <div class="step-item">
+          <span class="step-n">6</span>
+          <span class="step-text">Período legal de decisão é 10 dias úteis a partir do dia seguinte à submissão, podendo ser estendido se entrevista ou documentos adicionais forem solicitados</span>
+        </div>
+        <div class="step-item">
+          <span class="step-n">7</span>
+          <span class="step-text">O Consulado informará o procedimento para devolução do passaporte e documentação original</span>
+        </div>
+      </div>
+        </div>
+
+        <div class="vp-section">
+          <p class="vp-section-title">Taxas</p>
+          
+      <div class="fee-row">
+        <span class="fee-amount">USD 190</span>
+        <span class="fee-note">Taxa para cidadãos americanos</span>
+      </div>
+      <div class="fee-row">
+        <span class="fee-amount">USD 106</span>
+        <span class="fee-note">Taxa para outras nacionalidades. Diferentes taxas aplicáveis para Austrália, Etiópia, Canadá, Reino Unido e outros por reciprocidade</span>
+      </div>
+        </div>
+
+        <div class="vp-section">
+          <p class="vp-section-title">Direitos com este visto</p>
+          
+    <div class="right-item">
+      <span class="right-icon yes">✓</span>
+      Trabalhar legalmente
+    </div>
+    <div class="right-item">
+      <span class="right-icon yes">✓</span>
+      Trazer família
+    </div>
+    <div class="right-item">
+      <span class="right-icon no">✗</span>
+      Mudar de empregador
+    </div>
+    <div class="right-item">
+      <span class="right-icon yes">✓</span>
+      Residência permanente após 1 anos
+    </div>
+        </div>
+
+        
+        <div class="vp-notes">
+          <div class="vp-notes-label">Observação</div>
+          Estrangeiros já na Espanha podem solicitar diretamente a permanência para teletrabaho sem visto prévio. Cidadãos americanos não requerem visto para estadas de até 90 dias. Se funcionário, deve trabalhar apenas para empresa fora da Espanha. Se autônomo, pode trabalhar até 20% para empresa na Espanha. Visto válido por 1 ano. Documentos estrangeiros devem ser apostilados e traduzidos oficialmente para espanhol quando necessário. Seguro saúde deve cobrir 100% sem franquias ou limites. Não remover selos de apostila do documento.
+        </div>
+
+        <div class="vp-cta-row">
+          <a class="vp-cta-primary" href="../pais-es.html#vistos">← Ver todos os vistos de Espanha</a>
+          <a class="vp-cta-secondary" href="../historico.html">Histórico de mudanças</a>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="vp-sidebar">
+        
+        <div class="vp-card">
+          <div class="vp-card-title">Requisitos financeiros e acadêmicos</div>
+          <div class="vp-field">
+        <div class="vp-field-label">Renda mínima</div>
+        <div class="vp-field-value mono">EUR 2.442/mês</div>
+      </div>
+          
+          <div class="vp-field">
+        <div class="vp-field-label">Qualificação</div>
+        <div class="vp-field-value">Bacharelado de universidade ou escola de negócios reconhecida, OU; Mínimo 3 anos de experiência profissional no campo atual; Qualificações necessárias para profissão regulamentada, se aplicável</div>
+      </div>
+        </div>
+
+        <div class="vp-card">
+          <div class="vp-card-title">Informações do processo</div>
+          <div class="vp-field">
+            <div class="vp-field-label">Local de solicitação</div>
+            <div class="vp-field-value">No Brasil (antes de entrar)</div>
+          </div>
+          <div class="vp-field">
+            <div class="vp-field-label">Prazo estimado</div>
+            <div class="vp-field-value" style="color:var(--primary);">A determinar</div>
+          </div>
+        </div>
+
+        <div class="vp-card">
+          <div class="vp-card-title">Outros vistos de Espanha</div>
+          <a class="vp-cta-secondary" href="../pais-es.html#vistos" style="width:100%;justify-content:center;margin-top:4px;">Ver todos os 5 vistos →</a>
+        </div>
+
+        <div class="vp-card" style="border-color:var(--hairline);background:transparent;">
+          <div class="vp-card-title">Precisão dos dados</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;">
+            Dados extraídos automaticamente e atualizados mensalmente.
+            Verifique sempre nas fontes oficiais antes de iniciar um processo.
+          </p>
+          <p style="font-size:11px;color:var(--muted);margin-top:8px;font-family:'JetBrains Mono',monospace;">
+            Confiança: medium
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="../home.html" style="margin-bottom:8px;">
+          <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:22px;width:auto;display:block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="color:var(--muted);max-width:280px;">Monitorização mensal de vistos e regulamentações de trabalho para brasileiros na Europa e Oceania.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <p class="caption-up" style="color:var(--muted);margin-bottom:12px;">Países</p>
+          <a class="footer-link" href="../pais-nl.html">Países Baixos</a>
+          <a class="footer-link" href="../pais-pt.html">Portugal</a>
+          <a class="footer-link" href="../pais-de.html">Alemanha</a>
+          <a class="footer-link" href="../pais-fr.html">França</a>
+        </div>
+        <div class="footer-col">
+          <p class="caption-up" style="color:var(--muted);margin-bottom:12px;">Ferramentas</p>
+          <a class="footer-link" href="../comparar.html">Comparar países</a>
+          <a class="footer-link" href="../qual-pais.html">Qual país é meu?</a>
+          <a class="footer-link" href="../calculadora.html">Calculadora</a>
+          <a class="footer-link" href="../historico.html">Histórico</a>
+        </div>
+        <div class="footer-col">
+          <p class="caption-up" style="color:var(--muted);margin-bottom:12px;">Sobre</p>
+          <a class="footer-link" href="../sobre.html">Metodologia</a>
+          <a class="footer-link" href="../sobre.html#limitacoes">Limitações</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="body-sm" style="color:var(--muted);">Rota Legal não é escritório de advocacia. Dados para fins informativos.</p>
+      <p class="body-sm" style="color:var(--muted);">Atualizado em mai/2026.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('nav-hamburger-btn');
+  var drawer = document.getElementById('mobile-drawer');
+  if (!btn || !drawer) return;
+  function open() {
+    drawer.removeAttribute('aria-hidden');
+    btn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    drawer.setAttribute('aria-hidden','true');
+    btn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  btn.addEventListener('click', open);
+  drawer.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+</script>
+</body>
+</html>

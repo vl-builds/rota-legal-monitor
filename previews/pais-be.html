@@ -53,9 +53,12 @@
   .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
   /* ---- visa grid + cards ---- */
   .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card-wrap { display: flex; flex-direction: column; gap: 0; }
+  .visa-card-wrap[hidden] { display: none !important; }
+  .visa-card-page-link { display: block; text-align: right; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; padding: 5px 6px 0; transition: color 150ms ease; }
+  .visa-card-page-link:hover { color: var(--primary); }
   .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
   .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
-  .visa-card[hidden] { display: none !important; }
   .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
   .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
   .visa-illo-tile svg { width: 78%; height: 78%; }
@@ -331,45 +334,54 @@
           </div>
         <div class="visa-grid">
           
-        <button type="button" class="visa-card" data-visa-id="single-permit" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Single Permit (Permissão Única)</h3>
-            <p class="visa-card-desc">Autorização única de trabalho e residência para cidadãos de países terceiros (não-UE) que desejam trabalhar…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="work-authorization-belgium" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Autorização de Trabalho na Bélgica</h3>
-            <p class="visa-card-desc">Autorização de trabalho para cidadãos de países terceiros na Bélgica por mais de 90 dias, que também requer…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="professional-card-self-employed" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Cartão Profissional para Autônomos</h3>
-            <p class="visa-card-desc">Cartão profissional para cidadãos de terceiros países que desejam exercer atividades autônomas (trabalho por…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="single-permit">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Single Permit (Permissão Única)</h3>
+              <p class="visa-card-desc">Autorização única de trabalho e residência para cidadãos de países terceiros (não-UE) que desejam trabalhar…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/be-single-permit.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="work-authorization-belgium">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Autorização de Trabalho na Bélgica</h3>
+              <p class="visa-card-desc">Autorização de trabalho para cidadãos de países terceiros na Bélgica por mais de 90 dias, que também requer…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/be-work-authorization-belgium.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="professional-card-self-employed">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Cartão Profissional para Autônomos</h3>
+              <p class="visa-card-desc">Cartão profissional para cidadãos de terceiros países que desejam exercer atividades autônomas (trabalho por…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/be-professional-card-self-employed.html" tabindex="0">Página completa →</a>
+        </div>
         </div>
         <template id="visa-detail-single-permit">
         <div class="visa-modal-header">
@@ -445,8 +457,8 @@
         <div class="visa-modal-notes">A permissão de residência concedida pelo Escritório de Imigração permanece limitada por 5 anos. Após 5 anos, a residência pode ser renovada por período ilimitado se as condições forem atendidas. O trabalhador então recebe um cartão B com indicação 'Labour market: unlimited'. Durante a renovação, se as autoridades não decidirem antes do vencimento, é emitido um Anexo 49 (válido 30 dias, renovável 2x por 30 dias) ou Anexo 50 (quando a permissão de trabalho é ilimitada), mas o Anexo 49 não autoriza trabalho a menos que a Região tenha renovado a permissão de trabalho.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/be-single-permit.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-work-authorization-belgium">
         <div class="visa-modal-header">
@@ -513,8 +525,8 @@
         <div class="visa-modal-notes">A página do IBZ não fornece informações detalhadas sobre tipos específicos de autorização de trabalho (Single Permit, ICT, pesquisadores, estagiários, profissionais altamente qualificados). As informações devem ser consultadas nos sites das Regiões competentes. Cônjuge ou parceiro registrado e filhos menores podem acompanhar sob certas condições.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/be-work-authorization-belgium.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-professional-card-self-employed">
         <div class="visa-modal-header">
@@ -593,8 +605,8 @@
         <div class="visa-modal-notes">O cartão profissional é emitido pelas administrações regionais (Flanders, Brussels-Capital Region, Walloon Region ou German-speaking Community). A página indica que há casos de isenção não especificados. Para estadias superiores a 90 dias, é obrigatório um visto D nacional de longa permanência. Não há menção a valor mínimo de investimento ou rendimento esperado na página fornecida.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/be-professional-card-self-employed.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
         <div class="visa-modal-dialog" role="document">
@@ -1075,18 +1087,18 @@
       if (lastFocus && lastFocus.focus) lastFocus.focus()
     }
 
-    grid.querySelectorAll('.visa-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    grid.querySelectorAll('.visa-card').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.visaId))
     })
 
     function applyFilter(tag) {
-      grid.querySelectorAll('.visa-card').forEach(card => {
-        const isActive = card.dataset.visaActive !== 'false'
+      grid.querySelectorAll('.visa-card-wrap').forEach(wrap => {
+        const isActive = wrap.dataset.visaActive !== 'false'
         let visible
         if (tag === 'all') visible = isActive
         else if (tag === 'inativos') visible = !isActive
-        else visible = isActive && card.dataset.visaTag === tag
-        card.hidden = !visible
+        else visible = isActive && wrap.dataset.visaTag === tag
+        wrap.hidden = !visible
       })
     }
     chips.forEach(chip => {

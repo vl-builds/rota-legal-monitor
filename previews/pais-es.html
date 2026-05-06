@@ -53,9 +53,12 @@
   .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
   /* ---- visa grid + cards ---- */
   .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card-wrap { display: flex; flex-direction: column; gap: 0; }
+  .visa-card-wrap[hidden] { display: none !important; }
+  .visa-card-page-link { display: block; text-align: right; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; padding: 5px 6px 0; transition: color 150ms ease; }
+  .visa-card-page-link:hover { color: var(--primary); }
   .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
   .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
-  .visa-card[hidden] { display: none !important; }
   .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
   .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
   .visa-illo-tile svg { width: 78%; height: 78%; }
@@ -332,71 +335,86 @@
           </div>
         <div class="visa-grid">
           
-        <button type="button" class="visa-card" data-visa-id="trabajo-cuenta-ajena" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Residência e Trabalho por Conta Alheia</h3>
-            <p class="visa-card-desc">Visto para pessoas com 16 anos ou mais que desejam trabalhar como empregados na Espanha (com contrato de…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="telework-nomad-visa" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="55" r="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><ellipse cx="50" cy="55" rx="22" ry="9" stroke="currentColor" stroke-width="1"/><ellipse cx="50" cy="55" rx="9" ry="22" stroke="currentColor" stroke-width="1"/><line x1="28" y1="55" x2="72" y2="55" stroke="currentColor" stroke-width="1" opacity="0.6"/><path d="M62 22 a14 14 0 0 1 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M65 18 a20 20 0 0 1 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="62" cy="22" r="1.8" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Teletrabajo (Nômade Digital)</h3>
-            <p class="visa-card-desc">Visto destinado a estrangeiros que desejam viver na Espanha trabalhando remotamente para uma empresa…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="highly-qualified-worker-visa" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Trabalhador Altamente Qualificado</h3>
-            <p class="visa-card-desc">Visto para exercer uma atividade laboral como funcionário na Espanha como profissional altamente…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="intra-company-transfer-visa" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Transferência Intraempresarial</h3>
-            <p class="visa-card-desc">Visto para exercer uma atividade laboral como funcionário na Espanha como membro de pessoal de gestão…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="residencia-excepcion-trabajo" data-visa-tag="tecnicos-e-cientistas-convidados-ou-contratados-por-autoridades-ou-instituicoes-publicas-espanholas" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Residência com Isenção de Autorização de Trabalho</h3>
-            <p class="visa-card-desc">Visto de residência para atividades profissionais específicas que estão isentas da necessidade de…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Técnicos e cientistas convidados ou contratados por autoridades ou instituições públicas espanholas</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="trabajo-cuenta-ajena">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Residência e Trabalho por Conta Alheia</h3>
+              <p class="visa-card-desc">Visto para pessoas com 16 anos ou mais que desejam trabalhar como empregados na Espanha (com contrato de…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/es-trabajo-cuenta-ajena.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="telework-nomad-visa">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="55" r="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><ellipse cx="50" cy="55" rx="22" ry="9" stroke="currentColor" stroke-width="1"/><ellipse cx="50" cy="55" rx="9" ry="22" stroke="currentColor" stroke-width="1"/><line x1="28" y1="55" x2="72" y2="55" stroke="currentColor" stroke-width="1" opacity="0.6"/><path d="M62 22 a14 14 0 0 1 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M65 18 a20 20 0 0 1 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="62" cy="22" r="1.8" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Teletrabajo (Nômade Digital)</h3>
+              <p class="visa-card-desc">Visto destinado a estrangeiros que desejam viver na Espanha trabalhando remotamente para uma empresa…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/es-telework-nomad-visa.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="highly-qualified-worker-visa">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Trabalhador Altamente Qualificado</h3>
+              <p class="visa-card-desc">Visto para exercer uma atividade laboral como funcionário na Espanha como profissional altamente…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/es-highly-qualified-worker-visa.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="intra-company-transfer-visa">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Transferência Intraempresarial</h3>
+              <p class="visa-card-desc">Visto para exercer uma atividade laboral como funcionário na Espanha como membro de pessoal de gestão…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/es-intra-company-transfer-visa.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="tecnicos-e-cientistas-convidados-ou-contratados-por-autoridades-ou-instituicoes-publicas-espanholas" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="residencia-excepcion-trabajo">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Residência com Isenção de Autorização de Trabalho</h3>
+              <p class="visa-card-desc">Visto de residência para atividades profissionais específicas que estão isentas da necessidade de…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Técnicos e cientistas convidados ou contratados por autoridades ou instituições públicas espanholas</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/es-residencia-excepcion-trabajo.html" tabindex="0">Página completa →</a>
+        </div>
         </div>
         <template id="visa-detail-trabajo-cuenta-ajena">
         <div class="visa-modal-header">
@@ -483,8 +501,8 @@
         <div class="visa-modal-notes">O visto só pode ser solicitado APÓS o empregador obter a autorização prévia de residência e trabalho junto às autoridades espanholas. A solicitação deve ser feita dentro de 1 mês após a notificação da autorização ao empregador. O passaporte fica retido no consulado durante o processamento e é devolvido por correio (requer envelope Special Delivery pré-pago). Se o contrato for de um ano, o visto será válido por 90 dias para entrada na Espanha. Informações específicas para aplicação no Consulado de Londres.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/es-trabajo-cuenta-ajena.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-telework-nomad-visa">
         <div class="visa-modal-header">
@@ -578,8 +596,8 @@
         <div class="visa-modal-notes">Estrangeiros já na Espanha podem solicitar diretamente a permanência para teletrabaho sem visto prévio. Cidadãos americanos não requerem visto para estadas de até 90 dias. Se funcionário, deve trabalhar apenas para empresa fora da Espanha. Se autônomo, pode trabalhar até 20% para empresa na Espanha. Visto válido por 1 ano. Documentos estrangeiros devem ser apostilados e traduzidos oficialmente para espanhol quando necessário. Seguro saúde deve cobrir 100% sem franquias ou limites. Não remover selos de apostila do documento.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/es-telework-nomad-visa.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-highly-qualified-worker-visa">
         <div class="visa-modal-header">
@@ -661,8 +679,8 @@
         <div class="visa-modal-notes">Este visto é baseado no EU Blue Card espanhol. A validade do visto é de 1 ano ou pelo mesmo período do permiso de residência concedido, desde que inferior a 1 ano. Membros da família podem incluir cônjuge, parceiro não casado, filhos e filhos adultos financeiramente dependentes, e parentes em linha ascendente sob cuidado do trabalhador. Documentos estrangeiros devem ser legalizados ou apostilados.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/es-highly-qualified-worker-visa.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-intra-company-transfer-visa">
         <div class="visa-modal-header">
@@ -744,8 +762,8 @@
         <div class="visa-modal-notes">A validade do visto é de 1 ano ou pelo mesmo período do permiso de residência concedido, desde que inferior a 1 ano. Membros da família podem incluir cônjuge, parceiro não casado, filhos e filhos adultos financeiramente dependentes, e parentes em linha ascendente sob cuidado do trabalhador. Documentos estrangeiros devem ser legalizados ou apostilados. O trabalhador transferido deve permanecer vinculado à mesma empresa ou grupo.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/es-intra-company-transfer-visa.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-residencia-excepcion-trabajo">
         <div class="visa-modal-header">
@@ -827,8 +845,8 @@
         <div class="visa-modal-notes">Este visto é para categorias profissionais específicas que estão isentas da necessidade de autorização de trabalho. Não é o visto típico para trabalhadores empregados comuns. Cada categoria de isenção possui requisitos documentais específicos. Aplicável no Consulado de Londres com requisitos específicos para residentes no distrito consular.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/es-residencia-excepcion-trabajo.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
         <div class="visa-modal-dialog" role="document">
@@ -1314,18 +1332,18 @@
       if (lastFocus && lastFocus.focus) lastFocus.focus()
     }
 
-    grid.querySelectorAll('.visa-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    grid.querySelectorAll('.visa-card').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.visaId))
     })
 
     function applyFilter(tag) {
-      grid.querySelectorAll('.visa-card').forEach(card => {
-        const isActive = card.dataset.visaActive !== 'false'
+      grid.querySelectorAll('.visa-card-wrap').forEach(wrap => {
+        const isActive = wrap.dataset.visaActive !== 'false'
         let visible
         if (tag === 'all') visible = isActive
         else if (tag === 'inativos') visible = !isActive
-        else visible = isActive && card.dataset.visaTag === tag
-        card.hidden = !visible
+        else visible = isActive && wrap.dataset.visaTag === tag
+        wrap.hidden = !visible
       })
     }
     chips.forEach(chip => {

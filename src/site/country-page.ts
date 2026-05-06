@@ -164,25 +164,29 @@ function renderTagPill(label: string): string {
   return `<span class="visa-tag-pill ${variant}"><span class="visa-tag-pill-dot"></span>${esc(label)}</span>`
 }
 
-function renderVisaCard(visa: VisaType): string {
+function renderVisaCard(visa: VisaType, code?: string): string {
   const tag = getVisaTag(visa)
   const illoKey = pickIllustrationKey(visa)
   const description = truncateForCard(visa.description)
   const inactive = isRevokedVisa(visa)
+  const pageLink = code ? `vistos/${code}-${esc(visa.id)}.html` : null
   return `
-        <button type="button" class="visa-card${inactive ? ' is-inactive' : ''}" data-visa-id="${esc(visa.id)}" data-visa-tag="${esc(tagSlug(tag))}" data-visa-active="${inactive ? 'false' : 'true'}">
-          <div class="visa-illo-tile">${getIllustrationSVG(illoKey)}</div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">${esc(shortenVisaTitle(visa.name))}</h3>
-            <p class="visa-card-desc">${esc(description)}</p>
-          </div>
-          <div class="visa-card-foot">
-            ${renderTagPill(tag)}
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>`
+        <div class="visa-card-wrap" data-visa-tag="${esc(tagSlug(tag))}" data-visa-active="${inactive ? 'false' : 'true'}">
+          <button type="button" class="visa-card${inactive ? ' is-inactive' : ''}" data-visa-id="${esc(visa.id)}">
+            <div class="visa-illo-tile">${getIllustrationSVG(illoKey)}</div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">${esc(shortenVisaTitle(visa.name))}</h3>
+              <p class="visa-card-desc">${esc(description)}</p>
+            </div>
+            <div class="visa-card-foot">
+              ${renderTagPill(tag)}
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          ${pageLink ? `<a class="visa-card-page-link" href="${pageLink}" tabindex="0">Página completa →</a>` : ''}
+        </div>`
 }
 
 function renderVisaFilterChips(visas: VisaType[]): string {
@@ -210,7 +214,7 @@ function renderVisaFilterChips(visas: VisaType[]): string {
           </div>`
 }
 
-function renderVisaDetail(visa: VisaType, _config: CountryPageConfig): string {
+function renderVisaDetail(visa: VisaType, config: CountryPageConfig): string {
   const tag = getVisaTag(visa)
   const illoKey = pickIllustrationKey(visa)
 
@@ -331,8 +335,8 @@ function renderVisaDetail(visa: VisaType, _config: CountryPageConfig): string {
         ${visa.notes ? `<div class="visa-modal-notes">${esc(visa.notes)}</div>` : ''}
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/${esc(config.code)}-${esc(visa.id)}.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div>`
 }
 
@@ -847,9 +851,12 @@ const PAGE_CSS = `
   .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
   /* ---- visa grid + cards ---- */
   .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card-wrap { display: flex; flex-direction: column; gap: 0; }
+  .visa-card-wrap[hidden] { display: none !important; }
+  .visa-card-page-link { display: block; text-align: right; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; padding: 5px 6px 0; transition: color 150ms ease; }
+  .visa-card-page-link:hover { color: var(--primary); }
   .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
   .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
-  .visa-card[hidden] { display: none !important; }
   .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
   .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
   .visa-illo-tile svg { width: 78%; height: 78%; }
@@ -999,7 +1006,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   const visaCount = data.visaTypes.length
 
   const visaCardsHtml = sorted.length > 0
-    ? sorted.map(v => renderVisaCard(v)).join('')
+    ? sorted.map(v => renderVisaCard(v, config.code)).join('')
     : `<div style="padding:var(--s-xxl);text-align:center;color:var(--muted);">Vistos em levantamento para este ciclo.</div>`
   const visaFiltersHtml = sorted.length > 0 ? renderVisaFilterChips(sorted) : ''
   const visaTemplatesHtml = sorted.length > 0 ? renderVisaTemplates(sorted, config) : ''
@@ -1289,18 +1296,18 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
       if (lastFocus && lastFocus.focus) lastFocus.focus()
     }
 
-    grid.querySelectorAll('.visa-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    grid.querySelectorAll('.visa-card').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.visaId))
     })
 
     function applyFilter(tag) {
-      grid.querySelectorAll('.visa-card').forEach(card => {
-        const isActive = card.dataset.visaActive !== 'false'
+      grid.querySelectorAll('.visa-card-wrap').forEach(wrap => {
+        const isActive = wrap.dataset.visaActive !== 'false'
         let visible
         if (tag === 'all') visible = isActive
         else if (tag === 'inativos') visible = !isActive
-        else visible = isActive && card.dataset.visaTag === tag
-        card.hidden = !visible
+        else visible = isActive && wrap.dataset.visaTag === tag
+        wrap.hidden = !visible
       })
     }
     chips.forEach(chip => {

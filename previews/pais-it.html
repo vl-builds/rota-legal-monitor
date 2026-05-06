@@ -53,9 +53,12 @@
   .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
   /* ---- visa grid + cards ---- */
   .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card-wrap { display: flex; flex-direction: column; gap: 0; }
+  .visa-card-wrap[hidden] { display: none !important; }
+  .visa-card-page-link { display: block; text-align: right; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; padding: 5px 6px 0; transition: color 150ms ease; }
+  .visa-card-page-link:hover { color: var(--primary); }
   .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
   .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
-  .visa-card[hidden] { display: none !important; }
   .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
   .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
   .visa-illo-tile svg { width: 78%; height: 78%; }
@@ -331,58 +334,70 @@
           </div>
         <div class="visa-grid">
           
-        <button type="button" class="visa-card" data-visa-id="lavoro-subordinato" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Trabalho Subordinado</h3>
-            <p class="visa-card-desc">Visto nacional de longa duração (tipo D) para atividade de trabalho subordinado (emprego com vínculo…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="lavoro-autonomo" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Trabalho Autônomo</h3>
-            <p class="visa-card-desc">Visto nacional de longa duração (tipo D) para exercício de atividade de trabalho autônomo na Itália.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="missione" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Missão</h3>
-            <p class="visa-card-desc">Visto nacional de longa duração (tipo D) para atividade profissional temporária na Itália, geralmente para…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="eu-blue-card" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="32" width="56" height="36" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M50 38 L62 50 L50 62 L38 50 Z" fill="currentColor" opacity="0.7"/><path d="M50 38 L62 50 L50 62 L38 50 Z" stroke="currentColor" stroke-width="0.6"/><circle cx="32" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="32" cy="58" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="58" r="1.2" fill="currentColor" opacity="0.6"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Cartão Azul UE</h3>
-            <p class="visa-card-desc">Visto nacional de longa duração (tipo D) que permite trabalho altamente qualificado na Itália, destinado a…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="lavoro-subordinato">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Trabalho Subordinado</h3>
+              <p class="visa-card-desc">Visto nacional de longa duração (tipo D) para atividade de trabalho subordinado (emprego com vínculo…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/it-lavoro-subordinato.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="lavoro-autonomo">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Trabalho Autônomo</h3>
+              <p class="visa-card-desc">Visto nacional de longa duração (tipo D) para exercício de atividade de trabalho autônomo na Itália.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/it-lavoro-autonomo.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="missione">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Missão</h3>
+              <p class="visa-card-desc">Visto nacional de longa duração (tipo D) para atividade profissional temporária na Itália, geralmente para…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/it-missione.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="eu-blue-card">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="32" width="56" height="36" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M50 38 L62 50 L50 62 L38 50 Z" fill="currentColor" opacity="0.7"/><path d="M50 38 L62 50 L50 62 L38 50 Z" stroke="currentColor" stroke-width="0.6"/><circle cx="32" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="32" cy="58" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="58" r="1.2" fill="currentColor" opacity="0.6"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Cartão Azul UE</h3>
+              <p class="visa-card-desc">Visto nacional de longa duração (tipo D) que permite trabalho altamente qualificado na Itália, destinado a…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/it-eu-blue-card.html" tabindex="0">Página completa →</a>
+        </div>
         </div>
         <template id="visa-detail-lavoro-subordinato">
         <div class="visa-modal-header">
@@ -453,8 +468,8 @@
         <div class="visa-modal-notes">Sujeito ao sistema de cotas anuais (decreto flussi). O empregador italiano deve iniciar o processo solicitando autorização. Oferta de emprego é obrigatória.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/it-lavoro-subordinato.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-lavoro-autonomo">
         <div class="visa-modal-header">
@@ -525,8 +540,8 @@
         <div class="visa-modal-notes">Sujeito ao sistema de cotas anuais (decreto flussi) para trabalho autônomo. Requer demonstração de viabilidade da atividade profissional ou empresarial.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/it-lavoro-autonomo.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-missione">
         <div class="visa-modal-header">
@@ -597,8 +612,8 @@
         <div class="visa-modal-notes">Destinado a missões temporárias de trabalho. Geralmente não permite mudança de empregador durante a missão.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/it-missione.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-eu-blue-card">
         <div class="visa-modal-header">
@@ -673,8 +688,8 @@
         <div class="visa-modal-notes">Destinado a profissionais altamente qualificados. Oferece condições facilitadas em comparação com visto de trabalho subordinado regular. Permite reunificação familiar. Não está sujeito às cotas do decreto flussi.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/it-eu-blue-card.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
         <div class="visa-modal-dialog" role="document">
@@ -1166,18 +1181,18 @@
       if (lastFocus && lastFocus.focus) lastFocus.focus()
     }
 
-    grid.querySelectorAll('.visa-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    grid.querySelectorAll('.visa-card').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.visaId))
     })
 
     function applyFilter(tag) {
-      grid.querySelectorAll('.visa-card').forEach(card => {
-        const isActive = card.dataset.visaActive !== 'false'
+      grid.querySelectorAll('.visa-card-wrap').forEach(wrap => {
+        const isActive = wrap.dataset.visaActive !== 'false'
         let visible
         if (tag === 'all') visible = isActive
         else if (tag === 'inativos') visible = !isActive
-        else visible = isActive && card.dataset.visaTag === tag
-        card.hidden = !visible
+        else visible = isActive && wrap.dataset.visaTag === tag
+        wrap.hidden = !visible
       })
     }
     chips.forEach(chip => {

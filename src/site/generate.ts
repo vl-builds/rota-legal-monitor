@@ -1,8 +1,9 @@
 #!/usr/bin/env bun
-import { readdir, readFile, writeFile } from 'node:fs/promises'
+import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
 import { generateCountryPage } from './country-page'
 import type { CountryPageConfig } from './country-page'
+import { generateVisaPage, visaPageSlug } from './visa-page'
 import type { CountryData, PolicyChange } from '@/extractors/schema'
 import { sources } from '@/sources'
 
@@ -260,7 +261,22 @@ async function main(): Promise<void> {
   await patchHome(allData)
   console.log('[ok] home.html atualizado')
 
-  console.log(`\nTotal: ${allData.length} páginas geradas.`)
+  // Generate individual visa pages
+  const VISTOS_DIR = join(PREVIEWS_DIR, 'vistos')
+  await mkdir(VISTOS_DIR, { recursive: true })
+  let visaCount = 0
+  for (const { code, data } of allData) {
+    const cfg = COUNTRY_CONFIG[code]!
+    for (const visa of data.visaTypes) {
+      const html = generateVisaPage(visa, data, { code, ...cfg })
+      const slug = visaPageSlug(code, visa.id)
+      await writeFile(join(VISTOS_DIR, slug), html, 'utf-8')
+      visaCount++
+    }
+    console.log(`[vistos] ${code} — ${data.visaTypes.length} páginas geradas`)
+  }
+
+  console.log(`\nTotal: ${allData.length} países + ${visaCount} páginas de visto.`)
 }
 
 main().catch(err => {

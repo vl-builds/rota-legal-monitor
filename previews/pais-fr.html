@@ -53,9 +53,12 @@
   .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
   /* ---- visa grid + cards ---- */
   .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card-wrap { display: flex; flex-direction: column; gap: 0; }
+  .visa-card-wrap[hidden] { display: none !important; }
+  .visa-card-page-link { display: block; text-align: right; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; padding: 5px 6px 0; transition: color 150ms ease; }
+  .visa-card-page-link:hover { color: var(--primary); }
   .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
   .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
-  .visa-card[hidden] { display: none !important; }
   .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
   .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
   .visa-illo-tile svg { width: 78%; height: 78%; }
@@ -334,175 +337,214 @@
           </div>
         <div class="visa-grid">
           
-        <button type="button" class="visa-card" data-visa-id="vls-ts-salarie" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Assalariado</h3>
-            <p class="visa-card-desc">Visto de longa duração que vale como título de residência, dispensando a solicitação de carte de séjour na…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="vls-ts-talent" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Talents</h3>
-            <p class="visa-card-desc">Visto de longa duração que vale como título de residência para profissionais qualificados e talentos.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="vls-carte-travailleur" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Trabalhador</h3>
-            <p class="visa-card-desc">Visto de longa duração com menção de que é necessário solicitar carte de séjour em até 2 meses após a chegada.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="carte-sejour-temporaire-salarie" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Mention Salarié</h3>
-            <p class="visa-card-desc">Autorização de residência temporária para trabalhadores estrangeiros não-UE que exercem atividade…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="carte-sejour-pluriannuelle" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Carte de séjour pluriannuelle</h3>
-            <p class="visa-card-desc">Autorização de residência plurianual para trabalhadores e outras categorias estrangeiras não-UE</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="talent-salarie-qualifie" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Talento - Assalariado Qualificado</h3>
-            <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional assalariada na França.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="talent-empresa-inovante" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Talento - Assalariado de Empresa Inovante</h3>
-            <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional em empresa reconhecida como inovante.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="talent-salarie-missao" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Talento - Assalariado em Missão</h3>
-            <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional para assalariados de empresa estrangeira em…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="talent-carte-bleue-europeia" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="32" width="56" height="36" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M50 38 L62 50 L50 62 L38 50 Z" fill="currentColor" opacity="0.7"/><path d="M50 38 L62 50 L50 62 L38 50 Z" stroke="currentColor" stroke-width="0.6"/><circle cx="32" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="32" cy="58" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="58" r="1.2" fill="currentColor" opacity="0.6"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Talento - Cartão Azul Europeu</h3>
-            <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional na França.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="talent-profissoes-medicas-farmacia" data-visa-tag="principal" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Talento - Profissões Médicas e Farmácia</h3>
-            <p class="visa-card-desc">Autoriza residência e exercício de profissão médica ou farmacêutica na França sob certas condições.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="working-holiday-brasil" data-visa-tag="nacionalidade-brasileira" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Brasil</h3>
-            <p class="visa-card-desc">Visto especial para jovens brasileiros de 18 a 30 anos que desejam viajar e trabalhar na França por até 12…</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Nacionalidade brasileira</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="vls-temporaire-artiste" data-visa-tag="profissionais-que-vem-exercer-atividade-artistica-de-curta-duracao-na-franca" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Atividade Artística</h3>
-            <p class="visa-card-desc">Visto temporário de 4 a 6 meses para exercer atividade artística na França.</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Profissionais que vêm exercer atividade artística de curta duração na França</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
-        <button type="button" class="visa-card" data-visa-id="carte-sejour" data-visa-tag="ser-cidadao-de-pais-nao-pertencente-a-ue-eee" data-visa-active="true">
-          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
-          <div class="visa-card-body">
-            <h3 class="visa-card-title">Carte de séjour</h3>
-            <p class="visa-card-desc">Documento geral de residência para estrangeiros não-UE na França</p>
-          </div>
-          <div class="visa-card-foot">
-            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Ser cidadão de país não pertencente à UE/EEE</span>
-            <span class="visa-arrow-btn" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </button>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="vls-ts-salarie">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Assalariado</h3>
+              <p class="visa-card-desc">Visto de longa duração que vale como título de residência, dispensando a solicitação de carte de séjour na…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-vls-ts-salarie.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="vls-ts-talent">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Talents</h3>
+              <p class="visa-card-desc">Visto de longa duração que vale como título de residência para profissionais qualificados e talentos.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-vls-ts-talent.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="vls-carte-travailleur">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Trabalhador</h3>
+              <p class="visa-card-desc">Visto de longa duração com menção de que é necessário solicitar carte de séjour em até 2 meses após a chegada.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-vls-carte-travailleur.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="carte-sejour-temporaire-salarie">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Mention Salarié</h3>
+              <p class="visa-card-desc">Autorização de residência temporária para trabalhadores estrangeiros não-UE que exercem atividade…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-carte-sejour-temporaire-salarie.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="carte-sejour-pluriannuelle">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Carte de séjour pluriannuelle</h3>
+              <p class="visa-card-desc">Autorização de residência plurianual para trabalhadores e outras categorias estrangeiras não-UE</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-carte-sejour-pluriannuelle.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="talent-salarie-qualifie">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Talento - Assalariado Qualificado</h3>
+              <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional assalariada na França.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-talent-salarie-qualifie.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="talent-empresa-inovante">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Talento - Assalariado de Empresa Inovante</h3>
+              <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional em empresa reconhecida como inovante.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-talent-empresa-inovante.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="talent-salarie-missao">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Talento - Assalariado em Missão</h3>
+              <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional para assalariados de empresa estrangeira em…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-talent-salarie-missao.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="talent-carte-bleue-europeia">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="32" width="56" height="36" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M50 38 L62 50 L50 62 L38 50 Z" fill="currentColor" opacity="0.7"/><path d="M50 38 L62 50 L50 62 L38 50 Z" stroke="currentColor" stroke-width="0.6"/><circle cx="32" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="32" cy="58" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="58" r="1.2" fill="currentColor" opacity="0.6"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Talento - Cartão Azul Europeu</h3>
+              <p class="visa-card-desc">Autoriza residência e exercício de atividade profissional na França.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-talent-carte-bleue-europeia.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="principal" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="talent-profissoes-medicas-farmacia">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Talento - Profissões Médicas e Farmácia</h3>
+              <p class="visa-card-desc">Autoriza residência e exercício de profissão médica ou farmacêutica na França sob certas condições.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-talent-profissoes-medicas-farmacia.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="nacionalidade-brasileira" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="working-holiday-brasil">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Brasil</h3>
+              <p class="visa-card-desc">Visto especial para jovens brasileiros de 18 a 30 anos que desejam viajar e trabalhar na França por até 12…</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Nacionalidade brasileira</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-working-holiday-brasil.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="profissionais-que-vem-exercer-atividade-artistica-de-curta-duracao-na-franca" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="vls-temporaire-artiste">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Atividade Artística</h3>
+              <p class="visa-card-desc">Visto temporário de 4 a 6 meses para exercer atividade artística na França.</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Profissionais que vêm exercer atividade artística de curta duração na França</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-vls-temporaire-artiste.html" tabindex="0">Página completa →</a>
+        </div>
+        <div class="visa-card-wrap" data-visa-tag="ser-cidadao-de-pais-nao-pertencente-a-ue-eee" data-visa-active="true">
+          <button type="button" class="visa-card" data-visa-id="carte-sejour">
+            <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+            <div class="visa-card-body">
+              <h3 class="visa-card-title">Carte de séjour</h3>
+              <p class="visa-card-desc">Documento geral de residência para estrangeiros não-UE na França</p>
+            </div>
+            <div class="visa-card-foot">
+              <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Ser cidadão de país não pertencente à UE/EEE</span>
+              <span class="visa-arrow-btn" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </button>
+          <a class="visa-card-page-link" href="vistos/fr-carte-sejour.html" tabindex="0">Página completa →</a>
+        </div>
         </div>
         <template id="visa-detail-vls-ts-salarie">
         <div class="visa-modal-header">
@@ -577,8 +619,8 @@
         <div class="visa-modal-notes">Validade de 4 a 12 meses. Dispensa solicitação de carte de séjour na chegada. Permite circular em todo o espaço Schengen sem outro visto, desde que não ultrapasse 90 dias durante o período de validade.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-vls-ts-salarie.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-vls-ts-talent">
         <div class="visa-modal-header">
@@ -653,8 +695,8 @@
         <div class="visa-modal-notes">Validade de 4 a 12 meses. Dispensa solicitação de carte de séjour na chegada.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-vls-ts-talent.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-vls-carte-travailleur">
         <div class="visa-modal-header">
@@ -729,8 +771,8 @@
         <div class="visa-modal-notes">Permite entrar na França e obter carte de séjour na prefeitura. A carte de séjour pode ser anual, plurianual ou de 10 anos dependendo da situação. Válido para diversos tipos de trabalhadores incluindo sazonais, em missão, Carte Bleue, profissionais liberais/autônomos e artistas.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-vls-carte-travailleur.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-carte-sejour-temporaire-salarie">
         <div class="visa-modal-header">
@@ -797,8 +839,8 @@
         <div class="visa-modal-notes">Válida para exercer atividade profissional assalariada. Renovação necessária ao término do período de validade na Préfecture</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-carte-sejour-temporaire-salarie.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-carte-sejour-pluriannuelle">
         <div class="visa-modal-header">
@@ -865,8 +907,8 @@
         <div class="visa-modal-notes">Válida por período superior a um ano. Renovação deve ser solicitada na Préfecture da área de residência</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-carte-sejour-pluriannuelle.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-talent-salarie-qualifie">
         <div class="visa-modal-header">
@@ -959,8 +1001,8 @@
         <div class="visa-modal-notes">Cartão válido pela duração do contrato de trabalho, com limite máximo de 4 anos. Cônjuge e filhos menores podem obter cartão 'Talent-Famille' através de procedimento simplificado</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-talent-salarie-qualifie.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-talent-empresa-inovante">
         <div class="visa-modal-header">
@@ -1053,8 +1095,8 @@
         <div class="visa-modal-notes">Cartão válido pela duração do contrato de trabalho, com limite máximo de 4 anos. Cônjuge e filhos menores podem obter cartão 'Talent-Famille'</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-talent-empresa-inovante.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-talent-salarie-missao">
         <div class="visa-modal-header">
@@ -1147,8 +1189,8 @@
         <div class="visa-modal-notes">Cartão válido pela duração do contrato de trabalho, com limite máximo de 4 anos. Cônjuge e filhos menores podem obter cartão 'Talent-Famille'</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-talent-salarie-missao.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-talent-carte-bleue-europeia">
         <div class="visa-modal-header">
@@ -1241,8 +1283,8 @@
         <div class="visa-modal-notes">Duração varia conforme contrato: se contrato ≥2 anos, cartão emitido pela duração do contrato (máx. 4 anos); se contrato &lt;2 anos, cartão emitido pela duração do contrato + 3 meses (máx. 2 anos). Cônjuge e filhos menores podem obter cartão 'Talent-Famille'</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-talent-carte-bleue-europeia.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-talent-profissoes-medicas-farmacia">
         <div class="visa-modal-header">
@@ -1335,8 +1377,8 @@
         <div class="visa-modal-notes">Página foi cortada antes de completar informações sobre duração, família e outros detalhes desta categoria</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-talent-profissoes-medicas-farmacia.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-working-holiday-brasil">
         <div class="visa-modal-header">
@@ -1407,8 +1449,8 @@
         <div class="visa-modal-notes">Duração máxima de 12 meses. Dispensa solicitação de carte de séjour. Não permite renovação ou mudança de status migratório após o término. Permite trabalhar e viajar livremente durante a validade do visto.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-working-holiday-brasil.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-vls-temporaire-artiste">
         <div class="visa-modal-header">
@@ -1479,8 +1521,8 @@
         <div class="visa-modal-notes">Duração de 4 a 6 meses. Dispensa carte de séjour durante a validade. Permite múltiplas entradas no território francês. Ao término, deve retornar ao país de origem.</div>
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-vls-temporaire-artiste.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <template id="visa-detail-carte-sejour">
         <div class="visa-modal-header">
@@ -1543,8 +1585,8 @@
         
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
-          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+          <a class="visa-cta-primary" href="vistos/fr-carte-sejour.html">Ver página completa</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div></template>
         <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
         <div class="visa-modal-dialog" role="document">
@@ -2052,18 +2094,18 @@
       if (lastFocus && lastFocus.focus) lastFocus.focus()
     }
 
-    grid.querySelectorAll('.visa-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    grid.querySelectorAll('.visa-card').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.visaId))
     })
 
     function applyFilter(tag) {
-      grid.querySelectorAll('.visa-card').forEach(card => {
-        const isActive = card.dataset.visaActive !== 'false'
+      grid.querySelectorAll('.visa-card-wrap').forEach(wrap => {
+        const isActive = wrap.dataset.visaActive !== 'false'
         let visible
         if (tag === 'all') visible = isActive
         else if (tag === 'inativos') visible = !isActive
-        else visible = isActive && card.dataset.visaTag === tag
-        card.hidden = !visible
+        else visible = isActive && wrap.dataset.visaTag === tag
+        wrap.hidden = !visible
       })
     }
     chips.forEach(chip => {
