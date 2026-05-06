@@ -43,6 +43,24 @@ export const auSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://immi.homeaffairs.gov.au',
+      label: 'Department of Home Affairs',
+      description: 'Portal oficial com TSMIT 2025-2026 (AUD 76.515/ano) e requisitos para Working Holiday visa subclasse 462',
+    },
+    {
+      url: 'https://www.fairwork.gov.au/pay-and-wages/minimum-wages',
+      label: 'Fair Work: Salário Mínimo',
+      description: 'Salário mínimo nacional australiano (National Minimum Wage) atualizado para o ano fiscal 2025-2026',
+    },
+    {
+      url: 'https://oiaustralia.com.br',
+      label: 'OI Australia',
+      description: 'Guia comunitário com TSMIT, processo de Work and Holiday 462 e experiências de brasileiros',
+    },
+  ],
+
   glossary: {
     'Working Holiday Visa': 'Visto de ferias e trabalho (WHV)',
     'Skilled Independent visa': 'Visto de habilidades independente (residencia permanente)',

@@ -40,36 +40,104 @@
   /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
-  /* ---- visa cards ---- */
-  .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
-  .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
-  .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
-  .visa-head:hover { background: rgba(255,255,255,0.02); }
-  .visa-title-row { display: flex; flex-direction: column; gap: var(--s-xs); }
-  .visa-name { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); margin: 0; }
-  .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
-  .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
-  .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
-  .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
-  .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
-  .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
-  .visa-card.open .visa-body { display: block; }
-  .visa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xl); margin-top: var(--s-lg); }
-  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--s-md); }
+  /* ---- visa header ---- */
+  .visa-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.82); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 24px; }
+  .visa-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+  .visa-section-h1 { margin: 0; font-size: 56px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; max-width: 780px; }
+  .visa-section-h1-soft { color: rgba(255,255,255,0.4); }
+  .visa-section-lede { margin: 20px 0 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.55); max-width: 580px; }
+  /* ---- visa filter chips ---- */
+  .visa-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 36px 0 var(--s-xl); }
+  .visa-chip { padding: 8px 16px; font-size: 12.5px; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.02em; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; cursor: pointer; transition: all 150ms ease; font-weight: 400; }
+  .visa-chip:hover { color: var(--on-dark); border-color: rgba(255,255,255,0.18); }
+  .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
+  /* ---- visa grid + cards ---- */
+  .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
+  .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
+  .visa-card[hidden] { display: none !important; }
+  .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
+  .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
+  .visa-illo-tile svg { width: 78%; height: 78%; }
+  .visa-card-body { flex: 1; display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .visa-card-title { margin: 0; font-size: 19px; font-weight: 500; letter-spacing: -0.015em; color: var(--on-dark); line-height: 1.25; }
+  .visa-card-desc { margin: 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+  .visa-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; margin-top: 4px; }
+  /* ---- tag pill ---- */
+  .visa-tag-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 999px; font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-tag-pill-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .visa-tag-pill.principal { color: var(--primary); background: rgba(240,180,41,0.13); border: 1px solid rgba(240,180,41,0.33); }
+  .visa-tag-pill.principal .visa-tag-pill-dot { background: var(--primary); }
+  .visa-tag-pill.neutral { color: rgba(255,255,255,0.82); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+  .visa-tag-pill.neutral .visa-tag-pill-dot { background: rgba(255,255,255,0.6); }
+  .visa-tag-pill.revoked { color: rgb(252, 165, 165); background: rgba(239,68,68,0.16); border: 1px solid rgba(239,68,68,0.40); }
+  .visa-tag-pill.revoked .visa-tag-pill-dot { background: rgb(252, 165, 165); }
+  /* ---- inactive card variant ---- */
+  .visa-card.is-inactive { opacity: 0.72; }
+  .visa-card.is-inactive .visa-illo-tile { color: rgba(255,255,255,0.45); }
+  .visa-card.is-inactive:hover { opacity: 1; border-color: rgba(239,68,68,0.30); }
+  .visa-card.is-inactive:hover .visa-illo-tile { background: rgba(239,68,68,0.08); }
+  .visa-chip-inactive { color: rgba(239,68,68,0.85); }
+  .visa-chip-inactive.active { background: rgba(239,68,68,0.85); color: var(--canvas); border-color: rgba(239,68,68,0.85); }
+  /* ---- arrow button on card ---- */
+  .visa-arrow-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 200ms ease; flex-shrink: 0; }
+  .visa-card:hover .visa-arrow-btn { background: var(--primary); color: var(--canvas); border-color: var(--primary); }
+  /* ---- visa modal ---- */
+  .visa-modal-backdrop { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .visa-modal-backdrop.is-open { display: flex; animation: visa-fade-in 200ms ease; }
+  .visa-modal-dialog { position: relative; width: 100%; max-width: 620px; background: var(--canvas); border: 1px solid rgba(240,180,41,0.33); border-radius: 20px; padding: 40px 44px 36px; color: var(--on-dark); max-height: 85vh; overflow-y: auto; animation: visa-slide-up 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .visa-modal-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(255,255,255,0.6); border-radius: 999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .visa-modal-close:hover { background: rgba(255,255,255,0.06); color: var(--on-dark); }
+  .visa-modal-header { display: flex; gap: 20px; align-items: center; margin-bottom: 24px; }
+  .visa-modal-illo { width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; background: rgba(240,180,41,0.15); border: 1px solid rgba(240,180,41,0.33); border-radius: 16px; color: var(--primary); flex-shrink: 0; }
+  .visa-modal-illo svg { width: 70%; height: 70%; }
+  .visa-modal-head-info { flex: 1; min-width: 0; }
+  .visa-modal-title { margin: 10px 0 0; font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: var(--on-dark); }
+  .visa-modal-summary { margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+  .visa-modal-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .visa-modal-cell { padding: 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+  .visa-modal-cell-label { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 8px; }
+  .visa-modal-cell-value { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+  .visa-modal-cell-value.accent { color: var(--primary); font-weight: 500; }
+  .visa-modal-official { padding: 18px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; margin-bottom: 24px; }
+  .visa-modal-official-text { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.75); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-modal-section { margin-bottom: 22px; }
+  .visa-modal-notes { margin-bottom: 22px; padding: 14px 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+  .visa-modal-cta-row { display: flex; gap: 10px; }
+  .visa-cta-primary { flex: 1; padding: 14px 20px; background: var(--primary); color: var(--canvas); border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: -0.01em; text-decoration: none; text-align: center; transition: filter 150ms ease; }
+  .visa-cta-primary:hover { filter: brightness(1.06); }
+  .visa-cta-secondary { padding: 14px 20px; background: transparent; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; text-align: center; transition: background 150ms ease; }
+  .visa-cta-secondary:hover { background: rgba(255,255,255,0.04); }
+  /* ---- shared step/right components used in modal ---- */
+  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 0 0 var(--s-md); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-field { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s-md); }
   .visa-field-label { font-size: 12px; color: var(--muted); font-weight: 500; }
   .visa-field-value { font-size: 14px; color: var(--body-strong); font-weight: 600; }
   .visa-field-value.mono { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--primary); font-size: 16px; }
   .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
-  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
   .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
   .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-sm); }
   .right-item { display: flex; align-items: center; gap: var(--s-xs); font-size: 13px; color: var(--body); }
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- animations ---- */
+  @keyframes visa-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes visa-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .visa-card, .visa-card:hover, .visa-arrow-btn, .visa-illo-tile, .visa-modal-backdrop, .visa-modal-dialog { transition: none !important; animation: none !important; transform: none !important; }
+  }
+  /* ---- responsive: visa stack ---- */
+  @media (max-width: 600px) {
+    .visa-section-h1 { font-size: 40px; }
+    .visa-modal-dialog { padding: 32px 24px 28px; }
+    .visa-modal-info-grid { grid-template-columns: 1fr; }
+    .visa-modal-header { gap: 14px; }
+    .visa-modal-illo { width: 64px; height: 64px; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
   /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
@@ -143,6 +211,7 @@
       <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
       <a class="nav-link" href="historico.html">Histórico</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
@@ -170,6 +239,7 @@
       <a href="paises.html">Países</a>
       <a href="comparar.html">Comparar</a>
       <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
       <a href="calculadora.html">Calculadora</a>
       <a href="historico.html">Histórico</a>
       <a href="sobre.html">Sobre</a>
@@ -191,7 +261,7 @@
         <div class="hero-badges">
           <span class="badge up"><span class="pulse"></span>Confiança média</span>
           <span class="badge">Schengen</span>
-          
+          <span class="badge">Work Permit exigido</span>
           
           <span class="badge new">Atualizado mai/2026</span>
         </div>
@@ -229,13 +299,13 @@
   </div>
   <div class="qs-item">
     <span class="qs-label">Tipos de visto monitorados</span>
-    <span class="qs-value accent">14</span>
+    <span class="qs-value accent">12</span>
     <span class="qs-sub">12 de relevância direta</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Work permit exigido</span>
-    <span class="qs-value positive">Não</span>
-    <span class="qs-sub">Trabalho permitido sem autorização especial</span>
+    <span class="qs-value negative">Sim</span>
+    <span class="qs-sub">Autorização obrigatória para trabalhar</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Dados atualizados em</span>
@@ -251,776 +321,961 @@
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">14 tipos de visto monitorados</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
-        <div class="visa-list">
+        <div class="visa-eyebrow"><span class="visa-eyebrow-dot"></span>12 tipos de visto monitorados</div>
+        <h2 class="visa-section-h1">Opções de visto<br/><span class="visa-section-h1-soft">de trabalho</span></h2>
+        <p class="visa-section-lede">Escolha o tipo de visto adequado ao seu caso. Cada categoria é monitorada mensalmente para acompanhar prazos, requisitos e atualizações legais.</p>
+        <div class="visa-filter-row">
+            <button type="button" class="visa-chip active" data-tag="all">Todos · 11</button>
+            <button type="button" class="visa-chip" data-tag="principal">Principal · 11</button>
+            <button type="button" class="visa-chip visa-chip-inactive" data-tag="inativos">Inativos · 1</button>
+          </div>
+        <div class="visa-grid">
           
-        <div class="visa-card open">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Visto de Residência</h3>
-              <span class="visa-name-orig">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Visto de Residência</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+        <button type="button" class="visa-card" data-visa-id="work-subordinate-with-visa" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Profissional Subordinada</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE exercerem atividade profissional subordinada (como empregados) em Portugal…</p>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade profissional subordinada (empregado) exigindo visto de residência</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 88.º, n.º 1</div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-job-search" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><circle cx="50" cy="50" r="22" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M50 30 L56 50 L50 56 L44 50 Z" fill="currentColor" opacity="0.85"/><path d="M50 70 L44 50 L50 44 L56 50 Z" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="2" fill="#000"/><circle cx="50" cy="22" r="1.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Profissional Subordinada (procura)</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE procurarem emprego em Portugal com visto para procura de trabalho</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-independent-with-visa" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Profissional Independente</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE exercerem atividade profissional independente (autonomo) em Portugal com…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-highly-qualified" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Altamente Qualificada</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE exercerem atividade altamente qualificada em Portugal</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-tech-visa" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="32" y="32" width="36" height="36" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><rect x="42" y="42" width="16" height="16" fill="currentColor" opacity="0.25"/><line x1="50" y1="20" x2="50" y2="32" stroke="currentColor" stroke-width="1.2"/><line x1="50" y1="68" x2="50" y2="80" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="50" x2="32" y2="50" stroke="currentColor" stroke-width="1.2"/><line x1="68" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="40" x2="22" y2="40" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="32" y1="60" x2="22" y2="60" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="68" y1="40" x2="78" y2="40" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="68" y1="60" x2="78" y2="60" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="20" r="2.5" fill="currentColor"/><circle cx="20" cy="50" r="2.5" fill="currentColor"/><circle cx="80" cy="50" r="2.5" fill="currentColor"/><circle cx="50" cy="80" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Altamente Qualificada em Empresa…</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE exercerem atividade altamente qualificada em empresas certificadas em…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-digital-nomad" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="55" r="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><ellipse cx="50" cy="55" rx="22" ry="9" stroke="currentColor" stroke-width="1"/><ellipse cx="50" cy="55" rx="9" ry="22" stroke="currentColor" stroke-width="1"/><line x1="28" y1="55" x2="72" y2="55" stroke="currentColor" stroke-width="1" opacity="0.6"/><path d="M62 22 a14 14 0 0 1 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M65 18 a20 20 0 0 1 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="62" cy="22" r="1.8" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Profissional Prestada de Forma Remota</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE exercerem atividade profissional de forma remota em Portugal (Nómadas…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-intra-company-transfer" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">TDE-ICT para Trabalhador Transferido Dentro da…</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE transferidos intraempresarialmente para Portugal no contexto de…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-intra-company-mobility" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">ICT MÓVEL para Mobilidade de Trabalhador…</h3>
+            <p class="visa-card-desc">Autorização para cidadãos não-UE com título ICT concedido por outro estado-membro da UE em mobilidade para…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="ar-atividade-profissional-subordinada" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Profissional Subordinada</h3>
+            <p class="visa-card-desc">Autorização de residência para cidadãos estrangeiros que desejam exercer uma atividade profissional…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card is-inactive" data-visa-id="autorizacao-residencia-atividade-subordinada-dispensa-visto" data-visa-tag="revogado" data-visa-active="false">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Profissional Subordinada (sem visto)</h3>
+            <p class="visa-card-desc">MODALIDADE .</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill revoked"><span class="visa-tag-pill-dot"></span>Revogado</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="pt-highly-qualified-activity" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Altamente Qualificada</h3>
+            <p class="visa-card-desc">Visa de residência para profissionais altamente qualificados que exercem atividade subordinada ou…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="nomada-digital" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="55" r="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><ellipse cx="50" cy="55" rx="22" ry="9" stroke="currentColor" stroke-width="1"/><ellipse cx="50" cy="55" rx="9" ry="22" stroke="currentColor" stroke-width="1"/><line x1="28" y1="55" x2="72" y2="55" stroke="currentColor" stroke-width="1" opacity="0.6"/><path d="M62 22 a14 14 0 0 1 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M65 18 a20 20 0 0 1 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="62" cy="22" r="1.8" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Atividade Profissional Prestada de Forma Remota</h3>
+            <p class="visa-card-desc">Autorização de residência para trabalhadores remotos que exercem atividade profissional para fora do…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        </div>
+        <template id="visa-detail-work-subordinate-with-visa">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Exercício de Atividade Profissional Subordinada com Visto de Residência</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para o Exercício de atividade profissional prestada de forma remota - Nómadas Digitais</h3>
-              <span class="visa-name-orig">Autorização de Residência para o Exercício de atividade profissional prestada de forma remota, com Visto de Residência para o exercício de atividade profissional prestada de forma remota para fora do território nacional – Nómadas Digitais</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE exercerem atividade profissional subordinada (como empregados) em Portugal com visto de residência obrigatório</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade profissional prestada de forma remota, dirigida a nómadas digitais, exigindo visto de residência</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 88.º, n.º 1</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Visto para Procura de Trabalho</h3>
-              <span class="visa-name-orig">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Visto para Procura de Trabalho</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade profissional subordinada com visto específico para procura de trabalho</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 88.º, n.º 7</div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Visto de Residência</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Exercício de Atividade Profissional Independente com Visto de Residência</h3>
-              <span class="visa-name-orig">Autorização de Residência para Exercício de Atividade Profissional Independente com Visto de Residência</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade profissional independente (autónomo) exigindo visto de residência</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 89.º, n.º 1</div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Atividade Altamente Qualificada</h3>
-              <span class="visa-name-orig">Autorização de Residência para Atividade Altamente Qualificada</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade altamente qualificada</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 90.º</div>
+
+        <div class="visa-modal-notes">Art. 88.º, n.º 1. Requer visto de residência prévio à entrada em Portugal</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-job-search">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="28" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><circle cx="50" cy="50" r="22" stroke="currentColor" stroke-width="1" opacity="0.3"/><path d="M50 30 L56 50 L50 56 L44 50 Z" fill="currentColor" opacity="0.85"/><path d="M50 70 L44 50 L50 44 L56 50 Z" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="2" fill="#000"/><circle cx="50" cy="22" r="1.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Exercício de Atividade Profissional Subordinada com Visto para Procura de Trabalho</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Atividade Altamente Qualificada Exercida para Empresa Certificada - Tech Visa</h3>
-              <span class="visa-name-orig">Autorização de Residência para Atividade Altamente Qualificada Exercida para Empresa Certificada – Art. 90.º – Tech Visa</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE procurarem emprego em Portugal com visto para procura de trabalho</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade altamente qualificada em empresas certificadas, designada Tech Visa</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 90.º</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência TDE – ICT para Trabalhador Transferido Dentro da Empresa</h3>
-              <span class="visa-name-orig">Autorização de Residência TDE – ICT para Trabalhador Transferido Dentro da Empresa</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para trabalhador transferido dentro da empresa (transferência intraempresarial)</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 124.º-B</div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Visto para Procura de Trabalho</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência ICT MÓVEL para Mobilidade de Trabalhador Transferido Dentro da Empresa</h3>
-              <span class="visa-name-orig">Autorização de Residência ICT MÓVEL para Mobilidade de Trabalhador Transferido Dentro da Empresa, Detentor de Título de Residência ICT Concedido por Outro Estado Membro da União Europeia</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para mobilidade de trabalhador transferido dentro da empresa, detentor de título de residência ICT concedido por outro Estado Membro da União Europeia</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Artigo 124.º-E</div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Exercício de Atividade Profissional Subordinada com Visto de Residência</h3>
-              <span class="visa-name-orig">Autorização de Residência para Exercício de Atividade Profissional Subordinada com Visto de Residência (Art. 88 n.1)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Possuir visto de residência válido para exercício de atividade profissional subordinada</span>
-                <span class="visa-tag">Ter vínculo laboral com entidade patronal em Portugal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto de residência para trabalhadores assalariados que desejam exercer atividade profissional subordinada em Portugal</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Agendar na Loja AIMA ou através de plataforma eletrónica (em fase de implementação para titulares de visto de residência)</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Entrega presencial com impresso próprio assinado pelo requerente ou representante legal em qualquer Loja AIMA</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">A Loja AIMA instrui o processo e pode remeter para os serviços da área de residência do requerente</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Decisão sobre a concessão da autorização de residência</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">A autorização de residência é válida por 2 anos a contar da emissão e é renovável por períodos sucessivos de 3 anos. O titular pode exercer atividade profissional independente mediante substituição do título de residência. Exigências incluem: ausência de condenação por crime punível com pena privativa de liberdade superior a um ano; não estar em período de interdição de entrada e permanência; ausência de indicação no SII UCFE para recusa de entrada ou regresso. Não há menção a tratamento especial para cidadãos brasileiros via Estatuto de Igualdade ou Tratado de Amizade Luso-Brasileiro nesta página.</div>
+
+        <div class="visa-modal-notes">Art. 88.º, n.º 7. Visto para procura de trabalho</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-independent-with-visa">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Exercício de Atividade Profissional Independente com Visto de Residência</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Exercício de Atividade Profissional Subordinada com Dispensa de Visto de Residência</h3>
-              <span class="visa-name-orig">Autorização de Residência para Exercício de Atividade Profissional Subordinada com Dispensa de Visto de Residência (Art. 88.º n.º 2)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Cidadãos estrangeiros que entraram legalmente em Portugal (com visto válido ou 12 meses de contribuições à segurança social)</span>
-                <span class="visa-tag">Trabalhadores com vínculo laboral subordinado comprovado</span>
-                <span class="visa-tag">Pessoas sem condenação por crime punível em Portugal com pena privativa de liberdade superior a um ano</span>
-                <span class="visa-tag">Não estar no período de interdição de entrada e permanência em território nacional</span>
-                <span class="visa-tag">Não estar indicado no SIS/UCFE para recusa de entrada</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE exercerem atividade profissional independente (autonomo) em Portugal com visto de residência obrigatório</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Modalidade REVOGADA em 4 de junho de 2024 pelo Decreto-Lei n.º 37-A/2024. Anteriormente permitia que cidadãos estrangeiros que entraram legalmente em Portugal e estabeleceram vínculo laboral subordinado pudessem obter autorização de residência sem necessidade de visto prévio. A entrada legal podia ser comprovada por visto válido no momento da entrada ou por 12 meses de contribuições à segurança social.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Efetuar e confirmar registo como utilizador no Sistema Automático de Pré-Agendamento (SAPA) e autenticar-se</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Apresentar manifestação de interesse através da plataforma eletrónica Portal SAPA, preenchendo formulário próprio e carregando a documentação necessária</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">A AIMA analisa a manifestação de interesse e documentação apresentada. Pedidos incompletos suspendem os prazos para tomada de decisão</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Após análise favorável, a AIMA disponibiliza possibilidade de agendamento através do Portal SAPA, podendo selecionar local, data e hora nas Lojas AIMA a nível nacional</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">5</span>
-                <span class="step-text">Comparecer na data e hora agendadas nas Lojas AIMA com toda a documentação para formalização do pedido e instrução</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">6</span>
-                <span class="step-text">Decisão final pela AIMA e emissão do título de residência, se aprovado</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">MODALIDADE REVOGADA: O Artigo 88.º, n.º 2 do REPSAE foi REVOGADO a partir de 4 de junho de 2024 pelo Decreto-Lei n.º 37-A/2024, de 3 de junho. Esta via de regularização não aceita mais novos pedidos desde essa data. A modalidade permitia que trabalhadores subordinados que entraram legalmente em Portugal (com visto ou com 12 meses de contribuições à segurança social) pudessem obter autorização de residência sem necessidade de visto prévio. O titular poderia também exercer atividade profissional independente mediante substituição do título. Aplicavam-se contraordenações por permanência ilegal (Art. 192.º), falta de declaração de entrada (Art. 197.º), exercício de atividade independente não autorizado (Art. 198.º) e falta de apresentação de documento de viagem (Art. 199.º).</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Atividade Altamente Qualificada</h3>
-              <span class="visa-name-orig">Autorização de Residência para Atividade Altamente Qualificada (Art. 90.º)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Exercer atividade altamente qualificada</span>
-                <span class="visa-tag">Possuir qualificações académicas relevantes</span>
-                <span class="visa-tag">Ter contrato de trabalho ou estar constituído como trabalhador autónomo</span>
-                <span class="visa-tag">Atender aos requisitos salariais mínimos conforme o tipo de profissão</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para o exercício de uma atividade altamente qualificada, subordinada ou não, equivalente ao EU Blue Card. Válida por dois anos, renovável por períodos sucessivos de três anos.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                <div class="visa-field">
-              <span class="visa-field-label">Renda mínima</span>
-              <span class="visa-field-value mono">EUR 1.725,6/mês</span>
-            </div>
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Especialização ou qualificações demonstradas para exercer atividade altamente qualificada; Certificado de habilitações comprovando qualificação profissional</span>
-            </div>
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Formulação do pedido mediante agendamento presencial nas Lojas AIMA ou através de plataforma eletrónica (em implementação para titulares de visto de residência)</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Entrega presencial com impresso próprio assinado pelo requerente ou representante legal em qualquer Loja AIMA, acompanhado de toda a documentação necessária</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">Análise da documentação pelos serviços da AIMA e área de residência do requerente</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Emissão da autorização de residência válida por dois anos</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 2 anos</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Equivalente ao EU Blue Card. Válida por dois anos, renovável por períodos de três anos. Requer absence de condenação por crime punível em Portugal com pena superior a um ano. Aplicam-se regras de contraordenações relativas a permanência ilegal, falta de declaração de entrada e falta de apresentação de documento de viagem. Podem aplicar-se regimes especiais: 'cartão azul UE' (Arts. 121.º-A seguintes) ou 'Tech Visa' para trabalho altamente qualificado em empresas certificadas.</div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para Exercício de Atividade Profissional Independente com Visto de Residência</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Trabalho Remoto</h3>
-              <span class="visa-name-orig">Autorização de Residência para o Exercício de Atividade Profissional Prestada de Forma Remota</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Exercer atividade profissional prestada de forma remota para fora do território nacional</span>
-                <span class="visa-tag">Possuir visto de residência válido para trabalho remoto</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para trabalho remoto (Nômada Digital) em Portugal para cidadãos que exercem atividade profissional prestada de forma remota para fora do território nacional.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Agendar presencialmente em qualquer Loja AIMA ou através de plataforma eletrônica (em fase de implementação)</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Entregar presencialmente o impresso próprio assinado pelo requerente ou representante legal, acompanhado de todos os documentos exigidos</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">A Loja AIMA instrui o processo e remete para os serviços da área de residência do requerente para decisão</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 2 anos</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">A concessão da autorização implica: ausência de condenação por crime punível com pena privativa de liberdade superior a um ano em Portugal; não estar em período de interdição de entrada e permanência no território nacional; ausência de indicação no SII UCFE. Aceita tanto trabalho remoto como funcionário quanto como prestador de serviços independente (vínculo laboral ou prestação de serviços).</div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Dispensa de Visto de Residência</h3>
-              <span class="visa-name-orig">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Dispensa de Visto de Residência</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Baixa relevância</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade profissional subordinada com dispensa de visto - REVOGADO</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Revogado a partir de 04.06.2024, continuando a aplicar-se aos pedidos anteriores. Artigo 88.º, n.º 2</div>
+
+        <div class="visa-modal-notes">Art. 89.º, n.º 1. Requer visto de residência prévio à entrada em Portugal</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-highly-qualified">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Atividade Altamente Qualificada</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Autorização de Residência para Exercício de Atividade Profissional Independente, com Dispensa de Visto de Residência</h3>
-              <span class="visa-name-orig">Autorização de Residência para Exercício de Atividade Profissional Independente, com Dispensa de Visto de Residência</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Baixa relevância</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE exercerem atividade altamente qualificada em Portugal</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Autorização de residência para exercício de atividade profissional independente com dispensa de visto - REVOGADO</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Revogado a partir de 04.06.2024, continuando a aplicar-se aos pedidos anteriores. Artigo 89.º, n.º 2</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para Atividade Altamente Qualificada</div>
         </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Art. 90.º. Para profissões altamente qualificadas</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-tech-visa">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="32" y="32" width="36" height="36" rx="2" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><rect x="42" y="42" width="16" height="16" fill="currentColor" opacity="0.25"/><line x1="50" y1="20" x2="50" y2="32" stroke="currentColor" stroke-width="1.2"/><line x1="50" y1="68" x2="50" y2="80" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="50" x2="32" y2="50" stroke="currentColor" stroke-width="1.2"/><line x1="68" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="40" x2="22" y2="40" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="32" y1="60" x2="22" y2="60" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="68" y1="40" x2="78" y2="40" stroke="currentColor" stroke-width="1" opacity="0.5"/><line x1="68" y1="60" x2="78" y2="60" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="20" r="2.5" fill="currentColor"/><circle cx="20" cy="50" r="2.5" fill="currentColor"/><circle cx="80" cy="50" r="2.5" fill="currentColor"/><circle cx="50" cy="80" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Atividade Altamente Qualificada em Empresa Certificada</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE exercerem atividade altamente qualificada em empresas certificadas em Portugal (Tech Visa)</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para Atividade Altamente Qualificada Exercida para Empresa Certificada</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Art. 90.º - Tech Visa. Para empresas certificadas</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-digital-nomad">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="55" r="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><ellipse cx="50" cy="55" rx="22" ry="9" stroke="currentColor" stroke-width="1"/><ellipse cx="50" cy="55" rx="9" ry="22" stroke="currentColor" stroke-width="1"/><line x1="28" y1="55" x2="72" y2="55" stroke="currentColor" stroke-width="1" opacity="0.6"/><path d="M62 22 a14 14 0 0 1 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M65 18 a20 20 0 0 1 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="62" cy="22" r="1.8" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Exercício de Atividade Profissional Prestada de Forma Remota</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE exercerem atividade profissional de forma remota em Portugal (Nómadas Digitais)</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para o Exercício de atividade profissional prestada de forma remota, com Visto de Residência para o exercício de atividade profissional prestada de forma remota para fora do território nacional</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Art. 88.º, n.º 1 - Nómadas Digitais. Visto de residência para atividade remota prestada para fora do território nacional</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-intra-company-transfer">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência TDE-ICT para Trabalhador Transferido Dentro da Empresa</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE transferidos intraempresarialmente para Portugal no contexto de transferência de trabalhador dentro da empresa</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência &quot;TDE – ICT&quot; para Trabalhador Transferido Dentro da Empresa</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Art. 124.º-B. Transferência de trabalhador dentro da empresa</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-intra-company-mobility">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência ICT MÓVEL para Mobilidade de Trabalhador Transferido</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Autorização para cidadãos não-UE com título ICT concedido por outro estado-membro da UE em mobilidade para Portugal por período superior a 90 dias</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência &quot;ICT MÓVEL&quot; para Mobilidade de Trabalhador Transferido Dentro da Empresa</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Art. 124.º-E. Mobilidade ICT para transferência de trabalhador dentro da empresa</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-ar-atividade-profissional-subordinada">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Exercício de Atividade Profissional Subordinada</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Autorização de residência para cidadãos estrangeiros que desejam exercer uma atividade profissional subordinada (empregado) em Portugal com base em visto de residência.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para exercício de atividade profissional subordinada com visto de residência</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Agendar atendimento em Loja AIMA ou através de plataforma eletrônica (em fase de implementação para titulares de visto de residência)</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Apresentação presencial da documentação completa em Loja AIMA com impresso próprio assinado pelo requerente ou representante legal</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Análise da documentação e emissão de decisão</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 2 anos</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">O titular de uma autorização de residência para atividade profissional subordinada pode solicitar substituição do título para exercer atividade profissional independente. Requer ausência de condenação por crime punível com pena superior a 1 ano, não estar em período de interdição de entrada e ausência de indicação no SII UCFE.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-autorizacao-residencia-atividade-subordinada-dispensa-visto">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill revoked"><span class="visa-tag-pill-dot"></span>Revogado</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Atividade Profissional Subordinada com Dispensa de Visto</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">MODALIDADE REVOGADA. Anteriormente permitia que trabalhadores assalariados já em Portugal solicitassem autorização de residência sem necessidade de visto prévio, mediante manifestação de interesse. Presumia-se entrada legal quando o requerente trabalhava em Portugal e tinha situação regularizada perante a Segurança Social há pelo menos 12 meses. Foi revogada em 4 de junho de 2024 pelo Decreto-Lei n.º 37-A/2024.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">Não especificado. Autorização válida por 2 anos após emissão, renovável por períodos sucessivos de 3 anos</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para Exercício de Atividade Profissional Subordinada com Dispensa de Visto de Residência</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Apresentar manifestação de interesse preferencialmente através da plataforma eletrónica Portal SAPA, com registo e autenticação de utilizador, carregando a documentação necessária</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Após análise da manifestação de interesse pela AIMA, o utilizador recebe notificações sobre o estado do pedido através do Portal SAPA</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">A AIMA disponibiliza ao utilizador a possibilidade de efetuar agendamento para deslocação às Lojas AIMA através do Portal SAPA, podendo selecionar local, data e hora de acordo com a disponibilidade</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">4</span>
+                  <span class="step-text">Comparecer nas Lojas AIMA na data agendada com impresso próprio assinado e documentação. O pedido pode ser remetido para os serviços da área de residência do requerente após instrução e decisão</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">5</span>
+                  <span class="step-text">Decisão sobre o pedido e emissão do título de residência, se aprovado</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">MODALIDADE REVOGADA A PARTIR DE 4 DE JUNHO DE 2024 pelo Decreto-Lei n.º 37-A/2024. Esta informação é histórica e não pode mais ser utilizada para novos pedidos. Anteriormente, a concessão da autorização exigia: inexistência de facto que devesse obstar à concessão de visto; ausência de condenação por crime punível com pena privativa de liberdade superior a 1 ano; não estar em período de interdição de entrada; ausência de indicação no SIS/UCFE para recusa de entrada. O titular desta autorização podia exercer atividade profissional independente mediante substituição do título nas Lojas AIMA. Contraordenações aplicáveis incluíam: permanência ilegal (Art. 192º), falta de declaração de entrada (Art. 197º), exercício de atividade independente não autorizado (Art. 198º), falta de apresentação do documento de viagem (Art. 199º).</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-pt-highly-qualified-activity">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para Atividade Altamente Qualificada</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Visa de residência para profissionais altamente qualificados que exercem atividade subordinada ou não-subordinada em Portugal, equivalente ao EU Blue Card. Válida por dois anos a partir da emissão e renovável por períodos sucessivos de três anos.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para Atividade Altamente Qualificada (Art. 90.º do REPSAE)</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          <div class="visa-field">
+                <span class="visa-field-label">Renda mínima</span>
+                <span class="visa-field-value mono">EUR 2.157/mês</span>
+              </div>
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Profissional altamente qualificado; Educação/formação compatível com profissões CITP grupos 1 e 2 ou outras profissões altamente qualificadas</span>
+              </div>
+          
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Agendar atendimento presencial ou submeter pedido através de plataforma eletrônica (em fase de implementação para titulares de visto de residência)</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Entregar presencialmente impresso próprio assinado pelo requerente ou representante legal em qualquer Loja AIMA, acompanhado de toda a documentação necessária</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">A Loja AIMA instrui o processo e procede à decisão, podendo remeter para os serviços da área de residência do requerente</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Equivalente ao EU Blue Card. Requer visto de residência válido antes da apresentação do pedido de autorização. Não pode haver condenação por crime punível com pena privativa de liberdade superior a um ano. Requerente não pode estar em período de interdição de entrada/permanência em território nacional. Ausência de indicação no SII UCFE. A página menciona regime especial para empresas certificadas 'Tech Visa' e regime EU Blue Card como alternativas, mas o foco aqui é no Art. 90.º do REPSAE.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-nomada-digital">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="55" r="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><ellipse cx="50" cy="55" rx="22" ry="9" stroke="currentColor" stroke-width="1"/><ellipse cx="50" cy="55" rx="9" ry="22" stroke="currentColor" stroke-width="1"/><line x1="28" y1="55" x2="72" y2="55" stroke="currentColor" stroke-width="1" opacity="0.6"/><path d="M62 22 a14 14 0 0 1 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M65 18 a20 20 0 0 1 17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="62" cy="22" r="1.8" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Autorização de Residência para o Exercício de Atividade Profissional Prestada de Forma Remota</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Autorização de residência para trabalhadores remotos que exercem atividade profissional para fora do território nacional</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Autorização de Residência para o Exercício de Atividade Profissional Prestada de Forma Remota (Nómada Digital)</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Agendar atendimento em loja AIMA ou através de plataforma eletrónica (em fase de implementação)</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Apresentar pessoalmente em qualquer Loja AIMA o impresso próprio assinado com a documentação necessária</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">AIMA instrui o processo e remete para os serviços da área de residência do requerente</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">4</span>
+                  <span class="step-text">Emissão da autorização de residência</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 2 anos</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">A concessão da autorização implica a inexistência de condenação criminal e não estar em período de interdição de entrada. Aplicáveis contraordenações incluem: permanência ilegal, falta de declaração de entrada, exercício de atividade profissional independente não autorizado, e falta de apresentação de documento de viagem. Válida por 2 anos e renovável.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
+        <div class="visa-modal-dialog" role="document">
+          <button type="button" class="visa-modal-close" aria-label="Fechar">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3 L11 11 M11 3 L3 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div id="visa-modal-body"></div>
+        </div>
+      </div>
       </div>
     </section>
   </div>
@@ -1039,10 +1294,10 @@
           <p class="br-desc">O passaporte brasileiro permite entrada em Portugal por até 90 dias em qualquer período de 180 dias, sem visto de turista.</p>
         </div>
           
-        <div class="br-card highlight">
+        <div class="br-card warning">
           <span class="br-label">Trabalhar sem autorização</span>
-          <span class="br-value yes">Sim</span>
-          <p class="br-desc">Brasileiros podem trabalhar sem autorização especial de trabalho neste país.</p>
+          <span class="br-value no">Não permitido</span>
+          <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
         </div>
           
         <div class="br-card">
@@ -1064,7 +1319,7 @@
           
         <div class="br-card" style="grid-column:1/-1;">
           <span class="br-label">Observações para brasileiros</span>
-          <p class="br-desc">Brasileiros podem entrar em Portugal sem visto por até 90 dias (Espaço Schengen). Para trabalhar, é necessária autorização de residência. Após 2 anos de residência legal, brasileiros podem solicitar o Estatuto de Igualdade de Direitos, que equipara os direitos ao de cidadãos portugueses. A CPLP e o Tratado de Amizade Luso-Brasileiro (2000) facilitam processos de regularização e reconhecimento de qualificações.</p>
+          <p class="br-desc">Brasileiros necessitam de visto de residência prévio antes de solicitar a autorização de residência para trabalho remoto. Este visto não se aplica a turistas.</p>
         </div>
         </div>
       </div>
@@ -1080,12 +1335,12 @@
           
           <div class="req-item">
             <span class="req-icon ok">✓</span>
-            <span class="req-text">Passaporte — Mínimo 6 meses após a data de entrada</span>
+            <span class="req-text">Passaporte — Passaporte válido</span>
             <span class="req-note">Verificar antes de iniciar</span>
           </div>
           <div class="req-item">
             <span class="req-icon req">●</span>
-            <span class="req-text">Comprovante de fundos — mínimo EUR 760/mês. D2/D3 trabalho independente: mínimo EUR 760/mês (salário mínimo português 2024). D1 trabalho subordinado: contrato de trabalho suficiente. Procura de emprego: EUR 1.020/mês recomendado.</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 920/mês. Salário mínimo nacional (SMN) em Portugal 2026: EUR 920/mês bruto. D1 trabalho subordinado: contrato de trabalho suficiente. D2/D3 trabalho independente: mínimo EUR 920/mês (1x SMN 2026). D7 renda passiva: EUR 920/mês mínimo. D8 nômade digital: EUR 3.480/mês (4x SMN 2026). Visto de Procura de Trabalho: suspenso pela AIMA desde outubro de 2025, aguardando nova regulamentação.</span>
             <span class="req-note">Ver cada visto</span>
           </div>
           <div class="req-item">
@@ -1122,9 +1377,9 @@
               <span class="sev-high">Alta relevância</span>
             </div>
             <div class="timeline-content">
-              <h3 class="timeline-title">Revogação de autorizações com dispensa de visto</h3>
-              <p class="timeline-summary">Revogação das autorizações de residência com dispensa de visto para atividade profissional subordinada e independente</p>
-              <div class="timeline-affects"><span class="affect-pill">Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Dispensa de Visto de Residência</span><span class="affect-pill">Autorização de Residência para Exercício de Atividade Profissional Independente, com Dispensa de Visto de Residência</span></div>
+              <h3 class="timeline-title">Revogação de Autorizações com Dispensa de Visto</h3>
+              <p class="timeline-summary">A partir de 04 de junho de 2024, foram revogadas as autorizações de residência com dispensa de visto para atividade profissional subordinada e independente (Art. 88.º, n.º 2 e Art. 89.º, n.º 2), continuando a aplicarem-se apenas aos pedidos anteriores a esta data</p>
+              <div class="timeline-affects"><span class="affect-pill">Atividade profissional subordinada com dispensa de visto</span><span class="affect-pill">Atividade profissional independente com dispensa de visto</span></div>
             </div>
           </div>
           <div class="timeline-entry">
@@ -1133,9 +1388,9 @@
               <span class="sev-high">Alta relevância</span>
             </div>
             <div class="timeline-content">
-              <h3 class="timeline-title">Revogação do Artigo 88.º n.º 2 do REPSAE - Fim da Dispensa de Visto para Trabalho Subordinado</h3>
-              <p class="timeline-summary">O Decreto-Lei n.º 37-A/2024, de 3 de junho, revogou o Artigo 88.º, n.º 2 do REPSAE a partir de 4 de junho de 2024. Esta modalidade permitia que trabalhadores subordinados obtivessem autorização de residência em Portugal sem necessidade de visto prévio, desde que comprovassem entrada legal (por visto válido ou 12 meses de contribuições à segurança social). Com a revogação, esta via de regularização deixou de existir e não aceita mais novos pedidos.</p>
-              <div class="timeline-affects"><span class="affect-pill">Trabalhadores subordinados estrangeiros</span><span class="affect-pill">Cidadãos que pretendiam regularizar situação em Portugal através desta modalidade</span><span class="affect-pill">Manifestações de interesse pendentes apresentadas antes da revogação</span></div>
+              <h3 class="timeline-title">Revogação da Autorização de Residência com Dispensa de Visto (Art. 88º n.º 2)</h3>
+              <p class="timeline-summary">O artigo 88º, n.º 2 do REPSAE, que permitia solicitar autorização de residência para atividade profissional subordinada com dispensa de visto de residência (através de manifestação de interesse), foi revogado pelo Decreto-Lei n.º 37-A/2024, de 3 de junho. Esta modalidade não está mais disponível para novos pedidos a partir desta data.</p>
+              <div class="timeline-affects"><span class="affect-pill">Trabalhadores assalariados que pretendiam regularizar sua situação em Portugal sem visto prévio</span><span class="affect-pill">Manifestações de interesse pendentes sob o Art. 88º n.º 2</span></div>
             </div>
           </div>
         </div>
@@ -1162,7 +1417,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-02</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1172,7 +1427,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-02</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1182,7 +1437,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-02</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1192,7 +1447,7 @@
             </div>
             <div class="source-status">
               <span class="badge down">falhou</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-02</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">pt</span>
             </div>
           </div>
@@ -1202,7 +1457,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-02</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1212,7 +1467,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-02</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1225,39 +1480,131 @@
             </span>
           </div>
         </div>
+        
+        <div style="margin-top:var(--s-xl);">
+          <h3 class="title-md" style="margin-bottom:var(--s-sm);">Fontes de verificação cruzada</h3>
+          <p class="body-sm" style="color:var(--muted);max-width:600px;margin-bottom:var(--s-md);">Links usados para validar a acurácia dos dados extraídos. Consultados na pesquisa de mai/2026 e integrados ao processo de extração mensal.</p>
+          <div class="sources-list">
+            
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://vistos.mne.gov.pt" target="_blank" rel="noopener noreferrer">MNE: Portal de Vistos</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Valores oficiais de meios de subsistência e requisitos de visto (Ministério dos Negócios Estrangeiros)</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://eurodicas.com.br" target="_blank" rel="noopener noreferrer">EuroDicas</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Guia comunitário com experiências reais de brasileiros residentes em Portugal</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://www.mundialimigracao.com.br" target="_blank" rel="noopener noreferrer">Mundiali Imigração</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Análise da Lei 61/2025 e seus impactos no processo de legalização em Portugal</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
   
   <div class="tab-panel" id="guia">
-    <script type="application/json" id="pg-data">{"totalXP":2400,"estimatedTime":"3-6 meses","difficulty":3,"phases":[{"id":"p1","number":1,"title":"Documentação Essencial","subtitle":"Reúna o arsenal antes de partir","xp":800,"duration":"2-4 semanas","difficulty":2,"icon":"scroll","objectives":[{"id":"p1-passaporte","title":"Passaporte válido","summary":"Validade mínima de 6 meses após a data de entrada em Portugal.","detail":"Verifique com antecedência: renovação na Polícia Federal pode demorar semanas. Confirme também se há páginas em branco suficientes para vistos e carimbos.","tip":"Renovação online via Polícia Federal é mais rápida que nas delegacias.","tags":["Obrigatório","Brasil"]},{"id":"p1-antecedentes","title":"Certidão de antecedentes criminais","summary":"Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado. Validade de 90 dias após emissão.","tip":"Guarde a versão original: o consulado pode pedir o original junto da cópia apostilada.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-seguro","title":"Seguro saúde internacional","summary":"Cobertura mínima de EUR 30.000 exigida na candidatura ao visto D.","detail":"Após regularização, você terá acesso ao SNS (Serviço Nacional de Saúde) português. O seguro privado cobre o período de transição até a regularização. Exija na apólice cobertura para toda a área Schengen.","tip":"Compare seguradoras com cobertura Schengen completa — algumas têm planos anuais acessíveis.","tags":["EUR 30.000","Visto D"]},{"id":"p1-fundos","title":"Comprovante de meios financeiros","summary":"Demonstre pelo menos EUR 760/mês para o período de estadia solicitado.","detail":"O valor de referência é o salário mínimo português (EUR 760/mês). Para 12 meses: aproximadamente EUR 9.120. Extratos bancários dos últimos 3 meses são o documento padrão. Para visto de atividade independente ou nômade digital, os requisitos podem ser maiores.","tip":"Extratos dos últimos 3 meses com saldo médio mensal visível facilitam a análise consular.","tags":["EUR 760/mês","Financeiro"]},{"id":"p1-morada","title":"Comprovante de morada em Portugal","summary":"Contrato de arrendamento ou termo de responsabilidade de residente legal.","detail":"O comprovante deve estar em seu nome ou acompanhado de um termo de responsabilidade assinado por residente legal em Portugal. Reservas de plataformas como Airbnb por 3 meses ou mais costumam ser aceitas.","tip":"Feche um contrato de arrendamento formal antes da entrevista consular, se possível.","tags":["Em Portugal"]}]},{"id":"p2","number":2,"title":"Processo do Visto","subtitle":"Dossiê tático no consulado","xp":1000,"duration":"30-90 dias","difficulty":3,"icon":"stamp","objectives":[{"id":"p2-tipo-visto","title":"Escolher o tipo de visto adequado","summary":"Portugal monitora 14 tipos de visto. Os mais usados por brasileiros: subordinado, nômade digital e atividade altamente qualificada.","detail":"Cada tipo tem requisitos específicos de renda, contrato e documentação. O visto para trabalhador subordinado exige contrato com empresa portuguesa. O de nômade digital exige renda mensal comprovada de fonte estrangeira. O de atividade altamente qualificada exige qualificação reconhecida e contrato.","tip":"Consulte a aba Vistos desta página para ver os 14 tipos com requisitos detalhados.","tags":["14 tipos monitorados"]},{"id":"p2-vfs","title":"Agendar no VFS Global","summary":"Submissão do pedido presencialmente pelo VFS Global em São Paulo, Rio de Janeiro ou Brasília.","detail":"O agendamento é online pelo portal VFS Global. Leve todos os documentos originais mais cópias, além de traduções juramentadas quando aplicável. Chegue com antecedência.","tip":"Vagas esgotam rapidamente — agende com 2 a 3 meses de antecedência em relação à data planejada de viagem.","tags":["VFS Global"]},{"id":"p2-taxas","title":"Pagar taxas consulares","summary":"Taxa do visto (EUR 90 aprox.) mais taxa de serviço VFS.","detail":"A taxa consular é paga em euro ou câmbio do dia. A taxa de serviço do VFS é paga separadamente. Valores podem mudar: sempre confirme no site oficial antes do agendamento.","tags":["EUR 90 aprox.","Taxa"]},{"id":"p2-analise","title":"Aguardar análise consular","summary":"Prazo médio de 60 dias úteis para resposta após entrega dos documentos.","detail":"Acompanhe o status pelo portal VFS Global. Em caso de pedido de documentos adicionais, responda dentro do prazo indicado. Evite comprar passagens definitivas antes da aprovação.","tip":"Não compre passagens antes da aprovação: mudanças de plano são caras e evitáveis.","tags":["~60 dias úteis"]}]},{"id":"p3","number":3,"title":"Chegada e Regularização","subtitle":"Sela o status final em território","xp":600,"duration":"30-60 dias","difficulty":2,"icon":"key","objectives":[{"id":"p3-nif","title":"Solicitar NIF","summary":"Número de Identificação Fiscal, equivalente ao CPF português.","detail":"Pode ser obtido presencialmente nas Finanças (AT) ou por procuração antes mesmo de chegar. É necessário para abrir conta bancária, alugar imóvel, contratar serviços e declarar IRS. Sem NIF, praticamente nada funciona em Portugal.","tip":"Solicitar via procurador antes de chegar economiza semanas. Qualquer residente com NIF pode ser seu procurador.","tags":["Finanças","Primeiro passo"]},{"id":"p3-aima","title":"Agendar na AIMA","summary":"Agência para a Integração, Migrações e Asilo, que substituiu o SEF em 2023.","detail":"Após chegar, agende sua entrevista na AIMA dentro do prazo do seu visto. É nesta etapa que você recebe o título de residência. As filas são longas: agende imediatamente após a chegada.","tip":"Agende imediatamente após chegar: esperas de meses são comuns sem agendamento prévio.","tags":["AIMA","Ex-SEF"]},{"id":"p3-titulo","title":"Receber Título de Residência","summary":"Cartão físico com validade inicial de 2 anos, renovável por períodos de 3 anos.","detail":"Após 5 anos de residência legal e contínua, é possível solicitar residência permanente ou cidadania portuguesa. Cidadania portuguesa equivale a passaporte da União Europeia.","tip":"Cidadania portuguesa = passaporte europeu. Mantenha registros de presença em Portugal para o processo de cidadania.","tags":["Recompensa final","5 anos → cidadania UE"]}]}],"stats":[{"label":"Entrada sem visto (Schengen)","value":"Sim","note":"Até 90 dias por turismo","tone":"green"},{"label":"Tipos de visto monitorados","value":"14","note":"Dados atualizados mensalmente","tone":"gold"},{"label":"Work permit exigido","value":"Não","note":"Acordos luso-brasileiros facilitam regularização","tone":"green"},{"label":"Atualizado em","value":"mai/2026","note":"Extração automática mensal","tone":"neutral"}]}</script>
     <section class="section-tight">
       <div class="container">
-
-        <!-- Hero compartilhado -->
-        <div class="guide-hero">
-          <p class="guide-hero-eyebrow">Guia prático para brasileiros</p>
-          <h2>Como se legalizar em Portugal</h2>
-          <p class="guide-hero-sub">Jornada em 3 fases, do Brasil ao título de residência. Dados de mai/2026.</p>
-          <div class="guide-stats-row" id="pg-stats-row"></div>
+        <div class="eyebrow">Guia prático para brasileiros</div>
+        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Como se legalizar em Portugal</h2>
+        <div class="guide-intro">
+          <p>Resumo das etapas principais baseado em dados extraídos em mai/2026. Este guia é simplificado, consulte sempre as fontes oficiais para o seu caso específico.</p>
         </div>
 
-        <!-- Switcher de variação -->
-        <div class="guide-variant-switch" role="tablist" aria-label="Escolha a visualização do guia">
-          <button class="variant-btn active" data-variant="quest" role="tab" aria-selected="true">Etapas</button>
-          <button class="variant-btn" data-variant="mission" role="tab" aria-selected="false">Detalhes</button>
-          <button class="variant-btn" data-variant="hybrid" role="tab" aria-selected="false">Híbrido</button>
-        </div>
+        <div class="guide-phases">
+          <div class="guide-phase">
+            <div class="phase-header">
+              <span class="phase-num">FASE 01</span>
+              <div>
+                <h3 class="phase-title">Documentação essencial</h3>
+                <p class="phase-subtitle">Prepare estes documentos antes de iniciar o processo</p>
+              </div>
+            </div>
+            <div class="guide-steps">
+              
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Passaporte válido</h4>
+                  <p class="step-desc">Validade mínima: Mínimo 6 meses após a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Certidão de antecedentes criminais</h4>
+                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Seguro saúde</h4>
+                  <p class="step-desc">Seguro saúde com cobertura mínima de EUR 30.000 é exigido na candidatura ao visto D. Após regularização, acesso ao SNS (Serviço Nacional de Saúde) português.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Comprovante de fundos</h4>
+                  <p class="step-desc">Salário mínimo nacional 2026: EUR 920/mês bruto. D1 trabalho subordinado: contrato de trabalho suficiente. D2/D3 autônomos: mínimo EUR 920/mês (1x SMN 2026). D7 renda passiva: mínimo EUR 920/mês. D8 nômade digital: EUR 3.480/mês (4x SMN 2026). Atenção: o Visto de Procura de Trabalho está suspenso pela AIMA desde outubro de 2025.</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <!-- Painéis das variações (hidratados por JS) -->
-        <div class="guide-variant-panels">
-          <div class="variant-panel active" data-variant="quest" role="tabpanel"></div>
-          <div class="variant-panel" data-variant="mission" role="tabpanel"></div>
-          <div class="variant-panel" data-variant="hybrid" role="tabpanel"></div>
+          
+          <div class="guide-phase">
+            <div class="phase-header">
+              <span class="phase-num">FASE 02</span>
+              <div>
+                <h3 class="phase-title">Processo do visto</h3>
+                <p class="phase-subtitle">Consulte as fontes oficiais para o passo a passo completo</p>
+              </div>
+            </div>
+            <div class="guide-steps">
+              <div class="guide-step highlight">
+                <div class="guide-step-left"><div class="step-circle">1</div></div>
+                <div class="step-body">
+                  <h4 class="step-heading">Consulte as fontes listadas na aba Fontes</h4>
+                  <p class="step-desc">As etapas detalhadas do processo estão em levantamento. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="guide-disclaimer">
-          <p>Guia gerado a partir de dados de mai/2026. Requisitos e prazos mudam com frequência por regulamentação do governo de Portugal. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
+          <p>Guia gerado automaticamente a partir de dados de mai/2026. Requisitos e prazos mudam com frequência por regulamentação do governo de Portugal. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
         </div>
       </div>
     </section>
@@ -1324,8 +1671,8 @@
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">JSON direto</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
@@ -1340,329 +1687,99 @@
 <script>
   const tabBtns = document.querySelectorAll('.tab-btn')
   const tabPanels = document.querySelectorAll('.tab-panel')
+  function activateTab(name, scroll) {
+    const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]')
+    const panel = document.getElementById(name)
+    if (!btn || !panel) return false
+    tabBtns.forEach(b => b.classList.remove('active'))
+    tabPanels.forEach(p => p.classList.remove('active'))
+    btn.classList.add('active')
+    panel.classList.add('active')
+    if (scroll) document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    return true
+  }
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'))
-      tabPanels.forEach(p => p.classList.remove('active'))
-      btn.classList.add('active')
-      document.getElementById(btn.dataset.tab).classList.add('active')
-      document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+      activateTab(btn.dataset.tab, true)
+      history.replaceState(null, '', '#' + btn.dataset.tab)
     })
   })
-  function toggleVisa(head) {
-    head.closest('.visa-card').classList.toggle('open')
-  }
-</script>
-<script>
-(function () {
-  const pgEl = document.getElementById('pg-data');
-  if (!pgEl) return;
-  const data = JSON.parse(pgEl.textContent);
-  const CC = 'pt';
-  const LS_DONE = 'rotalegal:guia:' + CC + ':progress';
-  const LS_VARIANT = 'rotalegal:guia:variant';
-  let done = new Set(JSON.parse(localStorage.getItem(LS_DONE) || '[]'));
-  function saveDone() { localStorage.setItem(LS_DONE, JSON.stringify([...done])); }
-  function toggleDone(id) { done.has(id) ? done.delete(id) : done.add(id); saveDone(); syncVariants(id); }
-
-  // ---- SVG icons ----
-  const IC = {
-    scroll: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>',
-    stamp: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M8 16v-4a4 4 0 0 1 8 0v4"/><rect x="6" y="16" width="12" height="4" rx="1"/></svg>',
-    key: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6"/><path d="M15.5 7.5l3 3L22 7l-3-3"/></svg>',
-    shield: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-    compass: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
-    map: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>',
-    trophy: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="11"/><path d="M7 4H4a2 2 0 0 0-2 2v5a4 4 0 0 0 4 4"/><path d="M17 4h3a2 2 0 0 1 2 2v5a4 4 0 0 1-4 4"/><rect x="7" y="2" width="10" height="11" rx="1"/></svg>',
-    check: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
-  };
-
-  // ---- Helpers ----
-  function phasePct(ph) { return ph.objectives.length ? Math.round(ph.objectives.filter(o => done.has(o.id)).length / ph.objectives.length * 100) : 0; }
-  function allPhaseDone(ph) { return ph.objectives.every(o => done.has(o.id)); }
-  function pad(n, w) { return String(n).padStart(w, '0'); }
-  function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-  function dialSVG(pct) {
-    const r = 22, circ = 2 * Math.PI * r, dash = pct / 100 * circ;
-    return '<svg class="qp-dial" viewBox="0 0 56 56"><circle class="qp-dial-track" cx="28" cy="28" r="' + r + '"/><circle class="qp-dial-fill" cx="28" cy="28" r="' + r + '" stroke-dasharray="' + dash.toFixed(1) + ' ' + (circ - dash).toFixed(1) + '" transform="rotate(-90 28 28)"/><text class="qp-dial-text" x="28" y="29">' + pct + '%</text></svg>';
-  }
-
-  function hexEmblem(icon) {
-    return '<svg class="qp-phase-emblem" viewBox="0 0 72 72" fill="none"><polygon points="36,4 66,20 66,52 36,68 6,52 6,20" fill="rgba(240,180,41,0.1)" stroke="rgba(240,180,41,0.35)" stroke-width="1"/><polygon points="36,10 60,23 60,49 36,62 12,49 12,23" fill="none" stroke="rgba(240,180,41,0.15)" stroke-width="0.5" stroke-dasharray="3 3"/><g transform="translate(25,25)" color="#f0b429">' + (IC[icon] || IC.scroll) + '</g></svg>';
-  }
-
-  function confetti(container) {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var colors = ['#f0b429','#4ade80','#ffffff','#fb923c','#60a5fa'];
-    for (var i = 0; i < 30; i++) {
-      var el = document.createElement('div');
-      el.className = 'qp-confetti-particle';
-      el.style.cssText = 'left:' + (20 + Math.random() * 60) + '%;background:' + colors[i % colors.length] + ';animation-duration:' + (1 + Math.random() * 0.8) + 's;animation-delay:' + (Math.random() * 0.4) + 's;';
-      container.appendChild(el);
-    }
-    setTimeout(function() { container.innerHTML = ''; }, 1800);
-  }
-
-  // ---- Stats row (shared hero) ----
-  function renderStats() {
-    var el = document.getElementById('pg-stats-row');
-    if (!el) return;
-    el.innerHTML = data.stats.map(function(s) {
-      return '<div class="gs-item"><span class="gs-label">' + escHtml(s.label) + '</span><span class="gs-value tone-' + s.tone + '">' + escHtml(s.value) + '</span>' + (s.note ? '<span class="gs-note">' + escHtml(s.note) + '</span>' : '') + '</div>';
-    }).join('');
-  }
-
-  // ================================================================
-  // QUEST LOG
-  // ================================================================
-  function renderQuest() {
-    var panel = document.querySelector('.variant-panel[data-variant="quest"]');
-    var chips = data.phases.map(function(ph) {
-      return '<button class="qp-chip" data-phase="' + ph.id + '">' + pad(ph.number,2) + ' — ' + escHtml(ph.title) + '</button>';
-    }).join('');
-    var phases = data.phases.map(function(ph) {
-      var pct = phasePct(ph);
-      var objs = ph.objectives.map(function(obj, i) {
-        var isDone = done.has(obj.id);
-        var num = pad(i+1,2);
-        var tags = obj.tags.map(function(t){return '<span class="qp-obj-tag">'+escHtml(t)+'</span>';}).join('');
-        var tip = obj.tip ? '<p class="qp-tip">' + escHtml(obj.tip) + '</p>' : '';
-        return '<div class="qp-objective' + (isDone?' done':'') + '" data-obj-id="'+obj.id+'">'
-          + '<div class="qp-obj-top">'
-          + '<button class="qp-checkbox" data-tobj="'+obj.id+'" aria-label="Marcar como concluído">' + (isDone ? IC.check : num) + '</button>'
-          + '<div class="qp-obj-content">'
-          + '<p class="qp-obj-title">'+escHtml(obj.title)+'</p>'
-          + '<p class="qp-obj-summary">'+escHtml(obj.summary)+'</p>'
-          + '<div class="qp-obj-tags">'+tags+'</div>'
-          + '<button class="qp-detail-toggle" data-tdet="'+obj.id+'">Detalhes →</button>'
-          + '</div></div>'
-          + '<div class="qp-detail" id="qpd-'+obj.id+'">'
-          + '<p class="qp-detail-text">'+escHtml(obj.detail)+'</p>'+tip+'</div></div>';
-      }).join('');
-      return '<div class="qp-phase" id="qpp-'+ph.id+'">'
-        + '<div class="qp-confetti-container" id="qpc-'+ph.id+'"></div>'
-        + '<div class="qp-phase-header" data-tph="'+ph.id+'" aria-expanded="false">'
-        + hexEmblem(ph.icon)
-        + '<div class="qp-phase-meta">'
-        + '<p class="qp-phase-eyebrow">FASE '+pad(ph.number,2)+'</p>'
-        + '<h3 class="qp-phase-title">'+escHtml(ph.title)+'</h3>'
-        + '<p class="qp-phase-subtitle">'+escHtml(ph.subtitle)+'</p>'
-        + '<div class="qp-phase-chips"><span class="qp-meta-chip">'+escHtml(ph.duration)+'</span><span class="qp-meta-chip">'+ph.xp+' XP</span></div>'
-        + '</div>'
-        + '<div class="qp-phase-right">'+dialSVG(pct)+'<span class="qp-chevron" aria-hidden="true">▾</span></div>'
-        + '</div>'
-        + '<div class="qp-phase-body">'+objs+'</div></div>';
-    }).join('');
-    panel.innerHTML = '<div class="gp-quest"><div class="qp-chip-nav">'+chips+'</div>'+phases+'</div>';
-    // events
-    panel.querySelectorAll('[data-tph]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var ph = this.closest('.qp-phase');
-        ph.classList.toggle('open');
-        this.setAttribute('aria-expanded', ph.classList.contains('open'));
-      });
-    });
-    panel.querySelectorAll('.qp-chip').forEach(function(chip) {
-      chip.addEventListener('click', function() {
-        var ph = document.getElementById('qpp-' + this.dataset.phase);
-        if (!ph) return;
-        ph.classList.add('open');
-        ph.querySelector('[data-tph]').setAttribute('aria-expanded','true');
-        ph.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    });
-    // Clicar em qualquer parte do objetivo faz o toggle (exceto no bloco de detalhes)
-    panel.querySelectorAll('.qp-objective').forEach(function(row) {
-      row.style.cursor = 'pointer';
-      row.addEventListener('click', function(e) {
-        if (e.target.closest('[data-tdet]') || e.target.closest('.qp-detail')) return;
-        var id = row.dataset.objId;
-        toggleDone(id);
-        var ph = data.phases.find(function(p){return p.objectives.some(function(o){return o.id===id;});});
-        if (ph && allPhaseDone(ph)) confetti(document.getElementById('qpc-'+ph.id));
-      });
-    });
-    panel.querySelectorAll('[data-tdet]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var d = document.getElementById('qpd-'+this.dataset.tdet);
-        if (d) { d.classList.toggle('open'); this.textContent = d.classList.contains('open') ? 'Fechar ←' : 'Detalhes →'; }
-      });
-    });
-    // open first phase
-    var first = panel.querySelector('.qp-phase');
-    if (first) { first.classList.add('open'); first.querySelector('[data-tph]').setAttribute('aria-expanded','true'); }
-  }
-
-  // ================================================================
-  // MISSION BRIEF
-  // ================================================================
-  function renderMission() {
-    var panel = document.querySelector('.variant-panel[data-variant="mission"]');
-    var activePh = data.phases[0];
-    function statusOf(ph) { var n=ph.objectives.filter(function(o){return done.has(o.id);}).length; return n===ph.objectives.length?'cleared':n>0?'active':'standby'; }
-    function labelOf(s) { return {standby:'STANDBY',active:'ACTIVE',cleared:'CLEARED'}[s]; }
-    function buildSidebar() {
-      return data.phases.map(function(ph,i) {
-        var n=ph.objectives.filter(function(o){return done.has(o.id);}).length;
-        var pct=Math.round(n/ph.objectives.length*100);
-        var sc=statusOf(ph);
-        return '<div class="mb-op'+(ph.id===activePh.id?' active':'')+'" data-mbop="'+ph.id+'">'
-          +'<div class="mb-op-top"><span class="mb-op-code">OP-'+pad(i+1,3)+'</span><span class="mb-op-status '+sc+'">'+labelOf(sc)+'</span></div>'
-          +'<p class="mb-op-title">'+escHtml(ph.title)+'</p>'
-          +'<div class="mb-op-progress"><div class="mb-op-progress-fill" style="width:'+pct+'%"></div></div></div>';
-      }).join('');
-    }
-    function buildBriefing(ph) {
-      var n=ph.objectives.filter(function(o){return done.has(o.id);}).length;
-      var pct=Math.round(n/ph.objectives.length*100);
-      var pi=data.phases.indexOf(ph);
-      var stats='<div class="mb-stats-grid">'
-        +'<div class="mb-stat"><span class="mb-stat-label">Duração</span><span class="mb-stat-value">'+escHtml(ph.duration)+'</span></div>'
-        +'<div class="mb-stat"><span class="mb-stat-label">XP</span><span class="mb-stat-value">'+ph.xp+'</span></div>'
-        +'<div class="mb-stat"><span class="mb-stat-label">Objetivos</span><span class="mb-stat-value">'+n+'/'+ph.objectives.length+'</span></div>'
-        +'<div class="mb-stat"><span class="mb-stat-label">Progresso</span><span class="mb-stat-value">'+pct+'%</span></div></div>';
-      var objs=ph.objectives.map(function(obj,i) {
-        var isDone=done.has(obj.id), num=pad(i+1,2);
-        var tags=obj.tags.map(function(t){return '<span class="mb-obj-tag">'+escHtml(t)+'</span>';}).join('');
-        var tip=obj.tip?'<p class="mb-tip-text">// '+escHtml(obj.tip)+'</p>':'';
-        return '<div class="mb-objective'+(isDone?' done':'')+'" data-obj-id="'+obj.id+'">'
-          +'<div class="mb-obj-top">'
-          +'<button class="mb-checkbox" data-tobj="'+obj.id+'" aria-label="Marcar como concluído">'+(isDone?IC.check:num)+'</button>'
-          +'<span class="mb-obj-num">'+num+'</span>'
-          +'<div class="mb-obj-content">'
-          +'<p class="mb-obj-title">'+escHtml(obj.title)+'</p>'
-          +'<p class="mb-obj-summary">'+escHtml(obj.summary)+'</p>'
-          +'<div class="mb-obj-tags">'+tags+'</div>'
-          +'<button class="mb-intel-toggle" data-tintel="'+obj.id+'">// INTEL →</button>'
-          +'</div></div>'
-          +'<div class="mb-intel" id="mbi-'+obj.id+'"><p class="mb-intel-header">// INTEL</p><p class="mb-intel-text">'+escHtml(obj.detail)+'</p>'+tip+'</div></div>';
-      }).join('');
-      return '<div class="mb-briefing-inner">'
-        +'<div class="mb-briefing-header"><span class="mb-briefing-badge">▶ BRIEFING // OP-'+pad(pi+1,3)+'</span><h3 class="mb-briefing-title">'+escHtml(ph.title)+'</h3></div>'
-        +stats+'<div class="mb-objectives">'+objs+'</div></div>';
-    }
-    function build() {
-      panel.innerHTML='<div class="gp-mission">'
-        +'<div class="mb-sidebar"><p class="mb-sidebar-title">// OPERAÇÕES</p>'+buildSidebar()+'</div>'
-        +'<div class="mb-briefing"><div class="mb-scanline"></div><div class="mb-frame"></div>'+buildBriefing(activePh)+'</div></div>';
-      panel.querySelectorAll('[data-mbop]').forEach(function(op) {
-        op.addEventListener('click', function() { activePh=data.phases.find(function(p){return p.id===op.dataset.mbop;})||activePh; build(); });
-      });
-      panel.querySelectorAll('[data-tobj]').forEach(function(btn) {
-        btn.addEventListener('click', function(e){e.stopPropagation();toggleDone(this.dataset.tobj);build();});
-      });
-      panel.querySelectorAll('[data-tintel]').forEach(function(btn) {
-        btn.addEventListener('click', function(){var d=document.getElementById('mbi-'+this.dataset.tintel);if(d){d.classList.toggle('open');this.textContent=d.classList.contains('open')?'// FECHAR ←':'// INTEL →';}});
-      });
-    }
-    build();
-  }
-
-  // ================================================================
-  // HYBRID
-  // ================================================================
-  function renderHybrid() {
-    var panel = document.querySelector('.variant-panel[data-variant="hybrid"]');
-    var ICONS_HP = {scroll:'📜',stamp:'📋',key:'🔑',shield:'🛡️',compass:'🧭',map:'🗺️',trophy:'🏆'};
-    var phases = data.phases.map(function(ph) {
-      var n=ph.objectives.filter(function(o){return done.has(o.id);}).length;
-      var pct=Math.round(n/ph.objectives.length*100);
-      var objs=ph.objectives.map(function(obj,i){
-        var isDone=done.has(obj.id),num=pad(i+1,2);
-        var tags=obj.tags.map(function(t){return '<span class="hp-obj-tag">'+escHtml(t)+'</span>';}).join('');
-        var tip=obj.tip?'<p class="hp-tip-text">// '+escHtml(obj.tip)+'</p>':'';
-        return '<div class="hp-objective'+(isDone?' done':'')+'" data-obj-id="'+obj.id+'">'
-          +'<div class="hp-obj-top">'
-          +'<button class="hp-checkbox" data-tobj="'+obj.id+'" aria-label="Marcar como concluído">'+(isDone?IC.check:num)+'</button>'
-          +'<span class="hp-obj-num">'+num+'</span>'
-          +'<div class="hp-obj-content">'
-          +'<p class="hp-obj-title">'+escHtml(obj.title)+'</p>'
-          +'<p class="hp-obj-summary">'+escHtml(obj.summary)+'</p>'
-          +'<div class="hp-obj-tags">'+tags+'</div>'
-          +'<button class="hp-detail-toggle" data-tdet="'+obj.id+'">// Detalhes →</button>'
-          +'</div></div>'
-          +'<div class="hp-detail" id="hpd-'+obj.id+'"><p class="hp-intel-header">// INTEL</p><p class="hp-detail-text">'+escHtml(obj.detail)+'</p>'+tip+'</div></div>';
-      }).join('');
-      return '<div class="hp-phase" id="hpp-'+ph.id+'">'
-        +'<div class="hp-frame"></div>'
-        +'<div class="hp-phase-header" data-tph="'+ph.id+'" aria-expanded="false">'
-        +'<div class="hp-phase-icon">'+(ICONS_HP[ph.icon]||'📄')+'</div>'
-        +'<div class="hp-phase-meta">'
-        +'<p class="hp-phase-eyebrow">FASE '+pad(ph.number,2)+'</p>'
-        +'<h3 class="hp-phase-title">'+escHtml(ph.title)+'</h3>'
-        +'<p class="hp-phase-sub">'+escHtml(ph.subtitle)+'</p>'
-        +'<div class="hp-phase-chips"><span class="hp-meta-chip">'+escHtml(ph.duration)+'</span><span class="hp-meta-chip">'+ph.xp+' XP</span></div>'
-        +'</div>'
-        +'<div class="hp-phase-right"><span class="hp-progress-text" id="hpp-pct-'+ph.id+'">'+pct+'%</span><span class="hp-chevron" aria-hidden="true">▾</span></div>'
-        +'</div><div class="hp-phase-body"><div class="hp-objectives">'+objs+'</div></div></div>';
-    }).join('');
-    panel.innerHTML='<div class="gp-hybrid">'+phases+'</div>';
-    panel.querySelectorAll('[data-tph]').forEach(function(btn){
-      btn.addEventListener('click',function(){var ph=this.closest('.hp-phase');ph.classList.toggle('open');this.setAttribute('aria-expanded',ph.classList.contains('open'));});
-    });
-    // Clicar em qualquer parte do objetivo faz o toggle (exceto no bloco de detalhes)
-    panel.querySelectorAll('.hp-objective').forEach(function(row){
-      row.style.cursor='pointer';
-      row.addEventListener('click',function(e){
-        if(e.target.closest('[data-tdet]')||e.target.closest('.hp-detail'))return;
-        toggleDone(row.dataset.objId);
-      });
-    });
-    panel.querySelectorAll('[data-tdet]').forEach(function(btn){
-      btn.addEventListener('click',function(){var d=document.getElementById('hpd-'+this.dataset.tdet);if(d){d.classList.toggle('open');this.textContent=d.classList.contains('open')?'// Fechar ←':'// Detalhes →';}});
-    });
-    var first=panel.querySelector('.hp-phase');
-    if(first){first.classList.add('open');first.querySelector('[data-tph]').setAttribute('aria-expanded','true');}
-  }
-
-  // ================================================================
-  // Sync without full re-render (Quest + Hybrid)
-  // ================================================================
-  function syncVariants(id) {
-    var ph = data.phases.find(function(p){return p.objectives.some(function(o){return o.id===id;});});
-    // Quest
-    var qp = document.querySelector('.variant-panel[data-variant="quest"]');
-    if (qp && qp.children.length) {
-      var objEl = qp.querySelector('[data-obj-id="'+id+'"]');
-      if (objEl) { var isDone=done.has(id); objEl.classList.toggle('done',isDone); var cb=objEl.querySelector('[data-tobj]'); if(cb){var prev=cb.textContent.trim();cb.innerHTML=isDone?IC.check:(prev.match(/\d+/)||[prev])[0];} }
-      if (ph) { var pct=phasePct(ph); var phEl=document.getElementById('qpp-'+ph.id); if(phEl){var dw=phEl.querySelector('.qp-phase-right');if(dw){var od=dw.querySelector('.qp-dial');if(od)od.outerHTML=dialSVG(pct);}} }
-    }
-    // Hybrid
-    var hp = document.querySelector('.variant-panel[data-variant="hybrid"]');
-    if (hp && hp.children.length) {
-      var hObjEl = hp.querySelector('[data-obj-id="'+id+'"]');
-      if (hObjEl) { var isDone2=done.has(id); hObjEl.classList.toggle('done',isDone2); var cb2=hObjEl.querySelector('[data-tobj]'); if(cb2){var prev2=cb2.textContent.trim();cb2.innerHTML=isDone2?IC.check:(prev2.match(/\d+/)||[prev2])[0];} if(ph){var n2=ph.objectives.filter(function(o){return done.has(o.id);}).length;var pct2=Math.round(n2/ph.objectives.length*100);var pt=document.getElementById('hpp-pct-'+ph.id);if(pt)pt.textContent=pct2+'%';} }
-    }
-    // Mission: rebuild if active (manages own state)
-    var mp=document.querySelector('.variant-panel[data-variant="mission"]');
-    if(mp&&mp.classList.contains('active'))renderMission();
-  }
-
-  // ================================================================
-  // Switcher
-  // ================================================================
-  function activateVariant(v) {
-    document.querySelectorAll('.variant-btn').forEach(function(b){b.classList.toggle('active',b.dataset.variant===v);b.setAttribute('aria-selected',b.dataset.variant===v);});
-    document.querySelectorAll('.variant-panel').forEach(function(p){p.classList.toggle('active',p.dataset.variant===v);});
-    localStorage.setItem(LS_VARIANT,v);
-    var panel=document.querySelector('.variant-panel[data-variant="'+v+'"]');
-    if(!panel)return;
-    if(panel.children.length===0){
-      if(v==='quest')renderQuest();else if(v==='mission')renderMission();else if(v==='hybrid')renderHybrid();
-    } else if(v==='mission'){
-      renderMission();
+  if (location.hash) {
+    const name = location.hash.slice(1)
+    if (activateTab(name, false)) {
+      setTimeout(() => document.getElementById('sticky')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60)
     }
   }
-  document.querySelectorAll('.variant-btn').forEach(function(btn){btn.addEventListener('click',function(){activateVariant(this.dataset.variant);});});
 
-  // ================================================================
-  // Init
-  // ================================================================
-  renderStats();
-  var initV = localStorage.getItem(LS_VARIANT) || 'quest';
-  activateVariant(initV);
-})();
+  // ---- Visa filter chips + modal ----
+  ;(function () {
+    const grid = document.querySelector('.visa-grid')
+    const modal = document.getElementById('visa-modal')
+    if (!grid || !modal) return
+    const chips = document.querySelectorAll('.visa-chip')
+    const modalBody = document.getElementById('visa-modal-body')
+    const closeBtn = modal.querySelector('.visa-modal-close')
+    let lastFocus = null
+
+    function openModal(visaId) {
+      const tpl = document.getElementById('visa-detail-' + visaId)
+      if (!tpl || !modalBody) return
+      lastFocus = document.activeElement
+      modalBody.innerHTML = ''
+      modalBody.appendChild(tpl.content.cloneNode(true))
+      modal.classList.add('is-open')
+      modal.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+      setTimeout(() => closeBtn && closeBtn.focus(), 50)
+    }
+    function closeModal() {
+      modal.classList.remove('is-open')
+      modal.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+      if (lastFocus && lastFocus.focus) lastFocus.focus()
+    }
+
+    grid.querySelectorAll('.visa-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    })
+
+    function applyFilter(tag) {
+      grid.querySelectorAll('.visa-card').forEach(card => {
+        const isActive = card.dataset.visaActive !== 'false'
+        let visible
+        if (tag === 'all') visible = isActive
+        else if (tag === 'inativos') visible = !isActive
+        else visible = isActive && card.dataset.visaTag === tag
+        card.hidden = !visible
+      })
+    }
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'))
+        chip.classList.add('active')
+        applyFilter(chip.dataset.tag)
+      })
+    })
+    applyFilter('all')
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal)
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal() })
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal()
+    })
+
+    // "Saber mais" CTA: troca para a aba Fontes
+    modal.addEventListener('click', e => {
+      const t = e.target.closest('[data-visa-cta="fontes"]')
+      if (!t) return
+      e.preventDefault()
+      closeModal()
+      if (typeof activateTab === 'function') {
+        activateTab('fontes', true)
+        history.replaceState(null, '', '#fontes')
+      }
+    })
+  })()
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

@@ -45,6 +45,24 @@ export const deSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://brasil.diplo.de',
+      label: 'Embaixada Alemã no Brasil',
+      description: 'Informações oficiais sobre Blue Card e Chancenkarte para brasileiros, com requisitos 2026',
+    },
+    {
+      url: 'https://www.make-it-in-germany.com',
+      label: 'Make it in Germany',
+      description: 'Portal oficial do governo alemão com limiares salariais atualizados para vistos de trabalho qualificado',
+    },
+    {
+      url: 'https://www.expatrio.com',
+      label: 'Expatrio',
+      description: 'Valores do blocked account e requisitos financeiros para a Chancenkarte 2026 (EUR 1.091/mês)',
+    },
+  ],
+
   glossary: {
     'Aufenthaltstitel': 'Autorizacao de residencia',
     'Aufenthaltserlaubnis': 'Permissao de residencia temporaria',

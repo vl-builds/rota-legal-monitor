@@ -61,6 +61,24 @@ export const ptSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://vistos.mne.gov.pt',
+      label: 'MNE: Portal de Vistos',
+      description: 'Valores oficiais de meios de subsistência e requisitos de visto (Ministério dos Negócios Estrangeiros)',
+    },
+    {
+      url: 'https://eurodicas.com.br',
+      label: 'EuroDicas',
+      description: 'Guia comunitário com experiências reais de brasileiros residentes em Portugal',
+    },
+    {
+      url: 'https://www.mundialimigracao.com.br',
+      label: 'Mundiali Imigração',
+      description: 'Análise da Lei 61/2025 e seus impactos no processo de legalização em Portugal',
+    },
+  ],
+
   glossary: {
     'Autorização de Residência': 'Autorizacao de Residencia (AR)',
     'AIMA': 'Agencia para a Integracao, Migracoes e Asilo (substitui o SEF desde 2023)',

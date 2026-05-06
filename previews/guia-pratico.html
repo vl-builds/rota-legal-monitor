@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guia Prático — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  .gp-hero { padding: var(--s-section) 0 var(--s-xl); text-align: center; }
+  .gp-hero h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.05; letter-spacing: -1.5px; font-weight: 700; margin: 0 0 var(--s-md); }
+  .gp-hero h1 .accent { color: var(--primary); }
+  .gp-hero .lede { max-width: 620px; margin: 0 auto; color: var(--body); font-size: 17px; line-height: 1.55; }
+  .gp-hero .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s-md); }
+  .gp-hero .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+
+  .gp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--s-md);
+    padding-bottom: var(--s-section);
+  }
+
+  .gp-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-md);
+    padding: var(--s-lg);
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    text-decoration: none;
+    color: var(--on-dark);
+    transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .gp-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    background: var(--surface-elevated);
+  }
+  .gp-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    pointer-events: none;
+    transition: border-color 160ms ease;
+  }
+
+  .gp-card-top {
+    display: flex;
+    align-items: center;
+    gap: var(--s-sm);
+  }
+  .gp-card-top .cc-flag {
+    width: 36px;
+    height: 27px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .gp-card-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--on-dark);
+  }
+  .gp-card-code {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+  .gp-card-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--body);
+    margin: 0;
+  }
+  .gp-card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--s-md);
+    border-top: 1px solid var(--hairline);
+    margin-top: auto;
+  }
+  .gp-card-cue {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+  .gp-card-arrow {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+    transition: transform 160ms ease;
+  }
+  .gp-card:hover .gp-card-arrow { transform: translateX(4px); }
+</style>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<!-- ============== TOP NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="home.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>Rota Legal</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="guia-pratico.html" style="color:var(--on-dark);">Guia Prático</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-secondary" href="paises.html">Ver países</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é o meu?</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<!-- ============== MOBILE DRAWER ============== -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
+  <div class="mobile-drawer-backdrop" data-close></div>
+  <aside class="mobile-drawer-panel">
+    <div class="mobile-drawer-header">
+      <span class="caption-up">Menu</span>
+      <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="home.html">Início</a>
+      <a href="paises.html">Países</a>
+      <a href="comparar.html">Comparar</a>
+      <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
+      <a href="calculadora.html">Calculadora</a>
+      <a href="historico.html">Histórico</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+    <div class="mobile-drawer-cta">
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
+      <a class="btn btn-secondary" href="comparar.html">Comparar países</a>
+    </div>
+  </aside>
+</div>
+
+<main>
+  <section class="gp-hero">
+    <div class="container">
+      <div class="eyebrow"><span class="dot"></span>Roteiro passo a passo</div>
+      <h1>Guia <span class="accent">Prático</span></h1>
+      <p class="lede">
+        Escolha o país de destino e veja a jornada completa em 3 fases:
+        documentação no Brasil, processo do visto e regularização após a chegada.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="gp-grid">
+        <a class="gp-card" href="pais-nl.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-nl" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Países Baixos</div>
+              <div class="gp-card-code">nl</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Visto Altamente Qualificado, IND, processo via empregador.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-pt.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-pt" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Portugal</div>
+              <div class="gp-card-code">pt</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Visto D, AIMA, NIF e título de residência.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-de.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-de" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Alemanha</div>
+              <div class="gp-card-code">de</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">EU Blue Card, Anmeldung, Aufenthaltstitel.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-ie.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-ie" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Irlanda</div>
+              <div class="gp-card-code">ie</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Critical Skills, GNIB, registro PPS.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-es.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-es" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Espanha</div>
+              <div class="gp-card-code">es</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Visado Nacional, NIE, TIE e empadronamiento.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-fr.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-fr" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">França</div>
+              <div class="gp-card-code">fr</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Visa Long Séjour, OFII, titre de séjour.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-it.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-it" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Itália</div>
+              <div class="gp-card-code">it</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Nulla Osta, Visto D, permesso di soggiorno.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-be.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-be" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Bélgica</div>
+              <div class="gp-card-code">be</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Visto D, registro na comuna, carteira A.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-at.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-at" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Áustria</div>
+              <div class="gp-card-code">at</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Rot-Weiß-Rot Karte, Meldezettel, registro MA35.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+
+        <a class="gp-card" href="pais-au.html#guia">
+          <div class="gp-card-top">
+            <span class="cc-flag flag-au" aria-hidden="true"></span>
+            <div>
+              <div class="gp-card-name">Austrália</div>
+              <div class="gp-card-code">au</div>
+            </div>
+          </div>
+          <p class="gp-card-desc">Subclass 482/186, ImmiAccount, Medicare e TFN.</p>
+          <div class="gp-card-foot">
+            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
+            <span class="gp-card-arrow">Ver guia →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+          <span>Rota Legal</span>
+        </a>
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
+        </p>
+      </div>
+      <div>
+        <h4>Países</h4>
+        <ul>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ferramentas</h4>
+        <ul>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="guia-pratico.html">Guia Prático</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+          <li><a href="dev.html">Dev</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span class="caption-up">Última extração: mai/2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nav.js" defer></script>
+</body>
+</html>

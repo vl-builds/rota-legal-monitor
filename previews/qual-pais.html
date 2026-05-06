@@ -3,632 +3,334 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Qual país é o certo para você? — Rota Legal</title>
+<title>Qual país combina com você? — Rota Legal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
+/* token aliases: handoff → design-system */
+:root {
+  --gold: var(--primary);
+  --gold-deep: #d99e0a;
+  --ink: var(--on-dark);
+  --ink-dim: var(--body);
+  --ink-faint: var(--muted);
+  --bg: var(--canvas);
+  --bg-2: var(--surface-card);
+  --line: var(--hairline);
+  --line-2: var(--hairline-strong);
+}
+.mono { font-family: "JetBrains Mono", monospace; }
 
-  /* ---- shell ---- */
-  .quiz-shell {
-    min-height: calc(100vh - 64px);
-    display: flex;
-    flex-direction: column;
-  }
+/* progress bar */
+.quiz-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  background: rgba(255,255,255,0.04); z-index: 100; pointer-events: none;
+}
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold));
+  box-shadow: 0 0 18px rgba(251,191,36,0.4);
+  transition: width 600ms cubic-bezier(0.65,0,0.35,1);
+  width: 0;
+}
 
-  /* ---- step wrapper ---- */
-  #app {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  #app.slide-out-left  { animation: slideOutLeft  320ms cubic-bezier(.2,.7,.2,1) both; }
-  #app.slide-out-right { animation: slideOutRight 320ms cubic-bezier(.2,.7,.2,1) both; }
-  #app.slide-in-right  { animation: slideInRight  320ms cubic-bezier(.2,.7,.2,1) both; }
-  #app.slide-in-left   { animation: slideInLeft   320ms cubic-bezier(.2,.7,.2,1) both; }
+/* atmosphere */
+.quiz-atmosphere {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  transition: background 1200ms ease;
+}
 
-  /* ---- intro ---- */
-  .intro-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: var(--s-section) 0;
-  }
-  .intro-inner { max-width: 600px; }
-  .intro-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--primary);
-    display: block;
-    margin-bottom: var(--s-sm);
-  }
-  .intro-title {
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: -1.8px;
-    color: var(--on-dark);
-    margin: 0 0 var(--s-md);
-    line-height: 1.05;
-  }
-  .intro-sub {
-    font-size: 16px;
-    color: var(--body);
-    margin: 0 0 var(--s-xl);
-    line-height: 1.6;
-    max-width: 480px;
-  }
-  .intro-meta {
-    display: flex;
-    gap: var(--s-lg);
-    margin-bottom: var(--s-xl);
-    flex-wrap: wrap;
-  }
-  .intro-meta-item {
-    display: flex;
-    align-items: center;
-    gap: var(--s-xs);
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .meta-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--primary);
-    flex-shrink: 0;
-  }
+/* shell */
+.quiz-shell { position: relative; min-height: calc(100vh - 64px); }
+#app { position: relative; z-index: 10; }
+.scene-in { animation: sceneIn 700ms cubic-bezier(0.22,1,0.36,1) both; }
 
-  /* ---- question step ---- */
-  .question-wrap {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: var(--s-xxl) 0 var(--s-section);
-  }
-  .question-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: var(--s-md);
-  }
-  .question-text {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.8px;
-    color: var(--on-dark);
-    margin: 0 0 var(--s-xl);
-    line-height: 1.2;
-    max-width: 640px;
-  }
-  .options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: var(--s-md);
-    margin-bottom: var(--s-sm);
-  }
-  .opt-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    border-radius: var(--r-lg);
-    padding: var(--s-lg) var(--s-xl);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: var(--s-md);
-    text-align: left;
-    font-family: inherit;
-    color: inherit;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    animation: fadeUp .4s cubic-bezier(.2,.7,.2,1) both;
-    background-image: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(240,180,41,.06) 0%, transparent 60%);
-    transition: border-color 120ms ease, background-color 120ms ease, transform 120ms ease;
-  }
-  .opt-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--primary);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 200ms cubic-bezier(.2,.7,.2,1);
-    border-radius: 0 2px 2px 0;
-  }
-  .opt-card:hover {
-    border-color: var(--hairline-strong);
-    background-color: var(--surface-elevated);
-    transform: translateY(-1px);
-  }
-  .opt-card:hover::before { transform: scaleY(1); }
-  .opt-card.selected {
-    border-color: var(--primary);
-    background-color: rgba(240,180,41,.06);
-    animation: selectedPulse .5s ease both;
-  }
-  .opt-card.selected::before { transform: scaleY(1); }
-  .opt-card:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-  }
-  .opt-marker {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid var(--hairline-strong);
-    flex-shrink: 0;
-    transition: background 120ms ease, border-color 120ms ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .opt-card.selected .opt-marker {
-    background: var(--primary);
-    border-color: var(--primary);
-  }
-  .check-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .check-line {
-    stroke-dasharray: 18;
-    stroke-dashoffset: 18;
-    animation: checkDraw 240ms cubic-bezier(.2,.7,.2,1) both;
-  }
-  .opt-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--body-strong);
-    line-height: 1.4;
-  }
-  .opt-card.selected .opt-label { color: var(--on-dark); font-weight: 600; }
+/* hero */
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  align-items: center; padding: 120px 64px 80px;
+  max-width: 1280px; margin: 0 auto;
+}
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 0.18em; color: var(--gold);
+  text-transform: uppercase; font-weight: 500;
+  display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+}
+.hero-eyebrow::before { content:''; width:24px; height:1px; background:var(--gold); }
+.hero-title {
+  font-size: clamp(48px,6vw,80px); line-height:1.0;
+  letter-spacing:-0.035em; font-weight:700; margin:0 0 24px; color:var(--ink);
+}
+.hero-sub {
+  font-size:17px; color:var(--ink-dim); max-width:480px; line-height:1.55; margin:0 0 36px;
+}
+.hero-cta {
+  background:var(--gold); border:none; color:#0a0908; padding:16px 32px;
+  border-radius:999px; font-size:15px; font-weight:600; cursor:pointer;
+  box-shadow:0 8px 32px rgba(251,191,36,0.3); transition:transform 200ms ease; font-family:inherit;
+}
+.hero-cta:hover { transform:translateY(-2px); }
+.hero-stats { display:flex; gap:28px; margin-top:36px; }
+.hero-stat-n { font-size:28px; font-weight:600; color:var(--ink); letter-spacing:-0.02em; line-height:1; }
+.hero-stat-l { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint); margin-top:4px; }
+.hero-visual {
+  position:relative; height:540px; display:flex; align-items:center; justify-content:center;
+}
+.hero-disc {
+  width:220px; height:220px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold) 0%, var(--gold-deep) 100%);
+  box-shadow:0 0 80px rgba(251,191,36,0.35),inset 0 -20px 40px rgba(0,0,0,0.2);
+  position:relative; z-index:2; display:flex; align-items:center; justify-content:center; flex-direction:column;
+}
+.hero-disc-text { font-size:11px; color:rgba(10,9,8,0.7); letter-spacing:0.16em; text-align:center; line-height:1.6; text-transform:uppercase; font-weight:600; }
+.hero-disc-match { font-size:32px; color:#0a0908; letter-spacing:-0.02em; font-weight:700; display:block; }
+.hero-ring { position:absolute; border-radius:50%; pointer-events:none; }
+.hero-ring-outer { width:460px; height:460px; border:1px dashed rgba(251,191,36,0.18); }
+.hero-ring-inner { width:320px; height:320px; border:1px solid rgba(255,255,255,0.04); }
+.hero-orbit { position:absolute; inset:0; animation:orbit 60s linear infinite; }
+.hero-flag-chip { position:absolute; left:50%; top:50%; }
+.hero-flag-chip-inner {
+  width:36px; height:48px; border-radius:3px; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 6px 18px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.06);
+  animation:orbit 60s linear infinite reverse;
+}
+.flag-stripe { flex:1; }
 
-  /* auto-advance hint */
-  .auto-hint {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: .3px;
-    margin-bottom: var(--s-md);
-  }
+/* scene wrapper */
+.scene-wrap {
+  min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  padding:140px 64px 100px; max-width:1100px; margin:0 auto;
+}
+.scene-eyebrow {
+  font-size:11px; letter-spacing:0.18em; color:var(--gold); text-transform:uppercase; font-weight:500;
+  display:flex; align-items:center; gap:10px; margin-bottom:22px;
+}
+.scene-eyebrow::before { content:''; width:24px; height:1px; background:var(--gold); }
+.scene-title {
+  font-size:clamp(40px,5.4vw,64px); line-height:1.02; letter-spacing:-0.03em; font-weight:700;
+  margin:0; color:var(--ink); text-wrap:balance; max-width:900px;
+}
+.scene-subtitle { font-size:17px; color:var(--ink-dim); margin-top:18px; max-width:560px; line-height:1.5; }
+.scene-body { margin-top:44px; }
+.scene-footer { display:flex; justify-content:space-between; align-items:center; margin-top:48px; gap:16px; }
+.scene-back {
+  background:transparent; border:none; color:var(--ink-dim); padding:10px 0;
+  font-size:14px; cursor:pointer; font-weight:500; font-family:inherit;
+  display:flex; align-items:center; gap:8px; transition:color 150ms ease;
+}
+.scene-back:hover { color:var(--ink); }
+.scene-hint { font-size:10px; letter-spacing:0.1em; color:var(--ink-faint); text-transform:uppercase; }
+.scene-next {
+  background:var(--gold); border:none; color:#0a0908; padding:12px 24px;
+  border-radius:999px; font-size:14px; font-weight:600; cursor:pointer;
+  transition:all 200ms ease; font-family:inherit;
+  box-shadow:0 4px 24px rgba(251,191,36,0.25);
+}
+.scene-next:disabled {
+  background:transparent; border:1px solid var(--line-2); color:var(--ink-faint);
+  box-shadow:none; cursor:not-allowed;
+}
 
-  /* ---- step nav ---- */
-  .step-nav {
-    display: flex;
-    align-items: center;
-    gap: var(--s-md);
-    margin-top: auto;
-    padding-top: var(--s-lg);
-    border-top: 1px solid var(--hairline);
-  }
-  .step-back {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--muted);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    padding: 10px 0;
-    transition: color 120ms ease;
-  }
-  .step-back:hover { color: var(--body); }
-  .step-next {
-    margin-left: auto;
-  }
-  .step-next:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
-  .btn-pulse { animation: btnPulse 320ms ease both; }
+/* option card base */
+.opt-card {
+  background:var(--bg-2); border:1px solid var(--line); border-radius:14px;
+  padding:0; cursor:pointer; text-align:left; color:var(--ink);
+  transition:all 220ms cubic-bezier(0.22,1,0.36,1); position:relative;
+  overflow:hidden; font-family:inherit; width:100%;
+}
+.opt-card:hover:not(.selected) { border-color:var(--line-2); }
+.opt-card.selected {
+  background:linear-gradient(180deg,rgba(251,191,36,0.14),rgba(251,191,36,0.04));
+  border-color:var(--gold); transform:translateY(-2px);
+  box-shadow:0 12px 36px rgba(251,191,36,0.18),0 0 0 1px var(--gold) inset;
+  animation:selectedPop 320ms ease both;
+}
+.opt-card:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
 
-  /* ---- result ---- */
-  .result-wrap {
-    padding: var(--s-xxl) 0 var(--s-section);
-  }
-  .result-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--primary);
-    display: block;
-    margin-bottom: var(--s-sm);
-  }
-  .result-title {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.8px;
-    color: var(--on-dark);
-    margin: 0 0 var(--s-xl);
-    line-height: 1.2;
-  }
+/* scene 1: shapes */
+.scene-shapes { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:820px; }
+.shapes-inner { padding:22px; min-height:180px; display:flex; flex-direction:column; justify-content:space-between; }
+.shapes-icon { width:48px; height:48px; color:var(--ink-dim); transition:color 200ms ease; }
+.opt-card.selected .shapes-icon { color:var(--gold); }
+.shapes-label { font-size:18px; font-weight:600; letter-spacing:-0.01em; }
+.shapes-hint { font-size:13px; color:var(--ink-faint); margin-top:4px; }
 
-  /* top result card */
-  .result-top {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--primary);
-    border-radius: var(--r-lg);
-    padding: var(--s-xl);
-    margin-bottom: 0;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: var(--s-lg);
-    align-items: start;
-    cursor: pointer;
-    transition: border-color 200ms ease;
-  }
-  .result-top:hover { border-color: rgba(240,180,41,.8); }
-  .result-top-flag {
-    width: 52px; height: 36px; border-radius: 6px; display: block; flex-shrink: 0;
-    transition: transform 240ms ease;
-  }
-  .result-top:hover .result-top-flag { transform: scale(1.05); }
-  .result-top-body { min-width: 0; }
-  .result-top-badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--on-primary);
-    background: var(--primary);
-    padding: 2px 8px;
-    border-radius: var(--r-pill);
-    margin-bottom: var(--s-xs);
-    perspective: 600px;
-  }
-  .result-top-name {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.6px;
-    color: var(--on-dark);
-    margin: 0 0 var(--s-xxs);
-  }
-  .result-top-tagline {
-    font-size: 14px;
-    color: var(--body);
-    margin: 0 0 var(--s-md);
-  }
-  .result-pros { display: flex; flex-direction: column; gap: var(--s-xs); margin-bottom: var(--s-md); }
-  .result-pro {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--s-xs);
-    font-size: 13px;
-    color: var(--body);
-    opacity: 0;
-  }
-  .result-pro.reveal-in { opacity: 1; animation: revealIn .4s cubic-bezier(.2,.7,.2,1) both; }
-  .result-pro-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-emerald); flex-shrink: 0; margin-top: 6px; }
-  .result-con {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--s-xs);
-    font-size: 12px;
-    color: var(--muted);
-    padding-top: var(--s-sm);
-    border-top: 1px solid var(--hairline);
-  }
-  .result-con-label { font-weight: 600; flex-shrink: 0; color: var(--muted-soft); }
-  .result-score {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: var(--s-xxs);
-    flex-shrink: 0;
-  }
-  .result-score-num {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    color: var(--primary);
-    line-height: 1;
-  }
-  .result-score-label { font-size: 11px; color: var(--muted); text-align: right; }
+/* scene 2: sectors */
+.scene-sectors { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:900px; }
+.sectors-inner { padding:20px; min-height:150px; display:flex; flex-direction:column; justify-content:space-between; }
+.sectors-glyph { font-size:32px; font-weight:500; color:var(--ink-dim); letter-spacing:-0.02em; transition:color 200ms ease; }
+.opt-card.selected .sectors-glyph { color:var(--gold); }
+.sectors-label { font-size:15px; font-weight:600; }
 
-  /* match bar */
-  .match-bar-track {
-    width: 100%;
-    height: 3px;
-    background: var(--hairline);
-    border-radius: 2px;
-    margin-bottom: var(--s-lg);
-    overflow: hidden;
-  }
-  .match-bar-fill {
-    height: 100%;
-    width: 0;
-    background: var(--primary);
-    border-radius: 2px;
-    transition: width 600ms cubic-bezier(.2,.7,.2,1);
-  }
+/* scene 3: fluency */
+.scene-fluency { max-width:760px; }
+.fluency-meter {
+  height:56px; margin-bottom:28px; background:var(--bg-2); border:1px solid var(--line);
+  border-radius:14px; padding:8px; display:flex; gap:8px;
+}
+.fluency-seg { flex:1; border-radius:8px; background:rgba(255,255,255,0.03); transition:all 360ms cubic-bezier(0.22,1,0.36,1); }
+.fluency-seg.active { background:linear-gradient(180deg,var(--gold),var(--gold-deep)); box-shadow:0 0 18px rgba(251,191,36,0.25); }
+.fluency-opts { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.fluency-btn {
+  background:transparent; border:1px solid var(--line); border-radius:10px; padding:16px 14px;
+  cursor:pointer; color:var(--ink); transition:all 200ms ease; text-align:left; font-family:inherit;
+}
+.fluency-btn.selected { background:rgba(251,191,36,0.10); border-color:var(--gold); }
+.fluency-lv { font-size:10px; letter-spacing:0.12em; color:var(--ink-faint); text-transform:uppercase; margin-bottom:6px; transition:color 200ms ease; }
+.fluency-btn.selected .fluency-lv { color:var(--gold); }
+.fluency-label { font-size:14px; font-weight:600; }
 
-  /* secondary result cards */
-  .result-others { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--s-md); margin-bottom: var(--s-xl); }
-  .result-other {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    border-radius: var(--r-lg);
-    padding: var(--s-lg);
-    opacity: 0;
-  }
-  .result-other.reveal-in { opacity: 1; animation: revealIn .4s cubic-bezier(.2,.7,.2,1) both; }
-  .result-other-head { display: flex; align-items: center; gap: var(--s-sm); margin-bottom: var(--s-md); }
-  .result-other-flag { width: 32px; height: 22px; border-radius: 4px; display: block; }
-  .result-other-name { font-size: 18px; font-weight: 700; color: var(--on-dark); letter-spacing: -0.3px; }
-  .result-other-rank { font-size: 11px; color: var(--muted); font-family: "JetBrains Mono", monospace; margin-left: auto; }
-  .result-other-tagline { font-size: 13px; color: var(--body); margin-bottom: var(--s-sm); line-height: 1.4; }
-  .result-other-pro { font-size: 12px; color: var(--muted); display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
-  .result-other-pro-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-emerald); flex-shrink: 0; margin-top: 5px; }
+/* scene 4: horizon */
+.scene-horizon { display:flex; flex-direction:column; gap:12px; max-width:820px; }
+.horizon-inner { display:flex; align-items:center; height:92px; padding:0 24px; gap:24px; }
+.horizon-idx { font-size:12px; color:var(--ink-faint); width:32px; letter-spacing:0.12em; flex-shrink:0; }
+.horizon-label { font-size:18px; font-weight:600; flex:1; letter-spacing:-0.01em; }
+.horizon-arrow { font-size:28px; font-weight:300; font-family:ui-serif,serif; color:var(--ink-faint); transition:all 240ms ease; }
+.opt-card.selected .horizon-arrow { color:var(--gold); transform:translateX(6px); }
 
-  /* mini bar inside secondary cards */
-  .other-bar-track {
-    width: 100%;
-    height: 2px;
-    background: var(--hairline);
-    border-radius: 1px;
-    margin-top: var(--s-sm);
-    overflow: hidden;
-  }
-  .other-bar-fill {
-    height: 100%;
-    width: 0;
-    background: var(--hairline-strong);
-    border-radius: 1px;
-    transition: width 480ms cubic-bezier(.2,.7,.2,1);
-  }
+/* scene 5: company */
+.scene-company { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:780px; }
+.company-inner { padding:22px; min-height:200px; display:flex; flex-direction:column; justify-content:space-between; }
+.company-people { height:64px; display:flex; align-items:center; gap:6px; }
+.people-dot { border-radius:50%; background:var(--ink-dim); transition:background 240ms ease; }
+.opt-card.selected .people-dot { background:var(--gold); }
+.company-count { font-size:10px; color:var(--ink-faint); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:6px; }
+.company-label { font-size:17px; font-weight:600; }
 
-  /* result actions */
-  .result-actions { display: flex; gap: var(--s-md); flex-wrap: wrap; }
+/* scene 6: balance */
+.scene-balance { max-width:820px; }
+.balance-scale { position:relative; height:80px; margin-bottom:24px; }
+.balance-line { position:absolute; left:0; right:0; top:50%; height:1px; background:var(--line-2); }
+.balance-lbl { position:absolute; top:50%; transform:translateY(-50%); font-size:10px; letter-spacing:0.12em; color:var(--ink-faint); background:var(--bg); text-transform:uppercase; }
+.balance-lbl-l { left:0; padding-right:12px; }
+.balance-lbl-r { right:0; padding-left:12px; }
+.balance-knob { position:absolute; top:50%; transform:translate(-50%,-50%); width:36px; height:36px; border-radius:50%; background:var(--gold); box-shadow:0 0 32px rgba(251,191,36,0.4); transition:left 480ms cubic-bezier(0.22,1,0.36,1); }
+.balance-opts { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.balance-inner { padding:18px; min-height:120px; display:flex; flex-direction:column; justify-content:flex-end; }
+.balance-label { font-size:15px; font-weight:600; line-height:1.3; }
 
-  /* restart */
-  .restart-btn {
-    background: none;
-    border: none;
-    font-family: inherit;
-    font-size: 13px;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 0;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    transition: color 120ms ease;
-  }
-  .restart-btn:hover { color: var(--body); }
+/* live rail */
+.quiz-rail {
+  position:fixed; right:28px; top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:14px; z-index:30;
+  transition:opacity 300ms ease;
+}
+.quiz-rail[hidden] { display:none; }
+.rail-caption { font-size:9px; letter-spacing:0.18em; color:var(--ink-faint); writing-mode:vertical-rl; text-transform:uppercase; align-self:center; margin-bottom:6px; }
+.rail-chip { display:flex; flex-direction:column; align-items:center; gap:6px; animation:flagIn 600ms cubic-bezier(0.34,1.56,0.64,1) both; }
+.rail-flag { width:44px; height:56px; border-radius:4px; overflow:hidden; display:flex; flex-direction:column; position:relative; box-shadow:0 8px 24px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.06); }
+.rail-badge { position:absolute; top:-6px; right:-6px; width:18px; height:18px; border-radius:50%; background:var(--gold); color:#0a0908; font-size:9px; font-weight:700; display:flex; align-items:center; justify-content:center; border:2px solid var(--bg); }
+.rail-lbl { font-size:9px; letter-spacing:0.1em; color:var(--ink-faint); text-align:center; }
 
-  /* wash overlay for restart */
-  .wash-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(240,180,41,.08);
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0;
-  }
+/* passport */
+.passport-wrap { max-width:1180px; margin:0 auto; padding:100px 32px 80px; }
+.passport-eyebrow { font-size:11px; letter-spacing:0.18em; color:var(--gold); text-transform:uppercase; font-weight:500; display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+.passport-eyebrow::before { content:''; width:24px; height:1px; background:var(--gold); }
+.passport-title { font-size:clamp(40px,5vw,60px); line-height:1.02; letter-spacing:-0.03em; font-weight:700; margin:0 0 12px; color:var(--ink); }
+.passport-sub { font-size:17px; color:var(--ink-dim); max-width:540px; margin-bottom:56px; }
+.passport-card { perspective:1600px; position:relative; }
+.passport-spread {
+  width:100%; display:grid; grid-template-columns:1fr 1fr;
+  border-radius:8px; overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.05);
+}
+.passport-left {
+  background:linear-gradient(135deg,#1a1816 0%,#0f0e0c 100%);
+  border-right:1px solid rgba(255,255,255,0.04); padding:36px;
+  position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; min-height:460px;
+}
+.passport-security { position:absolute; inset:0; pointer-events:none; opacity:0.04; background:repeating-linear-gradient(45deg,var(--gold) 0 1px,transparent 1px 14px),repeating-linear-gradient(-45deg,var(--gold) 0 1px,transparent 1px 14px); }
+.pp-header { position:relative; }
+.pp-label { font-size:10px; letter-spacing:0.2em; color:var(--gold); margin-bottom:14px; }
+.pp-republic { font-size:11px; letter-spacing:0.16em; color:var(--ink-faint); text-transform:uppercase; font-weight:500; }
+.pp-flag { width:100%; aspect-ratio:3/2; max-height:200px; border-radius:4px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 12px 32px rgba(0,0,0,0.5); margin:16px 0; }
+.pp-iso-lbl { font-size:10px; letter-spacing:0.16em; color:var(--ink-faint); margin-bottom:4px; }
+.pp-iso { font-size:56px; font-weight:700; letter-spacing:-0.04em; color:var(--ink); line-height:1; }
+.passport-right {
+  background:linear-gradient(135deg,#f4f1eb 0%,#e8e4dc 100%); color:#1a1816;
+  padding:36px; display:flex; flex-direction:column; position:relative; overflow:hidden; min-height:460px;
+}
+.pp-grain { position:absolute; inset:0; pointer-events:none; opacity:0.03; background:repeating-linear-gradient(0deg,#000 0 1px,transparent 1px 4px); }
+.pp-mrz { position:relative; display:flex; justify-content:space-between; margin-bottom:28px; font-size:9px; letter-spacing:0.2em; color:rgba(26,24,22,0.5); }
+.pp-rows { position:relative; flex:1; }
+.pp-row { display:grid; grid-template-columns:120px 1fr; gap:12px; padding:12px 0; border-bottom:1px solid rgba(26,24,22,0.08); opacity:0; transform:translateY(8px); transition:opacity 420ms cubic-bezier(0.22,1,0.36,1),transform 420ms cubic-bezier(0.22,1,0.36,1); }
+.pp-row:last-child { border-bottom:none; }
+.pp-row.visible { opacity:1; transform:translateY(0); }
+.pp-row-key { font-size:9px; letter-spacing:0.14em; color:rgba(26,24,22,0.45); padding-top:4px; }
+.pp-row-val { font-size:13px; font-weight:500; letter-spacing:0.02em; }
+.pp-stamp { position:absolute; bottom:28px; right:28px; border-radius:4px; padding:8px 14px; border-width:2.5px; border-style:solid; animation:stampDrop 700ms cubic-bezier(0.22,1,0.36,1) 1100ms both; }
+.pp-stamp-text { font-size:10px; letter-spacing:0.18em; font-weight:600; text-transform:uppercase; line-height:1.1; }
 
-  /* ---- progress segments ---- */
-  .progress-segments {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px var(--s-lg);
-    background: var(--canvas);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .seg-wrap {
-    flex: 1;
-    position: relative;
-  }
-  .seg-track {
-    width: 100%;
-    height: 2px;
-    background: var(--hairline);
-    border-radius: 1px;
-    overflow: hidden;
-    position: relative;
-  }
-  .seg-fill {
-    height: 100%;
-    width: 0;
-    background: var(--primary);
-    border-radius: 1px;
-    transition: width 320ms cubic-bezier(.2,.7,.2,1);
-  }
-  .seg-wrap.active .seg-fill { width: 40%; }
-  .seg-wrap.active .seg-track::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(240,180,41,.35) 50%, transparent 100%);
-    animation: shimmer 1.6s linear infinite;
-  }
-  .seg-wrap.done .seg-fill { width: 100%; }
-  .seg-dot {
-    position: absolute;
-    top: 50%;
-    right: -5px;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--hairline);
-    border: 1.5px solid var(--hairline);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 320ms ease, border-color 320ms ease;
-  }
-  .seg-wrap.done .seg-dot {
-    background: var(--primary);
-    border-color: var(--primary);
-  }
-  .seg-check {
-    width: 6px;
-    height: 6px;
-    display: block;
-    opacity: 0;
-    transition: opacity 80ms 200ms ease;
-  }
-  .seg-wrap.done .seg-check { opacity: 1; }
-  .seg-check polyline {
-    stroke-dasharray: 18;
-    stroke-dashoffset: 18;
-  }
-  .seg-wrap.done .seg-check polyline {
-    animation: checkDraw 280ms cubic-bezier(.2,.7,.2,1) 220ms both;
-  }
+/* runners */
+.runners-section { margin-top:64px; }
+.runners-eyebrow { font-size:11px; letter-spacing:0.18em; color:var(--ink-faint); text-transform:uppercase; font-weight:500; display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+.runners-eyebrow::before { content:''; width:24px; height:1px; background:var(--ink-faint); }
+.runners-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.runner-card { background:var(--bg-2); border:1px solid var(--line); border-radius:14px; padding:22px; display:flex; gap:18px; align-items:center; }
+.runner-flag { width:52px; height:68px; border-radius:4px; overflow:hidden; display:flex; flex-direction:column; flex-shrink:0; box-shadow:0 8px 18px rgba(0,0,0,0.4); }
+.runner-match { font-size:10px; letter-spacing:0.14em; color:var(--gold); margin-bottom:4px; }
+.runner-name { font-size:18px; font-weight:600; margin-bottom:2px; }
+.runner-tagline { font-size:13px; color:var(--ink-dim); }
 
-  /* ---- intro animated entrance ---- */
-  .intro-animated .intro-label { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 0ms; }
-  .intro-animated .intro-title { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 80ms; }
-  .intro-animated .intro-sub   { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 160ms; }
-  .intro-animated .intro-meta  { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 240ms; }
-  .intro-animated .btn         { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: 320ms; }
-  .intro-meta-item .meta-dot { animation: dotPulse 2.4s ease-in-out infinite; }
-  .intro-meta-item:nth-child(2) .meta-dot { animation-delay: .8s; }
-  .intro-meta-item:nth-child(3) .meta-dot { animation-delay: 1.6s; }
+/* actions */
+.result-actions { margin-top:56px; display:flex; gap:14px; flex-wrap:wrap; }
+.btn-gold { background:var(--gold); border:none; color:#0a0908; padding:14px 28px; border-radius:999px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit; box-shadow:0 4px 24px rgba(251,191,36,0.25); }
+.btn-outline { background:transparent; border:1px solid var(--line-2); color:var(--ink); padding:14px 28px; border-radius:999px; font-size:14px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; font-family:inherit; }
 
-  /* intro floating flags */
-  .intro-flags {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-lg);
-    opacity: 0.15;
-    pointer-events: none;
-  }
-  .intro-float-flag {
-    width: 60px;
-    height: 42px;
-    border-radius: 6px;
-    animation: float 6s ease-in-out infinite;
-  }
+/* restart wash */
+.wash { position:fixed; inset:0; background:rgba(240,180,41,.08); pointer-events:none; z-index:999; opacity:0; }
 
-  /* ---- result reveal helpers ---- */
-  .reveal-in   { animation: revealIn    .4s cubic-bezier(.2,.7,.2,1) both; }
-  .reveal-flag { animation: revealFlagIn .36s cubic-bezier(.2,.7,.2,1) both; }
-  .reveal-badge { animation: badgeFlip  .32s cubic-bezier(.2,.7,.2,1) both; }
+/* keyframes */
+@keyframes sceneIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes selectedPop { 0%{transform:translateY(0) scale(1)} 35%{transform:translateY(-2px) scale(1.04)} 100%{transform:translateY(-2px) scale(1.02)} }
+@keyframes flagIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes orbit { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes stampDrop { 0%{opacity:0;transform:rotate(-8deg) scale(2)} 60%{opacity:1;transform:rotate(-12deg) scale(0.98)} 100%{opacity:0.92;transform:rotate(-12deg) scale(1)} }
+@keyframes washIn { from{opacity:0} to{opacity:1} }
+@keyframes washOut { from{opacity:1} to{opacity:0} }
 
-  /* ---- keyframes ---- */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(24px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-24px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes slideOutLeft {
-    from { opacity: 1; transform: translateX(0); }
-    to   { opacity: 0; transform: translateX(-24px); }
-  }
-  @keyframes slideOutRight {
-    from { opacity: 1; transform: translateX(0); }
-    to   { opacity: 0; transform: translateX(24px); }
-  }
-  @keyframes selectedPulse {
-    0%   { background-color: rgba(240,180,41,.22); }
-    100% { background-color: rgba(240,180,41,.06); }
-  }
-  @keyframes dotPulse {
-    0%, 100% { transform: scale(1); }
-    50%       { transform: scale(1.5); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-5px); }
-  }
-  @keyframes shimmer {
-    0%   { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
-  }
-  @keyframes checkDraw {
-    from { stroke-dashoffset: 18; }
-    to   { stroke-dashoffset: 0; }
-  }
-  @keyframes badgeFlip {
-    from { opacity: 0; transform: rotateX(90deg); }
-    to   { opacity: 1; transform: rotateX(0); }
-  }
-  @keyframes revealIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes revealFlagIn {
-    from { opacity: 0; transform: scale(.88); }
-    to   { opacity: 1; transform: scale(1); }
-  }
-  @keyframes btnPulse {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(1.04); }
-    100% { transform: scale(1); }
-  }
-  @keyframes washIn  { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes washOut { from { opacity: 1; } to { opacity: 0; } }
-
-  /* ---- responsive ---- */
-  @media (max-width: 640px) {
-    .intro-title { font-size: 32px; }
-    .question-text { font-size: 22px; }
-    .options-grid { grid-template-columns: 1fr; }
-    .result-top { grid-template-columns: auto 1fr; }
-    .result-score { display: none; }
-    .result-others { grid-template-columns: 1fr; }
-    .seg-dot { display: none; }
-    .progress-segments { gap: 3px; padding: 8px var(--s-md); }
-  }
-  @media (max-width: 900px) {
-    .intro-flags { display: none; }
-  }
-
-  /* ---- reduced motion ---- */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: .01ms !important;
-      animation-delay: .01ms !important;
-      transition-duration: .01ms !important;
-    }
-  }
-
+/* responsive */
+@media(max-width:1024px) {
+  .quiz-rail{display:none!important}
+  .hero-grid{grid-template-columns:1fr;padding:100px 32px 60px}
+  .hero-visual{height:320px;transform:scale(0.75);transform-origin:center center}
+  .passport-spread{grid-template-columns:1fr}
+  .runners-grid{grid-template-columns:1fr}
+  .passport-left,.passport-right{min-height:unset}
+  .pp-flag{max-height:140px}
+}
+@media(max-width:640px) {
+  .scene-wrap{padding:96px 20px 60px}
+  .scene-shapes{grid-template-columns:1fr}
+  .scene-sectors{grid-template-columns:1fr 1fr}
+  .scene-company{grid-template-columns:1fr}
+  .fluency-opts{grid-template-columns:1fr 1fr}
+  .fluency-meter{display:none}
+  .hero-grid{padding:90px 20px 40px}
+  .passport-wrap{padding:80px 20px 60px}
+  .result-actions{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:.01ms!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
-<!-- ============== NAV ============== -->
 <nav class="top-nav">
   <div class="container">
     <a class="logo" href="home.html">
-      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
       <span>Rota Legal</span>
     </a>
     <div class="nav-links">
       <a class="nav-link" href="paises.html">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
-      <a class="nav-link" href="qual-pais.html" style="color: var(--on-dark);">Qual país?</a>
+      <a class="nav-link" href="qual-pais.html" style="color:var(--on-dark);">Qual país?</a>
+      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
       <a class="nav-link" href="historico.html">Histórico</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
@@ -637,12 +339,11 @@
       <a class="btn btn-secondary" href="paises.html">Ver todos</a>
       <a class="btn btn-primary" href="comparar.html">Comparar</a>
     </div>
-      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<!-- ============== MOBILE DRAWER ============== -->
 <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
   <div class="mobile-drawer-backdrop" data-close></div>
   <aside class="mobile-drawer-panel">
@@ -655,6 +356,7 @@
       <a href="paises.html">Países</a>
       <a href="comparar.html">Comparar</a>
       <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
       <a href="calculadora.html">Calculadora</a>
       <a href="historico.html">Histórico</a>
       <a href="sobre.html">Sobre</a>
@@ -666,487 +368,23 @@
   </aside>
 </div>
 
-<!-- ============== PROGRESS SEGMENTS ============== -->
-<div class="progress-segments" id="progress-segments" aria-hidden="true">
-  <div class="seg-wrap" data-seg="1">
-    <div class="seg-track"><div class="seg-fill"></div></div>
-    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-  <div class="seg-wrap" data-seg="2">
-    <div class="seg-track"><div class="seg-fill"></div></div>
-    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-  <div class="seg-wrap" data-seg="3">
-    <div class="seg-track"><div class="seg-fill"></div></div>
-    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-  <div class="seg-wrap" data-seg="4">
-    <div class="seg-track"><div class="seg-fill"></div></div>
-    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-  <div class="seg-wrap" data-seg="5">
-    <div class="seg-track"><div class="seg-fill"></div></div>
-    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-  <div class="seg-wrap" data-seg="6">
-    <div class="seg-track"><div class="seg-fill"></div></div>
-    <div class="seg-dot"><svg class="seg-check" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-</div>
+<div class="quiz-progress" aria-hidden="true"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+<div class="quiz-atmosphere" id="quiz-atmosphere" aria-hidden="true"></div>
 
-<!-- ============== APP ============== -->
 <div class="quiz-shell">
+  <aside class="quiz-rail mono" id="quiz-rail" aria-live="polite" aria-label="Match parcial" hidden></aside>
   <div id="app"></div>
 </div>
 
-<script>
-// ---- dados ----
-
-const QUESTIONS = [
-  {
-    id: 'status',
-    q: 'Qual é sua situação profissional hoje?',
-    options: [
-      { id: 'employee',  label: 'Empregado com contrato formal',    scores: { de:2, nl:2, ie:1, pt:1 } },
-      { id: 'freelancer',label: 'Freelancer ou autônomo',           scores: { pt:3, nl:2, ie:2, es:1 } },
-      { id: 'founder',   label: 'Empreendedor ou sócio de empresa', scores: { nl:3, pt:2, ie:2, de:1 } },
-      { id: 'graduate',  label: 'Estudante ou recém-formado',       scores: { nl:3, de:2, ie:2, pt:1 } },
-    ],
-  },
-  {
-    id: 'area',
-    q: 'Em que área você trabalha?',
-    options: [
-      { id: 'tech',        label: 'TI e tecnologia',                 scores: { de:3, nl:2, ie:3, au:2, pt:1 } },
-      { id: 'health',      label: 'Saúde (médico, enfermeiro...)',    scores: { de:3, pt:2, es:2, ie:2 } },
-      { id: 'engineering', label: 'Engenharia e construção',          scores: { de:3, nl:2, at:2, au:2 } },
-      { id: 'hospitality', label: 'Gastronomia e hospitalidade',      scores: { es:3, pt:2, it:2, ie:1 } },
-      { id: 'research',    label: 'Educação e pesquisa',              scores: { nl:3, de:2, pt:1, fr:1 } },
-      { id: 'other',       label: 'Outra área',                       scores: { pt:2, nl:1, de:1, es:1 } },
-    ],
-  },
-  {
-    id: 'english',
-    q: 'Como está seu inglês?',
-    options: [
-      { id: 'fluent',   label: 'Fluente ou avançado',              scores: { ie:3, nl:3, au:3, de:1 } },
-      { id: 'workable', label: 'Consigo trabalhar em inglês',       scores: { nl:2, ie:2, au:2, de:1, pt:1 } },
-      { id: 'basic',    label: 'Básico ou ainda aprendendo',        scores: { pt:3, es:3, it:2 } },
-      { id: 'none',     label: 'Prefiro evitar o inglês',           scores: { pt:3, es:3, it:2, fr:2 } },
-    ],
-  },
-  {
-    id: 'goal',
-    q: 'Qual é seu objetivo principal?',
-    options: [
-      { id: 'job',       label: 'Conseguir emprego formal logo',        scores: { de:3, nl:2, ie:2, au:1 } },
-      { id: 'business',  label: 'Abrir meu próprio negócio',           scores: { nl:3, pt:2, ie:2, de:1 } },
-      { id: 'temporary', label: 'Experiência temporária (1-2 anos)',    scores: { au:3, nl:2, ie:2, pt:2 } },
-      { id: 'permanent', label: 'Fixar residência e buscar cidadania',  scores: { de:3, pt:3, nl:2 } },
-    ],
-  },
-  {
-    id: 'family',
-    q: 'Você vai levar família junto?',
-    options: [
-      { id: 'alone',      label: 'Não, vou sozinho(a)',               scores: { ie:2, nl:2, au:2, pt:2 } },
-      { id: 'partner',    label: 'Sim, cônjuge ou parceiro(a)',        scores: { de:2, nl:2, pt:2, es:1 } },
-      { id: 'fullFamily', label: 'Sim, família com filhos',            scores: { de:3, nl:2, pt:2, fr:1 } },
-    ],
-  },
-  {
-    id: 'finance',
-    q: 'Qual é sua prioridade financeira?',
-    options: [
-      { id: 'lowCost',   label: 'Custo de vida mais baixo possível', scores: { pt:3, es:3, it:2 } },
-      { id: 'balanced',  label: 'Equilíbrio entre renda e custo',    scores: { nl:2, de:2, ie:2, pt:1 } },
-      { id: 'highSalary',label: 'Salário alto (aceito custo alto)',   scores: { de:3, nl:2, ie:3, au:2 } },
-    ],
-  },
-];
-
-const COUNTRY_META = {
-  nl: {
-    name: 'Holanda', flag: 'nl',
-    tagline: 'Hub tecnológico com mercado aberto a estrangeiros',
-    pros: ['Forte demanda por TI e startups', 'Inglês amplamente aceito no trabalho', 'Ano de orientação para recém-formados'],
-    con: 'Custo de moradia elevado, especialmente em Amsterdam',
-    detailUrl: 'pais-nl.html',
-  },
-  de: {
-    name: 'Alemanha', flag: 'de',
-    tagline: 'Maior mercado de trabalho da Europa',
-    pros: ['Salários entre os mais altos da região', 'Chancenkarte para busca de emprego', 'Caminho rápido para residência permanente'],
-    con: 'Alemão necessário para integração real no mercado',
-    detailUrl: 'paises.html',
-  },
-  pt: {
-    name: 'Portugal', flag: 'pt',
-    tagline: 'Porta de entrada da Europa sem barreira de idioma',
-    pros: ['Sem barreira de idioma para brasileiros', 'Custo de vida menor que Europa Central', 'Tech Visa e opção de trabalho remoto'],
-    con: 'Salários entre os mais baixos da Europa Ocidental',
-    detailUrl: 'paises.html',
-  },
-  es: {
-    name: 'Espanha', flag: 'es',
-    tagline: 'Cultura próxima e mercado em crescimento',
-    pros: ['Idioma próximo do português', 'Custo de vida moderado', 'Forte em turismo, gastronomia e agricultura'],
-    con: 'Burocracia mais complexa para estrangeiros não-UE',
-    detailUrl: 'paises.html',
-  },
-  ie: {
-    name: 'Irlanda', flag: 'ie',
-    tagline: 'Sede europeia das grandes techs, em inglês',
-    pros: ['Inglês como língua de trabalho', 'Sede europeia de Google, Meta e Apple', 'Mercado de TI muito ativo'],
-    con: 'Custo de habitação em Dublin entre os mais altos da Europa',
-    detailUrl: 'paises.html',
-  },
-  fr: {
-    name: 'França', flag: 'fr',
-    tagline: 'Economia diversificada no coração da Europa',
-    pros: ['Grande mercado consumidor', 'Polo de moda, gastronomia e luxo', 'Acesso a toda a zona Schengen'],
-    con: 'Francês é quase obrigatório para trabalho e integração',
-    detailUrl: 'paises.html',
-  },
-  it: {
-    name: 'Itália', flag: 'it',
-    tagline: 'Custo de vida variado e idioma próximo',
-    pros: ['Sul da Itália com custo de vida acessível', 'Idioma próximo do português', 'Forte em gastronomia, moda e manufatura'],
-    con: 'Mercado de trabalho menos dinâmico para estrangeiros',
-    detailUrl: 'paises.html',
-  },
-  be: {
-    name: 'Bélgica', flag: 'be',
-    tagline: 'Centro administrativo da União Europeia',
-    pros: ['Sede de instituições da UE e OTANs', 'Trilíngue: francês, neerlandês e alemão', 'Localização central na Europa'],
-    con: 'Mercado de trabalho menor, concorrência alta',
-    detailUrl: 'paises.html',
-  },
-  at: {
-    name: 'Áustria', flag: 'at',
-    tagline: 'Qualidade de vida entre as mais altas da Europa',
-    pros: ['Índices de qualidade de vida excelentes', 'Forte em engenharia e manufatura', 'Acesso aos mercados da Europa Central'],
-    con: 'Alemão obrigatório para a maioria das vagas',
-    detailUrl: 'paises.html',
-  },
-  au: {
-    name: 'Austrália', flag: 'au',
-    tagline: 'Mercado anglófono com salários altos',
-    pros: ['Working Holiday Visa disponível', 'Salários entre os mais altos do mundo', 'Grande demanda em engenharia, saúde e TI'],
-    con: 'Distância do Brasil e fora do mercado europeu',
-    detailUrl: 'paises.html',
-  },
-};
-
-// ---- estado ----
-let step = 0;
-let slideDir = 1;
-const answers = {};
-let autoAdvanceTimer = null;
-
-// ---- pontuação ----
-function calcScores() {
-  const scores = {};
-  for (const code of Object.keys(COUNTRY_META)) scores[code] = 0;
-  for (const q of QUESTIONS) {
-    const sel = answers[q.id];
-    if (!sel) continue;
-    const opt = q.options.find(o => o.id === sel);
-    if (!opt) continue;
-    for (const [code, pts] of Object.entries(opt.scores)) {
-      scores[code] = (scores[code] || 0) + pts;
-    }
-  }
-  return Object.entries(scores).sort((a, b) => b[1] - a[1]);
-}
-
-// ---- navegação com slide direcional ----
-function goTo(target) {
-  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
-  slideDir = target >= step ? 1 : -1;
-  const app = document.getElementById('app');
-  const outClass = slideDir > 0 ? 'slide-out-left' : 'slide-out-right';
-  const inClass  = slideDir > 0 ? 'slide-in-right' : 'slide-in-left';
-  app.classList.add(outClass);
-  app.addEventListener('animationend', function handler() {
-    app.removeEventListener('animationend', handler);
-    app.classList.remove(outClass);
-    step = target;
-    render();
-    requestAnimationFrame(() => {
-      app.classList.add(inClass);
-      app.addEventListener('animationend', () => app.classList.remove(inClass), { once: true });
-    });
-  }, { once: true });
-}
-
-function selectOption(qId, optId) {
-  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
-  const wasEmpty = !answers[qId];
-  answers[qId] = optId;
-  render();
-  if (wasEmpty) {
-    const btn = document.querySelector('.step-next');
-    if (btn) {
-      btn.classList.add('btn-pulse');
-      btn.addEventListener('animationend', () => btn.classList.remove('btn-pulse'), { once: true });
-    }
-  }
-  const currentQIndex = QUESTIONS.findIndex(q => q.id === qId);
-  const nextStep = currentQIndex + 1 < QUESTIONS.length ? currentQIndex + 2 : QUESTIONS.length + 1;
-  autoAdvanceTimer = setTimeout(() => { autoAdvanceTimer = null; goTo(nextStep); }, 480);
-}
-
-// ---- cursor follow ----
-function initCursorFollow() {
-  document.querySelectorAll('.opt-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-    });
-  });
-}
-
-// ---- barra de progresso segmentada ----
-function updateProgress() {
-  document.querySelectorAll('.seg-wrap').forEach((seg, i) => {
-    const n = i + 1;
-    seg.classList.remove('done', 'active');
-    if (step > n) seg.classList.add('done');
-    else if (step === n) seg.classList.add('active');
-  });
-}
-
-// ---- render intro ----
-function renderIntro() {
-  return `
-    <div class="intro-wrap">
-      <div class="container" style="position:relative">
-        <div class="intro-flags" aria-hidden="true">
-          <span class="intro-float-flag flag-nl" style="animation-delay:0s"></span>
-          <span class="intro-float-flag flag-pt" style="animation-delay:.8s"></span>
-          <span class="intro-float-flag flag-de" style="animation-delay:1.6s"></span>
-        </div>
-        <div class="intro-inner intro-animated">
-          <span class="intro-label">Descubra</span>
-          <h1 class="intro-title">Qual país combina com você?</h1>
-          <p class="intro-sub">Responda 6 perguntas sobre seu perfil e objetivos. O sistema cruza suas respostas com os dados reais de 10 países e indica as melhores opções.</p>
-          <div class="intro-meta">
-            <span class="intro-meta-item"><span class="meta-dot"></span>6 perguntas</span>
-            <span class="intro-meta-item"><span class="meta-dot"></span>Menos de 2 minutos</span>
-            <span class="intro-meta-item"><span class="meta-dot"></span>Top 3 países com justificativa</span>
-          </div>
-          <button class="btn btn-primary" onclick="goTo(1)">Começar →</button>
-        </div>
-      </div>
-    </div>`;
-}
-
-// ---- render pergunta ----
-function renderQuestion(qIndex) {
-  const q = QUESTIONS[qIndex - 1];
-  const selected = answers[q.id];
-  const hasSelection = !!selected;
-
-  const opts = q.options.map((opt, i) => `
-    <button
-      role="radio"
-      aria-checked="${selected === opt.id ? 'true' : 'false'}"
-      class="opt-card${selected === opt.id ? ' selected' : ''}"
-      style="animation-delay:${Math.min(i, 5) * 60}ms"
-      onclick="selectOption('${q.id}', '${opt.id}')"
-    >
-      <span class="opt-marker">
-        ${selected === opt.id ? `<svg class="check-svg" viewBox="0 0 12 12" fill="none"><polyline class="check-line" points="2,6 5,9 10,3" stroke="var(--canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ''}
-      </span>
-      <span class="opt-label">${opt.label}</span>
-    </button>
-  `).join('');
-
-  return `
-    <div class="question-wrap">
-      <div class="container" style="display:flex;flex-direction:column;height:100%;flex:1">
-        <div class="question-label">Pergunta ${qIndex} de ${QUESTIONS.length}</div>
-        <h2 class="question-text">${q.q}</h2>
-        <div class="options-grid" role="radiogroup" aria-label="${q.q}">${opts}</div>
-        <p class="auto-hint">Selecionar avança automaticamente</p>
-        <div class="step-nav">
-          <button class="step-back" onclick="goTo(${qIndex > 1 ? qIndex - 1 : 0})">← Voltar</button>
-          <button
-            class="btn btn-primary step-next"
-            onclick="goTo(${qIndex < QUESTIONS.length ? qIndex + 1 : QUESTIONS.length + 1})"
-            ${!hasSelection ? 'disabled' : ''}
-          >${qIndex < QUESTIONS.length ? 'Próxima →' : 'Ver resultado →'}</button>
-        </div>
-      </div>
-    </div>`;
-}
-
-// ---- render resultado ----
-function renderResult() {
-  const ranked = calcScores();
-  const maxScore = ranked[0][1] || 1;
-  const top3 = ranked.slice(0, 3).map(([code, score]) => ({ code, score, ...COUNTRY_META[code] }));
-  const [first, second, third] = top3;
-
-  function prosList(pros) {
-    return pros.map(p => `
-      <div class="result-pro">
-        <span class="result-pro-dot"></span>
-        <span>${p}</span>
-      </div>`).join('');
-  }
-
-  function othersCard(c, rank) {
-    const pct = Math.round((c.score / maxScore) * 100);
-    return `
-      <div class="result-other">
-        <div class="result-other-head">
-          <span class="result-other-flag flag-${c.flag}"></span>
-          <span class="result-other-name">${c.name}</span>
-          <span class="result-other-rank">#${rank}</span>
-        </div>
-        <p class="result-other-tagline">${c.tagline}</p>
-        ${c.pros.slice(0,2).map(p => `
-          <div class="result-other-pro">
-            <span class="result-other-pro-dot"></span>
-            <span>${p}</span>
-          </div>`).join('')}
-        <div class="other-bar-track"><div class="other-bar-fill" data-pct="${pct}"></div></div>
-        <div style="margin-top:var(--s-md);">
-          <a href="${c.detailUrl}" class="body-sm" style="color:var(--primary);text-decoration:underline;text-underline-offset:2px;">ver detalhe →</a>
-        </div>
-      </div>`;
-  }
-
-  const firstPct = Math.round((first.score / maxScore) * 100);
-
-  return `
-    <div class="result-wrap">
-      <div class="container">
-        <span class="result-label">Resultado</span>
-        <h2 class="result-title">Com base no seu perfil, o destino mais indicado é:</h2>
-
-        <div class="result-top" onclick="window.location='${first.detailUrl}'">
-          <span class="result-top-flag flag-${first.flag}" id="rt-flag"></span>
-          <div class="result-top-body">
-            <span class="result-top-badge" id="rt-badge">Melhor correspondência</span>
-            <p class="result-top-name" id="rt-name">${first.name}</p>
-            <p class="result-top-tagline">${first.tagline}</p>
-            <div class="result-pros" id="rt-pros">${prosList(first.pros)}</div>
-            <div class="result-con">
-              <span class="result-con-label">Atenção:</span>
-              <span>${first.con}</span>
-            </div>
-          </div>
-          <div class="result-score">
-            <span class="result-score-num" id="rt-score-num" data-target="${first.score}">0</span>
-            <span class="result-score-label">pontos</span>
-            <a href="${first.detailUrl}" class="btn btn-secondary" style="font-size:13px;padding:8px 16px;margin-top:var(--s-md);" onclick="event.stopPropagation()">Ver detalhe →</a>
-          </div>
-        </div>
-        <div class="match-bar-track"><div class="match-bar-fill" id="match-bar" data-pct="${firstPct}"></div></div>
-
-        ${(second || third) ? `
-          <p style="font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.5px;margin:var(--s-xl) 0 var(--s-md);">TAMBÉM COMPATÍVEIS</p>
-          <div class="result-others">
-            ${second ? othersCard(second, 2) : ''}
-            ${third  ? othersCard(third,  3) : ''}
-          </div>
-        ` : ''}
-
-        <div class="result-actions">
-          <a class="btn btn-primary" href="comparar.html?cc=${top3.map(c=>c.code).join(',')}">Comparar esses países</a>
-          <a class="btn btn-secondary" href="paises.html">Ver todos os países</a>
-          <button class="restart-btn" onclick="restart()">Refazer questionário</button>
-        </div>
-      </div>
-    </div>`;
-}
-
-// ---- animação de contagem do score ----
-function animateScore(el, target) {
-  const start = performance.now();
-  const dur = 700;
-  function tick(now) {
-    const t = Math.min((now - start) / dur, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = Math.round(eased * target);
-    if (t < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-// ---- revelação encadeada do resultado ----
-function revealResult() {
-  const el = id => document.getElementById(id);
-  const delay = (fn, ms) => setTimeout(fn, ms);
-  delay(() => { const f = el('rt-flag');  if (f) f.classList.add('reveal-flag');  }, 200);
-  delay(() => { const n = el('rt-name');  if (n) n.classList.add('reveal-in');    }, 360);
-  delay(() => { const b = el('rt-badge'); if (b) b.classList.add('reveal-badge'); }, 540);
-  delay(() => {
-    document.querySelectorAll('#rt-pros .result-pro').forEach((p, i) =>
-      setTimeout(() => p.classList.add('reveal-in'), i * 80));
-  }, 700);
-  delay(() => {
-    const s = el('rt-score-num');
-    if (s) animateScore(s, parseInt(s.dataset.target, 10));
-  }, 900);
-  delay(() => {
-    const bar = el('match-bar');
-    if (bar) bar.style.width = bar.dataset.pct + '%';
-  }, 1400);
-  delay(() => {
-    document.querySelectorAll('.result-other').forEach((o, i) =>
-      setTimeout(() => o.classList.add('reveal-in'), i * 100));
-    document.querySelectorAll('.other-bar-fill').forEach((b, i) =>
-      setTimeout(() => { b.style.width = b.dataset.pct + '%'; }, i * 100 + 220));
-  }, 1600);
-}
-
-// ---- reiniciar com wash ----
-function restart() {
-  const wash = document.createElement('div');
-  wash.className = 'wash-overlay';
-  document.body.appendChild(wash);
-  wash.style.animation = 'washIn 180ms ease forwards';
-  setTimeout(() => {
-    for (const k of Object.keys(answers)) delete answers[k];
-    wash.style.animation = 'washOut 180ms ease forwards';
-    wash.addEventListener('animationend', () => wash.remove(), { once: true });
-    goTo(0);
-  }, 220);
-}
-
-// ---- render principal ----
-function render() {
-  const app = document.getElementById('app');
-  if (step === 0) {
-    app.innerHTML = renderIntro();
-  } else if (step <= QUESTIONS.length) {
-    app.innerHTML = renderQuestion(step);
-    initCursorFollow();
-  } else {
-    app.innerHTML = renderResult();
-    revealResult();
-  }
-  updateProgress();
-}
-
-render();
-</script>
-
-<!-- ============== FOOTER ============== -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
-          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+        <a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
           <span>Rota Legal</span>
         </a>
-        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+        <p class="body-sm" style="max-width:300px;color:var(--muted);">
           Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
           Dados de fontes oficiais, atualizados todo mês.
         </p>
@@ -1182,18 +420,596 @@ render();
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">JSON direto</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
-      <span class="caption-up">Última extração: abr/2026</span>
+      <span class="caption-up">Última extração: mai/2026</span>
     </div>
   </div>
 </footer>
+
+<script>
+// ---- dados dos países ----
+const COUNTRY_META = {
+  nl: {
+    name:'Países Baixos', tagline:'Hub tecnológico com mercado aberto a estrangeiros',
+    capital:'Amsterdam', visa:'Highly Skilled Migrant', citizenship:'5 anos',
+    accent:'#FF6B35', flagStripes:['#AE1C28','#FFFFFF','#21468B'],
+    pros:['Forte demanda por TI e startups','Inglês amplamente aceito no trabalho','Ano de orientação para recém-formados'],
+    con:'Custo de moradia elevado, especialmente em Amsterdã',
+  },
+  de: {
+    name:'Alemanha', tagline:'Maior mercado de trabalho da Europa',
+    capital:'Berlim', visa:'Blue Card / Chancenkarte', citizenship:'5 anos',
+    accent:'#DD0000', flagStripes:['#000000','#DD0000','#FFCE00'],
+    pros:['Salários entre os mais altos da região','Chancenkarte para busca de emprego','Caminho rápido para residência permanente'],
+    con:'Alemão necessário para integração real no mercado',
+  },
+  pt: {
+    name:'Portugal', tagline:'Porta de entrada da Europa sem barreira de idioma',
+    capital:'Lisboa', visa:'D7 / D8 Nômade Digital', citizenship:'5 anos',
+    accent:'#16A34A', flagStripes:['#046A38','#DA291C'],
+    pros:['Sem barreira de idioma para brasileiros','Custo de vida menor que Europa Central','Tech Visa e opção de trabalho remoto'],
+    con:'Salários entre os mais baixos da Europa Ocidental',
+  },
+  es: {
+    name:'Espanha', tagline:'Cultura próxima e mercado em crescimento',
+    capital:'Madrid', visa:'Nômade Digital', citizenship:'10 anos (2 p/ ibero)',
+    accent:'#F1BF00', flagStripes:['#AA151B','#F1BF00'],
+    pros:['Idioma próximo do português','Custo de vida moderado','Forte em turismo, gastronomia e agricultura'],
+    con:'Burocracia mais complexa para estrangeiros não-UE',
+  },
+  ie: {
+    name:'Irlanda', tagline:'Sede europeia das grandes techs, em inglês',
+    capital:'Dublin', visa:'Critical Skills', citizenship:'5 anos',
+    accent:'#169B62', flagStripes:['#169B62','#FFFFFF','#FF883E'],
+    pros:['Inglês como língua de trabalho','Sede europeia de Google, Meta e Apple','Mercado de TI muito ativo'],
+    con:'Custo de habitação em Dublin entre os mais altos da Europa',
+  },
+  fr: {
+    name:'França', tagline:'Economia diversificada no coração da Europa',
+    capital:'Paris', visa:'Passeport Talent', citizenship:'5 anos',
+    accent:'#0055A4', flagStripes:['#0055A4','#FFFFFF','#EF4135'],
+    pros:['Grande mercado consumidor','Polo de moda, gastronomia e luxo','Acesso a toda a zona Schengen'],
+    con:'Francês é quase obrigatório para trabalho e integração',
+  },
+  it: {
+    name:'Itália', tagline:'Custo de vida variado e idioma próximo',
+    capital:'Roma', visa:'Lavoro / Nômade', citizenship:'10 anos (descend.)',
+    accent:'#008C45', flagStripes:['#008C45','#F4F5F0','#CD212A'],
+    pros:['Sul da Itália com custo de vida acessível','Idioma próximo do português','Forte em gastronomia, moda e manufatura'],
+    con:'Mercado de trabalho menos dinâmico para estrangeiros',
+  },
+  be: {
+    name:'Bélgica', tagline:'Centro administrativo da União Europeia',
+    capital:'Bruxelas', visa:'Single Permit', citizenship:'5 anos',
+    accent:'#FAE042', flagStripes:['#000000','#FAE042','#ED2939'],
+    pros:['Sede de instituições da UE','Trilíngue: francês, neerlandês e alemão','Localização central na Europa'],
+    con:'Mercado de trabalho menor, concorrência alta',
+  },
+  at: {
+    name:'Áustria', tagline:'Qualidade de vida entre as mais altas da Europa',
+    capital:'Viena', visa:'Rot-Weiß-Rot Karte', citizenship:'10 anos',
+    accent:'#ED2939', flagStripes:['#ED2939','#FFFFFF','#ED2939'],
+    pros:['Índices de qualidade de vida excelentes','Forte em engenharia e manufatura','Acesso aos mercados da Europa Central'],
+    con:'Alemão obrigatório para a maioria das vagas',
+  },
+  au: {
+    name:'Austrália', tagline:'Mercado anglófono com salários altos',
+    capital:'Canberra', visa:'Skilled Independent / WHV', citizenship:'4 anos',
+    accent:'#012169', flagStripes:['#012169','#FFFFFF','#E4002B'],
+    pros:['Working Holiday Visa disponível','Salários entre os mais altos do mundo','Grande demanda em engenharia, saúde e TI'],
+    con:'Distância do Brasil e fora do mercado europeu',
+  },
+};
+
+// ---- perguntas ----
+const QUESTIONS = [
+  {
+    id:'status', sceneKind:'shapes',
+    title:'Como você ganha a vida hoje?',
+    subtitle:'Vou cruzar isso com os tipos de visto que cada país oferece.',
+    options:[
+      {id:'employee',  label:'Empregado com contrato formal',    hint:'Salário fixo, carteira assinada',          scores:{de:2,nl:2,ie:1,pt:1}},
+      {id:'freelancer',label:'Freelancer ou autônomo',           hint:'Trabalho remoto, clientes próprios',       scores:{pt:3,nl:2,ie:2,es:1}},
+      {id:'founder',   label:'Empreendedor ou sócio de empresa', hint:'Tenho ou quero abrir empresa',             scores:{nl:3,pt:2,ie:2,de:1}},
+      {id:'graduate',  label:'Estudante ou recém-formado',       hint:'Saindo da faculdade ou trocando de área',  scores:{nl:3,de:2,ie:2,pt:1}},
+    ],
+  },
+  {
+    id:'area', sceneKind:'sectors',
+    title:'Em que setor você atua?',
+    subtitle:'Cada país tem demandas e vistos específicos por área.',
+    options:[
+      {id:'tech',        label:'TI e tecnologia',               glyph:'{ }', scores:{de:3,nl:2,ie:3,au:2,pt:1}},
+      {id:'health',      label:'Saúde',                         glyph:'✚',   scores:{de:3,pt:2,es:2,ie:2}},
+      {id:'engineering', label:'Engenharia e construção',       glyph:'▲',   scores:{de:3,nl:2,at:2,au:2}},
+      {id:'hospitality', label:'Gastronomia e hospitalidade',   glyph:'◖',   scores:{es:3,pt:2,it:2,ie:1}},
+      {id:'research',    label:'Educação e pesquisa',           glyph:'§',   scores:{nl:3,de:2,pt:1,fr:1}},
+      {id:'other',       label:'Outra área',                    glyph:'◇',   scores:{pt:2,nl:1,de:1,es:1}},
+    ],
+  },
+  {
+    id:'english', sceneKind:'fluency',
+    title:'Como está seu inglês?',
+    subtitle:'Isso muda muito o leque de países viáveis.',
+    options:[
+      {id:'fluent',   label:'Fluente ou avançado',          level:4, scores:{ie:3,nl:3,au:3,de:1}},
+      {id:'workable', label:'Consigo trabalhar em inglês',  level:3, scores:{nl:2,ie:2,au:2,de:1,pt:1}},
+      {id:'basic',    label:'Básico, ainda melhorando',     level:2, scores:{pt:3,es:3,it:2}},
+      {id:'none',     label:'Prefiro evitar o inglês',      level:1, scores:{pt:3,es:3,it:2,fr:2}},
+    ],
+  },
+  {
+    id:'goal', sceneKind:'horizon',
+    title:'Qual é seu plano principal?',
+    subtitle:'O destino certo depende do que você quer construir lá.',
+    options:[
+      {id:'job',       label:'Conseguir emprego formal logo',         arrow:'→', scores:{de:3,nl:2,ie:2,au:1}},
+      {id:'business',  label:'Abrir meu próprio negócio',             arrow:'↑', scores:{nl:3,pt:2,ie:2,de:1}},
+      {id:'temporary', label:'Experiência temporária de 1 a 2 anos', arrow:'↗', scores:{au:3,nl:2,ie:2,pt:2}},
+      {id:'permanent', label:'Fixar residência e buscar cidadania',   arrow:'⇢', scores:{de:3,pt:3,nl:2}},
+    ],
+  },
+  {
+    id:'family', sceneKind:'company',
+    title:'Você vai com quem?',
+    subtitle:'Famílias mudam o cálculo: escola, saúde, espaço.',
+    options:[
+      {id:'alone',      label:'Vou sozinho(a)',             people:1, scores:{ie:2,nl:2,au:2,pt:2}},
+      {id:'partner',    label:'Com cônjuge ou parceiro(a)', people:2, scores:{de:2,nl:2,pt:2,es:1}},
+      {id:'fullFamily', label:'Família com filhos',         people:3, scores:{de:3,nl:2,pt:2,fr:1}},
+    ],
+  },
+  {
+    id:'finance', sceneKind:'balance',
+    title:'Como você prioriza o dinheiro?',
+    subtitle:'Custo de vida baixo, salário alto, ou equilíbrio.',
+    options:[
+      {id:'lowCost',    label:'Custo de vida o mais baixo',      scores:{pt:3,es:3,it:2}},
+      {id:'balanced',   label:'Equilíbrio entre renda e custo',  scores:{nl:2,de:2,ie:2,pt:1}},
+      {id:'highSalary', label:'Salário alto, aceito custo alto', scores:{de:3,nl:2,ie:3,au:2}},
+    ],
+  },
+];
+
+// ---- estado ----
+let step = 0;
+const answers = {};
+let autoTimer = null;
+let navigating = false;
+
+// ---- session storage ----
+function saveSession() {
+  try { sessionStorage.setItem('rl-quiz', JSON.stringify({step, answers})); } catch(e) {}
+}
+function loadSession() {
+  try {
+    const d = JSON.parse(sessionStorage.getItem('rl-quiz') || 'null');
+    if (d) { step = d.step || 0; Object.assign(answers, d.answers || {}); }
+  } catch(e) {}
+}
+
+// ---- scoring ----
+function calcScores() {
+  const scores = {};
+  for (const code of Object.keys(COUNTRY_META)) scores[code] = 0;
+  for (const q of QUESTIONS) {
+    const sel = answers[q.id];
+    if (!sel) continue;
+    const opt = q.options.find(o => o.id === sel);
+    if (!opt) continue;
+    for (const [code, pts] of Object.entries(opt.scores)) {
+      scores[code] = (scores[code] || 0) + pts;
+    }
+  }
+  return Object.entries(scores).sort((a,b) => b[1]-a[1]);
+}
+
+function getRanked() {
+  const raw = calcScores();
+  const maxScore = raw[0]?.[1] || 1;
+  return raw.map(([code, score]) => ({
+    code, score,
+    match: Math.max(20, Math.min(99, Math.round(score / maxScore * 99))),
+    ...COUNTRY_META[code],
+  }));
+}
+
+function getTop3() {
+  const filled = Object.values(answers).filter(Boolean).length;
+  if (!filled) {
+    return ['nl','pt','de'].map(code => ({code, match:null, ...COUNTRY_META[code]}));
+  }
+  return getRanked().slice(0, 3);
+}
+
+// ---- atmosphere ----
+const ATM = [
+  'radial-gradient(1200px 800px at 80% 30%,rgba(251,191,36,0.12),transparent 65%),radial-gradient(900px 700px at 10% 90%,rgba(251,191,36,0.08),transparent 60%)',
+  'radial-gradient(900px 600px at 12% 18%,rgba(251,191,36,0.10),transparent 60%)',
+  'radial-gradient(800px 600px at 92% 24%,rgba(251,191,36,0.08),transparent 60%)',
+  'radial-gradient(900px 700px at 50% 100%,rgba(251,191,36,0.10),transparent 55%)',
+  'radial-gradient(900px 600px at 88% 88%,rgba(251,191,36,0.09),transparent 60%)',
+  'radial-gradient(900px 600px at 8% 88%,rgba(251,191,36,0.10),transparent 60%)',
+  'radial-gradient(1100px 800px at 50% 50%,rgba(251,191,36,0.07),transparent 60%)',
+];
+function updateAtmosphere() {
+  const el = document.getElementById('quiz-atmosphere');
+  if (!el) return;
+  const idx = step === 0 ? 0 : step <= QUESTIONS.length ? step : QUESTIONS.length;
+  el.style.background = ATM[idx] || ATM[1];
+}
+
+// ---- progress ----
+function updateProgress() {
+  const el = document.getElementById('quiz-progress-fill');
+  if (!el) return;
+  const pct = step === 0 ? 0 : step > QUESTIONS.length ? 100 : (step / QUESTIONS.length) * 100;
+  el.style.width = pct + '%';
+}
+
+// ---- rail ----
+function renderRail() {
+  const rail = document.getElementById('quiz-rail');
+  if (!rail) return;
+  if (step === 0 || step > QUESTIONS.length) { rail.hidden = true; return; }
+  rail.hidden = false;
+  const top3 = getTop3();
+  rail.innerHTML = `
+    <div class="rail-caption">Match parcial ↓</div>
+    ${top3.map((c,i) => `
+      <div class="rail-chip" style="animation-delay:${i*80}ms">
+        <div class="rail-flag">
+          ${c.flagStripes.map(col=>`<div class="flag-stripe" style="background:${col}"></div>`).join('')}
+          <div class="rail-badge">${i+1}</div>
+        </div>
+        <div class="rail-lbl">${c.code.toUpperCase()}${c.match!=null?' · '+c.match+'%':''}</div>
+      </div>`).join('')}`;
+}
+
+// ---- navigation ----
+function goTo(target) {
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  navigating = true;
+  step = target;
+  saveSession();
+  render();
+  navigating = false;
+}
+
+function selectOption(qId, optId) {
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  answers[qId] = optId;
+  saveSession();
+
+  // targeted DOM updates — no full re-render to avoid scene-in re-firing
+  document.querySelectorAll(`.opt-card[data-qid="${qId}"]`).forEach(card => {
+    const sel = card.dataset.optid === optId;
+    card.classList.toggle('selected', sel);
+    card.setAttribute('aria-checked', sel);
+  });
+  const nextBtn = document.querySelector('.scene-next');
+  if (nextBtn) nextBtn.disabled = false;
+  updateSceneExtras(qId, optId);
+  renderRail();
+
+  const qIdx = QUESTIONS.findIndex(q => q.id === qId);
+  const nextStep = qIdx + 1 < QUESTIONS.length ? qIdx + 2 : QUESTIONS.length + 1;
+  autoTimer = setTimeout(() => { autoTimer = null; goTo(nextStep); }, 420);
+}
+
+function updateSceneExtras(qId, optId) {
+  const q = QUESTIONS.find(q => q.id === qId);
+  if (!q) return;
+  if (q.sceneKind === 'fluency') {
+    const lvl = q.options.find(o => o.id === optId)?.level || 0;
+    document.querySelectorAll('.fluency-seg').forEach((s,i) => s.classList.toggle('active', i < lvl));
+    document.querySelectorAll('.fluency-btn').forEach(btn => {
+      const sel = btn.dataset.optid === optId;
+      btn.classList.toggle('selected', sel);
+    });
+  }
+  if (q.sceneKind === 'balance') {
+    const idx = q.options.findIndex(o => o.id === optId);
+    const knob = document.querySelector('.balance-knob');
+    if (knob && idx >= 0) { knob.style.display=''; knob.style.left=`${(idx/(q.options.length-1))*100}%`; }
+  }
+}
+
+function restart() {
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  const wash = document.createElement('div');
+  wash.className = 'wash';
+  document.body.appendChild(wash);
+  wash.style.animation = 'washIn 180ms ease forwards';
+  setTimeout(() => {
+    for (const k of Object.keys(answers)) delete answers[k];
+    step = 0;
+    saveSession();
+    wash.style.animation = 'washOut 180ms ease forwards';
+    wash.addEventListener('animationend', () => wash.remove(), {once:true});
+    navigating = true; render(); navigating = false;
+  }, 220);
+}
+
+// ---- SVG glyphs ----
+const SVG_SHAPES = {
+  employee: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="6" y="6" width="36" height="36" rx="2"/><line x1="6" y1="16" x2="42" y2="16"/><line x1="16" y1="6" x2="16" y2="42"/></svg>`,
+  freelancer:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="10"/><circle cx="24" cy="24" r="2.5" fill="currentColor" stroke="none"/></svg>`,
+  founder:   `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M24 6 L42 40 L6 40 Z"/><line x1="24" y1="18" x2="24" y2="32"/></svg>`,
+  graduate:  `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8 L34 8 L34 22 C34 30 30 36 24 40 C18 36 14 30 14 22 Z"/></svg>`,
+};
+
+// ---- render: hero ----
+function renderHero() {
+  const codes = Object.keys(COUNTRY_META);
+  const chips = codes.map((code, i) => {
+    const angle = (i / codes.length) * Math.PI * 2;
+    const r = 230;
+    const x = Math.cos(angle) * r;
+    const y = Math.sin(angle) * r;
+    const stripes = COUNTRY_META[code].flagStripes.map(c=>`<div class="flag-stripe" style="background:${c}"></div>`).join('');
+    return `<div class="hero-flag-chip" style="transform:translate(calc(${x}px - 18px),calc(${y}px - 24px))"><div class="hero-flag-chip-inner">${stripes}</div></div>`;
+  }).join('');
+
+  return `<div class="scene-in">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow mono">DESCUBRA · 6 PERGUNTAS · 2 MINUTOS</div>
+        <h1 class="hero-title">Qual país<br>combina com<br><span style="color:var(--gold)">você?</span></h1>
+        <p class="hero-sub">Uma jornada visual em 6 cenas. Cada resposta cruza com dados reais de 10 países e atualiza seu ranking ao vivo. No fim, você recebe um passaporte com seu match.</p>
+        <button class="hero-cta" onclick="goTo(1)">Começar a jornada →</button>
+        <div class="hero-stats">
+          <div><div class="hero-stat-n mono">10</div><div class="hero-stat-l mono">países</div></div>
+          <div><div class="hero-stat-n mono">6</div><div class="hero-stat-l mono">perguntas</div></div>
+          <div><div class="hero-stat-n mono">3</div><div class="hero-stat-l mono">matches</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="hero-visual">
+          <div class="hero-ring hero-ring-outer"></div>
+          <div class="hero-ring hero-ring-inner"></div>
+          <div class="hero-disc">
+            <div class="hero-disc-text mono">Match<br><span class="hero-disc-match">?%</span><br>aguardando</div>
+          </div>
+          <div class="hero-orbit">${chips}</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ---- render: scene ----
+function renderScene(qIdx) {
+  const q = QUESTIONS[qIdx - 1];
+  const sel = answers[q.id];
+  const canNext = !!sel;
+  const pad = n => n.toString().padStart(2,'0');
+
+  let body = '';
+  if (q.sceneKind === 'shapes') {
+    body = `<div class="scene-shapes" role="radiogroup" aria-label="${q.title}">
+      ${q.options.map(opt => `
+        <button role="radio" aria-checked="${sel===opt.id}" data-qid="${q.id}" data-optid="${opt.id}"
+          class="opt-card${sel===opt.id?' selected':''}" onclick="selectOption('${q.id}','${opt.id}')">
+          <div class="shapes-inner">
+            <div class="shapes-icon">${SVG_SHAPES[opt.id]||''}</div>
+            <div><div class="shapes-label">${opt.label}</div><div class="shapes-hint">${opt.hint||''}</div></div>
+          </div>
+        </button>`).join('')}
+    </div>`;
+  } else if (q.sceneKind === 'sectors') {
+    body = `<div class="scene-sectors" role="radiogroup" aria-label="${q.title}">
+      ${q.options.map(opt => `
+        <button role="radio" aria-checked="${sel===opt.id}" data-qid="${q.id}" data-optid="${opt.id}"
+          class="opt-card${sel===opt.id?' selected':''}" onclick="selectOption('${q.id}','${opt.id}')">
+          <div class="sectors-inner">
+            <div class="sectors-glyph mono">${opt.glyph}</div>
+            <div class="sectors-label">${opt.label}</div>
+          </div>
+        </button>`).join('')}
+    </div>`;
+  } else if (q.sceneKind === 'fluency') {
+    const lvl = q.options.find(o=>o.id===sel)?.level || 0;
+    const segs = [1,2,3,4].map(n=>`<div class="fluency-seg${n<=lvl?' active':''}"></div>`).join('');
+    body = `<div class="scene-fluency">
+      <div class="fluency-meter" aria-hidden="true">${segs}</div>
+      <div class="fluency-opts" role="radiogroup" aria-label="${q.title}">
+        ${q.options.map(opt => `
+          <button role="radio" aria-checked="${sel===opt.id}" data-qid="${q.id}" data-optid="${opt.id}"
+            class="fluency-btn${sel===opt.id?' selected':''}" onclick="selectOption('${q.id}','${opt.id}')">
+            <div class="fluency-lv mono">NÍVEL 0${opt.level}</div>
+            <div class="fluency-label">${opt.label}</div>
+          </button>`).join('')}
+      </div>
+    </div>`;
+  } else if (q.sceneKind === 'horizon') {
+    body = `<div class="scene-horizon" role="radiogroup" aria-label="${q.title}">
+      ${q.options.map((opt,i) => `
+        <button role="radio" aria-checked="${sel===opt.id}" data-qid="${q.id}" data-optid="${opt.id}"
+          class="opt-card${sel===opt.id?' selected':''}" onclick="selectOption('${q.id}','${opt.id}')">
+          <div class="horizon-inner">
+            <div class="horizon-idx mono">${pad(i+1)}</div>
+            <div class="horizon-label">${opt.label}</div>
+            <div class="horizon-arrow">${opt.arrow}</div>
+          </div>
+        </button>`).join('')}
+    </div>`;
+  } else if (q.sceneKind === 'company') {
+    body = `<div class="scene-company" role="radiogroup" aria-label="${q.title}">
+      ${q.options.map(opt => {
+        const circles = Array.from({length:opt.people},(_,i)=>{
+          const sm = opt.people===3 && i>=2;
+          return `<div class="people-dot" style="width:${sm?18:24}px;height:${sm?18:24}px${sm?';opacity:0.7':''}"></div>`;
+        }).join('');
+        const extra = opt.people===3 ? `<div class="people-dot" style="width:14px;height:14px;opacity:0.5"></div>` : '';
+        return `
+        <button role="radio" aria-checked="${sel===opt.id}" data-qid="${q.id}" data-optid="${opt.id}"
+          class="opt-card${sel===opt.id?' selected':''}" onclick="selectOption('${q.id}','${opt.id}')">
+          <div class="company-inner">
+            <div class="company-people">${circles}${extra}</div>
+            <div><div class="company-count mono">0${opt.people} ${opt.people===1?'PESSOA':'PESSOAS'}+</div>
+            <div class="company-label">${opt.label}</div></div>
+          </div>
+        </button>`;
+      }).join('')}
+    </div>`;
+  } else if (q.sceneKind === 'balance') {
+    const idx = q.options.findIndex(o=>o.id===sel);
+    const knobStyle = idx>=0 ? `left:${(idx/(q.options.length-1))*100}%` : 'display:none';
+    body = `<div class="scene-balance">
+      <div class="balance-scale">
+        <div class="balance-line"></div>
+        <div class="balance-lbl balance-lbl-l mono">← CUSTO BAIXO</div>
+        <div class="balance-lbl balance-lbl-r mono">SALÁRIO ALTO →</div>
+        <div class="balance-knob" style="${knobStyle}"></div>
+      </div>
+      <div class="balance-opts" role="radiogroup" aria-label="${q.title}">
+        ${q.options.map(opt => `
+          <button role="radio" aria-checked="${sel===opt.id}" data-qid="${q.id}" data-optid="${opt.id}"
+            class="opt-card${sel===opt.id?' selected':''}" onclick="selectOption('${q.id}','${opt.id}')">
+            <div class="balance-inner"><div class="balance-label">${opt.label}</div></div>
+          </button>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  return `<div class="scene-in">
+    <div class="scene-wrap">
+      <div>
+        <div class="scene-eyebrow mono">PERGUNTA ${pad(qIdx)} DE ${pad(QUESTIONS.length)}</div>
+        <h2 class="scene-title">${q.title}</h2>
+        <p class="scene-subtitle">${q.subtitle}</p>
+        <div class="scene-body">${body}</div>
+        <div class="scene-footer">
+          <button class="scene-back" onclick="goTo(${qIdx>1?qIdx-1:0})">← Voltar</button>
+          <span class="scene-hint mono">Selecionar avança automaticamente</span>
+          <button class="scene-next" onclick="goTo(${qIdx<QUESTIONS.length?qIdx+1:QUESTIONS.length+1})" ${!canNext?'disabled':''}>
+            ${qIdx<QUESTIONS.length?'Próxima →':'Ver resultado →'}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ---- render: passaporte ----
+function renderResult() {
+  const ranked = getRanked();
+  const w = ranked[0];
+  const runners = ranked.slice(1,3);
+  const rn = Math.floor(Math.random()*9000+1000);
+  const rows = [
+    ['NOME / SURNAME', w.name.toUpperCase()],
+    ['CAPITAL',        w.capital.toUpperCase()],
+    ['VISTO REC.',     w.visa.toUpperCase()],
+    ['CIDADANIA',      w.citizenship.toUpperCase()],
+    ['MATCH',          w.match+'%'],
+    ['EMITIDO',        new Date().toLocaleDateString('pt-BR').toUpperCase()],
+  ];
+
+  return `<div class="scene-in">
+    <div class="passport-wrap">
+      <div class="passport-eyebrow mono">RESULTADO · MATCH ${w.match}%</div>
+      <h2 class="passport-title">Seu destino é<br><span style="color:var(--gold)">${w.name}.</span></h2>
+      <p class="passport-sub">${w.tagline}</p>
+
+      <div class="passport-card">
+        <div class="passport-spread">
+          <div class="passport-left">
+            <div class="passport-security" aria-hidden="true"></div>
+            <div class="pp-header">
+              <div class="pp-label mono">· PASSAPORTE / PASSPORT ·</div>
+              <div class="pp-republic mono" style="font-size:11px;letter-spacing:0.16em;color:var(--ink-faint);text-transform:uppercase;font-weight:500">REPÚBLICA DE OPORTUNIDADES</div>
+            </div>
+            <div class="pp-flag">
+              ${w.flagStripes.map(c=>`<div class="flag-stripe" style="background:${c}"></div>`).join('')}
+            </div>
+            <div>
+              <div class="pp-iso-lbl mono">CÓDIGO ISO</div>
+              <div class="pp-iso mono">${w.code.toUpperCase()}</div>
+            </div>
+          </div>
+          <div class="passport-right">
+            <div class="pp-grain" aria-hidden="true"></div>
+            <div class="pp-mrz mono">
+              <span>P&lt;${w.code.toUpperCase()}${w.name.replace(/ /g,'').toUpperCase().slice(0,8)}</span>
+              <span>N° RL-${rn}</span>
+            </div>
+            <div class="pp-rows" id="pp-rows">
+              ${rows.map(([k,v])=>`
+                <div class="pp-row">
+                  <div class="pp-row-key mono">${k}</div>
+                  <div class="pp-row-val mono">${v}</div>
+                </div>`).join('')}
+              <div class="pp-stamp" style="border-color:${w.accent};color:${w.accent}">
+                <div class="pp-stamp-text mono">APROVADO<br>· ${w.match}% ·</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="runners-section">
+        <div class="runners-eyebrow mono">OUTROS BONS MATCHES</div>
+        <div class="runners-grid">
+          ${runners.map(c=>`
+            <div class="runner-card">
+              <div class="runner-flag">
+                ${c.flagStripes.map(col=>`<div class="flag-stripe" style="background:${col}"></div>`).join('')}
+              </div>
+              <div>
+                <div class="runner-match mono">${c.match}% MATCH</div>
+                <div class="runner-name">${c.name}</div>
+                <div class="runner-tagline">${c.tagline}</div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn-gold" onclick="restart()">Refazer o teste →</button>
+        <a class="btn-outline" href="pais-${w.code}.html">Ver guia prático ${w.code.toUpperCase()} →</a>
+        <a class="btn-outline" href="comparar.html?cc=${ranked.slice(0,3).map(c=>c.code).join(',')}">Comparar com outros</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function revealPassport() {
+  document.querySelectorAll('.pp-row').forEach((row,i) => {
+    setTimeout(() => row.classList.add('visible'), 300 + i*80);
+  });
+}
+
+// ---- render principal ----
+function render() {
+  const app = document.getElementById('app');
+  if (step === 0) {
+    app.innerHTML = renderHero();
+  } else if (step <= QUESTIONS.length) {
+    app.innerHTML = renderScene(step);
+  } else {
+    app.innerHTML = renderResult();
+    revealPassport();
+  }
+  if (!navigating && app.firstElementChild) {
+    app.firstElementChild.classList.remove('scene-in');
+  }
+  updateProgress();
+  updateAtmosphere();
+  renderRail();
+}
+
+loadSession();
+render();
+</script>
 
 <script src="assets/nav.js" defer></script>
 </body>

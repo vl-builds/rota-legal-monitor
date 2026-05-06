@@ -45,6 +45,24 @@ export const nlSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://ind.nl/en/required-amounts',
+      label: 'IND: Valores obrigatórios',
+      description: 'Tabela oficial com salários mínimos para Highly Skilled Migrant (atualizada anualmente em janeiro)',
+    },
+    {
+      url: 'https://www.government.nl/topics/working-in-the-netherlands',
+      label: 'Government.nl: Trabalhar na Holanda',
+      description: 'Portal oficial com salário mínimo nacional e requisitos de trabalho atualizados para 2026',
+    },
+    {
+      url: 'https://allaboutexpats.nl',
+      label: 'All About Expats NL',
+      description: 'Verificação independente dos limiares salariais para o visto Highly Skilled Migrant 2026',
+    },
+  ],
+
   glossary: {
     'Highly Skilled Migrant': 'Trabalhador altamente qualificado',
     'Kennismigrant': 'Trabalhador altamente qualificado (Kennismigrant)',

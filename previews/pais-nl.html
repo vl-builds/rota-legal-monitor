@@ -40,36 +40,104 @@
   /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
-  /* ---- visa cards ---- */
-  .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
-  .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
-  .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
-  .visa-head:hover { background: rgba(255,255,255,0.02); }
-  .visa-title-row { display: flex; flex-direction: column; gap: var(--s-xs); }
-  .visa-name { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); margin: 0; }
-  .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
-  .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
-  .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
-  .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
-  .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
-  .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
-  .visa-card.open .visa-body { display: block; }
-  .visa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xl); margin-top: var(--s-lg); }
-  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--s-md); }
+  /* ---- visa header ---- */
+  .visa-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.82); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 24px; }
+  .visa-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+  .visa-section-h1 { margin: 0; font-size: 56px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; max-width: 780px; }
+  .visa-section-h1-soft { color: rgba(255,255,255,0.4); }
+  .visa-section-lede { margin: 20px 0 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.55); max-width: 580px; }
+  /* ---- visa filter chips ---- */
+  .visa-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 36px 0 var(--s-xl); }
+  .visa-chip { padding: 8px 16px; font-size: 12.5px; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.02em; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; cursor: pointer; transition: all 150ms ease; font-weight: 400; }
+  .visa-chip:hover { color: var(--on-dark); border-color: rgba(255,255,255,0.18); }
+  .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
+  /* ---- visa grid + cards ---- */
+  .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
+  .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
+  .visa-card[hidden] { display: none !important; }
+  .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
+  .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
+  .visa-illo-tile svg { width: 78%; height: 78%; }
+  .visa-card-body { flex: 1; display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .visa-card-title { margin: 0; font-size: 19px; font-weight: 500; letter-spacing: -0.015em; color: var(--on-dark); line-height: 1.25; }
+  .visa-card-desc { margin: 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+  .visa-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; margin-top: 4px; }
+  /* ---- tag pill ---- */
+  .visa-tag-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 999px; font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-tag-pill-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .visa-tag-pill.principal { color: var(--primary); background: rgba(240,180,41,0.13); border: 1px solid rgba(240,180,41,0.33); }
+  .visa-tag-pill.principal .visa-tag-pill-dot { background: var(--primary); }
+  .visa-tag-pill.neutral { color: rgba(255,255,255,0.82); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+  .visa-tag-pill.neutral .visa-tag-pill-dot { background: rgba(255,255,255,0.6); }
+  .visa-tag-pill.revoked { color: rgb(252, 165, 165); background: rgba(239,68,68,0.16); border: 1px solid rgba(239,68,68,0.40); }
+  .visa-tag-pill.revoked .visa-tag-pill-dot { background: rgb(252, 165, 165); }
+  /* ---- inactive card variant ---- */
+  .visa-card.is-inactive { opacity: 0.72; }
+  .visa-card.is-inactive .visa-illo-tile { color: rgba(255,255,255,0.45); }
+  .visa-card.is-inactive:hover { opacity: 1; border-color: rgba(239,68,68,0.30); }
+  .visa-card.is-inactive:hover .visa-illo-tile { background: rgba(239,68,68,0.08); }
+  .visa-chip-inactive { color: rgba(239,68,68,0.85); }
+  .visa-chip-inactive.active { background: rgba(239,68,68,0.85); color: var(--canvas); border-color: rgba(239,68,68,0.85); }
+  /* ---- arrow button on card ---- */
+  .visa-arrow-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 200ms ease; flex-shrink: 0; }
+  .visa-card:hover .visa-arrow-btn { background: var(--primary); color: var(--canvas); border-color: var(--primary); }
+  /* ---- visa modal ---- */
+  .visa-modal-backdrop { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .visa-modal-backdrop.is-open { display: flex; animation: visa-fade-in 200ms ease; }
+  .visa-modal-dialog { position: relative; width: 100%; max-width: 620px; background: var(--canvas); border: 1px solid rgba(240,180,41,0.33); border-radius: 20px; padding: 40px 44px 36px; color: var(--on-dark); max-height: 85vh; overflow-y: auto; animation: visa-slide-up 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .visa-modal-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(255,255,255,0.6); border-radius: 999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .visa-modal-close:hover { background: rgba(255,255,255,0.06); color: var(--on-dark); }
+  .visa-modal-header { display: flex; gap: 20px; align-items: center; margin-bottom: 24px; }
+  .visa-modal-illo { width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; background: rgba(240,180,41,0.15); border: 1px solid rgba(240,180,41,0.33); border-radius: 16px; color: var(--primary); flex-shrink: 0; }
+  .visa-modal-illo svg { width: 70%; height: 70%; }
+  .visa-modal-head-info { flex: 1; min-width: 0; }
+  .visa-modal-title { margin: 10px 0 0; font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: var(--on-dark); }
+  .visa-modal-summary { margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+  .visa-modal-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .visa-modal-cell { padding: 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+  .visa-modal-cell-label { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 8px; }
+  .visa-modal-cell-value { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+  .visa-modal-cell-value.accent { color: var(--primary); font-weight: 500; }
+  .visa-modal-official { padding: 18px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; margin-bottom: 24px; }
+  .visa-modal-official-text { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.75); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-modal-section { margin-bottom: 22px; }
+  .visa-modal-notes { margin-bottom: 22px; padding: 14px 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+  .visa-modal-cta-row { display: flex; gap: 10px; }
+  .visa-cta-primary { flex: 1; padding: 14px 20px; background: var(--primary); color: var(--canvas); border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: -0.01em; text-decoration: none; text-align: center; transition: filter 150ms ease; }
+  .visa-cta-primary:hover { filter: brightness(1.06); }
+  .visa-cta-secondary { padding: 14px 20px; background: transparent; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; text-align: center; transition: background 150ms ease; }
+  .visa-cta-secondary:hover { background: rgba(255,255,255,0.04); }
+  /* ---- shared step/right components used in modal ---- */
+  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 0 0 var(--s-md); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-field { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s-md); }
   .visa-field-label { font-size: 12px; color: var(--muted); font-weight: 500; }
   .visa-field-value { font-size: 14px; color: var(--body-strong); font-weight: 600; }
   .visa-field-value.mono { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--primary); font-size: 16px; }
   .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
-  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
   .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
   .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-sm); }
   .right-item { display: flex; align-items: center; gap: var(--s-xs); font-size: 13px; color: var(--body); }
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- animations ---- */
+  @keyframes visa-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes visa-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .visa-card, .visa-card:hover, .visa-arrow-btn, .visa-illo-tile, .visa-modal-backdrop, .visa-modal-dialog { transition: none !important; animation: none !important; transform: none !important; }
+  }
+  /* ---- responsive: visa stack ---- */
+  @media (max-width: 600px) {
+    .visa-section-h1 { font-size: 40px; }
+    .visa-modal-dialog { padding: 32px 24px 28px; }
+    .visa-modal-info-grid { grid-template-columns: 1fr; }
+    .visa-modal-header { gap: 14px; }
+    .visa-modal-illo { width: 64px; height: 64px; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
   /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
@@ -143,6 +211,7 @@
       <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
       <a class="nav-link" href="historico.html">Histórico</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
@@ -170,6 +239,7 @@
       <a href="paises.html">Países</a>
       <a href="comparar.html">Comparar</a>
       <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
       <a href="calculadora.html">Calculadora</a>
       <a href="historico.html">Histórico</a>
       <a href="sobre.html">Sobre</a>
@@ -229,7 +299,7 @@
   </div>
   <div class="qs-item">
     <span class="qs-label">Tipos de visto monitorados</span>
-    <span class="qs-value accent">15</span>
+    <span class="qs-value accent">16</span>
     <span class="qs-sub">11 de relevância direta</span>
   </div>
   <div class="qs-item">
@@ -251,784 +321,1208 @@
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">15 tipos de visto monitorados</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
-        <div class="visa-list">
+        <div class="visa-eyebrow"><span class="visa-eyebrow-dot"></span>16 tipos de visto monitorados</div>
+        <h2 class="visa-section-h1">Opções de visto<br/><span class="visa-section-h1-soft">de trabalho</span></h2>
+        <p class="visa-section-lede">Escolha o tipo de visto adequado ao seu caso. Cada categoria é monitorada mensalmente para acompanhar prazos, requisitos e atualizações legais.</p>
+        <div class="visa-filter-row">
+            <button type="button" class="visa-chip active" data-tag="all">Todos · 16</button>
+            <button type="button" class="visa-chip" data-tag="principal">Principal · 11</button>
+            <button type="button" class="visa-chip" data-tag="baixa-relevancia">Baixa relevância · 4</button>
+            <button type="button" class="visa-chip" data-tag="outros">Outros · 1</button>
+            
+          </div>
+        <div class="visa-grid">
           
-        <div class="visa-card open">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Trabalhador altamente qualificado</h3>
-              <span class="visa-name-orig">Highly skilled migrant</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Profissionais altamente qualificados de fora da UE/EEA/Suíça</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+        <button type="button" class="visa-card" data-visa-id="highly-skilled-migrant" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de residência para trabalhador…</h3>
+            <p class="visa-card-desc">Você quer trabalhar na Holanda como um migrante altamente qualificado.</p>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer trabalhar na Holanda como um trabalhador altamente qualificado.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificações altamente qualificadas</span>
-            </div>
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="european-blue-card" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="32" width="56" height="36" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M50 38 L62 50 L50 62 L38 50 Z" fill="currentColor" opacity="0.7"/><path d="M50 38 L62 50 L50 62 L38 50 Z" stroke="currentColor" stroke-width="0.6"/><circle cx="32" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="32" cy="58" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="58" r="1.2" fill="currentColor" opacity="0.6"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Cartão Azul Europeu</h3>
+            <p class="visa-card-desc">Você quer solicitar um Cartão Azul Europeu como trabalhador altamente educado para viver e trabalhar na…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="intra-corporate-transferee" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de residência para transferência…</h3>
+            <p class="visa-card-desc">Você está sendo transferido por uma empresa de fora da UE para uma filial na Holanda para trabalhar como…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="paid-employment-gvva" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Emprego remunerado com permissão de residência e…</h3>
+            <p class="visa-card-desc">Você quer trabalhar em emprego remunerado na Holanda.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="paid-employment-no-gvva" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Emprego Remunerado: Permissão de Residência Apenas</h3>
+            <p class="visa-card-desc">Você quer trabalhar em emprego remunerado na Holanda e não pode se candidatar a um GVVA.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="self-employed" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de residência para trabalhador autônomo</h3>
+            <p class="visa-card-desc">Você quer começar a trabalhar como autônomo na Holanda.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="seasonal-work" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de residência para trabalho sazonal</h3>
+            <p class="visa-card-desc">Você quer trabalhar no setor agrícola da Holanda por no máximo 6 meses.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="orientation-year-highly-educated" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Pessoa Altamente Educada</h3>
+            <p class="visa-card-desc">Visto para recém-graduados, pesquisadores ou profissionais com doutorado que desejam procurar trabalho na…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="researcher" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M40 24 V58 L50 64 L60 58 V24" stroke="currentColor" stroke-width="1.5"/><path d="M40 24 H60 V32 H40 Z" fill="currentColor" opacity="0.18"/><path d="M40 32 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 40 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 48 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><circle cx="50" cy="74" r="8" fill="currentColor" opacity="0.6"/><circle cx="50" cy="74" r="8" stroke="currentColor" stroke-width="1"/><circle cx="48" cy="72" r="1.5" fill="#000"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de residência para pesquisador</h3>
+            <p class="visa-card-desc">Você quer viver e trabalhar na Holanda como pesquisador.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="paid-employment-no-permit" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Emprego remunerado: apenas permissão de residência</h3>
+            <p class="visa-card-desc">Você quer trabalhar em emprego remunerado na Holanda e não pode solicitar um GVVA.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="start-up-founder" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M20 78 Q40 70 50 50 T82 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="78" r="3" fill="currentColor" opacity="0.5"/><circle cx="50" cy="50" r="4" fill="currentColor" opacity="0.7"/><path d="M76 22 L82 22 L82 28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M82 22 L72 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="68" y="14" width="22" height="22" rx="2" stroke="currentColor" stroke-width="1" opacity="0.3" stroke-dasharray="2 2"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de residência para fundador de startup…</h3>
+            <p class="visa-card-desc">Você quer começar uma empresa inovadora na Holanda.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="international-trade-regulation" data-visa-tag="outros" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Regulação de Comércio Internacional</h3>
+            <p class="visa-card-desc">Você quer viver e trabalhar temporariamente na Holanda sob a Regulação de Comércio Internacional.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="researcher-permit" data-visa-tag="baixa-relevancia" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M40 24 V58 L50 64 L60 58 V24" stroke="currentColor" stroke-width="1.5"/><path d="M40 24 H60 V32 H40 Z" fill="currentColor" opacity="0.18"/><path d="M40 32 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 40 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 48 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><circle cx="50" cy="74" r="8" fill="currentColor" opacity="0.6"/><circle cx="50" cy="74" r="8" stroke="currentColor" stroke-width="1"/><circle cx="48" cy="72" r="1.5" fill="#000"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Residência para Pesquisador</h3>
+            <p class="visa-card-desc">Você quer viver e trabalhar na Holanda como pesquisador.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="cross-border-service-provider" data-visa-tag="baixa-relevancia" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Residência para Prestador de…</h3>
+            <p class="visa-card-desc">Você trabalha para uma empresa em um país da UE/EEA ou Suíça.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="intra-eu-frontier-worker" data-visa-tag="baixa-relevancia" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Trabalhador Fronteiriço Intra-UE</h3>
+            <p class="visa-card-desc">Você vai trabalhar na Holanda mas vive em outro país da UE.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="seafaring-crew" data-visa-tag="baixa-relevancia" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Serviço Marítimo como Membro da Tripulação</h3>
+            <p class="visa-card-desc">Você quer realizar serviço marítimo em um navio em um porto holandês por mais de 90 dias.</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        </div>
+        <template id="visa-detail-highly-skilled-migrant">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de residência para trabalhador altamente qualificado</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Cartão Azul Europeu</h3>
-              <span class="visa-name-orig">European blue card residence permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Trabalhadores altamente educados de fora da UE</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Você quer trabalhar na Holanda como um migrante altamente qualificado.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer se candidatar a um Cartão Azul Europeu como um trabalhador altamente educado para viver e trabalhar na Holanda.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Educação superior completa</span>
-            </div>
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para transferido intraempresarial</h3>
-              <span class="visa-name-orig">Intra-corporate transferee residence permit (Directive 2014/66/EU)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Funcionários de empresas fora da UE transferidos para a Holanda</span>
-                <span class="visa-tag">Gerentes, especialistas ou estagiários</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você está sendo transferido por uma empresa de fora da UE para uma filial na Holanda para trabalhar como gerente, especialista ou estagiário.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit for highly skilled migrant</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Visto de trabalho remunerado com GVVA</h3>
-              <span class="visa-name-orig">Paid employment: residence permit with work permit (GVVA)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Cidadãos não-EEA/EU/Suíça que desejam trabalhar como empregado remunerado na Holanda</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer trabalhar em emprego remunerado na Holanda e precisa de uma permissão de residência com permissão de trabalho (GVVA).</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Emprego remunerado: apenas permissão de residência</h3>
-              <span class="visa-name-orig">Paid employment: residence permit only</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Emprego remunerado</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer trabalhar em emprego remunerado na Holanda e não pode se candidatar a um GVVA. Ou você não precisa de uma permissão de trabalho.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-european-blue-card">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="22" y="32" width="56" height="36" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><path d="M50 38 L62 50 L50 62 L38 50 Z" fill="currentColor" opacity="0.7"/><path d="M50 38 L62 50 L50 62 L38 50 Z" stroke="currentColor" stroke-width="0.6"/><circle cx="32" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="42" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="32" cy="58" r="1.2" fill="currentColor" opacity="0.6"/><circle cx="68" cy="58" r="1.2" fill="currentColor" opacity="0.6"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Cartão Azul Europeu</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para trabalhador autônomo</h3>
-              <span class="visa-name-orig">Residence permit self-employed person</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Empreendedores de fora da UE/EEA/Suíça</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Você quer solicitar um Cartão Azul Europeu como trabalhador altamente educado para viver e trabalhar na Holanda.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer começar a trabalhar como autônomo na Holanda.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para trabalho sazonal</h3>
-              <span class="visa-name-orig">Residence permit for seasonal work</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Trabalhadores sazonais do setor agrícola</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer trabalhar no setor agrícola da Holanda por no máximo 6 meses.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Máximo de 6 meses</div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">European blue card residence permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Visto de Orientação para Recém-Graduados (Altamente Educado)</h3>
-              <span class="visa-name-orig">Residence Permit for Orientation Year Highly Educated</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ter conduzido pesquisa científica nos Países Baixos nos 3 anos anteriores à data da candidatura, com visto de pesquisa sob a Diretiva (EU) 2016/801 ou como migrante altamente qualificado em pesquisa</span>
-                <span class="visa-tag">Ter obtido mestrado nos 3 anos anteriores no contexto do programa Erasmus Mundus Joint Master</span>
-                <span class="visa-tag">Ter completado programa de bacharelado ou mestrado acreditado em instituição de ensino superior holandesa nos 3 anos anteriores</span>
-                <span class="visa-tag">Ter completado programa de pós-mestrado na Holanda com duração mínima de 1 ano acadêmico (pelo menos 10 meses) nos 3 anos anteriores</span>
-                <span class="visa-tag">Ter completado programa de estudo na Holanda sob a Lei de Política Cultural (Special-Purpose Funding Act)</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto que permite procurar trabalho nos Países Baixos após conclusão de graduação, doutorado ou pesquisa científica. Válido por 1 ano, não sendo extensível.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Ter completado programa de educação superior acreditado (bacharelado, mestrado ou doutorado) nos últimos 3 anos; Para programas estrangeiros: instituição estar no top 200 de rankings gerais ou por disciplina de pelo menos 2 de 3 publishers (Times Higher Education, QS Rankings, ShanghaiRanking Consultancy)</span>
-            </div>
-                <div class="visa-field">
-              <span class="visa-field-label">Idioma</span>
-              <span class="visa-field-value">Inglês — Mínimo 6.0</span>
-            </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Reunir documentos necessários incluindo diploma, certificados de língua e comprovantes de pesquisa ou estudo.</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Submeter formulário de candidatura online através do portal IND. Requer DigiD com verificação SMS e internet banking (iDEAL). Deve estar registrado na BRP (Basisregistratie Personen) com BSN (Burgerservicenummer) válido. Candidatos que não preenchem requisitos para candidatura online podem enviar formulário por correio.</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">Agendar consulta com IND para colocar adesivo de Residência no Passaporte indicando 'Arbeid vrij toegestaan, TWV niet vereist' (Trabalho livremente permitido, TWV não requerido).</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Se indicado na candidatura, realizar teste de tuberculose (TB) no serviço de saúde pública (GGD) dentro de 3 meses após recebimento do visto.</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Visto válido por 1 ano e não é extensível. Trabalho livremente permitido - empregador não necessita de TWV (tewerkstellingsvergunning). Pode trabalhar como empregado, estagiário ou profissional autônomo/empreendedor. Trabalho já é permitido durante o processo de candidatura se requisitos específicos forem atendidos (diploma holandês, diploma estrangeiro avaliado pela Nuffic, ou pesquisa científica nos últimos 3 anos), desde que se obtenha adesivo de Residência. Se encontrar emprego durante o ano de orientação, pode candidatar-se a outro visto (migrante altamente qualificado, start-up, autônomo). Documento de residência indica 'Type I, temporary regular residence permit'.</div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para emprego remunerado</h3>
-              <span class="visa-name-orig">Paid employment: residence permit only</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Cidadãos não-EEA/EU/Suíça isentos da necessidade de permissão de trabalho</span>
-                <span class="visa-tag">Aqueles que já possuem permissão de trabalho de outro país</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer trabalhar em emprego remunerado na Holanda e não pode solicitar um GVVA, ou não precisa de uma permissão de trabalho.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-intra-corporate-transferee">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de residência para transferência intraempresarial</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para pesquisador</h3>
-              <span class="visa-name-orig">Residence permit researcher (Directive (EU) 2016/801)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Pesquisadores de fora da UE/EEA/Suíça</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Você está sendo transferido por uma empresa de fora da UE para uma filial na Holanda para trabalhar como gerente, especialista ou estagiário.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer viver e trabalhar na Holanda como pesquisador.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificações de pesquisador</span>
-            </div>
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para pessoal essencial de startup</h3>
-              <span class="visa-name-orig">Residence permit for essential start-up personnel</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Funcionários estrangeiros essenciais para startups inovadoras</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer contratar um funcionário estrangeiro que é essencial para sua startup.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Intra-corporate transferee residence permit (Directive 2014/66/EU)</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Regulação Internacional de Comércio</h3>
-              <span class="visa-name-orig">International Trade Regulation</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Profissionais cobertos por acordos de comércio internacional</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer viver e trabalhar temporariamente na Holanda sob a Regulação Internacional de Comércio.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para prestador de serviços transfronteiriço</h3>
-              <span class="visa-name-orig">Residence permit cross-border service provider</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Trabalhador de empresa da UE/EEA/Suíça</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você trabalha para uma empresa em um país da UE/EEA ou Suíça. Você trabalhará temporariamente na Holanda para essa empresa.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-paid-employment-gvva">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Emprego remunerado com permissão de residência e permissão de trabalho (GVVA)</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Serviço de marinharia como membro da tripulação</h3>
-              <span class="visa-name-orig">Seafaring service as a crew member on board a seagoing vessel</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Membros da tripulação de navios em portos holandeses</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Você quer trabalhar em emprego remunerado na Holanda. Você precisa de permissão de residência com permissão de trabalho (GVVA).</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer executar serviço de marinharia a bordo de um navio em um porto marítimo holandês por mais de 90 dias.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Para permanências superiores a 90 dias</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de residência para pesquisador</h3>
-              <span class="visa-name-orig">Residence permit researcher (Directive (EU) 2016/801)</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Baixa relevância</span>
-                <span class="visa-tag">Pesquisador</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Você quer viver e trabalhar na Holanda como pesquisador.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificação como pesquisador</span>
-            </div>
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Paid employment: residence permit with work permit (GVVA)</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
         </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-paid-employment-no-gvva">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Emprego Remunerado: Permissão de Residência Apenas</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer trabalhar em emprego remunerado na Holanda e não pode se candidatar a um GVVA. Ou você não precisa de permissão de trabalho.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Paid employment: residence permit only</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Para trabalhadores isentos de permissão de trabalho</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-self-employed">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" fill="currentColor" opacity="0.85"/><path d="M50 18 L54 46 L82 50 L54 54 L50 82 L46 54 L18 50 L46 46 Z" stroke="currentColor" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="3" fill="#000"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de residência para trabalhador autônomo</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer começar a trabalhar como autônomo na Holanda.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit self-employed person</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-seasonal-work">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de residência para trabalho sazonal</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer trabalhar no setor agrícola da Holanda por no máximo 6 meses.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit for seasonal work</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-orientation-year-highly-educated">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Visto de Orientação para Recém-Graduados - Pessoa Altamente Educada</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Visto para recém-graduados, pesquisadores ou profissionais com doutorado que desejam procurar trabalho na Holanda após conclusão de estudos ou pesquisa. Permite trabalho livre sem necessidade de permissão do empregador.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil (antes de entrar)</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit for orientation year for highly educated persons</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Conclusão de programa de estudo acreditado (bacharelado ou mestrado); Conclusão de doutorado; Pesquisa científica conduzida na Holanda</span>
+              </div>
+          <div class="visa-field">
+                <span class="visa-field-label">Idioma</span>
+                <span class="visa-field-value">Inglês: 6.0</span>
+              </div>
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Reunir cópia de diploma/certificado de conclusão, documentação de pesquisa se aplicável, comprovante de inscrição no BRP e BSN</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Se diploma é estrangeiro, solicitar avaliação à Nuffic antes da aplicação (não necessário para Flanders, Bélgica)</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Submeter formulário de aplicação online através do portal IND usando DigiD com verificação SMS e internet banking (iDEAL). Requer residência atual na Holanda com permissão válida para estudos/pesquisa</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">4</span>
+                  <span class="step-text">Após aprovação, agendar teste de tuberculose na Gemeenschappelijke Gezondheidsdienst (GGD) dentro de 3 meses</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Permissão de residência válida por 1 ano, tipo I, permissão de residência temporária regular. Não é extensível. Permite trabalho livre sem necessidade de permissão do empregador (TWV). Pode trabalhar como trabalhador autônomo, profissional liberal ou empreendedor. Se encontrar emprego durante o ano de orientação, pode solicitar outro tipo de permissão de residência (ex: trabalhador altamente qualificado, startup, autônomo). É possível solicitar segundo ou subsequentes anos de orientação se tiver completado diferentes projetos de pesquisa ou programas de estudo após o ano anterior. Aplicação deve ser feita enquanto residente na Holanda com permissão válida para o propósito anterior (estudo/pesquisa).</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-researcher">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M40 24 V58 L50 64 L60 58 V24" stroke="currentColor" stroke-width="1.5"/><path d="M40 24 H60 V32 H40 Z" fill="currentColor" opacity="0.18"/><path d="M40 32 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 40 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 48 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><circle cx="50" cy="74" r="8" fill="currentColor" opacity="0.6"/><circle cx="50" cy="74" r="8" stroke="currentColor" stroke-width="1"/><circle cx="48" cy="72" r="1.5" fill="#000"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de residência para pesquisador</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer viver e trabalhar na Holanda como pesquisador.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit researcher (Directive (EU) 2016/801)</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-paid-employment-no-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Emprego remunerado: apenas permissão de residência</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer trabalhar em emprego remunerado na Holanda e não pode solicitar um GVVA. Ou você não precisa de permissão de trabalho.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Paid employment: residence permit only</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-start-up-founder">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M20 78 Q40 70 50 50 T82 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="20" cy="78" r="3" fill="currentColor" opacity="0.5"/><circle cx="50" cy="50" r="4" fill="currentColor" opacity="0.7"/><path d="M76 22 L82 22 L82 28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M82 22 L72 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="68" y="14" width="22" height="22" rx="2" stroke="currentColor" stroke-width="1" opacity="0.3" stroke-dasharray="2 2"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de residência para fundador de startup inovadora</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer começar uma empresa inovadora na Holanda.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit for innovative start-up founder</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-international-trade-regulation">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Regulação de Comércio Internacional</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer viver e trabalhar temporariamente na Holanda sob a Regulação de Comércio Internacional.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">International Trade Regulation</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-researcher-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M40 24 V58 L50 64 L60 58 V24" stroke="currentColor" stroke-width="1.5"/><path d="M40 24 H60 V32 H40 Z" fill="currentColor" opacity="0.18"/><path d="M40 32 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 40 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><path d="M40 48 H60" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><circle cx="50" cy="74" r="8" fill="currentColor" opacity="0.6"/><circle cx="50" cy="74" r="8" stroke="currentColor" stroke-width="1"/><circle cx="48" cy="72" r="1.5" fill="#000"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Residência para Pesquisador</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer viver e trabalhar na Holanda como pesquisador.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit researcher (Directive (EU) 2016/801)</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Pesquisador</span>
+              </div>
+          
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-cross-border-service-provider">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Residência para Prestador de Serviços Transfronteiriços</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você trabalha para uma empresa em um país da UE/EEA ou Suíça. Você trabalhará temporariamente na Holanda para essa empresa.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Residence permit cross-border service provider</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-intra-eu-frontier-worker">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Trabalhador Fronteiriço Intra-UE</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você vai trabalhar na Holanda mas vive em outro país da UE.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Work as an EU frontier worker</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-seafaring-crew">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Baixa relevância</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Serviço Marítimo como Membro da Tripulação</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Você quer realizar serviço marítimo em um navio em um porto holandês por mais de 90 dias.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Seafaring service as a crew member on board a seagoing vessel</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Membro da tripulação</span>
+              </div>
+          
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
+        <div class="visa-modal-dialog" role="document">
+          <button type="button" class="visa-modal-close" aria-label="Fechar">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3 L11 11 M11 3 L3 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div id="visa-modal-body"></div>
+        </div>
+      </div>
       </div>
     </section>
   </div>
@@ -1067,7 +1561,7 @@
           
         <div class="br-card" style="grid-column:1/-1;">
           <span class="br-label">Observações para brasileiros</span>
-          <p class="br-desc">A página não menciona acordos bilaterais específicos com o Brasil ou requisitos específicos para cidadãos brasileiros. Cidadãos brasileiros não-EEA podem se candidatar aos vistos de trabalho listados, sujeitos aos requisitos gerais de cada categoria de visto.</p>
+          <p class="br-desc">Nenhum acordo bilateral específico com o Brasil foi mencionado na página. Brasileiros precisarão se submeter aos mesmos requisitos que outros nacionais não-EEA para trabalhar na Holanda.</p>
         </div>
         </div>
       </div>
@@ -1088,7 +1582,7 @@
           </div>
           <div class="req-item">
             <span class="req-icon req">●</span>
-            <span class="req-text">Comprovante de fundos — mínimo EUR 865/mês. Comprovante de renda ou fundos suficientes. Para visto de busca de emprego: mínimo EUR 865/mês (salário mínimo holandês). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente.</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 2.294/mês. Salário mínimo holandês em 2026: EUR 14,71/hora, aproximadamente EUR 2.294/mês (36h) a EUR 2.545/mês (40h). Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente.</span>
             <span class="req-note">Ver cada visto</span>
           </div>
           <div class="req-item">
@@ -1143,7 +1637,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1153,7 +1647,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1163,7 +1657,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1173,7 +1667,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1183,7 +1677,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1194,6 +1688,41 @@
             <span class="body-sm" style="color:var(--muted);">
               Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
             </span>
+          </div>
+        </div>
+        
+        <div style="margin-top:var(--s-xl);">
+          <h3 class="title-md" style="margin-bottom:var(--s-sm);">Fontes de verificação cruzada</h3>
+          <p class="body-sm" style="color:var(--muted);max-width:600px;margin-bottom:var(--s-md);">Links usados para validar a acurácia dos dados extraídos. Consultados na pesquisa de mai/2026 e integrados ao processo de extração mensal.</p>
+          <div class="sources-list">
+            
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://ind.nl/en/required-amounts" target="_blank" rel="noopener noreferrer">IND: Valores obrigatórios</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Tabela oficial com salários mínimos para Highly Skilled Migrant (atualizada anualmente em janeiro)</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://www.government.nl/topics/working-in-the-netherlands" target="_blank" rel="noopener noreferrer">Government.nl: Trabalhar na Holanda</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Portal oficial com salário mínimo nacional e requisitos de trabalho atualizados para 2026</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://allaboutexpats.nl" target="_blank" rel="noopener noreferrer">All About Expats NL</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Verificação independente dos limiares salariais para o visto Highly Skilled Migrant 2026</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1219,7 +1748,6 @@
               </div>
             </div>
             <div class="guide-steps">
-              
               <div class="guide-step highlight">
                 <div class="guide-step-left">
                   <div class="step-circle">1</div>
@@ -1227,7 +1755,7 @@
                 </div>
                 <div class="step-body">
                   <h4 class="step-heading">Passaporte válido</h4>
-                  <p class="step-desc">Validade mínima: Minimo 6 meses apos a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                  <p class="step-desc">Validade mínima de 6 meses após a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
                 </div>
               </div>
               <div class="guide-step highlight">
@@ -1247,37 +1775,108 @@
                 </div>
                 <div class="step-body">
                   <h4 class="step-heading">Seguro saúde</h4>
-                  <p class="step-desc">Seguro saúde é obrigatório para residentes na Holanda. Após chegada, deve-se contratar seguro holandês (zorgverzekering) dentro de 4 meses. Para o período de visto, cobertura internacional de EUR 30.000 mínima.</p>
+                  <p class="step-desc">Para o período do visto, cobertura internacional mínima de EUR 30.000. Após chegada, é obrigatório contratar seguro holandês (zorgverzekering) dentro de 4 meses, custando aproximadamente EUR 150-200/mês.</p>
                 </div>
               </div>
               <div class="guide-step">
                 <div class="guide-step-left">
                   <div class="step-circle">4</div>
-                  
                 </div>
                 <div class="step-body">
                   <h4 class="step-heading">Comprovante de fundos</h4>
-                  <p class="step-desc">Mínimo EUR 865/mês. Comprovante de renda ou fundos suficientes. Para visto de busca de emprego: mínimo EUR 865/mês (salário mínimo holandês). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente.</p>
+                  <p class="step-desc">Salário mínimo holandês em 2026: EUR 2.294-2.545/mês. Para Highly Skilled Migrant o requisito é o salário do contrato: mínimo EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: contrato de trabalho com salário adequado à função é suficiente.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 02</span>
               <div>
-                <h3 class="phase-title">Processo do visto</h3>
-                <p class="phase-subtitle">Consulte as fontes oficiais para o passo a passo completo</p>
+                <h3 class="phase-title">Processo do visto Highly Skilled Migrant</h3>
+                <p class="phase-subtitle">Patrocinado por empresa reconhecida pelo IND</p>
               </div>
             </div>
             <div class="guide-steps">
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Consulte as fontes listadas na aba Fontes</h4>
-                  <p class="step-desc">As etapas detalhadas do processo estão em levantamento. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.</p>
+                  <h4 class="step-heading">Consiga oferta de emprego em empresa patrocinadora</h4>
+                  <p class="step-desc">A empresa deve ser reconhecida pelo IND como "erkend referent". Mais de 9.000 empresas holandesas têm esse status. Salário mínimo: EUR 4.171/mês para maiores de 30 anos (2024).</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Empresa submete pedido ao IND</h4>
+                  <p class="step-desc">O empregador envia a solicitação ao Serviço de Imigração e Naturalização (IND). O prazo de decisão é de 2 a 4 semanas para HSM.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Obtenha o MVV (visto de longa duração)</h4>
+                  <p class="step-desc">Com a autorização do IND aprovada, solicite o MVV no Consulado Holandês em São Paulo ou Brasília. Documentação: passaporte, fotos, contrato de trabalho.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Registre-se na gemeente</h4>
+                  <p class="step-desc">Após chegada, faça o registro no município (gemeente) dentro de 5 dias. Você receberá o BSN (número de identificação fiscal).</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">5</div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Solicite a permissão de residência</h4>
+                  <p class="step-desc">Compareça ao IND para coletar a permissão de residência (verblijfsvergunning) dentro do prazo indicado no MVV.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-phase">
+            <div class="phase-header">
+              <span class="phase-num">FASE 03</span>
+              <div>
+                <h3 class="phase-title">Rumo à residência permanente</h3>
+                <p class="phase-subtitle">Após 5 anos de residência legal</p>
+              </div>
+            </div>
+            <div class="guide-steps">
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Mantenha registro de residência contínua</h4>
+                  <p class="step-desc">Não ausente do país por mais de 6 meses consecutivos. Renovações intermediárias conforme necessário.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Solicite residência permanente</h4>
+                  <p class="step-desc">Após 5 anos com permissão de residência válida, é possível solicitar a "verblijfsvergunning voor onbepaalde tijd". Exige integração (inburgeringsexamen) e ausência de condenações criminais.</p>
                 </div>
               </div>
             </div>
@@ -1352,8 +1951,8 @@
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">JSON direto</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
@@ -1368,18 +1967,99 @@
 <script>
   const tabBtns = document.querySelectorAll('.tab-btn')
   const tabPanels = document.querySelectorAll('.tab-panel')
+  function activateTab(name, scroll) {
+    const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]')
+    const panel = document.getElementById(name)
+    if (!btn || !panel) return false
+    tabBtns.forEach(b => b.classList.remove('active'))
+    tabPanels.forEach(p => p.classList.remove('active'))
+    btn.classList.add('active')
+    panel.classList.add('active')
+    if (scroll) document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    return true
+  }
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'))
-      tabPanels.forEach(p => p.classList.remove('active'))
-      btn.classList.add('active')
-      document.getElementById(btn.dataset.tab).classList.add('active')
-      document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+      activateTab(btn.dataset.tab, true)
+      history.replaceState(null, '', '#' + btn.dataset.tab)
     })
   })
-  function toggleVisa(head) {
-    head.closest('.visa-card').classList.toggle('open')
+  if (location.hash) {
+    const name = location.hash.slice(1)
+    if (activateTab(name, false)) {
+      setTimeout(() => document.getElementById('sticky')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60)
+    }
   }
+
+  // ---- Visa filter chips + modal ----
+  ;(function () {
+    const grid = document.querySelector('.visa-grid')
+    const modal = document.getElementById('visa-modal')
+    if (!grid || !modal) return
+    const chips = document.querySelectorAll('.visa-chip')
+    const modalBody = document.getElementById('visa-modal-body')
+    const closeBtn = modal.querySelector('.visa-modal-close')
+    let lastFocus = null
+
+    function openModal(visaId) {
+      const tpl = document.getElementById('visa-detail-' + visaId)
+      if (!tpl || !modalBody) return
+      lastFocus = document.activeElement
+      modalBody.innerHTML = ''
+      modalBody.appendChild(tpl.content.cloneNode(true))
+      modal.classList.add('is-open')
+      modal.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+      setTimeout(() => closeBtn && closeBtn.focus(), 50)
+    }
+    function closeModal() {
+      modal.classList.remove('is-open')
+      modal.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+      if (lastFocus && lastFocus.focus) lastFocus.focus()
+    }
+
+    grid.querySelectorAll('.visa-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    })
+
+    function applyFilter(tag) {
+      grid.querySelectorAll('.visa-card').forEach(card => {
+        const isActive = card.dataset.visaActive !== 'false'
+        let visible
+        if (tag === 'all') visible = isActive
+        else if (tag === 'inativos') visible = !isActive
+        else visible = isActive && card.dataset.visaTag === tag
+        card.hidden = !visible
+      })
+    }
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'))
+        chip.classList.add('active')
+        applyFilter(chip.dataset.tag)
+      })
+    })
+    applyFilter('all')
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal)
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal() })
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal()
+    })
+
+    // "Saber mais" CTA: troca para a aba Fontes
+    modal.addEventListener('click', e => {
+      const t = e.target.closest('[data-visa-cta="fontes"]')
+      if (!t) return
+      e.preventDefault()
+      closeModal()
+      if (typeof activateTab === 'function') {
+        activateTab('fontes', true)
+        history.replaceState(null, '', '#fontes')
+      }
+    })
+  })()
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

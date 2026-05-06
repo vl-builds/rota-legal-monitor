@@ -35,6 +35,24 @@ export const beSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://dofi.ibz.be',
+      label: 'DOFI: Imigração Bélgica',
+      description: 'Serviço de Imigração belga: requisitos de permissão única de trabalho e renovação',
+    },
+    {
+      url: 'https://economie-emploi.brussels',
+      label: 'Economie-Emploi Bruxelas',
+      description: 'Permissão única de trabalho para Bruxelas e limiares salariais 2026 (EUR 2.154/mês)',
+    },
+    {
+      url: 'https://home.kpmg/be',
+      label: 'KPMG Flash Alert 2026-018',
+      description: 'Análise dos novos limiares de salário para imigrantes na Bélgica em jan/2026',
+    },
+  ],
+
   glossary: {
     'Single Permit': 'Autorizacao unica de trabalho e residencia',
     'Permis de travail': 'Permissao de trabalho (frances)',

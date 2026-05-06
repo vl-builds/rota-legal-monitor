@@ -1,7 +1,7 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Brasileiros podem entrar na Itália sem visto por até 90 dias (Espaço Schengen). Para trabalhar, é necessário visto de trabalho (D) vinculado ao Decreto Flussi, que abre vagas anuais por quota. O EU Blue Card é alternativa para profissionais altamente qualificados. Brasileiros de descendência italiana podem solicitar cidadania italiana por jus sanguinis.",
+    "notes": "",
     "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
@@ -31,30 +31,30 @@
   "meta": {
     "country": "it",
     "countryName": "Italia",
-    "lastUpdated": "2026-05-01T21:03:43.112Z",
+    "lastUpdated": "2026-05-06T11:57:12.701Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "it",
-        "fetchedAt": "2026-05-01T21:02:28.119Z",
+        "fetchedAt": "2026-05-06T11:56:11.408Z",
         "status": "ok",
         "url": "https://vistoperitalia.esteri.it/"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-05-01T21:02:28.784Z",
+        "fetchedAt": "2026-05-06T11:56:11.927Z",
         "status": "ok",
         "url": "https://integrazionemigranti.gov.it/en-gb/"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-05-01T21:02:32.783Z",
+        "fetchedAt": "2026-05-06T11:56:14.999Z",
         "status": "ok",
         "url": "https://www.poliziadistato.it/tematiche/immigrazione"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-05-01T21:02:33.124Z",
+        "fetchedAt": "2026-05-06T11:56:15.221Z",
         "status": "ok",
         "url": "https://www.lavoro.gov.it/en"
       }
@@ -65,48 +65,43 @@
     "extractedBy": "llm",
     "extractionConfidence": "medium",
     "humanReviewedAt": null,
-    "knownIssues": []
+    "knownIssues": [
+      "Extração mai/2026: proofOfFunds, healthInsurance e forBrazilians.schengenVisaFree requerem manutenção manual — LLM não extrai esses campos de forma confiável das fontes atuais."
+    ]
   },
   "visaTypes": [
     {
-      "description": "Visto nacional de longa duração para trabalho subordinado (emprego assalariado) na Itália. Sujeito ao sistema de cotas anuais (decreto flussi) estabelecido pelo governo italiano.",
+      "description": "Visto nacional de longa duração (tipo D) para atividade de trabalho subordinado (emprego com vínculo empregatício) na Itália. Sujeito ao sistema de cotas anuais estabelecido pelo decreto flussi.",
       "eligibility": [
-        "Ter oferta de emprego de empregador italiano",
-        "Empregador deve obter autorização prévia (nulla osta) da Sportello Unico per l'Immigrazione",
-        "Vaga deve estar dentro das cotas estabelecidas pelo decreto flussi, salvo exceções"
+        "Cidadãos não comunitários com oferta de emprego de empregador italiano",
+        "Vagas disponíveis dentro das cotas estabelecidas pelo decreto flussi"
       ],
       "id": "lavoro-subordinato",
       "name": "Trabalho Subordinado",
       "nameOriginal": "Lavoro Subordinato",
-      "notes": "Sujeito ao sistema de cotas anuais (decreto flussi). Algumas categorias de trabalhadores podem estar isentas das cotas. O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.",
+      "notes": "Sujeito ao sistema de cotas anuais (decreto flussi). O empregador italiano deve iniciar o processo solicitando autorização. Oferta de emprego é obrigatória.",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "O empregador italiano deve solicitar a autorização de trabalho (nulla osta) junto à Sportello Unico per l'Immigrazione da província onde a empresa está localizada",
+            "description": "O empregador italiano deve solicitar o nulla osta ao Sportello Unico per l'Immigrazione dentro das cotas disponíveis do decreto flussi",
             "estimatedDays": null,
             "name": "Empregador solicita nulla osta",
             "order": 1
           },
           {
-            "description": "Após a emissão do nulla osta, o trabalhador solicita o visto nacional de trabalho no Consulado italiano no Brasil",
+            "description": "Após receber o nulla osta, o candidato solicita o visto tipo D no Consulado italiano competente",
             "estimatedDays": null,
-            "name": "Solicitação do visto",
+            "name": "Solicitação de visto",
             "order": 2
           },
           {
-            "description": "Com o visto aprovado, o trabalhador pode entrar na Itália",
-            "estimatedDays": null,
-            "name": "Entrada na Itália",
-            "order": 3
-          },
-          {
-            "description": "Dentro de 8 dias úteis após a entrada na Itália, o trabalhador deve solicitar a permissão de permanência (Permesso di Soggiorno) junto aos Correios (Poste Italiane) ou Questura",
+            "description": "Dentro de 8 dias úteis após a chegada à Itália, solicitar a permissão de residência (Permesso di Soggiorno)",
             "estimatedDays": 8,
-            "name": "Solicitação de Permesso di Soggiorno",
-            "order": 4
+            "name": "Solicitar Permesso di Soggiorno",
+            "order": 3
           }
         ]
       },
@@ -114,24 +109,19 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte com validade superior ao período de permanência previsto",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Autorização de trabalho emitida pela Sportello Unico per l'Immigrazione a pedido do empregador italiano",
+            "description": "Autorização de trabalho emitida pela Sportello Unico per l'Immigrazione após aprovação dentro das cotas do decreto flussi, solicitada pelo empregador italiano",
             "isCritical": true,
             "name": "Nulla osta (autorização de trabalho)"
           },
           {
-            "description": "Documentação comprovando a oferta de emprego e condições de trabalho",
+            "description": "Contrato ou proposta de emprego do empregador italiano",
             "isCritical": true,
-            "name": "Contrato de trabalho ou oferta formal"
+            "name": "Contrato de trabalho ou proposta vinculante"
           },
           {
-            "description": "Documentação que comprove onde o requerente ficará hospedado na Itália",
-            "isCritical": false,
-            "name": "Comprovante de acomodação na Itália"
+            "description": "Passaporte com validade adequada",
+            "isCritical": true,
+            "name": "Passaporte válido"
           }
         ],
         "incomeRequirement": null,
@@ -147,44 +137,37 @@
       }
     },
     {
-      "description": "Visto nacional de longa duração para trabalho autônomo na Itália, destinado a profissionais liberais, empresários e trabalhadores por conta própria.",
+      "description": "Visto nacional de longa duração (tipo D) para exercício de atividade de trabalho autônomo na Itália. Permite trabalhar como profissional independente ou abrir empresa.",
       "eligibility": [
-        "Demonstrar capacidade de exercer atividade autônoma na Itália",
-        "Comprovar requisitos profissionais ou empresariais necessários",
-        "Sujeito ao sistema de cotas anuais (decreto flussi), salvo exceções"
+        "Cidadãos não comunitários que pretendem exercer atividade profissional autônoma ou empresarial na Itália",
+        "Sujeito às cotas do decreto flussi para trabalho autônomo"
       ],
       "id": "lavoro-autonomo",
       "name": "Trabalho Autônomo",
       "nameOriginal": "Lavoro Autonomo",
-      "notes": "Sujeito ao sistema de cotas anuais (decreto flussi). O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.",
+      "notes": "Sujeito ao sistema de cotas anuais (decreto flussi) para trabalho autônomo. Requer demonstração de viabilidade da atividade profissional ou empresarial.",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Reunir toda a documentação necessária comprovando a atividade autônoma a ser exercida e meios econômicos",
+            "description": "Solicitar autorização para trabalho autônomo dentro das cotas do decreto flussi",
             "estimatedDays": null,
-            "name": "Preparação da documentação",
+            "name": "Obter nulla osta",
             "order": 1
           },
           {
-            "description": "Solicitar o visto nacional para trabalho autônomo no Consulado italiano no Brasil",
+            "description": "Solicitar visto tipo D no Consulado italiano competente",
             "estimatedDays": null,
-            "name": "Solicitação do visto",
+            "name": "Solicitação de visto",
             "order": 2
           },
           {
-            "description": "Com o visto aprovado, entrar na Itália",
-            "estimatedDays": null,
-            "name": "Entrada na Itália",
-            "order": 3
-          },
-          {
-            "description": "Dentro de 8 dias úteis após a entrada na Itália, solicitar a permissão de permanência (Permesso di Soggiorno)",
+            "description": "Dentro de 8 dias úteis após a chegada à Itália, solicitar a permissão de residência",
             "estimatedDays": 8,
-            "name": "Solicitação de Permesso di Soggiorno",
-            "order": 4
+            "name": "Solicitar Permesso di Soggiorno",
+            "order": 3
           }
         ]
       },
@@ -192,24 +175,19 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte com validade superior ao período de permanência previsto",
+            "description": "Autorização específica para trabalho autônomo emitida pela Sportello Unico per l'Immigrazione",
+            "isCritical": true,
+            "name": "Nulla osta para trabalho autônomo"
+          },
+          {
+            "description": "Documentação detalhando a atividade autônoma a ser desenvolvida",
+            "isCritical": true,
+            "name": "Plano de negócios ou projeto profissional"
+          },
+          {
+            "description": "Passaporte com validade adequada",
             "isCritical": true,
             "name": "Passaporte válido"
-          },
-          {
-            "description": "Documentos que comprovem a atividade profissional ou empresarial que será exercida na Itália",
-            "isCritical": true,
-            "name": "Documentação da atividade autônoma"
-          },
-          {
-            "description": "Documentação comprovando recursos financeiros suficientes para o exercício da atividade",
-            "isCritical": true,
-            "name": "Comprovante de meios econômicos"
-          },
-          {
-            "description": "Diplomas, certificados ou documentos que comprovem qualificação para exercer a atividade",
-            "isCritical": false,
-            "name": "Qualificações profissionais"
           }
         ],
         "incomeRequirement": null,
@@ -225,63 +203,57 @@
       }
     },
     {
-      "description": "Visto para trabalho em missão temporária na Itália, geralmente para profissionais enviados por empresas estrangeiras para trabalhar temporariamente em filiais ou empresas parceiras italianas.",
+      "description": "Visto nacional de longa duração (tipo D) para atividade profissional temporária na Itália, geralmente para transferências intraempresa ou missões de trabalho de média duração.",
       "eligibility": [
-        "Ser funcionário de empresa estrangeira enviado em missão para a Itália",
-        "Ter documentação da empresa comprovando a missão temporária"
+        "Profissionais enviados por empresas estrangeiras para realizar missões ou projetos na Itália",
+        "Transferências intraempresa"
       ],
       "id": "missione",
-      "name": "Missão/Trabalho Temporário",
+      "name": "Missão",
       "nameOriginal": "Missione",
-      "notes": "Destinado a trabalho temporário. O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.",
+      "notes": "Destinado a missões temporárias de trabalho. Geralmente não permite mudança de empregador durante a missão.",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "Obter carta da empresa estrangeira e convite da empresa italiana",
+            "description": "Reunir carta de missão e documentos da empresa",
             "estimatedDays": null,
-            "name": "Obtenção da documentação empresarial",
+            "name": "Preparar documentação",
             "order": 1
           },
           {
-            "description": "Solicitar o visto nacional para missão no Consulado italiano no Brasil",
+            "description": "Solicitar visto tipo D no Consulado italiano competente",
             "estimatedDays": null,
-            "name": "Solicitação do visto",
+            "name": "Solicitação de visto",
             "order": 2
           },
           {
-            "description": "Com o visto aprovado, entrar na Itália",
-            "estimatedDays": null,
-            "name": "Entrada na Itália",
-            "order": 3
-          },
-          {
-            "description": "Dentro de 8 dias úteis após a entrada na Itália, solicitar a permissão de permanência (Permesso di Soggiorno)",
+            "description": "Dentro de 8 dias úteis após a chegada à Itália, solicitar a permissão de residência",
             "estimatedDays": 8,
-            "name": "Solicitação de Permesso di Soggiorno",
-            "order": 4
+            "name": "Solicitar Permesso di Soggiorno",
+            "order": 3
           }
         ]
       },
-      "relevanceForDelivery": "indirect",
+      "relevanceForDelivery": "direct",
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte com validade superior ao período de permanência previsto",
+            "description": "Documento da empresa estrangeira detalhando a missão, duração e natureza do trabalho na Itália",
+            "isCritical": true,
+            "name": "Carta de missão"
+          },
+          {
+            "description": "Informações sobre a empresa estrangeira e eventual empresa hospedeira na Itália",
+            "isCritical": true,
+            "name": "Documentação da empresa"
+          },
+          {
+            "description": "Passaporte com validade adequada",
             "isCritical": true,
             "name": "Passaporte válido"
-          },
-          {
-            "description": "Documentação da empresa estrangeira detalhando a missão, duração e propósito",
-            "isCritical": true,
-            "name": "Carta da empresa"
-          },
-          {
-            "description": "Carta convite ou documentação da empresa italiana hospedeira",
-            "isCritical": true,
-            "name": "Convite da empresa italiana"
           }
         ],
         "incomeRequirement": null,
@@ -297,44 +269,38 @@
       }
     },
     {
-      "description": "Visto de trabalho para profissionais altamente qualificados, que permite viver e trabalhar na Itália e facilita a mobilidade dentro da União Europeia.",
+      "description": "Visto nacional de longa duração (tipo D) que permite trabalho altamente qualificado na Itália, destinado a profissionais com qualificações superiores e oferta de emprego com salário elevado.",
       "eligibility": [
-        "Ter diploma de ensino superior ou qualificação profissional de alto nível",
-        "Ter oferta de emprego com salário mínimo estabelecido (geralmente acima de 1,5 vezes o salário médio italiano)",
-        "O emprego deve requerer alta qualificação"
+        "Profissionais altamente qualificados com diploma de ensino superior ou qualificação profissional de alto nível",
+        "Oferta de emprego ou contrato de trabalho na Itália",
+        "Salário acima do limiar estabelecido pela legislação italiana"
       ],
       "id": "eu-blue-card",
       "name": "Cartão Azul UE",
       "nameOriginal": "EU Blue Card",
-      "notes": "Facilita a mobilidade dentro da UE após 18 meses. Geralmente isento das cotas do decreto flussi. Oferece condições privilegiadas para reagrupamento familiar. O visto nacional de longa duração (tipo D) permite circular em outros países Schengen por até 90 dias a cada 180 dias durante sua validade.",
+      "notes": "Destinado a profissionais altamente qualificados. Oferece condições facilitadas em comparação com visto de trabalho subordinado regular. Permite reunificação familiar. Não está sujeito às cotas do decreto flussi.",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
         "fees": [],
         "steps": [
           {
-            "description": "O empregador italiano solicita a autorização de trabalho específica para EU Blue Card",
+            "description": "O empregador italiano solicita a autorização específica para EU Blue Card ao Sportello Unico per l'Immigrazione",
             "estimatedDays": null,
-            "name": "Empregador solicita nulla osta",
+            "name": "Empregador solicita nulla osta para EU Blue Card",
             "order": 1
           },
           {
-            "description": "Após a emissão do nulla osta, solicitar o visto EU Blue Card no Consulado italiano no Brasil",
+            "description": "Após receber o nulla osta, o candidato solicita o visto tipo D para EU Blue Card no Consulado italiano",
             "estimatedDays": null,
-            "name": "Solicitação do visto",
+            "name": "Solicitação de visto",
             "order": 2
           },
           {
-            "description": "Com o visto aprovado, entrar na Itália",
-            "estimatedDays": null,
-            "name": "Entrada na Itália",
-            "order": 3
-          },
-          {
-            "description": "Dentro de 8 dias úteis após a entrada na Itália, solicitar a permissão de permanência EU Blue Card",
+            "description": "Dentro de 8 dias úteis após a chegada à Itália, solicitar a permissão de residência EU Blue Card",
             "estimatedDays": 8,
-            "name": "Solicitação de Permesso di Soggiorno EU Blue Card",
-            "order": 4
+            "name": "Solicitar Permesso di Soggiorno EU Blue Card",
+            "order": 3
           }
         ]
       },
@@ -342,43 +308,42 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte com validade superior ao período de permanência previsto",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Diploma universitário ou qualificação profissional equivalente, com pelo menos 3 anos de estudos",
+            "description": "Diploma universitário ou qualificação profissional de alto nível reconhecida",
             "isCritical": true,
             "name": "Diploma de ensino superior"
           },
           {
-            "description": "Contrato de trabalho ou oferta vinculante com duração mínima de 1 ano e salário adequado",
+            "description": "Contrato de trabalho ou oferta vinculante com salário acima do limiar estabelecido para EU Blue Card",
             "isCritical": true,
             "name": "Contrato de trabalho"
           },
           {
-            "description": "Autorização de trabalho emitida pelas autoridades italianas",
+            "description": "Autorização de trabalho específica para EU Blue Card",
             "isCritical": true,
             "name": "Nulla osta"
+          },
+          {
+            "description": "Passaporte com validade adequada",
+            "isCritical": true,
+            "name": "Passaporte válido"
           }
         ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": [
-          "Diploma de ensino superior (mínimo 3 anos de estudo)",
-          "Ou experiência profissional comprovada de pelo menos 5 anos em nível comparável"
+          "Diploma de ensino superior com duração mínima de 3 anos",
+          "Ou qualificação profissional de alto nível comparável"
         ]
       },
       "rights": {
         "canBringFamily": true,
-        "canChangeEmployer": true,
+        "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": null,
         "pathToResidency": {
           "conditions": [
-            "Residência legal e contínua na UE por 5 anos",
-            "Meios de subsistência adequados",
-            "Seguro de saúde"
+            "Residência legal e contínua por 5 anos",
+            "Manutenção das condições de emprego altamente qualificado"
           ],
           "yearsRequired": 5
         }

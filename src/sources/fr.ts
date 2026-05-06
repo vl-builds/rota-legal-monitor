@@ -44,6 +44,24 @@ export const frSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://www.travail-emploi.gouv.fr',
+      label: 'Ministère du Travail',
+      description: 'Valores oficiais do SMIC 2026 após revalorização de jan/2026: EUR 1.823,69 bruto/mês',
+    },
+    {
+      url: 'https://br.diplomatie.gouv.fr',
+      label: 'Embaixada da França no Brasil',
+      description: 'Informações sobre o PVT França-Brasil e requisitos consulares para brasileiros em 2026',
+    },
+    {
+      url: 'https://info.gouv.fr',
+      label: 'Info.gouv.fr',
+      description: 'Portal oficial do governo francês com atualizações do SMIC e políticas de imigração',
+    },
+  ],
+
   glossary: {
     'Titre de séjour': 'Autorizacao de residencia',
     'Carte de séjour': 'Cartao de residencia',

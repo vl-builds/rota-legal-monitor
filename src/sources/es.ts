@@ -35,6 +35,24 @@ export const esSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://www.inclusion.gob.es',
+      label: 'Ministerio de Inclusión',
+      description: 'Salário mínimo interprofissional (SMI) 2026: EUR 1.184/mês — referência oficial para requisitos de imigrantes',
+    },
+    {
+      url: 'https://jobbatical.com',
+      label: 'Jobbatical',
+      description: 'Análise do SMI 2026 e visto nômade digital espanhol com valores atualizados (200% SMI = EUR 2.849/mês)',
+    },
+    {
+      url: 'https://espanhafacil.com',
+      label: 'Espanha Fácil',
+      description: 'Guia comunitário com SMI 2026, processo de NIE e legalização para brasileiros',
+    },
+  ],
+
   glossary: {
     'Autorización de Residencia': 'Autorizacao de residencia',
     'Autorización de Trabajo': 'Autorizacao de trabalho',

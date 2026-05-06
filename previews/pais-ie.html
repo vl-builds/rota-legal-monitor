@@ -40,36 +40,104 @@
   /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
-  /* ---- visa cards ---- */
-  .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
-  .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
-  .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
-  .visa-head:hover { background: rgba(255,255,255,0.02); }
-  .visa-title-row { display: flex; flex-direction: column; gap: var(--s-xs); }
-  .visa-name { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); margin: 0; }
-  .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
-  .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
-  .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
-  .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
-  .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
-  .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
-  .visa-card.open .visa-body { display: block; }
-  .visa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xl); margin-top: var(--s-lg); }
-  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--s-md); }
+  /* ---- visa header ---- */
+  .visa-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.82); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 24px; }
+  .visa-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+  .visa-section-h1 { margin: 0; font-size: 56px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; max-width: 780px; }
+  .visa-section-h1-soft { color: rgba(255,255,255,0.4); }
+  .visa-section-lede { margin: 20px 0 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.55); max-width: 580px; }
+  /* ---- visa filter chips ---- */
+  .visa-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 36px 0 var(--s-xl); }
+  .visa-chip { padding: 8px 16px; font-size: 12.5px; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.02em; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; cursor: pointer; transition: all 150ms ease; font-weight: 400; }
+  .visa-chip:hover { color: var(--on-dark); border-color: rgba(255,255,255,0.18); }
+  .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
+  /* ---- visa grid + cards ---- */
+  .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
+  .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
+  .visa-card[hidden] { display: none !important; }
+  .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
+  .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
+  .visa-illo-tile svg { width: 78%; height: 78%; }
+  .visa-card-body { flex: 1; display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .visa-card-title { margin: 0; font-size: 19px; font-weight: 500; letter-spacing: -0.015em; color: var(--on-dark); line-height: 1.25; }
+  .visa-card-desc { margin: 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+  .visa-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; margin-top: 4px; }
+  /* ---- tag pill ---- */
+  .visa-tag-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 999px; font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-tag-pill-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .visa-tag-pill.principal { color: var(--primary); background: rgba(240,180,41,0.13); border: 1px solid rgba(240,180,41,0.33); }
+  .visa-tag-pill.principal .visa-tag-pill-dot { background: var(--primary); }
+  .visa-tag-pill.neutral { color: rgba(255,255,255,0.82); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+  .visa-tag-pill.neutral .visa-tag-pill-dot { background: rgba(255,255,255,0.6); }
+  .visa-tag-pill.revoked { color: rgb(252, 165, 165); background: rgba(239,68,68,0.16); border: 1px solid rgba(239,68,68,0.40); }
+  .visa-tag-pill.revoked .visa-tag-pill-dot { background: rgb(252, 165, 165); }
+  /* ---- inactive card variant ---- */
+  .visa-card.is-inactive { opacity: 0.72; }
+  .visa-card.is-inactive .visa-illo-tile { color: rgba(255,255,255,0.45); }
+  .visa-card.is-inactive:hover { opacity: 1; border-color: rgba(239,68,68,0.30); }
+  .visa-card.is-inactive:hover .visa-illo-tile { background: rgba(239,68,68,0.08); }
+  .visa-chip-inactive { color: rgba(239,68,68,0.85); }
+  .visa-chip-inactive.active { background: rgba(239,68,68,0.85); color: var(--canvas); border-color: rgba(239,68,68,0.85); }
+  /* ---- arrow button on card ---- */
+  .visa-arrow-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 200ms ease; flex-shrink: 0; }
+  .visa-card:hover .visa-arrow-btn { background: var(--primary); color: var(--canvas); border-color: var(--primary); }
+  /* ---- visa modal ---- */
+  .visa-modal-backdrop { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .visa-modal-backdrop.is-open { display: flex; animation: visa-fade-in 200ms ease; }
+  .visa-modal-dialog { position: relative; width: 100%; max-width: 620px; background: var(--canvas); border: 1px solid rgba(240,180,41,0.33); border-radius: 20px; padding: 40px 44px 36px; color: var(--on-dark); max-height: 85vh; overflow-y: auto; animation: visa-slide-up 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .visa-modal-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(255,255,255,0.6); border-radius: 999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .visa-modal-close:hover { background: rgba(255,255,255,0.06); color: var(--on-dark); }
+  .visa-modal-header { display: flex; gap: 20px; align-items: center; margin-bottom: 24px; }
+  .visa-modal-illo { width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; background: rgba(240,180,41,0.15); border: 1px solid rgba(240,180,41,0.33); border-radius: 16px; color: var(--primary); flex-shrink: 0; }
+  .visa-modal-illo svg { width: 70%; height: 70%; }
+  .visa-modal-head-info { flex: 1; min-width: 0; }
+  .visa-modal-title { margin: 10px 0 0; font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: var(--on-dark); }
+  .visa-modal-summary { margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+  .visa-modal-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .visa-modal-cell { padding: 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+  .visa-modal-cell-label { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 8px; }
+  .visa-modal-cell-value { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+  .visa-modal-cell-value.accent { color: var(--primary); font-weight: 500; }
+  .visa-modal-official { padding: 18px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; margin-bottom: 24px; }
+  .visa-modal-official-text { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.75); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-modal-section { margin-bottom: 22px; }
+  .visa-modal-notes { margin-bottom: 22px; padding: 14px 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+  .visa-modal-cta-row { display: flex; gap: 10px; }
+  .visa-cta-primary { flex: 1; padding: 14px 20px; background: var(--primary); color: var(--canvas); border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: -0.01em; text-decoration: none; text-align: center; transition: filter 150ms ease; }
+  .visa-cta-primary:hover { filter: brightness(1.06); }
+  .visa-cta-secondary { padding: 14px 20px; background: transparent; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; text-align: center; transition: background 150ms ease; }
+  .visa-cta-secondary:hover { background: rgba(255,255,255,0.04); }
+  /* ---- shared step/right components used in modal ---- */
+  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 0 0 var(--s-md); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-field { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s-md); }
   .visa-field-label { font-size: 12px; color: var(--muted); font-weight: 500; }
   .visa-field-value { font-size: 14px; color: var(--body-strong); font-weight: 600; }
   .visa-field-value.mono { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--primary); font-size: 16px; }
   .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
-  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
   .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
   .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-sm); }
   .right-item { display: flex; align-items: center; gap: var(--s-xs); font-size: 13px; color: var(--body); }
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- animations ---- */
+  @keyframes visa-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes visa-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .visa-card, .visa-card:hover, .visa-arrow-btn, .visa-illo-tile, .visa-modal-backdrop, .visa-modal-dialog { transition: none !important; animation: none !important; transform: none !important; }
+  }
+  /* ---- responsive: visa stack ---- */
+  @media (max-width: 600px) {
+    .visa-section-h1 { font-size: 40px; }
+    .visa-modal-dialog { padding: 32px 24px 28px; }
+    .visa-modal-info-grid { grid-template-columns: 1fr; }
+    .visa-modal-header { gap: 14px; }
+    .visa-modal-illo { width: 64px; height: 64px; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
   /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
@@ -143,6 +211,7 @@
       <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
       <a class="nav-link" href="historico.html">Histórico</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
@@ -170,6 +239,7 @@
       <a href="paises.html">Países</a>
       <a href="comparar.html">Comparar</a>
       <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
       <a href="calculadora.html">Calculadora</a>
       <a href="historico.html">Histórico</a>
       <a href="sobre.html">Sobre</a>
@@ -229,8 +299,8 @@
   </div>
   <div class="qs-item">
     <span class="qs-label">Tipos de visto monitorados</span>
-    <span class="qs-value accent">11</span>
-    <span class="qs-sub">8 de relevância direta</span>
+    <span class="qs-value accent">9</span>
+    <span class="qs-sub">6 de relevância direta</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Work permit exigido</span>
@@ -251,569 +321,674 @@
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">11 tipos de visto monitorados</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
-        <div class="visa-list">
+        <div class="visa-eyebrow"><span class="visa-eyebrow-dot"></span>9 tipos de visto monitorados</div>
+        <h2 class="visa-section-h1">Opções de visto<br/><span class="visa-section-h1-soft">de trabalho</span></h2>
+        <p class="visa-section-lede">Escolha o tipo de visto adequado ao seu caso. Cada categoria é monitorada mensalmente para acompanhar prazos, requisitos e atualizações legais.</p>
+        <div class="visa-filter-row">
+            <button type="button" class="visa-chip active" data-tag="all">Todos · 9</button>
+            <button type="button" class="visa-chip" data-tag="principal">Principal · 6</button>
+            <button type="button" class="visa-chip" data-tag="outros">Outros · 3</button>
+            
+          </div>
+        <div class="visa-grid">
           
-        <div class="visa-card open">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de Trabalho em Habilidades Críticas</h3>
-              <span class="visa-name-orig">Critical Skills Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+        <button type="button" class="visa-card" data-visa-id="critical-skills-employment-permit" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego para Competências Críticas</h3>
+            <p class="visa-card-desc">Permissão de emprego para profissionais com competências críticas</p>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para profissionais com habilidades críticas</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Sem taxa de renovação (N/A)</div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="general-employment-permit" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego Geral</h3>
+            <p class="visa-card-desc">Permissão de emprego para trabalhadores não-EEE na Irlanda</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="intra-company-transfer-employment-permit" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego para Transferência…</h3>
+            <p class="visa-card-desc">Permissão de emprego para transferência entre empresas relacionadas</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="contract-for-services-employment-permit" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego para Contrato de Serviços</h3>
+            <p class="visa-card-desc">Permissão de emprego para prestadores de serviços em contrato</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="reactivation-employment-permit" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego de Reativação</h3>
+            <p class="visa-card-desc">Permissão de emprego para reativação de permissões anteriores</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="sport-cultural-employment-permit" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego de Esporte e Cultura</h3>
+            <p class="visa-card-desc">Permissão de emprego para profissionais de esporte e cultura</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="dependant-partner-spouse-employment-permit" data-visa-tag="outros" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego para Dependente/Parceiro/Cônj…</h3>
+            <p class="visa-card-desc">Permissão de emprego para dependentes, parceiros ou cônjuges</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="exchange-agreement-employment-permit" data-visa-tag="outros" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego por Acordo de Intercâmbio</h3>
+            <p class="visa-card-desc">Permissão de emprego sob acordos de intercâmbio</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="internship-employment-permit" data-visa-tag="outros" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="20" y="62" width="16" height="20" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><rect x="42" y="46" width="16" height="36" stroke="currentColor" stroke-width="1.2" opacity="0.7"/><rect x="42" y="46" width="16" height="36" fill="currentColor" opacity="0.15"/><rect x="64" y="30" width="16" height="52" stroke="currentColor" stroke-width="1.2"/><rect x="64" y="30" width="16" height="52" fill="currentColor" opacity="0.3"/><path d="M22 30 L50 22 L78 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M72 14 L78 14 L78 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Permissão de Emprego para Estágio</h3>
+            <p class="visa-card-desc">Permissão de emprego para participantes de programas de estágio</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        </div>
+        <template id="visa-detail-critical-skills-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego para Competências Críticas</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de Trabalho Geral</h3>
-              <span class="visa-name-orig">General Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Permissão de emprego para profissionais com competências críticas</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para emprego geral na Irlanda</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de Transferência Intra-Empresa</h3>
-              <span class="visa-name-orig">Intra-Company Transfer Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para transferência dentro da mesma empresa</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €500 para seis meses ou menos e €1000 até 24 meses</div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Critical Skills Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 24 meses</div></div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de Trabalho por Contrato de Serviços</h3>
-              <span class="visa-name-orig">Contract for Services Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para contratação de serviços</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de Trabalho de Reativação</h3>
-              <span class="visa-name-orig">Reactivation Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para reativação de situação laboral</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
+
+        <div class="visa-modal-notes">Sem taxa de renovação (N/A)</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-general-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego Geral</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de Trabalho em Esporte e Cultura</h3>
-              <span class="visa-name-orig">Sport and Cultural Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Permissão de emprego para trabalhadores não-EEE na Irlanda</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para profissionais de esporte e cultura</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Até 36 meses</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Taxa de renovação: €750 para seis meses ou menos</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Stamp 1 - Employment Permit Holder</h3>
-              <span class="visa-name-orig">Stamp 1 (Employment Permit Holder)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ter um employment permit válido</span>
-                <span class="visa-tag">Ter um contrato de trabalho</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão para trabalhar na Irlanda com um contrato de trabalho válido. Titular de um employment permit que permite trabalhar para um empregador específico.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">O empregador deve solicitar um employment permit junto ao departamento de imigração</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Ao chegar na Irlanda, registrar com Immigration Service Delivery nos primeiros dias</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Restrição de trabalho: apenas para o empregador especificado no employment permit. Mudança de empregador requer novo permit.</div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">General Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação para 6 meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 36 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 750</span><div class="visa-field-label" style="margin-top:4px;">Renovação para 6 meses ou menos</div></div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Stamp 4 - Direitos Expandidos</h3>
-              <span class="visa-name-orig">Stamp 4 (Expanded Rights)</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">5 anos de residência legal contínua na Irlanda</span>
-                <span class="visa-tag">Histórico de conformidade com leis de imigração</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão expandida concedida após 5 anos de residência legal contínua na Irlanda. Permite trabalho autonomamente, trazer família e direitos mais amplos.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Cumprir 5 anos de residência legal contínua na Irlanda</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Solicitar a mudança de permissão para Stamp 4 junto a Immigration Service Delivery</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 5 anos</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Permite trabalho autônomo e emprego, mudança de empregador sem restrições, e trazer dependentes familiares. Baseado em 5 anos de residência legal contínua.</div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Dependant/Partner/Spouse Employment Permit</h3>
-              <span class="visa-name-orig">Dependant/Partner/Spouse Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Dependentes de titulares de Critical Skills Employment Permit</span>
-                <span class="visa-tag">Parceiros reconhecidos de titulares de Critical Skills Employment Permit</span>
-                <span class="visa-tag">Parceiros civis de titulares de Critical Skills Employment Permit</span>
-                <span class="visa-tag">Cônjuges de titulares de Critical Skills Employment Permit</span>
-                <span class="visa-tag">Dependentes/parceiros/cônjuges de Researchers on Hosting Agreements</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permite que dependentes, parceiros reconhecidos (quando reconhecidos pelo Department of Justice and Equality), parceiros civis e cônjuges de titulares de Critical Skills Employment Permit (anteriormente Green Card employment permit) e de Researchers on Hosting Agreements solicitem permissão de trabalho para trabalhar no Estado. Geralmente, é ilegal para cônjuges e dependentes de titulares de permissão de trabalho serem empregados na Irlanda sem uma permissão de trabalho válida.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Anteriormente relacionado ao Green Card employment permit.</div>
+
+        <div class="visa-modal-notes">Issuida pelo Department of Enterprise, Trade and Employment. Isenta de taxa para renovação de permissões ilimitadas.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-intra-company-transfer-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego para Transferência Intra-Corporativa</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Permissão de Trabalho para Estágio</h3>
-              <span class="visa-name-orig">Internship Employment Permit</span>
-              <div class="visa-tags">
-                
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Permissão de emprego para transferência entre empresas relacionadas</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Permissão de trabalho para estágio profissional</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Até 12 meses</div></div><div><span class="visa-field-value mono" style="font-size:20px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Seis meses ou menos</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Sem taxa de renovação (N/A)</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Exchange Agreement Employment Permit</h3>
-              <span class="visa-name-orig">Exchange Agreement Employment Permit</span>
-              <div class="visa-tags">
-                <span class="visa-tag">Baixa relevância</span>
-                <span class="visa-tag">Nacionais não-EEA de acordo com acordos prescritos</span>
-                <span class="visa-tag">Nacionais não-EEA de acordo com acordos internacionais dos quais a Irlanda é parte</span>
-                <span class="visa-tag">Participantes de acordos recíprocos internacionais</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Substitui o antigo Exchange Agreement type of Work Permit Employment Permit e também atende permissões de trabalho para acordos recíprocos internacionais. Projetado para facilitar o emprego no Estado de nacionais não-EEA de acordo com acordos prescritos ou outros acordos internacionais dos quais o Estado é parte.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Substitui o antigo Exchange Agreement type of Work Permit Employment Permit. Para acordos internacionais recíprocos.</div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Intra-Company Transfer Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação para 6 meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 36 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Renovação para 6 meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Renovação até 24 meses</div></div>
           </div>
         </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
         </div>
+
+        <div class="visa-modal-notes">Taxas aplicáveis para primeira aplicação e renovação</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-contract-for-services-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego para Contrato de Serviços</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Permissão de emprego para prestadores de serviços em contrato</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Contract for Services Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação para 6 meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 36 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 750</span><div class="visa-field-label" style="margin-top:4px;">Renovação para 6 meses ou menos</div></div>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Para prestadores de serviços independentes e contratados</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-reactivation-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego de Reativação</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Permissão de emprego para reativação de permissões anteriores</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Reactivation Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação para 6 meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 36 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 750</span><div class="visa-field-label" style="margin-top:4px;">Renovação para 6 meses ou menos</div></div>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Para reativação de permissões de emprego anteriores</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-sport-cultural-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego de Esporte e Cultura</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Permissão de emprego para profissionais de esporte e cultura</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Sport and Cultural Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 24 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação para 6 meses ou menos</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 36 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 750</span><div class="visa-field-label" style="margin-top:4px;">Renovação para 6 meses ou menos</div></div>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Para profissionais de esporte e cultura</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-dependant-partner-spouse-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego para Dependente/Parceiro/Cônjuge</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Permissão de emprego para dependentes, parceiros ou cônjuges</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Dependant/Partner/Spouse Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Sem taxa tanto para aplicação inicial quanto para renovação</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-exchange-agreement-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego por Acordo de Intercâmbio</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Permissão de emprego sob acordos de intercâmbio</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Exchange Agreement Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Sem taxa tanto para aplicação inicial quanto para renovação</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-internship-employment-permit">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="20" y="62" width="16" height="20" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><rect x="42" y="46" width="16" height="36" stroke="currentColor" stroke-width="1.2" opacity="0.7"/><rect x="42" y="46" width="16" height="36" fill="currentColor" opacity="0.15"/><rect x="64" y="30" width="16" height="52" stroke="currentColor" stroke-width="1.2"/><rect x="64" y="30" width="16" height="52" fill="currentColor" opacity="0.3"/><path d="M22 30 L50 22 L78 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M72 14 L78 14 L78 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Outros</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Permissão de Emprego para Estágio</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Permissão de emprego para participantes de programas de estágio</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Internship Employment Permit</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <p style="font-size:13px;color:var(--muted);margin:0;">Etapas em levantamento. Ver aba Fontes.</p>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <div><span class="visa-field-value mono" style="font-size:18px;">EUR 1.000</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação até 12 meses</div></div><div><span class="visa-field-value mono" style="font-size:18px;">EUR 500</span><div class="visa-field-label" style="margin-top:4px;">Primeira aplicação para 6 meses ou menos</div></div>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Sem taxa de renovação (N/A)</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
+        <div class="visa-modal-dialog" role="document">
+          <button type="button" class="visa-modal-close" aria-label="Fechar">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3 L11 11 M11 3 L3 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div id="visa-modal-body"></div>
+        </div>
+      </div>
       </div>
     </section>
   </div>
@@ -852,7 +1027,7 @@
           
         <div class="br-card" style="grid-column:1/-1;">
           <span class="br-label">Observações para brasileiros</span>
-          <p class="br-desc">Cidadãos brasileiros não são nacionais do EEE e necessitam de Permissão de Trabalho (Employment Permit) para trabalhar na Irlanda</p>
+          <p class="br-desc">Brasileiros necessitam de permissão de emprego para trabalhar na Irlanda. As taxas variam de acordo com o tipo de permissão e duração.</p>
         </div>
         </div>
       </div>
@@ -873,7 +1048,7 @@
           </div>
           <div class="req-item">
             <span class="req-icon req">●</span>
-            <span class="req-text">Comprovante de fundos — mínimo EUR 34.000/ano. Salário mínimo exigido para Critical Skills EP. General EP requer EUR 30.000/ano. Para entrada como turista: mínimo EUR 50/dia recomendado.</span>
+            <span class="req-text">Comprovante de fundos — mínimo EUR 40.904/ano. Critical Skills Employment Permit (CSEP) a partir de março de 2026: EUR 40.904/ano para ocupações na lista de profissões críticas do DETE (exige grau académico relevante). Rota de recém-graduados (diploma obtido nos últimos 12 meses): EUR 36.848/ano. Rota de salário alto: qualquer ocupação com salário acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano. Roadmap de aumentos graduais até 2030 publicado pelo governo irlandês.</span>
             <span class="req-note">Ver cada visto</span>
           </div>
           <div class="req-item">
@@ -905,9 +1080,9 @@
               <span class="sev-high">Alta relevância</span>
             </div>
             <div class="timeline-content">
-              <h3 class="timeline-title">Atualização da Critical Skills Occupations List</h3>
-              <p class="timeline-summary">Entrada em vigor do SI 444 de 2024, atualizando a lista de ocupações elegíveis para o Critical Skills Employment Permit</p>
-              <div class="timeline-affects"><span class="affect-pill">Todas as candidaturas para Critical Skills Employment Permit</span></div>
+              <h3 class="timeline-title">Critical Skills Occupations List efetiva</h3>
+              <p class="timeline-summary">A lista de ocupações elegíveis para Critical Skills Employment Permit entrou em vigor com a implementação da SI 444 de 2024</p>
+              <div class="timeline-affects"><span class="affect-pill">Todos os candidatos a Critical Skills Employment Permit</span></div>
             </div>
           </div>
           <div class="timeline-entry">
@@ -917,19 +1092,19 @@
             </div>
             <div class="timeline-content">
               <h3 class="timeline-title">Employment Permits Act 2024</h3>
-              <p class="timeline-summary">O Employment Permits Act 2024, conforme alterado, permite que nove tipos diferentes de Employment Permits sejam concedidos.</p>
+              <p class="timeline-summary">O Employment Permits Act 2024, conforme emendado, permite a concessão de nove tipos diferentes de Employment Permits na Irlanda.</p>
               <div class="timeline-affects"><span class="affect-pill">Todos os tipos de Employment Permits</span></div>
             </div>
           </div>
           <div class="timeline-entry">
             <div class="timeline-date">
               <span class="timeline-date-str">2021-03-22</span>
-              <span class="sev-medium">Relevância média</span>
+              <span class="sev-high">Alta relevância</span>
             </div>
             <div class="timeline-content">
-              <h3 class="timeline-title">Tabela de taxas de Permissão de Trabalho atualizada</h3>
-              <p class="timeline-summary">Tabela de taxas de permissão de trabalho foi atualizada com vigência a partir de 1 de outubro de 2014. Inclui diferentes categorias de permissão com diferentes valores de taxa conforme o período de validade</p>
-              <div class="timeline-affects"><span class="affect-pill">General Employment Permit</span><span class="affect-pill">Critical Skills Employment Permit</span><span class="affect-pill">Intra-Company Transfer Employment Permit</span><span class="affect-pill">Contract for Services Employment Permit</span><span class="affect-pill">Reactivation Employment Permit</span><span class="affect-pill">Sport and Cultural Employment Permit</span><span class="affect-pill">Internship Employment Permit</span></div>
+              <h3 class="timeline-title">Tabela de taxas de permissão de emprego</h3>
+              <p class="timeline-summary">Última atualização da tabela de taxas e categorias de permissão de emprego na Irlanda</p>
+              <div class="timeline-affects"><span class="affect-pill">Todas as categorias de permissão de emprego</span></div>
             </div>
           </div>
         </div>
@@ -956,7 +1131,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -966,7 +1141,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -976,7 +1151,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -986,7 +1161,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -996,7 +1171,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -1007,6 +1182,41 @@
             <span class="body-sm" style="color:var(--muted);">
               Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
             </span>
+          </div>
+        </div>
+        
+        <div style="margin-top:var(--s-xl);">
+          <h3 class="title-md" style="margin-bottom:var(--s-sm);">Fontes de verificação cruzada</h3>
+          <p class="body-sm" style="color:var(--muted);max-width:600px;margin-bottom:var(--s-md);">Links usados para validar a acurácia dos dados extraídos. Consultados na pesquisa de mai/2026 e integrados ao processo de extração mensal.</p>
+          <div class="sources-list">
+            
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/" target="_blank" rel="noopener noreferrer">DETE: Employment Permits</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Roadmap de permissões de trabalho dez/2025, limiares salariais e elegibilidade para Critical Skills Employment Permit</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://www.citizensinformation.ie" target="_blank" rel="noopener noreferrer">Citizens Information</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Guia oficial com limiares de salário CSEP e General Employment Permit atualizados para mar/2026</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://www.irishimmigration.ie" target="_blank" rel="noopener noreferrer">Irish Immigration Service</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Portal da ISD com requisitos de residência, renovação e condições de permanência permanente</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1032,7 +1242,6 @@
               </div>
             </div>
             <div class="guide-steps">
-              
               <div class="guide-step highlight">
                 <div class="guide-step-left">
                   <div class="step-circle">1</div>
@@ -1040,7 +1249,7 @@
                 </div>
                 <div class="step-body">
                   <h4 class="step-heading">Passaporte válido</h4>
-                  <p class="step-desc">Validade mínima: Minimo 6 meses apos a data de entrada. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                  <p class="step-desc">Validade mínima de 6 meses após a data de entrada. Verifique com antecedência.</p>
                 </div>
               </div>
               <div class="guide-step highlight">
@@ -1050,37 +1259,118 @@
                 </div>
                 <div class="step-body">
                   <h4 class="step-heading">Certidão de antecedentes criminais</h4>
-                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
+                  <p class="step-desc">Apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
                 </div>
               </div>
               <div class="guide-step">
                 <div class="guide-step-left">
                   <div class="step-circle">3</div>
-                  
+                  <div class="step-line"></div>
                 </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Comprovante de fundos</h4>
-                  <p class="step-desc">Mínimo EUR 34.000/ano. Salário mínimo exigido para Critical Skills EP. General EP requer EUR 30.000/ano. Para entrada como turista: mínimo EUR 50/dia recomendado.</p>
+                  <h4 class="step-heading">Seguro saúde</h4>
+                  <p class="step-desc">Seguro privado recomendado antes da chegada (EUR 1.000-1.500/ano). O sistema de saúde público (HSE) tem listas de espera longas. Muitos empregadores oferecem plano privado como benefício.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Comprovante de renda</h4>
+                  <p class="step-desc">Critical Skills Employment Permit (desde março de 2026): salário mínimo EUR 40.904/ano. Recém-graduados: EUR 36.848/ano. General Employment Permit: mínimo EUR 30.000/ano. O contrato de trabalho já cumpre esse requisito.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          
           <div class="guide-phase">
             <div class="phase-header">
               <span class="phase-num">FASE 02</span>
               <div>
-                <h3 class="phase-title">Processo do visto</h3>
-                <p class="phase-subtitle">Consulte as fontes oficiais para o passo a passo completo</p>
+                <h3 class="phase-title">Processo do Critical Skills Employment Permit</h3>
+                <p class="phase-subtitle">Realizado no Brasil antes de embarcar</p>
               </div>
             </div>
             <div class="guide-steps">
               <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div></div>
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Consulte as fontes listadas na aba Fontes</h4>
-                  <p class="step-desc">As etapas detalhadas do processo estão em levantamento. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.</p>
+                  <h4 class="step-heading">Obtenha oferta de emprego qualificada</h4>
+                  <p class="step-desc">Salário mínimo EUR 40.904/ano (desde março de 2026) para ocupações na lista de profissões críticas do DETE, ou acima de EUR 68.911/ano para qualquer ocupação. A empresa deve estar registrada na Irlanda e em situação regular com o DETE.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Empresa solicita o Employment Permit</h4>
+                  <p class="step-desc">O empregador aplica no portal do DETE (Department of Enterprise, Trade and Employment). Prazo médio: 6-8 semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Solicite o visto de longa duração (D Visa)</h4>
+                  <p class="step-desc">Com o permit aprovado, solicite o visto D na Embaixada Irlandesa em Brasília. Documentação: passaporte, permit, contrato, extrato bancário.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Registre-se no IRP à chegada</h4>
+                  <p class="step-desc">Após entrar na Irlanda, registre-se no Immigration Registration Office (IRP) dentro de 90 dias. Você receberá o Irish Residence Permit (IRP card) com Stamp 1 (Critical Skills).</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">5</div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Solicite Stamp 4 após 2 anos</h4>
+                  <p class="step-desc">Titulares de Critical Skills podem solicitar o Stamp 4 (trabalhar livremente sem permit) após 2 anos. Para residência permanente: após 5 anos ininterruptos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-phase">
+            <div class="phase-header">
+              <span class="phase-num">FASE 03</span>
+              <div>
+                <h3 class="phase-title">Rumo à residência permanente</h3>
+                <p class="phase-subtitle">Stamp 4 abre o caminho para a cidadania</p>
+              </div>
+            </div>
+            <div class="guide-steps">
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Stamp 4 libera trabalho autônomo</h4>
+                  <p class="step-desc">Com Stamp 4, você pode mudar de emprego, trabalhar por conta própria ou iniciar empresa sem precisar de novo permit.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Cidadania irlandesa</h4>
+                  <p class="step-desc">Após 5 anos de residência legal (com pelo menos 1 ano antes do pedido), é possível solicitar a naturalização. Irlanda tem um dos processos mais diretos da UE para residentes não-europeus.</p>
                 </div>
               </div>
             </div>
@@ -1155,8 +1445,8 @@
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">JSON direto</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
@@ -1171,18 +1461,99 @@
 <script>
   const tabBtns = document.querySelectorAll('.tab-btn')
   const tabPanels = document.querySelectorAll('.tab-panel')
+  function activateTab(name, scroll) {
+    const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]')
+    const panel = document.getElementById(name)
+    if (!btn || !panel) return false
+    tabBtns.forEach(b => b.classList.remove('active'))
+    tabPanels.forEach(p => p.classList.remove('active'))
+    btn.classList.add('active')
+    panel.classList.add('active')
+    if (scroll) document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    return true
+  }
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'))
-      tabPanels.forEach(p => p.classList.remove('active'))
-      btn.classList.add('active')
-      document.getElementById(btn.dataset.tab).classList.add('active')
-      document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+      activateTab(btn.dataset.tab, true)
+      history.replaceState(null, '', '#' + btn.dataset.tab)
     })
   })
-  function toggleVisa(head) {
-    head.closest('.visa-card').classList.toggle('open')
+  if (location.hash) {
+    const name = location.hash.slice(1)
+    if (activateTab(name, false)) {
+      setTimeout(() => document.getElementById('sticky')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60)
+    }
   }
+
+  // ---- Visa filter chips + modal ----
+  ;(function () {
+    const grid = document.querySelector('.visa-grid')
+    const modal = document.getElementById('visa-modal')
+    if (!grid || !modal) return
+    const chips = document.querySelectorAll('.visa-chip')
+    const modalBody = document.getElementById('visa-modal-body')
+    const closeBtn = modal.querySelector('.visa-modal-close')
+    let lastFocus = null
+
+    function openModal(visaId) {
+      const tpl = document.getElementById('visa-detail-' + visaId)
+      if (!tpl || !modalBody) return
+      lastFocus = document.activeElement
+      modalBody.innerHTML = ''
+      modalBody.appendChild(tpl.content.cloneNode(true))
+      modal.classList.add('is-open')
+      modal.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+      setTimeout(() => closeBtn && closeBtn.focus(), 50)
+    }
+    function closeModal() {
+      modal.classList.remove('is-open')
+      modal.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+      if (lastFocus && lastFocus.focus) lastFocus.focus()
+    }
+
+    grid.querySelectorAll('.visa-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    })
+
+    function applyFilter(tag) {
+      grid.querySelectorAll('.visa-card').forEach(card => {
+        const isActive = card.dataset.visaActive !== 'false'
+        let visible
+        if (tag === 'all') visible = isActive
+        else if (tag === 'inativos') visible = !isActive
+        else visible = isActive && card.dataset.visaTag === tag
+        card.hidden = !visible
+      })
+    }
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'))
+        chip.classList.add('active')
+        applyFilter(chip.dataset.tag)
+      })
+    })
+    applyFilter('all')
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal)
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal() })
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal()
+    })
+
+    // "Saber mais" CTA: troca para a aba Fontes
+    modal.addEventListener('click', e => {
+      const t = e.target.closest('[data-visa-cta="fontes"]')
+      if (!t) return
+      e.preventDefault()
+      closeModal()
+      if (typeof activateTab === 'function') {
+        activateTab('fontes', true)
+        history.replaceState(null, '', '#fontes')
+      }
+    })
+  })()
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

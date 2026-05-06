@@ -62,6 +62,14 @@ São regras do projeto que valem aqui também:
 - **Deletar arquivos de `data/history/`**. O histórico é o produto.
 - **Hardcodar URLs no código de extração**. URLs ficam em `src/sources/{cc}.ts`.
 
+## Verificação cruzada na extração mensal
+
+Cada arquivo `src/sources/{cc}.ts` contém um campo `verificationUrls` com links de referência independentes (portais oficiais do governo, comunidades de expatriados, análises especializadas). Regra obrigatória:
+
+Ao realizar ou revisar uma extração mensal, compare os valores críticos extraídos (salário mínimo exigido, taxas, prazos) contra os `verificationUrls` do país. Se houver divergência maior que 5%, anote em `reliability.knownIssues` do JSON extraído e registre a discrepância. Isso garante que erros de extração não passem despercebidos entre ciclos mensais.
+
+Para adicionar ou atualizar fontes de verificação de um país: edite `verificationUrls` em `src/sources/{cc}.ts`. O gerador de páginas (`bun run generate`) propagará automaticamente para o HTML da aba Fontes.
+
 ## Onde ler para se aprofundar
 
 | Pergunta | Documento |

@@ -40,36 +40,104 @@
   /* ---- tab panels ---- */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
-  /* ---- visa cards ---- */
-  .visa-list { display: flex; flex-direction: column; gap: var(--s-lg); }
-  .visa-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); overflow: hidden; }
-  .visa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-md); padding: var(--s-xl); cursor: pointer; transition: background 120ms ease; }
-  .visa-head:hover { background: rgba(255,255,255,0.02); }
-  .visa-title-row { display: flex; flex-direction: column; gap: var(--s-xs); }
-  .visa-name { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); margin: 0; }
-  .visa-name-orig { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
-  .visa-tags { display: flex; gap: var(--s-xxs); flex-wrap: wrap; }
-  .visa-tag { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface-elevated); color: var(--muted); border: 1px solid var(--hairline); }
-  .visa-tag.hl { background: rgba(240,180,41,0.1); color: var(--primary); border-color: rgba(240,180,41,0.2); }
-  .visa-toggle { font-size: 18px; color: var(--muted); font-weight: 400; flex-shrink: 0; transition: transform 200ms ease; user-select: none; padding-top: 2px; }
-  .visa-card.open .visa-toggle { transform: rotate(45deg); color: var(--primary); }
-  .visa-body { display: none; padding: 0 var(--s-xl) var(--s-xl); border-top: 1px solid var(--hairline); }
-  .visa-card.open .visa-body { display: block; }
-  .visa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xl); margin-top: var(--s-lg); }
-  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 0 var(--s-md); }
+  /* ---- visa header ---- */
+  .visa-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.82); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 24px; }
+  .visa-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+  .visa-section-h1 { margin: 0; font-size: 56px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; max-width: 780px; }
+  .visa-section-h1-soft { color: rgba(255,255,255,0.4); }
+  .visa-section-lede { margin: 20px 0 0; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.55); max-width: 580px; }
+  /* ---- visa filter chips ---- */
+  .visa-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 36px 0 var(--s-xl); }
+  .visa-chip { padding: 8px 16px; font-size: 12.5px; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.02em; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; cursor: pointer; transition: all 150ms ease; font-weight: 400; }
+  .visa-chip:hover { color: var(--on-dark); border-color: rgba(255,255,255,0.18); }
+  .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
+  /* ---- visa grid + cards ---- */
+  .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-card { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 28px 26px; text-align: left; cursor: pointer; border-radius: 16px; background: rgba(255,255,255,0.012); border: 1px solid rgba(255,255,255,0.08); color: inherit; font: inherit; transition: all 200ms ease; transform: translateY(0); width: 100%; font-family: inherit; }
+  .visa-card:hover { background: rgba(255,255,255,0.025); border-color: rgba(240,180,41,0.33); transform: translateY(-2px); }
+  .visa-card[hidden] { display: none !important; }
+  .visa-illo-tile { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--primary); transition: background 200ms ease; }
+  .visa-card:hover .visa-illo-tile { background: rgba(240,180,41,0.10); }
+  .visa-illo-tile svg { width: 78%; height: 78%; }
+  .visa-card-body { flex: 1; display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .visa-card-title { margin: 0; font-size: 19px; font-weight: 500; letter-spacing: -0.015em; color: var(--on-dark); line-height: 1.25; }
+  .visa-card-desc { margin: 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.5); }
+  .visa-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; margin-top: 4px; }
+  /* ---- tag pill ---- */
+  .visa-tag-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 999px; font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-tag-pill-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .visa-tag-pill.principal { color: var(--primary); background: rgba(240,180,41,0.13); border: 1px solid rgba(240,180,41,0.33); }
+  .visa-tag-pill.principal .visa-tag-pill-dot { background: var(--primary); }
+  .visa-tag-pill.neutral { color: rgba(255,255,255,0.82); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+  .visa-tag-pill.neutral .visa-tag-pill-dot { background: rgba(255,255,255,0.6); }
+  .visa-tag-pill.revoked { color: rgb(252, 165, 165); background: rgba(239,68,68,0.16); border: 1px solid rgba(239,68,68,0.40); }
+  .visa-tag-pill.revoked .visa-tag-pill-dot { background: rgb(252, 165, 165); }
+  /* ---- inactive card variant ---- */
+  .visa-card.is-inactive { opacity: 0.72; }
+  .visa-card.is-inactive .visa-illo-tile { color: rgba(255,255,255,0.45); }
+  .visa-card.is-inactive:hover { opacity: 1; border-color: rgba(239,68,68,0.30); }
+  .visa-card.is-inactive:hover .visa-illo-tile { background: rgba(239,68,68,0.08); }
+  .visa-chip-inactive { color: rgba(239,68,68,0.85); }
+  .visa-chip-inactive.active { background: rgba(239,68,68,0.85); color: var(--canvas); border-color: rgba(239,68,68,0.85); }
+  /* ---- arrow button on card ---- */
+  .visa-arrow-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 200ms ease; flex-shrink: 0; }
+  .visa-card:hover .visa-arrow-btn { background: var(--primary); color: var(--canvas); border-color: var(--primary); }
+  /* ---- visa modal ---- */
+  .visa-modal-backdrop { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .visa-modal-backdrop.is-open { display: flex; animation: visa-fade-in 200ms ease; }
+  .visa-modal-dialog { position: relative; width: 100%; max-width: 620px; background: var(--canvas); border: 1px solid rgba(240,180,41,0.33); border-radius: 20px; padding: 40px 44px 36px; color: var(--on-dark); max-height: 85vh; overflow-y: auto; animation: visa-slide-up 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .visa-modal-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(255,255,255,0.6); border-radius: 999px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .visa-modal-close:hover { background: rgba(255,255,255,0.06); color: var(--on-dark); }
+  .visa-modal-header { display: flex; gap: 20px; align-items: center; margin-bottom: 24px; }
+  .visa-modal-illo { width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; background: rgba(240,180,41,0.15); border: 1px solid rgba(240,180,41,0.33); border-radius: 16px; color: var(--primary); flex-shrink: 0; }
+  .visa-modal-illo svg { width: 70%; height: 70%; }
+  .visa-modal-head-info { flex: 1; min-width: 0; }
+  .visa-modal-title { margin: 10px 0 0; font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: var(--on-dark); }
+  .visa-modal-summary { margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+  .visa-modal-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .visa-modal-cell { padding: 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+  .visa-modal-cell-label { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-family: "JetBrains Mono", ui-monospace, monospace; margin-bottom: 8px; }
+  .visa-modal-cell-value { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); }
+  .visa-modal-cell-value.accent { color: var(--primary); font-weight: 500; }
+  .visa-modal-official { padding: 18px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; margin-bottom: 24px; }
+  .visa-modal-official-text { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.75); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .visa-modal-section { margin-bottom: 22px; }
+  .visa-modal-notes { margin-bottom: 22px; padding: 14px 16px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+  .visa-modal-cta-row { display: flex; gap: 10px; }
+  .visa-cta-primary { flex: 1; padding: 14px 20px; background: var(--primary); color: var(--canvas); border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: -0.01em; text-decoration: none; text-align: center; transition: filter 150ms ease; }
+  .visa-cta-primary:hover { filter: brightness(1.06); }
+  .visa-cta-secondary { padding: 14px 20px; background: transparent; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; text-align: center; transition: background 150ms ease; }
+  .visa-cta-secondary:hover { background: rgba(255,255,255,0.04); }
+  /* ---- shared step/right components used in modal ---- */
+  .visa-section-title { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 0 0 var(--s-md); font-family: "JetBrains Mono", ui-monospace, monospace; }
   .visa-field { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--s-md); }
   .visa-field-label { font-size: 12px; color: var(--muted); font-weight: 500; }
   .visa-field-value { font-size: 14px; color: var(--body-strong); font-weight: 600; }
   .visa-field-value.mono { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--primary); font-size: 16px; }
   .step-list { display: flex; flex-direction: column; gap: var(--s-sm); }
   .step-item { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-sm); align-items: start; }
-  .step-n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-elevated); border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
+  .step-n { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; flex-shrink: 0; }
   .step-text { font-size: 13px; color: var(--body); line-height: 1.5; padding-top: 3px; }
   .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-sm); }
   .right-item { display: flex; align-items: center; gap: var(--s-xs); font-size: 13px; color: var(--body); }
   .right-icon { font-size: 14px; width: 16px; text-align: center; }
   .right-icon.yes { color: var(--accent-emerald); }
   .right-icon.no { color: var(--muted-soft); }
+  /* ---- animations ---- */
+  @keyframes visa-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes visa-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .visa-card, .visa-card:hover, .visa-arrow-btn, .visa-illo-tile, .visa-modal-backdrop, .visa-modal-dialog { transition: none !important; animation: none !important; transform: none !important; }
+  }
+  /* ---- responsive: visa stack ---- */
+  @media (max-width: 600px) {
+    .visa-section-h1 { font-size: 40px; }
+    .visa-modal-dialog { padding: 32px 24px 28px; }
+    .visa-modal-info-grid { grid-template-columns: 1fr; }
+    .visa-modal-header { gap: 14px; }
+    .visa-modal-illo { width: 64px; height: 64px; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
   /* ---- para brasileiros ---- */
   .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
   .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
@@ -143,6 +211,7 @@
       <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
       <a class="nav-link" href="comparar.html">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
       <a class="nav-link" href="historico.html">Histórico</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
@@ -170,6 +239,7 @@
       <a href="paises.html">Países</a>
       <a href="comparar.html">Comparar</a>
       <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
       <a href="calculadora.html">Calculadora</a>
       <a href="historico.html">Histórico</a>
       <a href="sobre.html">Sobre</a>
@@ -190,7 +260,7 @@
         <h1 class="hero-name">Austrália</h1>
         <div class="hero-badges">
           <span class="badge up"><span class="pulse"></span>Confiança média</span>
-          
+          <span class="badge">Schengen</span>
           <span class="badge">Work Permit exigido</span>
           <span class="badge new">Working Holiday</span>
           <span class="badge new">Atualizado mai/2026</span>
@@ -224,13 +294,13 @@
 <div class="quick-summary">
   <div class="qs-item">
     <span class="qs-label">Entrada sem visto (Schengen)</span>
-    <span class="qs-value negative">Não</span>
-    <span class="qs-sub">Visto de turista necessário</span>
+    <span class="qs-value positive">Sim</span>
+    <span class="qs-sub">Até 90 dias por turismo</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Tipos de visto monitorados</span>
     <span class="qs-value accent">6</span>
-    <span class="qs-sub">6 de relevância direta</span>
+    <span class="qs-sub">5 de relevância direta</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Work permit exigido</span>
@@ -251,463 +321,577 @@
   <div class="tab-panel active" id="vistos">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">6 tipos de visto monitorados</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Opções de visto de trabalho</h2>
-        <div class="visa-list">
+        <div class="visa-eyebrow"><span class="visa-eyebrow-dot"></span>6 tipos de visto monitorados</div>
+        <h2 class="visa-section-h1">Opções de visto<br/><span class="visa-section-h1-soft">de trabalho</span></h2>
+        <p class="visa-section-lede">Escolha o tipo de visto adequado ao seu caso. Cada categoria é monitorada mensalmente para acompanhar prazos, requisitos e atualizações legais.</p>
+        <div class="visa-filter-row">
+            <button type="button" class="visa-chip active" data-tag="all">Todos · 6</button>
+            <button type="button" class="visa-chip" data-tag="principal">Principal · 5</button>
+            <button type="button" class="visa-chip" data-tag="idade-entre-18-e-30-anos-verificar-se-ha-extensao-ate-35-anos-para-brasileiros">Idade entre 18 e 30 anos (verificar se há extensão até 35 anos para brasileiros) · 1</button>
+            
+          </div>
+        <div class="visa-grid">
           
-        <div class="visa-card open">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Visto de Trabalho e Férias</h3>
-              <span class="visa-name-orig">Work and Holiday Visa subclass 462</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ser cidadão de país elegível (incluindo Brasil)</span>
-                <span class="visa-tag">Ter idade entre 18 e 30 anos (verificar se há extensão até 35 anos para brasileiros - informação não disponível no conteúdo fornecido)</span>
-                <span class="visa-tag">Não estar acompanhado de filhos dependentes durante a estadia</span>
-                <span class="visa-tag">Possuir passaporte válido do país elegível</span>
-                <span class="visa-tag">Não ter recebido anteriormente um visto Work and Holiday (subclass 462) ou Working Holiday (subclass 417)</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+        <button type="button" class="visa-card" data-visa-id="skilled-independent-189" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Residente Permanente - Profissional Qualificado…</h3>
+            <p class="visa-card-desc">Visto permanente para profissionais qualificados cujas habilidades estão na lista de ocupações demandadas,…</p>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto que permite a jovens de países elegíveis, incluindo o Brasil, trabalhar e viajar na Austrália por até 12 meses, promovendo intercâmbio cultural e experiências de trabalho temporário.</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Conclusão de pelo menos 2 anos de estudos universitários ou equivalente</span>
-            </div>
-                <div class="visa-field">
-              <span class="visa-field-label">Idioma</span>
-              <span class="visa-field-value">Inglês — Funcional</span>
-            </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Verificar se atende aos critérios de idade, nacionalidade, educação e proficiência em inglês</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Reunir todos os documentos necessários incluindo passaporte, comprovantes financeiros, educacionais e de proficiência em inglês</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">Submeter a candidatura através do sistema online ImmiAccount do Department of Home Affairs</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Efetuar o pagamento da taxa de solicitação em AUD (valor específico não disponível no conteúdo fornecido)</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">5</span>
-                <span class="step-text">Aguardar a análise da solicitação pelo Department of Home Affairs</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">AUD 635</span><div class="visa-field-label" style="margin-top:4px;">Taxa de solicitação do Working Holiday Visa (subclasse 462) — 2024</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">RESTRIÇÕES DE TRABALHO: Máximo de 6 meses de trabalho para o mesmo empregador (informação mencionada na solicitação mas não confirmada no conteúdo fornecido). COTA ANUAL: Informação sobre cota anual específica para brasileiros não disponível no conteúdo fornecido. SEGUNDA E TERCEIRA VISA: Possibilidade de extensão mediante trabalho em áreas regionais qualificadas. SOLICITAÇÃO: Deve ser feita online através do sistema ImmiAccount. IDADE: Limite confirmado entre 18 e 30 anos, mas informação sobre possível extensão até 35 anos para brasileiros não está disponível no conteúdo fornecido.</div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="tss-482" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Patrocínio Temporário de Trabalho</h3>
+            <p class="visa-card-desc">Visto temporário para profissionais qualificados patrocinados por empregador australiano para preencher…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="working-holiday-462" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Férias Trabalho</h3>
+            <p class="visa-card-desc">Visto temporário que permite a jovens adultos trabalhar e viajar na Austrália durante férias</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="graduate-485" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Graduado Recente</h3>
+            <p class="visa-card-desc">Visto temporário para graduados recentes de instituições australianas, permitindo trabalho e experiência…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="skilled-nominated-190" data-visa-tag="principal" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Residente Permanente - Profissional Qualificado…</h3>
+            <p class="visa-card-desc">Visto permanente para profissionais qualificados nomeados por estado australiano, permitindo residência…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        <button type="button" class="visa-card" data-visa-id="work-holiday-462" data-visa-tag="idade-entre-18-e-30-anos-verificar-se-ha-extensao-ate-35-anos-para-brasileiros" data-visa-active="true">
+          <div class="visa-illo-tile"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-card-body">
+            <h3 class="visa-card-title">Trabalho e Férias</h3>
+            <p class="visa-card-desc">Visto que permite a jovens brasileiros trabalhar e viajar na Austrália por até 12 meses, com possibilidade…</p>
+          </div>
+          <div class="visa-card-foot">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Idade entre 18 e 30 anos (verificar se há extensão até 35 anos para brasileiros)</span>
+            <span class="visa-arrow-btn" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </button>
+        </div>
+        <template id="visa-detail-skilled-independent-189">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Visto de Residente Permanente - Profissional Qualificado Independente</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Skilled Independent 189</h3>
-              <span class="visa-name-orig">Skilled Independent 189</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ter ocupação na lista de profissões qualificadas</span>
-                <span class="visa-tag">Atender pontos de teste de habilidades</span>
-                <span class="visa-tag">Ter avaliação positiva de qualificações</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Visto permanente para profissionais qualificados cujas habilidades estão na lista de ocupações demandadas, independente de patrocínio de empregador ou estado</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil (antes de entrar)</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto de migração permanente para profissionais qualificados sem patrocínio de estado ou empregador</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificações reconhecidas em ocupação da lista qualificada</span>
-            </div>
-                <div class="visa-field">
-              <span class="visa-field-label">Idioma</span>
-              <span class="visa-field-value">Inglês — Competente ou superior</span>
-            </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Submeter qualificações para avaliação por organismo reconhecido</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Registrar perfil no sistema SkillSelect</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">Aguardar convite baseado em pontos</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Apresentar candidatura formal com documentação</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <div><span class="visa-field-value mono" style="font-size:20px;">AUD 4.640</span><div class="visa-field-label" style="margin-top:4px;">Taxa de solicitação do Skilled Independent Visa (subclasse 189) — 2024</div></div>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Cidadania após 4 anos</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Não requer patrocínio de empregador ou estado. Visto de residência permanente.</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Temporary Skill Shortage</h3>
-              <span class="visa-name-orig">Temporary Skill Shortage visa subclass 482</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ser um trabalhador estrangeiro qualificado</span>
-                <span class="visa-tag">Ser patrocinado por um empregador australiano aprovado</span>
-                <span class="visa-tag">Ter qualificações relevantes para a profissão patrocinada</span>
-                <span class="visa-tag">Cumprir requisitos de saúde e caráter</span>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Skilled Independent visa 189</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Qualificações reconhecidas para a ocupação; Experiência profissional comprovada</span>
               </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto que permite aos empregadores australianos patrocinar trabalhadores estrangeiros qualificados para preencher escassez de habilidades a curto e médio prazo. Oferece dois fluxos: Short-term stream (até 2 anos) e Medium-term stream (até 4 anos).</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                <div class="visa-field">
-              <span class="visa-field-label">Renda mínima</span>
-              <span class="visa-field-value mono">AUD 53.900/ano</span>
-            </div>
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificação reconhecida pela profissão (diploma, certificado ou equivalente); Avaliação positiva de qualificações por organismo reconhecido</span>
-            </div>
-                <div class="visa-field">
-              <span class="visa-field-label">Idioma</span>
-              <span class="visa-field-value">Inglês — Competência funcional (geralmente IELTS 5.0 ou equivalente)</span>
-            </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil (antes de entrar)</span>
+          
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Submeter ocupação para avaliação positiva por órgão competente</span>
                 </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Registrar expressão de interesse no sistema SkillSelect</span>
                 </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">O empregador australiano aprovou submete uma solicitação de patrocínio à imigração</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Imigração avalia e aprova o patrocínio do empregador</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">Trabalhador recebe convite para solicitar o visto após aprovação do patrocínio</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Candidato submete solicitação completa do visto com documentação de apoio</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">5</span>
-                <span class="step-text">Imigração avalia todos os requisitos, documentos e elegibilidade</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">6</span>
-                <span class="step-text">Visto é aprovado ou rejeitado</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Aguardar convite baseado em critérios de pontuação</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">4</span>
+                  <span class="step-text">Enviar aplicação formal com toda documentação</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">5</span>
+                  <span class="step-text">Análise final e decisão sobre o visto</span>
                 </div>
               </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Residência permanente após 2 anos</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Cidadania após 4 anos</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">A página fornecida contém apenas o cabeçalho e não inclui conteúdo específico sobre os dois fluxos (Short-term e Medium-term streams), profissões elegíveis por stream, ou detalhes específicos do TSMIT. Os dados acima baseiam-se no contexto geral do visto TSS 482, mas devem ser verificados na página completa do IMMI para informações atualizadas e específicas sobre diferenças entre os fluxos.</div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Temporary Skill Shortage 482</h3>
-              <span class="visa-name-orig">Temporary Skill Shortage 482</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ter habilidades em ocupações da lista de profissões carentes</span>
-                <span class="visa-tag">Ter patrocínio de empregador australiano</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto temporário que permite que empregadores australianos patrocinem trabalhadores estrangeiros com habilidades específicas</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificações relevantes para ocupação patrocinada</span>
-            </div>
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Conseguir que empregador australiano processe pedido de patrocínio</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Apresentar candidatura com patrocínio aprovado</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Requer patrocínio obrigatório de empregador australiano. Visto temporário.</div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Cidadania após 4 anos</div>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Skilled Nominated 190</h3>
-              <span class="visa-name-orig">Skilled Nominated 190</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ter ocupação na lista de profissões qualificadas</span>
-                <span class="visa-tag">Atender pontos de teste de habilidades</span>
-                <span class="visa-tag">Ter patrocínio de estado australiano</span>
-                <span class="visa-tag">Ter avaliação positiva de qualificações</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
-          </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto de migração permanente para profissionais qualificados patrocinados por estado australiano</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificações reconhecidas em ocupação da lista qualificada</span>
-            </div>
-                <div class="visa-field">
-              <span class="visa-field-label">Idioma</span>
-              <span class="visa-field-value">Inglês — Competente ou superior</span>
-            </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No Brasil ou no destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Submeter qualificações para avaliação por organismo reconhecido</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Registrar perfil no sistema SkillSelect</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">Aplicar para nomeação com estado específico</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">4</span>
-                <span class="step-text">Aguardar convite após nomeação aprovada</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">5</span>
-                <span class="step-text">Apresentar candidatura formal com documentação</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Cidadania após 4 anos</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Requer patrocínio obrigatório de estado/território australiano. Visto de residência permanente.</div>
+
+        <div class="visa-modal-notes">Visto permanente que não requer patrocínio de empregador ou estado. Baseado em sistema de pontos.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-tss-482">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Visto de Patrocínio Temporário de Trabalho</h2>
           </div>
         </div>
-        <div class="visa-card">
-          <div class="visa-head" onclick="toggleVisa(this)">
-            <div class="visa-title-row">
-              <h3 class="visa-name">Skilled Graduate 485</h3>
-              <span class="visa-name-orig">Skilled Graduate 485</span>
-              <div class="visa-tags">
-                <span class="visa-tag hl">Principal</span>
-                <span class="visa-tag">Ter completado qualificação elegível em instituição australiana</span>
-                <span class="visa-tag">Ter avaliação positiva de qualificações</span>
-                <span class="visa-tag">Estar dentro de prazo após graduação</span>
-              </div>
-            </div>
-            <span class="visa-toggle">+</span>
+
+        <p class="visa-modal-summary">Visto temporário para profissionais qualificados patrocinados por empregador australiano para preencher escassez de habilidades</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
           </div>
-          <div class="visa-body">
-            <p style="font-size:13px;color:var(--body);line-height:1.55;margin:var(--s-lg) 0 0;">Visto temporário para graduados qualificados em instituições australianas que desejam trabalhar na Austrália</p>
-            <div class="visa-grid">
-              <div>
-                <p class="visa-section-title">Requisitos</p>
-                
-                <div class="visa-field">
-              <span class="visa-field-label">Qualificação exigida</span>
-              <span class="visa-field-value">Qualificação australiana em ocupação da lista qualificada</span>
-            </div>
-                
-                <div class="visa-field">
-                  <span class="visa-field-label">Local do pedido</span>
-                  <span class="visa-field-value">No país de destino</span>
-                </div>
-                <div class="visa-field">
-                  <span class="visa-field-label">Prazo estimado</span>
-                  <span class="visa-field-value">A determinar</span>
-                </div>
-              </div>
-              <div>
-                <p class="visa-section-title">Processo</p>
-                <div class="step-list">
-              <div class="step-item">
-                <span class="step-n">1</span>
-                <span class="step-text">Finalizar curso em instituição australiana reconhecida</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">2</span>
-                <span class="step-text">Submeter qualificações para avaliação por organismo reconhecido</span>
-              </div>
-              <div class="step-item">
-                <span class="step-n">3</span>
-                <span class="step-text">Apresentar pedido de visto na Austrália</span>
-              </div>
-            </div>
-                <div style="margin-top:var(--s-lg);">
-                  <p class="visa-section-title">Taxa</p>
-                  <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
-                </div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);">
-              <p class="visa-section-title">Direitos</p>
-              <div class="rights-grid">
-                <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
-              <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
-              <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
-              </div>
-            </div>
-            <div style="margin-top:var(--s-lg);padding:var(--s-md);background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);font-size:13px;color:var(--muted);">Visto temporário para graduados recentes. Não requer patrocínio de empregador. Disponível apenas para graduados de instituições australianas.</div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
           </div>
         </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Temporary Skill Shortage visa 482</div>
         </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Qualificações relevantes para a posição; Experiência profissional comprovada</span>
+              </div>
+          
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">O empregador australiano deve se registrar e patrocinar a posição</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Candidato submete aplicação com documentação completa</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Verificação de elegibilidade e documentação</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">4</span>
+                  <span class="step-text">Aprovação ou rejeição da aplicação</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Requer patrocínio obrigatório de empregador australiano. Visto temporário com duração limitada.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-working-holiday-462">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="14" fill="currentColor" opacity="0.6"/><circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.2"/><line x1="72" y1="50" x2="82" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="65.56" x2="72.63" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="72" x2="50" y2="82" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="65.56" x2="27.37" y2="72.63" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="50" x2="18" y2="50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34.44" y1="34.44" x2="27.37" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="28" x2="50" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="65.56" y1="34.44" x2="72.63" y2="27.37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Visto de Férias Trabalho</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Visto temporário que permite a jovens adultos trabalhar e viajar na Austrália durante férias</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil ou no destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Working Holiday visa 462</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          
+          <p style="font-size:13px;color:var(--muted);margin:0;">Sem requisitos específicos catalogados. Ver aba Fontes.</p>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Confirmar se atende aos critérios de idade e nacionalidade</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Submeter aplicação através do sistema online do Departamento de Assuntos Internos</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Análise da aplicação pelo departamento</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Visto temporário de curta duração, permitindo trabalho sem patrocínio específico de empregador</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-graduate-485">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Visto de Graduado Recente</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Visto temporário para graduados recentes de instituições australianas, permitindo trabalho e experiência profissional</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No país de destino</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Graduate Temporary visa 485</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Qualificação completada em instituição australiana</span>
+              </div>
+          
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Confirmar que atende aos critérios de elegibilidade como graduado recente</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Enviar aplicação através do sistema online</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Análise da aplicação e documentação</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Disponível apenas para graduados recentes de instituições australianas. Não requer patrocínio de empregador.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-skilled-nominated-190">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><path d="M50 18 L72 38 L62 78 L38 78 L28 38 Z" stroke="currentColor" stroke-width="1.5" opacity="0.5"/><path d="M50 18 L62 78 L38 78 Z" fill="currentColor" opacity="0.18"/><path d="M28 38 L50 50 L72 38" stroke="currentColor" stroke-width="1.2"/><path d="M50 18 L50 50 L38 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><path d="M50 50 L62 78" stroke="currentColor" stroke-width="1" opacity="0.7"/><circle cx="50" cy="50" r="2" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill principal"><span class="visa-tag-pill-dot"></span>Principal</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Visto de Residente Permanente - Profissional Qualificado Nomeado</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Visto permanente para profissionais qualificados nomeados por estado australiano, permitindo residência permanente em uma região específica</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil (antes de entrar)</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Skilled Nominated visa 190</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Qualificação exigida</span>
+                <span class="visa-field-value">Qualificações reconhecidas para a ocupação; Experiência profissional comprovada</span>
+              </div>
+          
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Submeter para avaliação positiva da ocupação</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Aplicar para nomeação junto ao estado ou território desejado</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Obter aprovação e nomeação do estado</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">4</span>
+                  <span class="step-text">Submeter aplicação de visto com nomeação do estado</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">5</span>
+                  <span class="step-text">Análise e decisão final sobre o visto</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Cidadania após 4 anos</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Requer nomeação obrigatória de estado ou território australiano. Visto permanente vinculado à região nomeante.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <template id="visa-detail-work-holiday-462">
+        <div class="visa-modal-header">
+          <div class="visa-modal-illo"><svg viewBox="0 0 100 100" fill="none"><rect x="18" y="36" width="64" height="46" rx="3" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><rect x="18" y="36" width="64" height="14" fill="currentColor" opacity="0.18"/><path d="M38 36 V28 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="58" x2="82" y2="58" stroke="currentColor" stroke-width="1" opacity="0.5"/><circle cx="50" cy="58" r="2.5" fill="currentColor"/></svg></div>
+          <div class="visa-modal-head-info">
+            <span class="visa-tag-pill neutral"><span class="visa-tag-pill-dot"></span>Idade entre 18 e 30 anos (verificar se há extensão até 35 anos para brasileiros)</span>
+            <h2 class="visa-modal-title" id="visa-modal-title">Visto de Trabalho e Férias</h2>
+          </div>
+        </div>
+
+        <p class="visa-modal-summary">Visto que permite a jovens brasileiros trabalhar e viajar na Austrália por até 12 meses, com possibilidade de renovação mediante trabalho regional.</p>
+
+        <div class="visa-modal-info-grid">
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Local do pedido</div>
+            <div class="visa-modal-cell-value">No Brasil (antes de entrar)</div>
+          </div>
+          <div class="visa-modal-cell">
+            <div class="visa-modal-cell-label">Tempo médio</div>
+            <div class="visa-modal-cell-value accent">A determinar</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-official">
+          <div class="visa-modal-cell-label">Designação oficial</div>
+          <div class="visa-modal-official-text">Work and Holiday visa (subclass 462)</div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Requisitos</p>
+          
+          
+          <div class="visa-field">
+                <span class="visa-field-label">Idioma</span>
+                <span class="visa-field-value">Inglês: Funcional</span>
+              </div>
+          
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Processo</p>
+          <div class="step-list">
+                <div class="step-item">
+                  <span class="step-n">1</span>
+                  <span class="step-text">Confirmar que atende todos os requisitos de idade, nacionalidade e outros critérios de elegibilidade</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">2</span>
+                  <span class="step-text">Reunir passaporte, comprovantes financeiros, certificados de saúde e outros documentos necessários</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">3</span>
+                  <span class="step-text">Submeter aplicação através do sistema online ImmiAccount no site do Department of Home Affairs</span>
+                </div>
+                <div class="step-item">
+                  <span class="step-n">4</span>
+                  <span class="step-text">Aguardar análise da aplicação pelas autoridades australianas</span>
+                </div>
+              </div>
+          <div style="margin-top:var(--s-md);">
+            <p class="visa-section-title" style="margin-bottom:6px;">Taxa</p>
+            <span style="font-size:13px;color:var(--muted);">Taxa em levantamento.</span>
+          </div>
+        </div>
+
+        <div class="visa-modal-section">
+          <p class="visa-section-title">Direitos</p>
+          <div class="rights-grid">
+            <div class="right-item"><span class="right-icon yes">✓</span>Trabalhar legalmente</div>
+                <div class="right-item"><span class="right-icon no">✗</span>Trazer família</div>
+                <div class="right-item"><span class="right-icon yes">✓</span>Mudar de empregador</div>
+          </div>
+        </div>
+
+        <div class="visa-modal-notes">Restrições: máximo de 6 meses de trabalho por empregador durante a estadia. Cota anual de vagas para brasileiros não especificada no conteúdo fornecido. Limite de idade e detalhes específicos de taxas não disponíveis no conteúdo fornecido.</div>
+
+        <div class="visa-modal-cta-row">
+          <a class="visa-cta-primary" href="historico.html">Ver monitorização ao vivo</a>
+          <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Saber mais</a>
+        </div></template>
+        <div class="visa-modal-backdrop" id="visa-modal" role="dialog" aria-modal="true" aria-labelledby="visa-modal-title" aria-hidden="true">
+        <div class="visa-modal-dialog" role="document">
+          <button type="button" class="visa-modal-close" aria-label="Fechar">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3 L11 11 M11 3 L3 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div id="visa-modal-body"></div>
+        </div>
+      </div>
       </div>
     </section>
   </div>
@@ -720,10 +904,10 @@
         <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
         <div class="br-grid">
           
-        <div class="br-card warning">
+        <div class="br-card highlight">
           <span class="br-label">Schengen — entrada sem visto</span>
-          <span class="br-value no">Não</span>
-          <p class="br-desc">Austrália não é parte do Espaço Schengen. Brasileiros precisam de visto de turista separado.</p>
+          <span class="br-value yes">Sim</span>
+          <p class="br-desc">O passaporte brasileiro permite entrada em Austrália por até 90 dias em qualquer período de 180 dias, sem visto de turista.</p>
         </div>
           
         <div class="br-card warning">
@@ -746,7 +930,7 @@
           
         <div class="br-card" style="grid-column:1/-1;">
           <span class="br-label">Observações para brasileiros</span>
-          <p class="br-desc">Brasileiros precisam de visto para entrar na Austrália, inclusive para turismo (ETA subclasse 601 ou visto de turista). A Austrália não faz parte do Espaço Schengen. O Working Holiday Visa (subclasse 462) é o principal caminho para brasileiros de 18 a 30 anos. Vistos de trabalho qualificado exigem patrocínio de empregador australiano.</p>
+          <p class="br-desc">Brasileiros requerem visto apropriado para trabalho na Austrália. O Working Holiday visa 462 é uma opção acessível para jovens adultos. Vistos de trabalho temporário requerem patrocínio de empregador (TSS 482) ou qualificação de graduado recente (Graduate 485). Vistos permanentes requerem ocupação na lista de demanda e pontuação mínima.</p>
         </div>
         </div>
       </div>
@@ -762,7 +946,7 @@
           
           <div class="req-item">
             <span class="req-icon ok">✓</span>
-            <span class="req-text">Passaporte — Mínimo 6 meses de validade recomendado</span>
+            <span class="req-text">Passaporte — Mínimo 6 meses de validade recomendado para maioria dos vistos</span>
             <span class="req-note">Verificar antes de iniciar</span>
           </div>
           <div class="req-item">
@@ -812,7 +996,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -822,7 +1006,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -832,7 +1016,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -842,7 +1026,7 @@
             </div>
             <div class="source-status">
               <span class="badge up"><span class="pulse"></span>ok</span>
-              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-01</span>
+              <span style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;">2026-05-06</span>
               <span style="font-size:11px;color:var(--muted);">en</span>
             </div>
           </div>
@@ -853,6 +1037,41 @@
             <span class="body-sm" style="color:var(--muted);">
               Confiança média — Todas as URLs responderam com sucesso. Extração por Claude Haiku 4.5 com schema Zod v1.0.0.
             </span>
+          </div>
+        </div>
+        
+        <div style="margin-top:var(--s-xl);">
+          <h3 class="title-md" style="margin-bottom:var(--s-sm);">Fontes de verificação cruzada</h3>
+          <p class="body-sm" style="color:var(--muted);max-width:600px;margin-bottom:var(--s-md);">Links usados para validar a acurácia dos dados extraídos. Consultados na pesquisa de mai/2026 e integrados ao processo de extração mensal.</p>
+          <div class="sources-list">
+            
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://immi.homeaffairs.gov.au" target="_blank" rel="noopener noreferrer">Department of Home Affairs</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Portal oficial com TSMIT 2025-2026 (AUD 76.515/ano) e requisitos para Working Holiday visa subclasse 462</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://www.fairwork.gov.au/pay-and-wages/minimum-wages" target="_blank" rel="noopener noreferrer">Fair Work: Salário Mínimo</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Salário mínimo nacional australiano (National Minimum Wage) atualizado para o ano fiscal 2025-2026</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
+            <div class="source-item">
+              <div>
+                <a class="source-url" href="https://oiaustralia.com.br" target="_blank" rel="noopener noreferrer">OI Australia</a>
+                <div class="body-sm" style="color:var(--muted);margin-top:2px;">Guia comunitário com TSMIT, processo de Work and Holiday 462 e experiências de brasileiros</div>
+              </div>
+              <div class="source-status">
+                <span class="badge">verificação</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -878,7 +1097,6 @@
               </div>
             </div>
             <div class="guide-steps">
-              
               <div class="guide-step highlight">
                 <div class="guide-step-left">
                   <div class="step-circle">1</div>
@@ -886,53 +1104,17 @@
                 </div>
                 <div class="step-body">
                   <h4 class="step-heading">Passaporte válido</h4>
-                  <p class="step-desc">Validade mínima: Mínimo 6 meses de validade recomendado. Verifique com antecedência pois renovação no Brasil pode demorar semanas.</p>
+                  <p class="step-desc">Validade mínima de 6 meses após a data de entrada. Verifique com antecedência.</p>
                 </div>
               </div>
               <div class="guide-step highlight">
                 <div class="guide-step-left">
                   <div class="step-circle">2</div>
-                  
+                  <div class="step-line"></div>
                 </div>
                 <div class="step-body">
                   <h4 class="step-heading">Certidão de antecedentes criminais</h4>
-                  <p class="step-desc">Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 02</span>
-              <div>
-                <h3 class="phase-title">Processo do visto: Visto de Trabalho e Férias</h3>
-                <p class="phase-subtitle">Realizado no Brasil antes de embarcar</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              
-              <div class="guide-step highlight">
-                <div class="guide-step-left">
-                  <div class="step-circle">1</div>
-                  <div class="step-line"></div>
-                </div>
-                <div class="step-body">
-                  <h4 class="step-heading">Verificação de elegibilidade</h4>
-                  <p class="step-desc">Verificar se atende aos critérios de idade, nacionalidade, educação e proficiência em inglês</p>
-                  
-                </div>
-              </div>
-              <div class="guide-step">
-                <div class="guide-step-left">
-                  <div class="step-circle">2</div>
-                  <div class="step-line"></div>
-                </div>
-                <div class="step-body">
-                  <h4 class="step-heading">Preparação de documentos</h4>
-                  <p class="step-desc">Reunir todos os documentos necessários incluindo passaporte, comprovantes financeiros, educacionais e de proficiência em inglês</p>
-                  
+                  <p class="step-desc">Necessária para vistos de longa duração. Emitida pelo DETRAN ou Polícia Federal, apostilada pela Convenção de Haia ou com autenticação consular.</p>
                 </div>
               </div>
               <div class="guide-step">
@@ -941,9 +1123,59 @@
                   <div class="step-line"></div>
                 </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Solicitação online</h4>
-                  <p class="step-desc">Submeter a candidatura através do sistema online ImmiAccount do Department of Home Affairs</p>
-                  
+                  <h4 class="step-heading">Seguro saúde</h4>
+                  <p class="step-desc">Para Working Holiday (417/462): OVHC (Overseas Visitor Health Cover) recomendado. Para TSS 482: empregador em geral inclui no pacote, mas confirme. A Austrália tem o Medicare para residentes permanentes.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">4</div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Comprovante de fundos/renda</h4>
+                  <p class="step-desc">Para Working Holiday: fundos iniciais de AUD 5.000 recomendados. Para TSS 482: TSMIT 2026 de AUD 76.515/ano (vigente desde julho de 2025) ou salário de mercado da função, o que for maior.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-phase">
+            <div class="phase-header">
+              <span class="phase-num">FASE 02</span>
+              <div>
+                <h3 class="phase-title">Processo do Working Holiday (Subclass 417)</h3>
+                <p class="phase-subtitle">Para brasileiros de 18 a 30 anos</p>
+              </div>
+            </div>
+            <div class="guide-steps">
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Verifique elegibilidade</h4>
+                  <p class="step-desc">Você deve ter de 18 a 30 anos, passaporte brasileiro válido, não ter tido Working Holiday Visa australiano antes, não ter dependentes acompanhando.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Aplique online no ImmiAccount</h4>
+                  <p class="step-desc">Acesse immi.homeaffairs.gov.au, crie conta no ImmiAccount, preencha o formulário 1150E e pague a taxa de aplicação (AUD 635 em 2024). Aprovação geralmente em 1 a 4 semanas.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Limite de 6 meses por empregador</h4>
+                  <p class="step-desc">O Working Holiday Visa permite trabalhar, mas com cada empregador por no máximo 6 meses. É possível prorrogar para um segundo ano (subclass 417) se trabalhar 3 meses em regional specified work.</p>
                 </div>
               </div>
               <div class="guide-step">
@@ -952,20 +1184,58 @@
                   <div class="step-line"></div>
                 </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Pagamento da taxa</h4>
-                  <p class="step-desc">Efetuar o pagamento da taxa de solicitação em AUD (valor específico não disponível no conteúdo fornecido)</p>
-                  
+                  <h4 class="step-heading">Tax File Number (TFN)</h4>
+                  <p class="step-desc">Registre-se na ATO (Australian Tax Office) para obter o TFN. Necessário para trabalhar legalmente e receber salário com tributação correta.</p>
                 </div>
               </div>
               <div class="guide-step">
                 <div class="guide-step-left">
                   <div class="step-circle">5</div>
-                  
                 </div>
                 <div class="step-body">
-                  <h4 class="step-heading">Análise e decisão</h4>
-                  <p class="step-desc">Aguardar a análise da solicitação pelo Department of Home Affairs</p>
-                  
+                  <h4 class="step-heading">Superannuation</h4>
+                  <p class="step-desc">Empregadores devem contribuir 11% do salário para o fundo de aposentadoria (super). Ao sair da Austrália definitivamente, é possível solicitar o resgate do Departing Australia Superannuation Payment (DASP).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guide-phase">
+            <div class="phase-header">
+              <span class="phase-num">FASE 03</span>
+              <div>
+                <h3 class="phase-title">Rumo à residência permanente via TSS 482</h3>
+                <p class="phase-subtitle">Patrocínio por empregador australiano</p>
+              </div>
+            </div>
+            <div class="guide-steps">
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">1</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">TSS (Temporary Skill Shortage) Visa Subclass 482</h4>
+                  <p class="step-desc">Empresa deve ser patrocinadora aprovada pela Home Affairs. Salário mínimo: TSMIT 2026 de AUD 76.515/ano ou salário de mercado, o que for maior. Válido por 2 anos (Short-term stream) ou 4 anos (Medium-term stream) conforme a ocupação.</p>
+                </div>
+              </div>
+              <div class="guide-step highlight">
+                <div class="guide-step-left">
+                  <div class="step-circle">2</div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Employer Nomination Scheme (ENS 186)</h4>
+                  <p class="step-desc">Após 2 anos trabalhando com TSS 482, o empregador pode nominar para residência permanente via ENS subclass 186 (Direct Entry ou Transition Stream).</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-left">
+                  <div class="step-circle">3</div>
+                </div>
+                <div class="step-body">
+                  <h4 class="step-heading">Cidadania australiana</h4>
+                  <p class="step-desc">Após 4 anos de residência, sendo ao menos 1 como residente permanente, e presença no país por 12 meses nos últimos 2 anos antes do pedido.</p>
                 </div>
               </div>
             </div>
@@ -1040,8 +1310,8 @@
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">JSON direto</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
@@ -1056,18 +1326,99 @@
 <script>
   const tabBtns = document.querySelectorAll('.tab-btn')
   const tabPanels = document.querySelectorAll('.tab-panel')
+  function activateTab(name, scroll) {
+    const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]')
+    const panel = document.getElementById(name)
+    if (!btn || !panel) return false
+    tabBtns.forEach(b => b.classList.remove('active'))
+    tabPanels.forEach(p => p.classList.remove('active'))
+    btn.classList.add('active')
+    panel.classList.add('active')
+    if (scroll) document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+    return true
+  }
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'))
-      tabPanels.forEach(p => p.classList.remove('active'))
-      btn.classList.add('active')
-      document.getElementById(btn.dataset.tab).classList.add('active')
-      document.getElementById('sticky').scrollIntoView({ behavior: 'smooth', block: 'start' })
+      activateTab(btn.dataset.tab, true)
+      history.replaceState(null, '', '#' + btn.dataset.tab)
     })
   })
-  function toggleVisa(head) {
-    head.closest('.visa-card').classList.toggle('open')
+  if (location.hash) {
+    const name = location.hash.slice(1)
+    if (activateTab(name, false)) {
+      setTimeout(() => document.getElementById('sticky')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60)
+    }
   }
+
+  // ---- Visa filter chips + modal ----
+  ;(function () {
+    const grid = document.querySelector('.visa-grid')
+    const modal = document.getElementById('visa-modal')
+    if (!grid || !modal) return
+    const chips = document.querySelectorAll('.visa-chip')
+    const modalBody = document.getElementById('visa-modal-body')
+    const closeBtn = modal.querySelector('.visa-modal-close')
+    let lastFocus = null
+
+    function openModal(visaId) {
+      const tpl = document.getElementById('visa-detail-' + visaId)
+      if (!tpl || !modalBody) return
+      lastFocus = document.activeElement
+      modalBody.innerHTML = ''
+      modalBody.appendChild(tpl.content.cloneNode(true))
+      modal.classList.add('is-open')
+      modal.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+      setTimeout(() => closeBtn && closeBtn.focus(), 50)
+    }
+    function closeModal() {
+      modal.classList.remove('is-open')
+      modal.setAttribute('aria-hidden', 'true')
+      document.body.style.overflow = ''
+      if (lastFocus && lastFocus.focus) lastFocus.focus()
+    }
+
+    grid.querySelectorAll('.visa-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.visaId))
+    })
+
+    function applyFilter(tag) {
+      grid.querySelectorAll('.visa-card').forEach(card => {
+        const isActive = card.dataset.visaActive !== 'false'
+        let visible
+        if (tag === 'all') visible = isActive
+        else if (tag === 'inativos') visible = !isActive
+        else visible = isActive && card.dataset.visaTag === tag
+        card.hidden = !visible
+      })
+    }
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'))
+        chip.classList.add('active')
+        applyFilter(chip.dataset.tag)
+      })
+    })
+    applyFilter('all')
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal)
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal() })
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal()
+    })
+
+    // "Saber mais" CTA: troca para a aba Fontes
+    modal.addEventListener('click', e => {
+      const t = e.target.closest('[data-visa-cta="fontes"]')
+      if (!t) return
+      e.preventDefault()
+      closeModal()
+      if (typeof activateTab === 'function') {
+        activateTab('fontes', true)
+        history.replaceState(null, '', '#fontes')
+      }
+    })
+  })()
 </script>
 <script src="assets/nav.js" defer></script>
 </body>

@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { generateCountryPage } from './country-page'
 import type { CountryPageConfig } from './country-page'
 import type { CountryData, PolicyChange } from '@/extractors/schema'
+import { sources } from '@/sources'
 
 const ROOT = join(import.meta.dir, '..', '..')
 const DATA_DIR = join(ROOT, 'data', 'current')
@@ -26,6 +27,62 @@ function monthLabel(iso: string): string {
   const d = new Date(iso)
   const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
   return `${months[d.getUTCMonth()]}/${d.getUTCFullYear()}`
+}
+
+// Extract the full <div class="tab-panel" id="PANELID">...</div> block using balanced div counting
+function extractTabPanel(html: string, panelId: string): string | null {
+  const openTag = `<div class="tab-panel" id="${panelId}">`
+  const start = html.indexOf(openTag)
+  if (start === -1) return null
+
+  let depth = 1
+  let pos = start + openTag.length
+  let closeIdx = -1
+
+  while (pos < html.length && depth > 0) {
+    const nextOpen = html.indexOf('<div', pos)
+    const nextClose = html.indexOf('</div>', pos)
+    if (nextClose === -1) break
+    if (nextOpen !== -1 && nextOpen < nextClose) {
+      depth++
+      pos = nextOpen + 4
+    } else {
+      depth--
+      if (depth === 0) { closeIdx = nextClose + 6; break }
+      pos = nextClose + 6
+    }
+  }
+
+  if (closeIdx === -1) return null
+  return html.slice(start, closeIdx)
+}
+
+// Replace a full <div class="tab-panel" id="PANELID">...</div> block
+function replaceTabPanel(html: string, panelId: string, replacement: string): string {
+  const openTag = `<div class="tab-panel" id="${panelId}">`
+  const start = html.indexOf(openTag)
+  if (start === -1) return html
+
+  let depth = 1
+  let pos = start + openTag.length
+  let closeIdx = -1
+
+  while (pos < html.length && depth > 0) {
+    const nextOpen = html.indexOf('<div', pos)
+    const nextClose = html.indexOf('</div>', pos)
+    if (nextClose === -1) break
+    if (nextOpen !== -1 && nextOpen < nextClose) {
+      depth++
+      pos = nextOpen + 4
+    } else {
+      depth--
+      if (depth === 0) { closeIdx = nextClose + 6; break }
+      pos = nextClose + 6
+    }
+  }
+
+  if (closeIdx === -1) return html
+  return html.slice(0, start) + replacement + html.slice(closeIdx)
 }
 
 // Replace the inner content of <div class="changes-body"> using balanced div counting
@@ -171,8 +228,26 @@ async function main(): Promise<void> {
     const raw = await readFile(join(DATA_DIR, `${code}.json`), 'utf-8')
     const data = JSON.parse(raw) as CountryData
 
-    const html = generateCountryPage(data, { code, ...cfg })
+    const src = sources[code]
+    let html = generateCountryPage(data, {
+      code,
+      ...cfg,
+      ...(src?.verificationUrls ? { verificationUrls: src.verificationUrls } : {}),
+    })
+
+    // Preserve manually written guia tab from existing file
     const out = join(PREVIEWS_DIR, `pais-${code}.html`)
+    try {
+      const existing = await readFile(out, 'utf-8')
+      const savedGuia = extractTabPanel(existing, 'guia')
+      if (savedGuia) {
+        html = replaceTabPanel(html, 'guia', savedGuia)
+        console.log(`[guia] pais-${code}.html — aba guia preservada`)
+      }
+    } catch {
+      // File doesn't exist yet — no guia to preserve
+    }
+
     await writeFile(out, html, 'utf-8')
     console.log(`[ok] pais-${code}.html — ${data.visaTypes.length} vistos, confiança: ${data.reliability.extractionConfidence}`)
 

@@ -45,6 +45,24 @@ export const ieSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/',
+      label: 'DETE: Employment Permits',
+      description: 'Roadmap de permissões de trabalho dez/2025, limiares salariais e elegibilidade para Critical Skills Employment Permit',
+    },
+    {
+      url: 'https://www.citizensinformation.ie',
+      label: 'Citizens Information',
+      description: 'Guia oficial com limiares de salário CSEP e General Employment Permit atualizados para mar/2026',
+    },
+    {
+      url: 'https://www.irishimmigration.ie',
+      label: 'Irish Immigration Service',
+      description: 'Portal da ISD com requisitos de residência, renovação e condições de permanência permanente',
+    },
+  ],
+
   glossary: {
     'Employment Permit': 'Permissao de trabalho',
     'Critical Skills Employment Permit': 'Permissao de trabalho para habilidades criticas',

@@ -1,0 +1,613 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "Cidadãos brasileiros não são nacionais do EEE e necessitam de Permissão de Trabalho (Employment Permit) para trabalhar na Irlanda",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": null,
+        "notes": "Por ocorrência, recomendado para entrada"
+      },
+      "mustBeLocal": false,
+      "notes": "A Irlanda não exige seguro saúde privado para entrada, mas é fortemente recomendado. Residentes podem acessar o sistema público de saúde (HSE) após registro.",
+      "required": false
+    },
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "proofOfFunds": {
+      "amount": 40904,
+      "currency": "EUR",
+      "period": "yearly",
+      "notes": "Critical Skills Employment Permit (CSEP) a partir de março de 2026: EUR 40.904/ano para ocupações na lista de profissões críticas do DETE (exige grau académico relevante). Rota de recém-graduados (diploma obtido nos últimos 12 meses): EUR 36.848/ano. Rota de salário alto: qualquer ocupação com salário acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano. Roadmap de aumentos graduais até 2030 publicado pelo governo irlandês."
+    },
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "ie",
+    "countryName": "Irlanda",
+    "lastUpdated": "2026-05-01T21:02:28.113Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-01T21:00:57.304Z",
+        "status": "ok",
+        "url": "https://www.irishimmigration.ie/coming-to-work-in-ireland/"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-01T21:00:58.477Z",
+        "status": "ok",
+        "url": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-01T21:01:00.488Z",
+        "status": "ok",
+        "url": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-01T21:01:00.821Z",
+        "status": "ok",
+        "url": "https://www.irishimmigration.ie/registering-your-immigration-permission/"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-01T21:01:02.493Z",
+        "status": "ok",
+        "url": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/"
+      }
+    ]
+  },
+  "recentChanges": [
+    {
+      "affects": [
+        "Todas as candidaturas para Critical Skills Employment Permit"
+      ],
+      "date": "2024-09-02",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/",
+      "summary": "Entrada em vigor do SI 444 de 2024, atualizando a lista de ocupações elegíveis para o Critical Skills Employment Permit",
+      "title": "Atualização da Critical Skills Occupations List"
+    },
+    {
+      "affects": [
+        "Todos os tipos de Employment Permits"
+      ],
+      "date": "2024-01-01",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html",
+      "summary": "O Employment Permits Act 2024, conforme alterado, permite que nove tipos diferentes de Employment Permits sejam concedidos.",
+      "title": "Employment Permits Act 2024"
+    },
+    {
+      "affects": [
+        "General Employment Permit",
+        "Critical Skills Employment Permit",
+        "Intra-Company Transfer Employment Permit",
+        "Contract for Services Employment Permit",
+        "Reactivation Employment Permit",
+        "Sport and Cultural Employment Permit",
+        "Internship Employment Permit"
+      ],
+      "date": "2021-03-22",
+      "severity": "minor",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/",
+      "summary": "Tabela de taxas de permissão de trabalho foi atualizada com vigência a partir de 1 de outubro de 2014. Inclui diferentes categorias de permissão com diferentes valores de taxa conforme o período de validade",
+      "title": "Tabela de taxas de Permissão de Trabalho atualizada"
+    }
+  ],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": []
+  },
+  "visaTypes": [
+    {
+      "description": "Permissão de trabalho para profissionais com habilidades críticas",
+      "eligibility": [],
+      "id": "critical-skills-employment-permit",
+      "name": "Permissão de Trabalho em Habilidades Críticas",
+      "nameOriginal": "Critical Skills Employment Permit",
+      "notes": "Sem taxa de renovação (N/A)",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Até 24 meses",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de trabalho para emprego geral na Irlanda",
+      "eligibility": [],
+      "id": "general-employment-permit",
+      "name": "Permissão de Trabalho Geral",
+      "nameOriginal": "General Employment Permit",
+      "notes": "Taxa de renovação: €750 para seis meses ou menos",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Até 24 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Seis meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Até 36 meses",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permite que dependentes, parceiros reconhecidos (quando reconhecidos pelo Department of Justice and Equality), parceiros civis e cônjuges de titulares de Critical Skills Employment Permit (anteriormente Green Card employment permit) e de Researchers on Hosting Agreements solicitem permissão de trabalho para trabalhar no Estado. Geralmente, é ilegal para cônjuges e dependentes de titulares de permissão de trabalho serem empregados na Irlanda sem uma permissão de trabalho válida.",
+      "eligibility": [
+        "Dependentes de titulares de Critical Skills Employment Permit",
+        "Parceiros reconhecidos de titulares de Critical Skills Employment Permit",
+        "Parceiros civis de titulares de Critical Skills Employment Permit",
+        "Cônjuges de titulares de Critical Skills Employment Permit",
+        "Dependentes/parceiros/cônjuges de Researchers on Hosting Agreements"
+      ],
+      "id": "dependant-partner-spouse-employment-permit",
+      "name": "Dependant/Partner/Spouse Employment Permit",
+      "nameOriginal": "Dependant/Partner/Spouse Employment Permit",
+      "notes": "Anteriormente relacionado ao Green Card employment permit.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de trabalho para transferência dentro da mesma empresa",
+      "eligibility": [],
+      "id": "intra-company-transfer-employment-permit",
+      "name": "Permissão de Transferência Intra-Empresa",
+      "nameOriginal": "Intra-Company Transfer Employment Permit",
+      "notes": "Taxa de renovação: €500 para seis meses ou menos e €1000 até 24 meses",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Até 24 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Seis meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Até 36 meses",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de trabalho para contratação de serviços",
+      "eligibility": [],
+      "id": "contract-for-services-employment-permit",
+      "name": "Permissão de Trabalho por Contrato de Serviços",
+      "nameOriginal": "Contract for Services Employment Permit",
+      "notes": "Taxa de renovação: €750 para seis meses ou menos",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Até 24 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Seis meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Até 36 meses",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de trabalho para reativação de situação laboral",
+      "eligibility": [],
+      "id": "reactivation-employment-permit",
+      "name": "Permissão de Trabalho de Reativação",
+      "nameOriginal": "Reactivation Employment Permit",
+      "notes": "Taxa de renovação: €750 para seis meses ou menos",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Até 24 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Seis meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Até 36 meses",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão de trabalho para profissionais de esporte e cultura",
+      "eligibility": [],
+      "id": "sport-and-cultural-employment-permit",
+      "name": "Permissão de Trabalho em Esporte e Cultura",
+      "nameOriginal": "Sport and Cultural Employment Permit",
+      "notes": "Taxa de renovação: €750 para seis meses ou menos",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Até 24 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Seis meses ou menos",
+            "period": "one-time"
+          },
+          {
+            "amount": 1500,
+            "currency": "EUR",
+            "notes": "Até 36 meses",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Substitui o antigo Exchange Agreement type of Work Permit Employment Permit e também atende permissões de trabalho para acordos recíprocos internacionais. Projetado para facilitar o emprego no Estado de nacionais não-EEA de acordo com acordos prescritos ou outros acordos internacionais dos quais o Estado é parte.",
+      "eligibility": [
+        "Nacionais não-EEA de acordo com acordos prescritos",
+        "Nacionais não-EEA de acordo com acordos internacionais dos quais a Irlanda é parte",
+        "Participantes de acordos recíprocos internacionais"
+      ],
+      "id": "exchange-agreement-employment-permit",
+      "name": "Exchange Agreement Employment Permit",
+      "nameOriginal": "Exchange Agreement Employment Permit",
+      "notes": "Substitui o antigo Exchange Agreement type of Work Permit Employment Permit. Para acordos internacionais recíprocos.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": []
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão para trabalhar na Irlanda com um contrato de trabalho válido. Titular de um employment permit que permite trabalhar para um empregador específico.",
+      "eligibility": [
+        "Ter um employment permit válido",
+        "Ter um contrato de trabalho"
+      ],
+      "id": "stamp-1-employment",
+      "name": "Stamp 1 - Employment Permit Holder",
+      "nameOriginal": "Stamp 1 (Employment Permit Holder)",
+      "notes": "Restrição de trabalho: apenas para o empregador especificado no employment permit. Mudança de empregador requer novo permit.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "O empregador deve solicitar um employment permit junto ao departamento de imigração",
+            "estimatedDays": null,
+            "name": "Obter Employment Permit",
+            "order": 1
+          },
+          {
+            "description": "Ao chegar na Irlanda, registrar com Immigration Service Delivery nos primeiros dias",
+            "estimatedDays": null,
+            "name": "Registrar na chegada",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Permissão de trabalho emitida pela Irlanda",
+            "isCritical": true,
+            "name": "Employment Permit"
+          },
+          {
+            "description": "Contrato de trabalho válido com o empregador irlandês",
+            "isCritical": true,
+            "name": "Contrato de Trabalho"
+          },
+          {
+            "description": "Passaporte válido",
+            "isCritical": true,
+            "name": "Passaporte"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permissão expandida concedida após 5 anos de residência legal contínua na Irlanda. Permite trabalho autonomamente, trazer família e direitos mais amplos.",
+      "eligibility": [
+        "5 anos de residência legal contínua na Irlanda",
+        "Histórico de conformidade com leis de imigração"
+      ],
+      "id": "stamp-4-expanded-rights",
+      "name": "Stamp 4 - Direitos Expandidos",
+      "nameOriginal": "Stamp 4 (Expanded Rights)",
+      "notes": "Permite trabalho autônomo e emprego, mudança de empregador sem restrições, e trazer dependentes familiares. Baseado em 5 anos de residência legal contínua.",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [],
+        "steps": [
+          {
+            "description": "Cumprir 5 anos de residência legal contínua na Irlanda",
+            "estimatedDays": null,
+            "name": "Completar 5 anos de residência",
+            "order": 1
+          },
+          {
+            "description": "Solicitar a mudança de permissão para Stamp 4 junto a Immigration Service Delivery",
+            "estimatedDays": null,
+            "name": "Solicitar upgrade para Stamp 4",
+            "order": 2
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Documentos comprovando 5 anos de residência legal e contínua",
+            "isCritical": true,
+            "name": "Comprovação de 5 anos de residência"
+          },
+          {
+            "description": "Passaporte válido",
+            "isCritical": true,
+            "name": "Passaporte"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": {
+          "conditions": [
+            "Residência legal contínua na Irlanda",
+            "Conformidade com leis de imigração"
+          ],
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Permissão de trabalho para estágio profissional",
+      "eligibility": [],
+      "id": "internship-employment-permit",
+      "name": "Permissão de Trabalho para Estágio",
+      "nameOriginal": "Internship Employment Permit",
+      "notes": "Sem taxa de renovação (N/A)",
+      "process": {
+        "applicationLocation": "destino",
+        "estimatedDuration": "A determinar",
+        "fees": [
+          {
+            "amount": 1000,
+            "currency": "EUR",
+            "notes": "Até 12 meses",
+            "period": "one-time"
+          },
+          {
+            "amount": 500,
+            "currency": "EUR",
+            "notes": "Seis meses ou menos",
+            "period": "one-time"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    }
+  ]
+}

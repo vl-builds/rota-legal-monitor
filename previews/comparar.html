@@ -334,6 +334,7 @@
       <a class="nav-link" href="paises.html">Países</a>
       <a class="nav-link" href="comparar.html" style="color: var(--on-dark);">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
+      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
       <a class="nav-link" href="historico.html">Histórico</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
@@ -360,6 +361,7 @@
       <a href="paises.html">Países</a>
       <a href="comparar.html">Comparar</a>
       <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
       <a href="calculadora.html">Calculadora</a>
       <a href="historico.html">Histórico</a>
       <a href="sobre.html">Sobre</a>
@@ -417,7 +419,7 @@
 // ---- dados dos países ----
 const COUNTRIES = {
   nl: {
-    name: 'Holanda', nameLocal: 'Nederland', flag: 'nl',
+    name: 'Países Baixos', nameLocal: 'Nederland', flag: 'nl',
     schengen: true, touristDays: 90, workPermit: true,
     visaCount: 21, directCount: 9,
     minIncomeText: 'Não especificado', minIncomeHighlight: false,
@@ -427,12 +429,12 @@ const COUNTRIES = {
   },
   de: {
     name: 'Alemanha', nameLocal: 'Deutschland', flag: 'de',
-    schengen: false, touristDays: 90, workPermit: true,
+    schengen: true, touristDays: 90, workPermit: true,
     visaCount: 12, directCount: 10,
     minIncomeText: '€ 50.700/ano', minIncomeHighlight: true,
     langRequired: true, langText: 'Alemão A1+ (para fixar)',
     family: true, changeEmployer: true, permanentPath: true,
-    lastUpdated: '2026-04-29', partial: false, detailUrl: 'paises.html',
+    lastUpdated: '2026-04-29', partial: false, detailUrl: 'pais-de.html',
   },
   pt: {
     name: 'Portugal', nameLocal: 'Portugal', flag: 'pt',
@@ -441,70 +443,70 @@ const COUNTRIES = {
     minIncomeText: '€ 25.884/ano', minIncomeHighlight: true,
     langRequired: false, langText: 'Não exigido',
     family: false, changeEmployer: false, permanentPath: true,
-    lastUpdated: '2026-04-29', partial: false, detailUrl: 'paises.html',
+    lastUpdated: '2026-04-29', partial: false, detailUrl: 'pais-pt.html',
   },
   es: {
     name: 'Espanha', nameLocal: 'España', flag: 'es',
     schengen: true, touristDays: 90, workPermit: true,
     visaCount: 4, directCount: 3,
-    minIncomeText: '—', minIncomeHighlight: false,
-    langRequired: null, langText: '—',
+    minIncomeText: 'Sem dados', minIncomeHighlight: false,
+    langRequired: null, langText: 'Sem dados',
     family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: '2026-04-29', partial: true, detailUrl: 'paises.html',
+    lastUpdated: '2026-04-29', partial: true, detailUrl: 'pais-es.html',
   },
   ie: {
     name: 'Irlanda', nameLocal: 'Ireland', flag: 'ie',
     schengen: false, touristDays: 90, workPermit: true,
     visaCount: 17, directCount: 10,
-    minIncomeText: '—', minIncomeHighlight: false,
+    minIncomeText: 'Sem dados', minIncomeHighlight: false,
     langRequired: null, langText: 'Inglês (prático)',
     family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: '2026-04-29', partial: true, detailUrl: 'paises.html',
+    lastUpdated: '2026-04-29', partial: true, detailUrl: 'pais-ie.html',
   },
   fr: {
     name: 'França', nameLocal: 'France', flag: 'fr',
     schengen: true, touristDays: 90, workPermit: true,
     visaCount: null, directCount: null,
-    minIncomeText: '—', minIncomeHighlight: false,
-    langRequired: null, langText: '—',
+    minIncomeText: 'Sem dados', minIncomeHighlight: false,
+    langRequired: null, langText: 'Sem dados',
     family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-fr.html',
   },
   it: {
     name: 'Itália', nameLocal: 'Italia', flag: 'it',
     schengen: true, touristDays: 90, workPermit: true,
     visaCount: null, directCount: null,
-    minIncomeText: '—', minIncomeHighlight: false,
-    langRequired: null, langText: '—',
+    minIncomeText: 'Sem dados', minIncomeHighlight: false,
+    langRequired: null, langText: 'Sem dados',
     family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-it.html',
   },
   be: {
     name: 'Bélgica', nameLocal: 'België', flag: 'be',
     schengen: true, touristDays: 90, workPermit: true,
     visaCount: null, directCount: null,
-    minIncomeText: '—', minIncomeHighlight: false,
-    langRequired: null, langText: '—',
+    minIncomeText: 'Sem dados', minIncomeHighlight: false,
+    langRequired: null, langText: 'Sem dados',
     family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-be.html',
   },
   at: {
     name: 'Áustria', nameLocal: 'Österreich', flag: 'at',
     schengen: true, touristDays: 90, workPermit: true,
     visaCount: null, directCount: null,
-    minIncomeText: '—', minIncomeHighlight: false,
-    langRequired: null, langText: '—',
+    minIncomeText: 'Sem dados', minIncomeHighlight: false,
+    langRequired: null, langText: 'Sem dados',
     family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-at.html',
   },
   au: {
     name: 'Austrália', nameLocal: 'Australia', flag: 'au',
     schengen: false, touristDays: 90, workPermit: true,
     visaCount: null, directCount: null,
-    minIncomeText: '—', minIncomeHighlight: false,
+    minIncomeText: 'Sem dados', minIncomeHighlight: false,
     langRequired: true, langText: 'Inglês (obrigatório)',
     family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'em breve', partial: true, detailUrl: 'paises.html',
+    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-au.html',
   },
 };
 
@@ -549,11 +551,11 @@ function calcEasinessScore(c) {
 
 // ---- helpers de célula ----
 function cellBool(v) {
-  if (v === null) return '<span class="val-dash">—</span>';
+  if (v === null) return '<span class="val-dash">Sem dados</span>';
   return v ? '<span class="val-yes">Sim</span>' : '<span class="val-no">Não</span>';
 }
 function cellBoolInv(v) {
-  if (v === null) return '<span class="val-dash">—</span>';
+  if (v === null) return '<span class="val-dash">Sem dados</span>';
   return v ? '<span class="val-no">Sim</span>' : '<span class="val-yes">Não</span>';
 }
 
@@ -567,7 +569,7 @@ function cellValue(row, c) {
       return `<span class="val-num">${c[row.key]}<span class="val-unit">dias</span></span>`;
     case 'count': {
       const n = c[row.key];
-      if (n === null) return '<span class="val-dash">—</span>';
+      if (n === null) return '<span class="val-dash">Sem dados</span>';
       return `<span class="val-num">${n}<span class="val-unit">${row.unit}</span></span>`;
     }
     case 'income':
@@ -601,7 +603,7 @@ function renderChips() {
       class="country-chip${active ? ' active' : ''}"
       onclick="toggleCountry('${code}')"
       ${disabled ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}
-      title="${c.name}${c.partial ? ' — dados parciais' : ''}"
+      title="${c.name}${c.partial ? ' (dados parciais)' : ''}"
     >
       <span class="chip-flag flag-${c.flag}"></span>
       ${c.name}
@@ -662,7 +664,7 @@ function renderTable() {
     // header card
     html += `<div class="cc-card cc-card-head">
       <div class="cc-head-row">
-        <span class="col-flag-lg flag-${c.flag}"></span>
+        <span class="col-flag-lg flag-${c.flag}" aria-hidden="true"></span>
         <div class="cc-head-info">
           <h3 class="col-country-name">${c.name}</h3>
           <a href="${c.detailUrl}" class="col-detail-link">ver detalhe →</a>
@@ -760,8 +762,8 @@ renderTable();
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">JSON direto</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>

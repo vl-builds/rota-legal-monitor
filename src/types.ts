@@ -16,11 +16,18 @@ export interface UrlConfig {
   ignoreSSL?: boolean
 }
 
+export interface VerificationUrl {
+  url: string
+  label: string
+  description: string
+}
+
 export interface SourceConfig {
   countryCode: string
   countryName: string
   primaryLanguage: string
   acceptableLanguages: string[]
   urls: UrlConfig[]
+  verificationUrls: VerificationUrl[]
   glossary: Record<string, string>
 }

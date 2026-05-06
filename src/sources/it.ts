@@ -43,6 +43,24 @@ export const itSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://vistoperitalia.esteri.it',
+      label: 'Visto per l\'Italia (MFA)',
+      description: 'Portal oficial do Ministério das Relações Exteriores com cotas e processos do Decreto Flussi 2026',
+    },
+    {
+      url: 'https://laviaitalia.com.br',
+      label: 'La Via Italia',
+      description: 'Análise do Decreto Flussi 2026 e guia do click-day para brasileiros (cotas, datas, documentação)',
+    },
+    {
+      url: 'https://www.lavoro.gov.it',
+      label: 'Ministério do Trabalho Italiano',
+      description: 'Regulamentação oficial do Decreto Flussi e distribuição de cotas por categoria de trabalho',
+    },
+  ],
+
   glossary: {
     'Permesso di soggiorno': 'Permissao de permanencia (documento apos chegada)',
     'Visto nazionale': 'Visto nacional de longa duracao (tipo D)',

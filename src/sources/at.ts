@@ -46,6 +46,24 @@ export const atSource: SourceConfig = {
     },
   ],
 
+  verificationUrls: [
+    {
+      url: 'https://www.migration.gv.at',
+      label: 'Migration.gv.at',
+      description: 'Portal oficial austríaco com critérios do Red-White-Red Card e limiares salariais por categoria',
+    },
+    {
+      url: 'https://www.workinaustria.com',
+      label: 'Work in Austria (ABA)',
+      description: 'Portal oficial da ABA com limiares salariais RWR Card atualizados para 2026 (EUR 3.465/mês)',
+    },
+    {
+      url: 'https://www.ams.at',
+      label: 'AMS Austria',
+      description: 'Agência de emprego austríaca: ocupações em escassez e requisitos de qualificação para profissionais estrangeiros',
+    },
+  ],
+
   glossary: {
     'Rot-Weiß-Rot Karte': 'Red-White-Red Card (cartao de residencia por pontos)',
     'Aufenthaltstitel': 'Autorizacao de residencia',
