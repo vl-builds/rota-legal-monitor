@@ -74,35 +74,58 @@
       "id": "vls-ts-salarie",
       "name": "Visto de Longa Duração valendo Título de Residência - Assalariado",
       "nameOriginal": "Visa de long séjour valant titre de séjour (VLS-TS) - Salarié",
-      "notes": "Validade de 4 a 12 meses. Dispensa solicitação de carte de séjour na chegada. Permite circular em todo o espaço Schengen sem outro visto, desde que não ultrapasse 90 dias durante o período de validade.",
+      "notes": "O VLS-TS Salarié é o caminho principal para trabalho assalariado na França. O processo de Autorisation de Travail via DREETS pode envolver verificação da situação do mercado de trabalho (oposabilité de l'emploi) — o empregador deve demonstrar que não encontrou candidato local. Após validação no OFII, o VLS-TS funciona como título de residência válido por 12 meses, sem necessidade de ir à prefecture para obter carte de séjour no primeiro ano.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "estimatedDuration": "2-3 meses",
+        "fees": [
+          {
+            "amount": 99,
+            "currency": "EUR",
+            "notes": "taxa de visto de longa duração (VLS-TS) no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação do VLS-TS ao chegar na França (máx. 12 meses de autorização)"
+          }
+        ],
         "steps": [
           {
-            "description": "Acessar o portal France-Visas para verificar a lista completa de documentos exigidos conforme sua situação",
+            "order": 1,
+            "description": "O empregador francês solicita a Autorisation de Travail (DA) junto à DREETS (Direction régionale de l'économie, de l'emploi, du travail et des solidarités) da região — prazo de 1 mês",
             "estimatedDays": null,
-            "name": "Consulta dos documentos necessários",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Depositar a solicitação de visto nas autoridades consulares francesas no país de residência, com até 3 meses de antecedência da data prevista de partida",
+            "order": 2,
+            "description": "Após aprovação da DA, o trabalhador solicita o VLS-TS Mention Salarié no consulado francês no Brasil",
             "estimatedDays": null,
-            "name": "Solicitação no consulado",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Registro de foto de identidade e impressões digitais no sistema Visabio",
+            "order": 3,
+            "description": "Pagar taxa de €99 e apresentar documentação completa incluindo a DA aprovada, contrato de trabalho e documentos pessoais",
             "estimatedDays": null,
-            "name": "Coleta de dados biométricos",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Nos 3 meses após a chegada na França, validar o VLS-TS online e pagar a taxa correspondente para estar em situação regular e poder atravessar novamente a fronteira Schengen",
-            "estimatedDays": 90,
-            "name": "Validação do VLS-TS na França",
-            "order": 4
+            "order": 4,
+            "description": "Após aprovação (prazo de 2-4 semanas), entrar na França dentro do prazo de validade do visto (3 meses)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Dentro de 3 meses da chegada, validar o VLS-TS no portal do OFII (Office Français de l'Immigration et de l'Intégration) — visa torna-se o título de residência",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Pagar taxa OFII de €269 e completar o processamento — o VLS-TS validado serve como titre de séjour por 12 meses",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -110,31 +133,58 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte válido por no mínimo 3 meses após a data de fim do visto, com pelo menos 2 páginas em branco e emitido há menos de 10 anos",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses a partir da data do pedido",
+            "isCritical": true
           },
           {
-            "description": "Contrato de trabalho de duração indeterminada (CDI) com empregador francês",
-            "isCritical": true,
-            "name": "Contrato de trabalho"
+            "name": "Autorisation de Travail (DA) aprovada pela DREETS",
+            "description": "Autorização de trabalho emitida pela autoridade regional francesa — obtida pelo empregador",
+            "isCritical": true
           },
           {
-            "description": "Lista completa disponível no portal France-Visas conforme a situação específica do candidato",
-            "isCritical": false,
-            "name": "Documentos adicionais"
+            "name": "Contrato de trabalho assinado",
+            "description": "Contrato com empregador francês especificando cargo, salário (mínimo SMIC de €11,88/h em 2024) e condições",
+            "isCritical": true
+          },
+          {
+            "name": "Formulário de solicitação de visto de longa duração",
+            "description": "Disponível no portal France-Visas (france-visas.gouv.fr)",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          },
+          {
+            "name": "Justificatif d'hébergement (comprovante de alojamento na França)",
+            "description": "Endereço onde ficará nos primeiros meses — pode ser hotel ou declaração de alojamento de terceiro",
+            "isCritical": true
+          },
+          {
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Do Brasil com tradução juramentada para francês — pode ser solicitada pelo consulado",
+            "isCritical": false
           }
         ],
-        "incomeRequirement": null,
+        "incomeRequirement": {
+          "amount": 1801,
+          "currency": "EUR",
+          "period": "monthly",
+          "notes": "Salário mínimo (SMIC) de €11,88/h equivale a aprox. €1.801/mês bruto em 2024 — referência para maioria dos contratos"
+        },
         "languageRequired": null,
-        "qualificationsRequired": []
+        "qualificationsRequired": [
+          "Qualificações compatíveis com a função especificada no contrato de trabalho"
+        ]
       },
       "rights": {
-        "canBringFamily": false,
+        "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal (por naturalização) ou 4 anos com cônjuge francês",
+        "pathToResidency": "Após 5 anos de residência legal — Carte de résident (10 anos)"
       }
     },
     {
@@ -146,35 +196,58 @@
       "id": "vls-ts-talent",
       "name": "Visto de Longa Duração valendo Título de Residência - Talents",
       "nameOriginal": "Visa de long séjour valant titre de séjour (VLS-TS) - Carte de séjour Talents",
-      "notes": "Validade de 4 a 12 meses. Dispensa solicitação de carte de séjour na chegada.",
+      "notes": "O Passeport Talent (categoria Salarié Qualifié) é o caminho mais rápido para trabalhadores qualificados: sem Autorisation de Travail via DREETS, sem oposabilité de l'emploi, válido por 4 anos. Duas condições obrigatórias: diploma master + salário ≥ 2× SMIC. O cônjuge recebe automaticamente autorização de trabalho (Passeport Talent famille).",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "estimatedDuration": "1-2 meses",
+        "fees": [
+          {
+            "amount": 99,
+            "currency": "EUR",
+            "notes": "taxa de visto de longa duração (VLS-TS) no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
+          }
+        ],
         "steps": [
           {
-            "description": "Acessar o portal France-Visas para verificar a lista completa de documentos exigidos conforme sua situação",
+            "order": 1,
+            "description": "Verificar elegibilidade: diploma de master ou equivalente + oferta de emprego com salário mínimo de €39.582 anuais (2× o SMIC anual) em empresa com atividade significativa",
             "estimatedDays": null,
-            "name": "Consulta dos documentos necessários",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Depositar a solicitação de visto nas autoridades consulares francesas no país de residência, com até 3 meses de antecedência da data prevista de partida",
+            "order": 2,
+            "description": "Sem necessidade de Autorisation de Travail prévia pela DREETS — processo simplificado direto no consulado",
             "estimatedDays": null,
-            "name": "Solicitação no consulado",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Registro de foto de identidade e impressões digitais no sistema Visabio",
+            "order": 3,
+            "description": "Solicitar o VLS-TS Mention Passeport Talent (Talent category Salarié qualifié) no consulado francês no Brasil com contrato de trabalho e documentação de qualificações",
             "estimatedDays": null,
-            "name": "Coleta de dados biométricos",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Nos 3 meses após a chegada na França, validar o VLS-TS online e pagar a taxa correspondente",
-            "estimatedDays": 90,
-            "name": "Validação do VLS-TS na França",
-            "order": 4
+            "order": 4,
+            "description": "Pagar taxa de €99 e apresentar documentação completa — prazo de resposta de 2-4 semanas",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Entrar na França dentro do prazo do visto e validar no OFII dentro de 3 meses",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Pagar taxa OFII de €269 — o Passeport Talent é válido por 4 anos diretamente, sem necessidade de renovação anual",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -182,26 +255,54 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte válido por no mínimo 3 meses após a data de fim do visto, com pelo menos 2 páginas em branco e emitido há menos de 10 anos",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Lista completa disponível no portal France-Visas conforme a situação específica do candidato",
-            "isCritical": true,
-            "name": "Documentos comprobatórios de qualificação"
+            "name": "Contrato de trabalho com salário mínimo de €39.582/ano",
+            "description": "Contrato formal com empregador francês — salário mínimo de 2× o SMIC anual (equivale a aprox. €3.299/mês bruto em 2024)",
+            "isCritical": true
+          },
+          {
+            "name": "Diploma de ensino superior de nível master ou equivalente (5 anos)",
+            "description": "Diploma apostilado de nível BAC+5 (master, engenharia, medicina etc.) — riconhecimento automático para consulado",
+            "isCritical": true
+          },
+          {
+            "name": "Formulário de solicitação de visto de longa duração",
+            "description": "Disponível em france-visas.gouv.fr — categoria Passeport Talent",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          },
+          {
+            "name": "Justificatif d'hébergement na França",
+            "description": "Endereço confirmado na França para os primeiros meses",
+            "isCritical": true
           }
         ],
-        "incomeRequirement": null,
+        "incomeRequirement": {
+          "amount": 39582,
+          "currency": "EUR",
+          "period": "annual",
+          "notes": "2× o SMIC anual (2024) — equivale a aprox. €3.299/mês bruto. Para categorias talent específicas o limiar pode variar."
+        },
         "languageRequired": null,
-        "qualificationsRequired": []
+        "qualificationsRequired": [
+          "Diploma de nível master (BAC+5) ou equivalente reconhecido",
+          "Para category Talent-Salarié: diploma de nível master E salário ≥ 2× SMIC"
+        ]
       },
       "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
+        "canBringFamily": true,
+        "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal por naturalização",
+        "pathToResidency": "Após 5 anos de residência legal — Carte de résident (10 anos)"
       }
     },
     {
@@ -216,35 +317,52 @@
       "id": "vls-carte-travailleur",
       "name": "Visto de Longa Duração com menção 'carte de séjour a solicitar' - Trabalhador",
       "nameOriginal": "Visa mention 'carte de séjour à solliciter dans les 2 mois suivant l'arrivée' - Travailleur",
-      "notes": "Permite entrar na França e obter carte de séjour na prefeitura. A carte de séjour pode ser anual, plurianual ou de 10 anos dependendo da situação. Válido para diversos tipos de trabalhadores incluindo sazonais, em missão, Carte Bleue, profissionais liberais/autônomos e artistas.",
+      "notes": "Modalidade para contratos temporários de duração determinada. Válido pela duração do contrato, máximo 12 meses renovável. Não permite reunificação familiar direta.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "estimatedDuration": "2-3 meses",
+        "fees": [
+          {
+            "amount": 99,
+            "currency": "EUR",
+            "notes": "taxa de visto VLS-TS no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
+          }
+        ],
         "steps": [
           {
-            "description": "Acessar o portal France-Visas para verificar a lista completa de documentos exigidos conforme sua situação",
+            "order": 1,
+            "description": "Empregador francês solicita Autorisation de Travail para trabalhador temporário junto à DREETS",
             "estimatedDays": null,
-            "name": "Consulta dos documentos necessários",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Depositar a solicitação de visto nas autoridades consulares francesas no país de residência, com até 3 meses de antecedência da data prevista de partida",
+            "order": 2,
+            "description": "Após aprovação da DA, solicitar visto VLS-TS Travailleur temporaire no consulado",
             "estimatedDays": null,
-            "name": "Solicitação no consulado",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Registro de foto de identidade e impressões digitais no sistema Visabio",
+            "order": 3,
+            "description": "Pagar €99 e apresentar DA aprovada + contrato de trabalho de duração determinada",
             "estimatedDays": null,
-            "name": "Coleta de dados biométricos",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Nos 2 meses após a chegada na França, solicitar carte de séjour na prefeitura ou subprefeitura do domicílio",
-            "estimatedDays": 60,
-            "name": "Solicitação de carte de séjour na França",
-            "order": 4
+            "order": 4,
+            "description": "Entrar na França e validar VLS-TS no OFII dentro de 3 meses — pagar €269",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "O VLS-TS serve como titre de séjour pela duração do contrato (máx. 12 meses renovável)",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -252,17 +370,37 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte válido por no mínimo 3 meses após a data de fim do visto, com pelo menos 2 páginas em branco e emitido há menos de 10 anos",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Contrato de trabalho, promessa de emprego, documentos da empresa (para autônomos), portfolio (artistas), etc. Lista completa no France-Visas",
-            "isCritical": true,
-            "name": "Documentos específicos ao tipo de atividade"
+            "name": "Autorisation de Travail (DA) aprovada pela DREETS",
+            "description": "Para trabalhador temporário — obtida pelo empregador",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho a termo (CDD) ou missão de trabalho temporário",
+            "description": "Contrato de duração determinada especificando período, cargo e salário",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          },
+          {
+            "name": "Justificatif d'hébergement na França",
+            "description": "Endereço confirmado durante o período de trabalho",
+            "isCritical": true
           }
         ],
-        "incomeRequirement": null,
+        "incomeRequirement": {
+          "amount": 1801,
+          "currency": "EUR",
+          "period": "monthly",
+          "notes": "Salário mínimo SMIC como referência — pode ser menor para algumas categorias temporárias"
+        },
         "languageRequired": null,
         "qualificationsRequired": []
       },
@@ -284,29 +422,58 @@
       "id": "working-holiday-brasil",
       "name": "Visto Vacances-Travail (Working Holiday) - Brasil",
       "nameOriginal": "Visa 'vacances-travail' - Brésil",
-      "notes": "Duração máxima de 12 meses. Dispensa solicitação de carte de séjour. Não permite renovação ou mudança de status migratório após o término. Permite trabalhar e viajar livremente durante a validade do visto.",
+      "notes": "O PVT Brasil-França (Accord de Réciprocité de 2013) permite trabalhar legalmente na França por 12 meses sem oferta prévia de emprego. Limite de idade: 30 anos (não 35) em alguns anos — verificar condições atuais no consulado. O visto é não renovável, mas permite trabalhar livremente para qualquer empregador durante o período. Não se aplica restrição de setor ou atividade. Para estadas mais longas, o PVT pode ser trampolim para obter VLS-TS Salarié com empregador encontrado durante o período.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "estimatedDuration": "4-8 semanas",
+        "fees": [
+          {
+            "amount": 99,
+            "currency": "EUR",
+            "notes": "taxa de visto de longa duração (PVT) no consulado francês no Brasil"
+          },
+          {
+            "amount": 50,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
+          }
+        ],
         "steps": [
           {
-            "description": "Acessar o portal France-Visas ou contatar o consulado francês no Brasil para verificar os requisitos específicos",
+            "order": 1,
+            "description": "Verificar elegibilidade: 18-35 anos, passaporte brasileiro, não ter tido PVT França anteriormente, sem dependentes",
             "estimatedDays": null,
-            "name": "Consulta dos documentos necessários",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Depositar a solicitação de visto no consulado francês no Brasil, com até 3 meses de antecedência da data prevista de partida",
+            "order": 2,
+            "description": "Verificar cota anual disponível — França e Brasil têm acordo de PVT com número de vagas limitado por ano",
             "estimatedDays": null,
-            "name": "Solicitação no consulado",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Registro de foto de identidade e impressões digitais no sistema Visabio",
+            "order": 3,
+            "description": "Solicitar o PVT (Permis Vacances-Travail) no consulado francês no Brasil — processo simples sem necessidade de oferta de emprego",
             "estimatedDays": null,
-            "name": "Coleta de dados biométricos",
-            "order": 3
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Pagar taxa de €99 e apresentar documentação: passaporte, fotos, seguro médico, comprovante de recursos mínimos (€2.500)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Após aprovação (prazo de 2-4 semanas), entrar na França dentro de 12 meses da aprovação",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Ao chegar na França, registrar o visto junto ao OFII dentro de 3 meses — o PVT é válido por 12 meses, não renovável",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -314,17 +481,42 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte válido por no mínimo 3 meses após a data de fim do visto, com pelo menos 2 páginas em branco e emitido há menos de 10 anos",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Deve cobrir todo o período de 12 meses do PVT mais margem",
+            "isCritical": true
           },
           {
-            "description": "Lista completa disponível no portal France-Visas ou no consulado francês no Brasil",
-            "isCritical": false,
-            "name": "Documentos adicionais"
+            "name": "Comprovante de recursos financeiros mínimos",
+            "description": "€2.500 em conta bancária para sustento inicial no período de adaptação",
+            "isCritical": true
+          },
+          {
+            "name": "Seguro médico internacional válido na França",
+            "description": "Cobertura de saúde por toda a duração do PVT (12 meses) — incluindo repatriação",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          },
+          {
+            "name": "Formulário de solicitação de PVT",
+            "description": "Disponível no consulado francês ou em france-visas.gouv.fr",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de alojamento inicial na França",
+            "description": "Reserva de hotel/hostel ou carta de alojamento dos primeiros dias",
+            "isCritical": false
           }
         ],
-        "incomeRequirement": null,
+        "incomeRequirement": {
+          "amount": 2500,
+          "currency": "EUR",
+          "period": "total",
+          "notes": "Recursos mínimos para o período inicial — demonstrado em conta bancária no momento da solicitação"
+        },
         "languageRequired": null,
         "qualificationsRequired": []
       },
@@ -344,29 +536,52 @@
       "id": "vls-temporaire-artiste",
       "name": "Visto de Longa Duração Temporário - Atividade Artística",
       "nameOriginal": "Visa de long séjour temporaire - Activité artistique",
-      "notes": "Duração de 4 a 6 meses. Dispensa carte de séjour durante a validade. Permite múltiplas entradas no território francês. Ao término, deve retornar ao país de origem.",
+      "notes": "Modalidade específica para artistas e intérpretes. Para atividades recorrentes ou de longo prazo, pode ser mais adequado o Passeport Talent Artiste. O regime de intermittent du spectacle (sistema de seguro-desemprego para trabalhadores do setor artístico) é acessível após determinado número de horas trabalhadas na França.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "estimatedDuration": "2-3 meses",
+        "fees": [
+          {
+            "amount": 99,
+            "currency": "EUR",
+            "notes": "taxa de visto VLS-TS no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
+          }
+        ],
         "steps": [
           {
-            "description": "Acessar o portal France-Visas para verificar a lista completa de documentos",
+            "order": 1,
+            "description": "Obter convite ou contrato de entidade artística/cultural francesa para atividade artística remunerada",
             "estimatedDays": null,
-            "name": "Consulta dos documentos necessários",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Depositar a solicitação de visto nas autoridades consulares francesas, com até 3 meses de antecedência",
+            "order": 2,
+            "description": "Empregador/produtor francês solicita Autorisation de Travail para artista temporário junto à DREETS, se aplicável",
             "estimatedDays": null,
-            "name": "Solicitação no consulado",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Registro de foto e impressões digitais no sistema Visabio",
+            "order": 3,
+            "description": "Solicitar visto VLS-TS Artiste-interprète no consulado francês com documentação completa",
             "estimatedDays": null,
-            "name": "Coleta de dados biométricos",
-            "order": 3
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Pagar €99, apresentar contrato artístico, documentação de portfolio/carreira e documentos pessoais",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Entrar na França e validar VLS-TS no OFII dentro de 3 meses — pagar €269",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -374,19 +589,36 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte válido por no mínimo 3 meses após a data de fim do visto, com pelo menos 2 páginas em branco e emitido há menos de 10 anos",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Contrato, convite, programa de eventos, portfolio, etc. Lista completa no France-Visas",
-            "isCritical": true,
-            "name": "Documentos da atividade artística"
+            "name": "Contrato artístico ou convite de entidade francesa",
+            "description": "Documento formal de produtor, agência ou entidade cultural francesa especificando atividade, período e remuneração",
+            "isCritical": true
+          },
+          {
+            "name": "Portfolio ou comprovante de carreira artística",
+            "description": "Evidência de atividade artística profissional (links, press releases, contratos anteriores)",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          },
+          {
+            "name": "Justificatif d'hébergement na França",
+            "description": "Endereço durante o período de trabalho",
+            "isCritical": true
           }
         ],
         "incomeRequirement": null,
         "languageRequired": null,
-        "qualificationsRequired": []
+        "qualificationsRequired": [
+          "Atuação profissional artística demonstrada — artes cênicas, música, dança, cinema, etc."
+        ]
       },
       "rights": {
         "canBringFamily": false,
@@ -406,23 +638,57 @@
       "id": "carte-sejour-temporaire-salarie",
       "name": "Carte de séjour temporaire - Mention Salarié",
       "nameOriginal": "Carte de séjour temporaire - Mention Salarié",
-      "notes": "Válida para exercer atividade profissional assalariada. Renovação necessária ao término do período de validade na Préfecture",
+      "notes": "A carte de séjour temporaire salarié é o título anual padrão para trabalhadores assalariados. Para atividades qualificadas, o Passeport Talent (válido 4 anos sem renovação anual) é mais vantajoso se os critérios forem atingidos.",
       "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [],
-        "steps": [
+        "applicationLocation": "origem",
+        "estimatedDuration": "2-4 meses",
+        "fees": [
           {
-            "description": "Reunir documentos necessários incluindo passaporte e contrato de trabalho",
-            "estimatedDays": null,
-            "name": "Preparação de documentação",
-            "order": 1
+            "amount": 99,
+            "currency": "EUR",
+            "notes": "taxa de visto de longa duração no consulado francês"
           },
           {
-            "description": "Apresentar solicitação na Préfecture (delegacia regional) responsável pela área de residência",
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de primeira emissão do titre de séjour"
+          },
+          {
+            "amount": 225,
+            "currency": "EUR",
+            "notes": "taxa de renovação da carte de séjour temporaire na prefecture"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "Empregador francês solicita Autorisation de Travail junto à DREETS",
             "estimatedDays": null,
-            "name": "Solicitação na Préfecture",
-            "order": 2
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Após aprovação, solicitar visto de longa duração (VLS-TS Salarié) no consulado francês",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Entrar na França e validar VLS-TS no OFII dentro de 3 meses — este documento funciona como carte de séjour temporaire por 12 meses",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Antes do vencimento, solicitar renovação da carte de séjour temporaire na prefecture do departamento de residência",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Pagar €225 de taxa de renovação na prefecture e apresentar documentação atualizada",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -430,31 +696,46 @@
       "requirements": {
         "documents": [
           {
-            "description": "Documento de identidade válido do país de origem",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Contrato de trabalho assinado com o empregador francês",
-            "isCritical": true,
-            "name": "Contrato de trabalho"
+            "name": "Autorisation de Travail aprovada pela DREETS",
+            "description": "Emitida pelo empregador via DREETS",
+            "isCritical": true
           },
           {
-            "description": "Documento comprovando endereço na França",
-            "isCritical": false,
-            "name": "Comprovante de domicílio"
+            "name": "Contrato de trabalho ativo com empregador francês",
+            "description": "Contrato CDI ou CDD em vigor",
+            "isCritical": true
+          },
+          {
+            "name": "Justificatif de domicile (comprovante de residência na França)",
+            "description": "Para renovação: comprovante de endereço atual na França",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           }
         ],
-        "incomeRequirement": null,
+        "incomeRequirement": {
+          "amount": 1801,
+          "currency": "EUR",
+          "period": "monthly",
+          "notes": "Salário mínimo SMIC como referência"
+        },
         "languageRequired": null,
         "qualificationsRequired": []
       },
       "rights": {
-        "canBringFamily": false,
+        "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal",
+        "pathToResidency": "Após 5 anos de residência legal — Carte de résident"
       }
     },
     {
@@ -467,23 +748,47 @@
       "id": "carte-sejour-pluriannuelle",
       "name": "Carte de séjour pluriannuelle",
       "nameOriginal": "Carte de séjour pluriannuelle",
-      "notes": "Válida por período superior a um ano. Renovação deve ser solicitada na Préfecture da área de residência",
+      "notes": "A carte pluriannuelle simplifica a burocracia evitando renovações anuais na prefecture. Válida por 2 a 4 anos dependendo do perfil. Para trabalho qualificado, o Passeport Talent (4 anos desde o início) ainda é preferível se os critérios forem atingidos.",
       "process": {
         "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "estimatedDuration": "2-6 meses",
+        "fees": [
+          {
+            "amount": 225,
+            "currency": "EUR",
+            "notes": "taxa de emissão da carte de séjour pluriannuelle na prefecture"
+          }
+        ],
         "steps": [
           {
-            "description": "Reunir documentos exigidos para a categoria aplicável",
+            "order": 1,
+            "description": "Após 1 ou 2 anos de residência contínua em França com titre de séjour temporaire, solicitar a carte pluriannuelle na prefecture",
             "estimatedDays": null,
-            "name": "Preparação de documentação",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Apresentar solicitação de renovação na Préfecture antes do vencimento do título anterior",
+            "order": 2,
+            "description": "Verificar elegibilidade: contrato de trabalho CDI ou CDD de longa duração, comprovante de integração republicana (OFII)",
             "estimatedDays": null,
-            "name": "Solicitação na Préfecture",
-            "order": 2
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Submeter pedido na prefecture do departamento de residência com documentação atualizada",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Pagar taxa de €225 e aguardar análise (prazo de 2-4 meses)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Receber carte pluriannuelle válida por 2-4 anos — cobre múltiplas renovações",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -491,26 +796,49 @@
       "requirements": {
         "documents": [
           {
-            "description": "Documento de identidade válido",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Titre de séjour atual válido",
+            "description": "Carte de séjour temporaire ou VLS-TS validado pelo OFII",
+            "isCritical": true
           },
           {
-            "description": "Comprovação de residência legal anterior na França",
-            "isCritical": true,
-            "name": "Título de permanência anterior"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho CDI ou CDD de longa duração",
+            "description": "Atividade profissional estável demonstrada",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de residência na França (justificatif de domicile)",
+            "description": "Fatura de utilidade, contrato de aluguel ou declaração de alojamento",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de conclusão do Contrat d'Intégration Républicaine (CIR)",
+            "description": "Certificado do OFII de conclusão das formações cívicas e linguísticas do CIR",
+            "isCritical": true
+          },
+          {
+            "name": "3 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           }
         ],
         "incomeRequirement": null,
-        "languageRequired": null,
+        "languageRequired": {
+          "language": "Francês",
+          "level": "A1 ou superior — demonstrado via Contrat d'Intégration Républicaine"
+        },
         "qualificationsRequired": []
       },
       "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
+        "canBringFamily": true,
+        "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal",
+        "pathToResidency": "Após 5 anos totais de residência legal — Carte de résident"
       }
     },
     {
@@ -522,17 +850,47 @@
       "id": "carte-sejour",
       "name": "Carte de séjour",
       "nameOriginal": "Carte de séjour",
-      "notes": null,
+      "notes": "A carte de résident (10 anos) é o título de residência de longa duração na França, equivalente à residência permanente. Oferece direitos quase idênticos aos cidadãos franceses em termos de trabalho e acesso a serviços. A naturalização pode ser solicitada simultaneamente após 5 anos de residência legal estável.",
       "process": {
         "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "estimatedDuration": "6-12 meses (processo de naturalização)",
+        "fees": [
+          {
+            "amount": 225,
+            "currency": "EUR",
+            "notes": "taxa de emissão da carte de résident (10 anos) na prefecture"
+          }
+        ],
         "steps": [
           {
-            "description": "Solicitar junto à Préfecture competente",
+            "order": 1,
+            "description": "Após 5 anos de residência legal contínua em França, solicitar a carte de résident (10 anos) ou carte de résident longue durée UE na prefecture",
             "estimatedDays": null,
-            "name": "Solicitação",
-            "order": 1
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Comprovar integração republicana: francês de nível B1 (ou A2 com dispensa), comprometimento com valores da república, estabilidade de meios de subsistência",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Submeter pedido na prefecture com documentação completa",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Pagar taxa de €225 e aguardar análise (prazo de 4-6 meses)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Receber carte de résident válida por 10 anos — renovável automaticamente se condições mantidas",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -540,21 +898,51 @@
       "requirements": {
         "documents": [
           {
-            "description": "Documento de identidade válido",
-            "isCritical": true,
-            "name": "Passaporte"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de 5 anos de residência legal contínua",
+            "description": "Histórico de titres de séjour anteriores demonstrando continuidade",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de francês B1",
+            "description": "Diploma DELF B1, TCF ou equivalente — ou dispensa por formação em francês",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de meios de subsistência estáveis",
+            "description": "Contrato de trabalho, últimas declarações de imposto de renda",
+            "isCritical": true
+          },
+          {
+            "name": "Justificatif de domicile na França",
+            "description": "Comprovante de residência atual",
+            "isCritical": true
+          },
+          {
+            "name": "3 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           }
         ],
         "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
+        "languageRequired": {
+          "language": "Francês",
+          "level": "B1 — nível mínimo obrigatório para carte de résident"
+        },
+        "qualificationsRequired": [
+          "5 anos de residência legal contínua na França"
+        ]
       },
       "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
+        "canBringFamily": true,
+        "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Elegível para naturalização francesa — 5 anos de residência + integração",
+        "pathToResidency": "Este é o título de residência permanente de longa duração"
       }
     },
     {
@@ -566,60 +954,58 @@
       "id": "talent-salarie-qualifie",
       "name": "Talento - Assalariado Qualificado",
       "nameOriginal": "Talent - Salarié Qualifié",
-      "notes": "Cartão válido pela duração do contrato de trabalho, com limite máximo de 4 anos. Cônjuge e filhos menores podem obter cartão 'Talent-Famille' através de procedimento simplificado",
+      "notes": "Equivalente ao vls-ts-talent — ambos se referem ao Passeport Talent Salarié Qualifié. Vantagem principal: válido por 4 anos sem renovação anual, sem Autorisation de Travail prévia, cônjuge com autorização de trabalho automática.",
       "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "A determinar",
+        "applicationLocation": "origem",
+        "estimatedDuration": "1-2 meses",
         "fees": [
           {
-            "amount": 350,
+            "amount": 99,
             "currency": "EUR",
-            "notes": "Direito de timbre 50 EUR + taxa 300 EUR",
-            "period": "one-time"
+            "notes": "taxa de visto Passeport Talent no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
           }
         ],
         "steps": [
           {
-            "description": "Confirmar cumprimento dos requisitos de qualificação e remuneração",
+            "order": 1,
+            "description": "Verificar elegibilidade: diploma de nível master + contrato de trabalho com empregador francês com salário mínimo de €39.582/ano (2× SMIC anual de 2024)",
             "estimatedDays": null,
-            "name": "Verificar condições de elegibilidade",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Se no estrangeiro: solicitar visto nas autoridades consulares francesas. Se na França: solicitar título de residência online",
+            "order": 2,
+            "description": "Não é necessária Autorisation de Travail via DREETS — processo simplificado direto no consulado",
             "estimatedDays": null,
-            "name": "Determinar procedimento aplicável",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Reunir todos os documentos necessários conforme o tipo de solicitação",
+            "order": 3,
+            "description": "Solicitar Passeport Talent Mention Salarié Qualifié no consulado francês no Brasil",
             "estimatedDays": null,
-            "name": "Preparar documentação",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Depositar solicitação de visto ou título de residência online",
+            "order": 4,
+            "description": "Pagar €99 e apresentar: contrato de trabalho, diploma master apostilado, formulário de visto",
             "estimatedDays": null,
-            "name": "Submeter solicitação",
-            "order": 4
+            "name": null
           },
           {
-            "description": "Prefeitura confirma disponibilidade do cartão de residência e valor da taxa",
+            "order": 5,
+            "description": "Entrar na França e validar junto ao OFII dentro de 3 meses — pagar €269",
             "estimatedDays": null,
-            "name": "Receber confirmação da prefeitura",
-            "order": 5
+            "name": null
           },
           {
-            "description": "Efetuar pagamento de 350 EUR (direito de 50 EUR + taxa de 300 EUR) via internet ou escritório de tabaco",
+            "order": 6,
+            "description": "Receber Passeport Talent válido por 4 anos — cônjuge recebe Passeport Talent famille automaticamente",
             "estimatedDays": null,
-            "name": "Comprar timbre fiscal",
-            "order": 6
-          },
-          {
-            "description": "Cartão entregue pela prefeitura ou subprefeitura de residência. Agendamento geralmente necessário",
-            "estimatedDays": null,
-            "name": "Retirar cartão de residência",
-            "order": 7
+            "name": null
           }
         ]
       },
@@ -627,63 +1013,49 @@
       "requirements": {
         "documents": [
           {
-            "description": "Documento de viagem válido",
-            "isCritical": true,
-            "name": "Visto de longa duração ou título de residência em vigor"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Páginas contendo estado civil, datas de validade, selos de entrada e vistos, ou atestado consular com foto, ou cartão de identidade com foto, ou cartão consular com foto, ou certificado de nacionalidade com menos de 6 meses com foto",
-            "isCritical": true,
-            "name": "Passaporte"
+            "name": "Contrato de trabalho com salário mínimo de €39.582/ano",
+            "description": "2× o SMIC anual — empregador francês",
+            "isCritical": true
           },
           {
-            "description": "Documento datando de menos de 6 meses",
-            "isCritical": true,
-            "name": "Comprovante de residência"
+            "name": "Diploma de nível master (BAC+5) apostilado",
+            "description": "Diploma de 5 anos de ensino superior — master, engenharia, medicina, etc.",
+            "isCritical": true
           },
           {
-            "description": "Código da e-photo fornecido pelo fotógrafo ou cabine aprovada",
-            "isCritical": true,
-            "name": "E-photo"
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           },
           {
-            "description": "Diploma mínimo de mestrado ou equivalente",
-            "isCritical": true,
-            "name": "Diploma"
-          },
-          {
-            "description": "Modelo de atestado do empregador disponível no site",
-            "isCritical": true,
-            "name": "Atestado do empregador"
-          },
-          {
-            "description": "Se a atividade for regulamentada: prova do respeito às condições regulamentares de exercício da profissão",
-            "isCritical": false,
-            "name": "Comprovante de condições regulamentares"
-          },
-          {
-            "description": "Exemplar assinado do compromisso de respeitar os princípios da República",
-            "isCritical": true,
-            "name": "Engajamento assinado"
+            "name": "Justificatif d'hébergement na França",
+            "description": "Endereço confirmado",
+            "isCritical": true
           }
         ],
         "incomeRequirement": {
           "amount": 39582,
           "currency": "EUR",
-          "notes": "Remuneração bruta anual mínima exigida",
-          "period": "yearly"
+          "period": "annual",
+          "notes": "2× SMIC anual (2024) — aprox. €3.299/mês bruto"
         },
         "languageRequired": null,
         "qualificationsRequired": [
-          "Diploma mínimo de mestrado ou equivalente obtido na França"
+          "Diploma de nível master (BAC+5) reconhecido",
+          "Contrato de trabalho com salário ≥ 2× SMIC anual"
         ]
       },
       "rights": {
         "canBringFamily": true,
-        "canChangeEmployer": false,
+        "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal",
+        "pathToResidency": "Após 5 anos de residência legal"
       }
     },
     {
@@ -696,60 +1068,52 @@
       "id": "talent-empresa-inovante",
       "name": "Talento - Assalariado de Empresa Inovante",
       "nameOriginal": "Talent - Salarié d'une Entreprise Innovante",
-      "notes": "Cartão válido pela duração do contrato de trabalho, com limite máximo de 4 anos. Cônjuge e filhos menores podem obter cartão 'Talent-Famille'",
+      "notes": "Passeport Talent específico para trabalhadores e fundadores de empresas inovadoras reconhecidas pelo ecossistema francês. Sem DA prévia e sem limiar salarial específico (ao contrário do Salarié Qualifié). Válido por até 4 anos.",
       "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "A determinar",
+        "applicationLocation": "origem",
+        "estimatedDuration": "1-2 meses",
         "fees": [
           {
-            "amount": 350,
+            "amount": 99,
             "currency": "EUR",
-            "notes": "Direito de timbre 50 EUR + taxa 300 EUR",
-            "period": "one-time"
+            "notes": "taxa de visto Passeport Talent no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
           }
         ],
         "steps": [
           {
-            "description": "Confirmar vínculo com empresa inovante e natureza das funções",
+            "order": 1,
+            "description": "Verificar que a empresa francesa receptora é reconhecida como empresa inovadora (label French Tech, JEI, empresa em incubadora pública, ou com participação do BPI France)",
             "estimatedDays": null,
-            "name": "Verificar condições de elegibilidade",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Se no estrangeiro: solicitar visto nas autoridades consulares francesas. Se na França: solicitar título de residência online",
+            "order": 2,
+            "description": "Receber oferta de emprego ou ser fundador dessa empresa inovadora",
             "estimatedDays": null,
-            "name": "Determinar procedimento aplicável",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Reunir todos os documentos necessários conforme o tipo de solicitação",
+            "order": 3,
+            "description": "Solicitar Passeport Talent Mention Projet Économique Innovant no consulado francês — sem DA prévia",
             "estimatedDays": null,
-            "name": "Preparar documentação",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Depositar solicitação de visto ou título de residência online",
+            "order": 4,
+            "description": "Pagar €99 e apresentar: documentação da empresa inovadora, contrato ou documentos societários",
             "estimatedDays": null,
-            "name": "Submeter solicitação",
-            "order": 4
+            "name": null
           },
           {
-            "description": "Prefeitura confirma disponibilidade do cartão de residência e valor da taxa",
+            "order": 5,
+            "description": "Entrar na França e validar no OFII dentro de 3 meses — pagar €269",
             "estimatedDays": null,
-            "name": "Receber confirmação da prefeitura",
-            "order": 5
-          },
-          {
-            "description": "Efetuar pagamento de 350 EUR (direito de 50 EUR + taxa de 300 EUR) via internet ou escritório de tabaco",
-            "estimatedDays": null,
-            "name": "Comprar timbre fiscal",
-            "order": 6
-          },
-          {
-            "description": "Cartão entregue pela prefeitura ou subprefeitura de residência",
-            "estimatedDays": null,
-            "name": "Retirar cartão de residência",
-            "order": 7
+            "name": null
           }
         ]
       },
@@ -757,63 +1121,43 @@
       "requirements": {
         "documents": [
           {
-            "description": "Documento de viagem válido",
-            "isCritical": true,
-            "name": "Visto de longa duração ou título de residência em vigor"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Páginas contendo estado civil, datas de validade, selos de entrada e vistos, ou atestado consular com foto, ou cartão de identidade com foto, ou cartão consular com foto, ou certificado de nacionalidade com menos de 6 meses com foto",
-            "isCritical": true,
-            "name": "Passaporte"
+            "name": "Comprovante de status de empresa inovadora",
+            "description": "Label French Tech, JEI (Jeune Entreprise Innovante), participação BPI France, incubadora pública ou equivalente",
+            "isCritical": true
           },
           {
-            "description": "Documento datando de menos de 6 meses",
-            "isCritical": true,
-            "name": "Comprovante de residência"
+            "name": "Contrato de trabalho ou documentos societários",
+            "description": "Para empregados: contrato; para fundadores: documentos de constituição da empresa",
+            "isCritical": true
           },
           {
-            "description": "Código da e-photo fornecido pelo fotógrafo ou cabine aprovada",
-            "isCritical": true,
-            "name": "E-photo"
+            "name": "Plano de negócios ou projeto inovador (para fundadores)",
+            "description": "Descrição da atividade inovadora e modelo de negócios",
+            "isCritical": false
           },
           {
-            "description": "Atestado do Ministério da Economia reconhecendo caráter inovante ou documento fiscal estabelecendo qualidade de jovem empresa inovante",
-            "isCritical": true,
-            "name": "Documentos da empresa"
-          },
-          {
-            "description": "Justificando que as funções exercidas estão em ligação com o projeto de pesquisa e desenvolvimento ou desenvolvimento econômico, social, internacional e ambiental",
-            "isCritical": true,
-            "name": "Atestado do empregador"
-          },
-          {
-            "description": "Se a atividade for regulamentada: prova do respeito às condições regulamentares de exercício da profissão",
-            "isCritical": false,
-            "name": "Comprovante de condições regulamentares"
-          },
-          {
-            "description": "Exemplar assinado do compromisso de respeitar os princípios da República",
-            "isCritical": true,
-            "name": "Engajamento assinado"
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           }
         ],
-        "incomeRequirement": {
-          "amount": 39582,
-          "currency": "EUR",
-          "notes": "Remuneração bruta anual mínima exigida",
-          "period": "yearly"
-        },
+        "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": [
-          "Funções em ligação direta com projeto de pesquisa e desenvolvimento de empresa inovante"
+          "Empresa deve ter reconhecimento como empresa inovadora por autoridade ou programa francês reconhecido"
         ]
       },
       "rights": {
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal",
+        "pathToResidency": "Após 5 anos de residência legal"
       }
     },
     {
@@ -827,60 +1171,58 @@
       "id": "talent-salarie-missao",
       "name": "Talento - Assalariado em Missão",
       "nameOriginal": "Talent - Salarié en Mission",
-      "notes": "Cartão válido pela duração do contrato de trabalho, com limite máximo de 4 anos. Cônjuge e filhos menores podem obter cartão 'Talent-Famille'",
+      "notes": "Modalidade para transferências intragrupo de trabalhadores altamente qualificados. Sem DA prévia. Cônjuge recebe Passeport Talent famille com autorização de trabalho. Válido pela duração da missão, máximo 4 anos.",
       "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "A determinar",
+        "applicationLocation": "origem",
+        "estimatedDuration": "1-2 meses",
         "fees": [
           {
-            "amount": 350,
+            "amount": 99,
             "currency": "EUR",
-            "notes": "Direito de timbre 50 EUR + taxa 300 EUR",
-            "period": "one-time"
+            "notes": "taxa de visto Passeport Talent no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
           }
         ],
         "steps": [
           {
-            "description": "Confirmar vínculo com grupo/empresa estrangeira e antiguidade",
+            "order": 1,
+            "description": "A empresa francesa (receptora) documenta o vínculo com a empresa enviante e os termos da missão intragrupo",
             "estimatedDays": null,
-            "name": "Verificar condições de elegibilidade",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Se no estrangeiro: solicitar visto nas autoridades consulares francesas. Se na França: solicitar título de residência online",
+            "order": 2,
+            "description": "Verificar elegibilidade: vínculo empregatício mínimo de 3 meses com empresa enviante, cargo de gestor/especialista",
             "estimatedDays": null,
-            "name": "Determinar procedimento aplicável",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Reunir todos os documentos necessários conforme o tipo de solicitação",
+            "order": 3,
+            "description": "Solicitar Passeport Talent Mention Salarié en Mission no consulado francês — sem DA prévia",
             "estimatedDays": null,
-            "name": "Preparar documentação",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Depositar solicitação de visto ou título de residência online",
+            "order": 4,
+            "description": "Pagar €99 e apresentar: carta de missão, contrato com empresa enviante, documentação do grupo empresarial",
             "estimatedDays": null,
-            "name": "Submeter solicitação",
-            "order": 4
+            "name": null
           },
           {
-            "description": "Prefeitura confirma disponibilidade do cartão de residência e valor da taxa",
+            "order": 5,
+            "description": "Entrar na França e validar no OFII dentro de 3 meses — pagar €269",
             "estimatedDays": null,
-            "name": "Receber confirmação da prefeitura",
-            "order": 5
+            "name": null
           },
           {
-            "description": "Efetuar pagamento de 350 EUR (direito de 50 EUR + taxa de 300 EUR) via internet ou escritório de tabaco",
+            "order": 6,
+            "description": "Receber Passeport Talent válido por até 4 anos (duração da missão)",
             "estimatedDays": null,
-            "name": "Comprar timbre fiscal",
-            "order": 6
-          },
-          {
-            "description": "Cartão entregue pela prefeitura ou subprefeitura de residência",
-            "estimatedDays": null,
-            "name": "Retirar cartão de residência",
-            "order": 7
+            "name": null
           }
         ]
       },
@@ -888,73 +1230,49 @@
       "requirements": {
         "documents": [
           {
-            "description": "Documento de viagem válido",
-            "isCritical": true,
-            "name": "Visto de longa duração ou título de residência em vigor"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Páginas contendo estado civil, datas de validade, selos de entrada e vistos, ou atestado consular com foto, ou cartão de identidade com foto, ou cartão consular com foto, ou certificado de nacionalidade com menos de 6 meses com foto",
-            "isCritical": true,
-            "name": "Passaporte"
+            "name": "Carta de missão da empresa enviante",
+            "description": "Especificando cargo, remuneração, duração e condições da transferência intragrupo",
+            "isCritical": true
           },
           {
-            "description": "Documento datando de menos de 6 meses",
-            "isCritical": true,
-            "name": "Comprovante de residência"
+            "name": "Contrato com empresa enviante (mínimo 3 meses de vínculo anterior)",
+            "description": "Comprovante de vínculo empregatício existente antes da missão",
+            "isCritical": true
           },
           {
-            "description": "Código da e-photo fornecido pelo fotógrafo ou cabine aprovada",
-            "isCritical": true,
-            "name": "E-photo"
+            "name": "Documentos do grupo empresarial",
+            "description": "Comprovantes de que empresa enviante e receptora pertencem ao mesmo grupo multinacional",
+            "isCritical": true
           },
           {
-            "description": "Ou atestado sob honra de solicitação de inscrição na segurança social francesa",
-            "isCritical": true,
-            "name": "Certificado de destacamento segurança social"
-          },
-          {
-            "description": "Detalhando as funções exercidas e o objeto da missão a realizar",
-            "isCritical": true,
-            "name": "Carta detalhando funções e missão"
-          },
-          {
-            "description": "Confirmando emprego e termos do contrato",
-            "isCritical": true,
-            "name": "Atestado do empregador"
-          },
-          {
-            "description": "Justificativo de antiguidade de pelo menos 3 meses no grupo ou empresa estabelecida no estrangeiro, fornecido pelo empregador",
-            "isCritical": true,
-            "name": "Comprovante de antiguidade profissional"
-          },
-          {
-            "description": "Se a atividade for regulamentada: prova do respeito às condições regulamentares de exercício da profissão",
-            "isCritical": false,
-            "name": "Comprovante de condições regulamentares"
-          },
-          {
-            "description": "Exemplar assinado do compromisso de respeitar os princípios da República",
-            "isCritical": true,
-            "name": "Engajamento assinado"
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           }
         ],
         "incomeRequirement": {
           "amount": 39582,
           "currency": "EUR",
-          "notes": "Remuneração bruta anual mínima exigida",
-          "period": "yearly"
+          "period": "annual",
+          "notes": "Salário mínimo equivalente a 2× SMIC para a categoria Salarié en Mission"
         },
         "languageRequired": null,
         "qualificationsRequired": [
-          "Antiguidade mínima de 3 meses no grupo empregador no estrangeiro"
+          "Vínculo empregatício mínimo de 3 meses com empresa enviante",
+          "Cargo de gestor, especialista ou pesquisador"
         ]
       },
       "rights": {
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal",
+        "pathToResidency": "Após 5 anos de residência legal"
       }
     },
     {
@@ -1097,60 +1415,58 @@
       "id": "talent-profissoes-medicas-farmacia",
       "name": "Talento - Profissões Médicas e Farmácia",
       "nameOriginal": "Talent - Professions Médicales et de la Pharmacie",
-      "notes": "Página foi cortada antes de completar informações sobre duração, família e outros detalhes desta categoria",
+      "notes": "A PAE é o maior obstáculo: o processo de reconhecimento de diplomas médicos no CNG pode levar de 6 a 18 meses. Após obter a PAE, o Passeport Talent elimina a necessidade de DA via DREETS e é válido por 4 anos. Brasileiro precisará de nível B2 de francês comprovado para inscrição no CNOM.",
       "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "A determinar",
+        "applicationLocation": "origem",
+        "estimatedDuration": "3-6 meses",
         "fees": [
           {
-            "amount": 350,
+            "amount": 99,
             "currency": "EUR",
-            "notes": "Direito de timbre 50 EUR + taxa 300 EUR (presumido, não explicitado para esta categoria)",
-            "period": "one-time"
+            "notes": "taxa de visto Passeport Talent no consulado francês"
+          },
+          {
+            "amount": 269,
+            "currency": "EUR",
+            "notes": "taxa OFII de validação ao chegar na França"
           }
         ],
         "steps": [
           {
-            "description": "Confirmar autorização para exercer e remuneração",
+            "order": 1,
+            "description": "Obter autorização prévia de exercício (PAE — Procédure d'Autorisation d'Exercice) junto ao Centre National de Gestion (CNG) para médicos/farmacêuticos/dentistas/parteiras estrangeiros",
             "estimatedDays": null,
-            "name": "Verificar condições de elegibilidade",
-            "order": 1
+            "name": null
           },
           {
-            "description": "Se no estrangeiro: solicitar visto nas autoridades consulares francesas. Se na França: solicitar título de residência online",
+            "order": 2,
+            "description": "Apresentar diplomas para validação — processo de reconhecimento pode levar de 3 a 12 meses dependendo da especialidade e do fluxo de candidatos",
             "estimatedDays": null,
-            "name": "Determinar procedimento aplicável",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Reunir documentos necessários",
+            "order": 3,
+            "description": "Após PAE aprovada, obter oferta de emprego em estabelecimento de saúde francês (hospital, clínica, farmácia)",
             "estimatedDays": null,
-            "name": "Preparar documentação",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Depositar solicitação de visto ou título de residência online",
+            "order": 4,
+            "description": "Solicitar Passeport Talent Mention Professions médicales et de la pharmacie no consulado francês — sem DA prévia",
             "estimatedDays": null,
-            "name": "Submeter solicitação",
-            "order": 4
+            "name": null
           },
           {
-            "description": "Prefeitura confirma disponibilidade do cartão de residência",
+            "order": 5,
+            "description": "Pagar €99 e apresentar PAE, contrato de trabalho, diplomas apostilados",
             "estimatedDays": null,
-            "name": "Receber confirmação da prefeitura",
-            "order": 5
+            "name": null
           },
           {
-            "description": "Efetuar pagamento via internet ou escritório de tabaco",
+            "order": 6,
+            "description": "Entrar na França e validar no OFII dentro de 3 meses — pagar €269",
             "estimatedDays": null,
-            "name": "Comprar timbre fiscal",
-            "order": 6
-          },
-          {
-            "description": "Cartão entregue pela prefeitura ou subprefeitura",
-            "estimatedDays": null,
-            "name": "Retirar cartão de residência",
-            "order": 7
+            "name": null
           }
         ]
       },
@@ -1158,33 +1474,53 @@
       "requirements": {
         "documents": [
           {
-            "description": "Conforme Código de Saúde Pública: decisão de alocação, atestado permitindo exercício temporário ou autorização para exercer",
-            "isCritical": true,
-            "name": "Autorização de exercício"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
           },
           {
-            "description": "Justificativa de remuneração bruta anual mínima",
-            "isCritical": true,
-            "name": "Comprovante de remuneração"
+            "name": "PAE (Procédure d'Autorisation d'Exercice) aprovada pelo CNG",
+            "description": "Autorização de exercício de profissão médica na França — processo demorado e obrigatório",
+            "isCritical": true
+          },
+          {
+            "name": "Diploma médico/farmacêutico apostilado",
+            "description": "Diploma de medicina, farmácia, odontologia ou obstetrícia apostilado e traduzido juramentado para francês",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho em estabelecimento de saúde francês",
+            "description": "Hospital, clínica, farmácia ou estabelecimento de saúde reconhecido",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de inscrição em ordem profissional francesa (CNOM, etc.)",
+            "description": "Inscrição no Conseil National de l'Ordre des Médecins ou ordem profissional equivalente",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           }
         ],
-        "incomeRequirement": {
-          "amount": 41386.48,
-          "currency": "EUR",
-          "notes": "Equivalente ao 2º echelon da tabela de emolumentos dos profissionais associados",
-          "period": "yearly"
+        "incomeRequirement": null,
+        "languageRequired": {
+          "language": "Francês",
+          "level": "B2 mínimo — exigência da ordem profissional francesa para exercício de medicina"
         },
-        "languageRequired": null,
         "qualificationsRequired": [
-          "Autorização válida para exercer profissão médica ou farmacêutica conforme legislação francesa"
+          "Diploma de medicina, farmácia, odontologia ou obstetrícia reconhecido via PAE",
+          "Inscrição na ordem profissional francesa correspondente",
+          "PAE aprovada pelo CNG (Centre National de Gestion)"
         ]
       },
       "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
+        "canBringFamily": true,
+        "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": "Após 5 anos de residência legal",
+        "pathToResidency": "Após 5 anos de residência legal"
       }
     }
   ]

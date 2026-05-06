@@ -742,7 +742,7 @@ function renderGuiaTab(data: CountryData, config: CountryPageConfig): string {
                   ${i < firstVisa.process.steps.length - 1 ? '<div class="step-line"></div>' : ''}
                 </div>
                 <div class="step-body">
-                  <h4 class="step-heading">${esc(s.name)}</h4>
+                  <h4 class="step-heading">${s.name ? esc(s.name) : ''}</h4>
                   <p class="step-desc">${esc(s.description)}</p>
                   ${s.estimatedDays ? `<div class="step-tags"><span class="step-tag prazo">Prazo estimado: ${s.estimatedDays} dias</span></div>` : ''}
                 </div>
