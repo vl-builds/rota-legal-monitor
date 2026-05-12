@@ -236,19 +236,7 @@ async function main(): Promise<void> {
       ...(src?.verificationUrls ? { verificationUrls: src.verificationUrls } : {}),
     })
 
-    // Preserve manually written guia tab from existing file
     const out = join(PREVIEWS_DIR, `pais-${code}.html`)
-    try {
-      const existing = await readFile(out, 'utf-8')
-      const savedGuia = extractTabPanel(existing, 'guia')
-      if (savedGuia) {
-        html = replaceTabPanel(html, 'guia', savedGuia)
-        console.log(`[guia] pais-${code}.html — aba guia preservada`)
-      }
-    } catch {
-      // File doesn't exist yet — no guia to preserve
-    }
-
     await writeFile(out, html, 'utf-8')
     console.log(`[ok] pais-${code}.html — ${data.visaTypes.length} vistos, confiança: ${data.reliability.extractionConfidence}`)
 

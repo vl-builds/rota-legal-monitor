@@ -676,131 +676,347 @@ function renderFontesTab(data: CountryData, verificationUrls?: VerificationUrl[]
   </div>`
 }
 
-function renderGuiaTab(data: CountryData, config: CountryPageConfig): string {
-  const updated = monthLabel(data.meta.lastUpdated)
+type SkillObjective = {
+  id: string
+  title: string
+  summary: string
+  detail: string
+  tip?: string
+  tags?: string[]
+}
+
+type SkillPhase = {
+  number: number
+  title: string
+  duration: string
+  xp: number
+  objectives: SkillObjective[]
+}
+
+function buildSkillPhases(data: CountryData, config: CountryPageConfig): SkillPhase[] {
   const req = data.generalRequirements
   const firstVisa = sortVisas(data.visaTypes)[0]
+  const phases: SkillPhase[] = []
 
-  const docSteps: Array<{ heading: string; desc: string }> = []
-  docSteps.push({
-    heading: 'Passaporte válido',
-    desc: `Validade mínima: ${esc(req.passportValidity)}. Verifique com antecedência pois renovação no Brasil pode demorar semanas.`,
+  // FASE 01 - Documentação essencial
+  const p1: SkillObjective[] = []
+  p1.push({
+    id: 'p1-passport',
+    title: 'Passaporte válido',
+    summary: `Validade mínima: ${req.passportValidity}.`,
+    detail:
+      'Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.',
+    tip: 'Renovação online via Polícia Federal é mais rápida.',
+    tags: ['Obrigatório', 'Brasil'],
   })
   if (req.cleanCriminalRecord) {
-    docSteps.push({
-      heading: 'Certidão de antecedentes criminais',
-      desc: 'Emitida pelo DETRAN ou cartório, apostilada pela Convenção de Haia. Solicite com pelo menos 30 dias de antecedência.',
+    p1.push({
+      id: 'p1-criminal',
+      title: 'Certidão de antecedentes criminais',
+      summary: 'Emitida pela Polícia Federal, apostilada pela Convenção de Haia.',
+      detail:
+        'Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.',
+      tip: 'Validade típica de 90 dias após emissão.',
+      tags: ['Obrigatório', 'Apostila Haia'],
     })
   }
   if (req.healthInsurance.required) {
-    docSteps.push({
-      heading: 'Seguro saúde',
-      desc: req.healthInsurance.notes || 'Seguro saúde obrigatório para o período do visto.',
+    const ins = req.healthInsurance
+    p1.push({
+      id: 'p1-insurance',
+      title: 'Seguro saúde internacional',
+      summary: ins.notes
+        ? ins.notes.length > 120
+          ? ins.notes.slice(0, 117) + '...'
+          : ins.notes
+        : 'Seguro saúde obrigatório para o período do visto.',
+      detail: ins.notes || 'Cobertura mínima exigida na candidatura ao visto. Após regularização, possível acesso ao sistema público local.',
+      tip: 'Compare seguros com cobertura Schengen completa quando aplicável.',
+      tags: ['Obrigatório', 'Visto D'],
     })
   }
   if (req.proofOfFunds) {
-    docSteps.push({
-      heading: 'Comprovante de fundos',
-      desc: `Mínimo ${fmtMoney(req.proofOfFunds.amount, req.proofOfFunds.currency, req.proofOfFunds.period)}. ${req.proofOfFunds.notes ?? ''}`.trim(),
+    const m = req.proofOfFunds
+    p1.push({
+      id: 'p1-funds',
+      title: 'Comprovante de fundos',
+      summary: `Mínimo ${fmtMoney(m.amount, m.currency, m.period)}.`,
+      detail: m.notes || 'Demonstre meios financeiros suficientes para sua estadia. Geralmente equivalente ao salário mínimo local multiplicado pelos meses de permanência.',
+      tip: 'Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.',
+      tags: ['Financeiro'],
     })
   }
+  p1.push({
+    id: 'p1-address',
+    title: 'Comprovante de morada',
+    summary: 'Contrato de arrendamento ou termo de responsabilidade.',
+    detail: `No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.`,
+    tip: 'Reservas de hospedagem por 3+ meses costumam ser aceitas.',
+    tags: ['No destino'],
+  })
+  phases.push({
+    number: 1,
+    title: 'Documentação Essencial',
+    duration: '2-4 semanas',
+    xp: 800,
+    objectives: p1,
+  })
 
-  const docStepsHtml = docSteps
-    .map(
-      (s, i) => `
-              <div class="guide-step${i < 2 ? ' highlight' : ''}">
-                <div class="guide-step-left">
-                  <div class="step-circle">${i + 1}</div>
-                  ${i < docSteps.length - 1 ? '<div class="step-line"></div>' : ''}
-                </div>
-                <div class="step-body">
-                  <h4 class="step-heading">${s.heading}</h4>
-                  <p class="step-desc">${s.desc}</p>
-                </div>
-              </div>`,
-    )
+  // FASE 02 - Processo do visto
+  const p2: SkillObjective[] = []
+  const visaCount = data.visaTypes.length
+  p2.push({
+    id: 'p2-choose',
+    title: 'Escolher o tipo de visto',
+    summary: `${visaCount} tipos de visto monitorados em ${config.displayName}.`,
+    detail: firstVisa
+      ? `${firstVisa.name} é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.`
+      : 'Cada tipo de visto tem requisitos específicos. Consulte a aba Vistos para o panorama completo.',
+    tip: 'Confira a aba Vistos para ver todos os tipos lado a lado.',
+    tags: [`${visaCount} tipos`],
+  })
+  if (firstVisa && firstVisa.process.steps.length > 0) {
+    for (const s of firstVisa.process.steps.slice(0, 4)) {
+      const obj: SkillObjective = {
+        id: `p2-step-${s.order}`,
+        title: s.name || `Etapa ${s.order}`,
+        summary: s.description.length > 120 ? s.description.slice(0, 117) + '...' : s.description,
+        detail: s.description,
+        tags: s.estimatedDays ? [`~${s.estimatedDays} dias`] : [],
+      }
+      if (s.estimatedDays) obj.tip = `Prazo estimado: ${s.estimatedDays} dias.`
+      p2.push(obj)
+    }
+  } else {
+    p2.push({
+      id: 'p2-consult',
+      title: 'Consultar fontes oficiais',
+      summary: 'O passo a passo detalhado está nas fontes listadas na aba Fontes.',
+      detail: 'As etapas exatas variam por tipo de visto. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.',
+      tags: ['Fontes oficiais'],
+    })
+  }
+  phases.push({
+    number: 2,
+    title: 'Processo do Visto',
+    duration: firstVisa?.process.estimatedDuration || '30-90 dias',
+    xp: 1000,
+    objectives: p2,
+  })
+
+  // FASE 03 - Chegada e regularização
+  const p3: SkillObjective[] = [
+    {
+      id: 'p3-arrival',
+      title: 'Chegada ao país',
+      summary: 'Apresente-se na fronteira com seu visto válido e documentação completa.',
+      detail: 'No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.',
+      tip: 'Tire foto de todos os documentos antes de embarcar.',
+      tags: ['Fronteira'],
+    },
+    {
+      id: 'p3-register',
+      title: 'Registro local de residência',
+      summary: `Maioria dos países exige registro municipal ou de imigração após chegada.`,
+      detail: `Em ${config.displayName}, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.`,
+      tip: 'Agende a entrevista o quanto antes: as filas podem ser longas.',
+      tags: ['Pós-chegada'],
+    },
+    {
+      id: 'p3-permit',
+      title: 'Título / cartão de residência',
+      summary: 'Documento físico que comprova sua estadia legal.',
+      detail: 'Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.',
+      tip: 'Cidadania local em país da UE = passaporte da União Europeia.',
+      tags: ['Recompensa final'],
+    },
+  ]
+  phases.push({
+    number: 3,
+    title: 'Chegada e Regularização',
+    duration: '30-90 dias',
+    xp: 600,
+    objectives: p3,
+  })
+
+  return phases
+}
+
+function renderSkillTreeSVG(phases: SkillPhase[]): { svg: string; totalHeight: number; totalNodes: number } {
+  const trunkX = 80
+  const nodeX = 230
+  const stepY = 78
+  const r = 26
+  const viewWidth = 760
+
+  const phaseHeights = phases.map(p => 80 + p.objectives.length * stepY + 40)
+  const yOffsets: number[] = []
+  phaseHeights.forEach((h, i) => {
+    yOffsets.push(i === 0 ? 80 : (yOffsets[i - 1] as number) + (phaseHeights[i - 1] as number))
+  })
+  const totalHeight = (yOffsets[yOffsets.length - 1] as number) + (phaseHeights[phaseHeights.length - 1] as number) + 40
+  const totalNodes = phases.reduce((acc, p) => acc + p.objectives.length, 0)
+
+  // global index across all phases for data-prev
+  let globalIdx = -1
+  const phaseGroups = phases
+    .map((phase, phaseI) => {
+      const baseY = yOffsets[phaseI] as number
+      const phaseLabelY = baseY + 30
+      const objs = phase.objectives.map((o, i) => ({
+        ...o,
+        idx: i + 1,
+        x: nodeX,
+        y: baseY + 80 + i * stepY,
+      }))
+      const lastY = (objs[objs.length - 1] as (typeof objs)[number]).y
+
+      const trunkLine = `<line x1="${trunkX}" y1="${baseY}" x2="${trunkX}" y2="${lastY + 20}" stroke="rgba(245,180,37,0.2)" stroke-width="2" stroke-dasharray="3 5"/>`
+
+      const phaseDiamond = `
+        <g transform="translate(${trunkX}, ${phaseLabelY})" data-phase="${phase.number}">
+          <polygon points="0,-22 22,0 0,22 -22,0" fill="#0a0a0d" stroke="#f5b425" stroke-width="1.8" class="st-phase-outer"/>
+          <polygon points="0,-12 12,0 0,12 -12,0" fill="rgba(245,180,37,0.13)" class="st-phase-inner"/>
+          <text text-anchor="middle" y="4" fill="#f5b425" font-size="11" font-weight="700" font-family="'JetBrains Mono', monospace" class="st-phase-num">${String(phase.number).padStart(2, '0')}</text>
+        </g>
+        <foreignObject x="${trunkX + 36}" y="${phaseLabelY - 24}" width="200" height="60">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="st-phase-label" data-phase="${phase.number}">
+            <div class="st-phase-tag">FASE ${String(phase.number).padStart(2, '0')}</div>
+            <div class="st-phase-title">${esc(phase.title)}</div>
+            <div class="st-phase-meta">+${phase.xp} XP &middot; ${esc(phase.duration)}</div>
+          </div>
+        </foreignObject>`
+
+      const nodesAndConnectors = objs
+        .map((o, i) => {
+          globalIdx++
+          const prev = i > 0 ? (objs[i - 1] as (typeof objs)[number]) : null
+          const prevId = prev ? prev.id : ''
+          const stub = `<path d="M ${trunkX} ${o.y} Q ${(trunkX + o.x) / 2} ${o.y}, ${o.x - 28} ${o.y}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="${o.id}"/>`
+          const vertical = prev
+            ? `<line x1="${prev.x}" y1="${prev.y + r}" x2="${o.x}" y2="${o.y - r}" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="${o.id}"/>`
+            : ''
+
+          const node = `
+        <g class="st-node" data-id="${o.id}" data-prev="${prevId}" data-phase="${phase.number}" data-idx="${o.idx}" data-globalidx="${globalIdx}" role="button" tabindex="0" aria-label="${esc(o.title)}">
+          <circle cx="${o.x}" cy="${o.y}" r="${r + 8}" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="${o.x}" cy="${o.y}" r="${r}" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="${o.x}" cy="${o.y}" r="${r - 6}" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(${o.x - 6}, ${o.y - 7})" stroke="#6c6c75" stroke-width="1.5" fill="none">
+            <rect x="0" y="5" width="12" height="9" rx="1"/>
+            <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
+          </g>
+          <text class="st-icon-num" x="${o.x}" y="${o.y + 4}" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">${o.idx}</text>
+          <g class="st-icon-check" transform="translate(${o.x - 7}, ${o.y - 7})" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <polyline points="0 7 5 12 14 3"/>
+          </g>
+        </g>
+        <foreignObject x="${o.x + 38}" y="${o.y - 22}" width="320" height="60" style="pointer-events:none;">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="${o.id}">
+            <div class="st-node-title">${esc(o.title)}</div>
+            <div class="st-node-tags">${(o.tags || []).slice(0, 2).map(t => `<span>${esc(t)}</span>`).join('')}</div>
+          </div>
+        </foreignObject>`
+
+          return stub + vertical + node
+        })
+        .join('')
+
+      return `<g class="st-phase-group" data-phase="${phase.number}">${trunkLine}${phaseDiamond}${nodesAndConnectors}</g>`
+    })
     .join('')
 
-  const visaPhaseHtml =
-    firstVisa && firstVisa.process.steps.length > 0
-      ? `
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 02</span>
-              <div>
-                <h3 class="phase-title">Processo do visto: ${esc(firstVisa.name)}</h3>
-                <p class="phase-subtitle">${firstVisa.process.applicationLocation === 'origem' ? 'Realizado no Brasil antes de embarcar' : firstVisa.process.applicationLocation === 'destino' ? 'Realizado no país de destino após chegada' : 'Pode ser iniciado no Brasil ou no destino'}</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              ${firstVisa.process.steps
-                .map(
-                  (s, i) => `
-              <div class="guide-step${i === 0 ? ' highlight' : ''}">
-                <div class="guide-step-left">
-                  <div class="step-circle">${s.order}</div>
-                  ${i < firstVisa.process.steps.length - 1 ? '<div class="step-line"></div>' : ''}
-                </div>
-                <div class="step-body">
-                  <h4 class="step-heading">${s.name ? esc(s.name) : ''}</h4>
-                  <p class="step-desc">${esc(s.description)}</p>
-                  ${s.estimatedDays ? `<div class="step-tags"><span class="step-tag prazo">Prazo estimado: ${s.estimatedDays} dias</span></div>` : ''}
-                </div>
-              </div>`,
-                )
-                .join('')}
-            </div>
-          </div>`
-      : `
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 02</span>
-              <div>
-                <h3 class="phase-title">Processo do visto</h3>
-                <p class="phase-subtitle">Consulte as fontes oficiais para o passo a passo completo</p>
-              </div>
-            </div>
-            <div class="guide-steps">
-              <div class="guide-step highlight">
-                <div class="guide-step-left"><div class="step-circle">1</div></div>
-                <div class="step-body">
-                  <h4 class="step-heading">Consulte as fontes listadas na aba Fontes</h4>
-                  <p class="step-desc">As etapas detalhadas do processo estão em levantamento. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.</p>
-                </div>
-              </div>
-            </div>
-          </div>`
+  const trophyY = totalHeight - 30
+  const trophy = `
+    <g class="st-trophy" transform="translate(${trunkX}, ${trophyY})">
+      <circle r="20" fill="#0a0a0d" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="3 4" class="st-trophy-ring"/>
+      <g transform="translate(-9, -9)" stroke="#6c6c75" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="st-trophy-icon">
+        <path d="M3 6H1.5A1.5 1.5 0 0 1 1.5 3H3"/>
+        <path d="M15 6h1.5A1.5 1.5 0 0 0 16.5 3H15"/>
+        <path d="M2 19h14"/>
+        <path d="M9 12.66V14a.97.97 0 0 1-.79 1C7.21 15.6 6 16.86 6 18"/>
+        <path d="M9 12.66V14c0 .47.39.86.79 1 1 .51 2.21 1.86 2.21 3"/>
+        <path d="M15 2H3v6a4 4 0 0 0 12 0V2Z"/>
+      </g>
+    </g>
+    <foreignObject x="${trunkX + 38}" y="${trophyY - 20}" width="320" height="40">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="st-trophy-label">
+        <div class="st-trophy-title">Residência permanente / cidadania</div>
+        <div class="st-trophy-sub">Recompensa final &middot; Caminho longo prazo</div>
+      </div>
+    </foreignObject>`
+
+  const svg = `<svg width="100%" viewBox="0 0 ${viewWidth} ${totalHeight}" preserveAspectRatio="xMidYMin meet" style="display:block;">${phaseGroups}${trophy}</svg>`
+  return { svg, totalHeight, totalNodes }
+}
+
+function renderGuiaTab(data: CountryData, config: CountryPageConfig): string {
+  const updated = monthLabel(data.meta.lastUpdated)
+  const phases = buildSkillPhases(data, config)
+  const { svg, totalNodes } = renderSkillTreeSVG(phases)
+  const totalXP = phases.reduce((acc, p) => acc + p.xp, 0)
+
+  const skillDataJson = JSON.stringify(
+    phases.map(p => ({
+      number: p.number,
+      title: p.title,
+      objectives: p.objectives.map(o => ({
+        id: o.id,
+        title: o.title,
+        summary: o.summary,
+        detail: o.detail,
+        tip: o.tip || '',
+        tags: o.tags || [],
+      })),
+    })),
+  )
 
   return `
   <div class="tab-panel" id="guia">
     <section class="section-tight">
       <div class="container">
-        <div class="eyebrow">Guia prático para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-md);">Como se legalizar em ${esc(config.displayName)}</h2>
-        <div class="guide-intro">
-          <p>Resumo das etapas principais baseado em dados extraídos em ${updated}. Este guia é simplificado, consulte sempre as fontes oficiais para o seu caso específico.</p>
-        </div>
-
-        <div class="guide-phases">
-          <div class="guide-phase">
-            <div class="phase-header">
-              <span class="phase-num">FASE 01</span>
-              <div>
-                <h3 class="phase-title">Documentação essencial</h3>
-                <p class="phase-subtitle">Prepare estes documentos antes de iniciar o processo</p>
-              </div>
+        <div class="st-root" data-country-code="${esc(config.code)}">
+          <div class="st-hero">
+            <div class="st-hero-info">
+              <div class="st-hero-eyebrow">SKILL TREE &middot; LEGALIZAÇÃO</div>
+              <h2 class="st-hero-title">Como se legalizar em <span>${esc(config.displayName)}</span></h2>
+              <p class="st-hero-sub">Cada nó é uma habilidade que você desbloqueia. Complete uma para abrir a próxima da árvore.</p>
             </div>
-            <div class="guide-steps">
-              ${docStepsHtml}
+            <div class="st-progress-card">
+              <div class="st-progress-label">PROGRESSO GERAL</div>
+              <div class="st-progress-row">
+                <span class="st-progress-num"><span data-bind="pct">0</span><span class="st-progress-pct">%</span></span>
+                <span class="st-progress-counter"><span data-bind="done">0</span>/${totalNodes} skills</span>
+              </div>
+              <div class="st-progress-bar"><div class="st-progress-fill" data-bind="fill" style="width:0%"></div></div>
+              <div class="st-progress-meta">+${totalXP} XP total &middot; ${phases.length} fases</div>
             </div>
           </div>
 
-          ${visaPhaseHtml}
+          <div class="st-main">
+            <div class="st-canvas">
+              <div class="st-canvas-label">&#9826; JOURNEY TREE &middot; ${totalNodes} NODES</div>
+              ${svg}
+            </div>
+
+            <div class="st-sidebar">
+              <div class="st-detail" data-bind="detail">
+                <div class="st-detail-empty">Clique em qualquer nó da árvore para ver os detalhes da habilidade.</div>
+              </div>
+              <div class="st-legend">
+                <div class="st-legend-title">LEGENDA</div>
+                <div class="st-legend-row"><span class="st-legend-dot" style="border-color:#f5b425;background:rgba(245,180,37,0.13);"></span>Disponível para desbloquear</div>
+                <div class="st-legend-row"><span class="st-legend-dot" style="border-color:#4ade80;background:rgba(74,222,128,0.13);"></span>Concluído</div>
+                <div class="st-legend-row"><span class="st-legend-dot" style="border-color:#3a3a42;background:rgba(58,58,66,0.4);"></span>Bloqueado &mdash; complete o anterior</div>
+                <button type="button" class="st-reset" data-bind="reset">Resetar progresso</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="st-disclaimer">// Dados extraídos em ${updated}. Confirme nas fontes oficiais antes de iniciar.</div>
         </div>
 
-        <div class="guide-disclaimer">
-          <p>Guia gerado automaticamente a partir de dados de ${updated}. Requisitos e prazos mudam com frequência por regulamentação do governo de ${esc(config.displayName)}. Sempre confirme nas fontes oficiais antes de iniciar o processo.</p>
-        </div>
+        <script type="application/json" data-skill-data>${skillDataJson.replace(/</g, '\\u003c')}</script>
       </div>
     </section>
   </div>`
@@ -995,6 +1211,272 @@ const PAGE_CSS = `
     .req-item { grid-template-columns: auto 1fr; }
     .req-note { display: none; }
     .rights-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ====================================================== */
+  /* SKILL TREE — Guia Prático (variação Path of Exile)     */
+  /* ====================================================== */
+  .st-root {
+    --st-gold: #f5b425;
+    --st-green: #4ade80;
+    --st-dim: #a0a0a8;
+    --st-mute: #6c6c75;
+    --st-line: rgba(255,255,255,0.06);
+    --st-line-2: rgba(255,255,255,0.14);
+    background:
+      radial-gradient(1400px 800px at 50% -10%, rgba(245,180,37,0.06), transparent 60%),
+      #050507;
+    border: 1px solid var(--st-line);
+    border-radius: 16px;
+    padding: 32px 36px 28px;
+    position: relative;
+    overflow: hidden;
+    color: #f3f3f4;
+  }
+  .st-root::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    opacity: 0.3;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* Hero */
+  .st-hero { display: flex; align-items: center; gap: 24px; position: relative; z-index: 1; }
+  .st-hero-info { flex: 1; min-width: 0; }
+  .st-hero-eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 2px; color: var(--st-gold);
+    text-transform: uppercase; margin-bottom: 6px; font-weight: 600;
+  }
+  .st-hero-title { margin: 0; font-size: 40px; font-weight: 700; letter-spacing: -1px; line-height: 1; color: #fff; }
+  .st-hero-title span { color: var(--st-gold); }
+  .st-hero-sub { margin: 10px 0 0; font-size: 14px; color: var(--st-dim); max-width: 640px; line-height: 1.55; }
+
+  .st-progress-card {
+    min-width: 240px;
+    padding: 16px 20px;
+    border: 1px solid rgba(245,180,37,0.25);
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(245,180,37,0.06), rgba(245,180,37,0.01));
+  }
+  .st-progress-label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 1.5px; color: var(--st-dim);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .st-progress-row { display: flex; align-items: baseline; gap: 6px; }
+  .st-progress-num { font-size: 36px; font-weight: 700; color: var(--st-gold); line-height: 1; }
+  .st-progress-pct { font-size: 18px; opacity: 0.7; margin-left: 1px; }
+  .st-progress-counter {
+    margin-left: auto;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px; color: var(--st-mute);
+  }
+  .st-progress-bar { margin-top: 10px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+  .st-progress-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--st-gold), var(--st-green));
+    transition: width 0.4s ease;
+  }
+  .st-progress-meta {
+    margin-top: 10px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 1px; color: var(--st-mute); text-transform: uppercase;
+  }
+
+  /* Main grid */
+  .st-main {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Canvas */
+  .st-canvas {
+    background: linear-gradient(180deg, #0c0c10, #08080b);
+    border: 1px solid var(--st-line);
+    border-radius: 14px;
+    padding: 32px 24px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .st-canvas-label {
+    position: absolute; top: 12px; left: 18px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 2px; color: var(--st-mute);
+    text-transform: uppercase;
+  }
+
+  /* SVG node states */
+  .st-node { cursor: pointer; transition: opacity 0.2s; }
+  .st-node:focus { outline: none; }
+  .st-node:focus .st-ring { stroke-width: 2.5; }
+  .st-node:hover .st-glow { opacity: 0.2 !important; }
+  .st-node.is-unlocked .st-ring { stroke: var(--st-gold); }
+  .st-node.is-unlocked .st-fill { fill: rgba(245,180,37,0.08); }
+  .st-node.is-unlocked .st-glow { opacity: 0.1; }
+  .st-node.is-unlocked .st-icon-lock { display: none; }
+  .st-node.is-unlocked .st-icon-num { display: inline; }
+  .st-node.is-completed .st-ring { stroke: var(--st-green); }
+  .st-node.is-completed .st-fill { fill: rgba(74,222,128,0.15); }
+  .st-node.is-completed .st-glow { fill: var(--st-green); opacity: 0.1; }
+  .st-node.is-completed .st-icon-lock { display: none; }
+  .st-node.is-completed .st-icon-num { display: none; }
+  .st-node.is-completed .st-icon-check { display: inline; }
+  .st-node.is-selected .st-ring { stroke-width: 2.5; }
+  .st-node.is-selected .st-glow { opacity: 0.25 !important; }
+  .st-stub.is-unlocked { stroke: rgba(245,180,37,0.3); }
+  .st-vert.is-active { stroke: rgba(74,222,128,0.4); stroke-dasharray: 0; }
+  .st-phase-group.is-done .st-phase-outer { stroke: var(--st-green); }
+  .st-phase-group.is-done .st-phase-inner { fill: rgba(74,222,128,0.13); }
+  .st-phase-group.is-done .st-phase-num { fill: var(--st-green); }
+  .st-phase-group.is-done .st-phase-label .st-phase-tag { color: var(--st-green); }
+
+  /* Phase labels (in foreignObject) */
+  .st-phase-label .st-phase-tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 1.5px; color: var(--st-gold);
+    text-transform: uppercase; font-weight: 600;
+  }
+  .st-phase-label .st-phase-title { font-size: 16px; font-weight: 700; color: #fff; margin-top: 2px; line-height: 1.15; }
+  .st-phase-label .st-phase-meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; color: var(--st-mute); margin-top: 4px;
+  }
+
+  /* Node labels */
+  .st-node-label .st-node-title {
+    font-size: 14px; font-weight: 600; color: #fff; line-height: 1.2;
+    transition: color 0.15s ease;
+  }
+  .st-node-label .st-node-tags {
+    display: flex; gap: 6px; margin-top: 6px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    flex-wrap: wrap;
+  }
+  .st-node-label .st-node-tags span {
+    padding: 1px 6px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    font-size: 9px; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--st-dim);
+  }
+  .st-node-label.is-locked .st-node-title { color: var(--st-mute); }
+  .st-node-label.is-completed .st-node-title { color: var(--st-green); text-decoration: line-through; }
+
+  /* Trophy */
+  .st-trophy-label .st-trophy-title { font-size: 13px; font-weight: 600; color: var(--st-dim); }
+  .st-trophy-label .st-trophy-sub {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; color: var(--st-mute);
+  }
+  .st-trophy.is-done .st-trophy-ring { stroke: var(--st-green); stroke-dasharray: 0; }
+  .st-trophy.is-done .st-trophy-icon { stroke: var(--st-green); }
+  .st-trophy.is-done + foreignObject .st-trophy-title { color: var(--st-green); }
+
+  /* Sidebar */
+  .st-sidebar { position: sticky; top: 84px; align-self: start; }
+  .st-detail {
+    background: linear-gradient(180deg, #0d0d11, #0a0a0d);
+    border: 1px solid var(--st-line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .st-detail-empty {
+    padding: 32px 28px; color: var(--st-mute); font-size: 13px;
+    text-align: center; font-style: italic; line-height: 1.55;
+  }
+  .st-detail-body { padding: 24px 24px 28px; }
+  .st-detail-eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 1.5px; color: var(--st-gold);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .st-detail-title { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; color: #fff; line-height: 1.2; }
+  .st-detail-title.is-completed { color: var(--st-green); }
+  .st-detail-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .st-detail-tags span {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; padding: 2px 8px;
+    border: 1px solid rgba(245,180,37,0.3); color: var(--st-gold);
+    border-radius: 2px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .st-detail-summary { margin-top: 14px; font-size: 14px; color: #c0c0c8; line-height: 1.6; }
+  .st-detail-text { margin-top: 12px; font-size: 13px; color: var(--st-dim); line-height: 1.65; }
+  .st-detail-tip {
+    margin-top: 14px; padding: 10px 12px;
+    background: rgba(245,180,37,0.06);
+    border: 1px solid rgba(245,180,37,0.2);
+    border-radius: 6px;
+    font-size: 12px; color: var(--st-gold);
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .st-detail-tip-icon { flex-shrink: 0; margin-top: 1px; }
+  .st-detail-actions { margin-top: 16px; display: flex; gap: 8px; }
+  .st-detail-btn {
+    flex: 1; padding: 8px 12px; border-radius: 6px;
+    font-family: inherit; font-size: 12px; font-weight: 600;
+    cursor: pointer; border: 1px solid var(--st-line-2);
+    background: rgba(255,255,255,0.04); color: #fff;
+    transition: all 0.15s ease;
+  }
+  .st-detail-btn:hover { background: rgba(255,255,255,0.08); }
+  .st-detail-btn.is-primary { background: var(--st-gold); border-color: var(--st-gold); color: #0a0a0d; }
+  .st-detail-btn.is-primary:hover { background: #ffc741; }
+  .st-detail-btn.is-done { background: var(--st-green); border-color: var(--st-green); color: #0a0a0d; }
+
+  .st-legend {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+  }
+  .st-legend-title {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 1.5px; color: var(--st-mute);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .st-legend-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 12px; color: #c0c0c8; }
+  .st-legend-dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid; flex-shrink: 0; }
+  .st-reset {
+    margin-top: 8px; width: 100%; padding: 8px;
+    background: transparent; border: 1px solid var(--st-line);
+    border-radius: 6px; color: var(--st-mute); cursor: pointer;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase;
+    transition: all 0.15s ease;
+  }
+  .st-reset:hover { color: #fff; border-color: var(--st-line-2); }
+
+  .st-disclaimer {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 8px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; color: var(--st-mute);
+    position: relative; z-index: 1;
+  }
+
+  @media (max-width: 1023px) {
+    .st-main { grid-template-columns: 1fr; }
+    .st-sidebar { position: static; }
+    .st-root { padding: 24px 20px 20px; }
+    .st-hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .st-progress-card { width: 100%; min-width: 0; }
+  }
+  @media (max-width: 640px) {
+    .st-hero-title { font-size: 28px; letter-spacing: -0.5px; }
+    .st-canvas { padding: 32px 8px 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .st-progress-fill, .st-node, .st-detail-btn { transition: none; }
   }
 `
 
@@ -1336,6 +1818,173 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
         history.replaceState(null, '', '#fontes')
       }
     })
+  })()
+
+  // ---- Skill Tree (Guia Prático) ----
+  ;(function () {
+    const root = document.querySelector('.st-root')
+    if (!root) return
+    const cc = root.getAttribute('data-country-code') || 'xx'
+    const STORAGE_KEY = 'rotalegal:guia:' + cc + ':completed'
+    const dataScript = document.querySelector('script[data-skill-data]')
+    if (!dataScript) return
+
+    let phases
+    try { phases = JSON.parse(dataScript.textContent || '[]') } catch (_) { phases = [] }
+    const allObjs = phases.flatMap(p => p.objectives)
+    const byId = Object.fromEntries(allObjs.map(o => [o.id, o]))
+    const idOrder = allObjs.map(o => o.id)
+
+    let completed = new Set()
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) completed = new Set(JSON.parse(stored))
+    } catch (_) {}
+    let selectedId = null
+
+    const $pct = root.querySelector('[data-bind="pct"]')
+    const $done = root.querySelector('[data-bind="done"]')
+    const $fill = root.querySelector('[data-bind="fill"]')
+    const $detail = root.querySelector('[data-bind="detail"]')
+    const $reset = root.querySelector('[data-bind="reset"]')
+
+    function isUnlocked(id) {
+      const idx = idOrder.indexOf(id)
+      if (idx <= 0) return true
+      return completed.has(idOrder[idx - 1])
+    }
+
+    function persist() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...completed])) } catch (_) {}
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+    }
+
+    function renderDetail() {
+      if (!selectedId) {
+        $detail.innerHTML = '<div class="st-detail-empty">Clique em qualquer nó da árvore para ver os detalhes da habilidade.</div>'
+        return
+      }
+      const o = byId[selectedId]
+      if (!o) return
+      const isDone = completed.has(selectedId)
+      const unlocked = isUnlocked(selectedId)
+      const tagsHtml = (o.tags || []).map(t => '<span>' + escapeHtml(t) + '</span>').join('')
+      const tipHtml = o.tip
+        ? '<div class="st-detail-tip"><svg class="st-detail-tip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span><b>Dica:</b> ' + escapeHtml(o.tip) + '</span></div>'
+        : ''
+      const btnLabel = isDone ? 'Marcar como pendente' : (unlocked ? 'Marcar como concluído' : 'Bloqueado')
+      const btnClass = isDone ? 'st-detail-btn is-done' : (unlocked ? 'st-detail-btn is-primary' : 'st-detail-btn')
+      const btnDisabled = !unlocked && !isDone ? ' disabled' : ''
+      $detail.innerHTML = '<div class="st-detail-body">' +
+        '<div class="st-detail-eyebrow">&#9826; SKILL DETAIL</div>' +
+        '<h3 class="st-detail-title' + (isDone ? ' is-completed' : '') + '">' + escapeHtml(o.title) + '</h3>' +
+        (tagsHtml ? '<div class="st-detail-tags">' + tagsHtml + '</div>' : '') +
+        '<div class="st-detail-summary">' + escapeHtml(o.summary) + '</div>' +
+        (o.detail ? '<div class="st-detail-text">' + escapeHtml(o.detail) + '</div>' : '') +
+        tipHtml +
+        '<div class="st-detail-actions"><button type="button" class="' + btnClass + '" data-toggle="' + escapeHtml(selectedId) + '"' + btnDisabled + '>' + btnLabel + '</button></div>' +
+      '</div>'
+      const btn = $detail.querySelector('[data-toggle]')
+      if (btn) btn.addEventListener('click', () => toggle(selectedId))
+    }
+
+    function updateNodes() {
+      const nodes = root.querySelectorAll('.st-node')
+      nodes.forEach(g => {
+        const id = g.getAttribute('data-id')
+        const isDone = completed.has(id)
+        const unlocked = isUnlocked(id)
+        g.classList.toggle('is-completed', isDone)
+        g.classList.toggle('is-unlocked', unlocked && !isDone)
+        g.classList.toggle('is-selected', selectedId === id)
+      })
+      root.querySelectorAll('.st-node-label').forEach(el => {
+        const id = el.getAttribute('data-for')
+        const isDone = completed.has(id)
+        const unlocked = isUnlocked(id)
+        el.classList.toggle('is-completed', isDone)
+        el.classList.toggle('is-locked', !unlocked && !isDone)
+      })
+      root.querySelectorAll('.st-stub').forEach(el => {
+        const id = el.getAttribute('data-for')
+        el.classList.toggle('is-unlocked', isUnlocked(id) || completed.has(id))
+      })
+      root.querySelectorAll('.st-vert').forEach(el => {
+        const id = el.getAttribute('data-for')
+        const node = root.querySelector('.st-node[data-id="' + id + '"]')
+        const prevId = node ? node.getAttribute('data-prev') : ''
+        el.classList.toggle('is-active', prevId && completed.has(prevId))
+      })
+      root.querySelectorAll('.st-phase-group').forEach(g => {
+        const num = g.getAttribute('data-phase')
+        const phase = phases.find(p => String(p.number) === String(num))
+        if (!phase) return
+        const allDone = phase.objectives.every(o => completed.has(o.id))
+        g.classList.toggle('is-done', allDone)
+      })
+      const trophy = root.querySelector('.st-trophy')
+      if (trophy) trophy.classList.toggle('is-done', completed.size === allObjs.length)
+    }
+
+    function updateProgress() {
+      const done = allObjs.filter(o => completed.has(o.id)).length
+      const pct = allObjs.length === 0 ? 0 : Math.round((done / allObjs.length) * 100)
+      if ($done) $done.textContent = done
+      if ($pct) $pct.textContent = pct
+      if ($fill) $fill.style.width = pct + '%'
+    }
+
+    function toggle(id) {
+      if (!id) return
+      if (completed.has(id)) {
+        completed.delete(id)
+      } else {
+        if (!isUnlocked(id)) return
+        completed.add(id)
+      }
+      persist()
+      updateNodes()
+      updateProgress()
+      renderDetail()
+    }
+
+    function select(id) {
+      selectedId = id
+      updateNodes()
+      renderDetail()
+    }
+
+    root.querySelectorAll('.st-node').forEach(g => {
+      g.addEventListener('click', () => {
+        const id = g.getAttribute('data-id')
+        select(id)
+      })
+      g.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          const id = g.getAttribute('data-id')
+          select(id)
+        }
+      })
+    })
+
+    if ($reset) {
+      $reset.addEventListener('click', () => {
+        completed.clear()
+        selectedId = null
+        persist()
+        updateNodes()
+        updateProgress()
+        renderDetail()
+      })
+    }
+
+    updateNodes()
+    updateProgress()
+    renderDetail()
   })()
 </script>
 <script src="assets/nav.js" defer></script>

@@ -746,7 +746,7 @@ tbody tr:hover { background: rgba(255, 255, 255, 0.04); }
 
 /* ===================== CTA BAND ===================== */
 .cta-band-yellow {
-  background: var(--primary);
+  background: var(--primary) url('images/cta-band-bg.png') right center / cover no-repeat;
   color: var(--on-primary);
   border-radius: var(--r-lg);
   padding: 64px;
@@ -774,7 +774,10 @@ tbody tr:hover { background: rgba(255, 255, 255, 0.04); }
 footer {
   position: relative;
   z-index: 1;
-  background: rgba(10, 10, 10, 0.6);
+  background:
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.55) 60%, rgba(10, 10, 10, 0.75) 100%),
+    url('images/footer-bg.png') center bottom / cover no-repeat,
+    rgba(10, 10, 10, 0.6);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border-top: 1px solid var(--glass-border);
