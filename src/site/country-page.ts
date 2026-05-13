@@ -360,67 +360,99 @@ function renderVisaModalShell(): string {
 function renderBrasileirosTab(data: CountryData, config: CountryPageConfig): string {
   const br = data.forBrazilians
 
-  const schengenCard = `
-        <div class="br-card ${br.schengenVisaFree ? 'highlight' : 'warning'}">
-          <span class="br-label">Schengen — entrada sem visto</span>
-          <span class="br-value ${br.schengenVisaFree ? 'yes' : 'no'}">${br.schengenVisaFree ? 'Sim' : 'Não'}</span>
-          <p class="br-desc">${br.schengenVisaFree ? `O passaporte brasileiro permite entrada em ${esc(config.displayName)} por até ${br.maxStayDaysAsTourist} dias em qualquer período de 180 dias, sem visto de turista.` : `${esc(config.displayName)} não é parte do Espaço Schengen. Brasileiros precisam de visto de turista separado.`}</p>
-        </div>`
+  type Tone = 'ok' | 'bad' | 'warn' | 'info' | 'neut'
+  interface DocRow {
+    label: string
+    verdict: string
+    long?: boolean
+    tone: Tone
+    prose: string
+  }
 
-  const workCard = `
-        <div class="br-card ${br.workPermitNeeded ? 'warning' : 'highlight'}">
-          <span class="br-label">Trabalhar sem autorização</span>
-          <span class="br-value ${br.workPermitNeeded ? 'no' : 'yes'}">${br.workPermitNeeded ? 'Não permitido' : 'Sim'}</span>
-          <p class="br-desc">${br.workPermitNeeded ? 'Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.' : 'Brasileiros podem trabalhar sem autorização especial de trabalho neste país.'}</p>
-        </div>`
+  const rows: DocRow[] = []
 
-  const stayCard = `
-        <div class="br-card">
-          <span class="br-label">Permanência máxima como turista</span>
-          <span class="br-value">${br.maxStayDaysAsTourist} dias</span>
-          <p class="br-desc">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
-        </div>`
+  rows.push({
+    label: br.schengenVisaFree ? 'Schengen — entrada sem visto' : 'Entrada sem visto',
+    verdict: br.schengenVisaFree ? 'Sim' : 'Não',
+    tone: br.schengenVisaFree ? 'ok' : 'bad',
+    prose: br.schengenVisaFree
+      ? `O passaporte brasileiro permite entrada em ${esc(config.displayName)} por até ${br.maxStayDaysAsTourist} dias em qualquer período de 180 dias, sem visto de turista.`
+      : `${esc(config.displayName)} não é parte do Espaço Schengen. Brasileiros precisam de visto de turista separado.`,
+  })
 
-  const agreementsCard =
-    br.specialAgreements.length > 0
-      ? br.specialAgreements
-          .map(
-            a => `
-        <div class="br-card highlight">
-          <span class="br-label">${esc(a.name)}</span>
-          <span class="br-value" style="font-size:18px;">${esc(a.fullName)}</span>
-          <p class="br-desc">${a.benefits.map(esc).join('. ')}</p>
-        </div>`,
-          )
-          .join('')
-      : `
-        <div class="br-card">
-          <span class="br-label">Acordos bilaterais com o Brasil</span>
-          <span class="br-value no" style="color:var(--muted);">Nenhum</span>
-          <p class="br-desc">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e ${esc(config.displayName)}. O caminho é pelos vistos padrão.</p>
-        </div>`
+  rows.push({
+    label: 'Trabalhar sem autorização',
+    verdict: br.workPermitNeeded ? 'Não permitido' : 'Permitido',
+    tone: br.workPermitNeeded ? 'bad' : 'ok',
+    prose: br.workPermitNeeded
+      ? 'Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.'
+      : `Brasileiros podem trabalhar sem autorização especial de trabalho em ${esc(config.displayName)}.`,
+  })
 
-  const notesCard = br.notes
+  rows.push({
+    label: 'Permanência máxima como turista',
+    verdict: `${br.maxStayDaysAsTourist} dias`,
+    tone: 'warn',
+    prose:
+      'Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.',
+  })
+
+  if (br.specialAgreements.length > 0) {
+    br.specialAgreements.forEach((a, idx) => {
+      rows.push({
+        label: a.name,
+        verdict: a.fullName,
+        long: true,
+        tone: idx === 0 && a.appliesToWork ? 'info' : 'neut',
+        prose: a.benefits.length > 0 ? a.benefits.map(esc).join('. ') + '.' : esc(a.fullName),
+      })
+    })
+  } else {
+    rows.push({
+      label: 'Acordos bilaterais com o Brasil',
+      verdict: 'Nenhum',
+      tone: 'neut',
+      prose: `Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e ${esc(config.displayName)}. O caminho é pelos vistos padrão.`,
+    })
+  }
+
+  const pad = (n: number): string => String(n).padStart(2, '0')
+
+  const rowsHtml = rows
+    .map((r, i) => {
+      const verdictClass = r.long ? 'docrow-verdict-text long' : 'docrow-verdict-text'
+      const dotClass = r.long ? 'docrow-dot long' : 'docrow-dot'
+      return `
+          <div class="docrow">
+            <div class="docrow-index">${pad(i + 1)}</div>
+            <div class="docrow-label">${esc(r.label)}</div>
+            <div class="docrow-verdict">
+              <span class="${dotClass}" data-tone="${r.tone}"></span>
+              <span class="${verdictClass}">${esc(r.verdict)}</span>
+            </div>
+            <p class="docrow-prose">${r.prose}</p>
+          </div>`
+    })
+    .join('')
+
+  const obsHtml = br.notes
     ? `
-        <div class="br-card" style="grid-column:1/-1;">
-          <span class="br-label">Observações para brasileiros</span>
-          <p class="br-desc">${esc(br.notes)}</p>
+        <div class="docrow-obs">
+          <span class="docrow-obs-label">Observações</span>
+          <p class="docrow-obs-text">${esc(br.notes)}</p>
         </div>`
     : ''
 
   return `
   <div class="tab-panel" id="brasileiros">
-    <section class="section-tight">
+    <section class="section-brasileiros">
       <div class="container">
-        <div class="eyebrow">Condições específicas para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
-        <div class="br-grid">
-          ${schengenCard}
-          ${workCard}
-          ${stayCard}
-          ${agreementsCard}
-          ${notesCard}
+        <div class="docrow-eyebrow">Condições específicas para brasileiros</div>
+        <h2 class="docrow-title">O que muda para você</h2>
+        <div class="docrows">
+          ${rowsHtml}
         </div>
+        ${obsHtml}
       </div>
     </section>
   </div>`
@@ -441,79 +473,102 @@ function renderRequisitosTab(data: CountryData, config: CountryPageConfig): stri
     .slice(0, 2)
     .join(', ')
 
-  const items: Array<{ icon: string; iconClass: string; text: string; note: string }> = [
-    {
-      icon: '✓',
-      iconClass: 'ok',
-      text: `Passaporte — ${esc(req.passportValidity)}`,
-      note: 'Verificar antes de iniciar',
-    },
-  ]
+  type Tone = 'ok' | 'bad' | 'warn' | 'info' | 'neut'
+  interface DocRow {
+    label: string
+    verdict: string
+    long?: boolean
+    tone: Tone
+    prose: string
+  }
+
+  const rows: DocRow[] = []
+
+  rows.push({
+    label: 'Passaporte',
+    verdict: esc(req.passportValidity),
+    long: req.passportValidity.length > 18,
+    tone: 'ok',
+    prose: `Verifique a validade do seu passaporte antes de iniciar qualquer pedido de visto para ${esc(config.displayName)}. Renovação no Brasil leva em média 6 a 10 dias úteis.`,
+  })
 
   if (req.proofOfFunds) {
-    items.push({
-      icon: '●',
-      iconClass: 'req',
-      text: `Comprovante de fundos — mínimo ${fmtMoney(req.proofOfFunds.amount, req.proofOfFunds.currency, req.proofOfFunds.period)}${req.proofOfFunds.notes ? `. ${req.proofOfFunds.notes}` : ''}`,
-      note: 'Ver cada visto',
+    rows.push({
+      label: 'Comprovante de fundos',
+      verdict: fmtMoney(req.proofOfFunds.amount, req.proofOfFunds.currency, req.proofOfFunds.period),
+      tone: 'warn',
+      prose: req.proofOfFunds.notes
+        ? esc(req.proofOfFunds.notes)
+        : 'Valor mínimo aplicado de forma transversal aos vistos de trabalho. Cada categoria pode exigir patamares maiores: confira na aba Vistos.',
     })
   }
 
   if (req.healthInsurance.required) {
-    const covNote = req.healthInsurance.minimumCoverage
+    const cov = req.healthInsurance.minimumCoverage
       ? `Cobertura mín. ${fmtMoney(req.healthInsurance.minimumCoverage.amount, req.healthInsurance.minimumCoverage.currency)}`
       : 'Obrigatório'
-    items.push({
-      icon: '●',
-      iconClass: 'req',
-      text: `Seguro saúde obrigatório${req.healthInsurance.mustBeLocal ? ' (seguro local exigido após chegada)' : ''}. ${esc(req.healthInsurance.notes)}`,
-      note: covNote,
+    rows.push({
+      label: 'Seguro saúde',
+      verdict: cov,
+      long: cov.length > 18,
+      tone: 'warn',
+      prose: `${esc(req.healthInsurance.notes)}${req.healthInsurance.mustBeLocal ? ' Seguro local exigido após a chegada.' : ''}`,
     })
   }
 
   if (req.cleanCriminalRecord) {
-    items.push({
-      icon: '✓',
-      iconClass: 'ok',
-      text: 'Certidão de antecedentes criminais (apostilada)',
-      note: 'Apostila de Haia',
+    rows.push({
+      label: 'Antecedentes criminais',
+      verdict: 'Certidão apostilada',
+      long: true,
+      tone: 'info',
+      prose:
+        'Certidão de antecedentes criminais expedida pela Polícia Federal, com Apostila de Haia. Validade típica entre 90 dias e 6 meses, conforme o consulado.',
     })
   }
 
   if (req.vaccinations.length > 0) {
-    items.push({
-      icon: '●',
-      iconClass: 'req',
-      text: `Vacinação exigida: ${req.vaccinations.map(esc).join(', ')}`,
-      note: 'Verificar caderneta',
+    rows.push({
+      label: 'Vacinações',
+      verdict: `Exigida: ${req.vaccinations.map(esc).join(', ')}`,
+      long: true,
+      tone: 'info',
+      prose:
+        'Mantenha a caderneta internacional de vacinação atualizada. Algumas vacinas exigem comprovante traduzido juramentado.',
     })
   }
 
-  const rowsHtml = items
-    .map(
-      item => `
-          <div class="req-item">
-            <span class="req-icon ${item.iconClass}">${item.icon}</span>
-            <span class="req-text">${item.text}</span>
-            <span class="req-note">${item.note}</span>
-          </div>`,
-    )
+  const pad = (n: number): string => String(n).padStart(2, '0')
+
+  const rowsHtml = rows
+    .map((r, i) => {
+      const verdictClass = r.long ? 'docrow-verdict-text long' : 'docrow-verdict-text'
+      const dotClass = r.long ? 'docrow-dot long' : 'docrow-dot'
+      return `
+          <div class="docrow">
+            <div class="docrow-index">${pad(i + 1)}</div>
+            <div class="docrow-label">${esc(r.label)}</div>
+            <div class="docrow-verdict">
+              <span class="${dotClass}" data-tone="${r.tone}"></span>
+              <span class="${verdictClass}">${r.verdict}</span>
+            </div>
+            <p class="docrow-prose">${r.prose}</p>
+          </div>`
+    })
     .join('')
 
   return `
   <div class="tab-panel" id="requisitos">
-    <section class="section-tight">
+    <section class="section-brasileiros">
       <div class="container">
-        <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Requisitos gerais</h2>
-        <div class="req-list">
+        <div class="docrow-eyebrow">Válidos para todos os vistos de trabalho</div>
+        <h2 class="docrow-title">Requisitos gerais</h2>
+        <div class="docrows">
           ${rowsHtml}
         </div>
-        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
-          <p class="body-sm" style="color:var(--muted);margin:0;">
-            Requisitos extraídos de <span style="color:var(--primary);">${sourceHostnames}</span> em ${updated}.
-            Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.
-          </p>
+        <div class="docrow-obs">
+          <span class="docrow-obs-label">Fontes & atualização</span>
+          <p class="docrow-obs-text">Requisitos extraídos de <span style="color:var(--primary);">${sourceHostnames}</span> em ${updated}. Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.</p>
         </div>
       </div>
     </section>
@@ -676,11 +731,31 @@ function renderFontesTab(data: CountryData, verificationUrls?: VerificationUrl[]
   </div>`
 }
 
+function deriveStepTitle(description: string, order: number): string {
+  if (!description) return `Etapa ${order}`
+  const splitMarkers = [' — ', ' - ', '. ', ', ', ' (']
+  let head = description
+  for (const m of splitMarkers) {
+    const idx = head.indexOf(m)
+    if (idx > 12 && idx < 70) {
+      head = head.slice(0, idx)
+      break
+    }
+  }
+  if (head.length > 60) {
+    const cut = head.slice(0, 57)
+    const lastSpace = cut.lastIndexOf(' ')
+    head = (lastSpace > 30 ? cut.slice(0, lastSpace) : cut) + '...'
+  }
+  return head.trim() || `Etapa ${order}`
+}
+
 type SkillObjective = {
   id: string
   title: string
   summary: string
   detail: string
+  link?: string
   tip?: string
   tags?: string[]
 }
@@ -779,8 +854,8 @@ function buildSkillPhases(data: CountryData, config: CountryPageConfig): SkillPh
     for (const s of firstVisa.process.steps.slice(0, 4)) {
       const obj: SkillObjective = {
         id: `p2-step-${s.order}`,
-        title: s.name || `Etapa ${s.order}`,
-        summary: s.description.length > 120 ? s.description.slice(0, 117) + '...' : s.description,
+        title: s.name || deriveStepTitle(s.description, s.order),
+        summary: s.description.length > 140 ? s.description.slice(0, 137) + '...' : s.description,
         detail: s.description,
         tags: s.estimatedDays ? [`~${s.estimatedDays} dias`] : [],
       }
@@ -839,17 +914,28 @@ function buildSkillPhases(data: CountryData, config: CountryPageConfig): SkillPh
     objectives: p3,
   })
 
+  const visaPageUrl = firstVisa ? `vistos/${config.code}-${firstVisa.id}.html` : null
+  for (const phase of phases) {
+    for (const o of phase.objectives) {
+      if (o.id.startsWith('p1-')) o.link = '#requisitos'
+      else if (o.id === 'p2-choose') o.link = '#vistos'
+      else if (o.id === 'p2-consult') o.link = '#fontes'
+      else if (o.id.startsWith('p2-step-')) o.link = visaPageUrl || '#vistos'
+      else if (o.id.startsWith('p3-')) o.link = '#brasileiros'
+    }
+  }
+
   return phases
 }
 
 function renderSkillTreeSVG(phases: SkillPhase[]): { svg: string; totalHeight: number; totalNodes: number } {
   const trunkX = 80
   const nodeX = 230
-  const stepY = 78
+  const stepY = 134
   const r = 26
   const viewWidth = 760
 
-  const phaseHeights = phases.map(p => 80 + p.objectives.length * stepY + 40)
+  const phaseHeights = phases.map(p => 110 + p.objectives.length * stepY + 40)
   const yOffsets: number[] = []
   phaseHeights.forEach((h, i) => {
     yOffsets.push(i === 0 ? 80 : (yOffsets[i - 1] as number) + (phaseHeights[i - 1] as number))
@@ -867,7 +953,7 @@ function renderSkillTreeSVG(phases: SkillPhase[]): { svg: string; totalHeight: n
         ...o,
         idx: i + 1,
         x: nodeX,
-        y: baseY + 80 + i * stepY,
+        y: baseY + 110 + i * stepY,
       }))
       const lastY = (objs[objs.length - 1] as (typeof objs)[number]).y
 
@@ -906,15 +992,26 @@ function renderSkillTreeSVG(phases: SkillPhase[]): { svg: string; totalHeight: n
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="${o.x}" y="${o.y + 4}" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">${o.idx}</text>
-          <g class="st-icon-check" transform="translate(${o.x - 7}, ${o.y - 7})" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="${o.x}" y="${o.y + 4}" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">${o.idx}</text>
+          <g class="st-icon-check" transform="translate(${o.x - 7}, ${o.y - 7})" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="${o.x + 38}" y="${o.y - 22}" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="${o.x + 38}" y="${o.y - 50}" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="${o.id}">
             <div class="st-node-title">${esc(o.title)}</div>
-            <div class="st-node-tags">${(o.tags || []).slice(0, 2).map(t => `<span>${esc(t)}</span>`).join('')}</div>
+            ${o.summary ? `<div class="st-node-desc">${esc(o.summary)}</div>` : ''}
+            ${(o.tags || []).length > 0 ? `<div class="st-node-tags">${(o.tags || []).slice(0, 2).map(t => `<span>${esc(t)}</span>`).join('')}</div>` : ''}
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="${esc(o.id)}">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              ${o.link ? `<a class="st-node-action st-node-link" href="${esc(o.link)}">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>` : ''}
+            </div>
           </div>
         </foreignObject>`
 
@@ -950,10 +1047,57 @@ function renderSkillTreeSVG(phases: SkillPhase[]): { svg: string; totalHeight: n
   return { svg, totalHeight, totalNodes }
 }
 
+function renderSkillTreeMobile(phases: SkillPhase[]): string {
+  const sections = phases.map(phase => {
+    const items = phase.objectives.map((o, i) => {
+      const prevId = i > 0 ? (phase.objectives[i - 1] as SkillObjective).id : ''
+      const tagsHtml = (o.tags || []).slice(0, 2).map(t => `<span>${esc(t)}</span>`).join('')
+      const linkHtml = o.link
+        ? `<a class="st-mnode-link" href="${esc(o.link)}">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>`
+        : ''
+      return `
+          <li class="st-mnode" data-id="${esc(o.id)}" data-prev="${esc(prevId)}" data-phase="${phase.number}">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">${i + 1}</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="${esc(o.id)}">
+              <div class="st-mnode-title">${esc(o.title)}</div>
+              ${o.summary ? `<div class="st-mnode-desc">${esc(o.summary)}</div>` : ''}
+              ${tagsHtml ? `<div class="st-mnode-tags">${tagsHtml}</div>` : ''}
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="${esc(o.id)}">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                ${linkHtml}
+              </div>
+            </div>
+          </li>`
+    }).join('')
+    return `
+        <section class="st-mphase" data-phase="${phase.number}">
+          <header class="st-mphase-head">
+            <div class="st-mphase-diamond"><span>${String(phase.number).padStart(2, '0')}</span></div>
+            <div class="st-mphase-info">
+              <div class="st-mphase-tag">FASE ${String(phase.number).padStart(2, '0')}</div>
+              <div class="st-mphase-title">${esc(phase.title)}</div>
+              <div class="st-mphase-meta">+${phase.xp} XP &middot; ${esc(phase.duration)}</div>
+            </div>
+          </header>
+          <ol class="st-mnodes">${items}
+          </ol>
+        </section>`
+  }).join('')
+  return `<div class="st-mobile">${sections}</div>`
+}
+
 function renderGuiaTab(data: CountryData, config: CountryPageConfig): string {
   const updated = monthLabel(data.meta.lastUpdated)
   const phases = buildSkillPhases(data, config)
   const { svg, totalNodes } = renderSkillTreeSVG(phases)
+  const mobileTree = renderSkillTreeMobile(phases)
   const totalXP = phases.reduce((acc, p) => acc + p.xp, 0)
 
   const skillDataJson = JSON.stringify(
@@ -996,7 +1140,8 @@ function renderGuiaTab(data: CountryData, config: CountryPageConfig): string {
           <div class="st-main">
             <div class="st-canvas">
               <div class="st-canvas-label">&#9826; JOURNEY TREE &middot; ${totalNodes} NODES</div>
-              ${svg}
+              <div class="st-canvas-svg">${svg}</div>
+              ${mobileTree}
             </div>
 
             <div class="st-sidebar">
@@ -1155,24 +1300,103 @@ const PAGE_CSS = `
     .visa-modal-illo { width: 64px; height: 64px; }
     .rights-grid { grid-template-columns: 1fr; }
   }
-  /* ---- para brasileiros ---- */
-  .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
-  .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
-  .br-card.highlight { border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.05); }
-  .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
-  .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
-  .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
-  .br-value.yes { color: var(--accent-emerald); }
-  .br-value.no { color: var(--accent-rose); }
-  .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
-  /* ---- requisitos gerais ---- */
-  .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
-  .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); }
-  .req-icon { font-size: 16px; width: 20px; text-align: center; }
-  .req-icon.ok { color: var(--accent-emerald); }
-  .req-icon.req { color: var(--accent-blue); }
-  .req-text { font-size: 14px; color: var(--body-strong); }
-  .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  /* ---- para brasileiros (Document Rows) ---- */
+  .section-brasileiros {
+    --br-ink: #f5f5f0;
+    --br-ink-2: rgba(245,245,240,.72);
+    --br-ink-3: rgba(245,245,240,.5);
+    --br-ink-4: rgba(245,245,240,.32);
+    --br-line: rgba(245,245,240,.14);
+    --br-card: rgba(255,255,255,.015);
+    --br-ok: #34d399;
+    --br-bad: #f87171;
+    --br-warn: #fbbf24;
+    --br-info: #a78bfa;
+    --br-neut: #94a3b8;
+    padding: 72px 0 96px;
+    position: relative;
+  }
+  .section-brasileiros::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1200px 600px at 85% 110%, rgba(168,85,247,.06), transparent 60%),
+      radial-gradient(900px 500px at 10% -10%, rgba(251,191,36,.04), transparent 60%);
+  }
+  .section-brasileiros > .container { position: relative; z-index: 1; }
+  .docrow-eyebrow {
+    font-size: 11px; font-weight: 500; line-height: 1; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--br-ink-3); margin-bottom: 14px;
+  }
+  .docrow-title {
+    font-family: "Geist", "Inter", system-ui, sans-serif;
+    font-size: 38px; font-weight: 500; line-height: 1.05; letter-spacing: -0.01em;
+    color: var(--br-ink); margin: 0 0 36px;
+  }
+  .docrows { display: flex; flex-direction: column; border-top: 1px solid var(--br-line); }
+  .docrow {
+    display: grid;
+    grid-template-columns: 56px 1.1fr 1.2fr 2.4fr;
+    gap: 32px; padding: 28px 8px;
+    border-bottom: 1px solid var(--br-line);
+    align-items: start;
+    transition: background 250ms ease;
+  }
+  .docrow:hover { background: var(--br-card); }
+  .docrow-index {
+    font-family: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; font-weight: 400; line-height: 1; letter-spacing: 0.05em;
+    color: var(--br-ink-4); padding-top: 5px;
+  }
+  .docrow-label {
+    font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--br-ink-3); padding-top: 5px;
+  }
+  .docrow-verdict { display: flex; gap: 10px; align-items: flex-start; }
+  .docrow-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 9px; flex-shrink: 0;
+    box-shadow: 0 0 0 4px rgba(255,255,255,.025);
+  }
+  .docrow-dot.long { margin-top: 7px; }
+  .docrow-dot[data-tone="ok"]   { background: var(--br-ok); }
+  .docrow-dot[data-tone="bad"]  { background: var(--br-bad); }
+  .docrow-dot[data-tone="warn"] { background: var(--br-warn); }
+  .docrow-dot[data-tone="info"] { background: var(--br-info); }
+  .docrow-dot[data-tone="neut"] { background: var(--br-neut); }
+  .docrow-verdict-text {
+    font-size: 22px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--br-ink);
+  }
+  .docrow-verdict-text.long { font-size: 17px; font-weight: 500; line-height: 1.35; letter-spacing: normal; }
+  .docrow-prose {
+    font-size: 13.5px; line-height: 1.6; color: var(--br-ink-2); margin: 0;
+  }
+  .docrow-obs {
+    display: flex; gap: 18px; align-items: flex-start;
+    border: 1px solid var(--br-line); border-radius: 14px;
+    padding: 18px 22px; background: var(--br-card); margin-top: 18px;
+  }
+  .docrow-obs-label {
+    min-width: 200px; padding-top: 2px;
+    font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--br-ink-3);
+  }
+  .docrow-obs-text { font-size: 13px; line-height: 1.55; color: var(--br-ink-2); margin: 0; }
+  @media (max-width: 1000px) {
+    .section-brasileiros { padding: 56px 0 72px; }
+    .docrow-title { font-size: 30px; }
+    .docrow {
+      grid-template-columns: 36px 1fr;
+      gap: 12px 16px;
+      padding: 22px 4px;
+    }
+    .docrow-label { padding-top: 7px; }
+    .docrow-verdict { grid-column: 1 / -1; }
+    .docrow-prose { grid-column: 1 / -1; }
+    .docrow-obs { flex-direction: column; gap: 8px; }
+    .docrow-obs-label { min-width: 0; }
+  }
   /* ---- mudanças recentes ---- */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
@@ -1198,7 +1422,6 @@ const PAGE_CSS = `
     .qs-item:nth-child(2n+1) { border-left: none; }
     .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
     .visa-grid { grid-template-columns: 1fr; }
-    .br-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .hero-name { font-size: 28px; }
@@ -1208,8 +1431,6 @@ const PAGE_CSS = `
     .quick-summary { grid-template-columns: 1fr 1fr; }
     .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
     .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
-    .req-item { grid-template-columns: auto 1fr; }
-    .req-note { display: none; }
     .rights-grid { grid-template-columns: 1fr; }
   }
 
@@ -1313,6 +1534,7 @@ const PAGE_CSS = `
 
   /* SVG node states */
   .st-node { cursor: pointer; transition: opacity 0.2s; }
+  .st-icon-num, .st-icon-check { display: none; }
   .st-node:focus { outline: none; }
   .st-node:focus .st-ring { stroke-width: 2.5; }
   .st-node:hover .st-glow { opacity: 0.2 !important; }
@@ -1353,6 +1575,15 @@ const PAGE_CSS = `
     font-size: 14px; font-weight: 600; color: #fff; line-height: 1.2;
     transition: color 0.15s ease;
   }
+  .st-node-label .st-node-desc {
+    font-size: 12px; color: var(--st-dim); line-height: 1.4;
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .st-node-label.is-locked .st-node-desc { color: var(--st-mute); }
   .st-node-label .st-node-tags {
     display: flex; gap: 6px; margin-top: 6px;
     font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -1367,6 +1598,36 @@ const PAGE_CSS = `
   }
   .st-node-label.is-locked .st-node-title { color: var(--st-mute); }
   .st-node-label.is-completed .st-node-title { color: var(--st-green); text-decoration: line-through; }
+
+  .st-node-label .st-node-actions {
+    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    pointer-events: auto;
+  }
+  .st-node-label .st-node-action {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 10px; border-radius: 5px;
+    font-family: inherit; font-size: 11px; font-weight: 600;
+    border: 1px solid var(--st-line-2);
+    background: rgba(255,255,255,0.04); color: #f3f3f4;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    line-height: 1;
+  }
+  .st-node-action:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+  .st-node-action .st-node-action-icon-check { display: none; }
+  .st-node-toggle { color: var(--st-gold); border-color: rgba(245,180,37,0.35); background: rgba(245,180,37,0.06); }
+  .st-node-toggle:hover { background: rgba(245,180,37,0.12); border-color: rgba(245,180,37,0.55); }
+  .st-node-label.is-completed .st-node-toggle {
+    color: var(--st-green); border-color: rgba(74,222,128,0.45); background: rgba(74,222,128,0.1);
+  }
+  .st-node-label.is-completed .st-node-toggle .st-node-action-icon-check { display: inline-block; }
+  .st-node-label.is-locked .st-node-toggle {
+    color: var(--st-mute); border-color: var(--st-line); background: transparent; cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .st-node-label.is-locked .st-node-link {
+    opacity: 0.6;
+  }
 
   /* Trophy */
   .st-trophy-label .st-trophy-title { font-size: 13px; font-weight: 600; color: var(--st-dim); }
@@ -1464,6 +1725,111 @@ const PAGE_CSS = `
     position: relative; z-index: 1;
   }
 
+  /* Mobile skill tree (vertical HTML list) */
+  .st-mobile { display: none; }
+  .st-mphase + .st-mphase { margin-top: 28px; }
+  .st-mphase-head { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+  .st-mphase-diamond {
+    width: 30px; height: 30px;
+    border: 1.5px solid var(--st-gold);
+    background: rgba(245,180,37,0.13);
+    transform: rotate(45deg);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .st-mphase-diamond > span {
+    transform: rotate(-45deg);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; font-weight: 700; color: var(--st-gold);
+  }
+  .st-mphase.is-done .st-mphase-diamond { border-color: var(--st-green); background: rgba(74,222,128,0.13); }
+  .st-mphase.is-done .st-mphase-diamond > span { color: var(--st-green); }
+  .st-mphase-tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 1.5px; color: var(--st-gold);
+    text-transform: uppercase; font-weight: 600;
+  }
+  .st-mphase.is-done .st-mphase-tag { color: var(--st-green); }
+  .st-mphase-title { font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px; line-height: 1.2; }
+  .st-mphase-meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; color: var(--st-mute); margin-top: 3px;
+  }
+  .st-mnodes { list-style: none; padding: 0; margin: 0; }
+  .st-mnode { display: flex; gap: 12px; padding-bottom: 20px; position: relative; }
+  .st-mnode:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 13.5px; top: 32px; bottom: 2px;
+    width: 1.5px;
+    background: rgba(255,255,255,0.06);
+    background-image: linear-gradient(to bottom, currentColor 50%, transparent 50%);
+    background-size: 1.5px 7px;
+    color: rgba(255,255,255,0.12);
+  }
+  .st-mnode.is-completed:not(:last-child)::before { color: rgba(74,222,128,0.35); }
+  .st-mnode-bullet {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #3a3a42;
+    background: #0a0a0d;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative; z-index: 1;
+    margin-top: 1px;
+  }
+  .st-mnode.is-unlocked .st-mnode-bullet { border-color: var(--st-gold); background: rgba(245,180,37,0.08); }
+  .st-mnode.is-completed .st-mnode-bullet { border-color: var(--st-green); background: rgba(74,222,128,0.15); }
+  .st-mnode-lock, .st-mnode-num, .st-mnode-check { display: none; line-height: 1; }
+  .st-mnode-lock { color: var(--st-mute); }
+  .st-mnode-num {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; font-weight: 600; color: var(--st-gold);
+  }
+  .st-mnode-check { color: var(--st-green); }
+  .st-mnode .st-mnode-lock { display: inline-block; }
+  .st-mnode.is-unlocked .st-mnode-lock { display: none; }
+  .st-mnode.is-unlocked .st-mnode-num { display: inline-block; }
+  .st-mnode.is-completed .st-mnode-lock,
+  .st-mnode.is-completed .st-mnode-num { display: none; }
+  .st-mnode.is-completed .st-mnode-check { display: inline-block; }
+  .st-mnode-body { flex: 1; min-width: 0; padding-top: 2px; }
+  .st-mnode-title { font-size: 14px; font-weight: 600; color: #fff; line-height: 1.25; word-wrap: break-word; }
+  .st-mnode.is-locked .st-mnode-title { color: var(--st-mute); }
+  .st-mnode.is-completed .st-mnode-title { color: var(--st-green); text-decoration: line-through; }
+  .st-mnode-desc { font-size: 12px; color: var(--st-dim); margin-top: 5px; line-height: 1.45; }
+  .st-mnode.is-locked .st-mnode-desc { color: var(--st-mute); }
+  .st-mnode-tags { display: flex; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
+  .st-mnode-tags span {
+    padding: 1px 6px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 9px; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--st-dim);
+  }
+  .st-mnode-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .st-mnode-toggle, .st-mnode-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 7px 11px; border-radius: 5px;
+    font-family: inherit; font-size: 12px; font-weight: 600;
+    border: 1px solid var(--st-line-2);
+    background: rgba(255,255,255,0.04); color: #f3f3f4;
+    text-decoration: none; cursor: pointer; line-height: 1;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .st-mnode-toggle { color: var(--st-gold); border-color: rgba(245,180,37,0.35); background: rgba(245,180,37,0.06); }
+  .st-mnode-toggle:disabled,
+  .st-mnode.is-locked .st-mnode-toggle {
+    color: var(--st-mute); border-color: var(--st-line); background: transparent; cursor: not-allowed; opacity: 0.55;
+  }
+  .st-mnode.is-completed .st-mnode-toggle {
+    color: var(--st-green); border-color: rgba(74,222,128,0.45); background: rgba(74,222,128,0.1);
+  }
+  .st-mnode-toggle-check { display: none; }
+  .st-mnode.is-completed .st-mnode-toggle-check { display: inline-block; }
+  .st-mnode.is-locked .st-mnode-link { opacity: 0.55; }
+
   @media (max-width: 1023px) {
     .st-main { grid-template-columns: 1fr; }
     .st-sidebar { position: static; }
@@ -1471,9 +1837,18 @@ const PAGE_CSS = `
     .st-hero { flex-direction: column; align-items: flex-start; gap: 16px; }
     .st-progress-card { width: 100%; min-width: 0; }
   }
+  @media (max-width: 767px) {
+    .st-canvas-svg { display: none; }
+    .st-mobile { display: block; }
+    .st-canvas { padding: 36px 14px 16px; }
+    .st-sidebar { display: none; }
+    .st-disclaimer { margin-top: 14px; }
+  }
   @media (max-width: 640px) {
-    .st-hero-title { font-size: 28px; letter-spacing: -0.5px; }
-    .st-canvas { padding: 32px 8px 12px; }
+    .st-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+    .st-hero-eyebrow { font-size: 10px; }
+    .st-progress-num { font-size: 30px; }
+    .st-progress-card { padding: 14px 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .st-progress-fill, .st-node, .st-detail-btn { transition: none; }
@@ -1870,14 +2245,10 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
       const o = byId[selectedId]
       if (!o) return
       const isDone = completed.has(selectedId)
-      const unlocked = isUnlocked(selectedId)
       const tagsHtml = (o.tags || []).map(t => '<span>' + escapeHtml(t) + '</span>').join('')
       const tipHtml = o.tip
         ? '<div class="st-detail-tip"><svg class="st-detail-tip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span><b>Dica:</b> ' + escapeHtml(o.tip) + '</span></div>'
         : ''
-      const btnLabel = isDone ? 'Marcar como pendente' : (unlocked ? 'Marcar como concluído' : 'Bloqueado')
-      const btnClass = isDone ? 'st-detail-btn is-done' : (unlocked ? 'st-detail-btn is-primary' : 'st-detail-btn')
-      const btnDisabled = !unlocked && !isDone ? ' disabled' : ''
       $detail.innerHTML = '<div class="st-detail-body">' +
         '<div class="st-detail-eyebrow">&#9826; SKILL DETAIL</div>' +
         '<h3 class="st-detail-title' + (isDone ? ' is-completed' : '') + '">' + escapeHtml(o.title) + '</h3>' +
@@ -1885,20 +2256,18 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
         '<div class="st-detail-summary">' + escapeHtml(o.summary) + '</div>' +
         (o.detail ? '<div class="st-detail-text">' + escapeHtml(o.detail) + '</div>' : '') +
         tipHtml +
-        '<div class="st-detail-actions"><button type="button" class="' + btnClass + '" data-toggle="' + escapeHtml(selectedId) + '"' + btnDisabled + '>' + btnLabel + '</button></div>' +
       '</div>'
-      const btn = $detail.querySelector('[data-toggle]')
-      if (btn) btn.addEventListener('click', () => toggle(selectedId))
     }
 
     function updateNodes() {
-      const nodes = root.querySelectorAll('.st-node')
+      const nodes = root.querySelectorAll('.st-node, .st-mnode')
       nodes.forEach(g => {
         const id = g.getAttribute('data-id')
         const isDone = completed.has(id)
         const unlocked = isUnlocked(id)
         g.classList.toggle('is-completed', isDone)
         g.classList.toggle('is-unlocked', unlocked && !isDone)
+        g.classList.toggle('is-locked', !unlocked && !isDone)
         g.classList.toggle('is-selected', selectedId === id)
       })
       root.querySelectorAll('.st-node-label').forEach(el => {
@@ -1907,6 +2276,20 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
         const unlocked = isUnlocked(id)
         el.classList.toggle('is-completed', isDone)
         el.classList.toggle('is-locked', !unlocked && !isDone)
+        const toggleBtn = el.querySelector('.st-node-toggle')
+        if (toggleBtn) {
+          const txt = toggleBtn.querySelector('.st-node-action-text')
+          if (txt) txt.textContent = isDone ? 'Concluído' : (unlocked ? 'Marcar concluído' : 'Bloqueado')
+          toggleBtn.disabled = !unlocked && !isDone
+        }
+      })
+      root.querySelectorAll('.st-mnode-toggle').forEach(btn => {
+        const id = btn.getAttribute('data-mtoggle')
+        const isDone = completed.has(id)
+        const unlocked = isUnlocked(id)
+        const txt = btn.querySelector('.st-mnode-toggle-text')
+        if (txt) txt.textContent = isDone ? 'Concluído' : (unlocked ? 'Marcar concluído' : 'Bloqueado')
+        btn.disabled = !unlocked && !isDone
       })
       root.querySelectorAll('.st-stub').forEach(el => {
         const id = el.getAttribute('data-for')
@@ -1918,7 +2301,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
         const prevId = node ? node.getAttribute('data-prev') : ''
         el.classList.toggle('is-active', prevId && completed.has(prevId))
       })
-      root.querySelectorAll('.st-phase-group').forEach(g => {
+      root.querySelectorAll('.st-phase-group, .st-mphase').forEach(g => {
         const num = g.getAttribute('data-phase')
         const phase = phases.find(p => String(p.number) === String(num))
         if (!phase) return
@@ -1968,6 +2351,23 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
           const id = g.getAttribute('data-id')
           select(id)
         }
+      })
+    })
+
+    root.querySelectorAll('.st-node-toggle').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation()
+        const id = btn.getAttribute('data-toggle')
+        select(id)
+        toggle(id)
+      })
+    })
+
+    root.querySelectorAll('.st-mnode-toggle').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation()
+        const id = btn.getAttribute('data-mtoggle')
+        toggle(id)
       })
     })
 

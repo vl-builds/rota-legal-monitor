@@ -75,72 +75,81 @@
     align-items: start;
   }
 
-  .vp-section { margin-bottom: 40px; }
+  .vp-section { margin-bottom: 56px; }
   .vp-section-title {
-    font-size: 11px; font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    color: var(--muted); margin-bottom: 16px;
-    padding-bottom: 10px; border-bottom: 1px solid var(--hairline);
+    font-size: 11px; font-weight: 500; line-height: 1;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(245,245,240,.5); margin-bottom: 18px;
+    padding: 0; border: none;
   }
 
-  /* Documents */
-  .doc-list { display: flex; flex-direction: column; gap: 10px; }
-  .doc-item {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 14px 16px; border-radius: var(--r-md);
-    background: var(--surface-card); border: 1px solid var(--hairline);
+  /* Document rows (shared visual rhythm for all list sections) */
+  .docrows {
+    --br-ink: #f5f5f0;
+    --br-ink-2: rgba(245,245,240,.72);
+    --br-ink-3: rgba(245,245,240,.5);
+    --br-ink-4: rgba(245,245,240,.32);
+    --br-line: rgba(245,245,240,.14);
+    --br-card: rgba(255,255,255,.015);
+    --br-ok: #34d399;
+    --br-bad: #f87171;
+    --br-warn: #fbbf24;
+    --br-info: #a78bfa;
+    --br-neut: #94a3b8;
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--br-line);
   }
-  .doc-item.critical { border-color: var(--primary); }
-  .doc-dot {
+  .docrow {
+    display: grid;
+    grid-template-columns: 56px 1.1fr 1.2fr 2.4fr;
+    gap: 32px; padding: 24px 8px;
+    border-bottom: 1px solid var(--br-line);
+    align-items: start;
+    transition: background 250ms ease;
+  }
+  .docrow:hover { background: var(--br-card); }
+  .docrow.compact { grid-template-columns: 56px 1.1fr 1.2fr; }
+  .docrow.step { grid-template-columns: 56px 1fr; gap: 24px; padding: 22px 8px; }
+  .docrow-index {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 400; line-height: 1; letter-spacing: 0.05em;
+    color: var(--br-ink-4); padding-top: 5px;
+  }
+  .docrow-label {
+    font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--br-ink-3); padding-top: 5px;
+  }
+  .docrow-verdict { display: flex; gap: 10px; align-items: flex-start; }
+  .docrow-dot {
     width: 8px; height: 8px; border-radius: 50%;
-    background: var(--muted); flex-shrink: 0; margin-top: 5px;
+    margin-top: 9px; flex-shrink: 0;
+    box-shadow: 0 0 0 4px rgba(255,255,255,.025);
   }
-  .doc-item.critical .doc-dot { background: var(--primary); }
-  .doc-name { font-size: 14px; font-weight: 600; color: var(--on-dark); }
-  .doc-desc { font-size: 13px; color: var(--body); margin-top: 2px; }
-
-  /* Steps */
-  .step-list { display: flex; flex-direction: column; gap: 0; }
-  .step-item {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: 16px 0; border-bottom: 1px solid var(--hairline);
+  .docrow-dot.long { margin-top: 7px; }
+  .docrow-dot[data-tone="ok"]   { background: var(--br-ok); }
+  .docrow-dot[data-tone="bad"]  { background: var(--br-bad); }
+  .docrow-dot[data-tone="warn"] { background: var(--br-warn); }
+  .docrow-dot[data-tone="info"] { background: var(--br-info); }
+  .docrow-dot[data-tone="neut"] { background: var(--br-neut); }
+  .docrow-verdict-text {
+    font-size: 20px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--br-ink);
   }
-  .step-item:last-child { border-bottom: none; }
-  .step-n {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--surface-card); border: 1px solid var(--hairline);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-family: 'JetBrains Mono', monospace;
-    color: var(--primary); flex-shrink: 0; margin-top: 1px;
+  .docrow-verdict-text.long { font-size: 15px; font-weight: 500; line-height: 1.35; letter-spacing: normal; }
+  .docrow-verdict-text.mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 18px; letter-spacing: 0;
   }
-  .step-text { font-size: 14px; color: var(--body); line-height: 1.55; }
-
-  /* Fees */
-  .fee-row {
-    display: flex; align-items: baseline; gap: 10px;
-    padding: 12px 0; border-bottom: 1px solid var(--hairline);
+  .docrow-prose {
+    font-size: 13.5px; line-height: 1.6; color: var(--br-ink-2); margin: 0;
   }
-  .fee-row:last-child { border-bottom: none; }
-  .fee-amount {
-    font-size: 20px; font-weight: 700; font-family: 'JetBrains Mono', monospace;
-    color: var(--primary);
+  .docrow.step .docrow-prose { font-size: 14px; padding-top: 3px; }
+  .empty-doc {
+    padding: 22px 8px; font-size: 13px; color: rgba(245,245,240,.5);
+    border-top: 1px solid rgba(245,245,240,.14);
+    border-bottom: 1px solid rgba(245,245,240,.14);
+    font-family: 'JetBrains Mono', monospace;
   }
-  .fee-note { font-size: 13px; color: var(--muted); }
-
-  /* Rights */
-  .right-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 12px 0; border-bottom: 1px solid var(--hairline);
-    font-size: 14px; color: var(--body);
-  }
-  .right-item:last-child { border-bottom: none; }
-  .right-icon {
-    width: 20px; height: 20px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; flex-shrink: 0;
-  }
-  .right-icon.yes { background: rgba(34,197,94,.12); color: var(--accent-emerald); }
-  .right-icon.no  { background: rgba(136,136,136,.1); color: var(--muted); }
 
   /* Sidebar */
   .vp-sidebar { display: flex; flex-direction: column; gap: 16px; }
@@ -194,6 +203,18 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
+  @media (max-width: 1000px) {
+    .docrow {
+      grid-template-columns: 36px 1fr;
+      gap: 12px 16px;
+      padding: 22px 4px;
+    }
+    .docrow.compact { grid-template-columns: 36px 1fr; }
+    .docrow.step { grid-template-columns: 36px 1fr; }
+    .docrow-label { padding-top: 7px; }
+    .docrow-verdict { grid-column: 1 / -1; }
+    .docrow-prose { grid-column: 1 / -1; }
+  }
   @media (max-width: 900px) {
     .vp-grid { grid-template-columns: 1fr; }
     .vp-stats-strip { flex-direction: column; }
@@ -318,106 +339,153 @@
 
         <div class="vp-section">
           <p class="vp-section-title">Documentos necessários</p>
-          <div class="doc-list">
+          <div class="docrows">
         
-        <div class="doc-item critical">
-          <div class="doc-dot"></div>
-          <div>
-            <div class="doc-name">Passaporte brasileiro válido</div>
-            <div class="doc-desc">Validade mínima de 6 meses além do período do permit</div>
+          <div class="docrow">
+            <div class="docrow-index">01</div>
+            <div class="docrow-label">Crítico</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot long" data-tone="bad"></span>
+              <span class="docrow-verdict-text long">Passaporte brasileiro válido</span>
+            </div>
+            <p class="docrow-prose">Validade mínima de 6 meses além do período do permit</p>
           </div>
-        </div>
-        <div class="doc-item critical">
-          <div class="doc-dot"></div>
-          <div>
-            <div class="doc-name">Contrato de trabalho com empregador erkend referent nos Países Baixos</div>
-            <div class="doc-desc">Empregador deve ter estatuto de erkend referent — verificar no registro do IND. Salário mínimo de €5.688/mês bruto (30+ anos, 2025) ou €4.171/mês bruto (menores de 30, 2025)</div>
+          <div class="docrow">
+            <div class="docrow-index">02</div>
+            <div class="docrow-label">Crítico</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot long" data-tone="bad"></span>
+              <span class="docrow-verdict-text long">Contrato de trabalho com empregador erkend referent nos Países Baixos</span>
+            </div>
+            <p class="docrow-prose">Empregador deve ter estatuto de erkend referent — verificar no registro do IND. Salário mínimo de €5.688/mês bruto (30+ anos, 2025) ou €4.171/mês bruto (menores de 30, 2025)</p>
           </div>
-        </div>
-        <div class="doc-item">
-          <div class="doc-dot"></div>
-          <div>
-            <div class="doc-name">Comprovante de qualificações (diploma ou experiência)</div>
-            <div class="doc-desc">Diploma universitário ou equivalente demonstrando qualificação para o cargo — pode ser solicitado pelo IND</div>
+          <div class="docrow">
+            <div class="docrow-index">03</div>
+            <div class="docrow-label">Padrão</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot long" data-tone="neut"></span>
+              <span class="docrow-verdict-text long">Comprovante de qualificações (diploma ou experiência)</span>
+            </div>
+            <p class="docrow-prose">Diploma universitário ou equivalente demonstrando qualificação para o cargo — pode ser solicitado pelo IND</p>
           </div>
-        </div>
-        <div class="doc-item critical">
-          <div class="doc-dot"></div>
-          <div>
-            <div class="doc-name">Foto recente em formato passaporte</div>
-            <div class="doc-desc">Padrão biométrico — normalmente fornecida durante o processo IND</div>
+          <div class="docrow">
+            <div class="docrow-index">04</div>
+            <div class="docrow-label">Crítico</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot long" data-tone="bad"></span>
+              <span class="docrow-verdict-text long">Foto recente em formato passaporte</span>
+            </div>
+            <p class="docrow-prose">Padrão biométrico — normalmente fornecida durante o processo IND</p>
           </div>
-        </div>
       </div>
         </div>
 
         <div class="vp-section">
           <p class="vp-section-title">Processo passo a passo</p>
-          <div class="step-list">
+          <div class="docrows">
         
-        <div class="step-item">
-          <span class="step-n">1</span>
-          <span class="step-text">Empregador holandês deve ter o estatuto de 'erkend referent' (referente reconhecido) junto ao IND (Immigratie- en Naturalisatiedienst) — obtido pela maioria das grandes empresas e universidades</span>
+        <div class="docrow step">
+          <div class="docrow-index">01</div>
+          <p class="docrow-prose">Empregador holandês deve ter o estatuto de 'erkend referent' (referente reconhecido) junto ao IND (Immigratie- en Naturalisatiedienst) — obtido pela maioria das grandes empresas e universidades</p>
         </div>
-        <div class="step-item">
-          <span class="step-n">2</span>
-          <span class="step-text">Empregador erkend referent submete o pedido de verblijfsvergunning (permissão de residência) diretamente ao IND em nome do trabalhador</span>
+        <div class="docrow step">
+          <div class="docrow-index">02</div>
+          <p class="docrow-prose">Empregador erkend referent submete o pedido de verblijfsvergunning (permissão de residência) diretamente ao IND em nome do trabalhador</p>
         </div>
-        <div class="step-item">
-          <span class="step-n">3</span>
-          <span class="step-text">Pagar taxa IND de €345 — o IND decide em prazo de 2 semanas para empregadores erkend referent</span>
+        <div class="docrow step">
+          <div class="docrow-index">03</div>
+          <p class="docrow-prose">Pagar taxa IND de €345 — o IND decide em prazo de 2 semanas para empregadores erkend referent</p>
         </div>
-        <div class="step-item">
-          <span class="step-n">4</span>
-          <span class="step-text">Se o trabalhador está fora dos Países Baixos, ele deve solicitar o MVV (visto de entrada) no consulado holandês no Brasil — custo de ~€225</span>
+        <div class="docrow step">
+          <div class="docrow-index">04</div>
+          <p class="docrow-prose">Se o trabalhador está fora dos Países Baixos, ele deve solicitar o MVV (visto de entrada) no consulado holandês no Brasil — custo de ~€225</p>
         </div>
-        <div class="step-item">
-          <span class="step-n">5</span>
-          <span class="step-text">Entrar nos Países Baixos com o MVV e registrar-se na gemeente (prefeitura) local para obter BSN (Burgerservicenummer)</span>
+        <div class="docrow step">
+          <div class="docrow-index">05</div>
+          <p class="docrow-prose">Entrar nos Países Baixos com o MVV e registrar-se na gemeente (prefeitura) local para obter BSN (Burgerservicenummer)</p>
         </div>
-        <div class="step-item">
-          <span class="step-n">6</span>
-          <span class="step-text">Retirar a verblijfsvergunning (cartão físico) no IND — o cartão chega pelo correio</span>
+        <div class="docrow step">
+          <div class="docrow-index">06</div>
+          <p class="docrow-prose">Retirar a verblijfsvergunning (cartão físico) no IND — o cartão chega pelo correio</p>
         </div>
       </div>
         </div>
 
         <div class="vp-section">
           <p class="vp-section-title">Taxas</p>
-          
-      <div class="fee-row">
-        <span class="fee-amount">EUR 345</span>
-        <span class="fee-note">taxa IND para Highly Skilled Migrant permit (trabalhador empregado)</span>
-      </div>
-      <div class="fee-row">
-        <span class="fee-amount">EUR 225</span>
-        <span class="fee-note">taxa MVV (Machtiging tot Voorlopig Verblijf — visto de entrada) no consulado holandês — se aplicável</span>
+          <div class="docrows">
+        
+        <div class="docrow">
+          <div class="docrow-index">01</div>
+          <div class="docrow-label">Taxa</div>
+          <div class="docrow-verdict">
+            <span class="docrow-dot" data-tone="info"></span>
+            <span class="docrow-verdict-text mono">EUR 345</span>
+          </div>
+          <p class="docrow-prose">taxa IND para Highly Skilled Migrant permit (trabalhador empregado)</p>
+        </div>
+        <div class="docrow">
+          <div class="docrow-index">02</div>
+          <div class="docrow-label">Taxa</div>
+          <div class="docrow-verdict">
+            <span class="docrow-dot" data-tone="info"></span>
+            <span class="docrow-verdict-text mono">EUR 225</span>
+          </div>
+          <p class="docrow-prose">taxa MVV (Machtiging tot Voorlopig Verblijf — visto de entrada) no consulado holandês — se aplicável</p>
+        </div>
       </div>
         </div>
 
         <div class="vp-section">
           <p class="vp-section-title">Direitos com este visto</p>
-          
-    <div class="right-item">
-      <span class="right-icon yes">✓</span>
-      Trabalhar legalmente
+          <div class="docrows">
+    
+    <div class="docrow">
+      <div class="docrow-index">01</div>
+      <div class="docrow-label">Trabalho</div>
+      <div class="docrow-verdict">
+        <span class="docrow-dot" data-tone="ok"></span>
+        <span class="docrow-verdict-text">Permitido</span>
+      </div>
+      <p class="docrow-prose">Permite atuação remunerada em Países Baixos sob as condições deste visto.</p>
     </div>
-    <div class="right-item">
-      <span class="right-icon yes">✓</span>
-      Trazer família
+    <div class="docrow">
+      <div class="docrow-index">02</div>
+      <div class="docrow-label">Reagrupamento familiar</div>
+      <div class="docrow-verdict">
+        <span class="docrow-dot" data-tone="ok"></span>
+        <span class="docrow-verdict-text">Permitido</span>
+      </div>
+      <p class="docrow-prose">Cônjuge e dependentes podem solicitar reunião familiar (sujeito a comprovação de renda e moradia).</p>
     </div>
-    <div class="right-item">
-      <span class="right-icon yes">✓</span>
-      Mudar de empregador
+    <div class="docrow">
+      <div class="docrow-index">03</div>
+      <div class="docrow-label">Mudança de empregador</div>
+      <div class="docrow-verdict">
+        <span class="docrow-dot" data-tone="ok"></span>
+        <span class="docrow-verdict-text">Permitida</span>
+      </div>
+      <p class="docrow-prose">É possível trocar de empregador durante a vigência do visto, geralmente com comunicação às autoridades.</p>
     </div>
-    <div class="right-item">
-      <span class="right-icon yes">✓</span>
-      Residência permanente após undefined anos
+    <div class="docrow">
+      <div class="docrow-index">04</div>
+      <div class="docrow-label">Caminho à residência</div>
+      <div class="docrow-verdict">
+        <span class="docrow-dot long" data-tone="ok"></span>
+        <span class="docrow-verdict-text long">Após undefined anos</span>
+      </div>
+      <p class="docrow-prose">O tempo neste visto conta para obtenção de residência permanente, desde que cumpridos os demais requisitos.</p>
     </div>
-    <div class="right-item">
-      <span class="right-icon yes">✓</span>
-      Cidadania após undefined anos
+    <div class="docrow">
+      <div class="docrow-index">05</div>
+      <div class="docrow-label">Caminho à cidadania</div>
+      <div class="docrow-verdict">
+        <span class="docrow-dot long" data-tone="ok"></span>
+        <span class="docrow-verdict-text long">Após undefined anos</span>
+      </div>
+      <p class="docrow-prose">Possível pleitear cidadania após o período mínimo de residência, mediante prova de integração e idioma.</p>
     </div>
+  </div>
         </div>
 
         

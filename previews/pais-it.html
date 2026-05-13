@@ -141,24 +141,103 @@
     .visa-modal-illo { width: 64px; height: 64px; }
     .rights-grid { grid-template-columns: 1fr; }
   }
-  /* ---- para brasileiros ---- */
-  .br-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-lg); }
-  .br-card { background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-sm); }
-  .br-card.highlight { border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.05); }
-  .br-card.warning { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
-  .br-label { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
-  .br-value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--on-dark); }
-  .br-value.yes { color: var(--accent-emerald); }
-  .br-value.no { color: var(--accent-rose); }
-  .br-desc { font-size: 13px; color: var(--body); line-height: 1.55; }
-  /* ---- requisitos gerais ---- */
-  .req-list { display: flex; flex-direction: column; gap: var(--s-sm); }
-  .req-item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-md); align-items: center; padding: var(--s-md) var(--s-lg); background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--glass-border); border-radius: var(--r-lg); }
-  .req-icon { font-size: 16px; width: 20px; text-align: center; }
-  .req-icon.ok { color: var(--accent-emerald); }
-  .req-icon.req { color: var(--accent-blue); }
-  .req-text { font-size: 14px; color: var(--body-strong); }
-  .req-note { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  /* ---- para brasileiros (Document Rows) ---- */
+  .section-brasileiros {
+    --br-ink: #f5f5f0;
+    --br-ink-2: rgba(245,245,240,.72);
+    --br-ink-3: rgba(245,245,240,.5);
+    --br-ink-4: rgba(245,245,240,.32);
+    --br-line: rgba(245,245,240,.14);
+    --br-card: rgba(255,255,255,.015);
+    --br-ok: #34d399;
+    --br-bad: #f87171;
+    --br-warn: #fbbf24;
+    --br-info: #a78bfa;
+    --br-neut: #94a3b8;
+    padding: 72px 0 96px;
+    position: relative;
+  }
+  .section-brasileiros::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1200px 600px at 85% 110%, rgba(168,85,247,.06), transparent 60%),
+      radial-gradient(900px 500px at 10% -10%, rgba(251,191,36,.04), transparent 60%);
+  }
+  .section-brasileiros > .container { position: relative; z-index: 1; }
+  .docrow-eyebrow {
+    font-size: 11px; font-weight: 500; line-height: 1; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--br-ink-3); margin-bottom: 14px;
+  }
+  .docrow-title {
+    font-family: "Geist", "Inter", system-ui, sans-serif;
+    font-size: 38px; font-weight: 500; line-height: 1.05; letter-spacing: -0.01em;
+    color: var(--br-ink); margin: 0 0 36px;
+  }
+  .docrows { display: flex; flex-direction: column; border-top: 1px solid var(--br-line); }
+  .docrow {
+    display: grid;
+    grid-template-columns: 56px 1.1fr 1.2fr 2.4fr;
+    gap: 32px; padding: 28px 8px;
+    border-bottom: 1px solid var(--br-line);
+    align-items: start;
+    transition: background 250ms ease;
+  }
+  .docrow:hover { background: var(--br-card); }
+  .docrow-index {
+    font-family: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; font-weight: 400; line-height: 1; letter-spacing: 0.05em;
+    color: var(--br-ink-4); padding-top: 5px;
+  }
+  .docrow-label {
+    font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--br-ink-3); padding-top: 5px;
+  }
+  .docrow-verdict { display: flex; gap: 10px; align-items: flex-start; }
+  .docrow-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 9px; flex-shrink: 0;
+    box-shadow: 0 0 0 4px rgba(255,255,255,.025);
+  }
+  .docrow-dot.long { margin-top: 7px; }
+  .docrow-dot[data-tone="ok"]   { background: var(--br-ok); }
+  .docrow-dot[data-tone="bad"]  { background: var(--br-bad); }
+  .docrow-dot[data-tone="warn"] { background: var(--br-warn); }
+  .docrow-dot[data-tone="info"] { background: var(--br-info); }
+  .docrow-dot[data-tone="neut"] { background: var(--br-neut); }
+  .docrow-verdict-text {
+    font-size: 22px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--br-ink);
+  }
+  .docrow-verdict-text.long { font-size: 17px; font-weight: 500; line-height: 1.35; letter-spacing: normal; }
+  .docrow-prose {
+    font-size: 13.5px; line-height: 1.6; color: var(--br-ink-2); margin: 0;
+  }
+  .docrow-obs {
+    display: flex; gap: 18px; align-items: flex-start;
+    border: 1px solid var(--br-line); border-radius: 14px;
+    padding: 18px 22px; background: var(--br-card); margin-top: 18px;
+  }
+  .docrow-obs-label {
+    min-width: 200px; padding-top: 2px;
+    font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--br-ink-3);
+  }
+  .docrow-obs-text { font-size: 13px; line-height: 1.55; color: var(--br-ink-2); margin: 0; }
+  @media (max-width: 1000px) {
+    .section-brasileiros { padding: 56px 0 72px; }
+    .docrow-title { font-size: 30px; }
+    .docrow {
+      grid-template-columns: 36px 1fr;
+      gap: 12px 16px;
+      padding: 22px 4px;
+    }
+    .docrow-label { padding-top: 7px; }
+    .docrow-verdict { grid-column: 1 / -1; }
+    .docrow-prose { grid-column: 1 / -1; }
+    .docrow-obs { flex-direction: column; gap: 8px; }
+    .docrow-obs-label { min-width: 0; }
+  }
   /* ---- mudanças recentes ---- */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-entry { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-xl); padding: var(--s-lg) 0; }
@@ -184,7 +263,6 @@
     .qs-item:nth-child(2n+1) { border-left: none; }
     .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
     .visa-grid { grid-template-columns: 1fr; }
-    .br-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .hero-name { font-size: 28px; }
@@ -194,8 +272,6 @@
     .quick-summary { grid-template-columns: 1fr 1fr; }
     .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
     .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
-    .req-item { grid-template-columns: auto 1fr; }
-    .req-note { display: none; }
     .rights-grid { grid-template-columns: 1fr; }
   }
 
@@ -299,6 +375,7 @@
 
   /* SVG node states */
   .st-node { cursor: pointer; transition: opacity 0.2s; }
+  .st-icon-num, .st-icon-check { display: none; }
   .st-node:focus { outline: none; }
   .st-node:focus .st-ring { stroke-width: 2.5; }
   .st-node:hover .st-glow { opacity: 0.2 !important; }
@@ -339,6 +416,15 @@
     font-size: 14px; font-weight: 600; color: #fff; line-height: 1.2;
     transition: color 0.15s ease;
   }
+  .st-node-label .st-node-desc {
+    font-size: 12px; color: var(--st-dim); line-height: 1.4;
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .st-node-label.is-locked .st-node-desc { color: var(--st-mute); }
   .st-node-label .st-node-tags {
     display: flex; gap: 6px; margin-top: 6px;
     font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -353,6 +439,36 @@
   }
   .st-node-label.is-locked .st-node-title { color: var(--st-mute); }
   .st-node-label.is-completed .st-node-title { color: var(--st-green); text-decoration: line-through; }
+
+  .st-node-label .st-node-actions {
+    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    pointer-events: auto;
+  }
+  .st-node-label .st-node-action {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 10px; border-radius: 5px;
+    font-family: inherit; font-size: 11px; font-weight: 600;
+    border: 1px solid var(--st-line-2);
+    background: rgba(255,255,255,0.04); color: #f3f3f4;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    line-height: 1;
+  }
+  .st-node-action:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+  .st-node-action .st-node-action-icon-check { display: none; }
+  .st-node-toggle { color: var(--st-gold); border-color: rgba(245,180,37,0.35); background: rgba(245,180,37,0.06); }
+  .st-node-toggle:hover { background: rgba(245,180,37,0.12); border-color: rgba(245,180,37,0.55); }
+  .st-node-label.is-completed .st-node-toggle {
+    color: var(--st-green); border-color: rgba(74,222,128,0.45); background: rgba(74,222,128,0.1);
+  }
+  .st-node-label.is-completed .st-node-toggle .st-node-action-icon-check { display: inline-block; }
+  .st-node-label.is-locked .st-node-toggle {
+    color: var(--st-mute); border-color: var(--st-line); background: transparent; cursor: not-allowed;
+    opacity: 0.55;
+  }
+  .st-node-label.is-locked .st-node-link {
+    opacity: 0.6;
+  }
 
   /* Trophy */
   .st-trophy-label .st-trophy-title { font-size: 13px; font-weight: 600; color: var(--st-dim); }
@@ -450,6 +566,111 @@
     position: relative; z-index: 1;
   }
 
+  /* Mobile skill tree (vertical HTML list) */
+  .st-mobile { display: none; }
+  .st-mphase + .st-mphase { margin-top: 28px; }
+  .st-mphase-head { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+  .st-mphase-diamond {
+    width: 30px; height: 30px;
+    border: 1.5px solid var(--st-gold);
+    background: rgba(245,180,37,0.13);
+    transform: rotate(45deg);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .st-mphase-diamond > span {
+    transform: rotate(-45deg);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; font-weight: 700; color: var(--st-gold);
+  }
+  .st-mphase.is-done .st-mphase-diamond { border-color: var(--st-green); background: rgba(74,222,128,0.13); }
+  .st-mphase.is-done .st-mphase-diamond > span { color: var(--st-green); }
+  .st-mphase-tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 1.5px; color: var(--st-gold);
+    text-transform: uppercase; font-weight: 600;
+  }
+  .st-mphase.is-done .st-mphase-tag { color: var(--st-green); }
+  .st-mphase-title { font-size: 17px; font-weight: 700; color: #fff; margin-top: 2px; line-height: 1.2; }
+  .st-mphase-meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px; color: var(--st-mute); margin-top: 3px;
+  }
+  .st-mnodes { list-style: none; padding: 0; margin: 0; }
+  .st-mnode { display: flex; gap: 12px; padding-bottom: 20px; position: relative; }
+  .st-mnode:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 13.5px; top: 32px; bottom: 2px;
+    width: 1.5px;
+    background: rgba(255,255,255,0.06);
+    background-image: linear-gradient(to bottom, currentColor 50%, transparent 50%);
+    background-size: 1.5px 7px;
+    color: rgba(255,255,255,0.12);
+  }
+  .st-mnode.is-completed:not(:last-child)::before { color: rgba(74,222,128,0.35); }
+  .st-mnode-bullet {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #3a3a42;
+    background: #0a0a0d;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative; z-index: 1;
+    margin-top: 1px;
+  }
+  .st-mnode.is-unlocked .st-mnode-bullet { border-color: var(--st-gold); background: rgba(245,180,37,0.08); }
+  .st-mnode.is-completed .st-mnode-bullet { border-color: var(--st-green); background: rgba(74,222,128,0.15); }
+  .st-mnode-lock, .st-mnode-num, .st-mnode-check { display: none; line-height: 1; }
+  .st-mnode-lock { color: var(--st-mute); }
+  .st-mnode-num {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; font-weight: 600; color: var(--st-gold);
+  }
+  .st-mnode-check { color: var(--st-green); }
+  .st-mnode .st-mnode-lock { display: inline-block; }
+  .st-mnode.is-unlocked .st-mnode-lock { display: none; }
+  .st-mnode.is-unlocked .st-mnode-num { display: inline-block; }
+  .st-mnode.is-completed .st-mnode-lock,
+  .st-mnode.is-completed .st-mnode-num { display: none; }
+  .st-mnode.is-completed .st-mnode-check { display: inline-block; }
+  .st-mnode-body { flex: 1; min-width: 0; padding-top: 2px; }
+  .st-mnode-title { font-size: 14px; font-weight: 600; color: #fff; line-height: 1.25; word-wrap: break-word; }
+  .st-mnode.is-locked .st-mnode-title { color: var(--st-mute); }
+  .st-mnode.is-completed .st-mnode-title { color: var(--st-green); text-decoration: line-through; }
+  .st-mnode-desc { font-size: 12px; color: var(--st-dim); margin-top: 5px; line-height: 1.45; }
+  .st-mnode.is-locked .st-mnode-desc { color: var(--st-mute); }
+  .st-mnode-tags { display: flex; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
+  .st-mnode-tags span {
+    padding: 1px 6px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 9px; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--st-dim);
+  }
+  .st-mnode-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .st-mnode-toggle, .st-mnode-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 7px 11px; border-radius: 5px;
+    font-family: inherit; font-size: 12px; font-weight: 600;
+    border: 1px solid var(--st-line-2);
+    background: rgba(255,255,255,0.04); color: #f3f3f4;
+    text-decoration: none; cursor: pointer; line-height: 1;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .st-mnode-toggle { color: var(--st-gold); border-color: rgba(245,180,37,0.35); background: rgba(245,180,37,0.06); }
+  .st-mnode-toggle:disabled,
+  .st-mnode.is-locked .st-mnode-toggle {
+    color: var(--st-mute); border-color: var(--st-line); background: transparent; cursor: not-allowed; opacity: 0.55;
+  }
+  .st-mnode.is-completed .st-mnode-toggle {
+    color: var(--st-green); border-color: rgba(74,222,128,0.45); background: rgba(74,222,128,0.1);
+  }
+  .st-mnode-toggle-check { display: none; }
+  .st-mnode.is-completed .st-mnode-toggle-check { display: inline-block; }
+  .st-mnode.is-locked .st-mnode-link { opacity: 0.55; }
+
   @media (max-width: 1023px) {
     .st-main { grid-template-columns: 1fr; }
     .st-sidebar { position: static; }
@@ -457,9 +678,18 @@
     .st-hero { flex-direction: column; align-items: flex-start; gap: 16px; }
     .st-progress-card { width: 100%; min-width: 0; }
   }
+  @media (max-width: 767px) {
+    .st-canvas-svg { display: none; }
+    .st-mobile { display: block; }
+    .st-canvas { padding: 36px 14px 16px; }
+    .st-sidebar { display: none; }
+    .st-disclaimer { margin-top: 14px; }
+  }
   @media (max-width: 640px) {
-    .st-hero-title { font-size: 28px; letter-spacing: -0.5px; }
-    .st-canvas { padding: 32px 8px 12px; }
+    .st-hero-title { font-size: 26px; letter-spacing: -0.5px; }
+    .st-hero-eyebrow { font-size: 10px; }
+    .st-progress-num { font-size: 30px; }
+    .st-progress-card { padding: 14px 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .st-progress-fill, .st-node, .st-detail-btn { transition: none; }
@@ -1045,74 +1275,101 @@
 
   
   <div class="tab-panel" id="brasileiros">
-    <section class="section-tight">
+    <section class="section-brasileiros">
       <div class="container">
-        <div class="eyebrow">Condições específicas para brasileiros</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">O que muda para você</h2>
-        <div class="br-grid">
+        <div class="docrow-eyebrow">Condições específicas para brasileiros</div>
+        <h2 class="docrow-title">O que muda para você</h2>
+        <div class="docrows">
           
-        <div class="br-card highlight">
-          <span class="br-label">Schengen — entrada sem visto</span>
-          <span class="br-value yes">Sim</span>
-          <p class="br-desc">O passaporte brasileiro permite entrada em Itália por até 90 dias em qualquer período de 180 dias, sem visto de turista.</p>
+          <div class="docrow">
+            <div class="docrow-index">01</div>
+            <div class="docrow-label">Schengen — entrada sem visto</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot" data-tone="ok"></span>
+              <span class="docrow-verdict-text">Sim</span>
+            </div>
+            <p class="docrow-prose">O passaporte brasileiro permite entrada em Itália por até 90 dias em qualquer período de 180 dias, sem visto de turista.</p>
+          </div>
+          <div class="docrow">
+            <div class="docrow-index">02</div>
+            <div class="docrow-label">Trabalhar sem autorização</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot" data-tone="bad"></span>
+              <span class="docrow-verdict-text">Não permitido</span>
+            </div>
+            <p class="docrow-prose">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
+          </div>
+          <div class="docrow">
+            <div class="docrow-index">03</div>
+            <div class="docrow-label">Permanência máxima como turista</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot" data-tone="warn"></span>
+              <span class="docrow-verdict-text">90 dias</span>
+            </div>
+            <p class="docrow-prose">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
+          </div>
+          <div class="docrow">
+            <div class="docrow-index">04</div>
+            <div class="docrow-label">Acordos bilaterais com o Brasil</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot" data-tone="neut"></span>
+              <span class="docrow-verdict-text">Nenhum</span>
+            </div>
+            <p class="docrow-prose">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e Itália. O caminho é pelos vistos padrão.</p>
+          </div>
         </div>
-          
-        <div class="br-card warning">
-          <span class="br-label">Trabalhar sem autorização</span>
-          <span class="br-value no">Não permitido</span>
-          <p class="br-desc">Mesmo com entrada livre, trabalhar sem autorização de trabalho é ilegal. Você precisa de um dos vistos listados na aba Vistos.</p>
-        </div>
-          
-        <div class="br-card">
-          <span class="br-label">Permanência máxima como turista</span>
-          <span class="br-value">90 dias</span>
-          <p class="br-desc">Em cada período de 180 dias. Este período pode ser usado para buscar emprego presencialmente antes de obter o visto de trabalho, sem remuneração.</p>
-        </div>
-          
-        <div class="br-card">
-          <span class="br-label">Acordos bilaterais com o Brasil</span>
-          <span class="br-value no" style="color:var(--muted);">Nenhum</span>
-          <p class="br-desc">Não existe acordo bilateral de Working Holiday ou reconhecimento automático de diplomas entre Brasil e Itália. O caminho é pelos vistos padrão.</p>
-        </div>
-          
-        </div>
+        
       </div>
     </section>
   </div>
   
   <div class="tab-panel" id="requisitos">
-    <section class="section-tight">
+    <section class="section-brasileiros">
       <div class="container">
-        <div class="eyebrow">Válidos para todos os vistos de trabalho</div>
-        <h2 class="display-sm" style="margin-bottom:var(--s-xl);">Requisitos gerais</h2>
-        <div class="req-list">
+        <div class="docrow-eyebrow">Válidos para todos os vistos de trabalho</div>
+        <h2 class="docrow-title">Requisitos gerais</h2>
+        <div class="docrows">
           
-          <div class="req-item">
-            <span class="req-icon ok">✓</span>
-            <span class="req-text">Passaporte — Minimo 6 meses apos a data de entrada</span>
-            <span class="req-note">Verificar antes de iniciar</span>
+          <div class="docrow">
+            <div class="docrow-index">01</div>
+            <div class="docrow-label">Passaporte</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot long" data-tone="ok"></span>
+              <span class="docrow-verdict-text long">Minimo 6 meses apos a data de entrada</span>
+            </div>
+            <p class="docrow-prose">Verifique a validade do seu passaporte antes de iniciar qualquer pedido de visto para Itália. Renovação no Brasil leva em média 6 a 10 dias úteis.</p>
           </div>
-          <div class="req-item">
-            <span class="req-icon req">●</span>
-            <span class="req-text">Comprovante de fundos — mínimo EUR 8.500/ano. Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado.</span>
-            <span class="req-note">Ver cada visto</span>
+          <div class="docrow">
+            <div class="docrow-index">02</div>
+            <div class="docrow-label">Comprovante de fundos</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot" data-tone="warn"></span>
+              <span class="docrow-verdict-text">EUR 8.500/ano</span>
+            </div>
+            <p class="docrow-prose">Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado.</p>
           </div>
-          <div class="req-item">
-            <span class="req-icon req">●</span>
-            <span class="req-text">Seguro saúde obrigatório. Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.</span>
-            <span class="req-note">Cobertura mín. EUR 30.000</span>
+          <div class="docrow">
+            <div class="docrow-index">03</div>
+            <div class="docrow-label">Seguro saúde</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot long" data-tone="warn"></span>
+              <span class="docrow-verdict-text long">Cobertura mín. EUR 30.000</span>
+            </div>
+            <p class="docrow-prose">Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.</p>
           </div>
-          <div class="req-item">
-            <span class="req-icon ok">✓</span>
-            <span class="req-text">Certidão de antecedentes criminais (apostilada)</span>
-            <span class="req-note">Apostila de Haia</span>
+          <div class="docrow">
+            <div class="docrow-index">04</div>
+            <div class="docrow-label">Antecedentes criminais</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot long" data-tone="info"></span>
+              <span class="docrow-verdict-text long">Certidão apostilada</span>
+            </div>
+            <p class="docrow-prose">Certidão de antecedentes criminais expedida pela Polícia Federal, com Apostila de Haia. Validade típica entre 90 dias e 6 meses, conforme o consulado.</p>
           </div>
         </div>
-        <div style="margin-top:var(--s-xl);padding:var(--s-lg);background:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);border-radius:var(--r-lg);">
-          <p class="body-sm" style="color:var(--muted);margin:0;">
-            Requisitos extraídos de <span style="color:var(--primary);">vistoperitalia.esteri.it, integrazionemigranti.gov.it</span> em mai/2026.
-            Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.
-          </p>
+        <div class="docrow-obs">
+          <span class="docrow-obs-label">Fontes & atualização</span>
+          <p class="docrow-obs-text">Requisitos extraídos de <span style="color:var(--primary);">vistoperitalia.esteri.it, integrazionemigranti.gov.it</span> em mai/2026. Requisitos específicos de cada visto estão na aba Vistos. Sempre confirme na fonte oficial antes de iniciar.</p>
         </div>
       </div>
     </section>
@@ -1255,7 +1512,7 @@
           <div class="st-main">
             <div class="st-canvas">
               <div class="st-canvas-label">&#9826; JOURNEY TREE &middot; 13 NODES</div>
-              <svg width="100%" viewBox="0 0 760 1494" preserveAspectRatio="xMidYMin meet" style="display:block;"><g class="st-phase-group" data-phase="1"><line x1="80" y1="80" x2="80" y2="492" stroke="rgba(245,180,37,0.2)" stroke-width="2" stroke-dasharray="3 5"/>
+              <div class="st-canvas-svg"><svg width="100%" viewBox="0 0 760 2312" preserveAspectRatio="xMidYMin meet" style="display:block;"><g class="st-phase-group" data-phase="1"><line x1="80" y1="80" x2="80" y2="746" stroke="rgba(245,180,37,0.2)" stroke-width="2" stroke-dasharray="3 5"/>
         <g transform="translate(80, 110)" data-phase="1">
           <polygon points="0,-22 22,0 0,22 -22,0" fill="#0a0a0d" stroke="#f5b425" stroke-width="1.8" class="st-phase-outer"/>
           <polygon points="0,-12 12,0 0,12 -12,0" fill="rgba(245,180,37,0.13)" class="st-phase-inner"/>
@@ -1267,279 +1524,422 @@
             <div class="st-phase-title">Documentação Essencial</div>
             <div class="st-phase-meta">+800 XP &middot; 2-4 semanas</div>
           </div>
-        </foreignObject><path d="M 80 160 Q 155 160, 202 160" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-passport"/>
+        </foreignObject><path d="M 80 190 Q 155 190, 202 190" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-passport"/>
         <g class="st-node" data-id="p1-passport" data-prev="" data-phase="1" data-idx="1" data-globalidx="0" role="button" tabindex="0" aria-label="Passaporte válido">
-          <circle cx="230" cy="160" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="160" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="160" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 153)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="190" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="190" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="190" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 183)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="164" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">1</text>
-          <g class="st-icon-check" transform="translate(223, 153)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="194" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">1</text>
+          <g class="st-icon-check" transform="translate(223, 183)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="138" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="140" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p1-passport">
             <div class="st-node-title">Passaporte válido</div>
+            <div class="st-node-desc">Validade mínima: Minimo 6 meses apos a data de entrada.</div>
             <div class="st-node-tags"><span>Obrigatório</span><span>Brasil</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p1-passport">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#requisitos">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 238 Q 155 238, 202 238" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-criminal"/><line x1="230" y1="186" x2="230" y2="212" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-criminal"/>
+        </foreignObject><path d="M 80 324 Q 155 324, 202 324" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-criminal"/><line x1="230" y1="216" x2="230" y2="298" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-criminal"/>
         <g class="st-node" data-id="p1-criminal" data-prev="p1-passport" data-phase="1" data-idx="2" data-globalidx="1" role="button" tabindex="0" aria-label="Certidão de antecedentes criminais">
-          <circle cx="230" cy="238" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="238" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="238" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 231)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="324" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="324" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="324" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 317)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="242" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">2</text>
-          <g class="st-icon-check" transform="translate(223, 231)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="328" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">2</text>
+          <g class="st-icon-check" transform="translate(223, 317)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="216" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="274" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p1-criminal">
             <div class="st-node-title">Certidão de antecedentes criminais</div>
+            <div class="st-node-desc">Emitida pela Polícia Federal, apostilada pela Convenção de Haia.</div>
             <div class="st-node-tags"><span>Obrigatório</span><span>Apostila Haia</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p1-criminal">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#requisitos">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 316 Q 155 316, 202 316" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-insurance"/><line x1="230" y1="264" x2="230" y2="290" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-insurance"/>
+        </foreignObject><path d="M 80 458 Q 155 458, 202 458" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-insurance"/><line x1="230" y1="350" x2="230" y2="432" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-insurance"/>
         <g class="st-node" data-id="p1-insurance" data-prev="p1-criminal" data-phase="1" data-idx="3" data-globalidx="2" role="button" tabindex="0" aria-label="Seguro saúde internacional">
-          <circle cx="230" cy="316" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="316" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="316" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 309)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="458" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="458" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="458" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 451)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="320" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">3</text>
-          <g class="st-icon-check" transform="translate(223, 309)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="462" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">3</text>
+          <g class="st-icon-check" transform="translate(223, 451)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="294" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="408" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p1-insurance">
             <div class="st-node-title">Seguro saúde internacional</div>
+            <div class="st-node-desc">Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanita...</div>
             <div class="st-node-tags"><span>Obrigatório</span><span>Visto D</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p1-insurance">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#requisitos">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 394 Q 155 394, 202 394" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-funds"/><line x1="230" y1="342" x2="230" y2="368" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-funds"/>
+        </foreignObject><path d="M 80 592 Q 155 592, 202 592" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-funds"/><line x1="230" y1="484" x2="230" y2="566" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-funds"/>
         <g class="st-node" data-id="p1-funds" data-prev="p1-insurance" data-phase="1" data-idx="4" data-globalidx="3" role="button" tabindex="0" aria-label="Comprovante de fundos">
-          <circle cx="230" cy="394" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="394" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="394" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 387)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="592" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="592" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="592" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 585)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="398" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">4</text>
-          <g class="st-icon-check" transform="translate(223, 387)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="596" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">4</text>
+          <g class="st-icon-check" transform="translate(223, 585)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="372" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="542" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p1-funds">
             <div class="st-node-title">Comprovante de fundos</div>
+            <div class="st-node-desc">Mínimo EUR 8.500/ano.</div>
             <div class="st-node-tags"><span>Financeiro</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p1-funds">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#requisitos">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 472 Q 155 472, 202 472" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-address"/><line x1="230" y1="420" x2="230" y2="446" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-address"/>
+        </foreignObject><path d="M 80 726 Q 155 726, 202 726" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p1-address"/><line x1="230" y1="618" x2="230" y2="700" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p1-address"/>
         <g class="st-node" data-id="p1-address" data-prev="p1-funds" data-phase="1" data-idx="5" data-globalidx="4" role="button" tabindex="0" aria-label="Comprovante de morada">
-          <circle cx="230" cy="472" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="472" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="472" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 465)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="726" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="726" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="726" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 719)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="476" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">5</text>
-          <g class="st-icon-check" transform="translate(223, 465)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="730" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">5</text>
+          <g class="st-icon-check" transform="translate(223, 719)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="450" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="676" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p1-address">
             <div class="st-node-title">Comprovante de morada</div>
+            <div class="st-node-desc">Contrato de arrendamento ou termo de responsabilidade.</div>
             <div class="st-node-tags"><span>No destino</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p1-address">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#requisitos">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject></g><g class="st-phase-group" data-phase="2"><line x1="80" y1="590" x2="80" y2="1002" stroke="rgba(245,180,37,0.2)" stroke-width="2" stroke-dasharray="3 5"/>
-        <g transform="translate(80, 620)" data-phase="2">
+        </foreignObject></g><g class="st-phase-group" data-phase="2"><line x1="80" y1="900" x2="80" y2="1566" stroke="rgba(245,180,37,0.2)" stroke-width="2" stroke-dasharray="3 5"/>
+        <g transform="translate(80, 930)" data-phase="2">
           <polygon points="0,-22 22,0 0,22 -22,0" fill="#0a0a0d" stroke="#f5b425" stroke-width="1.8" class="st-phase-outer"/>
           <polygon points="0,-12 12,0 0,12 -12,0" fill="rgba(245,180,37,0.13)" class="st-phase-inner"/>
           <text text-anchor="middle" y="4" fill="#f5b425" font-size="11" font-weight="700" font-family="'JetBrains Mono', monospace" class="st-phase-num">02</text>
         </g>
-        <foreignObject x="116" y="596" width="200" height="60">
+        <foreignObject x="116" y="906" width="200" height="60">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-phase-label" data-phase="2">
             <div class="st-phase-tag">FASE 02</div>
             <div class="st-phase-title">Processo do Visto</div>
             <div class="st-phase-meta">+1000 XP &middot; 3-8 meses</div>
           </div>
-        </foreignObject><path d="M 80 670 Q 155 670, 202 670" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-choose"/>
+        </foreignObject><path d="M 80 1010 Q 155 1010, 202 1010" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-choose"/>
         <g class="st-node" data-id="p2-choose" data-prev="" data-phase="2" data-idx="1" data-globalidx="5" role="button" tabindex="0" aria-label="Escolher o tipo de visto">
-          <circle cx="230" cy="670" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="670" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="670" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 663)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="1010" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="1010" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="1010" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 1003)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="674" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">1</text>
-          <g class="st-icon-check" transform="translate(223, 663)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="1014" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">1</text>
+          <g class="st-icon-check" transform="translate(223, 1003)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="648" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="960" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p2-choose">
             <div class="st-node-title">Escolher o tipo de visto</div>
+            <div class="st-node-desc">4 tipos de visto monitorados em Itália.</div>
             <div class="st-node-tags"><span>4 tipos</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p2-choose">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#vistos">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 748 Q 155 748, 202 748" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-1"/><line x1="230" y1="696" x2="230" y2="722" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-1"/>
-        <g class="st-node" data-id="p2-step-1" data-prev="p2-choose" data-phase="2" data-idx="2" data-globalidx="6" role="button" tabindex="0" aria-label="Etapa 1">
-          <circle cx="230" cy="748" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="748" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="748" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 741)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+        </foreignObject><path d="M 80 1144 Q 155 1144, 202 1144" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-1"/><line x1="230" y1="1036" x2="230" y2="1118" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-1"/>
+        <g class="st-node" data-id="p2-step-1" data-prev="p2-choose" data-phase="2" data-idx="2" data-globalidx="6" role="button" tabindex="0" aria-label="Aguardar a abertura do Decreto Flussi anual">
+          <circle cx="230" cy="1144" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="1144" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="1144" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 1137)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="752" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">2</text>
-          <g class="st-icon-check" transform="translate(223, 741)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="1148" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">2</text>
+          <g class="st-icon-check" transform="translate(223, 1137)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="726" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="1094" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p2-step-1">
-            <div class="st-node-title">Etapa 1</div>
-            <div class="st-node-tags"></div>
+            <div class="st-node-title">Aguardar a abertura do Decreto Flussi anual</div>
+            <div class="st-node-desc">Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro do ano seguinte</div>
+            
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p2-step-1">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="vistos/it-lavoro-subordinato.html">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 826 Q 155 826, 202 826" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-2"/><line x1="230" y1="774" x2="230" y2="800" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-2"/>
-        <g class="st-node" data-id="p2-step-2" data-prev="p2-step-1" data-phase="2" data-idx="3" data-globalidx="7" role="button" tabindex="0" aria-label="Etapa 2">
-          <circle cx="230" cy="826" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="826" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="826" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 819)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+        </foreignObject><path d="M 80 1278 Q 155 1278, 202 1278" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-2"/><line x1="230" y1="1170" x2="230" y2="1252" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-2"/>
+        <g class="st-node" data-id="p2-step-2" data-prev="p2-step-1" data-phase="2" data-idx="3" data-globalidx="7" role="button" tabindex="0" aria-label="No 'click day' (abertura das vagas)">
+          <circle cx="230" cy="1278" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="1278" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="1278" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 1271)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="830" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">3</text>
-          <g class="st-icon-check" transform="translate(223, 819)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="1282" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">3</text>
+          <g class="st-icon-check" transform="translate(223, 1271)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="804" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="1228" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p2-step-2">
-            <div class="st-node-title">Etapa 2</div>
-            <div class="st-node-tags"></div>
+            <div class="st-node-title">No 'click day' (abertura das vagas)</div>
+            <div class="st-node-desc">No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.servizisociali.gov.it em nome...</div>
+            
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p2-step-2">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="vistos/it-lavoro-subordinato.html">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 904 Q 155 904, 202 904" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-3"/><line x1="230" y1="852" x2="230" y2="878" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-3"/>
-        <g class="st-node" data-id="p2-step-3" data-prev="p2-step-2" data-phase="2" data-idx="4" data-globalidx="8" role="button" tabindex="0" aria-label="Etapa 3">
-          <circle cx="230" cy="904" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="904" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="904" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 897)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+        </foreignObject><path d="M 80 1412 Q 155 1412, 202 1412" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-3"/><line x1="230" y1="1304" x2="230" y2="1386" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-3"/>
+        <g class="st-node" data-id="p2-step-3" data-prev="p2-step-2" data-phase="2" data-idx="4" data-globalidx="8" role="button" tabindex="0" aria-label="Após aprovação do Nulla Osta (prazo legal de 60 dias)">
+          <circle cx="230" cy="1412" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="1412" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="1412" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 1405)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="908" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">4</text>
-          <g class="st-icon-check" transform="translate(223, 897)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="1416" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">4</text>
+          <g class="st-icon-check" transform="translate(223, 1405)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="882" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="1362" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p2-step-3">
-            <div class="st-node-title">Etapa 3</div>
-            <div class="st-node-tags"></div>
+            <div class="st-node-title">Após aprovação do Nulla Osta (prazo legal de 60 dias)</div>
+            <div class="st-node-desc">Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais próximo no Brasil</div>
+            
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p2-step-3">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="vistos/it-lavoro-subordinato.html">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 982 Q 155 982, 202 982" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-4"/><line x1="230" y1="930" x2="230" y2="956" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-4"/>
-        <g class="st-node" data-id="p2-step-4" data-prev="p2-step-3" data-phase="2" data-idx="5" data-globalidx="9" role="button" tabindex="0" aria-label="Etapa 4">
-          <circle cx="230" cy="982" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="982" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="982" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 975)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+        </foreignObject><path d="M 80 1546 Q 155 1546, 202 1546" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p2-step-4"/><line x1="230" y1="1438" x2="230" y2="1520" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p2-step-4"/>
+        <g class="st-node" data-id="p2-step-4" data-prev="p2-step-3" data-phase="2" data-idx="5" data-globalidx="9" role="button" tabindex="0" aria-label="Pagar taxa de visto D de €116 e apresentar documentação...">
+          <circle cx="230" cy="1546" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="1546" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="1546" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 1539)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="986" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">5</text>
-          <g class="st-icon-check" transform="translate(223, 975)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="1550" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">5</text>
+          <g class="st-icon-check" transform="translate(223, 1539)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="960" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="1496" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p2-step-4">
-            <div class="st-node-title">Etapa 4</div>
-            <div class="st-node-tags"></div>
+            <div class="st-node-title">Pagar taxa de visto D de €116 e apresentar documentação...</div>
+            <div class="st-node-desc">Pagar taxa de visto D de €116 e apresentar documentação completa no consulado</div>
+            
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p2-step-4">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="vistos/it-lavoro-subordinato.html">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject></g><g class="st-phase-group" data-phase="3"><line x1="80" y1="1100" x2="80" y2="1356" stroke="rgba(245,180,37,0.2)" stroke-width="2" stroke-dasharray="3 5"/>
-        <g transform="translate(80, 1130)" data-phase="3">
+        </foreignObject></g><g class="st-phase-group" data-phase="3"><line x1="80" y1="1720" x2="80" y2="2118" stroke="rgba(245,180,37,0.2)" stroke-width="2" stroke-dasharray="3 5"/>
+        <g transform="translate(80, 1750)" data-phase="3">
           <polygon points="0,-22 22,0 0,22 -22,0" fill="#0a0a0d" stroke="#f5b425" stroke-width="1.8" class="st-phase-outer"/>
           <polygon points="0,-12 12,0 0,12 -12,0" fill="rgba(245,180,37,0.13)" class="st-phase-inner"/>
           <text text-anchor="middle" y="4" fill="#f5b425" font-size="11" font-weight="700" font-family="'JetBrains Mono', monospace" class="st-phase-num">03</text>
         </g>
-        <foreignObject x="116" y="1106" width="200" height="60">
+        <foreignObject x="116" y="1726" width="200" height="60">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-phase-label" data-phase="3">
             <div class="st-phase-tag">FASE 03</div>
             <div class="st-phase-title">Chegada e Regularização</div>
             <div class="st-phase-meta">+600 XP &middot; 30-90 dias</div>
           </div>
-        </foreignObject><path d="M 80 1180 Q 155 1180, 202 1180" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p3-arrival"/>
+        </foreignObject><path d="M 80 1830 Q 155 1830, 202 1830" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p3-arrival"/>
         <g class="st-node" data-id="p3-arrival" data-prev="" data-phase="3" data-idx="1" data-globalidx="10" role="button" tabindex="0" aria-label="Chegada ao país">
-          <circle cx="230" cy="1180" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="1180" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="1180" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 1173)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="1830" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="1830" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="1830" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 1823)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="1184" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">1</text>
-          <g class="st-icon-check" transform="translate(223, 1173)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="1834" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">1</text>
+          <g class="st-icon-check" transform="translate(223, 1823)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="1158" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="1780" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p3-arrival">
             <div class="st-node-title">Chegada ao país</div>
+            <div class="st-node-desc">Apresente-se na fronteira com seu visto válido e documentação completa.</div>
             <div class="st-node-tags"><span>Fronteira</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p3-arrival">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#brasileiros">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 1258 Q 155 1258, 202 1258" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p3-register"/><line x1="230" y1="1206" x2="230" y2="1232" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p3-register"/>
+        </foreignObject><path d="M 80 1964 Q 155 1964, 202 1964" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p3-register"/><line x1="230" y1="1856" x2="230" y2="1938" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p3-register"/>
         <g class="st-node" data-id="p3-register" data-prev="p3-arrival" data-phase="3" data-idx="2" data-globalidx="11" role="button" tabindex="0" aria-label="Registro local de residência">
-          <circle cx="230" cy="1258" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="1258" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="1258" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 1251)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="1964" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="1964" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="1964" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 1957)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="1262" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">2</text>
-          <g class="st-icon-check" transform="translate(223, 1251)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="1968" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">2</text>
+          <g class="st-icon-check" transform="translate(223, 1957)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="1236" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="1914" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p3-register">
             <div class="st-node-title">Registro local de residência</div>
+            <div class="st-node-desc">Maioria dos países exige registro municipal ou de imigração após chegada.</div>
             <div class="st-node-tags"><span>Pós-chegada</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p3-register">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#brasileiros">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
-        </foreignObject><path d="M 80 1336 Q 155 1336, 202 1336" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p3-permit"/><line x1="230" y1="1284" x2="230" y2="1310" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p3-permit"/>
+        </foreignObject><path d="M 80 2098 Q 155 2098, 202 2098" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" class="st-stub" data-for="p3-permit"/><line x1="230" y1="1990" x2="230" y2="2072" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" stroke-dasharray="3 4" class="st-vert" data-for="p3-permit"/>
         <g class="st-node" data-id="p3-permit" data-prev="p3-register" data-phase="3" data-idx="3" data-globalidx="12" role="button" tabindex="0" aria-label="Título / cartão de residência">
-          <circle cx="230" cy="1336" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
-          <circle cx="230" cy="1336" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
-          <circle cx="230" cy="1336" r="20" fill="transparent" class="st-fill"/>
-          <g class="st-icon-lock" transform="translate(224, 1329)" stroke="#6c6c75" stroke-width="1.5" fill="none">
+          <circle cx="230" cy="2098" r="34" fill="#f5b425" opacity="0" class="st-glow"/>
+          <circle cx="230" cy="2098" r="26" fill="#0a0a0d" stroke="#3a3a42" stroke-width="1.5" class="st-ring"/>
+          <circle cx="230" cy="2098" r="20" fill="transparent" class="st-fill"/>
+          <g class="st-icon-lock" transform="translate(224, 2091)" stroke="#6c6c75" stroke-width="1.5" fill="none">
             <rect x="0" y="5" width="12" height="9" rx="1"/>
             <path d="M2.5 5V3a3.5 3.5 0 0 1 7 0v2"/>
           </g>
-          <text class="st-icon-num" x="230" y="1340" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600" style="display:none;">3</text>
-          <g class="st-icon-check" transform="translate(223, 1329)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <text class="st-icon-num" x="230" y="2102" text-anchor="middle" fill="#f5b425" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">3</text>
+          <g class="st-icon-check" transform="translate(223, 2091)" stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="0 7 5 12 14 3"/>
           </g>
         </g>
-        <foreignObject x="268" y="1314" width="320" height="60" style="pointer-events:none;">
+        <foreignObject x="268" y="2048" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p3-permit">
             <div class="st-node-title">Título / cartão de residência</div>
+            <div class="st-node-desc">Documento físico que comprova sua estadia legal.</div>
             <div class="st-node-tags"><span>Recompensa final</span></div>
+            <div class="st-node-actions">
+              <button type="button" class="st-node-action st-node-toggle" data-toggle="p3-permit">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="st-node-action-icon-check"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="st-node-action-text">Marcar concluído</span>
+              </button>
+              <a class="st-node-action st-node-link" href="#brasileiros">
+                <span>Mais informações</span>
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
         </foreignObject></g>
-    <g class="st-trophy" transform="translate(80, 1464)">
+    <g class="st-trophy" transform="translate(80, 2282)">
       <circle r="20" fill="#0a0a0d" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="3 4" class="st-trophy-ring"/>
       <g transform="translate(-9, -9)" stroke="#6c6c75" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="st-trophy-icon">
         <path d="M3 6H1.5A1.5 1.5 0 0 1 1.5 3H3"/>
@@ -1550,12 +1950,296 @@
         <path d="M15 2H3v6a4 4 0 0 0 12 0V2Z"/>
       </g>
     </g>
-    <foreignObject x="118" y="1444" width="320" height="40">
+    <foreignObject x="118" y="2262" width="320" height="40">
       <div xmlns="http://www.w3.org/1999/xhtml" class="st-trophy-label">
         <div class="st-trophy-title">Residência permanente / cidadania</div>
         <div class="st-trophy-sub">Recompensa final &middot; Caminho longo prazo</div>
       </div>
-    </foreignObject></svg>
+    </foreignObject></svg></div>
+              <div class="st-mobile">
+        <section class="st-mphase" data-phase="1">
+          <header class="st-mphase-head">
+            <div class="st-mphase-diamond"><span>01</span></div>
+            <div class="st-mphase-info">
+              <div class="st-mphase-tag">FASE 01</div>
+              <div class="st-mphase-title">Documentação Essencial</div>
+              <div class="st-mphase-meta">+800 XP &middot; 2-4 semanas</div>
+            </div>
+          </header>
+          <ol class="st-mnodes">
+          <li class="st-mnode" data-id="p1-passport" data-prev="" data-phase="1">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">1</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p1-passport">
+              <div class="st-mnode-title">Passaporte válido</div>
+              <div class="st-mnode-desc">Validade mínima: Minimo 6 meses apos a data de entrada.</div>
+              <div class="st-mnode-tags"><span>Obrigatório</span><span>Brasil</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p1-passport">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#requisitos">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p1-criminal" data-prev="p1-passport" data-phase="1">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">2</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p1-criminal">
+              <div class="st-mnode-title">Certidão de antecedentes criminais</div>
+              <div class="st-mnode-desc">Emitida pela Polícia Federal, apostilada pela Convenção de Haia.</div>
+              <div class="st-mnode-tags"><span>Obrigatório</span><span>Apostila Haia</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p1-criminal">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#requisitos">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p1-insurance" data-prev="p1-criminal" data-phase="1">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">3</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p1-insurance">
+              <div class="st-mnode-title">Seguro saúde internacional</div>
+              <div class="st-mnode-desc">Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanita...</div>
+              <div class="st-mnode-tags"><span>Obrigatório</span><span>Visto D</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p1-insurance">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#requisitos">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p1-funds" data-prev="p1-insurance" data-phase="1">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">4</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p1-funds">
+              <div class="st-mnode-title">Comprovante de fundos</div>
+              <div class="st-mnode-desc">Mínimo EUR 8.500/ano.</div>
+              <div class="st-mnode-tags"><span>Financeiro</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p1-funds">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#requisitos">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p1-address" data-prev="p1-funds" data-phase="1">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">5</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p1-address">
+              <div class="st-mnode-title">Comprovante de morada</div>
+              <div class="st-mnode-desc">Contrato de arrendamento ou termo de responsabilidade.</div>
+              <div class="st-mnode-tags"><span>No destino</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p1-address">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#requisitos">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          </ol>
+        </section>
+        <section class="st-mphase" data-phase="2">
+          <header class="st-mphase-head">
+            <div class="st-mphase-diamond"><span>02</span></div>
+            <div class="st-mphase-info">
+              <div class="st-mphase-tag">FASE 02</div>
+              <div class="st-mphase-title">Processo do Visto</div>
+              <div class="st-mphase-meta">+1000 XP &middot; 3-8 meses</div>
+            </div>
+          </header>
+          <ol class="st-mnodes">
+          <li class="st-mnode" data-id="p2-choose" data-prev="" data-phase="2">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">1</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p2-choose">
+              <div class="st-mnode-title">Escolher o tipo de visto</div>
+              <div class="st-mnode-desc">4 tipos de visto monitorados em Itália.</div>
+              <div class="st-mnode-tags"><span>4 tipos</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p2-choose">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#vistos">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p2-step-1" data-prev="p2-choose" data-phase="2">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">2</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p2-step-1">
+              <div class="st-mnode-title">Aguardar a abertura do Decreto Flussi anual</div>
+              <div class="st-mnode-desc">Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro do ano seguinte</div>
+              
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p2-step-1">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="vistos/it-lavoro-subordinato.html">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p2-step-2" data-prev="p2-step-1" data-phase="2">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">3</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p2-step-2">
+              <div class="st-mnode-title">No 'click day' (abertura das vagas)</div>
+              <div class="st-mnode-desc">No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.servizisociali.gov.it em nome...</div>
+              
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p2-step-2">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="vistos/it-lavoro-subordinato.html">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p2-step-3" data-prev="p2-step-2" data-phase="2">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">4</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p2-step-3">
+              <div class="st-mnode-title">Após aprovação do Nulla Osta (prazo legal de 60 dias)</div>
+              <div class="st-mnode-desc">Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais próximo no Brasil</div>
+              
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p2-step-3">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="vistos/it-lavoro-subordinato.html">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p2-step-4" data-prev="p2-step-3" data-phase="2">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">5</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p2-step-4">
+              <div class="st-mnode-title">Pagar taxa de visto D de €116 e apresentar documentação...</div>
+              <div class="st-mnode-desc">Pagar taxa de visto D de €116 e apresentar documentação completa no consulado</div>
+              
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p2-step-4">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="vistos/it-lavoro-subordinato.html">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          </ol>
+        </section>
+        <section class="st-mphase" data-phase="3">
+          <header class="st-mphase-head">
+            <div class="st-mphase-diamond"><span>03</span></div>
+            <div class="st-mphase-info">
+              <div class="st-mphase-tag">FASE 03</div>
+              <div class="st-mphase-title">Chegada e Regularização</div>
+              <div class="st-mphase-meta">+600 XP &middot; 30-90 dias</div>
+            </div>
+          </header>
+          <ol class="st-mnodes">
+          <li class="st-mnode" data-id="p3-arrival" data-prev="" data-phase="3">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">1</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p3-arrival">
+              <div class="st-mnode-title">Chegada ao país</div>
+              <div class="st-mnode-desc">Apresente-se na fronteira com seu visto válido e documentação completa.</div>
+              <div class="st-mnode-tags"><span>Fronteira</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p3-arrival">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#brasileiros">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p3-register" data-prev="p3-arrival" data-phase="3">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">2</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p3-register">
+              <div class="st-mnode-title">Registro local de residência</div>
+              <div class="st-mnode-desc">Maioria dos países exige registro municipal ou de imigração após chegada.</div>
+              <div class="st-mnode-tags"><span>Pós-chegada</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p3-register">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#brasileiros">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="st-mnode" data-id="p3-permit" data-prev="p3-register" data-phase="3">
+            <div class="st-mnode-bullet" aria-hidden="true">
+              <svg class="st-mnode-lock" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="10" height="7" rx="1"/><path d="M4 6V4a3 3 0 0 1 6 0v2"/></svg>
+              <span class="st-mnode-num">3</span>
+              <svg class="st-mnode-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="st-mnode-body" data-for="p3-permit">
+              <div class="st-mnode-title">Título / cartão de residência</div>
+              <div class="st-mnode-desc">Documento físico que comprova sua estadia legal.</div>
+              <div class="st-mnode-tags"><span>Recompensa final</span></div>
+              <div class="st-mnode-actions">
+                <button type="button" class="st-mnode-toggle" data-mtoggle="p3-permit">
+                  <svg class="st-mnode-toggle-check" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="st-mnode-toggle-text">Marcar concluído</span>
+                </button>
+                <a class="st-mnode-link" href="#brasileiros">Mais informações <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 6 H9 M6 3 L9 6 L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </li>
+          </ol>
+        </section></div>
             </div>
 
             <div class="st-sidebar">
@@ -1575,7 +2259,7 @@
           <div class="st-disclaimer">// Dados extraídos em mai/2026. Confirme nas fontes oficiais antes de iniciar.</div>
         </div>
 
-        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-insurance","title":"Seguro saúde internacional","summary":"Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanita...","detail":"Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.","tip":"Compare seguros com cobertura Schengen completa quando aplicável.","tags":["Obrigatório","Visto D"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 8.500/ano.","detail":"Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"4 tipos de visto monitorados em Itália.","detail":"Trabalho Subordinado é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["4 tipos"]},{"id":"p2-step-1","title":"Etapa 1","summary":"Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro d...","detail":"Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro do ano seguinte","tip":"","tags":[]},{"id":"p2-step-2","title":"Etapa 2","summary":"No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.serviziso...","detail":"No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.servizisociali.gov.it em nome do trabalhador","tip":"","tags":[]},{"id":"p2-step-3","title":"Etapa 3","summary":"Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais pró...","detail":"Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais próximo no Brasil","tip":"","tags":[]},{"id":"p2-step-4","title":"Etapa 4","summary":"Pagar taxa de visto D de €116 e apresentar documentação completa no consulado","detail":"Pagar taxa de visto D de €116 e apresentar documentação completa no consulado","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Itália, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
+        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-insurance","title":"Seguro saúde internacional","summary":"Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanita...","detail":"Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.","tip":"Compare seguros com cobertura Schengen completa quando aplicável.","tags":["Obrigatório","Visto D"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 8.500/ano.","detail":"Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"4 tipos de visto monitorados em Itália.","detail":"Trabalho Subordinado é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["4 tipos"]},{"id":"p2-step-1","title":"Aguardar a abertura do Decreto Flussi anual","summary":"Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro do ano seguinte","detail":"Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro do ano seguinte","tip":"","tags":[]},{"id":"p2-step-2","title":"No 'click day' (abertura das vagas)","summary":"No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.servizisociali.gov.it em nome...","detail":"No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.servizisociali.gov.it em nome do trabalhador","tip":"","tags":[]},{"id":"p2-step-3","title":"Após aprovação do Nulla Osta (prazo legal de 60 dias)","summary":"Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais próximo no Brasil","detail":"Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais próximo no Brasil","tip":"","tags":[]},{"id":"p2-step-4","title":"Pagar taxa de visto D de €116 e apresentar documentação...","summary":"Pagar taxa de visto D de €116 e apresentar documentação completa no consulado","detail":"Pagar taxa de visto D de €116 e apresentar documentação completa no consulado","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Itália, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
       </div>
     </section>
   </div>
@@ -1801,14 +2485,10 @@
       const o = byId[selectedId]
       if (!o) return
       const isDone = completed.has(selectedId)
-      const unlocked = isUnlocked(selectedId)
       const tagsHtml = (o.tags || []).map(t => '<span>' + escapeHtml(t) + '</span>').join('')
       const tipHtml = o.tip
         ? '<div class="st-detail-tip"><svg class="st-detail-tip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span><b>Dica:</b> ' + escapeHtml(o.tip) + '</span></div>'
         : ''
-      const btnLabel = isDone ? 'Marcar como pendente' : (unlocked ? 'Marcar como concluído' : 'Bloqueado')
-      const btnClass = isDone ? 'st-detail-btn is-done' : (unlocked ? 'st-detail-btn is-primary' : 'st-detail-btn')
-      const btnDisabled = !unlocked && !isDone ? ' disabled' : ''
       $detail.innerHTML = '<div class="st-detail-body">' +
         '<div class="st-detail-eyebrow">&#9826; SKILL DETAIL</div>' +
         '<h3 class="st-detail-title' + (isDone ? ' is-completed' : '') + '">' + escapeHtml(o.title) + '</h3>' +
@@ -1816,20 +2496,18 @@
         '<div class="st-detail-summary">' + escapeHtml(o.summary) + '</div>' +
         (o.detail ? '<div class="st-detail-text">' + escapeHtml(o.detail) + '</div>' : '') +
         tipHtml +
-        '<div class="st-detail-actions"><button type="button" class="' + btnClass + '" data-toggle="' + escapeHtml(selectedId) + '"' + btnDisabled + '>' + btnLabel + '</button></div>' +
       '</div>'
-      const btn = $detail.querySelector('[data-toggle]')
-      if (btn) btn.addEventListener('click', () => toggle(selectedId))
     }
 
     function updateNodes() {
-      const nodes = root.querySelectorAll('.st-node')
+      const nodes = root.querySelectorAll('.st-node, .st-mnode')
       nodes.forEach(g => {
         const id = g.getAttribute('data-id')
         const isDone = completed.has(id)
         const unlocked = isUnlocked(id)
         g.classList.toggle('is-completed', isDone)
         g.classList.toggle('is-unlocked', unlocked && !isDone)
+        g.classList.toggle('is-locked', !unlocked && !isDone)
         g.classList.toggle('is-selected', selectedId === id)
       })
       root.querySelectorAll('.st-node-label').forEach(el => {
@@ -1838,6 +2516,20 @@
         const unlocked = isUnlocked(id)
         el.classList.toggle('is-completed', isDone)
         el.classList.toggle('is-locked', !unlocked && !isDone)
+        const toggleBtn = el.querySelector('.st-node-toggle')
+        if (toggleBtn) {
+          const txt = toggleBtn.querySelector('.st-node-action-text')
+          if (txt) txt.textContent = isDone ? 'Concluído' : (unlocked ? 'Marcar concluído' : 'Bloqueado')
+          toggleBtn.disabled = !unlocked && !isDone
+        }
+      })
+      root.querySelectorAll('.st-mnode-toggle').forEach(btn => {
+        const id = btn.getAttribute('data-mtoggle')
+        const isDone = completed.has(id)
+        const unlocked = isUnlocked(id)
+        const txt = btn.querySelector('.st-mnode-toggle-text')
+        if (txt) txt.textContent = isDone ? 'Concluído' : (unlocked ? 'Marcar concluído' : 'Bloqueado')
+        btn.disabled = !unlocked && !isDone
       })
       root.querySelectorAll('.st-stub').forEach(el => {
         const id = el.getAttribute('data-for')
@@ -1849,7 +2541,7 @@
         const prevId = node ? node.getAttribute('data-prev') : ''
         el.classList.toggle('is-active', prevId && completed.has(prevId))
       })
-      root.querySelectorAll('.st-phase-group').forEach(g => {
+      root.querySelectorAll('.st-phase-group, .st-mphase').forEach(g => {
         const num = g.getAttribute('data-phase')
         const phase = phases.find(p => String(p.number) === String(num))
         if (!phase) return
@@ -1899,6 +2591,23 @@
           const id = g.getAttribute('data-id')
           select(id)
         }
+      })
+    })
+
+    root.querySelectorAll('.st-node-toggle').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation()
+        const id = btn.getAttribute('data-toggle')
+        select(id)
+        toggle(id)
+      })
+    })
+
+    root.querySelectorAll('.st-mnode-toggle').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation()
+        const id = btn.getAttribute('data-mtoggle')
+        toggle(id)
       })
     })
 

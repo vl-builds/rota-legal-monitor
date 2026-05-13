@@ -103,72 +103,81 @@ const PAGE_CSS = `
     align-items: start;
   }
 
-  .vp-section { margin-bottom: 40px; }
+  .vp-section { margin-bottom: 56px; }
   .vp-section-title {
-    font-size: 11px; font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    color: var(--muted); margin-bottom: 16px;
-    padding-bottom: 10px; border-bottom: 1px solid var(--hairline);
+    font-size: 11px; font-weight: 500; line-height: 1;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(245,245,240,.5); margin-bottom: 18px;
+    padding: 0; border: none;
   }
 
-  /* Documents */
-  .doc-list { display: flex; flex-direction: column; gap: 10px; }
-  .doc-item {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 14px 16px; border-radius: var(--r-md);
-    background: var(--surface-card); border: 1px solid var(--hairline);
+  /* Document rows (shared visual rhythm for all list sections) */
+  .docrows {
+    --br-ink: #f5f5f0;
+    --br-ink-2: rgba(245,245,240,.72);
+    --br-ink-3: rgba(245,245,240,.5);
+    --br-ink-4: rgba(245,245,240,.32);
+    --br-line: rgba(245,245,240,.14);
+    --br-card: rgba(255,255,255,.015);
+    --br-ok: #34d399;
+    --br-bad: #f87171;
+    --br-warn: #fbbf24;
+    --br-info: #a78bfa;
+    --br-neut: #94a3b8;
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--br-line);
   }
-  .doc-item.critical { border-color: var(--primary); }
-  .doc-dot {
+  .docrow {
+    display: grid;
+    grid-template-columns: 56px 1.1fr 1.2fr 2.4fr;
+    gap: 32px; padding: 24px 8px;
+    border-bottom: 1px solid var(--br-line);
+    align-items: start;
+    transition: background 250ms ease;
+  }
+  .docrow:hover { background: var(--br-card); }
+  .docrow.compact { grid-template-columns: 56px 1.1fr 1.2fr; }
+  .docrow.step { grid-template-columns: 56px 1fr; gap: 24px; padding: 22px 8px; }
+  .docrow-index {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 400; line-height: 1; letter-spacing: 0.05em;
+    color: var(--br-ink-4); padding-top: 5px;
+  }
+  .docrow-label {
+    font-size: 11px; font-weight: 500; line-height: 1.5; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--br-ink-3); padding-top: 5px;
+  }
+  .docrow-verdict { display: flex; gap: 10px; align-items: flex-start; }
+  .docrow-dot {
     width: 8px; height: 8px; border-radius: 50%;
-    background: var(--muted); flex-shrink: 0; margin-top: 5px;
+    margin-top: 9px; flex-shrink: 0;
+    box-shadow: 0 0 0 4px rgba(255,255,255,.025);
   }
-  .doc-item.critical .doc-dot { background: var(--primary); }
-  .doc-name { font-size: 14px; font-weight: 600; color: var(--on-dark); }
-  .doc-desc { font-size: 13px; color: var(--body); margin-top: 2px; }
-
-  /* Steps */
-  .step-list { display: flex; flex-direction: column; gap: 0; }
-  .step-item {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: 16px 0; border-bottom: 1px solid var(--hairline);
+  .docrow-dot.long { margin-top: 7px; }
+  .docrow-dot[data-tone="ok"]   { background: var(--br-ok); }
+  .docrow-dot[data-tone="bad"]  { background: var(--br-bad); }
+  .docrow-dot[data-tone="warn"] { background: var(--br-warn); }
+  .docrow-dot[data-tone="info"] { background: var(--br-info); }
+  .docrow-dot[data-tone="neut"] { background: var(--br-neut); }
+  .docrow-verdict-text {
+    font-size: 20px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--br-ink);
   }
-  .step-item:last-child { border-bottom: none; }
-  .step-n {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--surface-card); border: 1px solid var(--hairline);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-family: 'JetBrains Mono', monospace;
-    color: var(--primary); flex-shrink: 0; margin-top: 1px;
+  .docrow-verdict-text.long { font-size: 15px; font-weight: 500; line-height: 1.35; letter-spacing: normal; }
+  .docrow-verdict-text.mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 18px; letter-spacing: 0;
   }
-  .step-text { font-size: 14px; color: var(--body); line-height: 1.55; }
-
-  /* Fees */
-  .fee-row {
-    display: flex; align-items: baseline; gap: 10px;
-    padding: 12px 0; border-bottom: 1px solid var(--hairline);
+  .docrow-prose {
+    font-size: 13.5px; line-height: 1.6; color: var(--br-ink-2); margin: 0;
   }
-  .fee-row:last-child { border-bottom: none; }
-  .fee-amount {
-    font-size: 20px; font-weight: 700; font-family: 'JetBrains Mono', monospace;
-    color: var(--primary);
+  .docrow.step .docrow-prose { font-size: 14px; padding-top: 3px; }
+  .empty-doc {
+    padding: 22px 8px; font-size: 13px; color: rgba(245,245,240,.5);
+    border-top: 1px solid rgba(245,245,240,.14);
+    border-bottom: 1px solid rgba(245,245,240,.14);
+    font-family: 'JetBrains Mono', monospace;
   }
-  .fee-note { font-size: 13px; color: var(--muted); }
-
-  /* Rights */
-  .right-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 12px 0; border-bottom: 1px solid var(--hairline);
-    font-size: 14px; color: var(--body);
-  }
-  .right-item:last-child { border-bottom: none; }
-  .right-icon {
-    width: 20px; height: 20px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; flex-shrink: 0;
-  }
-  .right-icon.yes { background: rgba(34,197,94,.12); color: var(--accent-emerald); }
-  .right-icon.no  { background: rgba(136,136,136,.1); color: var(--muted); }
 
   /* Sidebar */
   .vp-sidebar { display: flex; flex-direction: column; gap: 16px; }
@@ -222,6 +231,18 @@ const PAGE_CSS = `
     font-family: 'JetBrains Mono', monospace;
   }
 
+  @media (max-width: 1000px) {
+    .docrow {
+      grid-template-columns: 36px 1fr;
+      gap: 12px 16px;
+      padding: 22px 4px;
+    }
+    .docrow.compact { grid-template-columns: 36px 1fr; }
+    .docrow.step { grid-template-columns: 36px 1fr; }
+    .docrow-label { padding-top: 7px; }
+    .docrow-verdict { grid-column: 1 / -1; }
+    .docrow-prose { grid-column: 1 / -1; }
+  }
   @media (max-width: 900px) {
     .vp-grid { grid-template-columns: 1fr; }
     .vp-stats-strip { flex-direction: column; }
@@ -257,57 +278,115 @@ export function generateVisaPage(
   const appLoc = APP_LOC[visa.process.applicationLocation] ?? visa.process.applicationLocation
   const duration = visa.process.estimatedDuration ?? 'A determinar'
 
+  const pad = (n: number): string => String(n).padStart(2, '0')
+
   // Documents section
   const docsHtml = visa.requirements.documents.length > 0
-    ? `<div class="doc-list">
-        ${visa.requirements.documents.map(doc => `
-        <div class="doc-item${doc.isCritical ? ' critical' : ''}">
-          <div class="doc-dot"></div>
-          <div>
-            <div class="doc-name">${esc(doc.name)}</div>
-            ${doc.description ? `<div class="doc-desc">${esc(doc.description)}</div>` : ''}
-          </div>
-        </div>`).join('')}
+    ? `<div class="docrows">
+        ${visa.requirements.documents.map((doc, i) => {
+          const tone = doc.isCritical ? 'bad' : 'neut'
+          const label = doc.isCritical ? 'Crítico' : 'Padrão'
+          const long = doc.name.length > 22
+          return `
+          <div class="docrow">
+            <div class="docrow-index">${pad(i + 1)}</div>
+            <div class="docrow-label">${label}</div>
+            <div class="docrow-verdict">
+              <span class="docrow-dot${long ? ' long' : ''}" data-tone="${tone}"></span>
+              <span class="docrow-verdict-text${long ? ' long' : ''}">${esc(doc.name)}</span>
+            </div>
+            <p class="docrow-prose">${doc.description ? esc(doc.description) : '<span style="color:rgba(245,245,240,.4);">Sem descrição adicional.</span>'}</p>
+          </div>`
+        }).join('')}
       </div>`
-    : `<p class="empty-note">Documentos em levantamento. Consulte a aba Fontes na página do país.</p>`
+    : `<p class="empty-doc">Documentos em levantamento. Consulte a aba Fontes na página do país.</p>`
 
   // Steps section
   const stepsHtml = visa.process.steps.length > 0
-    ? `<div class="step-list">
+    ? `<div class="docrows">
         ${visa.process.steps.map(s => `
-        <div class="step-item">
-          <span class="step-n">${s.order}</span>
-          <span class="step-text">${esc(s.description)}</span>
+        <div class="docrow step">
+          <div class="docrow-index">${pad(s.order)}</div>
+          <p class="docrow-prose">${esc(s.description)}</p>
         </div>`).join('')}
       </div>`
-    : `<p class="empty-note">Etapas em levantamento. Consulte as fontes oficiais.</p>`
+    : `<p class="empty-doc">Etapas em levantamento. Consulte as fontes oficiais.</p>`
 
   // Fees
   const feesHtml = visa.process.fees.length > 0
-    ? visa.process.fees.map(f => `
-      <div class="fee-row">
-        <span class="fee-amount">${fmtMoney(f.amount, f.currency)}</span>
-        ${f.notes ? `<span class="fee-note">${esc(f.notes)}</span>` : ''}
-      </div>`).join('')
-    : `<p class="empty-note">Taxa em levantamento.</p>`
+    ? `<div class="docrows">
+        ${visa.process.fees.map((f, i) => `
+        <div class="docrow">
+          <div class="docrow-index">${pad(i + 1)}</div>
+          <div class="docrow-label">Taxa</div>
+          <div class="docrow-verdict">
+            <span class="docrow-dot" data-tone="info"></span>
+            <span class="docrow-verdict-text mono">${fmtMoney(f.amount, f.currency)}</span>
+          </div>
+          <p class="docrow-prose">${f.notes ? esc(f.notes) : '<span style="color:rgba(245,245,240,.4);">Sem observações adicionais.</span>'}</p>
+        </div>`).join('')}
+      </div>`
+    : `<p class="empty-doc">Taxa em levantamento.</p>`
 
   // Rights
-  const rightsItems: { ok: boolean; label: string }[] = [
-    { ok: visa.rights.canWork, label: 'Trabalhar legalmente' },
-    { ok: visa.rights.canBringFamily, label: 'Trazer família' },
-    { ok: visa.rights.canChangeEmployer, label: 'Mudar de empregador' },
-    ...(visa.rights.pathToResidency
-      ? [{ ok: true, label: `Residência permanente após ${visa.rights.pathToResidency.yearsRequired} anos` }]
-      : []),
-    ...(visa.rights.pathToCitizenship
-      ? [{ ok: true, label: `Cidadania após ${visa.rights.pathToCitizenship.yearsRequired} anos` }]
-      : []),
+  const rightsItems: { ok: boolean; label: string; verdict: string; prose: string; long?: boolean }[] = [
+    {
+      ok: visa.rights.canWork,
+      label: 'Trabalho',
+      verdict: visa.rights.canWork ? 'Permitido' : 'Não permitido',
+      prose: visa.rights.canWork
+        ? `Permite atuação remunerada em ${esc(config.displayName)} sob as condições deste visto.`
+        : 'Este visto não autoriza atividade laboral remunerada.',
+    },
+    {
+      ok: visa.rights.canBringFamily,
+      label: 'Reagrupamento familiar',
+      verdict: visa.rights.canBringFamily ? 'Permitido' : 'Não permitido',
+      prose: visa.rights.canBringFamily
+        ? 'Cônjuge e dependentes podem solicitar reunião familiar (sujeito a comprovação de renda e moradia).'
+        : 'Sem direito de reunião familiar nesta categoria. Cada dependente precisaria de visto próprio.',
+    },
+    {
+      ok: visa.rights.canChangeEmployer,
+      label: 'Mudança de empregador',
+      verdict: visa.rights.canChangeEmployer ? 'Permitida' : 'Restrita',
+      prose: visa.rights.canChangeEmployer
+        ? 'É possível trocar de empregador durante a vigência do visto, geralmente com comunicação às autoridades.'
+        : 'O visto está atrelado ao empregador inicial. Troca exige novo processo.',
+    },
   ]
-  const rightsHtml = rightsItems.map(r => `
-    <div class="right-item">
-      <span class="right-icon ${r.ok ? 'yes' : 'no'}">${r.ok ? '✓' : '✗'}</span>
-      ${esc(r.label)}
-    </div>`).join('')
+
+  if (visa.rights.pathToResidency) {
+    rightsItems.push({
+      ok: true,
+      label: 'Caminho à residência',
+      verdict: `Após ${visa.rights.pathToResidency.yearsRequired} anos`,
+      long: true,
+      prose: 'O tempo neste visto conta para obtenção de residência permanente, desde que cumpridos os demais requisitos.',
+    })
+  }
+  if (visa.rights.pathToCitizenship) {
+    rightsItems.push({
+      ok: true,
+      label: 'Caminho à cidadania',
+      verdict: `Após ${visa.rights.pathToCitizenship.yearsRequired} anos`,
+      long: true,
+      prose: 'Possível pleitear cidadania após o período mínimo de residência, mediante prova de integração e idioma.',
+    })
+  }
+
+  const rightsHtml = `<div class="docrows">
+    ${rightsItems.map((r, i) => `
+    <div class="docrow">
+      <div class="docrow-index">${pad(i + 1)}</div>
+      <div class="docrow-label">${esc(r.label)}</div>
+      <div class="docrow-verdict">
+        <span class="docrow-dot${r.long ? ' long' : ''}" data-tone="${r.ok ? 'ok' : 'neut'}"></span>
+        <span class="docrow-verdict-text${r.long ? ' long' : ''}">${esc(r.verdict)}</span>
+      </div>
+      <p class="docrow-prose">${r.prose}</p>
+    </div>`).join('')}
+  </div>`
 
   // Sidebar fields
   const incomeHtml = visa.requirements.incomeRequirement
