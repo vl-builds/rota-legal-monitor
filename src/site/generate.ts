@@ -212,6 +212,38 @@ async function patchHome(
   await writeFile(path, html, 'utf-8')
 }
 
+async function patchFooters(latestIso: string): Promise<void> {
+  const label = monthLabel(latestIso)
+  const files = [
+    'home.html',
+    'paises.html',
+    'comparar.html',
+    'qual-pais.html',
+    'calculadora.html',
+    'historico.html',
+    'sobre.html',
+    'guia-pratico.html',
+    'dev.html',
+  ]
+
+  const footerRe =
+    /(Última extração:\s*)(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)\/\d{4}/g
+
+  for (const name of files) {
+    const path = join(PREVIEWS_DIR, name)
+    try {
+      const html = await readFile(path, 'utf-8')
+      const updated = html.replace(footerRe, `$1${label}`)
+      if (updated !== html) {
+        await writeFile(path, updated, 'utf-8')
+        console.log(`[ok] ${name} — rodapé atualizado para ${label}`)
+      }
+    } catch {
+      // file may not exist; skip silently
+    }
+  }
+}
+
 async function main(): Promise<void> {
   const files = await readdir(DATA_DIR)
   const codes = files
@@ -248,6 +280,14 @@ async function main(): Promise<void> {
 
   await patchHome(allData)
   console.log('[ok] home.html atualizado')
+
+  const latestIso = allData.reduce(
+    (best, { data }) => (data.meta.lastUpdated > best ? data.meta.lastUpdated : best),
+    '',
+  )
+  if (latestIso) {
+    await patchFooters(latestIso)
+  }
 
   // Generate individual visa pages
   const VISTOS_DIR = join(PREVIEWS_DIR, 'vistos')
