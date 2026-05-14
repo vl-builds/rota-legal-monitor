@@ -130,7 +130,7 @@ async function patchPaises(
     const nextMarker = html.indexOf('<!-- ', startIdx + marker.length)
     const section = nextMarker === -1 ? html.slice(startIdx) : html.slice(startIdx, nextMarker)
 
-    const newSection = section
+    let newSection = section
       // Update first cc-stat-val that is followed by "tipos de visto"
       .replace(
         /(<span class="cc-stat-val">)\d+(<\/span>\s*<span class="cc-stat-lbl">tipos de visto<\/span>)/,
@@ -146,6 +146,22 @@ async function patchPaises(
         /class="confidence-dot \w+"/,
         `class="confidence-dot ${data.reliability.extractionConfidence === 'high' ? 'alta' : data.reliability.extractionConfidence === 'medium' ? 'media' : 'baixa'}"`,
       )
+
+    // Update minimum wage value and normalize label
+    const mw = data.generalRequirements.minimumWage
+    if (mw && mw.amount) {
+      const formatted = Math.round(mw.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      const salaryVal = `${mw.currency} ${formatted}`
+      newSection = newSection
+        .replace(
+          /(<span class="cc-stat-val">)[^<]+(<\/span>\s*<span class="cc-stat-lbl">(?:salário mínimo|renda mínima) \/(?:mês|hora)<\/span>)/,
+          `$1${salaryVal}$2`,
+        )
+        .replace(
+          /(<span class="cc-stat-lbl">)(?:salário mínimo|renda mínima) \/(?:mês|hora)(<\/span>)/,
+          `$1salário mínimo /mês$2`,
+        )
+    }
 
     html =
       html.slice(0, startIdx) +

@@ -16,10 +16,16 @@
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
     "proofOfFunds": {
-      "amount": 2154,
+      "amount": 2190,
       "currency": "EUR",
       "period": "monthly",
-      "notes": "Salário mínimo nacional belga (RMMMG) 2026: EUR 2.154,11/mês para jornada de 38h semanais (EUR 12,82/hora → EUR 13,08/hora a partir de janeiro de 2026). Single Permit: requer no mínimo o salário mínimo nacional. Thresholds por região: Bruxelas mantém limiar 2025 de EUR 3.703/mês (altamente qualificados); Valônia: EUR 53.220/ano para altamente qualificados; Flandres: mantém limiares 2025 até publicação Statbel."
+      "notes": "Single Permit: requer no mínimo o salário mínimo nacional (RMMMG). Thresholds por região: Bruxelas EUR 3.703/mês (altamente qualificados); Valônia: EUR 53.220/ano; Flandres: limiares 2025 até publicação Statbel."
+    },
+    "minimumWage": {
+      "amount": 2190,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "RMMMG (Revenu Minimum Mensuel Moyen Garanti) 2026: EUR 2.189,81/mês bruto desde 1 abril 2026 (EUR 13,30/hora, 38h semanais). Indexação automática ao índice de saúde; aumento de EUR 35 previsto para 2026 e 2028."
     },
     "vaccinations": []
   },

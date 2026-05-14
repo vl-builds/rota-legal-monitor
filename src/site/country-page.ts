@@ -1187,7 +1187,7 @@ const PAGE_CSS = `
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
   /* ---- quick summary ---- */
-  .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
+  .quick-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
   .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
@@ -1418,9 +1418,9 @@ const PAGE_CSS = `
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
   @media (max-width: 1024px) {
-    .quick-summary { grid-template-columns: repeat(2, 1fr); }
-    .qs-item:nth-child(2n+1) { border-left: none; }
-    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .quick-summary { grid-template-columns: repeat(3, 1fr); }
+    .qs-item:nth-child(3n+1) { border-left: none; }
+    .qs-item:nth-child(n+4) { border-top: 1px solid var(--hairline); }
     .visa-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
@@ -1429,6 +1429,8 @@ const PAGE_CSS = `
     .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
     .sticky-id { padding-top: var(--s-xs); }
     .quick-summary { grid-template-columns: 1fr 1fr; }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
     .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
     .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
     .rights-grid { grid-template-columns: 1fr; }
@@ -1990,6 +1992,11 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
     <span class="qs-label">Work permit exigido</span>
     <span class="qs-value ${needsPermit ? 'negative' : 'positive'}">${needsPermit ? 'Sim' : 'Não'}</span>
     <span class="qs-sub">${needsPermit ? 'Autorização obrigatória para trabalhar' : 'Trabalho permitido sem autorização especial'}</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Salário mínimo nacional</span>
+    <span class="qs-value accent">${data.generalRequirements.minimumWage ? fmtMoney(data.generalRequirements.minimumWage.amount, data.generalRequirements.minimumWage.currency, data.generalRequirements.minimumWage.period) : '—'}</span>
+    <span class="qs-sub">${data.generalRequirements.minimumWage?.notes ? esc(data.generalRequirements.minimumWage.notes).slice(0, 65) + (data.generalRequirements.minimumWage.notes.length > 65 ? '…' : '') : 'Sem mínimo nacional por lei'}</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Dados atualizados em</span>

@@ -24,7 +24,13 @@
       "amount": 1091,
       "currency": "EUR",
       "period": "monthly",
-      "notes": "Chancenkarte (Opportunity Card): conta bloqueada (Sperrkonto) mínima de EUR 1.091/mês (EUR 13.092 para 12 meses). EU Blue Card: salário mínimo obrigatório no contrato de EUR 4.225/mês bruto (EUR 50.700/ano) para profissões gerais, ou EUR 3.828/mês (EUR 45.934/ano) para profissões escassas — nenhuma conta bloqueada adicional exigida. Fachkräfteeinwanderungsgesetz (Lei de Imigração Qualificada) 2026."
+      "notes": "Chancenkarte (Opportunity Card): conta bloqueada (Sperrkonto) mínima de EUR 1.091/mês (EUR 13.092 para 12 meses). EU Blue Card: salário mínimo obrigatório no contrato de EUR 4.225/mês bruto (EUR 50.700/ano) para profissões gerais, ou EUR 3.828/mês (EUR 45.934/ano) para profissões escassas. Fachkräfteeinwanderungsgesetz (Lei de Imigração Qualificada) 2026."
+    },
+    "minimumWage": {
+      "amount": 2409,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Mindestlohn (salário mínimo nacional) 2026: EUR 13,90/hora desde 1 janeiro 2026 (aumento de EUR 12,82). Equivalente a EUR 2.409/mês bruto (40h semanais). Próximo aumento previsto: EUR 14,60/hora em janeiro 2027."
     },
     "vaccinations": []
   },

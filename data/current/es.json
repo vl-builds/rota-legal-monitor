@@ -24,7 +24,13 @@
       "amount": 2849,
       "currency": "EUR",
       "period": "monthly",
-      "notes": "Visto de Nômade Digital (Teletrabajo): mínimo EUR 2.849/mês (200% do SMI espanhol 2026 de EUR 1.424,50/mês em 12 pagamentos). Para trabalho subordinado (cuenta ajena): contrato com salário conforme convenção coletiva. SMI Espanha 2026: EUR 1.221/mês em 14 pagamentos (EUR 1.424,50/mês em 12 pagamentos). Aprovado retroativamente a janeiro de 2026."
+      "notes": "Visto de Nômade Digital (Teletrabajo): mínimo EUR 2.849/mês (200% do SMI em 12 pagamentos). Para trabalho subordinado (cuenta ajena): contrato com salário conforme convenção coletiva."
+    },
+    "minimumWage": {
+      "amount": 1221,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "SMI (Salario Mínimo Interprofesional) 2026: EUR 1.221/mês em 14 pagamentos (EUR 1.424,50/mês em 12 pagamentos, EUR 17.094/ano). Aumento de 3,1% face a 2025. Aprovado pelo Real Decreto 126/2026 de 18 fevereiro 2026, com efeito retroativo a janeiro 2026. Isenção de IRPF para quem recebe o SMI."
     },
     "vaccinations": []
   },

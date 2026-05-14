@@ -28,7 +28,7 @@
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
   /* ---- quick summary ---- */
-  .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
+  .quick-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
   .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
@@ -259,9 +259,9 @@
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
   @media (max-width: 1024px) {
-    .quick-summary { grid-template-columns: repeat(2, 1fr); }
-    .qs-item:nth-child(2n+1) { border-left: none; }
-    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .quick-summary { grid-template-columns: repeat(3, 1fr); }
+    .qs-item:nth-child(3n+1) { border-left: none; }
+    .qs-item:nth-child(n+4) { border-top: 1px solid var(--hairline); }
     .visa-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
@@ -270,6 +270,8 @@
     .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
     .sticky-id { padding-top: var(--s-xs); }
     .quick-summary { grid-template-columns: 1fr 1fr; }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
     .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
     .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
     .rights-grid { grid-template-columns: 1fr; }
@@ -805,6 +807,11 @@
     <span class="qs-label">Work permit exigido</span>
     <span class="qs-value negative">Sim</span>
     <span class="qs-sub">Autorização obrigatória para trabalhar</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Salário mínimo nacional</span>
+    <span class="qs-value accent">EUR 2.453/mês</span>
+    <span class="qs-sub">National Minimum Wage 2026: EUR 14,15/hora desde 1 janeiro 2026 (…</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Dados atualizados em</span>
@@ -1596,7 +1603,7 @@
               <span class="docrow-dot" data-tone="warn"></span>
               <span class="docrow-verdict-text">EUR 40.904/ano</span>
             </div>
-            <p class="docrow-prose">Critical Skills Employment Permit (CSEP) a partir de março de 2026: EUR 40.904/ano para ocupações na lista de profissões críticas do DETE (exige grau académico relevante). Rota de recém-graduados (diploma obtido nos últimos 12 meses): EUR 36.848/ano. Rota de salário alto: qualquer ocupação com salário acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano. Roadmap de aumentos graduais até 2030 publicado pelo governo irlandês.</p>
+            <p class="docrow-prose">Critical Skills Employment Permit (CSEP): EUR 40.904/ano para ocupações críticas. Recém-graduados: EUR 36.848/ano. Rota salário alto: acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano.</p>
           </div>
           <div class="docrow">
             <div class="docrow-index">03</div>
@@ -2347,7 +2354,7 @@
           <div class="st-disclaimer">// Dados extraídos em mai/2026. Confirme nas fontes oficiais antes de iniciar.</div>
         </div>
 
-        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 40.904/ano.","detail":"Critical Skills Employment Permit (CSEP) a partir de março de 2026: EUR 40.904/ano para ocupações na lista de profissões críticas do DETE (exige grau académico relevante). Rota de recém-graduados (diploma obtido nos últimos 12 meses): EUR 36.848/ano. Rota de salário alto: qualquer ocupação com salário acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano. Roadmap de aumentos graduais até 2030 publicado pelo governo irlandês.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"9 tipos de visto monitorados em Irlanda.","detail":"Permissão de Emprego para Competências Críticas é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["9 tipos"]},{"id":"p2-consult","title":"Consultar fontes oficiais","summary":"O passo a passo detalhado está nas fontes listadas na aba Fontes.","detail":"As etapas exatas variam por tipo de visto. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.","tip":"","tags":["Fontes oficiais"]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Irlanda, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
+        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 40.904/ano.","detail":"Critical Skills Employment Permit (CSEP): EUR 40.904/ano para ocupações críticas. Recém-graduados: EUR 36.848/ano. Rota salário alto: acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"9 tipos de visto monitorados em Irlanda.","detail":"Permissão de Emprego para Competências Críticas é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["9 tipos"]},{"id":"p2-consult","title":"Consultar fontes oficiais","summary":"O passo a passo detalhado está nas fontes listadas na aba Fontes.","detail":"As etapas exatas variam por tipo de visto. As URLs oficiais na aba Fontes têm as instruções completas e atualizadas.","tip":"","tags":["Fontes oficiais"]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Irlanda, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
       </div>
     </section>
   </div>

@@ -2,6 +2,7 @@ import { join, resolve, sep } from 'node:path'
 
 const DATA_DIR = join(import.meta.dir, '..', '..', 'data', 'current')
 const PREVIEWS_DIR = join(import.meta.dir, '..', '..', 'previews')
+const IMAGES_DIR = join(import.meta.dir, '..', '..', 'imagens')
 const PORT = 4173
 
 const MIME: Record<string, string> = {
@@ -28,6 +29,23 @@ const server = Bun.serve({
     const headers = {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain',
+    }
+
+    // /imagens/* → imagens/
+    if (path.startsWith('/imagens/')) {
+      const filename = path.slice('/imagens/'.length)
+      if (!filename) return new Response('Not found', { status: 404 })
+      const resolved = resolve(IMAGES_DIR, filename)
+      if (!resolved.startsWith(IMAGES_DIR + sep) && resolved !== IMAGES_DIR) {
+        return new Response('Not found', { status: 404 })
+      }
+      const file = Bun.file(resolved)
+      if (!(await file.exists())) {
+        return new Response('Not found', { status: 404 })
+      }
+      return new Response(file, {
+        headers: { ...headers, 'Content-Type': mime(filename) },
+      })
     }
 
     // /data/* → data/current/

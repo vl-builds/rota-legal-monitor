@@ -28,7 +28,7 @@
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
   /* ---- quick summary ---- */
-  .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
+  .quick-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
   .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
@@ -259,9 +259,9 @@
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
   @media (max-width: 1024px) {
-    .quick-summary { grid-template-columns: repeat(2, 1fr); }
-    .qs-item:nth-child(2n+1) { border-left: none; }
-    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .quick-summary { grid-template-columns: repeat(3, 1fr); }
+    .qs-item:nth-child(3n+1) { border-left: none; }
+    .qs-item:nth-child(n+4) { border-top: 1px solid var(--hairline); }
     .visa-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
@@ -270,6 +270,8 @@
     .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
     .sticky-id { padding-top: var(--s-xs); }
     .quick-summary { grid-template-columns: 1fr 1fr; }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
     .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
     .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
     .rights-grid { grid-template-columns: 1fr; }
@@ -805,6 +807,11 @@
     <span class="qs-label">Work permit exigido</span>
     <span class="qs-value negative">Sim</span>
     <span class="qs-sub">Autorização obrigatória para trabalhar</span>
+  </div>
+  <div class="qs-item">
+    <span class="qs-label">Salário mínimo nacional</span>
+    <span class="qs-value accent">EUR 2.304/mês</span>
+    <span class="qs-sub">Wettelijk minimumloon (WML) 2026: EUR 14,71/hora desde 1 janeiro …</span>
   </div>
   <div class="qs-item">
     <span class="qs-label">Dados atualizados em</span>
@@ -2411,9 +2418,9 @@
             <div class="docrow-label">Comprovante de fundos</div>
             <div class="docrow-verdict">
               <span class="docrow-dot" data-tone="warn"></span>
-              <span class="docrow-verdict-text">EUR 2.294/mês</span>
+              <span class="docrow-verdict-text">EUR 2.304/mês</span>
             </div>
-            <p class="docrow-prose">Salário mínimo holandês em 2026: EUR 14,71/hora, aproximadamente EUR 2.294/mês (36h) a EUR 2.545/mês (40h). Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente.</p>
+            <p class="docrow-prose">Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente.</p>
           </div>
           <div class="docrow">
             <div class="docrow-index">03</div>
@@ -2708,7 +2715,7 @@
         <foreignObject x="268" y="542" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p1-funds">
             <div class="st-node-title">Comprovante de fundos</div>
-            <div class="st-node-desc">Mínimo EUR 2.294/mês.</div>
+            <div class="st-node-desc">Mínimo EUR 2.304/mês.</div>
             <div class="st-node-tags"><span>Financeiro</span></div>
             <div class="st-node-actions">
               <button type="button" class="st-node-action st-node-toggle" data-toggle="p1-funds">
@@ -3109,7 +3116,7 @@
             </div>
             <div class="st-mnode-body" data-for="p1-funds">
               <div class="st-mnode-title">Comprovante de fundos</div>
-              <div class="st-mnode-desc">Mínimo EUR 2.294/mês.</div>
+              <div class="st-mnode-desc">Mínimo EUR 2.304/mês.</div>
               <div class="st-mnode-tags"><span>Financeiro</span></div>
               <div class="st-mnode-actions">
                 <button type="button" class="st-mnode-toggle" data-mtoggle="p1-funds">
@@ -3336,7 +3343,7 @@
           <div class="st-disclaimer">// Dados extraídos em mai/2026. Confirme nas fontes oficiais antes de iniciar.</div>
         </div>
 
-        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-insurance","title":"Seguro saúde internacional","summary":"Seguro saúde é obrigatório para residentes na Holanda. Após chegada, deve-se contratar seguro holandês (zorgverzekeri...","detail":"Seguro saúde é obrigatório para residentes na Holanda. Após chegada, deve-se contratar seguro holandês (zorgverzekering) dentro de 4 meses. Para o período de visto, cobertura internacional de EUR 30.000 mínima.","tip":"Compare seguros com cobertura Schengen completa quando aplicável.","tags":["Obrigatório","Visto D"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 2.294/mês.","detail":"Salário mínimo holandês em 2026: EUR 14,71/hora, aproximadamente EUR 2.294/mês (36h) a EUR 2.545/mês (40h). Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"16 tipos de visto monitorados em Países Baixos.","detail":"Permissão de residência para trabalhador altamente qualificado é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["16 tipos"]},{"id":"p2-step-1","title":"Empregador holandês deve ter o estatuto de 'erkend referent'","summary":"Empregador holandês deve ter o estatuto de 'erkend referent' (referente reconhecido) junto ao IND (Immigratie- en Naturalisatiedienst) — ...","detail":"Empregador holandês deve ter o estatuto de 'erkend referent' (referente reconhecido) junto ao IND (Immigratie- en Naturalisatiedienst) — obtido pela maioria das grandes empresas e universidades","tip":"","tags":[]},{"id":"p2-step-2","title":"Empregador erkend referent submete o pedido de...","summary":"Empregador erkend referent submete o pedido de verblijfsvergunning (permissão de residência) diretamente ao IND em nome do trabalhador","detail":"Empregador erkend referent submete o pedido de verblijfsvergunning (permissão de residência) diretamente ao IND em nome do trabalhador","tip":"","tags":[]},{"id":"p2-step-3","title":"Pagar taxa IND de €345","summary":"Pagar taxa IND de €345 — o IND decide em prazo de 2 semanas para empregadores erkend referent","detail":"Pagar taxa IND de €345 — o IND decide em prazo de 2 semanas para empregadores erkend referent","tip":"","tags":[]},{"id":"p2-step-4","title":"Se o trabalhador está fora dos Países Baixos","summary":"Se o trabalhador está fora dos Países Baixos, ele deve solicitar o MVV (visto de entrada) no consulado holandês no Brasil — custo de ~€225","detail":"Se o trabalhador está fora dos Países Baixos, ele deve solicitar o MVV (visto de entrada) no consulado holandês no Brasil — custo de ~€225","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Países Baixos, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
+        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-insurance","title":"Seguro saúde internacional","summary":"Seguro saúde é obrigatório para residentes na Holanda. Após chegada, deve-se contratar seguro holandês (zorgverzekeri...","detail":"Seguro saúde é obrigatório para residentes na Holanda. Após chegada, deve-se contratar seguro holandês (zorgverzekering) dentro de 4 meses. Para o período de visto, cobertura internacional de EUR 30.000 mínima.","tip":"Compare seguros com cobertura Schengen completa quando aplicável.","tags":["Obrigatório","Visto D"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 2.304/mês.","detail":"Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"16 tipos de visto monitorados em Países Baixos.","detail":"Permissão de residência para trabalhador altamente qualificado é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["16 tipos"]},{"id":"p2-step-1","title":"Empregador holandês deve ter o estatuto de 'erkend referent'","summary":"Empregador holandês deve ter o estatuto de 'erkend referent' (referente reconhecido) junto ao IND (Immigratie- en Naturalisatiedienst) — ...","detail":"Empregador holandês deve ter o estatuto de 'erkend referent' (referente reconhecido) junto ao IND (Immigratie- en Naturalisatiedienst) — obtido pela maioria das grandes empresas e universidades","tip":"","tags":[]},{"id":"p2-step-2","title":"Empregador erkend referent submete o pedido de...","summary":"Empregador erkend referent submete o pedido de verblijfsvergunning (permissão de residência) diretamente ao IND em nome do trabalhador","detail":"Empregador erkend referent submete o pedido de verblijfsvergunning (permissão de residência) diretamente ao IND em nome do trabalhador","tip":"","tags":[]},{"id":"p2-step-3","title":"Pagar taxa IND de €345","summary":"Pagar taxa IND de €345 — o IND decide em prazo de 2 semanas para empregadores erkend referent","detail":"Pagar taxa IND de €345 — o IND decide em prazo de 2 semanas para empregadores erkend referent","tip":"","tags":[]},{"id":"p2-step-4","title":"Se o trabalhador está fora dos Países Baixos","summary":"Se o trabalhador está fora dos Países Baixos, ele deve solicitar o MVV (visto de entrada) no consulado holandês no Brasil — custo de ~€225","detail":"Se o trabalhador está fora dos Países Baixos, ele deve solicitar o MVV (visto de entrada) no consulado holandês no Brasil — custo de ~€225","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Países Baixos, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
       </div>
     </section>
   </div>

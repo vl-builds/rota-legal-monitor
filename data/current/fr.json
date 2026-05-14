@@ -16,10 +16,16 @@
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
     "proofOfFunds": {
-      "amount": 1823,
+      "amount": 1868,
       "currency": "EUR",
       "period": "monthly",
-      "notes": "SMIC (Salaire Minimum Interprofessionnel de Croissance) 2026: EUR 1.823,03/mês bruto (EUR 12,02/hora, 35h semanais). Valor líquido: EUR 1.443,11/mês. Aumento de 1,18% a partir de 1 de janeiro de 2026. Para Talent Passport: salário mínimo de 1,5x o SMIC (EUR 2.735/mês). Para Working Holiday (PVT): fundos iniciais recomendados EUR 2.500."
+      "notes": "Para Talent Passport: salário mínimo de 1,5x o SMIC (EUR 2.802/mês). Para Working Holiday (PVT): fundos iniciais recomendados EUR 2.500."
+    },
+    "minimumWage": {
+      "amount": 1868,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "SMIC (Salaire Minimum Interprofessionnel de Croissance) 2026: EUR 12,31/hora desde 1 junho 2026 (EUR 1.868/mês bruto, 35h semanais). Reajuste automático por inflação acima de 2%. Janeiro 2026: EUR 12,02/hora (EUR 1.823/mês). Valor líquido junho 2026: ~EUR 1.480/mês."
     },
     "vaccinations": []
   },

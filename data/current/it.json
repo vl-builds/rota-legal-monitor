@@ -26,6 +26,12 @@
       "period": "yearly",
       "notes": "Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado."
     },
+    "minimumWage": {
+      "amount": 1100,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Itália não tem salário mínimo nacional por lei em 2026. Piso salarial fixado por convenções coletivas setoriais (CCNL): mais de 992 acordos, com valores entre EUR 7/hora (hotelaria) e EUR 14/hora (bancário). Referência média: EUR 1.000 a EUR 1.500/mês bruto. Proposta de EUR 9/hora nacional não aprovada."
+    },
     "vaccinations": []
   },
   "meta": {

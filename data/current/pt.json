@@ -47,6 +47,12 @@
       "period": "monthly",
       "notes": "Salário mínimo nacional (SMN) em Portugal 2026: EUR 920/mês bruto. D1 trabalho subordinado: contrato de trabalho suficiente. D2/D3 trabalho independente: mínimo EUR 920/mês (1x SMN 2026). D7 renda passiva: EUR 920/mês mínimo. D8 nômade digital: EUR 3.480/mês (4x SMN 2026). Visto de Procura de Trabalho: suspenso pela AIMA desde outubro de 2025, aguardando nova regulamentação."
     },
+    "minimumWage": {
+      "amount": 920,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Salário mínimo nacional (SMN) 2026: EUR 920/mês bruto (aumento de EUR 50 face a 2025). Meta de EUR 1.100/mês em 2029."
+    },
     "vaccinations": []
   },
   "meta": {

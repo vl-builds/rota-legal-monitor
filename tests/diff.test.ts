@@ -63,6 +63,7 @@ function makeSnapshot(overrides: Partial<CountryData> = {}): CountryData {
     generalRequirements: {
       passportValidity: 'Minimo 6 meses',
       proofOfFunds: null,
+      minimumWage: null,
       healthInsurance: { required: false, mustBeLocal: false, minimumCoverage: null, notes: '' },
       cleanCriminalRecord: true,
       vaccinations: [],

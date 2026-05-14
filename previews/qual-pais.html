@@ -439,70 +439,70 @@ const COUNTRY_META = {
   nl: {
     name:'Países Baixos', tagline:'Hub tecnológico com mercado aberto a estrangeiros',
     capital:'Amsterdam', visa:'Highly Skilled Migrant', citizenship:'5 anos',
-    accent:'#FF6B35', flagStripes:['#AE1C28','#FFFFFF','#21468B'],
+    accent:'#FF6B35', flagImg:'/imagens/pais-nl.png',
     pros:['Forte demanda por TI e startups','Inglês amplamente aceito no trabalho','Ano de orientação para recém-formados'],
     con:'Custo de moradia elevado, especialmente em Amsterdã',
   },
   de: {
     name:'Alemanha', tagline:'Maior mercado de trabalho da Europa',
     capital:'Berlim', visa:'Blue Card / Chancenkarte', citizenship:'5 anos',
-    accent:'#DD0000', flagStripes:['#000000','#DD0000','#FFCE00'],
+    accent:'#DD0000', flagImg:'/imagens/pais-de.png',
     pros:['Salários entre os mais altos da região','Chancenkarte para busca de emprego','Caminho rápido para residência permanente'],
     con:'Alemão necessário para integração real no mercado',
   },
   pt: {
     name:'Portugal', tagline:'Porta de entrada da Europa sem barreira de idioma',
     capital:'Lisboa', visa:'D7 / D8 Nômade Digital', citizenship:'5 anos',
-    accent:'#16A34A', flagStripes:['#046A38','#DA291C'],
+    accent:'#16A34A', flagImg:'/imagens/pais-pt.png',
     pros:['Sem barreira de idioma para brasileiros','Custo de vida menor que Europa Central','Tech Visa e opção de trabalho remoto'],
     con:'Salários entre os mais baixos da Europa Ocidental',
   },
   es: {
     name:'Espanha', tagline:'Cultura próxima e mercado em crescimento',
     capital:'Madrid', visa:'Nômade Digital', citizenship:'10 anos (2 p/ ibero)',
-    accent:'#F1BF00', flagStripes:['#AA151B','#F1BF00'],
+    accent:'#F1BF00', flagImg:'/imagens/pais-es.png',
     pros:['Idioma próximo do português','Custo de vida moderado','Forte em turismo, gastronomia e agricultura'],
     con:'Burocracia mais complexa para estrangeiros não-UE',
   },
   ie: {
     name:'Irlanda', tagline:'Sede europeia das grandes techs, em inglês',
     capital:'Dublin', visa:'Critical Skills', citizenship:'5 anos',
-    accent:'#169B62', flagStripes:['#169B62','#FFFFFF','#FF883E'],
+    accent:'#169B62', flagImg:'/imagens/pais-ie.png',
     pros:['Inglês como língua de trabalho','Sede europeia de Google, Meta e Apple','Mercado de TI muito ativo'],
     con:'Custo de habitação em Dublin entre os mais altos da Europa',
   },
   fr: {
     name:'França', tagline:'Economia diversificada no coração da Europa',
     capital:'Paris', visa:'Passeport Talent', citizenship:'5 anos',
-    accent:'#0055A4', flagStripes:['#0055A4','#FFFFFF','#EF4135'],
+    accent:'#0055A4', flagImg:'/imagens/pais-fr.png',
     pros:['Grande mercado consumidor','Polo de moda, gastronomia e luxo','Acesso a toda a zona Schengen'],
     con:'Francês é quase obrigatório para trabalho e integração',
   },
   it: {
     name:'Itália', tagline:'Custo de vida variado e idioma próximo',
     capital:'Roma', visa:'Lavoro / Nômade', citizenship:'10 anos (descend.)',
-    accent:'#008C45', flagStripes:['#008C45','#F4F5F0','#CD212A'],
+    accent:'#008C45', flagImg:'/imagens/pais-it.png',
     pros:['Sul da Itália com custo de vida acessível','Idioma próximo do português','Forte em gastronomia, moda e manufatura'],
     con:'Mercado de trabalho menos dinâmico para estrangeiros',
   },
   be: {
     name:'Bélgica', tagline:'Centro administrativo da União Europeia',
     capital:'Bruxelas', visa:'Single Permit', citizenship:'5 anos',
-    accent:'#FAE042', flagStripes:['#000000','#FAE042','#ED2939'],
+    accent:'#FAE042', flagImg:'/imagens/pais-be.png',
     pros:['Sede de instituições da UE','Trilíngue: francês, neerlandês e alemão','Localização central na Europa'],
     con:'Mercado de trabalho menor, concorrência alta',
   },
   at: {
     name:'Áustria', tagline:'Qualidade de vida entre as mais altas da Europa',
     capital:'Viena', visa:'Rot-Weiß-Rot Karte', citizenship:'10 anos',
-    accent:'#ED2939', flagStripes:['#ED2939','#FFFFFF','#ED2939'],
+    accent:'#ED2939', flagImg:'/imagens/pais-at.png',
     pros:['Índices de qualidade de vida excelentes','Forte em engenharia e manufatura','Acesso aos mercados da Europa Central'],
     con:'Alemão obrigatório para a maioria das vagas',
   },
   au: {
     name:'Austrália', tagline:'Mercado anglófono com salários altos',
     capital:'Canberra', visa:'Skilled Independent / WHV', citizenship:'4 anos',
-    accent:'#012169', flagStripes:['#012169','#FFFFFF','#E4002B'],
+    accent:'#012169', flagImg:'/imagens/pais-au.png',
     pros:['Working Holiday Visa disponível','Salários entre os mais altos do mundo','Grande demanda em engenharia, saúde e TI'],
     con:'Distância do Brasil e fora do mercado europeu',
   },
@@ -666,7 +666,7 @@ function renderRail() {
     ${top3.map((c,i) => `
       <div class="rail-chip" style="animation-delay:${i*80}ms">
         <div class="rail-flag">
-          ${c.flagStripes.map(col=>`<div class="flag-stripe" style="background:${col}"></div>`).join('')}
+          <img src="${c.flagImg}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div class="rail-badge">${i+1}</div>
         </div>
         <div class="rail-lbl">${c.code.toUpperCase()}${c.match!=null?' · '+c.match+'%':''}</div>
@@ -754,8 +754,8 @@ function renderHero() {
     const r = 230;
     const x = Math.cos(angle) * r;
     const y = Math.sin(angle) * r;
-    const stripes = COUNTRY_META[code].flagStripes.map(c=>`<div class="flag-stripe" style="background:${c}"></div>`).join('');
-    return `<div class="hero-flag-chip" style="transform:translate(calc(${x}px - 18px),calc(${y}px - 24px))"><div class="hero-flag-chip-inner">${stripes}</div></div>`;
+    const meta = COUNTRY_META[code];
+    return `<div class="hero-flag-chip" style="transform:translate(calc(${x}px - 18px),calc(${y}px - 24px))"><div class="hero-flag-chip-inner"><img src="${meta.flagImg}" alt="${meta.name}" style="width:100%;height:100%;object-fit:cover;display:block;" /></div></div>`;
   }).join('');
 
   return `<div class="scene-in">
@@ -768,7 +768,7 @@ function renderHero() {
         <div class="hero-stats">
           <div><div class="hero-stat-n mono">10</div><div class="hero-stat-l mono">países</div></div>
           <div><div class="hero-stat-n mono">6</div><div class="hero-stat-l mono">perguntas</div></div>
-          <div><div class="hero-stat-n mono">3</div><div class="hero-stat-l mono">matches</div></div>
+          <div><div class="hero-stat-n mono">3</div><div class="hero-stat-l mono">resultados</div></div>
         </div>
       </div>
       <div>
@@ -910,13 +910,13 @@ function renderResult() {
     ['CAPITAL',        w.capital.toUpperCase()],
     ['VISTO REC.',     w.visa.toUpperCase()],
     ['CIDADANIA',      w.citizenship.toUpperCase()],
-    ['MATCH',          w.match+'%'],
+    ['RESULTADO',      w.match+'%'],
     ['EMITIDO',        new Date().toLocaleDateString('pt-BR').toUpperCase()],
   ];
 
   return `<div class="scene-in">
     <div class="passport-wrap">
-      <div class="passport-eyebrow mono">RESULTADO · MATCH ${w.match}%</div>
+      <div class="passport-eyebrow mono">RESULTADO · ${w.match}% DE COMPATIBILIDADE</div>
       <h2 class="passport-title">Seu destino é<br><span style="color:var(--gold)">${w.name}.</span></h2>
       <p class="passport-sub">${w.tagline}</p>
 
@@ -929,7 +929,7 @@ function renderResult() {
               <div class="pp-republic mono" style="font-size:11px;letter-spacing:0.16em;color:var(--ink-faint);text-transform:uppercase;font-weight:500">REPÚBLICA DE OPORTUNIDADES</div>
             </div>
             <div class="pp-flag">
-              ${w.flagStripes.map(c=>`<div class="flag-stripe" style="background:${c}"></div>`).join('')}
+              <img src="${w.flagImg}" alt="${w.name}" style="width:100%;height:100%;object-fit:cover;display:block;" />
             </div>
             <div>
               <div class="pp-iso-lbl mono">CÓDIGO ISO</div>
@@ -962,7 +962,7 @@ function renderResult() {
           ${runners.map(c=>`
             <div class="runner-card">
               <div class="runner-flag">
-                ${c.flagStripes.map(col=>`<div class="flag-stripe" style="background:${col}"></div>`).join('')}
+                <img src="${c.flagImg}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover;display:block;" />
               </div>
               <div>
                 <div class="runner-match mono">${c.match}% MATCH</div>

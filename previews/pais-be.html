@@ -28,7 +28,7 @@
   .tab-btn:hover { color: var(--body-strong); }
   .tab-btn.active { color: var(--on-dark); border-bottom-color: var(--primary); font-weight: 600; }
   /* ---- quick summary ---- */
-  .quick-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
+  .quick-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; background: var(--surface-soft); border-bottom: 1px solid var(--hairline); }
   .qs-item { padding: var(--s-xl); display: flex; flex-direction: column; gap: var(--s-xxs); }
   .qs-item + .qs-item { border-left: 1px solid var(--hairline); }
   .qs-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; }
@@ -259,9 +259,9 @@
   .source-meta { font-size: 12px; color: var(--muted); }
   .source-status { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-xxs); }
   @media (max-width: 1024px) {
-    .quick-summary { grid-template-columns: repeat(2, 1fr); }
-    .qs-item:nth-child(2n+1) { border-left: none; }
-    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+    .quick-summary { grid-template-columns: repeat(3, 1fr); }
+    .qs-item:nth-child(3n+1) { border-left: none; }
+    .qs-item:nth-child(n+4) { border-top: 1px solid var(--hairline); }
     .visa-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
@@ -270,6 +270,8 @@
     .sticky-inner { flex-wrap: wrap; height: auto; padding: var(--s-sm) 0; gap: var(--s-sm); }
     .sticky-id { padding-top: var(--s-xs); }
     .quick-summary { grid-template-columns: 1fr 1fr; }
+    .qs-item:nth-child(2n+1) { border-left: none; }
+    .qs-item:nth-child(n+3) { border-top: 1px solid var(--hairline); }
     .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
     .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
     .rights-grid { grid-template-columns: 1fr; }
@@ -807,6 +809,11 @@
     <span class="qs-sub">Autorização obrigatória para trabalhar</span>
   </div>
   <div class="qs-item">
+    <span class="qs-label">Salário mínimo nacional</span>
+    <span class="qs-value accent">EUR 2.190/mês</span>
+    <span class="qs-sub">RMMMG (Revenu Minimum Mensuel Moyen Garanti) 2026: EUR 2.189,81/m…</span>
+  </div>
+  <div class="qs-item">
     <span class="qs-label">Dados atualizados em</span>
     <span class="qs-value">mai/2026</span>
     <span class="qs-sub">Extração automática mensal</span>
@@ -1235,9 +1242,9 @@
             <div class="docrow-label">Comprovante de fundos</div>
             <div class="docrow-verdict">
               <span class="docrow-dot" data-tone="warn"></span>
-              <span class="docrow-verdict-text">EUR 2.154/mês</span>
+              <span class="docrow-verdict-text">EUR 2.190/mês</span>
             </div>
-            <p class="docrow-prose">Salário mínimo nacional belga (RMMMG) 2026: EUR 2.154,11/mês para jornada de 38h semanais (EUR 12,82/hora → EUR 13,08/hora a partir de janeiro de 2026). Single Permit: requer no mínimo o salário mínimo nacional. Thresholds por região: Bruxelas mantém limiar 2025 de EUR 3.703/mês (altamente qualificados); Valônia: EUR 53.220/ano para altamente qualificados; Flandres: mantém limiares 2025 até publicação Statbel.</p>
+            <p class="docrow-prose">Single Permit: requer no mínimo o salário mínimo nacional (RMMMG). Thresholds por região: Bruxelas EUR 3.703/mês (altamente qualificados); Valônia: EUR 53.220/ano; Flandres: limiares 2025 até publicação Statbel.</p>
           </div>
           <div class="docrow">
             <div class="docrow-index">03</div>
@@ -1473,7 +1480,7 @@
         <foreignObject x="268" y="408" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p1-funds">
             <div class="st-node-title">Comprovante de fundos</div>
-            <div class="st-node-desc">Mínimo EUR 2.154/mês.</div>
+            <div class="st-node-desc">Mínimo EUR 2.190/mês.</div>
             <div class="st-node-tags"><span>Financeiro</span></div>
             <div class="st-node-actions">
               <button type="button" class="st-node-action st-node-toggle" data-toggle="p1-funds">
@@ -1855,7 +1862,7 @@
             </div>
             <div class="st-mnode-body" data-for="p1-funds">
               <div class="st-mnode-title">Comprovante de fundos</div>
-              <div class="st-mnode-desc">Mínimo EUR 2.154/mês.</div>
+              <div class="st-mnode-desc">Mínimo EUR 2.190/mês.</div>
               <div class="st-mnode-tags"><span>Financeiro</span></div>
               <div class="st-mnode-actions">
                 <button type="button" class="st-mnode-toggle" data-mtoggle="p1-funds">
@@ -2082,7 +2089,7 @@
           <div class="st-disclaimer">// Dados extraídos em mai/2026. Confirme nas fontes oficiais antes de iniciar.</div>
         </div>
 
-        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 2.154/mês.","detail":"Salário mínimo nacional belga (RMMMG) 2026: EUR 2.154,11/mês para jornada de 38h semanais (EUR 12,82/hora → EUR 13,08/hora a partir de janeiro de 2026). Single Permit: requer no mínimo o salário mínimo nacional. Thresholds por região: Bruxelas mantém limiar 2025 de EUR 3.703/mês (altamente qualificados); Valônia: EUR 53.220/ano para altamente qualificados; Flandres: mantém limiares 2025 até publicação Statbel.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"3 tipos de visto monitorados em Bélgica.","detail":"Single Permit (Permissão Única) é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["3 tipos"]},{"id":"p2-step-1","title":"O empregador belga verifica que o cargo qualifica para...","summary":"O empregador belga verifica que o cargo qualifica para single permit e que o candidato não requer teste de mercado de trabalho (lista de ...","detail":"O empregador belga verifica que o cargo qualifica para single permit e que o candidato não requer teste de mercado de trabalho (lista de profissões em escassez) ou obtém exceção","tip":"","tags":[]},{"id":"p2-step-2","title":"Empregador submete pedido do permis unique","summary":"Empregador submete pedido do permis unique (autorização de trabalho + residência) junto à autoridade regional competente (Bruxelas: Actir...","detail":"Empregador submete pedido do permis unique (autorização de trabalho + residência) junto à autoridade regional competente (Bruxelas: Actiris/SPE; Flandres: VDAB; Valônia: Forem)","tip":"","tags":[]},{"id":"p2-step-3","title":"Autoridade regional avalia o pedido e o encaminha ao SPF...","summary":"Autoridade regional avalia o pedido e o encaminha ao SPF Affaires étrangères para a componente de residência — prazo de 4 semanas (pode s...","detail":"Autoridade regional avalia o pedido e o encaminha ao SPF Affaires étrangères para a componente de residência — prazo de 4 semanas (pode se estender)","tip":"","tags":[]},{"id":"p2-step-4","title":"Após aprovação","summary":"Após aprovação, o trabalhador solicita o visto D de trabalho (long-stay) no consulado belga no Brasil","detail":"Após aprovação, o trabalhador solicita o visto D de trabalho (long-stay) no consulado belga no Brasil","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Bélgica, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
+        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 2.190/mês.","detail":"Single Permit: requer no mínimo o salário mínimo nacional (RMMMG). Thresholds por região: Bruxelas EUR 3.703/mês (altamente qualificados); Valônia: EUR 53.220/ano; Flandres: limiares 2025 até publicação Statbel.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"3 tipos de visto monitorados em Bélgica.","detail":"Single Permit (Permissão Única) é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["3 tipos"]},{"id":"p2-step-1","title":"O empregador belga verifica que o cargo qualifica para...","summary":"O empregador belga verifica que o cargo qualifica para single permit e que o candidato não requer teste de mercado de trabalho (lista de ...","detail":"O empregador belga verifica que o cargo qualifica para single permit e que o candidato não requer teste de mercado de trabalho (lista de profissões em escassez) ou obtém exceção","tip":"","tags":[]},{"id":"p2-step-2","title":"Empregador submete pedido do permis unique","summary":"Empregador submete pedido do permis unique (autorização de trabalho + residência) junto à autoridade regional competente (Bruxelas: Actir...","detail":"Empregador submete pedido do permis unique (autorização de trabalho + residência) junto à autoridade regional competente (Bruxelas: Actiris/SPE; Flandres: VDAB; Valônia: Forem)","tip":"","tags":[]},{"id":"p2-step-3","title":"Autoridade regional avalia o pedido e o encaminha ao SPF...","summary":"Autoridade regional avalia o pedido e o encaminha ao SPF Affaires étrangères para a componente de residência — prazo de 4 semanas (pode s...","detail":"Autoridade regional avalia o pedido e o encaminha ao SPF Affaires étrangères para a componente de residência — prazo de 4 semanas (pode se estender)","tip":"","tags":[]},{"id":"p2-step-4","title":"Após aprovação","summary":"Após aprovação, o trabalhador solicita o visto D de trabalho (long-stay) no consulado belga no Brasil","detail":"Após aprovação, o trabalhador solicita o visto D de trabalho (long-stay) no consulado belga no Brasil","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Bélgica, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
       </div>
     </section>
   </div>

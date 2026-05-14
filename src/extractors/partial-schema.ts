@@ -78,6 +78,7 @@ export const PartialExtractionSchema = z.object({
     .object({
       passportValidity: z.string().nullish(),
       proofOfFunds: PartialMoneyAmountSchema.nullable().optional(),
+      minimumWage: PartialMoneyAmountSchema.nullable().optional(),
       healthInsurance: PartialHealthInsuranceSchema.nullish(),
       cleanCriminalRecord: z.boolean().nullish(),
       vaccinations: z.array(z.string()).optional(),

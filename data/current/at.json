@@ -21,6 +21,12 @@
       "period": "monthly",
       "notes": "Red-White-Red Card 2026 — Other Key Workers: EUR 3.465/mês bruto mínimo (14 pagamentos anuais, costumeiro na Áustria), 55 pontos mínimos no sistema de pontuação. Very Highly Qualified Workers: EUR 3.465/mês, 70 pontos mínimos. EU Blue Card: EUR 55.678/ano (EUR 3.977/mês). Valores atualizados em janeiro de 2026."
     },
+    "minimumWage": {
+      "amount": 1900,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Áustria não tem salário mínimo nacional por lei. Pisos setoriais fixados por convenções coletivas (KV). Referência 2026: maioria dos setores entre EUR 1.800 e EUR 2.000/mês bruto. Setor de comércio: ~EUR 1.945/mês. Turismo/hotelaria: ~EUR 1.800/mês."
+    },
     "vaccinations": []
   },
   "meta": {

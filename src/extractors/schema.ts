@@ -106,6 +106,7 @@ export const HealthInsuranceReqSchema = z.object({
 export const GeneralRequirementsSchema = z.object({
   passportValidity: z.string().min(1),
   proofOfFunds: MoneyAmountSchema.nullable(),
+  minimumWage: MoneyAmountSchema.nullable(),
   healthInsurance: HealthInsuranceReqSchema,
   cleanCriminalRecord: z.boolean(),
   vaccinations: z.array(z.string()),

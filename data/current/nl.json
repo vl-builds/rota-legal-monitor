@@ -21,10 +21,16 @@
     },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
     "proofOfFunds": {
-      "amount": 2294,
+      "amount": 2304,
       "currency": "EUR",
       "period": "monthly",
-      "notes": "Salário mínimo holandês em 2026: EUR 14,71/hora, aproximadamente EUR 2.294/mês (36h) a EUR 2.545/mês (40h). Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente."
+      "notes": "Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente."
+    },
+    "minimumWage": {
+      "amount": 2304,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Wettelijk minimumloon (WML) 2026: EUR 14,71/hora desde 1 janeiro 2026 (aumento de 2,15% face a julho 2025). EUR 2.303,59/mês para jornada de 36h semanais. Reajuste semestral (janeiro e julho). Aplica-se a maiores de 21 anos."
     },
     "vaccinations": []
   },

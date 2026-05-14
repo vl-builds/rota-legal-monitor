@@ -136,6 +136,7 @@ function buildCountryData(
     generalRequirements: {
       passportValidity: gr.passportValidity || 'Minimo 6 meses apos a data de entrada',
       proofOfFunds: toMoney(gr.proofOfFunds),
+      minimumWage: toMoney(gr.minimumWage) ?? null,
       healthInsurance: {
         required: hi?.required ?? false,
         mustBeLocal: hi?.mustBeLocal ?? false,

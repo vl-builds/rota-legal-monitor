@@ -19,7 +19,13 @@
       "amount": 40904,
       "currency": "EUR",
       "period": "yearly",
-      "notes": "Critical Skills Employment Permit (CSEP) a partir de março de 2026: EUR 40.904/ano para ocupações na lista de profissões críticas do DETE (exige grau académico relevante). Rota de recém-graduados (diploma obtido nos últimos 12 meses): EUR 36.848/ano. Rota de salário alto: qualquer ocupação com salário acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano. Roadmap de aumentos graduais até 2030 publicado pelo governo irlandês."
+      "notes": "Critical Skills Employment Permit (CSEP): EUR 40.904/ano para ocupações críticas. Recém-graduados: EUR 36.848/ano. Rota salário alto: acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano."
+    },
+    "minimumWage": {
+      "amount": 2453,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "National Minimum Wage 2026: EUR 14,15/hora desde 1 janeiro 2026 (aumento de EUR 0,65 face a 2025). Equivalente a EUR 2.453/mês bruto (40h semanais). Aumento de 4,8% recomendado pela Low Pay Commission no âmbito do Budget 2026."
     },
     "vaccinations": []
   },

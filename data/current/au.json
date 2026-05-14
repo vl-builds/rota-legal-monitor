@@ -16,6 +16,12 @@
     },
     "passportValidity": "Mínimo 6 meses de validade recomendado para maioria dos vistos",
     "proofOfFunds": null,
+    "minimumWage": {
+      "amount": 4108,
+      "currency": "AUD",
+      "period": "monthly",
+      "notes": "National Minimum Wage 2025-26: AUD $24.95/hora ou AUD $948/semana (AUD $4.108/mês). Vigente desde 1 julho 2025. Revisão anual pela Fair Work Commission com novo valor esperado em julho 2026."
+    },
     "vaccinations": []
   },
   "meta": {
