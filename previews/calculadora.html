@@ -348,7 +348,7 @@
         <div class="form-group">
           <label class="form-label">Estilo de vida</label>
           <div class="toggle-group">
-            <button class="toggle-btn active" data-group="lifestyle" data-val="frugal" onclick="setToggle('lifestyle','frugal',this)">Frugal</button>
+            <button class="toggle-btn active" data-group="lifestyle" data-val="simples" onclick="setToggle('lifestyle','simples',this)">Simples</button>
             <button class="toggle-btn" data-group="lifestyle" data-val="balanced" onclick="setToggle('lifestyle','balanced',this)">Equilibrado</button>
             <button class="toggle-btn" data-group="lifestyle" data-val="comfortable" onclick="setToggle('lifestyle','comfortable',this)">Confortável</button>
           </div>
@@ -370,6 +370,15 @@
             <button class="toggle-btn active" data-group="family" data-val="alone" onclick="setToggle('family','alone',this)">Sozinho(a)</button>
             <button class="toggle-btn" data-group="family" data-val="partner" onclick="setToggle('family','partner',this)">Casal</button>
             <button class="toggle-btn" data-group="family" data-val="full" onclick="setToggle('family','full',this)">Família</button>
+          </div>
+        </div>
+
+        <!-- reserva de emergência -->
+        <div class="form-group">
+          <label class="form-label">Reserva de emergência</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-group="emergency" data-val="yes" onclick="setToggle('emergency','yes',this)">Incluir 2 meses</button>
+            <button class="toggle-btn" data-group="emergency" data-val="no" onclick="setToggle('emergency','no',this)">Não incluir</button>
           </div>
         </div>
 
@@ -463,14 +472,14 @@
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span>© 2026 Rota Legal · <a href="https://github.com/vl-builds" target="_blank" rel="noopener noreferrer">vl-builds</a> · MIT</span>
       <span class="caption-up">Última extração: mai/2026</span>
     </div>
   </div>
@@ -479,23 +488,24 @@
 <script>
 // ---- dados de custo de vida por país (EUR/mês) ----
 const COSTS = {
-  nl: { name:'Holanda',   city:'Amsterdam', flag:'nl', rent_shared:950,  rent_solo:1450, food:350, transport:100, health:150, misc:200, visa:400,  detail:'pais-nl.html' },
-  de: { name:'Alemanha',  city:'Berlim',    flag:'de', rent_shared:720,  rent_solo:1150, food:300, transport: 90, health:120, misc:180, visa:350,  detail:'paises.html' },
-  pt: { name:'Portugal',  city:'Lisboa',    flag:'pt', rent_shared:720,  rent_solo:1100, food:250, transport: 50, health: 80, misc:150, visa:250,  detail:'paises.html' },
-  es: { name:'Espanha',   city:'Madrid',    flag:'es', rent_shared:580,  rent_solo: 950, food:280, transport: 60, health: 80, misc:150, visa:300,  detail:'paises.html' },
-  ie: { name:'Irlanda',   city:'Dublin',    flag:'ie', rent_shared:980,  rent_solo:1550, food:380, transport:130, health:100, misc:200, visa:400,  detail:'paises.html' },
-  fr: { name:'França',    city:'Paris',     flag:'fr', rent_shared:780,  rent_solo:1250, food:320, transport: 90, health:100, misc:180, visa:350,  detail:'paises.html' },
-  it: { name:'Itália',    city:'Milão',     flag:'it', rent_shared:580,  rent_solo: 950, food:270, transport: 80, health:100, misc:150, visa:280,  detail:'paises.html' },
-  be: { name:'Bélgica',   city:'Bruxelas',  flag:'be', rent_shared:670,  rent_solo: 980, food:300, transport: 90, health:100, misc:180, visa:350,  detail:'paises.html' },
-  at: { name:'Áustria',   city:'Viena',     flag:'at', rent_shared:720,  rent_solo:1150, food:300, transport:100, health:120, misc:180, visa:350,  detail:'paises.html' },
-  au: { name:'Austrália', city:'Sydney',    flag:'au', rent_shared:1050, rent_solo:1650, food:400, transport:150, health:150, misc:250, visa:600,  detail:'paises.html' },
+  nl: { name:'Holanda',   city:'Amsterdam', flag:'nl', rent_shared:800,  rent_solo:1200, food:280, transport: 85, health:120, misc:160, visa:350,  detail:'pais-nl.html' },
+  de: { name:'Alemanha',  city:'Berlim',    flag:'de', rent_shared:620,  rent_solo: 950, food:250, transport: 80, health:100, misc:150, visa:300,  detail:'paises.html' },
+  pt: { name:'Portugal',  city:'Lisboa',    flag:'pt', rent_shared:580,  rent_solo: 850, food:200, transport: 40, health: 60, misc:120, visa:220,  detail:'paises.html' },
+  es: { name:'Espanha',   city:'Madrid',    flag:'es', rent_shared:500,  rent_solo: 800, food:220, transport: 50, health: 65, misc:120, visa:260,  detail:'paises.html' },
+  ie: { name:'Irlanda',   city:'Dublin',    flag:'ie', rent_shared:850,  rent_solo:1300, food:300, transport:110, health: 80, misc:160, visa:350,  detail:'paises.html' },
+  fr: { name:'França',    city:'Paris',     flag:'fr', rent_shared:650,  rent_solo:1050, food:260, transport: 75, health: 80, misc:150, visa:300,  detail:'paises.html' },
+  it: { name:'Itália',    city:'Milão',     flag:'it', rent_shared:480,  rent_solo: 800, food:220, transport: 65, health: 80, misc:120, visa:240,  detail:'paises.html' },
+  be: { name:'Bélgica',   city:'Bruxelas',  flag:'be', rent_shared:580,  rent_solo: 820, food:240, transport: 75, health: 80, misc:150, visa:300,  detail:'paises.html' },
+  at: { name:'Áustria',   city:'Viena',     flag:'at', rent_shared:600,  rent_solo: 950, food:250, transport: 85, health:100, misc:150, visa:300,  detail:'paises.html' },
+  au: { name:'Austrália', city:'Sydney',    flag:'au', rent_shared:850,  rent_solo:1350, food:320, transport:120, health:120, misc:200, visa:500,  detail:'paises.html' },
 };
 
 // ---- estado dos toggles ----
 const toggleState = {
-  lifestyle: 'frugal',
+  lifestyle: 'simples',
   housing:   'shared',
   family:    'alone',
+  emergency: 'yes',
 };
 
 function setToggle(group, val, btn) {
@@ -524,7 +534,7 @@ function recalc() {
   const c = COSTS[country];
 
   // multiplicadores
-  const lm = { frugal:0.75, balanced:1.0, comfortable:1.40 }[lifestyle];
+  const lm = { simples:0.75, balanced:1.0, comfortable:1.40 }[lifestyle];
   const fm = { alone:1.0, partner:1.65, full:2.2 }[family];
   // moradia: casal/família em apto compartilhado paga mais; em solo continua igual
   const rentFm = housing === 'solo'
@@ -539,7 +549,7 @@ function recalc() {
 
   const monthly   = rent + food + transport + health + misc;
   const living    = monthly * months;
-  const emergency = monthly * 2;
+  const emergency = toggleState.emergency === 'yes' ? monthly * 2 : 0;
   const visa      = c.visa;
   const flightsEur = flights / rate;
 
@@ -547,7 +557,7 @@ function recalc() {
   const grandBrl = grand * rate;
 
   // breakdown bars (max = rent para referência de escala)
-  const maxBar = Math.max(rent * months, emergency);
+  const maxBar = Math.max(rent * months, emergency || rent);
 
   function bar(amt, color) {
     const pct = Math.min(100, Math.round((amt / maxBar) * 100));
@@ -563,7 +573,7 @@ function recalc() {
         <span class="total-eur">${eur(grand)}</span>
         <span class="total-brl">${brl(grandBrl)}</span>
       </div>
-      <p class="total-context">Inclui custo de vida, margem de emergência, burocracia e passagens. Taxa usada: 1 EUR = ${rate.toFixed(1)} BRL.</p>
+      <p class="total-context">Inclui custo de vida${emergency > 0 ? ', reserva de emergência' : ''}, burocracia e passagens. Taxa usada: 1 EUR = ${rate.toFixed(1)} BRL.</p>
       <div class="total-monthly">
         <span class="monthly-val">${eur(monthly)}</span>
         <span class="monthly-label">/mês de custo estimado</span>
@@ -628,10 +638,10 @@ function recalc() {
 
     <div class="onetime-card">
       <p class="breakdown-title" style="margin-bottom:var(--s-sm);">Custos adicionais</p>
-      <div class="onetime-row">
+      ${emergency > 0 ? `<div class="onetime-row">
         <span class="onetime-row-label">Reserva de emergência (2 meses extra)</span>
         <span class="onetime-row-val">${eur(emergency)}</span>
-      </div>
+      </div>` : ''}
       <div class="onetime-row">
         <span class="onetime-row-label">Burocracia: vistos, traduções e taxas</span>
         <span class="onetime-row-val">${eur(visa)}</span>

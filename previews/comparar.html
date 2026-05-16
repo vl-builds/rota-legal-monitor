@@ -6,333 +6,226 @@
 <title>Comparar países — Rota Legal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
+  :root {
+    --ed-bg:          #0a0a0c;
+    --ed-card-bg:     #0f0f12;
+    --ed-card-border: rgba(255,255,255,0.06);
+    --ed-divider:     rgba(255,255,255,0.08);
+    --ed-text:        #f4f4f5;
+    --ed-muted:       rgba(244,244,245,0.50);
+    --ed-muted2:      rgba(244,244,245,0.32);
+    --ed-accent:      #F5C518;
+    --ed-ok:          #34d399;
+    --ed-bad:         #f87171;
+    --ed-sans:        'Geist', 'Inter', sans-serif;
+    --ed-mono:        'Geist Mono', 'JetBrains Mono', monospace;
+  }
 
-  /* ---- selector bar ---- */
+  /* selector bar */
   .selector-bar {
     position: sticky;
     top: 64px;
     z-index: 40;
-    background: rgba(10, 10, 10, 0.55);
-    backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
-    -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
-    border-bottom: 1px solid var(--glass-border);
-    padding: var(--s-md) 0;
+    background: rgba(10,10,12,0.92);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid var(--ed-divider);
+    padding: 14px 0;
   }
   .selector-inner {
     display: flex;
     align-items: center;
-    gap: var(--s-md);
+    gap: 16px;
     flex-wrap: wrap;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 56px;
   }
   .selector-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 0.5px;
+    font-family: var(--ed-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ed-muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     white-space: nowrap;
     flex-shrink: 0;
   }
   .country-chip {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    border-radius: var(--r-pill);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--body);
-    background: transparent;
-    border: 1px solid var(--hairline);
-    cursor: pointer;
-    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
-    font-family: inherit;
-    line-height: 1;
-  }
-  .country-chip:hover:not([disabled]) { border-color: var(--hairline-strong); color: var(--on-dark); }
-  .country-chip.active {
-    background: var(--on-dark);
-    color: var(--canvas);
-    border-color: var(--on-dark);
-    font-weight: 600;
-  }
-  .country-chip.active .chip-partial { color: rgba(0,0,0,0.45); }
-  .chip-flag { width: 18px; height: 13px; border-radius: 2px; display: block; flex-shrink: 0; }
-  .chip-partial {
-    font-size: 10px;
-    color: var(--muted-soft);
-    font-family: "JetBrains Mono", monospace;
-    margin-left: 2px;
-  }
-
-  /* ---- hero ---- */
-  .compare-hero {
-    padding: var(--s-xxl) 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .compare-hero-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--primary);
-    display: block;
-    margin-bottom: var(--s-sm);
-  }
-  .compare-hero-title {
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: -1.2px;
-    color: var(--on-dark);
-    margin: 0 0 var(--s-md);
-    line-height: 1.1;
-  }
-  .compare-hero-sub {
-    font-size: 16px;
-    color: var(--body);
-    max-width: 580px;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* ---- comparison cards (one column per country) ---- */
-  .compare-cards {
-    display: grid;
-    gap: var(--s-md);
-    align-items: stretch;
-  }
-  .compare-cards.cols-1 {
-    grid-template-columns: minmax(280px, 480px);
-    justify-content: center;
-  }
-  .compare-cards.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .compare-cards.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-  /* column wrapper (stacks the section cards) */
-  .cc-column {
-    position: relative;
-    z-index: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-sm);
-  }
-  /* glow behind highlighted column */
-  .cc-column.cc-highlight::before {
-    content: '';
-    position: absolute;
-    inset: -20px;
-    background: radial-gradient(ellipse at center, rgba(240, 180, 41, 0.20) 0%, transparent 65%);
-    filter: blur(28px);
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  /* the floating glass card (now used per section) */
-  .cc-card {
-    position: relative;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur)) saturate(150%);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--r-lg);
-    padding: var(--s-md) var(--s-lg);
-    transition: border-color 240ms ease, background 240ms ease;
-    overflow: hidden;
-  }
-  .cc-column.cc-highlight .cc-card {
-    border-color: rgba(240, 180, 41, 0.45);
-    background: rgba(240, 180, 41, 0.05);
-  }
-  .cc-card:hover { border-color: var(--glass-border-strong); }
-  .cc-column.cc-highlight .cc-card:hover { border-color: var(--primary); }
-
-  /* header card */
-  .cc-card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--s-sm);
-  }
-  .cc-head-row {
-    display: flex;
-    align-items: center;
-    gap: var(--s-sm);
-    flex: 1;
-    min-width: 0;
-  }
-  .cc-head-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-  .col-flag-lg {
-    width: 44px;
-    height: 32px;
+    gap: 7px;
+    padding: 5px 12px;
     border-radius: 6px;
-    display: block;
-    flex-shrink: 0;
-  }
-  .col-country-name {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--on-dark);
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-    margin: 0;
-  }
-  .col-detail-link {
-    font-size: 12px;
-    color: var(--primary);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-family: "JetBrains Mono", monospace;
-    letter-spacing: 0.3px;
-  }
-  .cc-best-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 5px 10px;
-    border-radius: var(--r-pill);
-    background: var(--primary);
-    color: var(--on-primary);
+    font-family: var(--ed-mono);
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .col-partial-badge {
-    font-size: 10px;
-    color: var(--muted);
-    font-family: "JetBrains Mono", monospace;
-    padding: 3px 8px;
-    border: 1px solid var(--glass-border);
-    border-radius: var(--r-pill);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    flex-shrink: 0;
-  }
-
-  /* section card title */
-  .cc-section-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: var(--s-sm);
-  }
-
-  /* stat grid inside section card */
-  .cc-grid {
-    display: grid;
-    gap: var(--s-md) var(--s-sm);
-  }
-  .cc-grid-1 { grid-template-columns: 1fr; }
-  .cc-grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .cc-grid-3 { grid-template-columns: repeat(3, 1fr); }
-
-  .cc-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-  }
-  .cc-stat-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--muted);
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    line-height: 1.3;
-  }
-  .cc-stat-value {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--on-dark);
-    line-height: 1.15;
-    letter-spacing: -0.3px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  /* value variants tuned for stat layout */
-  .val-yes { color: var(--accent-emerald); font-weight: 700; font-size: 18px; }
-  .val-no  { color: var(--accent-rose);    font-weight: 700; font-size: 18px; }
-  .val-dash { color: var(--muted-soft); font-size: 20px; }
-  .val-num {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--on-dark);
-    letter-spacing: -0.5px;
+    font-weight: 500;
+    color: var(--ed-muted);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.07);
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: border-color 120ms, color 120ms, background 120ms;
     line-height: 1;
   }
-  .val-unit {
-    display: inline;
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
-    margin-left: 4px;
+  .country-chip:hover:not([disabled]) { border-color: rgba(255,255,255,0.15); color: var(--ed-text); }
+  .country-chip.active { background: rgba(245,197,24,0.10); border-color: rgba(245,197,24,0.35); color: var(--ed-accent); }
+  .chip-partial-tag { font-size: 9px; color: var(--ed-muted2); letter-spacing: 0.05em; }
+  .chip-flag-img { width: 18px; height: 13px; border-radius: 2px; display: block; flex-shrink: 0; }
+
+  /* editorial root */
+  .ed-root { font-family: var(--ed-sans); color: var(--ed-text); background: var(--ed-bg); }
+
+  /* masthead */
+  .ed-masthead {
+    padding: 36px 56px 24px;
+    border-bottom: 1px solid var(--ed-divider);
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-family: var(--ed-mono); font-size: 11px; color: var(--ed-muted);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    max-width: 1280px; margin: 0 auto;
   }
-  .val-income {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--primary);
-    letter-spacing: -0.2px;
-    font-family: "JetBrains Mono", monospace;
+  .ed-masthead-right { display: flex; gap: 24px; }
+  .ed-live { color: var(--ed-accent); }
+
+  /* cover */
+  .ed-cover-outer { border-bottom: 1px solid var(--ed-divider); position: relative; overflow: hidden; }
+  .ed-cover-inner { padding: 48px 56px 56px; max-width: 1280px; margin: 0 auto; position: relative; }
+  .ed-cover-glow {
+    position: absolute; top: -30%; right: -15%; width: 60%; height: 160%;
+    background: radial-gradient(ellipse at center, rgba(245,197,24,0.12), transparent 60%);
+    pointer-events: none;
   }
-  .val-text { font-size: 14px; color: var(--body-strong); line-height: 1.35; font-weight: 500; }
-  .val-lang-yes { color: var(--accent-rose); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-  .val-lang-no  { color: var(--accent-emerald); font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-  .val-date { font-size: 14px; color: var(--body-strong); font-family: "JetBrains Mono", monospace; font-weight: 500; }
+  .ed-cover-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+    align-items: center; position: relative; z-index: 1;
+  }
+  .ed-eyebrow {
+    font-family: var(--ed-mono); font-size: 11px; color: var(--ed-accent);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ed-eyebrow-line { width: 30px; height: 1px; background: var(--ed-accent); flex-shrink: 0; }
+  .ed-headline { font-size: clamp(48px,5vw,84px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.94; margin: 0 0 24px; }
+  .ed-headline em { font-style: italic; font-weight: 400; color: var(--ed-accent); }
+  .ed-headline .ed-dot { color: var(--ed-accent); }
+  .ed-lead { font-size: 17px; line-height: 1.55; color: var(--ed-muted); margin: 0 0 28px; max-width: 480px; }
+  .ed-figures { display: flex; gap: 32px; }
+  .ed-figure-val { font-size: 30px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+  .ed-figure-lbl { font-family: var(--ed-mono); font-size: 10px; color: var(--ed-muted); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 8px; }
+
+  /* medallion */
+  .ed-medallion-col { position: relative; height: 420px; display: flex; align-items: center; justify-content: center; }
+  .ed-medallion {
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,197,24,0.08), rgba(245,197,24,0.02) 70%, transparent);
+    border: 1px solid rgba(245,197,24,0.25);
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .ed-med-r1 { position: absolute; inset: 30px; border-radius: 50%; border: 1px dashed rgba(245,197,24,0.18); }
+  .ed-med-r2 { position: absolute; inset: 70px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.06); }
+  .ed-med-center { text-align: center; position: relative; z-index: 2; }
+  .ed-med-score-lbl { font-family: var(--ed-mono); font-size: 11px; color: var(--ed-muted); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 18px; }
+  .ed-med-score { font-size: 96px; font-weight: 500; line-height: 1; color: var(--ed-accent); letter-spacing: -0.05em; margin: 4px 0; }
+  .ed-med-footer { font-family: var(--ed-mono); font-size: 11px; color: var(--ed-muted); letter-spacing: 0.16em; }
+
+  /* index nav */
+  .ed-index-outer { border-bottom: 1px solid var(--ed-divider); }
+  .ed-index {
+    padding: 20px 56px; font-family: var(--ed-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ed-muted);
+    align-items: center; gap: 24px; max-width: 1280px; margin: 0 auto; display: grid;
+  }
+  .ed-index-entry { display: flex; align-items: center; gap: 10px; }
+  .ed-index-line { flex: 1; height: 1px; background: var(--ed-divider); margin-left: 8px; }
+
+  /* dossier cards */
+  .ed-dossiers { padding: 48px 56px; max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .ed-card {
+    background: var(--ed-card-bg); border: 1px solid var(--ed-card-border);
+    border-radius: 18px; padding: 32px 36px;
+    display: grid; grid-template-columns: auto 1fr 1.2fr 1fr; gap: 36px;
+    align-items: center; position: relative; overflow: hidden;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+  .ed-card:hover { border-color: rgba(255,255,255,0.10); transform: translateY(-2px); }
+  .ed-card.winner { background: linear-gradient(135deg, rgba(245,197,24,0.05), var(--ed-card-bg) 70%); }
+  .ed-win-bar { position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--ed-accent), transparent); }
+  .ed-rank { text-align: center; min-width: 80px; }
+  .ed-rank-lbl { font-family: var(--ed-mono); font-size: 10px; color: var(--ed-muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 4px; }
+  .ed-rank-num { font-size: 72px; font-weight: 500; line-height: 0.9; letter-spacing: -0.05em; }
+  .ed-rank-num.w { color: var(--ed-accent); }
+  .ed-rank-num.o { color: var(--ed-muted); }
+  .ed-id h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; margin: 14px 0 6px; }
+  .ed-id-meta { font-size: 13px; color: var(--ed-muted); margin-bottom: 14px; }
+  .ed-id-meta .sv { font-family: var(--ed-mono); font-weight: 600; }
+  .ed-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ed-badge { font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight: 500; letter-spacing: -0.005em; white-space: nowrap; }
+  .b-g { background: rgba(52,211,153,.10); color: #34d399; border: 1px solid rgba(52,211,153,.22); }
+  .b-w { background: rgba(251,146,60,.10); color: #fb923c; border: 1px solid rgba(251,146,60,.22); }
+  .b-n { background: rgba(255,255,255,.05); color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.10); }
+  .ed-radar { display: flex; align-items: center; gap: 16px; }
+  .ed-radar-leg { display: flex; flex-direction: column; gap: 6px; }
+  .ed-radar-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+  .ed-radar-dot { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
+  .ed-radar-lbl { color: var(--ed-muted); width: 70px; font-family: var(--ed-mono); letter-spacing: .04em; text-transform: uppercase; font-size: 10px; }
+  .ed-radar-val { font-family: var(--ed-mono); color: var(--ed-text); font-weight: 600; }
+  .ed-facts { display: flex; flex-direction: column; gap: 10px; }
+  .ed-fact { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dashed var(--ed-divider); padding-bottom: 8px; }
+  .ed-fact-lbl { font-family: var(--ed-mono); font-size: 12px; color: var(--ed-muted); letter-spacing: .06em; }
+  .ed-fact-val { font-family: var(--ed-mono); font-size: 14px; font-weight: 600; letter-spacing: -.005em; }
+  .fv-a { color: var(--ed-accent); } .fv-ok { color: var(--ed-ok); } .fv-bad { color: var(--ed-bad); }
+  .fv-n { color: var(--ed-text); } .fv-dim { color: var(--ed-muted); font-weight: 400; }
+
+  /* editorial inner footer */
+  .ed-inner-footer {
+    max-width: 1280px; margin: 0 auto; padding: 32px 56px 64px;
+    border-top: 1px solid var(--ed-divider);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--ed-mono); font-size: 11px; color: var(--ed-muted);
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
 
   /* empty state */
-  .empty-state {
-    padding: var(--s-section) var(--s-lg);
-    text-align: center;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    border-radius: var(--r-xl);
-  }
+  .ed-empty { padding: 96px 56px; text-align: center; max-width: 1280px; margin: 0 auto; }
+  .ed-empty-icon { font-family: var(--ed-mono); font-size: 28px; color: var(--ed-muted); letter-spacing: 0.3em; margin-bottom: 20px; }
+  .ed-empty-title { font-size: 24px; font-weight: 500; margin: 0 0 8px; }
+  .ed-empty-sub { font-size: 15px; color: var(--ed-muted); margin: 0; }
 
   /* responsive */
-  @media (max-width: 1024px) {
-    .compare-cards.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 960px) {
+    .ed-cover-grid { grid-template-columns: 1fr; }
+    .ed-medallion-col { height: auto; padding: 24px 0; }
+    .ed-medallion { width: 280px; height: 280px; }
+    .ed-med-score { font-size: 72px; }
+    .ed-card { grid-template-columns: auto 1fr; gap: 20px; }
+    .ed-card > .ed-radar,
+    .ed-card > .ed-facts { grid-column: 1 / -1; }
   }
-  @media (max-width: 768px) {
-    .compare-hero-title { font-size: 28px; }
-    .compare-cards.cols-2,
-    .compare-cards.cols-3 { grid-template-columns: 1fr; }
-    .compare-cards.cols-1 { grid-template-columns: 1fr; }
-    .selector-label { display: none; }
+  @media (max-width: 640px) {
+    .ed-masthead, .ed-cover-inner, .ed-inner-footer, .ed-dossiers, .ed-empty { padding-left: 20px; padding-right: 20px; }
+    .selector-inner, .ed-index { padding-left: 20px; padding-right: 20px; }
+    .ed-headline { font-size: 40px; }
+    .ed-card { grid-template-columns: 1fr; }
+    .ed-rank { display: none; }
   }
-
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
-<!-- ============== NAV ============== -->
 <nav class="top-nav">
   <div class="container">
     <a class="logo" href="home.html">
-      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
       <span>Rota Legal</span>
     </a>
     <div class="nav-links">
       <a class="nav-link" href="paises.html">Países</a>
-      <a class="nav-link" href="comparar.html" style="color: var(--on-dark);">Comparar</a>
+      <a class="nav-link" href="comparar.html" style="color:var(--on-dark);">Comparar</a>
       <a class="nav-link" href="qual-pais.html">Qual país?</a>
       <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="calculadora.html">Calculadora</a>
@@ -343,12 +236,12 @@
       <a class="btn btn-secondary" href="paises.html">Ver todos</a>
       <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
     </div>
-      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<!-- ============== MOBILE DRAWER ============== -->
+
 <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
   <div class="mobile-drawer-backdrop" data-close></div>
   <aside class="mobile-drawer-panel">
@@ -373,360 +266,39 @@
   </aside>
 </div>
 
-<!-- ============== HERO ============== -->
-<div class="compare-hero">
-  <div class="container">
-    <span class="compare-hero-label">Comparação</span>
-    <h1 class="compare-hero-title">Compare países lado a lado</h1>
-    <p class="compare-hero-sub">Selecione até 3 países para ver requisitos de entrada, renda mínima e opções de visto em paralelo. Dados atualizados mensalmente de fontes oficiais.</p>
-  </div>
-</div>
-
-<!-- ============== SELECTOR BAR ============== -->
+<!-- Selector bar -->
 <div class="selector-bar">
-  <div class="container">
-    <div class="selector-inner">
-      <span class="selector-label">Países (máx. 3):</span>
-      <div id="chips" style="display: flex; gap: var(--s-xs); flex-wrap: wrap;"></div>
-    </div>
+  <div class="selector-inner">
+    <span class="selector-label">Países (máx. 3)</span>
+    <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
   </div>
 </div>
 
-<!-- ============== COMPARISON TABLE ============== -->
-<section class="section-tight">
-  <div class="container">
-    <div id="compare-area"></div>
-    <p style="font-size: 12px; color: var(--muted-soft); margin-top: var(--s-md); text-align: right; font-family: 'JetBrains Mono', monospace;">
-      Dados extraídos automaticamente por LLM. Podem conter imprecisões. Consulte as fontes oficiais antes de tomar decisões.
-    </p>
-  </div>
-</section>
+<!-- Editorial root -->
+<div id="editorial-root" class="ed-root"></div>
 
-<!-- ============== CTA BAND ============== -->
+<!-- CTA band -->
 <div class="cta-band-yellow">
   <div class="container">
-    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-lg);">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s-lg);">
       <div>
-        <div style="font-size: 32px; font-weight: 700; letter-spacing: -1px; color: var(--on-primary); margin-bottom: var(--s-xs);">Não sabe qual escolher?</div>
-        <p style="color: rgba(0,0,0,0.55); font-size: 16px; margin: 0;">Responda 6 perguntas e receba uma recomendação personalizada.</p>
+        <div style="font-size:32px;font-weight:700;letter-spacing:-1px;color:var(--on-primary);margin-bottom:var(--s-xs);">Não sabe qual escolher?</div>
+        <p style="color:rgba(0,0,0,0.55);font-size:16px;margin:0;">Responda 6 perguntas e receba uma recomendação personalizada.</p>
       </div>
       <a class="btn btn-on-yellow" href="qual-pais.html">Encontrar meu país</a>
     </div>
   </div>
 </div>
 
-<script>
-// ---- dados dos países ----
-const COUNTRIES = {
-  nl: {
-    name: 'Países Baixos', nameLocal: 'Nederland', flag: 'nl',
-    schengen: true, touristDays: 90, workPermit: true,
-    visaCount: 21, directCount: 9,
-    minIncomeText: 'Não especificado', minIncomeHighlight: false,
-    langRequired: false, langText: 'Não exigido',
-    family: true, changeEmployer: true, permanentPath: true,
-    lastUpdated: '2026-04-29', partial: false, detailUrl: 'pais-nl.html',
-  },
-  de: {
-    name: 'Alemanha', nameLocal: 'Deutschland', flag: 'de',
-    schengen: true, touristDays: 90, workPermit: true,
-    visaCount: 12, directCount: 10,
-    minIncomeText: '€ 50.700/ano', minIncomeHighlight: true,
-    langRequired: true, langText: 'Alemão A1+ (para fixar)',
-    family: true, changeEmployer: true, permanentPath: true,
-    lastUpdated: '2026-04-29', partial: false, detailUrl: 'pais-de.html',
-  },
-  pt: {
-    name: 'Portugal', nameLocal: 'Portugal', flag: 'pt',
-    schengen: true, touristDays: 90, workPermit: false,
-    visaCount: 12, directCount: 8,
-    minIncomeText: '€ 25.884/ano', minIncomeHighlight: true,
-    langRequired: false, langText: 'Não exigido',
-    family: false, changeEmployer: false, permanentPath: true,
-    lastUpdated: '2026-04-29', partial: false, detailUrl: 'pais-pt.html',
-  },
-  es: {
-    name: 'Espanha', nameLocal: 'España', flag: 'es',
-    schengen: true, touristDays: 90, workPermit: true,
-    visaCount: 4, directCount: 3,
-    minIncomeText: 'Sem dados', minIncomeHighlight: false,
-    langRequired: null, langText: 'Sem dados',
-    family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: '2026-04-29', partial: true, detailUrl: 'pais-es.html',
-  },
-  ie: {
-    name: 'Irlanda', nameLocal: 'Ireland', flag: 'ie',
-    schengen: false, touristDays: 90, workPermit: true,
-    visaCount: 17, directCount: 10,
-    minIncomeText: 'Sem dados', minIncomeHighlight: false,
-    langRequired: null, langText: 'Inglês (prático)',
-    family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: '2026-04-29', partial: true, detailUrl: 'pais-ie.html',
-  },
-  fr: {
-    name: 'França', nameLocal: 'France', flag: 'fr',
-    schengen: true, touristDays: 90, workPermit: true,
-    visaCount: null, directCount: null,
-    minIncomeText: 'Sem dados', minIncomeHighlight: false,
-    langRequired: null, langText: 'Sem dados',
-    family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-fr.html',
-  },
-  it: {
-    name: 'Itália', nameLocal: 'Italia', flag: 'it',
-    schengen: true, touristDays: 90, workPermit: true,
-    visaCount: null, directCount: null,
-    minIncomeText: 'Sem dados', minIncomeHighlight: false,
-    langRequired: null, langText: 'Sem dados',
-    family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-it.html',
-  },
-  be: {
-    name: 'Bélgica', nameLocal: 'België', flag: 'be',
-    schengen: true, touristDays: 90, workPermit: true,
-    visaCount: null, directCount: null,
-    minIncomeText: 'Sem dados', minIncomeHighlight: false,
-    langRequired: null, langText: 'Sem dados',
-    family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-be.html',
-  },
-  at: {
-    name: 'Áustria', nameLocal: 'Österreich', flag: 'at',
-    schengen: true, touristDays: 90, workPermit: true,
-    visaCount: null, directCount: null,
-    minIncomeText: 'Sem dados', minIncomeHighlight: false,
-    langRequired: null, langText: 'Sem dados',
-    family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-at.html',
-  },
-  au: {
-    name: 'Austrália', nameLocal: 'Australia', flag: 'au',
-    schengen: false, touristDays: 90, workPermit: true,
-    visaCount: null, directCount: null,
-    minIncomeText: 'Sem dados', minIncomeHighlight: false,
-    langRequired: true, langText: 'Inglês (obrigatório)',
-    family: null, changeEmployer: null, permanentPath: null,
-    lastUpdated: 'Em coleta', partial: true, detailUrl: 'pais-au.html',
-  },
-};
-
-const ORDER = ['nl', 'de', 'pt', 'es', 'ie', 'fr', 'it', 'be', 'at', 'au'];
-const MAX = 3;
-let selected = ['nl', 'de', 'pt'];
-
-// ---- definição das linhas ----
-const ROWS = [
-  { type: 'section', label: 'Entrada' },
-  { type: 'bool',     label: 'Schengen (sem visto turista)',     short: 'Schengen',          key: 'schengen' },
-  { type: 'days',     label: 'Estadia máx. como turista',        short: 'Estadia máx.',      key: 'touristDays' },
-  { type: 'boolinv',  label: 'Exige permissão de trabalho',      short: 'Permissão',         key: 'workPermit' },
-  { type: 'section', label: 'Vistos de trabalho' },
-  { type: 'count',    label: 'Opções mapeadas no banco',          short: 'Opções',            key: 'visaCount', unit: 'vistos' },
-  { type: 'section', label: 'Requisitos financeiros' },
-  { type: 'income',   label: 'Renda mínima (principal opção)',    short: 'Renda mínima',      key: 'minIncomeText', hlKey: 'minIncomeHighlight' },
-  { type: 'section', label: 'Idioma' },
-  { type: 'lang',     label: 'Idioma para residir',               short: 'Idioma',            key: 'langText', boolKey: 'langRequired' },
-  { type: 'section', label: 'Direitos' },
-  { type: 'bool',     label: 'Pode trazer família',               short: 'Família',           key: 'family' },
-  { type: 'bool',     label: 'Pode trocar de empregador',         short: 'Trocar emprego',    key: 'changeEmployer' },
-  { type: 'bool',     label: 'Caminho para residência permanente',short: 'Residência perm.',  key: 'permanentPath' },
-  { type: 'section', label: 'Sobre os dados' },
-  { type: 'date',     label: 'Última atualização',               short: 'Atualizado em',     key: 'lastUpdated' },
-  { type: 'link',     label: 'Detalhe completo',                 key: 'detailUrl' },
-];
-
-// ---- score de facilidade para brasileiros ----
-function calcEasinessScore(c) {
-  if (c.partial) return -1000;
-  let score = 0;
-  if (c.schengen === true) score += 2;
-  if (c.workPermit === false) score += 3;          // sem permissão = enorme vantagem
-  if (c.langRequired === false) score += 2;
-  if (c.flag === 'pt') score += 3;                  // língua compartilhada
-  if (c.family === true) score += 1;
-  if (c.changeEmployer === true) score += 1;
-  if (c.permanentPath === true) score += 1;
-  return score;
-}
-
-// ---- helpers de célula ----
-function cellBool(v) {
-  if (v === null) return '<span class="val-dash">Sem dados</span>';
-  return v ? '<span class="val-yes">Sim</span>' : '<span class="val-no">Não</span>';
-}
-function cellBoolInv(v) {
-  if (v === null) return '<span class="val-dash">Sem dados</span>';
-  return v ? '<span class="val-no">Sim</span>' : '<span class="val-yes">Não</span>';
-}
-
-function cellValue(row, c) {
-  switch (row.type) {
-    case 'bool':
-      return cellBool(c[row.key]);
-    case 'boolinv':
-      return cellBoolInv(c[row.key]);
-    case 'days':
-      return `<span class="val-num">${c[row.key]}<span class="val-unit">dias</span></span>`;
-    case 'count': {
-      const n = c[row.key];
-      if (n === null) return '<span class="val-dash">Sem dados</span>';
-      return `<span class="val-num">${n}<span class="val-unit">${row.unit}</span></span>`;
-    }
-    case 'income':
-      if (!c[row.hlKey]) return `<span class="val-text">${c[row.key]}</span>`;
-      return `<span class="val-income">${c[row.key]}</span>`;
-    case 'lang': {
-      const b = c[row.boolKey];
-      if (b === null) return `<span class="val-text" style="color:var(--muted-soft)">${c[row.key]}</span>`;
-      const marker = b
-        ? '<span class="val-lang-yes">Exigido</span>'
-        : '<span class="val-lang-no">Não exigido</span>';
-      return marker + `<span class="val-text" style="color:var(--muted)">${c[row.key]}</span>`;
-    }
-    case 'date':
-      return `<span class="val-date">${c[row.key]}</span>`;
-    case 'link':
-      return `<a href="${c[row.key]}" class="col-detail-link">ver país →</a>`;
-    default:
-      return '';
-  }
-}
-
-// ---- render chips ----
-function renderChips() {
-  const el = document.getElementById('chips');
-  el.innerHTML = ORDER.map(code => {
-    const c = COUNTRIES[code];
-    const active = selected.includes(code);
-    const disabled = !active && selected.length >= MAX;
-    return `<button
-      class="country-chip${active ? ' active' : ''}"
-      onclick="toggleCountry('${code}')"
-      ${disabled ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}
-      title="${c.name}${c.partial ? ' (dados parciais)' : ''}"
-    >
-      <span class="chip-flag flag-${c.flag}"></span>
-      ${c.name}
-      ${c.partial ? '<span class="chip-partial">parcial</span>' : ''}
-    </button>`;
-  }).join('');
-}
-
-// ---- render cards (one column per country, multiple cards per column) ----
-function renderTable() {
-  const area = document.getElementById('compare-area');
-
-  if (selected.length === 0) {
-    area.innerHTML = `<div class="empty-state">
-      <p style="font-size:36px;color:var(--muted);margin:0 0 var(--s-md)">●○○</p>
-      <p class="title-md" style="margin:0 0 var(--s-xs)">Nenhum país selecionado</p>
-      <p class="body-md" style="color:var(--muted);margin:0">Clique nos chips acima para adicionar países à comparação.</p>
-    </div>`;
-    return;
-  }
-
-  const cols = selected.map(code => COUNTRIES[code]);
-  const colCount = cols.length;
-
-  // determine the best country (highlight)
-  let bestIdx = -1;
-  let bestScore = -Infinity;
-  cols.forEach((c, idx) => {
-    const score = calcEasinessScore(c);
-    if (score > bestScore) {
-      bestScore = score;
-      bestIdx = idx;
-    }
-  });
-  // require minimum score to highlight (avoid highlighting partial-data only)
-  if (bestScore < 3) bestIdx = -1;
-
-  // group rows by section, skip the duplicate "link" row
-  const sections = [];
-  let current = null;
-  for (const row of ROWS) {
-    if (row.type === 'section') {
-      current = { title: row.label, rows: [] };
-      sections.push(current);
-    } else if (row.type === 'link') {
-      continue;
-    } else if (current) {
-      current.rows.push(row);
-    }
-  }
-
-  let html = `<div class="compare-cards cols-${colCount}">`;
-
-  cols.forEach((c, idx) => {
-    const isBest = idx === bestIdx;
-    html += `<div class="cc-column${isBest ? ' cc-highlight' : ''}">`;
-
-    // header card
-    html += `<div class="cc-card cc-card-head">
-      <div class="cc-head-row">
-        <span class="col-flag-lg flag-${c.flag}" aria-hidden="true"></span>
-        <div class="cc-head-info">
-          <h3 class="col-country-name">${c.name}</h3>
-          <a href="${c.detailUrl}" class="col-detail-link">ver detalhe →</a>
-        </div>
-      </div>
-      ${isBest ? '<span class="cc-best-badge">Mais fácil</span>' : ''}
-      ${c.partial ? '<span class="col-partial-badge">parcial</span>' : ''}
-    </div>`;
-
-    // section cards
-    for (const sec of sections) {
-      if (!sec.rows.length) continue;
-      const cnt = sec.rows.length;
-      const gridCls = cnt >= 3 ? 'cc-grid-3' : cnt === 2 ? 'cc-grid-2' : 'cc-grid-1';
-      html += `<div class="cc-card">
-        <div class="cc-section-title">${sec.title}</div>
-        <div class="cc-grid ${gridCls}">`;
-      for (const row of sec.rows) {
-        const lbl = row.short || row.label;
-        html += `<div class="cc-stat">
-          <span class="cc-stat-label">${lbl}</span>
-          <span class="cc-stat-value">${cellValue(row, c)}</span>
-        </div>`;
-      }
-      html += `</div></div>`;
-    }
-
-    html += `</div>`;
-  });
-
-  html += `</div>`;
-  area.innerHTML = html;
-}
-
-// ---- toggle país ----
-function toggleCountry(code) {
-  const idx = selected.indexOf(code);
-  if (idx !== -1) {
-    selected.splice(idx, 1);
-  } else {
-    if (selected.length >= MAX) return;
-    selected.push(code);
-  }
-  renderChips();
-  renderTable();
-}
-
-// ---- inicializa ----
-renderChips();
-renderTable();
-</script>
-
-<!-- ============== FOOTER ============== -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="logo" href="home.html" style="margin-bottom: var(--s-md); display: inline-flex;">
-          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+        <a class="logo" href="home.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
           <span>Rota Legal</span>
         </a>
-        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+        <p class="body-sm" style="max-width:300px;color:var(--muted);">
           Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
           Dados de fontes oficiais, atualizados todo mês.
         </p>
@@ -762,18 +334,520 @@ renderTable();
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span>© 2026 Rota Legal · <a href="https://github.com/vl-builds" target="_blank" rel="noopener noreferrer">vl-builds</a> · MIT</span>
       <span class="caption-up">Última extração: mai/2026</span>
     </div>
   </div>
 </footer>
+
+<script>
+/* ---- configuração ---- */
+const DATA_BASE = '/data';
+const ORDER = ['nl','de','pt','es','ie','fr','it','be','at','au'];
+const MAX = 3;
+let selected = ['nl','de','pt'];
+
+// Schengen membership — fato geográfico, não derivado do JSON (campo no JSON é marcado como não confiável)
+const SCHENGEN = { nl:true, de:true, pt:true, es:true, ie:false, fr:true, it:true, be:true, at:true, au:false };
+
+// Nomes em português (meta.countryName no JSON dá nomes em formas alternativas)
+const NAMES = { nl:'Países Baixos', de:'Alemanha', pt:'Portugal', es:'Espanha', ie:'Irlanda', fr:'França', it:'Itália', be:'Bélgica', at:'Áustria', au:'Austrália' };
+
+// Custo de vida estimado (0-100, maior = mais caro) — referência Numbeo 2026, não consta no schema JSON
+const COST_IDX = { nl:82, de:74, pt:52, es:57, ie:90, fr:76, it:60, be:76, at:70, au:80 };
+
+// Vistos excluídos do cálculo de renda (rotas nicho/elite/busca de emprego/não-emprego-regular)
+const INCOME_EXCLUDE = /startup|founder|investor|highly.skilled|highly.qual|senior.manag|nomad|nomade|freelance|autonomo|self.empl|job.search|job.seeker|orientation|working.holiday|career|chancenkarte|opportunity.card|chancen/i;
+
+let COUNTRIES = {};
+
+/* ---- transformação JSON → estrutura de exibição ---- */
+
+function parseIncomeAnnualEur(ir) {
+  if (!ir || !ir.amount || ir.period === 'total' || ir.period === 'one-time') return null;
+  const rate = ir.currency === 'AUD' ? 0.60 : ir.currency === 'USD' ? 0.92 : 1;
+  const eur = ir.amount * rate;
+  return ir.period === 'monthly' ? eur * 12 : eur;
+}
+
+function parseDurationWeeks(s) {
+  if (!s) return 999;
+  const n = parseInt(s.match(/(\d+)/)?.[1] ?? '99');
+  if (/dia|day/i.test(s)) return Math.ceil(n / 7);
+  if (/sem|week/i.test(s)) return n;
+  if (/m[eê]s|month/i.test(s)) return n * 4;
+  return 99;
+}
+
+function fmtIncomeLabel(minAnnual, ccy) {
+  if (!minAnnual) return 'A determinar';
+  const eur = ccy === 'AUD' ? Math.round(minAnnual * 0.60) : Math.round(minAnnual);
+  const formatted = eur.toLocaleString('pt-BR');
+  if (ccy === 'AUD') {
+    const aud = Math.round(minAnnual);
+    return `AU$ ${aud.toLocaleString('pt-BR')}/ano`;
+  }
+  return `€ ${formatted}/ano`;
+}
+
+function transformCountry(code, j) {
+  const visas = j.visaTypes || [];
+  const schengen = SCHENGEN[code];
+
+  // renda: menor exigência entre vistos de emprego regular (exclui rotas nicho)
+  let minIncomeAnnual = null;
+  let incomeCcy = 'EUR';
+  for (const v of visas) {
+    if (INCOME_EXCLUDE.test(v.id || '')) continue;
+    const annual = parseIncomeAnnualEur(v.requirements?.incomeRequirement);
+    if (annual && (!minIncomeAnnual || annual < minIncomeAnnual)) {
+      minIncomeAnnual = annual;
+      incomeCcy = v.requirements?.incomeRequirement?.currency || 'EUR';
+    }
+  }
+
+  // idioma: percentual dos vistos que exigem (exclui vistos turísticos)
+  const EXCL_TOURIST = /tourist|visitor|business.visit/i;
+  const workVisas = visas.filter(v => !EXCL_TOURIST.test(v.id || ''));
+  const langVisas = workVisas.filter(v => !!v.requirements?.languageRequired);
+  const langPct = workVisas.length ? langVisas.length / workVisas.length : 0;
+  const primaryLang = langVisas[0]?.requirements?.languageRequired;
+  const langRequired = langPct > 0.3;
+
+  // direitos: "melhor caso" — se ao menos um visto oferece o direito
+  const familyAny = visas.some(v => v.rights?.canBringFamily === true);
+  const employerAny = visas.some(v => v.rights?.canChangeEmployer === true);
+  const employerAll = visas.length >= 3 && visas.every(v => v.rights?.canChangeEmployer === true);
+  const residencyAny = visas.some(v => !!v.rights?.pathToResidency);
+
+  // processamento: visto mais rápido disponível
+  const sortedDur = visas
+    .map(v => v.process?.estimatedDuration)
+    .filter(Boolean)
+    .sort((a, b) => parseDurationWeeks(a) - parseDurationWeeks(b));
+  const fastestDur = sortedDur[0] || null;
+  const fastestWks = parseDurationWeeks(fastestDur);
+
+  const scoreIn = { schengen, langPct, minIncomeAnnual, familyAny, employerAny, employerAll, residencyAny, visaCount: visas.length, fastestWks };
+  const score = calcScore(scoreIn);
+  const metrics = deriveMetrics(scoreIn, code);
+  const badges = deriveBadges(scoreIn, visas.length);
+  const coverText = deriveCoverText(code, scoreIn, visas.length);
+
+  const langLabel = langRequired
+    ? (primaryLang ? primaryLang.language + (primaryLang.level ? ' (' + primaryLang.level.split(' ').slice(0,2).join(' ') + ')' : '') : 'Exigido')
+    : 'Não exigido';
+
+  // figure do cover: renda / tempo de visto / quantidade de vistos
+  const rendaFig = minIncomeAnnual
+    ? (incomeCcy === 'AUD' ? `AU$${Math.round(minIncomeAnnual/1000)}k` : `€${Math.round(minIncomeAnnual/1000)}k`)
+    : 'S/D';
+  const durFig = fastestDur
+    ? fastestDur.split(' ').slice(0,3).join(' ')
+    : 'S/D';
+
+  return {
+    name: NAMES[code] || code.toUpperCase(),
+    flag: code,
+    score,
+    badges,
+    metrics,
+    coverText,
+    coverFigs: [
+      { v: rendaFig, l: 'renda mín. / ano' },
+      { v: durFig, l: 'tempo de visto' },
+      { v: String(visas.length), l: 'tipos de visto' },
+    ],
+    rendaLabel: fmtIncomeLabel(minIncomeAnnual, incomeCcy),
+    idioma: langLabel,
+    langRequired,
+    residencia: residencyAny,
+    trocarEmprego: employerAny,
+    tempoVisto: fastestDur || 'A determinar',
+    detailUrl: `pais-${code}.html`,
+  };
+}
+
+/* ---- fórmula de score (0-100) ---- */
+function calcScore({ schengen, langPct, minIncomeAnnual, familyAny, employerAny, employerAll, residencyAny, visaCount, fastestWks }) {
+  let s = 0;
+  if (schengen) s += 10;
+  // idioma
+  if (langPct === 0) s += 16;
+  else if (langPct < 0.2) s += 11;
+  else if (langPct < 0.4) s += 6;
+  else s += 2;
+  // renda
+  if (!minIncomeAnnual) s += 7;
+  else if (minIncomeAnnual < 12000) s += 18;
+  else if (minIncomeAnnual < 24000) s += 14;
+  else if (minIncomeAnnual < 36000) s += 9;
+  else if (minIncomeAnnual < 48000) s += 4;
+  else s += 1;
+  // direitos
+  if (familyAny) s += 11;
+  if (employerAny) s += 11;
+  if (employerAll) s += 5; // bônus: todos os vistos permitem troca de empregador
+  if (residencyAny) s += 10;
+  // velocidade de processamento
+  if (fastestWks < 3) s += 11;
+  else if (fastestWks <= 6) s += 7;
+  else if (fastestWks <= 12) s += 3;
+  // variedade
+  if (visaCount >= 12) s += 5;
+  else if (visaCount >= 6) s += 3;
+  else if (visaCount >= 3) s += 1;
+  return Math.min(100, Math.max(20, s));
+}
+
+/* ---- métricas do radar ---- */
+function deriveMetrics({ schengen, langPct, minIncomeAnnual, familyAny, employerAny, residencyAny, fastestWks }, code) {
+  const facilidade = Math.min(99, Math.round(
+    (schengen ? 20 : 0) + ((1 - langPct) * 28) +
+    (fastestWks < 3 ? 28 : fastestWks <= 6 ? 18 : fastestWks <= 12 ? 8 : 0) +
+    (familyAny ? 8 : 0) + 10
+  ));
+  let rendaInversa = 55;
+  if (!minIncomeAnnual) rendaInversa = 55;
+  else if (minIncomeAnnual < 12000) rendaInversa = 94;
+  else if (minIncomeAnnual < 24000) rendaInversa = 80;
+  else if (minIncomeAnnual < 36000) rendaInversa = 65;
+  else if (minIncomeAnnual < 48000) rendaInversa = 48;
+  else rendaInversa = 32;
+  const qualidade = Math.min(99, Math.round(
+    (familyAny ? 24 : 0) + (employerAny ? 20 : 0) + (residencyAny ? 28 : 0) + 24
+  ));
+  return { facilidade, rendaInversa, qualidade, custoVida: COST_IDX[code] || 70 };
+}
+
+/* ---- badges automáticas ---- */
+function deriveBadges({ schengen, langPct, minIncomeAnnual, familyAny, employerAny, fastestWks }, visaCount) {
+  const b = [];
+  if (langPct === 0) b.push({ k: 'g', l: 'Sem barreira de idioma' });
+  else if (langPct > 0.5) b.push({ k: 'w', l: 'Idioma obrigatório' });
+
+  if (minIncomeAnnual && minIncomeAnnual < 15000) b.push({ k: 'g', l: 'Renda mín. baixa' });
+  else if (minIncomeAnnual && minIncomeAnnual >= 45000) b.push({ k: 'w', l: 'Renda alta exigida' });
+
+  if (fastestWks < 3) b.push({ k: 'g', l: 'Processamento ágil' });
+
+  if (familyAny && employerAny) b.push({ k: 'n', l: 'Direitos completos' });
+  else if (!familyAny || !employerAny) b.push({ k: 'n', l: employerAny ? 'Troca de emprego livre' : familyAny ? 'Família permitida' : 'Direitos limitados' });
+
+  if (!schengen) b.push({ k: 'n', l: 'Fora do Schengen' });
+  if (visaCount >= 15) b.push({ k: 'n', l: `${visaCount} tipos de visto` });
+
+  return b.slice(0, 3);
+}
+
+/* ---- texto editorial do cover ---- */
+function deriveCoverText(code, { langPct, minIncomeAnnual, familyAny, employerAny, residencyAny, fastestWks }, visaCount) {
+  const parts = [];
+
+  if (langPct === 0) parts.push('Sem barreira de idioma para brasileiros');
+  else if (langPct < 0.3) parts.push('Exigência de idioma restrita a poucos vistos');
+  else if (langPct < 0.6) parts.push('Idioma necessário em parte dos vistos');
+  else parts.push('Idioma exigido na maioria das opções');
+
+  if (minIncomeAnnual) {
+    const k = Math.round(minIncomeAnnual / 1000);
+    if (minIncomeAnnual < 15000) parts[parts.length - 1] += ` e renda mínima acessível (€ ${k}k/ano)`;
+    else if (minIncomeAnnual >= 45000) parts[parts.length - 1] += ` com renda exigida elevada (€ ${k}k+/ano)`;
+    else parts[parts.length - 1] += ` com renda de € ${k}k/ano para o visto mais acessível`;
+  }
+  parts[parts.length - 1] += '.';
+
+  if (fastestWks < 3) parts.push(`Processamento ágil: a opção mais rápida pode sair em até 2 semanas, com ${visaCount} tipos de visto mapeados.`);
+  else if (fastestWks <= 6) parts.push(`Prazo de 1 a 2 meses para o visto mais rápido, com ${visaCount} opções disponíveis.`);
+  else parts.push(`Processamento médio de 2 a 4 meses entre as ${visaCount} opções mapeadas.`);
+
+  if (familyAny && employerAny && residencyAny) {
+    parts.push('Direitos completos disponíveis em ao menos um visto: família, troca de empregador e caminho para residência permanente.');
+  } else {
+    const ok = [], watch = [];
+    if (familyAny) ok.push('reunião familiar'); else watch.push('família restrita');
+    if (employerAny) ok.push('troca de empregador'); else watch.push('empregador fixo');
+    if (residencyAny) ok.push('caminho para residência'); else watch.push('sem caminho claro para PR');
+    if (ok.length) parts.push(`Pontos positivos: ${ok.join(' e ')}.${watch.length ? ' Atenção: ' + watch.join(', ') + '.' : ''}`);
+    else parts.push(`Pontos de atenção: ${watch.join(', ')}.`);
+  }
+
+  return parts.join(' ');
+}
+
+/* ---- carregamento assíncrono ---- */
+async function loadCountries() {
+  const results = await Promise.allSettled(
+    ORDER.map(cc => fetch(`${DATA_BASE}/${cc}.json`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }))
+  );
+  results.forEach((res, i) => {
+    const code = ORDER[i];
+    if (res.status === 'fulfilled') {
+      COUNTRIES[code] = transformCountry(code, res.value);
+    } else {
+      console.warn(`[comparar] Falha ao carregar ${code}.json:`, res.reason);
+    }
+  });
+}
+
+/* ---- flag SVG ---- */
+function flagSVG(code, size, rounded) {
+  const w = Math.round(size * 1.4), h = size;
+  const r = rounded;
+  const shadow = '0 0 0 1px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.4)';
+  const defs = {
+    nl: `<rect width="${w}" height="${h/3}" fill="#AE1C28"/><rect y="${h/3}" width="${w}" height="${h/3}" fill="#FFF"/><rect y="${2*h/3}" width="${w}" height="${h/3}" fill="#21468B"/>`,
+    de: `<rect width="${w}" height="${h/3}" fill="#000"/><rect y="${h/3}" width="${w}" height="${h/3}" fill="#DD0000"/><rect y="${2*h/3}" width="${w}" height="${h/3}" fill="#FFCE00"/>`,
+    pt: `<rect width="${w*.4}" height="${h}" fill="#006600"/><rect x="${w*.4}" width="${w*.6}" height="${h}" fill="#FF0000"/><circle cx="${w*.4}" cy="${h/2}" r="${h*.25}" fill="#FFD700" stroke="#660000" stroke-width="0.5"/><circle cx="${w*.4}" cy="${h/2}" r="${h*.16}" fill="#fff" stroke="#003399" stroke-width="0.4"/>`,
+    es: `<rect width="${w}" height="${h*.25}" fill="#c60b1e"/><rect y="${h*.25}" width="${w}" height="${h*.5}" fill="#ffc400"/><rect y="${h*.75}" width="${w}" height="${h*.25}" fill="#c60b1e"/>`,
+    ie: `<rect width="${w/3}" height="${h}" fill="#169B62"/><rect x="${w/3}" width="${w/3}" height="${h}" fill="#FFF"/><rect x="${2*w/3}" width="${w/3}" height="${h}" fill="#FF883E"/>`,
+    fr: `<rect width="${w/3}" height="${h}" fill="#002395"/><rect x="${w/3}" width="${w/3}" height="${h}" fill="#FFF"/><rect x="${2*w/3}" width="${w/3}" height="${h}" fill="#ED2939"/>`,
+    it: `<rect width="${w/3}" height="${h}" fill="#009246"/><rect x="${w/3}" width="${w/3}" height="${h}" fill="#FFF"/><rect x="${2*w/3}" width="${w/3}" height="${h}" fill="#CE2B37"/>`,
+    be: `<rect width="${w/3}" height="${h}" fill="#000"/><rect x="${w/3}" width="${w/3}" height="${h}" fill="#FAE042"/><rect x="${2*w/3}" width="${w/3}" height="${h}" fill="#ED2939"/>`,
+    at: `<rect width="${w}" height="${h/3}" fill="#ED2939"/><rect y="${h/3}" width="${w}" height="${h/3}" fill="#FFF"/><rect y="${2*h/3}" width="${w}" height="${h/3}" fill="#ED2939"/>`,
+    au: `<rect width="${w}" height="${h}" fill="#00008B"/><line x1="0" y1="0" x2="${w*.45}" y2="${h}" stroke="#fff" stroke-width="${h*.07}"/><line x1="${w*.45}" y1="0" x2="0" y2="${h}" stroke="#fff" stroke-width="${h*.07}"/>`,
+  };
+  const inner = defs[code] || `<rect width="${w}" height="${h}" fill="#333"/>`;
+  return `<span style="display:inline-block;width:${w}px;height:${h}px;border-radius:${r}px;overflow:hidden;box-shadow:${shadow};flex-shrink:0;"><svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" style="display:block;">${inner}</svg></span>`;
+}
+
+/* ---- radar SVG ---- */
+function radarSVG(metrics, isWinner) {
+  const axes = [
+    { key: 'facilidade', label: 'Facilidade' },
+    { key: 'rendaInversa', label: 'Renda' },
+    { key: 'qualidade', label: 'Qualidade' },
+    { key: 'custoVida', label: 'Custo' },
+  ];
+  const cx = 100, cy = 100, R = 70;
+  const accent = isWinner ? '#F5C518' : 'rgba(255,255,255,0.65)';
+
+  const pts = axes.map((a, i) => {
+    const angle = (i / axes.length) * Math.PI * 2 - Math.PI / 2;
+    const v = a.key === 'custoVida' ? 100 - metrics[a.key] : metrics[a.key];
+    return { x: cx + Math.cos(angle) * (v / 100) * R, y: cy + Math.sin(angle) * (v / 100) * R, v };
+  });
+
+  const path = pts.map((p, i) => `${i ? 'L' : 'M'}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ') + 'Z';
+
+  const grids = [0.33, 0.66, 1].map(r =>
+    `<polygon points="${axes.map((_, i) => {
+      const a = (i / axes.length) * Math.PI * 2 - Math.PI / 2;
+      return `${(cx + Math.cos(a)*R*r).toFixed(1)},${(cy + Math.sin(a)*R*r).toFixed(1)}`;
+    }).join(' ')}" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`
+  ).join('');
+
+  const axLines = axes.map((_, i) => {
+    const a = (i / axes.length) * Math.PI * 2 - Math.PI / 2;
+    return `<line x1="${cx}" y1="${cy}" x2="${(cx+Math.cos(a)*R).toFixed(1)}" y2="${(cy+Math.sin(a)*R).toFixed(1)}" stroke="rgba(255,255,255,0.06)"/>`;
+  }).join('');
+
+  const dots = pts.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.5" fill="${accent}"/>`).join('');
+
+  const legend = axes.map((a, i) => {
+    const v = a.key === 'custoVida' ? 100 - metrics[a.key] : metrics[a.key];
+    return `<div class="ed-radar-row"><span class="ed-radar-dot" style="background:${accent}"></span><span class="ed-radar-lbl">${a.label}</span><span class="ed-radar-val">${v}</span></div>`;
+  }).join('');
+
+  return `<div class="ed-radar">
+    <svg viewBox="0 0 200 200" width="160" height="160" style="flex-shrink:0;">${grids}${axLines}<path d="${path}" fill="${accent}" fill-opacity="0.18" stroke="${accent}" stroke-width="1.5"/>${dots}</svg>
+    <div class="ed-radar-leg">${legend}</div>
+  </div>`;
+}
+
+/* ---- medallion tick marks ---- */
+function ticksSVG(score) {
+  const total = 24, filled = Math.round((score / 100) * total);
+  let lines = '';
+  for (let i = 0; i < total; i++) {
+    const a = (i / total) * Math.PI * 2;
+    const r1 = 178, r2 = i % 6 === 0 ? 167 : 173;
+    const x1 = (180 + Math.cos(a)*r1).toFixed(1), y1 = (180 + Math.sin(a)*r1).toFixed(1);
+    const x2 = (180 + Math.cos(a)*r2).toFixed(1), y2 = (180 + Math.sin(a)*r2).toFixed(1);
+    const col = i < filled ? '#F5C518' : 'rgba(255,255,255,0.12)';
+    const op = i < filled ? '0.7' : '1';
+    lines += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="1.4" opacity="${op}"/>`;
+  }
+  return `<svg style="position:absolute;inset:0;width:360px;height:360px;pointer-events:none;" viewBox="0 0 360 360">${lines}</svg>`;
+}
+
+/* ---- helpers ---- */
+function boolFact(v) {
+  if (v === null) return { text: 'Sem dados', cls: 'fv-dim' };
+  return v ? { text: 'Sim', cls: 'fv-ok' } : { text: 'Não', cls: 'fv-bad' };
+}
+function badgeCls(k) { return k === 'g' ? 'b-g' : k === 'w' ? 'b-w' : 'b-n'; }
+
+/* ---- rendering ---- */
+function renderChips() {
+  document.getElementById('chips').innerHTML = ORDER.map(code => {
+    const c = COUNTRIES[code];
+    if (!c) return '';
+    const active = selected.includes(code);
+    const disabled = !active && selected.length >= MAX;
+    return `<button
+      class="country-chip${active ? ' active' : ''}"
+      onclick="toggle('${code}')"
+      ${disabled ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}
+    ><span class="chip-flag-img flag-${code}"></span>${c.name}</button>`;
+  }).join('');
+}
+
+function renderEditorial() {
+  const root = document.getElementById('editorial-root');
+
+  if (selected.length === 0) {
+    root.innerHTML = `<div class="ed-empty">
+      <div class="ed-empty-icon">○ ○ ○</div>
+      <p class="ed-empty-title">Nenhum país selecionado</p>
+      <p class="ed-empty-sub">Clique nos chips acima para adicionar países à comparação.</p>
+    </div>`;
+    return;
+  }
+
+  const sorted = selected.map(code => ({ ...COUNTRIES[code], code }))
+    .sort((a, b) => b.score - a.score);
+  const winner = sorted[0];
+  const n = sorted.length;
+
+  /* masthead */
+  const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const now = new Date();
+  const monthLabel = monthNames[now.getMonth()] + ' ' + now.getFullYear();
+  const nextDate = new Date(now.getFullYear(), now.getMonth() + 1, 14);
+  const nextLabel = `14 ${monthNames[nextDate.getMonth()].substring(0,3).toLowerCase()} ${nextDate.getFullYear()}`;
+
+  const masthead = `<div class="ed-masthead">
+    <span>Edição 14 · Comparativo ${monthLabel}</span>
+    <div class="ed-masthead-right">
+      <span>${n} ${n === 1 ? 'país' : 'países'}</span>
+      <span>9 critérios</span>
+      <span class="ed-live">● ao vivo</span>
+    </div>
+  </div>`;
+
+  /* cover */
+  const rankLabel = sorted.findIndex(c => c.code === winner.code) + 1;
+  const coverFigs = winner.coverFigs.map(f => `<div><div class="ed-figure-val">${f.v}</div><div class="ed-figure-lbl">${f.l}</div></div>`).join('');
+  const cover = `<div class="ed-cover-outer">
+    <div class="ed-cover-glow"></div>
+    <div class="ed-cover-inner">
+      <div class="ed-cover-grid">
+        <div>
+          <div class="ed-eyebrow"><span class="ed-eyebrow-line"></span>Cover Story · #${rankLabel} no ranking</div>
+          <h1 class="ed-headline">Por que <em>${winner.name}</em><br>segue na liderança<span class="ed-dot">.</span></h1>
+          <p class="ed-lead">${winner.coverText}</p>
+          <div class="ed-figures">${coverFigs}</div>
+        </div>
+        <div class="ed-medallion-col">
+          <div class="ed-medallion">
+            <div class="ed-med-r1"></div>
+            <div class="ed-med-r2"></div>
+            ${ticksSVG(winner.score)}
+            <div class="ed-med-center">
+              ${flagSVG(winner.code, 56, 14)}
+              <div class="ed-med-score-lbl">Score</div>
+              <div class="ed-med-score">${winner.score}</div>
+              <div class="ed-med-footer">de 100 · #1 ranking</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+  /* index nav */
+  const indexCols = `auto ${sorted.map(() => '1fr').join(' ')}`;
+  const indexEntries = sorted.map((c, i) => `<div class="ed-index-entry">
+    <span style="color:${i === 0 ? 'var(--ed-accent)' : 'var(--ed-muted)'}">#${String(c.code === winner.code ? 1 : i+1).padStart(2,'0')}</span>
+    ${flagSVG(c.code, 16, 3)}
+    <span style="color:var(--ed-text)">${c.name}</span>
+    <span class="ed-index-line"></span>
+    <span>${c.score}</span>
+  </div>`).join('');
+
+  const indexNav = `<div class="ed-index-outer">
+    <div class="ed-index" style="grid-template-columns:${indexCols}">
+      <span>Os dossiês</span>
+      ${indexEntries}
+    </div>
+  </div>`;
+
+  /* dossier cards */
+  const cards = sorted.map((c, i) => {
+    const isWinner = i === 0;
+    const res = boolFact(c.residencia);
+    const emp = boolFact(c.trocarEmprego);
+    const badgesHtml = c.badges.map(b => `<span class="ed-badge ${badgeCls(b.k)}">${b.l}</span>`).join('');
+
+    return `<article class="ed-card${isWinner ? ' winner' : ''}">
+      ${isWinner ? '<div class="ed-win-bar"></div>' : ''}
+      <div class="ed-rank">
+        <div class="ed-rank-lbl">Rank</div>
+        <div class="ed-rank-num ${isWinner ? 'w' : 'o'}">${String(i+1).padStart(2,'0')}</div>
+      </div>
+      <div class="ed-id">
+        ${flagSVG(c.code, 36, 10)}
+        <h2>${c.name}</h2>
+        <div class="ed-id-meta">Score <span class="sv" style="color:${isWinner ? 'var(--ed-accent)' : 'var(--ed-text)'}">${c.score}</span> · ${c.tempoVisto} · <a href="${c.detailUrl}" style="color:var(--ed-accent);font-size:12px;font-family:var(--ed-mono);">ver país →</a></div>
+        <div class="ed-badges">${badgesHtml}</div>
+      </div>
+      ${radarSVG(c.metrics, isWinner)}
+      <div class="ed-facts">
+        <div class="ed-fact"><span class="ed-fact-lbl">Renda mínima</span><span class="ed-fact-val ${isWinner ? 'fv-a' : 'fv-n'}">${c.rendaLabel}</span></div>
+        <div class="ed-fact"><span class="ed-fact-lbl">Idioma</span><span class="ed-fact-val ${c.idioma === 'Não exigido' ? 'fv-ok' : c.idioma === 'Sem dados' ? 'fv-dim' : 'fv-bad'}">${c.idioma}</span></div>
+        <div class="ed-fact"><span class="ed-fact-lbl">Residência perm.</span><span class="ed-fact-val ${res.cls}">${res.text}</span></div>
+        <div class="ed-fact"><span class="ed-fact-lbl">Trocar emprego</span><span class="ed-fact-val ${emp.cls}">${emp.text}</span></div>
+      </div>
+    </article>`;
+  }).join('');
+
+  const dossiers = `<div class="ed-dossiers">${cards}</div>`;
+
+  /* editorial inner footer */
+  const edFooter = `<div class="ed-inner-footer">
+    <span>Próxima edição · ${nextLabel}</span>
+    <span>rotalegal.com / comparar</span>
+  </div>`;
+
+  root.innerHTML = masthead + cover + indexNav + dossiers + edFooter;
+}
+
+function toggle(code) {
+  if (!COUNTRIES[code]) return;
+  const idx = selected.indexOf(code);
+  if (idx !== -1) { selected.splice(idx, 1); }
+  else { if (selected.length >= MAX) return; selected.push(code); }
+  renderChips();
+  renderEditorial();
+}
+
+function showLoading() {
+  document.getElementById('editorial-root').innerHTML = `<div class="ed-empty">
+    <div class="ed-empty-icon" style="letter-spacing:.5em;animation:pulse 1.4s ease-in-out infinite">···</div>
+    <p class="ed-empty-title">Carregando dossiês</p>
+    <p class="ed-empty-sub">Buscando dados de ${ORDER.length} países a partir da última extração.</p>
+  </div>
+  <style>@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}</style>`;
+}
+
+(async function init() {
+  showLoading();
+  await loadCountries();
+  // remove países sem dados do seletor ativo (caso algum fetch falhe)
+  selected = selected.filter(cc => COUNTRIES[cc]);
+  if (!selected.length) selected = ORDER.filter(cc => COUNTRIES[cc]).slice(0, 3);
+  renderChips();
+  renderEditorial();
+})();
+</script>
 
 <script src="assets/nav.js" defer></script>
 </body>
