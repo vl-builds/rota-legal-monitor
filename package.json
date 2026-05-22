@@ -22,6 +22,8 @@
     "index": "bun run src/cli/index-gen.ts",
     "site:generate": "bun run src/site/generate.ts",
     "serve": "bun run src/cli/serve.ts",
+    "alunos:novo": "bun run src/cli/alunos-novo.ts",
+    "alunos:revogar": "bun run src/cli/alunos-revogar.ts",
     "test": "bun test"
   },
   "dependencies": {

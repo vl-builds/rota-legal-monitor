@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Área Aluno — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="../assets/design-system.css" />
+<script src="assets/auth-guard.js"></script>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="../home.html">
+      <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Hub</a>
+      <a class="nav-link" href="checklist.html">Checklist</a>
+      <a class="nav-link" href="../home.html">Site público</a>
+    </div>
+    <div class="nav-right">
+      <span class="caption-up" id="aluno-nome" style="color: var(--muted);"></span>
+      <button class="btn btn-secondary" type="button" onclick="window.alunoLogout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow"><span class="dot"></span>Área Exclusiva</div>
+      <h1 class="display-lg">
+        Bem-vindo, <span class="accent" id="aluno-nome-grande">aluno</span>.
+      </h1>
+      <p class="lede">
+        Ferramentas, guias e cenários pré-prontos que só alunos do curso têm acesso.
+        Use para acelerar a sua decisão e preparar seus documentos.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="feature-grid">
+
+        <a href="checklist.html" class="feature-card-dark">
+          <div class="icon">CL</div>
+          <h3 class="title-md">Checklist Personalizada</h3>
+          <p class="body-md">
+            Marque seu país, visto e perfil. Geramos a lista priorizada de documentos,
+            exportável em PDF.
+          </p>
+          <span class="badge new">Disponível</span>
+        </a>
+
+        <div class="feature-card-dark" style="opacity: 0.6;">
+          <div class="icon">CP</div>
+          <h3 class="title-md">Calculadora Pro</h3>
+          <p class="body-md">
+            Projeção mês a mês com filhos, healthcare, IRPF local e exportação PDF.
+          </p>
+          <span class="badge">Em breve</span>
+        </div>
+
+        <div class="feature-card-dark" style="opacity: 0.6;">
+          <div class="icon">CE</div>
+          <h3 class="title-md">Biblioteca de Cenários</h3>
+          <p class="body-md">
+            12 a 15 dossiês prontos por mês cobrindo combinações comuns (dev solo,
+            família, aposentado).
+          </p>
+          <span class="badge">Em breve</span>
+        </div>
+
+        <div class="feature-card-dark" style="opacity: 0.6;">
+          <div class="icon">GU</div>
+          <h3 class="title-md">Guias do Henryzuca</h3>
+          <p class="body-md">
+            Tutoriais longos passo a passo escritos especificamente para alunos do curso.
+          </p>
+          <span class="badge">Em breve</span>
+        </div>
+
+        <div class="feature-card-dark" style="opacity: 0.6;">
+          <div class="icon">AL</div>
+          <h3 class="title-md">Alertas por Email</h3>
+          <p class="body-md">
+            Receba aviso quando uma regra importante mudar nos países que você acompanha.
+          </p>
+          <span class="badge">Em breve</span>
+        </div>
+
+        <div class="feature-card-dark" style="opacity: 0.6;">
+          <div class="icon">TP</div>
+          <h3 class="title-md">Templates Baixáveis</h3>
+          <p class="body-md">
+            Cartas de motivação, planilhas de custos e formulários consulares preenchidos
+            como exemplo.
+          </p>
+          <span class="badge">Em breve</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · Área Aluno · MIT</span>
+      <span class="caption-up">Acesso exclusivo para alunos do curso</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const sess = window.alunoSession;
+  if (!sess) return;
+  const primeiro = sess.nome.split(' ')[0];
+  document.getElementById('aluno-nome').textContent = sess.nome;
+  document.getElementById('aluno-nome-grande').textContent = primeiro;
+})();
+</script>
+</body>
+</html>

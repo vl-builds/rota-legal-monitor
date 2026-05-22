@@ -1157,6 +1157,77 @@ footer {
 .hp-tip-text { margin-top: var(--s-xs); font-size: 12px; color: var(--gp-text-mute); font-style: italic; }
 
 /* =========================================================
+   Inputs de formulário (text-input, select-input)
+   Usado em: area-aluno (login, checklist), calculadora-pro.
+   ========================================================= */
+.text-input,
+.select-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--s-md);
+  background: var(--surface-elevated);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  color: var(--on-dark);
+  font-family: inherit;
+  font-size: 15px;
+  transition: border-color 120ms ease;
+}
+.text-input:focus,
+.select-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.text-input::placeholder {
+  color: var(--muted);
+}
+.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--s-xs);
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-md);
+}
+.field-error {
+  margin-top: var(--s-xs);
+  font-size: 13px;
+  color: var(--accent-rose);
+  min-height: 18px;
+}
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-sm);
+  padding: var(--s-sm) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.checkbox-row:last-child { border-bottom: none; }
+.checkbox-row input[type="checkbox"] {
+  margin-top: 3px;
+  width: 18px; height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.checkbox-row label {
+  flex: 1;
+  cursor: pointer;
+  color: var(--body);
+  line-height: 1.5;
+}
+.checkbox-row input:checked + label {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* =========================================================
    Responsividade — Guia Prático v2
    ========================================================= */
 @media (max-width: 1024px) {

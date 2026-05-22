@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login da Área Aluno — Rota Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="../assets/design-system.css" />
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="../home.html">
+      <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="../home.html">Voltar ao site</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container" style="max-width: 460px;">
+      <div class="eyebrow"><span class="dot"></span>Área do Aluno</div>
+      <h1 class="display-md">Entrar na sua área.</h1>
+      <p class="lede" style="margin-bottom: var(--s-xl);">
+        Acesso exclusivo para alunos do curso do Henryzuca.
+        Use as credenciais que você recebeu por DM no Discord.
+      </p>
+
+      <form id="login-form" class="feature-card-dark field-group" autocomplete="on">
+        <div>
+          <label class="field-label" for="email">Email</label>
+          <input
+            class="text-input"
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="username"
+            placeholder="seuemail@gmail.com"
+          />
+        </div>
+        <div>
+          <label class="field-label" for="senha">Senha</label>
+          <input
+            class="text-input"
+            type="password"
+            id="senha"
+            name="senha"
+            required
+            autocomplete="current-password"
+            placeholder="16 caracteres"
+          />
+          <div class="field-error" id="erro" role="alert" aria-live="polite"></div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submit-btn">Entrar</button>
+      </form>
+
+      <p class="body-sm" style="margin-top: var(--s-xl); color: var(--muted);">
+        Ainda não é aluno? Conheça o
+        <a class="text-link" href="https://discord.gg/" target="_blank" rel="noopener noreferrer">Discord do curso</a>
+        para entrar na turma.
+      </p>
+    </div>
+  </section>
+</main>
+
+<script>
+(async function () {
+  'use strict';
+  const SESSION_KEY = 'rota-legal:aluno-session';
+  const CREDS_URL = './credentials.json';
+
+  const form = document.getElementById('login-form');
+  const erro = document.getElementById('erro');
+  const submitBtn = document.getElementById('submit-btn');
+
+  // Ja logado? Redireciona pro hub.
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (raw) {
+      const sess = JSON.parse(raw);
+      if (sess && sess.email) {
+        window.location.replace('index.html');
+        return;
+      }
+    }
+  } catch (_) { /* ignora */ }
+
+  async function sha256Hex(text) {
+    const bytes = new TextEncoder().encode(text);
+    const hashBuf = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(hashBuf))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+  }
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    erro.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Verificando...';
+
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const senha = document.getElementById('senha').value;
+
+    try {
+      const res = await fetch(CREDS_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('credenciais-indisponiveis');
+      const file = await res.json();
+
+      const cred = (file.credentials || []).find(
+        (c) => c.email === email && !c.revokedAt,
+      );
+      if (!cred) {
+        erro.textContent = 'Email ou senha invalidos.';
+        return;
+      }
+
+      const candidate = await sha256Hex(cred.salt + senha);
+      if (candidate !== cred.hash) {
+        erro.textContent = 'Email ou senha invalidos.';
+        return;
+      }
+
+      localStorage.setItem(
+        SESSION_KEY,
+        JSON.stringify({
+          email: cred.email,
+          nome: cred.nome,
+          loggedAt: Date.now(),
+        }),
+      );
+      window.location.replace('index.html');
+    } catch (err) {
+      erro.textContent = 'Erro ao verificar credenciais. Tente novamente.';
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Entrar';
+    }
+  });
+})();
+</script>
+</body>
+</html>
