@@ -24,6 +24,8 @@
     "serve": "bun run src/cli/serve.ts",
     "alunos:novo": "bun run src/cli/alunos-novo.ts",
     "alunos:revogar": "bun run src/cli/alunos-revogar.ts",
+    "scenarios:generate": "bun run src/scenarios/generate.ts",
+    "scenarios:render": "bun run src/site/scenario-page.ts",
     "test": "bun test"
   },
   "dependencies": {
