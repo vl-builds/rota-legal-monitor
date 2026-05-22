@@ -40,3 +40,6 @@ playwright/.cache/
 
 # Cobertura de testes
 coverage/
+
+# Planos e ideias para o futuro (nao versionar)
+projetos futuros/
