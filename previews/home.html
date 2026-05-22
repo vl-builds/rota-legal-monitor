@@ -342,49 +342,173 @@
   </div>
 </div>
 
-<!-- ============== OS TRÊS CAMINHOS ============== -->
+<!-- ============== SUGESTÃO RÁPIDA ============== -->
+<style>
+  .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-lg);
+    margin-top: var(--s-xl);
+  }
+  @media (max-width: 900px) { .sg-grid { grid-template-columns: 1fr; } }
+
+  .sg-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-md);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.18s;
+  }
+  .sg-card:hover { border-color: var(--primary); }
+
+  .sg-header {
+    display: flex;
+    align-items: center;
+    gap: var(--s-sm);
+  }
+  .sg-flag {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .sg-country { font-size: 18px; font-weight: 700; color: var(--on-dark); }
+  .sg-rank {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary);
+    background: rgba(240,180,41,0.1);
+    border: 1px solid rgba(240,180,41,0.25);
+    border-radius: var(--r-pill);
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  .sg-headline {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--on-dark);
+    line-height: 1.4;
+  }
+
+  .sg-reasons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+  .sg-reasons li {
+    font-size: 13px;
+    color: var(--body);
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+  }
+  .sg-reasons li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .sg-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding-top: var(--s-sm);
+    border-top: 1px solid var(--hairline);
+  }
+  .sg-stat-val { font-size: 20px; font-weight: 700; color: var(--primary); font-variant-numeric: tabular-nums; }
+  .sg-stat-lbl { font-size: 12px; color: var(--muted); }
+
+  .sg-cta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: var(--s-xs);
+  }
+</style>
 <section>
   <div class="container">
-    <div class="eyebrow">Encontre o seu ponto de entrada</div>
-    <h2 class="display-md" style="margin-bottom: var(--s-sm);">Qual é a sua situação?</h2>
-    <p class="body-md" style="max-width: 520px; margin-bottom: var(--s-xl);">
-      Cada pessoa está num momento diferente da jornada. Escolha o caminho certo para o seu.
+    <div class="eyebrow">Análise de maio de 2026</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-sm);">Sugestão rápida: 3 países com janela aberta</h2>
+    <p class="body-md" style="max-width: 580px; margin-bottom: 0;">
+      Com base nos dados extraídos este mês, estes três países combinam processo acessível,
+      demanda ativa por profissionais brasileiros e visto com caminho claro para residência.
     </p>
-    <div class="path-grid">
+    <div class="sg-grid">
 
-      <a class="path-card" href="qual-pais.html">
-        <span class="path-num">01 · decidindo</span>
-        <h3 class="path-title">Ainda não sei se vale a pena para mim</h3>
-        <p class="path-quote">"Ouvi falar que dá, mas não sei se meu perfil se encaixa."</p>
-        <p class="path-desc">
-          O questionário leva menos de 3 minutos. Perguntas sobre área profissional,
-          qualificação, idioma e prioridades. No final, uma recomendação de país
-          com justificativa e um plano B.
-        </p>
-        <span class="path-cta">Fazer o questionário →</span>
+      <a class="sg-card" href="pais-es.html">
+        <div class="sg-header">
+          <span class="sg-flag flag-es"></span>
+          <span class="sg-country">Espanha</span>
+          <span class="sg-rank">01 · recomendado</span>
+        </div>
+        <p class="sg-headline">Idioma próximo, visto de nômade digital aprovado e comunidade brasileira consolidada.</p>
+        <ul class="sg-reasons">
+          <li>Visto de Nômade Digital (2023) permite trabalhar remotamente para clientes fora da Espanha com imposto reduzido nos primeiros 4 anos.</li>
+          <li>Espanhol e português têm 89% de inteligibilidade: adaptação de idioma em semanas, não anos.</li>
+          <li>Acordo bilateral Brasil-Espanha isenta brasileiros de algumas exigências consulares padrão.</li>
+          <li>Acesso à zona Schengen e mercado de trabalho europeu a partir do dia 1.</li>
+        </ul>
+        <div class="sg-stat">
+          <span class="sg-stat-val">EUR 1.221</span>
+          <span class="sg-stat-lbl">salário mínimo /mês · SMI 2026</span>
+        </div>
+        <span class="sg-cta">Ver detalhes completos →</span>
       </a>
 
-      <a class="path-card" href="comparar.html">
-        <span class="path-num">02 · comparando</span>
-        <h3 class="path-title">Estou entre dois ou três países</h3>
-        <p class="path-quote">"Já quero ir, só não sei qual escolher."</p>
-        <p class="path-desc">
-          Selecione os países e veja lado a lado: dificuldade do visto, salário mínimo,
-          prazo estimado, Schengen, trabalho autônomo permitido e idioma exigido.
-          Cada critério com fonte e data.
-        </p>
-        <span class="path-cta">Abrir comparador →</span>
+      <a class="sg-card" href="pais-ie.html">
+        <div class="sg-header">
+          <span class="sg-flag flag-ie"></span>
+          <span class="sg-country">Irlanda</span>
+          <span class="sg-rank">02 · recomendado</span>
+        </div>
+        <p class="sg-headline">Mercado de TI em inglês com um dos maiores salários mínimos da Europa e processo rápido.</p>
+        <ul class="sg-reasons">
+          <li>Critical Skills Employment Permit: processamento médio de 6 a 8 semanas e sem exigência de oferta de emprego prévia para áreas de escassez.</li>
+          <li>Google, Meta, LinkedIn, Stripe e Salesforce têm sedes europeias em Dublin: demanda ativa por profissionais de tecnologia.</li>
+          <li>Graduate Visa de 2 anos para quem conclui curso local, abrindo caminho para visto de trabalho sem patrocínio.</li>
+          <li>Residência permanente após 5 anos com critérios transparentes e histórico de aprovação alto para brasileiros.</li>
+        </ul>
+        <div class="sg-stat">
+          <span class="sg-stat-val">EUR 2.453</span>
+          <span class="sg-stat-lbl">salário mínimo /mês · NMW 2026</span>
+        </div>
+        <span class="sg-cta">Ver detalhes completos →</span>
       </a>
 
-      <a class="path-card" href="paises.html">
-        <span class="path-num">03 · em processo</span>
-        <h3 class="path-title">Já escolhi e estou juntando documentos</h3>
-        <p class="path-quote">"Preciso de um checklist atualizado, não de um artigo de blog."</p>
-        <p class="path-desc">
-          Cada página de país tem os requisitos detalhados por tipo de visto,
-          com data de verificação visível. Você sabe exatamente quando o dado foi confirmado.
-        </p>
-        <span class="path-cta">Ver países →</span>
+      <a class="sg-card" href="pais-pt.html">
+        <div class="sg-header">
+          <span class="sg-flag flag-pt"></span>
+          <span class="sg-country">Portugal</span>
+          <span class="sg-rank">03 · mais acessível</span>
+        </div>
+        <p class="sg-headline">Mesmo idioma, Tratado de Amizade e múltiplos vistos para diferentes perfis profissionais.</p>
+        <ul class="sg-reasons">
+          <li>Tratado de Amizade Brasil-Portugal equipara direitos após 2 anos de residência legal, sem exigir naturalização.</li>
+          <li>Visto D3 para profissionais altamente qualificados e D2 para empreendedores: dois caminhos com critérios diferentes para o mesmo destino.</li>
+          <li>Zero barreira de idioma: integração imediata no trabalho, documentação e vida cotidiana.</li>
+          <li>Comunidade brasileira de mais de 300 mil pessoas: redes de apoio, indicações de emprego e suporte burocrático já estabelecidos.</li>
+        </ul>
+        <div class="sg-stat">
+          <span class="sg-stat-val">EUR 920</span>
+          <span class="sg-stat-lbl">salário mínimo /mês · SMN 2026</span>
+        </div>
+        <span class="sg-cta">Ver detalhes completos →</span>
       </a>
 
     </div>
@@ -439,19 +563,6 @@
         Também monitorados: Espanha, Itália, Bélgica, Áustria e Austrália.
       </span>
       <a class="text-link body-sm" href="paises.html">Ver todos os 10 países →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============== COMO FUNCIONA ============== -->
-<section>
-  <div class="container">
-    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-lg);">
-      <div>
-        <div class="eyebrow">Por baixo dos panos</div>
-        <h2 class="display-sm" style="margin: 0;">Fontes oficiais. IA extrai. Zod valida. Git versionia.</h2>
-      </div>
-      <a class="btn btn-secondary" href="dev.html">Ver como funciona →</a>
     </div>
   </div>
 </section>
@@ -596,14 +707,14 @@
       <div>
         <h4>Dados</h4>
         <ul>
-          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="https://github.com/Vitorcode1/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
           <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Rota Legal · <a href="https://github.com/Vitorcode1" target="_blank" rel="noopener noreferrer">Vitorcode1</a> · MIT</span>
+      <span>© 2026 Rota Legal · <a href="https://github.com/vl-builds" target="_blank" rel="noopener noreferrer">vl-builds</a> · MIT</span>
       <span class="caption-up">Última extração: mai/2026</span>
     </div>
   </div>
