@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Apostila de Haia — Guia Prático</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="../../assets/design-system.css" />
+<script src="../assets/auth-guard.js"></script>
+<style>
+  .guide-meta {
+    display: flex;
+    gap: var(--s-md);
+    margin-bottom: var(--s-lg);
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .guide-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .guide-meta span::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--primary); }
+  .guide-body { max-width: 720px; }
+  .guide-body h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--on-dark);
+    margin: var(--s-xl) 0 var(--s-md);
+    letter-spacing: -0.3px;
+  }
+  .guide-body p, .guide-body li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--body);
+    margin-bottom: var(--s-sm);
+  }
+  .guide-body ol, .guide-body ul {
+    padding-left: var(--s-lg);
+    margin-bottom: var(--s-md);
+  }
+  .guide-body ol li { margin-bottom: var(--s-sm); }
+  .guide-body strong { color: var(--on-dark); font-weight: 600; }
+  .info-box {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-left: 3px solid var(--primary);
+    border-radius: var(--r-md);
+    padding: var(--s-md) var(--s-lg);
+    margin: var(--s-md) 0;
+  }
+  .info-box.warn { border-left-color: var(--accent-rose); }
+  .info-box p:last-child { margin-bottom: 0; }
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--s-md) 0;
+    font-size: 14px;
+  }
+  .cost-table th, .cost-table td {
+    text-align: left;
+    padding: var(--s-sm) var(--s-md);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .cost-table th {
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .cost-table td { color: var(--body); }
+  .cost-table td.val { color: var(--primary); font-family: "JetBrains Mono", monospace; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="../index.html">
+      <img src="../../assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="../index.html">Hub</a>
+      <a class="nav-link" href="index.html">Guias</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-secondary" type="button" onclick="window.alunoLogout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <a href="index.html" class="text-link" style="margin-bottom: var(--s-md); display: inline-block;">← Todos os guias</a>
+      <div class="eyebrow"><span class="dot"></span>Guia Prático</div>
+      <h1 class="display-md">Apostila de Haia.</h1>
+      <p class="lede">
+        Como apostilar documentos brasileiros para que sejam aceitos no exterior.
+        O que vale, onde fazer, quanto custa e o que costuma dar errado.
+      </p>
+
+      <div class="guide-meta">
+        <span>Leitura 6 min</span>
+        <span>Atualizado mai/2026</span>
+        <span>Fontes oficiais CNJ</span>
+      </div>
+
+      <div class="guide-body">
+
+        <div class="info-box">
+          <p><strong>Resumo executivo.</strong> A Apostila é o carimbo que torna um documento público brasileiro válido em mais de 120 países (Convenção da Haia de 1961). Sem ela, o consulado ou autoridade local não reconhece o documento. Custo médio por documento: R$ 70 a R$ 130. Prazo: na hora a 5 dias úteis. Onde: cartórios autorizados pelo CNJ.</p>
+        </div>
+
+        <h2>O que é a Apostila</h2>
+        <p>
+          É um certificado padrão internacional, anexado fisicamente ao documento, que comprova:
+          (1) a autenticidade da assinatura, (2) a qualidade de quem assinou (notário, tabelião, juiz),
+          e (3) a autenticidade do selo ou carimbo. Substitui a antiga legalização consular,
+          que envolvia múltiplas etapas e custava bem mais.
+        </p>
+        <p>
+          No Brasil, o CNJ (Conselho Nacional de Justiça) regulamenta a emissão desde 2016.
+          Cartórios autorizados em todo o país podem apostilar.
+        </p>
+
+        <h2>Documentos que mais precisam de apostila para vistos</h2>
+        <ol>
+          <li><strong>Certidão de antecedentes criminais</strong> (Federal e/ou Estadual). Exigida por praticamente todos os países para visto de residência.</li>
+          <li><strong>Certidão de nascimento</strong>. Necessária para visto de filho, reagrupamento familiar, comprovação de filiação.</li>
+          <li><strong>Certidão de casamento</strong>. Para vistos que reconhecem cônjuge.</li>
+          <li><strong>Diplomas e históricos escolares</strong>. Para vistos de trabalho qualificado, estudo ou validação profissional.</li>
+          <li><strong>Procurações públicas</strong>. Quando alguém vai assinar contratos no seu nome.</li>
+        </ol>
+
+        <h2>Passo a passo</h2>
+        <ol>
+          <li>
+            <strong>Obtenha a certidão em formato físico recente</strong> (idealmente emitida nos últimos 90 dias).
+            Muitas certidões digitais não são apostiláveis. Confirme com o cartório antes.
+          </li>
+          <li>
+            <strong>Procure um cartório autorizado a apostilar</strong>. O CNJ mantém lista atualizada em
+            cnj.jus.br/poder-judiciario/relacoes-internacionais/apostila-da-haia. Qualquer cartório
+            de notas, registro civil ou de títulos e documentos cadastrado serve.
+          </li>
+          <li>
+            <strong>Apresente o documento e pague a taxa</strong>. O cartório verifica, aplica a Apostila
+            (folha A4 anexada ou QR Code) e devolve o documento original com o apostilamento.
+          </li>
+          <li>
+            <strong>Guarde os dois</strong>: o documento original já apostilado é o que vale.
+            Tire scans em PDF de alta resolução antes de mandar pelo correio ou entregar no consulado.
+          </li>
+        </ol>
+
+        <h2>Custos típicos por estado</h2>
+        <table class="cost-table">
+          <thead>
+            <tr><th>Estado</th><th>Faixa por documento</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>São Paulo</td><td class="val">R$ 80 a R$ 120</td></tr>
+            <tr><td>Rio de Janeiro</td><td class="val">R$ 70 a R$ 110</td></tr>
+            <tr><td>Minas Gerais</td><td class="val">R$ 65 a R$ 100</td></tr>
+            <tr><td>Rio Grande do Sul</td><td class="val">R$ 85 a R$ 130</td></tr>
+            <tr><td>Distrito Federal</td><td class="val">R$ 75 a R$ 115</td></tr>
+            <tr><td>Outros estados</td><td class="val">R$ 60 a R$ 130</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Valores referência para maio de 2026. Cada estado regulamenta o emolumento, então
+          consulte o cartório específico. Alguns oferecem desconto para múltiplos documentos
+          no mesmo dia.
+        </p>
+
+        <h2>Armadilhas comuns</h2>
+        <ul>
+          <li>
+            <strong>Certidão muito antiga.</strong> A maioria dos países exige documentos
+            emitidos nos últimos 3 a 6 meses. Apostilar uma certidão de 2 anos não a torna
+            válida: o consulado pode recusar pela data, não pela apostila.
+          </li>
+          <li>
+            <strong>Antecedentes criminais sem assinatura digital reconhecida.</strong>
+            A certidão emitida pelo site da Polícia Federal precisa estar com QR Code legível
+            e dentro do prazo. Algumas cartórios pedem que você imprima e leve para validação
+            antes de apostilar.
+          </li>
+          <li>
+            <strong>Tradução antes de apostilar.</strong> A regra correta é: apostile primeiro,
+            traduza depois. A tradução juramentada inclui o conteúdo da apostila. Se traduzir
+            antes, vai precisar refazer.
+          </li>
+          <li>
+            <strong>Documento digital impresso.</strong> Nem todo PDF de portal de governo
+            é aceito para apostila. Prefira sempre a certidão emitida em cartório.
+          </li>
+        </ul>
+
+        <h2>Documentos que NÃO precisam de Apostila</h2>
+        <ul>
+          <li>Passaporte (já é documento internacional).</li>
+          <li>RG ou CNH (raramente aceitos no exterior, irrelevante apostilar).</li>
+          <li>Documentos de países que não assinaram a Convenção da Haia
+              (alguns exigem legalização consular tradicional, mais demorada).</li>
+        </ul>
+
+        <h2>Custo total típico para um pedido de visto</h2>
+        <p>
+          Cenário comum: 1 antecedente criminal federal + 1 estadual + 1 certidão de nascimento + 1 certidão de casamento.
+          Estimativa: <strong>R$ 320 a R$ 480</strong> só de apostila, mais o custo das certidões originais
+          (R$ 30 a R$ 100 cada).
+        </p>
+
+        <div class="info-box warn">
+          <p><strong>Atenção.</strong> Após apostilar, ainda pode ser necessária a <strong>tradução juramentada</strong>
+          para o idioma do país de destino. Veja o guia <a href="traducao-juramentada.html" class="text-link">Tradução juramentada</a>
+          para entender quando precisa.</p>
+        </div>
+
+        <h2>Fontes</h2>
+        <ul>
+          <li>Convenção da Haia de 5 de Outubro de 1961, hcch.net</li>
+          <li>Resolução CNJ 228/2016 e atualizações posteriores</li>
+          <li>Portal Apostila da Haia, cnj.jus.br/poder-judiciario/relacoes-internacionais/apostila-da-haia</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · Área Aluno · MIT</span>
+      <span class="caption-up">Conteúdo informativo. Confirme procedimentos atuais com o cartório.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

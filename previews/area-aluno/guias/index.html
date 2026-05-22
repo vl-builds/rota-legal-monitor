@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guias Práticos — Área Aluno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="../../assets/design-system.css" />
+<script src="../assets/auth-guard.js"></script>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="../index.html">
+      <img src="../../assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="../index.html">Hub</a>
+      <a class="nav-link" href="../checklist.html">Checklist</a>
+      <a class="nav-link" href="../calculadora-pro.html">Calculadora Pro</a>
+      <a class="nav-link" href="../comparar-pro.html">Comparador Pro</a>
+      <a class="nav-link active" href="index.html">Guias</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-secondary" type="button" onclick="window.alunoLogout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow"><span class="dot"></span>Guias Práticos</div>
+      <h1 class="display-md">Tutoriais passo a passo.</h1>
+      <p class="lede">
+        Procedimentos burocráticos que valem para quase todos os países, escritos com base em fontes oficiais
+        e experiência da comunidade. Cobrem o que ninguém te explica antes você precisar.
+      </p>
+
+      <div class="feature-grid" style="margin-top: var(--s-xl);">
+
+        <a href="apostila-haia.html" class="feature-card-dark">
+          <div class="icon">AH</div>
+          <h3 class="title-md">Apostila de Haia</h3>
+          <p class="body-md">
+            Como apostilar documentos brasileiros para uso no exterior: onde, quanto custa,
+            quanto tempo demora, o que pode dar errado.
+          </p>
+          <span class="caption-up" style="color: var(--muted); margin-top: var(--s-sm);">Leitura: 6 min · Atualizado mai/2026</span>
+        </a>
+
+        <a href="agendamento-vfs.html" class="feature-card-dark">
+          <div class="icon">VF</div>
+          <h3 class="title-md">Agendamento consular VFS</h3>
+          <p class="body-md">
+            Como funciona o sistema VFS Global, por que vagas somem em segundos e estratégias
+            reais para conseguir agendamento.
+          </p>
+          <span class="caption-up" style="color: var(--muted); margin-top: var(--s-sm);">Leitura: 8 min · Atualizado mai/2026</span>
+        </a>
+
+        <a href="traducao-juramentada.html" class="feature-card-dark">
+          <div class="icon">TJ</div>
+          <h3 class="title-md">Tradução juramentada</h3>
+          <p class="body-md">
+            Quando precisa, quando não precisa, quem aceita o quê, custos típicos
+            e como evitar pagar duas vezes.
+          </p>
+          <span class="caption-up" style="color: var(--muted); margin-top: var(--s-sm);">Leitura: 5 min · Atualizado mai/2026</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · Área Aluno · MIT</span>
+      <span class="caption-up">Conteúdo escrito para alunos do curso Henryzuca</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

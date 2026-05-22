@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agendamento consular VFS — Guia Prático</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="../../assets/design-system.css" />
+<script src="../assets/auth-guard.js"></script>
+<style>
+  .guide-meta { display: flex; gap: var(--s-md); margin-bottom: var(--s-lg); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .guide-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .guide-meta span::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--primary); }
+  .guide-body { max-width: 720px; }
+  .guide-body h2 { font-size: 22px; font-weight: 700; color: var(--on-dark); margin: var(--s-xl) 0 var(--s-md); letter-spacing: -0.3px; }
+  .guide-body p, .guide-body li { font-size: 15px; line-height: 1.7; color: var(--body); margin-bottom: var(--s-sm); }
+  .guide-body ol, .guide-body ul { padding-left: var(--s-lg); margin-bottom: var(--s-md); }
+  .guide-body ol li { margin-bottom: var(--s-sm); }
+  .guide-body strong { color: var(--on-dark); font-weight: 600; }
+  .info-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-left: 3px solid var(--primary); border-radius: var(--r-md); padding: var(--s-md) var(--s-lg); margin: var(--s-md) 0; }
+  .info-box.warn { border-left-color: var(--accent-rose); }
+  .info-box.success { border-left-color: var(--accent-emerald); }
+  .info-box p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="../index.html">
+      <img src="../../assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="../index.html">Hub</a>
+      <a class="nav-link" href="index.html">Guias</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-secondary" type="button" onclick="window.alunoLogout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <a href="index.html" class="text-link" style="margin-bottom: var(--s-md); display: inline-block;">← Todos os guias</a>
+      <div class="eyebrow"><span class="dot"></span>Guia Prático</div>
+      <h1 class="display-md">Agendamento consular VFS.</h1>
+      <p class="lede">
+        Como funciona o sistema VFS Global, por que vagas somem em segundos
+        e estratégias reais para conseguir agendamento sem pagar atravessador.
+      </p>
+
+      <div class="guide-meta">
+        <span>Leitura 8 min</span>
+        <span>Atualizado mai/2026</span>
+        <span>Sem pagar atravessador</span>
+      </div>
+
+      <div class="guide-body">
+
+        <div class="info-box">
+          <p><strong>Resumo executivo.</strong> VFS Global é a empresa terceirizada que processa pedidos de visto para vários consulados europeus no Brasil. O sistema é caótico: vagas abrem em horários aleatórios, somem em segundos por causa de bots de atravessadores. Solução: tenha conta pré-criada, documentos prontos antes de abrir vaga, monitore o site nos horários certos e não pague intermediário.</p>
+        </div>
+
+        <h2>O que é VFS Global</h2>
+        <p>
+          É uma empresa privada contratada por mais de 60 governos para receber pedidos de visto.
+          No Brasil, processa vistos de: Holanda, Itália, Espanha, Reino Unido, Irlanda, Áustria,
+          Suíça, Nova Zelândia e outros. Cada país tem seu portal próprio dentro do site da VFS.
+          Você não fala com o consulado: entrega documentos na VFS, ela envia ao consulado,
+          recebe a decisão e devolve o passaporte.
+        </p>
+
+        <h2>Por que é tão difícil conseguir agendamento</h2>
+        <ol>
+          <li>
+            <strong>Demanda muito maior que oferta.</strong> Pós-2022, a procura por vistos europeus
+            de trabalho e residência por brasileiros aumentou 3 a 5x. A VFS não escalou na mesma proporção.
+          </li>
+          <li>
+            <strong>Atravessadores rodando bots.</strong> Empresas e indivíduos compram bots
+            que monitoram o site 24/7 e agendam automaticamente quando aparece vaga.
+            Depois revendem por R$ 500 a R$ 3.000 por horário.
+          </li>
+          <li>
+            <strong>Liberação de vagas em horário e quantidade imprevisíveis.</strong>
+            A VFS não anuncia quando libera. Pode ser segunda às 9h, terça às 14h,
+            ou em um sábado de madrugada. Quantidade varia de 5 a 200 horários por liberação.
+          </li>
+          <li>
+            <strong>Sistema antigo.</strong> O portal cai com frequência, sessões expiram,
+            captchas falham. Quem está com documentos prontos e agilidade ganha.
+          </li>
+        </ol>
+
+        <h2>Estratégia que funciona (sem pagar atravessador)</h2>
+
+        <h3 style="font-size: 16px; color: var(--on-dark); font-weight: 600; margin-top: var(--s-lg); margin-bottom: var(--s-xs);">Antes de abrir vaga</h3>
+        <ol>
+          <li>
+            <strong>Crie sua conta na VFS do país-alvo</strong>. Use email que você acessa do celular.
+            Confirme o cadastro. Tenha login e senha salvos no navegador.
+          </li>
+          <li>
+            <strong>Tenha todos os documentos prontos e digitalizados</strong>. Apostila, traduções,
+            antecedentes, comprovantes financeiros, contrato (se for visto de trabalho).
+            Você não vai conseguir agendar e depois correr atrás. Tem que estar pronto antes.
+          </li>
+          <li>
+            <strong>Tenha o formulário do pedido de visto preenchido em PDF</strong>. Cada consulado
+            tem o seu (alguns chamam Antrag, outros Application Form). Imprima e revise.
+          </li>
+          <li>
+            <strong>Pague a taxa de serviço VFS</strong>. Algumas vezes esse pagamento é exigido
+            antes do agendamento. Confirme no portal específico.
+          </li>
+        </ol>
+
+        <h3 style="font-size: 16px; color: var(--on-dark); font-weight: 600; margin-top: var(--s-lg); margin-bottom: var(--s-xs);">Monitorando vagas</h3>
+        <ol>
+          <li>
+            <strong>Entre no grupo do Telegram ou Discord do país-alvo</strong>. Pessoas reais
+            que conseguiram agendamento avisam em tempo real quando há liberação. Mais rápido
+            que qualquer ferramenta paga. Procure no Reddit ou grupos de Facebook por
+            "Brasileiros em [país]" para encontrar.
+          </li>
+          <li>
+            <strong>Configure notificações no celular</strong>. Quando aparecer aviso de vaga,
+            você tem 30 a 90 segundos para entrar e marcar antes dos bots pegarem.
+          </li>
+          <li>
+            <strong>Tente nos horários típicos</strong>: segunda a quarta entre 9h e 11h ou
+            entre 14h e 16h. Sextas e fins de semana são raros mas acontecem.
+          </li>
+          <li>
+            <strong>Não confie em sites que "monitoram para você"</strong>. Quase todos são
+            golpe ou repassam para bots próprios. Use seus olhos e os grupos da comunidade.
+          </li>
+        </ol>
+
+        <h3 style="font-size: 16px; color: var(--on-dark); font-weight: 600; margin-top: var(--s-lg); margin-bottom: var(--s-xs);">No momento de agendar</h3>
+        <ol>
+          <li>Use desktop com internet boa, não celular.</li>
+          <li>Login feito antes, sessão aberta.</li>
+          <li>Quando aparecer slot, clique sem hesitar. Não vá ler datas. Pega qualquer dia disponível primeiro, depois reagenda se conseguir mais tarde.</li>
+          <li>Resolva captcha o mais rápido possível. Hoje quase todos são reCAPTCHA v2 (clicar em imagens).</li>
+          <li>Confirme. Imprima a confirmação na hora.</li>
+        </ol>
+
+        <div class="info-box success">
+          <p><strong>Dica que ninguém conta.</strong> Em muitos consulados, cancelamentos
+          aparecem no sistema 24-48 horas antes da data. Configurar lembrete e checar duas vezes
+          por dia na semana antes do seu período-alvo de viagem pode pegar slots que abriram
+          por desistência. Atravessadores não monitoram esses cancelamentos porque já têm
+          o cliente original cobrando.</p>
+        </div>
+
+        <h2>Cidades atendidas no Brasil</h2>
+        <p>
+          A VFS opera em São Paulo, Rio de Janeiro, Brasília, Curitiba, Belo Horizonte,
+          Porto Alegre e Recife (varia por país). Nem todo país atende em todas. Holanda
+          e Itália têm centros em mais cidades. Outros só em São Paulo ou Rio.
+        </p>
+        <p>
+          Se a cidade do seu domicílio não atende, você precisa viajar até a mais próxima.
+          Considere o custo da passagem e diária no orçamento. Alguns consulados aceitam
+          escolher qualquer centro VFS no país, outros forçam pela região de residência
+          declarada no formulário.
+        </p>
+
+        <h2>Documentos no dia do atendimento</h2>
+        <ul>
+          <li>Confirmação de agendamento impressa.</li>
+          <li>Passaporte original com 2 páginas em branco.</li>
+          <li>Todas as certidões apostiladas e traduzidas.</li>
+          <li>Comprovante de pagamento da taxa consular.</li>
+          <li>Formulário de pedido preenchido e assinado.</li>
+          <li>Fotos no padrão do país (geralmente padrão Schengen 35x45mm fundo branco).</li>
+          <li>Carta de motivação se o consulado pedir.</li>
+        </ul>
+
+        <div class="info-box warn">
+          <p><strong>Atenção.</strong> Não leve celular ligado para dentro da sala de atendimento na maioria dos centros VFS.
+          Leve bolsa pequena. Não leve acompanhante (exceto crianças menores).</p>
+        </div>
+
+        <h2>O que NÃO fazer</h2>
+        <ul>
+          <li>Pagar atravessador. Sustenta o esquema que prejudica todo mundo.</li>
+          <li>Comprar conta de outra pessoa. A VFS bloqueia se detectar.</li>
+          <li>Tentar agendar com documentos faltando "pra depois resolver". Você não vai conseguir reagendar fácil.</li>
+          <li>Brigar com atendente do centro. Eles só processam, não decidem.</li>
+        </ul>
+
+        <h2>Quanto tempo demora o processo total</h2>
+        <p>
+          Da abertura do agendamento até receber o passaporte com visto colado: <strong>2 a 12 semanas</strong>,
+          variando muito por consulado e tipo de visto. Vistos de trabalho costumam ser mais rápidos
+          que vistos de residência. Holanda processa em 15-30 dias quando o pedido vem de empregador
+          aprovado (highly skilled migrant). Espanha e Itália podem levar 8-12 semanas.
+        </p>
+
+        <h2>Fontes</h2>
+        <ul>
+          <li>VFS Global Brazil: vfsglobal.com</li>
+          <li>Grupos de comunidade no Telegram e Reddit (busca por país)</li>
+          <li>Portais consulares dos países (regras específicas variam)</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · Área Aluno · MIT</span>
+      <span class="caption-up">Procedimentos variam por consulado. Confirme sempre no portal oficial.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

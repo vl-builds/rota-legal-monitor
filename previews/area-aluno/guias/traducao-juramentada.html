@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tradução juramentada — Guia Prático</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="../../assets/design-system.css" />
+<script src="../assets/auth-guard.js"></script>
+<style>
+  .guide-meta { display: flex; gap: var(--s-md); margin-bottom: var(--s-lg); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .guide-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .guide-meta span::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--primary); }
+  .guide-body { max-width: 720px; }
+  .guide-body h2 { font-size: 22px; font-weight: 700; color: var(--on-dark); margin: var(--s-xl) 0 var(--s-md); letter-spacing: -0.3px; }
+  .guide-body p, .guide-body li { font-size: 15px; line-height: 1.7; color: var(--body); margin-bottom: var(--s-sm); }
+  .guide-body ol, .guide-body ul { padding-left: var(--s-lg); margin-bottom: var(--s-md); }
+  .guide-body ol li { margin-bottom: var(--s-sm); }
+  .guide-body strong { color: var(--on-dark); font-weight: 600; }
+  .info-box { background: var(--glass-bg); border: 1px solid var(--glass-border); border-left: 3px solid var(--primary); border-radius: var(--r-md); padding: var(--s-md) var(--s-lg); margin: var(--s-md) 0; }
+  .info-box.warn { border-left-color: var(--accent-rose); }
+  .info-box.success { border-left-color: var(--accent-emerald); }
+  .info-box p:last-child { margin-bottom: 0; }
+  .cost-table { width: 100%; border-collapse: collapse; margin: var(--s-md) 0; font-size: 14px; }
+  .cost-table th, .cost-table td { text-align: left; padding: var(--s-sm) var(--s-md); border-bottom: 1px solid var(--hairline); }
+  .cost-table th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+  .cost-table td { color: var(--body); }
+  .cost-table td.val { color: var(--primary); font-family: "JetBrains Mono", monospace; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="../index.html">
+      <img src="../../assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="../index.html">Hub</a>
+      <a class="nav-link" href="index.html">Guias</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn btn-secondary" type="button" onclick="window.alunoLogout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <a href="index.html" class="text-link" style="margin-bottom: var(--s-md); display: inline-block;">← Todos os guias</a>
+      <div class="eyebrow"><span class="dot"></span>Guia Prático</div>
+      <h1 class="display-md">Tradução juramentada.</h1>
+      <p class="lede">
+        Quando precisa, quando não precisa, quem aceita o quê, custos típicos
+        e como evitar pagar duas vezes.
+      </p>
+
+      <div class="guide-meta">
+        <span>Leitura 5 min</span>
+        <span>Atualizado mai/2026</span>
+        <span>Sem refazer trabalho</span>
+      </div>
+
+      <div class="guide-body">
+
+        <div class="info-box">
+          <p><strong>Resumo executivo.</strong> Tradução juramentada (ou Tradução Pública) é feita por tradutor concursado pela Junta Comercial, com fé pública. Sem ela, consulados europeus e órgãos de imigração não aceitam documentos brasileiros em português. Custo: R$ 60 a R$ 180 por lauda (1.000 caracteres). Prazo: 3 a 10 dias úteis. Apostile antes de traduzir.</p>
+        </div>
+
+        <h2>O que é</h2>
+        <p>
+          Tradução com valor legal feita por <strong>Tradutor Público e Intérprete Comercial</strong> (TPIC),
+          profissional concursado pela Junta Comercial do estado onde atua. O documento traduzido
+          tem o mesmo valor legal do original no idioma de destino. O tradutor assina, carimba
+          e número de tradução é registrado.
+        </p>
+        <p>
+          Para imigração na Europa, países exigem tradução em: português (PT), espanhol (ES),
+          francês (FR), italiano (IT), alemão (DE), holandês (NL), inglês (UK, IE) ou idioma
+          local específico.
+        </p>
+
+        <h2>Quando você precisa</h2>
+        <p>
+          Para <strong>todos os documentos brasileiros</strong> que vão ser usados oficialmente no exterior,
+          incluindo:
+        </p>
+        <ul>
+          <li>Certidões de nascimento, casamento, óbito</li>
+          <li>Antecedentes criminais federal e estadual</li>
+          <li>Diplomas e históricos escolares</li>
+          <li>Contratos, procurações, declarações com firma reconhecida</li>
+          <li>CNH (se for usar a brasileira no exterior por mais de 6 meses)</li>
+        </ul>
+
+        <h2>Quando NÃO precisa</h2>
+        <ul>
+          <li><strong>Documentos já em inglês.</strong> Diplomas de cursos internacionais, certificados Cambridge, etc.</li>
+          <li><strong>Tradução simples para uso informal.</strong> Se é só para você ler ou enviar a um conhecido, não precisa de juramentada.</li>
+          <li><strong>Países lusófonos.</strong> Portugal aceita praticamente tudo em português brasileiro sem tradução (mas exige Apostila).</li>
+          <li><strong>Documentos consulares já bilingues.</strong> Algumas certidões emitidas em consulados brasileiros no exterior já saem em dois idiomas.</li>
+        </ul>
+
+        <h2>Ordem correta: apostile primeiro, traduza depois</h2>
+        <p>
+          <strong>Esse é o erro mais comum.</strong> Se você traduzir antes de apostilar, vai
+          precisar refazer a tradução, porque a tradução juramentada precisa incluir o texto
+          da Apostila para ter validade completa.
+        </p>
+        <p>
+          Sequência correta:
+        </p>
+        <ol>
+          <li>Obter documento original recente (até 90 dias para certidões).</li>
+          <li>Apostilar no cartório.</li>
+          <li>Enviar o documento já apostilado para o tradutor juramentado.</li>
+          <li>Tradutor traduz documento + apostila num único trabalho.</li>
+        </ol>
+
+        <h2>Como contratar tradutor</h2>
+        <ol>
+          <li>
+            <strong>Procure tradutor concursado no estado onde mora</strong>. Lista oficial da
+            Junta Comercial. Em São Paulo: jucesp.sp.gov.br. No RJ: jucerja.rj.gov.br.
+            Cada estado tem o seu portal.
+          </li>
+          <li>
+            <strong>Confirme o idioma e a especialidade</strong>. Tradutores juramentados são
+            registrados por par de idiomas (PT-EN, PT-DE, PT-IT, etc.). Um tradutor não pode
+            traduzir para idioma fora do seu registro.
+          </li>
+          <li>
+            <strong>Peça orçamento por lauda</strong>. Uma lauda = 1.000 caracteres com espaços.
+            Certidão de nascimento típica = 1 lauda. Diploma + histórico longo = 5 a 10 laudas.
+            Antecedentes criminais = 1 a 2 laudas.
+          </li>
+          <li>
+            <strong>Envie documento apostilado em PDF de boa qualidade</strong>. Tradutor digitaliza
+            para conferir e devolve original + tradução assinada por correio ou retira presencialmente.
+          </li>
+        </ol>
+
+        <h2>Custos típicos por idioma (por lauda)</h2>
+        <table class="cost-table">
+          <thead>
+            <tr><th>Idioma de destino</th><th>Faixa por lauda</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Inglês</td><td class="val">R$ 60 a R$ 120</td></tr>
+            <tr><td>Espanhol</td><td class="val">R$ 60 a R$ 110</td></tr>
+            <tr><td>Italiano</td><td class="val">R$ 70 a R$ 130</td></tr>
+            <tr><td>Francês</td><td class="val">R$ 75 a R$ 140</td></tr>
+            <tr><td>Alemão</td><td class="val">R$ 90 a R$ 160</td></tr>
+            <tr><td>Holandês</td><td class="val">R$ 120 a R$ 200</td></tr>
+            <tr><td>Outras línguas raras</td><td class="val">R$ 150 a R$ 250</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Tradutores de idiomas mais raros (holandês, polonês, sueco) cobram mais porque
+          há menos profissionais concursados no Brasil. Algumas Juntas Comerciais não têm
+          nenhum tradutor de holandês: nesse caso, é preciso buscar em outro estado.
+        </p>
+
+        <h2>Custo total típico para um pedido de visto</h2>
+        <p>
+          Cenário: 1 antecedente criminal federal + 1 estadual + 1 certidão de nascimento +
+          1 certidão de casamento. Total: ~6 laudas. Tradução para alemão ou holandês:
+          <strong>R$ 540 a R$ 1.200</strong>. Para inglês ou espanhol: <strong>R$ 360 a R$ 720</strong>.
+        </p>
+
+        <div class="info-box warn">
+          <p><strong>Cuidado com prazos.</strong> A maioria dos consulados exige tradução
+          feita nos últimos 90 a 180 dias. Se traduzir muito antes de marcar agendamento,
+          pode ter que refazer.</p>
+        </div>
+
+        <h2>Tradução aceita no exterior</h2>
+        <p>
+          A tradução juramentada brasileira tem aceitação ampla na América Latina, Europa
+          e Estados Unidos. Alguns países (Alemanha, Holanda) preferem tradução feita por
+          tradutor local credenciado no país, especialmente para documentos a serem usados
+          em juízo. Para visto inicial, a tradução brasileira basta.
+        </p>
+
+        <div class="info-box success">
+          <p><strong>Dica.</strong> Se você vai precisar traduzir documentos depois de
+          já estar no país de destino (ex: certidão de casamento futura), busque tradutor
+          juramentado lá. Sai mais caro mas evita tradução brasileira sendo recusada por
+          autoridade local que prefere tradutor próprio.</p>
+        </div>
+
+        <h2>O que NÃO fazer</h2>
+        <ul>
+          <li>Traduzir sozinho ou usar Google Translate. Não tem valor legal.</li>
+          <li>Pagar tradutor que não está na lista oficial da Junta Comercial.</li>
+          <li>Traduzir antes de apostilar.</li>
+          <li>Aceitar tradução só digital. Você precisa do original assinado em papel
+              ou com assinatura digital ICP-Brasil reconhecida.</li>
+        </ul>
+
+        <h2>Fontes</h2>
+        <ul>
+          <li>Decreto 13.609/1943 (regulamenta tradutor público no Brasil)</li>
+          <li>Portais das Juntas Comerciais estaduais (lista de tradutores juramentados)</li>
+          <li>SINTRA (Sindicato Nacional dos Tradutores), sintra.org.br</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Rota Legal · Área Aluno · MIT</span>
+      <span class="caption-up">Valores e regras variam. Confirme com tradutor escolhido antes de fechar.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
