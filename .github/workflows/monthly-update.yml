@@ -101,8 +101,7 @@ jobs:
       - name: Send email alerts to subscribers
         if: steps.diff.outputs.has_high_relevance == 'true'
         env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          ALERTS_FROM: ${{ vars.ALERTS_FROM }}
+          KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
         run: bun run alerts:send
         continue-on-error: true
 
