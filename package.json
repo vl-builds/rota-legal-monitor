@@ -26,6 +26,7 @@
     "alunos:revogar": "bun run src/cli/alunos-revogar.ts",
     "scenarios:generate": "bun run src/scenarios/generate.ts",
     "scenarios:render": "bun run src/site/scenario-page.ts",
+    "alerts:send": "bun run src/alerts/send-email.ts",
     "test": "bun test"
   },
   "dependencies": {

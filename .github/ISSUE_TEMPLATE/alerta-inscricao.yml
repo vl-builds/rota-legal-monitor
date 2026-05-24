@@ -1,0 +1,42 @@
+name: Inscrição em alertas
+description: Receba um email quando uma regra importante mudar nos países que você acompanha
+title: "[alerta] inscrição"
+labels: ["alerta-inscricao"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use este formulário para começar a receber os alertas mensais da Área Aluno.
+        Só enviamos email quando detectamos uma mudança de alta relevância (renda exigida, taxas, vistos novos ou descontinuados).
+  - type: input
+    id: email
+    attributes:
+      label: Seu email
+      description: Para onde enviamos os alertas.
+      placeholder: voce@exemplo.com
+    validations:
+      required: true
+  - type: dropdown
+    id: paises
+    attributes:
+      label: Países que você quer acompanhar
+      description: Selecione um ou mais. Deixe vazio para receber alertas de todos os países.
+      multiple: true
+      options:
+        - "Holanda (nl)"
+        - "Portugal (pt)"
+        - "Alemanha (de)"
+        - "Espanha (es)"
+        - "Irlanda (ie)"
+        - "Italia (it)"
+        - "Franca (fr)"
+        - "Belgica (be)"
+        - "Austria (at)"
+        - "Australia (au)"
+  - type: checkboxes
+    id: consentimento
+    attributes:
+      label: Consentimento
+      options:
+        - label: Entendo que meu email ficará registrado no histórico desta issue pública e concordo em receber alertas mensais por email.
+          required: true
