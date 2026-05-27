@@ -2,6 +2,10 @@
 .env
 .env.local
 .env.*.local
+.dev.vars
+
+# Cloudflare Wrangler (estado local do D1, build, etc.)
+.wrangler/
 
 # Dependencias
 node_modules/

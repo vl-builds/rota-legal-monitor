@@ -28,21 +28,27 @@
     "scenarios:generate": "bun run src/scenarios/generate.ts",
     "scenarios:render": "bun run src/site/scenario-page.ts",
     "alerts:send": "bun run src/alerts/send-email.ts",
+    "dev:web": "wrangler pages dev",
+    "typecheck:web": "tsc -p functions/tsconfig.json",
+    "db:migrate:local": "wrangler d1 migrations apply rota-legal-alunos --local",
+    "db:migrate": "wrangler d1 migrations apply rota-legal-alunos --remote",
     "test": "bun test"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",
     "@mozilla/readability": "^0.5.0",
     "jsdom": "^25.0.0",
-"playwright": "^1.48.0",
+    "playwright": "^1.48.0",
     "zod": "^3.23.0",
     "zod-to-json-schema": "^3.23.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260527.1",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.0.0",
     "bun-types": "^1.1.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "wrangler": "^4.95.0"
   },
   "engines": {
     "bun": ">=1.1.0"

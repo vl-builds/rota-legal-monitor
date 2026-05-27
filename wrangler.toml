@@ -1,0 +1,13 @@
+# Projeto Cloudflare Pages para a area logada (area do aluno + painel admin).
+# O site publico continua no GitHub Pages; aqui vivem as paginas protegidas e a API.
+name = "rota-legal-area"
+pages_build_output_dir = "previews"
+compatibility_date = "2025-05-01"
+
+# Banco de credenciais dos alunos. O database_id e preenchido depois de rodar
+# `wrangler d1 create rota-legal-alunos`. Em dev local (`wrangler pages dev`)
+# o D1 usa um SQLite local em .wrangler/, sem precisar do id remoto.
+[[d1_databases]]
+binding = "DB"
+database_name = "rota-legal-alunos"
+database_id = "PREENCHER_APOS_CRIAR_D1"
