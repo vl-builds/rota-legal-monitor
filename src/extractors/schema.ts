@@ -1,10 +1,13 @@
 import { z } from "zod";
 
 export const MoneyAmountSchema = z.object({
-  amount: z.number().positive(),
+  // nonnegative permite amount 0 ("gratuito"/sem taxa separada), valor real informado nas notes.
+  amount: z.number().nonnegative(),
   currency: z.enum(["EUR", "USD", "BRL", "AUD"]),
-  period: z.enum(["one-time", "monthly", "yearly"]).nullable(),
-  notes: z.string().nullable(),
+  // "total" cobre montantes de capital/patrimonio exigidos de uma vez (ex: capital de empresa),
+  // distintos de "one-time" (taxa unica). period e opcional: taxas administrativas costumam nao ter recorrencia.
+  period: z.enum(["one-time", "monthly", "yearly", "total"]).nullable().optional(),
+  notes: z.string().nullable().optional(),
 });
 
 export const SourceRefSchema = z.object({
@@ -46,7 +49,8 @@ export const DocumentRequirementSchema = z.object({
 export const LanguageRequirementSchema = z.object({
   language: z.string().min(1),
   level: z.string().min(1),
-  testsAccepted: z.array(z.string()),
+  // Nem toda exigencia de idioma lista testes formais aceitos; opcional, consumidores tratam ausencia.
+  testsAccepted: z.array(z.string()).optional(),
 });
 
 export const VisaRequirementsSchema = z.object({
@@ -58,7 +62,8 @@ export const VisaRequirementsSchema = z.object({
 
 export const ProcessStepSchema = z.object({
   order: z.number().int().positive(),
-  name: z.string().min(1),
+  // name e um titulo curto opcional; quando ausente, os consumidores derivam da description.
+  name: z.string().min(1).nullable(),
   description: z.string(),
   estimatedDays: z.number().int().positive().nullable(),
 });
@@ -71,8 +76,11 @@ export const VisaProcessSchema = z.object({
 });
 
 export const PathInfoSchema = z.object({
-  yearsRequired: z.number().int().positive(),
-  conditions: z.array(z.string()),
+  // yearsRequired pode ser null quando o caminho existe mas nao tem prazo fixo definido.
+  yearsRequired: z.number().int().positive().nullable(),
+  conditions: z.array(z.string()).optional(),
+  // summary preserva a prosa rica da pesquisa manual (ex: "Apos 5 anos de residencia legal e alemao B1").
+  summary: z.string().optional(),
 });
 
 export const VisaRightsSchema = z.object({

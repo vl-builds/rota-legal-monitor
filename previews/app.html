@@ -334,7 +334,8 @@ function renderVistos(d) {
     }
     if (req.languageRequired) {
       const l = req.languageRequired
-      const tests = l.testsAccepted.length ? ` — aceitos: ${l.testsAccepted.join(', ')}` : ''
+      const accepted = l.testsAccepted || []
+      const tests = accepted.length ? ` (aceitos: ${accepted.join(', ')})` : ''
       rows.push(row('Idioma exigido', `${l.language}, nível ${l.level}${tests}`))
     }
     if (req.qualificationsRequired.length) {
@@ -348,15 +349,20 @@ function renderVistos(d) {
     rows.push(row('Pode trabalhar', bool(rights.canWork)))
     rows.push(row('Pode trazer família', bool(rights.canBringFamily)))
     rows.push(row('Pode trocar empregador', bool(rights.canChangeEmployer)))
+    const pathText = (p) => {
+      if (!p) return null
+      if (p.summary) return p.summary
+      const base = p.yearsRequired != null ? `Após ${p.yearsRequired} anos` : 'Disponível'
+      const cond = (p.conditions && p.conditions.length) ? `: ${p.conditions.join('; ')}` : ''
+      return base + cond
+    }
     if (rights.pathToResidency) {
-      const cond = rights.pathToResidency.conditions.length
-        ? `<div class="requirement-detail">${rights.pathToResidency.conditions.join('; ')}</div>` : ''
-      rows.push(row('Residência permanente', `Após ${rights.pathToResidency.yearsRequired} anos${cond}`))
+      rows.push(row('Residência permanente', pathText(rights.pathToResidency)))
     } else {
       rows.push(row('Residência permanente', '<span style="color:var(--muted)">Não indicado</span>'))
     }
     if (rights.pathToCitizenship) {
-      rows.push(row('Cidadania', `Após ${rights.pathToCitizenship.yearsRequired} anos`))
+      rows.push(row('Cidadania', pathText(rights.pathToCitizenship)))
     }
 
     const critDocs = req.documents.filter(doc => doc.isCritical)

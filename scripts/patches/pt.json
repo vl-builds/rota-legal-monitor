@@ -4,72 +4,206 @@
       "estimatedDuration": "2-4 meses",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D de trabalho subordinado no consulado português"},
-        {"amount": 83, "currency": "EUR", "notes": "taxa de autorização de residência na AIMA (primeira emissão)"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D de trabalho subordinado no consulado português"
+        },
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência na AIMA (primeira emissão)"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Empregador português obtém a Autorização de Empregador na plataforma digital da AIMA (Agência para a Integração, Migrações e Asilo) — válida por 90 dias e necessária para a solicitação do visto pelo trabalhador"},
-        {"order": 2, "description": "Trabalhador solicita o Visto D para Exercício de Atividade Profissional Subordinada no consulado português no Brasil — apresentar autorização do empregador, contrato de trabalho e documentação pessoal"},
-        {"order": 3, "description": "Pagar taxa de visto de €90 e apresentar documentação completa no consulado"},
-        {"order": 4, "description": "Após aprovação do visto (prazo de 30-60 dias), entrar em Portugal dentro do período de validade"},
-        {"order": 5, "description": "Dentro de 4 meses da chegada, solicitar Autorização de Residência (AR) para atividade profissional subordinada na AIMA — pagar taxa de €83"},
-        {"order": 6, "description": "Comparecer à AIMA para recolha de biometria (impressões digitais e foto) — prazo de agendamento pode ser longo (1-3 meses)"},
-        {"order": 7, "description": "Receber o Título de Residência (cartão físico) pelo correio — válido por 2 anos, renovável por 3 anos"}
+        {
+          "order": 1,
+          "description": "Empregador português obtém a Autorização de Empregador na plataforma digital da AIMA (Agência para a Integração, Migrações e Asilo) — válida por 90 dias e necessária para a solicitação do visto pelo trabalhador"
+        },
+        {
+          "order": 2,
+          "description": "Trabalhador solicita o Visto D para Exercício de Atividade Profissional Subordinada no consulado português no Brasil — apresentar autorização do empregador, contrato de trabalho e documentação pessoal"
+        },
+        {
+          "order": 3,
+          "description": "Pagar taxa de visto de €90 e apresentar documentação completa no consulado"
+        },
+        {
+          "order": 4,
+          "description": "Após aprovação do visto (prazo de 30-60 dias), entrar em Portugal dentro do período de validade"
+        },
+        {
+          "order": 5,
+          "description": "Dentro de 4 meses da chegada, solicitar Autorização de Residência (AR) para atividade profissional subordinada na AIMA — pagar taxa de €83"
+        },
+        {
+          "order": 6,
+          "description": "Comparecer à AIMA para recolha de biometria (impressões digitais e foto) — prazo de agendamento pode ser longo (1-3 meses)"
+        },
+        {
+          "order": 7,
+          "description": "Receber o Título de Residência (cartão físico) pelo correio — válido por 2 anos, renovável por 3 anos"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses a partir da data do pedido", "isCritical": true},
-        {"name": "Autorização de Empregador (obtida na AIMA)", "description": "Emitida pelo empregador português via plataforma digital da AIMA — demonstra que a oferta de emprego é genuína e que o empregador cumpre obrigações legais", "isCritical": true},
-        {"name": "Contrato de trabalho ou promessa de contrato", "description": "Contrato assinado com empregador português — salário mínimo de €920/mês (14 mensalidades, equivalente a 1 salário mínimo nacional de 2024)", "isCritical": true},
-        {"name": "Comprovante de meios de subsistência", "description": "Extrato bancário demonstrando capacidade financeira mínima — ou referência ao salário do contrato", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Certidão do Distribuidor da Justiça Federal (DPJF) ou estadual, com Apostila de Haia e tradução juramentada para português de Portugal", "isCritical": true},
-        {"name": "Seguro de saúde ou comprovante de cobertura", "description": "Seguro de saúde com cobertura em Portugal pelo período do visto", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Comprovante de alojamento em Portugal", "description": "Contrato de arrendamento, declaração de alojamento ou reserva de hotel", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses a partir da data do pedido",
+          "isCritical": true
+        },
+        {
+          "name": "Autorização de Empregador (obtida na AIMA)",
+          "description": "Emitida pelo empregador português via plataforma digital da AIMA — demonstra que a oferta de emprego é genuína e que o empregador cumpre obrigações legais",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho ou promessa de contrato",
+          "description": "Contrato assinado com empregador português — salário mínimo de €920/mês (14 mensalidades, equivalente a 1 salário mínimo nacional de 2024)",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de meios de subsistência",
+          "description": "Extrato bancário demonstrando capacidade financeira mínima — ou referência ao salário do contrato",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Certidão do Distribuidor da Justiça Federal (DPJF) ou estadual, com Apostila de Haia e tradução juramentada para português de Portugal",
+          "isCritical": true
+        },
+        {
+          "name": "Seguro de saúde ou comprovante de cobertura",
+          "description": "Seguro de saúde com cobertura em Portugal pelo período do visto",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de alojamento em Portugal",
+          "description": "Contrato de arrendamento, declaração de alojamento ou reserva de hotel",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 920, "currency": "EUR", "period": "monthly", "notes": "Equivalente ao salário mínimo nacional português de 2024 (€1.020/mês × 12 / 14 mensalidades = €874, arredondado. Usar o valor real do contrato que deve ≥ SMN)."},
+      "incomeRequirement": {
+        "amount": 920,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "Equivalente ao salário mínimo nacional português de 2024 (€1.020/mês × 12 / 14 mensalidades = €874, arredondado. Usar o valor real do contrato que deve ≥ SMN)."
+      },
       "languageRequired": null,
-      "qualificationsRequired": ["Qualificações compatíveis com o cargo especificado no contrato de trabalho"]
+      "qualificationsRequired": [
+        "Qualificações compatíveis com o cargo especificado no contrato de trabalho"
+      ]
     },
     "rights": {
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal — Autorização de Residência Permanente",
-      "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa (cidadania da UE)"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal, Autorização de Residência Permanente"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal, naturalização portuguesa (cidadania da UE)"
+      }
     },
     "notes": "O visto D para atividade subordinada foi reformulado em 2023 com a criação da AIMA (substituta do SEF). A Autorização de Empregador é o novo mecanismo central — obtida pelo empregador via plataforma digital. O atraso nos agendamentos da AIMA tem sido um problema recorrente — quem entra com visto D pode trabalhar legalmente mesmo sem o título de residência físico enquanto aguarda o agendamento."
   },
-
   "work-job-search": {
     "process": {
       "estimatedDuration": "30-90 dias para o visto; busca de emprego por até 120 dias em Portugal",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D de procura de emprego no consulado português"},
-        {"amount": 83, "currency": "EUR", "notes": "taxa de autorização de residência na AIMA (se converter para AR após encontrar emprego)"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D de procura de emprego no consulado português"
+        },
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência na AIMA (se converter para AR após encontrar emprego)"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Demonstrar qualificações de nível superior (diploma universitário) reconhecidas ou competência comprovada em área com escassez de mão de obra em Portugal"},
-        {"order": 2, "description": "Comprovar meios de subsistência suficientes para período de busca (aprox. €760/mês — equivalente ao limiar mínimo português)"},
-        {"order": 3, "description": "Solicitar Visto D de Procura de Emprego no consulado português no Brasil"},
-        {"order": 4, "description": "Pagar €90 e apresentar documentação: diploma apostilado, extrato bancário, seguro de saúde, certidão de antecedentes"},
-        {"order": 5, "description": "Entrar em Portugal com o visto D de Procura de Emprego — válido por 120 dias"},
-        {"order": 6, "description": "Buscar emprego ativamente e, ao encontrar oferta, solicitar Autorização de Residência na AIMA"}
+        {
+          "order": 1,
+          "description": "Demonstrar qualificações de nível superior (diploma universitário) reconhecidas ou competência comprovada em área com escassez de mão de obra em Portugal"
+        },
+        {
+          "order": 2,
+          "description": "Comprovar meios de subsistência suficientes para período de busca (aprox. €760/mês — equivalente ao limiar mínimo português)"
+        },
+        {
+          "order": 3,
+          "description": "Solicitar Visto D de Procura de Emprego no consulado português no Brasil"
+        },
+        {
+          "order": 4,
+          "description": "Pagar €90 e apresentar documentação: diploma apostilado, extrato bancário, seguro de saúde, certidão de antecedentes"
+        },
+        {
+          "order": 5,
+          "description": "Entrar em Portugal com o visto D de Procura de Emprego — válido por 120 dias"
+        },
+        {
+          "order": 6,
+          "description": "Buscar emprego ativamente e, ao encontrar oferta, solicitar Autorização de Residência na AIMA"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Diploma universitário apostilado", "description": "Grau de ensino superior apostilado com Apostila de Haia — demonstra qualificação para o mercado de trabalho português", "isCritical": true},
-        {"name": "Comprovante de meios de subsistência", "description": "Extrato bancário com valor mínimo para sustento durante os 120 dias (aprox. €3.000)", "isCritical": true},
-        {"name": "Seguro de saúde com cobertura em Portugal", "description": "Cobertura válida por pelo menos 120 dias", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Comprovante de alojamento em Portugal", "description": "Reserva de hotel/hostel ou declaração de alojamento", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Diploma universitário apostilado",
+          "description": "Grau de ensino superior apostilado com Apostila de Haia — demonstra qualificação para o mercado de trabalho português",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de meios de subsistência",
+          "description": "Extrato bancário com valor mínimo para sustento durante os 120 dias (aprox. €3.000)",
+          "isCritical": true
+        },
+        {
+          "name": "Seguro de saúde com cobertura em Portugal",
+          "description": "Cobertura válida por pelo menos 120 dias",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de alojamento em Portugal",
+          "description": "Reserva de hotel/hostel ou declaração de alojamento",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 760, "currency": "EUR", "period": "monthly", "notes": "Equivalente ao limiar de recursos mínimos exigido — demonstrar capacidade para sustento sem trabalho durante o período de busca"},
+      "incomeRequirement": {
+        "amount": 760,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "Equivalente ao limiar de recursos mínimos exigido — demonstrar capacidade para sustento sem trabalho durante o período de busca"
+      },
       "languageRequired": null,
       "qualificationsRequired": [
         "Diploma de ensino superior (licenciatura, mestrado ou doutoramento)",
@@ -85,74 +219,196 @@
     },
     "notes": "O visto de Procura de Emprego permite residir em Portugal por 120 dias para busca ativa de trabalho — não autoriza trabalho remunerado durante esse período. Ao encontrar emprego, deve-se solicitar a Autorização de Residência na AIMA sem precisar sair de Portugal para obter novo visto D."
   },
-
   "work-independent-with-visa": {
     "process": {
       "estimatedDuration": "2-4 meses",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D para atividade independente no consulado português"},
-        {"amount": 83, "currency": "EUR", "notes": "taxa de autorização de residência na AIMA"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D para atividade independente no consulado português"
+        },
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência na AIMA"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Preparar documentação que comprove atividade independente: contratos com clientes portugueses ou internacionais, portfolio, inscrição em ordem profissional se aplicável"},
-        {"order": 2, "description": "Comprovar rendimentos previstos compatíveis com atividade independente (mínimo equivalente ao salário mínimo nacional: €920/mês)"},
-        {"order": 3, "description": "Solicitar Visto D para Exercício de Atividade Profissional Independente no consulado português no Brasil"},
-        {"order": 4, "description": "Pagar €90 e apresentar documentação: contratos/clientes, qualificações, meios de subsistência, certidão de antecedentes"},
-        {"order": 5, "description": "Entrar em Portugal e, dentro de 4 meses, abrir atividade como trabalhador independente nas Finanças (Autoridade Tributária) e na Segurança Social"},
-        {"order": 6, "description": "Solicitar Autorização de Residência na AIMA — pagar €83 e comparecer para biometria"}
+        {
+          "order": 1,
+          "description": "Preparar documentação que comprove atividade independente: contratos com clientes portugueses ou internacionais, portfolio, inscrição em ordem profissional se aplicável"
+        },
+        {
+          "order": 2,
+          "description": "Comprovar rendimentos previstos compatíveis com atividade independente (mínimo equivalente ao salário mínimo nacional: €920/mês)"
+        },
+        {
+          "order": 3,
+          "description": "Solicitar Visto D para Exercício de Atividade Profissional Independente no consulado português no Brasil"
+        },
+        {
+          "order": 4,
+          "description": "Pagar €90 e apresentar documentação: contratos/clientes, qualificações, meios de subsistência, certidão de antecedentes"
+        },
+        {
+          "order": 5,
+          "description": "Entrar em Portugal e, dentro de 4 meses, abrir atividade como trabalhador independente nas Finanças (Autoridade Tributária) e na Segurança Social"
+        },
+        {
+          "order": 6,
+          "description": "Solicitar Autorização de Residência na AIMA — pagar €83 e comparecer para biometria"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Comprovante de atividade independente ou contratos com clientes", "description": "Contratos de prestação de serviços, carta de compromisso de clientes portugueses ou internacionais, ou portfolio demonstrando atividade estabelecida", "isCritical": true},
-        {"name": "Comprovante de rendimentos mínimos", "description": "Extratos bancários ou declaração fiscal dos últimos 3-6 meses demonstrando rendimentos equivalentes a pelo menos o SMN português", "isCritical": true},
-        {"name": "Qualificações profissionais (se atividade regulamentada)", "description": "Diploma ou certificações apostilados — para profissões regulamentadas (advogado, médico, engenheiro) pode exigir reconhecimento por ordem profissional portuguesa", "isCritical": false},
-        {"name": "Seguro de saúde com cobertura em Portugal", "description": "Cobertura válida durante o período do visto", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Comprovante de alojamento em Portugal", "description": "Contrato de arrendamento, declaração de alojamento ou reserva", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de atividade independente ou contratos com clientes",
+          "description": "Contratos de prestação de serviços, carta de compromisso de clientes portugueses ou internacionais, ou portfolio demonstrando atividade estabelecida",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de rendimentos mínimos",
+          "description": "Extratos bancários ou declaração fiscal dos últimos 3-6 meses demonstrando rendimentos equivalentes a pelo menos o SMN português",
+          "isCritical": true
+        },
+        {
+          "name": "Qualificações profissionais (se atividade regulamentada)",
+          "description": "Diploma ou certificações apostilados — para profissões regulamentadas (advogado, médico, engenheiro) pode exigir reconhecimento por ordem profissional portuguesa",
+          "isCritical": false
+        },
+        {
+          "name": "Seguro de saúde com cobertura em Portugal",
+          "description": "Cobertura válida durante o período do visto",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de alojamento em Portugal",
+          "description": "Contrato de arrendamento, declaração de alojamento ou reserva",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 920, "currency": "EUR", "period": "monthly", "notes": "Equivalente ao salário mínimo nacional português — rendimentos demonstrados como trabalhador independente"},
+      "incomeRequirement": {
+        "amount": 920,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "Equivalente ao salário mínimo nacional português — rendimentos demonstrados como trabalhador independente"
+      },
       "languageRequired": null,
-      "qualificationsRequired": ["Qualificações compatíveis com a atividade independente declarada"]
+      "qualificationsRequired": [
+        "Qualificações compatíveis com a atividade independente declarada"
+      ]
     },
     "rights": {
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": null,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      }
     },
     "notes": "O visto D para atividade independente é para trabalhadores autônomos, freelancers e prestadores de serviços. Após entrar em Portugal, o trabalhador deve abrir a atividade nas Finanças (ato de abertura de atividade) e inscrever-se na Segurança Social como trabalhador independente. Para profissões regulamentadas (arquitetura, medicina, direito, engenharia), o reconhecimento de diploma pela ordem profissional portuguesa pode ser necessário antes de exercer a profissão."
   },
-
   "work-highly-qualified": {
     "process": {
       "estimatedDuration": "1-3 meses",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D no consulado português"},
-        {"amount": 83, "currency": "EUR", "notes": "taxa de autorização de residência na AIMA"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D no consulado português"
+        },
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência na AIMA"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Receber oferta de emprego de entidade portuguesa em função de elevada qualificação (gestão, investigação científica, atividade de docência universitária, ou profissões altamente qualificadas)"},
-        {"order": 2, "description": "Verificar elegibilidade para visto D de atividade altamente qualificada — sem necessidade de Autorização de Empregador prévia em alguns casos"},
-        {"order": 3, "description": "Solicitar visto D no consulado português no Brasil com contrato de trabalho e diplomas"},
-        {"order": 4, "description": "Pagar €90 e apresentar documentação completa"},
-        {"order": 5, "description": "Entrar em Portugal e solicitar Autorização de Residência na AIMA dentro de 4 meses — pagar €83"}
+        {
+          "order": 1,
+          "description": "Receber oferta de emprego de entidade portuguesa em função de elevada qualificação (gestão, investigação científica, atividade de docência universitária, ou profissões altamente qualificadas)"
+        },
+        {
+          "order": 2,
+          "description": "Verificar elegibilidade para visto D de atividade altamente qualificada — sem necessidade de Autorização de Empregador prévia em alguns casos"
+        },
+        {
+          "order": 3,
+          "description": "Solicitar visto D no consulado português no Brasil com contrato de trabalho e diplomas"
+        },
+        {
+          "order": 4,
+          "description": "Pagar €90 e apresentar documentação completa"
+        },
+        {
+          "order": 5,
+          "description": "Entrar em Portugal e solicitar Autorização de Residência na AIMA dentro de 4 meses — pagar €83"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Contrato de trabalho em função altamente qualificada", "description": "Gestão superior, investigação científica, docência universitária ou profissão altamente qualificada — conforme enquadramento legal português", "isCritical": true},
-        {"name": "Diploma de ensino superior apostilado", "description": "Grau de licenciatura ou superior — apostilado e traduzido juramentado", "isCritical": true},
-        {"name": "Comprovante de experiência profissional (se aplicável)", "description": "5+ anos de experiência profissional pode substituir o diploma em algumas situações", "isCritical": false},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Seguro de saúde com cobertura em Portugal", "description": "Cobertura válida durante o período do visto", "isCritical": true }
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho em função altamente qualificada",
+          "description": "Gestão superior, investigação científica, docência universitária ou profissão altamente qualificada — conforme enquadramento legal português",
+          "isCritical": true
+        },
+        {
+          "name": "Diploma de ensino superior apostilado",
+          "description": "Grau de licenciatura ou superior — apostilado e traduzido juramentado",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de experiência profissional (se aplicável)",
+          "description": "5+ anos de experiência profissional pode substituir o diploma em algumas situações",
+          "isCritical": false
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Seguro de saúde com cobertura em Portugal",
+          "description": "Cobertura válida durante o período do visto",
+          "isCritical": true
+        }
       ],
       "incomeRequirement": null,
       "languageRequired": null,
@@ -165,37 +421,95 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      }
     },
     "notes": "Modalidade para trabalhadores altamente qualificados — gestores, investigadores, professores universitários e profissionais liberais de alto nível. Processo simplificado em relação ao visto de trabalho subordinado padrão. Para investigadores científicos e docentes universitários há ainda a possibilidade de visto específico com processo ainda mais ágil."
   },
-
   "work-tech-visa": {
     "process": {
       "estimatedDuration": "2-4 semanas (após obter o Termo de Responsabilidade)",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D no consulado português"},
-        {"amount": 83, "currency": "EUR", "notes": "taxa de autorização de residência na AIMA"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D no consulado português"
+        },
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência na AIMA"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "A empresa portuguesa candidata-se ao estatuto de empresa tecnológica reconhecida junto ao IAPMEI (Agência para a Competitividade e Inovação) ou Startup Portugal — processo de certificação da empresa"},
-        {"order": 2, "description": "Empresa certificada emite Termo de Responsabilidade (TR) em nome do trabalhador não-UE que deseja contratar — o TR substitui a Autorização de Empregador"},
-        {"order": 3, "description": "Trabalhador solicita o Visto D Tech Visa no consulado português no Brasil, apresentando o Termo de Responsabilidade e documentação pessoal"},
-        {"order": 4, "description": "Pagar €90 e aguardar aprovação — prazo de 2-4 semanas (processo prioritário)"},
-        {"order": 5, "description": "Entrar em Portugal e solicitar Autorização de Residência na AIMA dentro de 4 meses — pagar €83"}
+        {
+          "order": 1,
+          "description": "A empresa portuguesa candidata-se ao estatuto de empresa tecnológica reconhecida junto ao IAPMEI (Agência para a Competitividade e Inovação) ou Startup Portugal — processo de certificação da empresa"
+        },
+        {
+          "order": 2,
+          "description": "Empresa certificada emite Termo de Responsabilidade (TR) em nome do trabalhador não-UE que deseja contratar — o TR substitui a Autorização de Empregador"
+        },
+        {
+          "order": 3,
+          "description": "Trabalhador solicita o Visto D Tech Visa no consulado português no Brasil, apresentando o Termo de Responsabilidade e documentação pessoal"
+        },
+        {
+          "order": 4,
+          "description": "Pagar €90 e aguardar aprovação — prazo de 2-4 semanas (processo prioritário)"
+        },
+        {
+          "order": 5,
+          "description": "Entrar em Portugal e solicitar Autorização de Residência na AIMA dentro de 4 meses — pagar €83"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Termo de Responsabilidade emitido por empresa certificada pelo IAPMEI/Startup Portugal", "description": "Documento emitido pela empresa tecnológica certificada que substitui a Autorização de Empregador — principal documento do Tech Visa", "isCritical": true},
-        {"name": "Contrato de trabalho com empresa tecnológica certificada", "description": "Contrato formal com empresa que tenha o estatuto de empresa de tecnologia reconhecida em Portugal", "isCritical": true},
-        {"name": "Qualificações técnicas", "description": "Diplomas, certificações ou comprovante de experiência em tecnologia — apostilados", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Seguro de saúde com cobertura em Portugal", "description": "Cobertura válida durante o período do visto", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Termo de Responsabilidade emitido por empresa certificada pelo IAPMEI/Startup Portugal",
+          "description": "Documento emitido pela empresa tecnológica certificada que substitui a Autorização de Empregador — principal documento do Tech Visa",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho com empresa tecnológica certificada",
+          "description": "Contrato formal com empresa que tenha o estatuto de empresa de tecnologia reconhecida em Portugal",
+          "isCritical": true
+        },
+        {
+          "name": "Qualificações técnicas",
+          "description": "Diplomas, certificações ou comprovante de experiência em tecnologia — apostilados",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Seguro de saúde com cobertura em Portugal",
+          "description": "Cobertura válida durante o período do visto",
+          "isCritical": true
+        }
       ],
       "incomeRequirement": null,
       "languageRequired": null,
@@ -208,78 +522,204 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      }
     },
     "notes": "O Tech Visa é um programa prioritário criado para atrair talentos tecnológicos estrangeiros. A chave é o Termo de Responsabilidade emitido por empresa certificada pelo IAPMEI — o processo é significativamente mais rápido que o visto de trabalho padrão. Empresas certificadas comprometem-se com o processo de integração do trabalhador. Lista de empresas certificadas disponível no site do IAPMEI e Startup Portugal."
   },
-
   "work-digital-nomad": {
     "process": {
       "estimatedDuration": "30-60 dias para o visto",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D Nômade Digital no consulado português"},
-        {"amount": 320, "currency": "EUR", "notes": "taxa de autorização de residência D8 na AIMA (primeira emissão — maior que AR padrão)"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D Nômade Digital no consulado português"
+        },
+        {
+          "amount": 320,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência D8 na AIMA (primeira emissão — maior que AR padrão)"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Verificar elegibilidade: trabalhar remotamente para empregador ou clientes fora de Portugal, com rendimentos mensais mínimos de €3.680/mês (4× o salário mínimo português de 2024)"},
-        {"order": 2, "description": "Reunir documentação: contrato de trabalho remoto ou contratos com clientes internacionais, extratos bancários dos últimos 3 meses demonstrando rendimentos"},
-        {"order": 3, "description": "Solicitar Visto D Nômade Digital (D8) no consulado português no Brasil — especificar modalidade nômade digital"},
-        {"order": 4, "description": "Pagar €90 e apresentar: contratos de trabalho remoto, extratos bancários, seguro de saúde, certidão de antecedentes"},
-        {"order": 5, "description": "Após aprovação (prazo de 30-60 dias), entrar em Portugal dentro da validade do visto"},
-        {"order": 6, "description": "Dentro de 4 meses da chegada, solicitar Autorização de Residência D8 na AIMA — pagar €320 e comparecer para biometria"}
+        {
+          "order": 1,
+          "description": "Verificar elegibilidade: trabalhar remotamente para empregador ou clientes fora de Portugal, com rendimentos mensais mínimos de €3.680/mês (4× o salário mínimo português de 2024)"
+        },
+        {
+          "order": 2,
+          "description": "Reunir documentação: contrato de trabalho remoto ou contratos com clientes internacionais, extratos bancários dos últimos 3 meses demonstrando rendimentos"
+        },
+        {
+          "order": 3,
+          "description": "Solicitar Visto D Nômade Digital (D8) no consulado português no Brasil — especificar modalidade nômade digital"
+        },
+        {
+          "order": 4,
+          "description": "Pagar €90 e apresentar: contratos de trabalho remoto, extratos bancários, seguro de saúde, certidão de antecedentes"
+        },
+        {
+          "order": 5,
+          "description": "Após aprovação (prazo de 30-60 dias), entrar em Portugal dentro da validade do visto"
+        },
+        {
+          "order": 6,
+          "description": "Dentro de 4 meses da chegada, solicitar Autorização de Residência D8 na AIMA — pagar €320 e comparecer para biometria"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses a partir do pedido", "isCritical": true},
-        {"name": "Contrato de trabalho remoto com empregador fora de Portugal", "description": "Contrato de emprego demonstrando que o trabalho é realizado remotamente para entidade fora de Portugal", "isCritical": true},
-        {"name": "Comprovante de rendimentos mínimos de €3.680/mês", "description": "Extratos bancários dos últimos 3 meses demonstrando rendimentos mensais de pelo menos €3.680 (4× o SMN de 2024)", "isCritical": true},
-        {"name": "Seguro de saúde com cobertura em Portugal", "description": "Cobertura válida durante todo o período de permanência em Portugal", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada para português", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Comprovante de alojamento em Portugal", "description": "Contrato de arrendamento, declaração de alojamento ou reserva", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses a partir do pedido",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho remoto com empregador fora de Portugal",
+          "description": "Contrato de emprego demonstrando que o trabalho é realizado remotamente para entidade fora de Portugal",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de rendimentos mínimos de €3.680/mês",
+          "description": "Extratos bancários dos últimos 3 meses demonstrando rendimentos mensais de pelo menos €3.680 (4× o SMN de 2024)",
+          "isCritical": true
+        },
+        {
+          "name": "Seguro de saúde com cobertura em Portugal",
+          "description": "Cobertura válida durante todo o período de permanência em Portugal",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada para português",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de alojamento em Portugal",
+          "description": "Contrato de arrendamento, declaração de alojamento ou reserva",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 3680, "currency": "EUR", "period": "monthly", "notes": "4× o salário mínimo nacional português de 2024 (€920 × 4 = €3.680) — rendimentos mensais demonstrados via extratos bancários"},
+      "incomeRequirement": {
+        "amount": 3680,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "4× o salário mínimo nacional português de 2024 (€920 × 4 = €3.680) — rendimentos mensais demonstrados via extratos bancários"
+      },
       "languageRequired": null,
-      "qualificationsRequired": ["Trabalho exercido remotamente para entidade(s) sediada(s) fora de Portugal"]
+      "qualificationsRequired": [
+        "Trabalho exercido remotamente para entidade(s) sediada(s) fora de Portugal"
+      ]
     },
     "rights": {
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": true,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal, naturalização portuguesa"
+      }
     },
     "notes": "O Visto D8 Nômade Digital foi criado em 2022 e é muito procurado por brasileiros. O requisito de renda (4× SMN = €3.680/mês em 2024) é significativamente mais alto que outros vistos D. A taxa da AIMA para este visto (€320) é também mais alta. Benefício: após 5 anos em Portugal, elegível para naturalização portuguesa e cidadania europeia. Atenção: a permanência em Portugal pode criar obrigações fiscais — consultar regime de Residente Não Habitual (RNH) ou NHR2.0 para potenciais vantagens fiscais."
   },
-
   "work-intra-company-transfer": {
     "process": {
       "estimatedDuration": "2-4 meses",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D de transferência intragrupo no consulado português"},
-        {"amount": 83, "currency": "EUR", "notes": "taxa de autorização de residência na AIMA"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D de transferência intragrupo no consulado português"
+        },
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência na AIMA"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "A empresa portuguesa (receptora) documenta a transferência intragrupo: relação corporativa com empresa enviante no Brasil e carta de designação do trabalhador"},
-        {"order": 2, "description": "Verificar que o trabalhador tem vínculo empregatício mínimo de 3 meses com a empresa enviante"},
-        {"order": 3, "description": "Solicitar Visto D de Transferência Intragrupo no consulado português no Brasil com documentação completa"},
-        {"order": 4, "description": "Pagar €90 e apresentar: carta de designação, contrato com empresa enviante, documentação do grupo empresarial"},
-        {"order": 5, "description": "Entrar em Portugal e solicitar Autorização de Residência na AIMA dentro de 4 meses — pagar €83"}
+        {
+          "order": 1,
+          "description": "A empresa portuguesa (receptora) documenta a transferência intragrupo: relação corporativa com empresa enviante no Brasil e carta de designação do trabalhador"
+        },
+        {
+          "order": 2,
+          "description": "Verificar que o trabalhador tem vínculo empregatício mínimo de 3 meses com a empresa enviante"
+        },
+        {
+          "order": 3,
+          "description": "Solicitar Visto D de Transferência Intragrupo no consulado português no Brasil com documentação completa"
+        },
+        {
+          "order": 4,
+          "description": "Pagar €90 e apresentar: carta de designação, contrato com empresa enviante, documentação do grupo empresarial"
+        },
+        {
+          "order": 5,
+          "description": "Entrar em Portugal e solicitar Autorização de Residência na AIMA dentro de 4 meses — pagar €83"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Carta de designação/transferência da empresa", "description": "Especificando cargo, duração, condições e base legal da transferência intragrupo", "isCritical": true},
-        {"name": "Comprovante de vínculo mínimo de 3 meses com empresa enviante", "description": "Contrato de trabalho e holerites demonstrando vínculo anterior", "isCritical": true},
-        {"name": "Documentos comprovando vínculo corporativo entre as empresas", "description": "Prova de que empresa enviante e receptora pertencem ao mesmo grupo", "isCritical": true},
-        {"name": "Qualificações profissionais", "description": "Para gestores/especialistas: diploma ou experiência equivalente", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada", "isCritical": true },
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Carta de designação/transferência da empresa",
+          "description": "Especificando cargo, duração, condições e base legal da transferência intragrupo",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de vínculo mínimo de 3 meses com empresa enviante",
+          "description": "Contrato de trabalho e holerites demonstrando vínculo anterior",
+          "isCritical": true
+        },
+        {
+          "name": "Documentos comprovando vínculo corporativo entre as empresas",
+          "description": "Prova de que empresa enviante e receptora pertencem ao mesmo grupo",
+          "isCritical": true
+        },
+        {
+          "name": "Qualificações profissionais",
+          "description": "Para gestores/especialistas: diploma ou experiência equivalente",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        }
       ],
       "incomeRequirement": null,
       "languageRequired": null,
@@ -292,67 +732,156 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      }
     },
     "notes": "Modalidade para transferências intragrupo de trabalhadores qualificados. Implementada pela Diretiva 2014/66/UE. Vantagem: sem necessidade de Autorização de Empregador padrão — processo simplificado. Trabalhador fica vinculado à empresa receptora durante a autorização de residência."
   },
-
   "work-intra-company-mobility": {
     "process": {
       "estimatedDuration": "2-4 meses",
       "applicationLocation": "destino",
       "fees": [
-        {"amount": 83, "currency": "EUR", "notes": "taxa de autorização de residência na AIMA"}
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de autorização de residência na AIMA"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Trabalhador já possui Autorização de Residência ICT em outro Estado-Membro da UE e é transferido para Portugal dentro do mesmo grupo empresarial"},
-        {"order": 2, "description": "Empresa portuguesa informa a AIMA sobre a mobilidade intra-UE do trabalhador ICT"},
-        {"order": 3, "description": "Trabalhador pode iniciar trabalho em Portugal imediatamente após notificação — processo simplificado de mobilidade"},
-        {"order": 4, "description": "Solicitar Autorização de Residência na AIMA dentro do prazo legal — pagar €83"}
+        {
+          "order": 1,
+          "description": "Trabalhador já possui Autorização de Residência ICT em outro Estado-Membro da UE e é transferido para Portugal dentro do mesmo grupo empresarial"
+        },
+        {
+          "order": 2,
+          "description": "Empresa portuguesa informa a AIMA sobre a mobilidade intra-UE do trabalhador ICT"
+        },
+        {
+          "order": 3,
+          "description": "Trabalhador pode iniciar trabalho em Portugal imediatamente após notificação — processo simplificado de mobilidade"
+        },
+        {
+          "order": 4,
+          "description": "Solicitar Autorização de Residência na AIMA dentro do prazo legal — pagar €83"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Autorização de Residência ICT válida de outro Estado-Membro da UE", "description": "Título de residência ICT de outro país da UE — base para a mobilidade intra-UE", "isCritical": true},
-        {"name": "Carta de mobilidade da empresa", "description": "Especificando a transferência para a entidade portuguesa do grupo", "isCritical": true},
-        {"name": "Comprovante de vínculo corporativo entre a entidade de origem e a portuguesa", "description": "Documentação do grupo empresarial", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Autorização de Residência ICT válida de outro Estado-Membro da UE",
+          "description": "Título de residência ICT de outro país da UE — base para a mobilidade intra-UE",
+          "isCritical": true
+        },
+        {
+          "name": "Carta de mobilidade da empresa",
+          "description": "Especificando a transferência para a entidade portuguesa do grupo",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de vínculo corporativo entre a entidade de origem e a portuguesa",
+          "description": "Documentação do grupo empresarial",
+          "isCritical": true
+        }
       ],
       "incomeRequirement": null,
       "languageRequired": null,
-      "qualificationsRequired": ["Cargo de gestor, especialista ou trainee qualificado (categorias ICT)"]
+      "qualificationsRequired": [
+        "Cargo de gestor, especialista ou trainee qualificado (categorias ICT)"
+      ]
     },
     "rights": {
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal total no espaço UE",
-      "pathToCitizenship": "Após 5 anos de residência legal em Portugal"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal total no espaço UE"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal em Portugal"
+      }
     },
     "notes": "A mobilidade intra-UE ICT permite que titulares de Autorização de Residência ICT de qualquer Estado-Membro da UE se transfiram para Portugal dentro do mesmo grupo empresarial de forma simplificada. Direito garantido pela Diretiva 2014/66/UE."
   },
-
   "ar-atividade-profissional-subordinada": {
     "process": {
       "estimatedDuration": "1-3 meses (para quem já está em Portugal)",
       "applicationLocation": "destino",
       "fees": [
-        {"amount": 83, "currency": "EUR", "notes": "taxa de primeira emissão da Autorização de Residência na AIMA"},
-        {"amount": 28, "currency": "EUR", "notes": "taxa de renovação após 2 anos (primeira renovação)"}
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de primeira emissão da Autorização de Residência na AIMA"
+        },
+        {
+          "amount": 28,
+          "currency": "EUR",
+          "notes": "taxa de renovação após 2 anos (primeira renovação)"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Visto D de trabalho válido ou já dentro do prazo de AR", "description": "Comprovante de entrada legal em Portugal com visto que autoriza solicitação de AR", "isCritical": true},
-        {"name": "Contrato de trabalho vigente", "description": "Contrato com empregador português, com salário mínimo de acordo com a convenção coletiva", "isCritical": true},
-        {"name": "Comprovante de alojamento em Portugal", "description": "Contrato de arrendamento ou declaração de alojamento", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Do Brasil — pode ser aceita a apresentada para o visto D se recente", "isCritical": true},
-        {"name": "NIF (Número de Identificação Fiscal)", "description": "Obtido nas Finanças em Portugal — necessário para a maioria dos procedimentos legais", "isCritical": true},
-        {"name": "NISS (Número de Identificação da Segurança Social)", "description": "Obtido na Segurança Social — para trabalhadores subordinados registados", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Visto D de trabalho válido ou já dentro do prazo de AR",
+          "description": "Comprovante de entrada legal em Portugal com visto que autoriza solicitação de AR",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho vigente",
+          "description": "Contrato com empregador português, com salário mínimo de acordo com a convenção coletiva",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de alojamento em Portugal",
+          "description": "Contrato de arrendamento ou declaração de alojamento",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Do Brasil — pode ser aceita a apresentada para o visto D se recente",
+          "isCritical": true
+        },
+        {
+          "name": "NIF (Número de Identificação Fiscal)",
+          "description": "Obtido nas Finanças em Portugal — necessário para a maioria dos procedimentos legais",
+          "isCritical": true
+        },
+        {
+          "name": "NISS (Número de Identificação da Segurança Social)",
+          "description": "Obtido na Segurança Social — para trabalhadores subordinados registados",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 920, "currency": "EUR", "period": "monthly", "notes": "Salário mínimo nacional português de 2024 como referência — o salário real deve seguir a convenção coletiva aplicável"},
+      "incomeRequirement": {
+        "amount": 920,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "Salário mínimo nacional português de 2024 como referência — o salário real deve seguir a convenção coletiva aplicável"
+      },
       "languageRequired": null,
       "qualificationsRequired": []
     },
@@ -360,32 +889,80 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal — Autorização de Residência Permanente",
-      "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal, Autorização de Residência Permanente"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal, naturalização portuguesa"
+      }
     },
     "notes": "Esta é a Autorização de Residência obtida após entrada em Portugal com visto D de trabalho subordinado. Válida por 2 anos na primeira emissão, renovável por 3 anos subsequentes. O agendamento na AIMA tem sido um dos maiores obstáculos — pode levar 3-6 meses. Quem aguarda o agendamento pode trabalhar legalmente com o comprovante de pedido de AR."
   },
-
   "autorizacao-residencia-atividade-subordinada-dispensa-visto": {
     "process": {
       "estimatedDuration": "2-4 meses",
       "applicationLocation": "destino",
       "fees": [
-        {"amount": 83, "currency": "EUR", "notes": "taxa de Autorização de Residência na AIMA"},
-        {"amount": 28, "currency": "EUR", "notes": "taxa de renovação após 2 anos"}
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de Autorização de Residência na AIMA"
+        },
+        {
+          "amount": 28,
+          "currency": "EUR",
+          "notes": "taxa de renovação após 2 anos"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Comprovante de presença legal em Portugal sem visto de trabalho", "description": "Ex.: quem entrou como turista/nômade e encontrou emprego; ou titular de visto de outra categoria", "isCritical": true},
-        {"name": "Autorização de Empregador emitida pelo empregador via AIMA", "description": "Obtida pelo empregador português — demonstra oferta de emprego genuína", "isCritical": true},
-        {"name": "Contrato de trabalho ou promessa de contrato", "description": "Com empregador português — salário mínimo nacional ou superior", "isCritical": true},
-        {"name": "Comprovante de alojamento em Portugal", "description": "Contrato de arrendamento ou declaração de alojamento", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Brasileira, apostilada e traduzida", "isCritical": true},
-        {"name": "NIF e NISS", "description": "Número de Identificação Fiscal (Finanças) e da Segurança Social", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de presença legal em Portugal sem visto de trabalho",
+          "description": "Ex.: quem entrou como turista/nômade e encontrou emprego; ou titular de visto de outra categoria",
+          "isCritical": true
+        },
+        {
+          "name": "Autorização de Empregador emitida pelo empregador via AIMA",
+          "description": "Obtida pelo empregador português — demonstra oferta de emprego genuína",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho ou promessa de contrato",
+          "description": "Com empregador português — salário mínimo nacional ou superior",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de alojamento em Portugal",
+          "description": "Contrato de arrendamento ou declaração de alojamento",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Brasileira, apostilada e traduzida",
+          "isCritical": true
+        },
+        {
+          "name": "NIF e NISS",
+          "description": "Número de Identificação Fiscal (Finanças) e da Segurança Social",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 920, "currency": "EUR", "period": "monthly", "notes": "Salário mínimo nacional de 2024 como referência mínima"},
+      "incomeRequirement": {
+        "amount": 920,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "Salário mínimo nacional de 2024 como referência mínima"
+      },
       "languageRequired": null,
       "qualificationsRequired": []
     },
@@ -393,30 +970,73 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      }
     },
     "notes": "Modalidade de Autorização de Residência para quem já está em Portugal e encontrou emprego — não requer visto D específico de trabalho como pré-condição. Regularização direta a partir de Portugal. O sistema de Autorização de Empregador via AIMA é o elemento central. Processo mais complexo e com maior risco de recusa que o visto D padrão — recomenda-se apoio jurídico."
   },
-
   "pt-highly-qualified-activity": {
     "process": {
       "estimatedDuration": "1-2 meses",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D no consulado português"},
-        {"amount": 83, "currency": "EUR", "notes": "taxa de Autorização de Residência na AIMA"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D no consulado português"
+        },
+        {
+          "amount": 83,
+          "currency": "EUR",
+          "notes": "taxa de Autorização de Residência na AIMA"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses", "isCritical": true},
-        {"name": "Contrato de trabalho ou oferta de emprego em atividade de elevada qualificação", "description": "Cargo enquadrado nos critérios do art. 90.º da Lei n.º 23/2007 — gestão superior, investigação científica, docência universitária ou profissão altamente qualificada", "isCritical": true},
-        {"name": "Diploma de ensino superior apostilado", "description": "Licenciatura ou superior — apostilado com Apostila de Haia e traduzido juramentado", "isCritical": true},
-        {"name": "Comprovante de qualificação profissional (se aplicável)", "description": "5 anos de experiência profissional comprovada pode substituir o diploma em alguns casos", "isCritical": false},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Seguro de saúde com cobertura em Portugal", "description": "Cobertura válida durante o período do visto", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho ou oferta de emprego em atividade de elevada qualificação",
+          "description": "Cargo enquadrado nos critérios do art. 90.º da Lei n.º 23/2007 — gestão superior, investigação científica, docência universitária ou profissão altamente qualificada",
+          "isCritical": true
+        },
+        {
+          "name": "Diploma de ensino superior apostilado",
+          "description": "Licenciatura ou superior — apostilado com Apostila de Haia e traduzido juramentado",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de qualificação profissional (se aplicável)",
+          "description": "5 anos de experiência profissional comprovada pode substituir o diploma em alguns casos",
+          "isCritical": false
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Seguro de saúde com cobertura em Portugal",
+          "description": "Cobertura válida durante o período do visto",
+          "isCritical": true
+        }
       ],
       "incomeRequirement": null,
       "languageRequired": null,
@@ -430,41 +1050,99 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": true,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      }
     },
     "notes": "Modalidade do art. 90.º da Lei de Estrangeiros portuguesa — para trabalhadores altamente qualificados. Vantagem sobre o visto D padrão: processo simplificado sem Autorização de Empregador em algumas sub-modalidades. Inclui também a Carta Azul Europeia para Portugal (salário mínimo de 1,5× a média salarial portuguesa). Verificar com consulado se enquadramento permite isenção de Autorização de Empregador."
   },
-
   "nomada-digital": {
     "process": {
       "estimatedDuration": "30-60 dias para o visto",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 90, "currency": "EUR", "notes": "taxa de visto D Nômade Digital no consulado português"},
-        {"amount": 320, "currency": "EUR", "notes": "taxa de Autorização de Residência D8 na AIMA (primeira emissão)"}
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de visto D Nômade Digital no consulado português"
+        },
+        {
+          "amount": 320,
+          "currency": "EUR",
+          "notes": "taxa de Autorização de Residência D8 na AIMA (primeira emissão)"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 18 meses a partir do pedido", "isCritical": true},
-        {"name": "Contrato de trabalho remoto ou contratos de prestação de serviços com entidades fora de Portugal", "description": "Demonstrando que a atividade é exercida remotamente para empregador ou clientes não-portugueses", "isCritical": true},
-        {"name": "Comprovante de rendimentos mínimos de €3.680/mês", "description": "Extratos bancários dos últimos 3 meses ou declaração fiscal demonstrando rendimentos mensais de 4× o SMN português", "isCritical": true},
-        {"name": "Seguro de saúde com cobertura em Portugal", "description": "Cobertura válida durante toda a permanência", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Com Apostila de Haia e tradução juramentada", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Comprovante de alojamento em Portugal", "description": "Contrato de arrendamento, declaração de alojamento ou reserva", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 18 meses a partir do pedido",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho remoto ou contratos de prestação de serviços com entidades fora de Portugal",
+          "description": "Demonstrando que a atividade é exercida remotamente para empregador ou clientes não-portugueses",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de rendimentos mínimos de €3.680/mês",
+          "description": "Extratos bancários dos últimos 3 meses ou declaração fiscal demonstrando rendimentos mensais de 4× o SMN português",
+          "isCritical": true
+        },
+        {
+          "name": "Seguro de saúde com cobertura em Portugal",
+          "description": "Cobertura válida durante toda a permanência",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de alojamento em Portugal",
+          "description": "Contrato de arrendamento, declaração de alojamento ou reserva",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 3680, "currency": "EUR", "period": "monthly", "notes": "4× o salário mínimo nacional português de 2024 (4 × €920 = €3.680) — demonstrado via extratos bancários"},
+      "incomeRequirement": {
+        "amount": 3680,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "4× o salário mínimo nacional português de 2024 (4 × €920 = €3.680) — demonstrado via extratos bancários"
+      },
       "languageRequired": null,
-      "qualificationsRequired": ["Trabalho exercido remotamente para entidade(s) sediada(s) fora de Portugal"]
+      "qualificationsRequired": [
+        "Trabalho exercido remotamente para entidade(s) sediada(s) fora de Portugal"
+      ]
     },
     "rights": {
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": true,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa e cidadania europeia"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal, naturalização portuguesa e cidadania europeia"
+      }
     },
     "notes": "O Visto D8 Nômade Digital é o mesmo que work-digital-nomad — ambas as entradas referem-se ao mesmo tipo de visto. Requisito de renda de €3.680/mês (4× SMN 2024) é o principal filtro. Taxa AIMA de €320 para primeira AR (mais cara que outros vistos D). Recomenda-se avaliar o regime fiscal NHR 2.0 (Incentivo Fiscal à Investigação Científica e Inovação — IFICI) para otimização fiscal."
   }

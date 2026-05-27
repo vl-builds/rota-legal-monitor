@@ -4,65 +4,176 @@
       "estimatedDuration": "4-8 semanas",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 215, "currency": "EUR", "notes": "taxa de solicitação do permis unique (autorisation d'occupation — varia por região)"},
-        {"amount": 180, "currency": "EUR", "notes": "taxa de visto D nacional de trabalho no consulado belga"}
+        {
+          "amount": 215,
+          "currency": "EUR",
+          "notes": "taxa de solicitação do permis unique (autorisation d'occupation — varia por região)"
+        },
+        {
+          "amount": 180,
+          "currency": "EUR",
+          "notes": "taxa de visto D nacional de trabalho no consulado belga"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "O empregador belga verifica que o cargo qualifica para single permit e que o candidato não requer teste de mercado de trabalho (lista de profissões em escassez) ou obtém exceção"},
-        {"order": 2, "description": "Empregador submete pedido do permis unique (autorização de trabalho + residência) junto à autoridade regional competente (Bruxelas: Actiris/SPE; Flandres: VDAB; Valônia: Forem)"},
-        {"order": 3, "description": "Autoridade regional avalia o pedido e o encaminha ao SPF Affaires étrangères para a componente de residência — prazo de 4 semanas (pode se estender)"},
-        {"order": 4, "description": "Após aprovação, o trabalhador solicita o visto D de trabalho (long-stay) no consulado belga no Brasil"},
-        {"order": 5, "description": "Pagar taxas de visto e apresentar documentação completa no consulado"},
-        {"order": 6, "description": "Entrar na Bélgica e, dentro de 8 dias, registrar-se na commune (município) de residência para obter a Carte d'identité étrangère (CIRE)"}
+        {
+          "order": 1,
+          "description": "O empregador belga verifica que o cargo qualifica para single permit e que o candidato não requer teste de mercado de trabalho (lista de profissões em escassez) ou obtém exceção"
+        },
+        {
+          "order": 2,
+          "description": "Empregador submete pedido do permis unique (autorização de trabalho + residência) junto à autoridade regional competente (Bruxelas: Actiris/SPE; Flandres: VDAB; Valônia: Forem)"
+        },
+        {
+          "order": 3,
+          "description": "Autoridade regional avalia o pedido e o encaminha ao SPF Affaires étrangères para a componente de residência — prazo de 4 semanas (pode se estender)"
+        },
+        {
+          "order": 4,
+          "description": "Após aprovação, o trabalhador solicita o visto D de trabalho (long-stay) no consulado belga no Brasil"
+        },
+        {
+          "order": 5,
+          "description": "Pagar taxas de visto e apresentar documentação completa no consulado"
+        },
+        {
+          "order": 6,
+          "description": "Entrar na Bélgica e, dentro de 8 dias, registrar-se na commune (município) de residência para obter a Carte d'identité étrangère (CIRE)"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 12 meses além do período solicitado", "isCritical": true},
-        {"name": "Permis unique aprovado (autorisation d'occupation)", "description": "Autorização emitida pela autoridade regional belga em nome do empregador — obrigatória para o visto D", "isCritical": true},
-        {"name": "Contrato de trabalho assinado", "description": "Contrato formal com empregador belga especificando cargo, salário (mínimo €3.703/mês bruto em Bruxelas em 2024) e condições", "isCritical": true},
-        {"name": "Diploma ou comprovante de qualificações", "description": "Documentação educacional e profissional compatível com o cargo", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Do Brasil com Apostila de Haia e tradução juramentada para francês, neerlandês ou alemão", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true},
-        {"name": "Formulário de solicitação de visto D", "description": "Disponível no consulado belga ou em visaforbelgium.be", "isCritical": true}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 12 meses além do período solicitado",
+          "isCritical": true
+        },
+        {
+          "name": "Permis unique aprovado (autorisation d'occupation)",
+          "description": "Autorização emitida pela autoridade regional belga em nome do empregador — obrigatória para o visto D",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho assinado",
+          "description": "Contrato formal com empregador belga especificando cargo, salário (mínimo €3.703/mês bruto em Bruxelas em 2024) e condições",
+          "isCritical": true
+        },
+        {
+          "name": "Diploma ou comprovante de qualificações",
+          "description": "Documentação educacional e profissional compatível com o cargo",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Do Brasil com Apostila de Haia e tradução juramentada para francês, neerlandês ou alemão",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Formulário de solicitação de visto D",
+          "description": "Disponível no consulado belga ou em visaforbelgium.be",
+          "isCritical": true
+        }
       ],
-      "incomeRequirement": {"amount": 3703, "currency": "EUR", "period": "monthly", "notes": "Salário mínimo bruto exigido para trabalhadores altamente qualificados em Bruxelas (2024). Para trabalhadores qualificados e não qualificados os limites são diferentes por região."},
+      "incomeRequirement": {
+        "amount": 3703,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "Salário mínimo bruto exigido para trabalhadores altamente qualificados em Bruxelas (2024). Para trabalhadores qualificados e não qualificados os limites são diferentes por região."
+      },
       "languageRequired": null,
-      "qualificationsRequired": ["Qualificações compatíveis com a função especificada no contrato de trabalho"]
+      "qualificationsRequired": [
+        "Qualificações compatíveis com a função especificada no contrato de trabalho"
+      ]
     },
     "rights": {
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal — cartão de residente de longa duração UE",
-      "pathToCitizenship": "Após 5 anos de residência legal estável e comprovação de integração social"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal, cartão de residente de longa duração UE"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal estável e comprovação de integração social"
+      }
     },
     "notes": "O single permit unifica a autorização de trabalho e a autorização de residência em um único procedimento. A remuneração mínima varia por categoria: trabalhadores altamente qualificados (diploma universitário) precisam de €3.703/mês bruto (Bruxelas 2024); trabalhadores qualificados e não qualificados têm limites distintos. O permis unique está vinculado ao empregador e à função especificada — mudança de empregador requer novo processo. Bélgica tem 3 regiões com regimes distintos: Bruxelas, Flandres e Valônia."
   },
-
   "work-authorization-belgium": {
     "process": {
       "estimatedDuration": "4-8 semanas",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 215, "currency": "EUR", "notes": "taxa de autorização de trabalho (varia por região belga)"},
-        {"amount": 180, "currency": "EUR", "notes": "taxa de visto D nacional de trabalho"}
+        {
+          "amount": 215,
+          "currency": "EUR",
+          "notes": "taxa de autorização de trabalho (varia por região belga)"
+        },
+        {
+          "amount": 180,
+          "currency": "EUR",
+          "notes": "taxa de visto D nacional de trabalho"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Empregador belga submete pedido de autorização de trabalho (separate work permit — categoria B ou outras) junto à autoridade regional competente"},
-        {"order": 2, "description": "Autoridade regional analisa o pedido — prazo de 4 semanas para casos padrão"},
-        {"order": 3, "description": "Após aprovação da autorização de trabalho, trabalhador solicita visto D de trabalho no consulado belga no Brasil"},
-        {"order": 4, "description": "Pagar taxas e apresentar documentação completa incluindo autorização de trabalho aprovada"},
-        {"order": 5, "description": "Entrar na Bélgica e registrar-se na commune de residência dentro de 8 dias para obter a CIRE (Carte d'Identité de Résident Étranger)"}
+        {
+          "order": 1,
+          "description": "Empregador belga submete pedido de autorização de trabalho (separate work permit — categoria B ou outras) junto à autoridade regional competente"
+        },
+        {
+          "order": 2,
+          "description": "Autoridade regional analisa o pedido — prazo de 4 semanas para casos padrão"
+        },
+        {
+          "order": 3,
+          "description": "Após aprovação da autorização de trabalho, trabalhador solicita visto D de trabalho no consulado belga no Brasil"
+        },
+        {
+          "order": 4,
+          "description": "Pagar taxas e apresentar documentação completa incluindo autorização de trabalho aprovada"
+        },
+        {
+          "order": 5,
+          "description": "Entrar na Bélgica e registrar-se na commune de residência dentro de 8 dias para obter a CIRE (Carte d'Identité de Résident Étranger)"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 12 meses além do período solicitado", "isCritical": true},
-        {"name": "Autorização de trabalho aprovada", "description": "Permissão emitida pela autoridade regional belga (Actiris, VDAB ou Forem)", "isCritical": true},
-        {"name": "Contrato de trabalho ou oferta formal", "description": "Documento firmado pelo empregador belga", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Do Brasil com Apostila de Haia e tradução juramentada", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true }
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 12 meses além do período solicitado",
+          "isCritical": true
+        },
+        {
+          "name": "Autorização de trabalho aprovada",
+          "description": "Permissão emitida pela autoridade regional belga (Actiris, VDAB ou Forem)",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho ou oferta formal",
+          "description": "Documento firmado pelo empregador belga",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Do Brasil com Apostila de Haia e tradução juramentada",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        }
       ],
       "incomeRequirement": null,
       "languageRequired": null,
@@ -72,42 +183,115 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": false,
-      "pathToResidency": "Após 5 anos de residência legal",
-      "pathToCitizenship": "Após 5 anos de residência legal estável"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal estável"
+      }
     },
     "notes": "A autorização de trabalho Category B é a mais comum para trabalhadores não-UE. A partir de 2019 a Bélgica implementou o single permit que combina autorização de trabalho e de residência para a maioria dos casos — verificar qual regime se aplica à situação específica."
   },
-
   "professional-card-self-employed": {
     "process": {
       "estimatedDuration": "3-6 meses",
       "applicationLocation": "origem",
       "fees": [
-        {"amount": 140, "currency": "EUR", "notes": "taxa de solicitação da Carte Professionnelle / Professional Card (emissão)"},
-        {"amount": 90, "currency": "EUR", "notes": "taxa de renovação anual da Professional Card"},
-        {"amount": 180, "currency": "EUR", "notes": "taxa de visto D no consulado belga"}
+        {
+          "amount": 140,
+          "currency": "EUR",
+          "notes": "taxa de solicitação da Carte Professionnelle / Professional Card (emissão)"
+        },
+        {
+          "amount": 90,
+          "currency": "EUR",
+          "notes": "taxa de renovação anual da Professional Card"
+        },
+        {
+          "amount": 180,
+          "currency": "EUR",
+          "notes": "taxa de visto D no consulado belga"
+        }
       ],
       "steps": [
-        {"order": 1, "description": "Elaborar plano de negócios detalhado demonstrando viabilidade econômica e impacto positivo para a Bélgica (geração de emprego, inovação, investimento)"},
-        {"order": 2, "description": "Solicitar a Professional Card (Carte Professionnelle / Beroepskaart) junto ao SPF Économie ou à entidade regional competente no país de origem via consulado belga"},
-        {"order": 3, "description": "Submeter plano de negócios, comprovantes financeiros e documentação de qualificações — a avaliação verifica se a atividade apresenta benefício econômico para a Bélgica"},
-        {"order": 4, "description": "Após aprovação da Professional Card (prazo de 1-3 meses), solicitar o visto D de trabalho autônomo no consulado belga no Brasil"},
-        {"order": 5, "description": "Pagar taxas de visto (~€180) e apresentar documentação completa"},
-        {"order": 6, "description": "Entrar na Bélgica, registrar-se na commune, registrar a atividade autônoma (zelfstandige / indépendant) e abrir conta empresarial belga"}
+        {
+          "order": 1,
+          "description": "Elaborar plano de negócios detalhado demonstrando viabilidade econômica e impacto positivo para a Bélgica (geração de emprego, inovação, investimento)"
+        },
+        {
+          "order": 2,
+          "description": "Solicitar a Professional Card (Carte Professionnelle / Beroepskaart) junto ao SPF Économie ou à entidade regional competente no país de origem via consulado belga"
+        },
+        {
+          "order": 3,
+          "description": "Submeter plano de negócios, comprovantes financeiros e documentação de qualificações — a avaliação verifica se a atividade apresenta benefício econômico para a Bélgica"
+        },
+        {
+          "order": 4,
+          "description": "Após aprovação da Professional Card (prazo de 1-3 meses), solicitar o visto D de trabalho autônomo no consulado belga no Brasil"
+        },
+        {
+          "order": 5,
+          "description": "Pagar taxas de visto (~€180) e apresentar documentação completa"
+        },
+        {
+          "order": 6,
+          "description": "Entrar na Bélgica, registrar-se na commune, registrar a atividade autônoma (zelfstandige / indépendant) e abrir conta empresarial belga"
+        }
       ]
     },
     "requirements": {
       "documents": [
-        {"name": "Passaporte brasileiro válido", "description": "Validade mínima de 12 meses além do período solicitado", "isCritical": true},
-        {"name": "Plano de negócios detalhado em francês, neerlandês ou alemão", "description": "Demonstrando viabilidade econômica, mercado-alvo, projeções financeiras e impacto positivo para a Bélgica", "isCritical": true},
-        {"name": "Comprovante de capacidade financeira", "description": "Mínimo €26.087/ano (renda equivalente ou capital para sustento e operação do negócio)", "isCritical": true},
-        {"name": "Diplomas e qualificações profissionais", "description": "Documentos educacionais e profissionais apostilados e traduzidos", "isCritical": true},
-        {"name": "Certidão de antecedentes criminais apostilada", "description": "Do Brasil com Apostila de Haia e tradução juramentada para francês, neerlandês ou alemão", "isCritical": true},
-        {"name": "2 fotos recentes em formato passaporte", "description": "Padrão biométrico", "isCritical": true },
-        {"name": "Comprovante de experiência profissional relevante", "description": "Para atividades que exijam expertise técnica específica", "isCritical": false}
+        {
+          "name": "Passaporte brasileiro válido",
+          "description": "Validade mínima de 12 meses além do período solicitado",
+          "isCritical": true
+        },
+        {
+          "name": "Plano de negócios detalhado em francês, neerlandês ou alemão",
+          "description": "Demonstrando viabilidade econômica, mercado-alvo, projeções financeiras e impacto positivo para a Bélgica",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de capacidade financeira",
+          "description": "Mínimo €26.087/ano (renda equivalente ou capital para sustento e operação do negócio)",
+          "isCritical": true
+        },
+        {
+          "name": "Diplomas e qualificações profissionais",
+          "description": "Documentos educacionais e profissionais apostilados e traduzidos",
+          "isCritical": true
+        },
+        {
+          "name": "Certidão de antecedentes criminais apostilada",
+          "description": "Do Brasil com Apostila de Haia e tradução juramentada para francês, neerlandês ou alemão",
+          "isCritical": true
+        },
+        {
+          "name": "2 fotos recentes em formato passaporte",
+          "description": "Padrão biométrico",
+          "isCritical": true
+        },
+        {
+          "name": "Comprovante de experiência profissional relevante",
+          "description": "Para atividades que exijam expertise técnica específica",
+          "isCritical": false
+        }
       ],
-      "incomeRequirement": {"amount": 26087, "currency": "EUR", "period": "annual", "notes": "Renda mínima anual demonstrada ou capital suficiente para sustento e operação do negócio — equivalente a aprox. €2.174/mês"},
-      "languageRequired": {"language": "Francês, neerlandês ou alemão", "level": "Suficiente para apresentar plano de negócios e comunicar-se com autoridades — sem nível formal mínimo exigido"},
+      "incomeRequirement": {
+        "amount": 26087,
+        "currency": "EUR",
+        "period": "yearly",
+        "notes": "Renda mínima anual demonstrada ou capital suficiente para sustento e operação do negócio — equivalente a aprox. €2.174/mês"
+      },
+      "languageRequired": {
+        "language": "Francês, neerlandês ou alemão",
+        "level": "Suficiente para apresentar plano de negócios e comunicar-se com autoridades — sem nível formal mínimo exigido"
+      },
       "qualificationsRequired": [
         "Plano de negócios com benefício econômico demonstrável para a Bélgica",
         "Qualificações profissionais compatíveis com a atividade autônoma planejada",
@@ -118,8 +302,16 @@
       "canWork": true,
       "canBringFamily": true,
       "canChangeEmployer": null,
-      "pathToResidency": "Após 5 anos de residência legal estável e comprovação de integração",
-      "pathToCitizenship": "Após 5 anos de residência legal estável"
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal estável e comprovação de integração"
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal estável"
+      }
     },
     "notes": "A Professional Card é o instrumento para trabalhadores autônomos não-UE na Bélgica. A avaliação é baseada no impacto econômico positivo para a Bélgica — o plano de negócios é o documento mais importante do processo. A card é válida por 1 ano e renovável anualmente. Para profissões regulamentadas (médico, advogado, engenheiro), além da Professional Card é necessário reconhecimento da qualificação e inscrição no órgão regulador belga."
   }

@@ -179,6 +179,7 @@
   "generalRequirements": {
     "passportValidity": "Minimo 6 meses apos a data de entrada planejada",
     "proofOfFunds": null,
+    "minimumWage": null,
     "healthInsurance": {
       "required": true,
       "mustBeLocal": true,

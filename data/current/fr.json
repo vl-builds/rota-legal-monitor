@@ -189,8 +189,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal (por naturalização) ou 4 anos com cônjuge francês",
-        "pathToResidency": "Após 5 anos de residência legal — Carte de résident (10 anos)"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal (por naturalização) ou 4 anos com cônjuge francês"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Carte de résident (10 anos)"
+        }
       }
     },
     {
@@ -294,7 +302,7 @@
         "incomeRequirement": {
           "amount": 39582,
           "currency": "EUR",
-          "period": "annual",
+          "period": "yearly",
           "notes": "2× o SMIC anual (2024) — equivale a aprox. €3.299/mês bruto. Para categorias talent específicas o limiar pode variar."
         },
         "languageRequired": null,
@@ -307,8 +315,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal por naturalização",
-        "pathToResidency": "Após 5 anos de residência legal — Carte de résident (10 anos)"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal por naturalização"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Carte de résident (10 anos)"
+        }
       }
     },
     {
@@ -740,8 +756,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal — Carte de résident"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Carte de résident"
+        }
       }
     },
     {
@@ -843,8 +867,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos totais de residência legal — Carte de résident"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos totais de residência legal, Carte de résident"
+        }
       }
     },
     {
@@ -947,8 +979,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Elegível para naturalização francesa — 5 anos de residência + integração",
-        "pathToResidency": "Este é o título de residência permanente de longa duração"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Elegível para naturalização francesa, 5 anos de residência + integração"
+        },
+        "pathToResidency": {
+          "yearsRequired": null,
+          "conditions": [],
+          "summary": "Este é o título de residência permanente de longa duração"
+        }
       }
     },
     {
@@ -1047,7 +1087,7 @@
         "incomeRequirement": {
           "amount": 39582,
           "currency": "EUR",
-          "period": "annual",
+          "period": "yearly",
           "notes": "2× SMIC anual (2024) — aprox. €3.299/mês bruto"
         },
         "languageRequired": null,
@@ -1060,8 +1100,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1162,8 +1210,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1264,7 +1320,7 @@
         "incomeRequirement": {
           "amount": 39582,
           "currency": "EUR",
-          "period": "annual",
+          "period": "yearly",
           "notes": "Salário mínimo equivalente a 2× SMIC para a categoria Salarié en Mission"
         },
         "languageRequired": null,
@@ -1277,8 +1333,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1525,8 +1589,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     }
   ]

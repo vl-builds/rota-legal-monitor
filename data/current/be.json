@@ -183,8 +183,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal estável e comprovação de integração social",
-        "pathToResidency": "Após 5 anos de residência legal — cartão de residente de longa duração UE"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal estável e comprovação de integração social"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, cartão de residente de longa duração UE"
+        }
       }
     },
     {
@@ -281,8 +289,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal estável",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal estável"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -396,7 +412,7 @@
         "incomeRequirement": {
           "amount": 26087,
           "currency": "EUR",
-          "period": "annual",
+          "period": "yearly",
           "notes": "Renda mínima anual demonstrada ou capital suficiente para sustento e operação do negócio — equivalente a aprox. €2.174/mês"
         },
         "languageRequired": {
@@ -413,8 +429,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal estável",
-        "pathToResidency": "Após 5 anos de residência legal estável e comprovação de integração"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal estável"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal estável e comprovação de integração"
+        }
       }
     }
   ]

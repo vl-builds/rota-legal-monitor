@@ -262,8 +262,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa (cidadania da UE)",
-        "pathToResidency": "Após 5 anos de residência legal — Autorização de Residência Permanente"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, naturalização portuguesa (cidadania da UE)"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Autorização de Residência Permanente"
+        }
       }
     },
     {
@@ -512,8 +520,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -624,8 +640,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -736,8 +760,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -858,8 +890,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, naturalização portuguesa"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -970,8 +1010,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1056,8 +1104,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal em Portugal",
-        "pathToResidency": "Após 5 anos de residência legal total no espaço UE"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal em Portugal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal total no espaço UE"
+        }
       }
     },
     {
@@ -1159,8 +1215,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa",
-        "pathToResidency": "Após 5 anos de residência legal — Autorização de Residência Permanente"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, naturalização portuguesa"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Autorização de Residência Permanente"
+        }
       }
     },
     {
@@ -1274,8 +1338,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1377,8 +1449,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1490,8 +1570,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal — naturalização portuguesa e cidadania europeia",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, naturalização portuguesa e cidadania europeia"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     }
   ]

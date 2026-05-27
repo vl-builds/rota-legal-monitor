@@ -211,8 +211,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal — Permesso di Soggiorno CE per lungo soggiornanti"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Permesso di Soggiorno CE per lungo soggiornanti"
+        }
       }
     },
     {
@@ -326,7 +334,7 @@
         "incomeRequirement": {
           "amount": 8500,
           "currency": "EUR",
-          "period": "annual",
+          "period": "yearly",
           "notes": "Renda mínima anual exigida para lavoro autonomo — equivalente ao mínimo social italiano. Pode ser demonstrada por patrimônio equivalente."
         },
         "languageRequired": null,
@@ -338,8 +346,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -455,8 +471,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal contínua"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal contínua"
+        }
       }
     },
     {
@@ -571,7 +595,7 @@
         "incomeRequirement": {
           "amount": 35000,
           "currency": "EUR",
-          "period": "annual",
+          "period": "yearly",
           "notes": "Salário bruto anual mínimo de €35.000 exigido para Carta Blu UE Itália (1,5× a média salarial nacional). Para profissões em escassez pode ser reduzido para 1,2×."
         },
         "languageRequired": null,
@@ -584,8 +608,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal — Permesso CE per lungo soggiornanti; residência de longa duração UE possível após 2 anos como titular de Carta Blu em outro Estado-Membro"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Permesso CE per lungo soggiornanti; residência de longa duração UE possível após 2 anos como titular de Carta Blu em outro Estado-Membro"
+        }
       }
     }
   ]

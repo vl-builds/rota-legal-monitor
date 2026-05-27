@@ -90,7 +90,7 @@
       "nameOriginal": "Residence permit for highly skilled migrant",
       "notes": "O Highly Skilled Migrant (kennismigrant) é a via principal para trabalhadores qualificados nos Países Baixos. O requisito central é o salário mínimo (atualizado em jan/2025: €5.688/mês para 30+). O empregador deve ser erkend referent — a maioria das multinacionais e universidades já tem. Processo muito rápido: 2 semanas de processamento. Possível acumular com a '30% ruling' (isenção fiscal de 30% da renda por até 5 anos) se contratado de fora dos Países Baixos.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
         "fees": [
           {
@@ -183,8 +183,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal — naturalização holandesa",
-        "pathToResidency": "Após 5 anos de residência legal — verblijfsvergunning onbepaalde tijd"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, naturalização holandesa"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, verblijfsvergunning onbepaalde tijd"
+        }
       }
     },
     {
@@ -195,7 +203,7 @@
       "nameOriginal": "European blue card residence permit",
       "notes": "A EU Blue Card nos Países Baixos é uma alternativa ao kennismigrant com limiar salarial ligeiramente menor. Vantagem adicional: mobilidade simplificada para outros países da UE após 18 meses. Para a maioria dos candidatos, o kennismigrant é equivalente ou superior em vantagens — escolher conforme salário e planos de mobilidade europeia.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
         "fees": [
           {
@@ -283,8 +291,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal nos Países Baixos",
-        "pathToResidency": "Após 5 anos de residência legal — ou residência de longa duração UE após 5 anos de EU Blue Card em países da UE"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal nos Países Baixos"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, ou residência de longa duração UE após 5 anos de EU Blue Card em países da UE"
+        }
       }
     },
     {
@@ -295,7 +311,7 @@
       "nameOriginal": "Intra-corporate transferee residence permit (Directive 2014/66/EU)",
       "notes": "O ICT permit holandês segue a Diretiva 2014/66/UE. Após aprovação em um Estado-Membro, mobilidade simplificada para outros países da UE. Limite de 3 anos máximo (gestores/especialistas) ou 1 ano (trainees). Para carreira de longo prazo nos Países Baixos, transitar para kennismigrant é mais vantajoso.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
         "fees": [
           {
@@ -393,8 +409,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal total",
-        "pathToResidency": "ICT não conta diretamente para residência permanente — considerar transitar para kennismigrant"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal total"
+        },
+        "pathToResidency": {
+          "yearsRequired": null,
+          "conditions": [],
+          "summary": "ICT não conta diretamente para residência permanente, considerar transitar para kennismigrant"
+        }
       }
     },
     {
@@ -407,7 +431,7 @@
       "nameOriginal": "Residence permit researcher (Directive (EU) 2016/801)",
       "notes": "O Researcher permit é específico para pesquisadores acadêmicos vinculados a instituições de pesquisa reconhecidas. Processo similar ao kennismigrant mas com limiar salarial seguindo o CAO das universidades, que pode ser inferior ao do kennismigrant regular. Pesquisadores PhD podem ser elegíveis para a '30% ruling' fiscal.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
         "fees": [
           {
@@ -494,8 +518,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -506,7 +538,7 @@
       "nameOriginal": "Paid employment: residence permit with work permit (GVVA)",
       "notes": "A GVVA combina permissão de trabalho e de residência em um documento único. Para cargos que não se qualificam como kennismigrant, é o caminho padrão. O teste de mercado de trabalho pelo UWV é exigido na maioria dos casos — empregador deve demonstrar que não há candidato local disponível.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
@@ -587,8 +619,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -601,7 +641,7 @@
       "nameOriginal": "Paid employment: residence permit only",
       "notes": "Modalidade para casos em que a GVVA não é aplicável mas o trabalhador precisa de verblijfsvergunning separada da autorização de trabalho. Menos comum que a GVVA. Verificar com o IND qual modalidade se aplica ao caso específico.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
@@ -649,8 +689,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -764,8 +812,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -816,7 +872,7 @@
       "nameOriginal": "Residence permit for seasonal work",
       "notes": "Trabalho sazonal nos Países Baixos — principalmente agricultura, horticultura e setores alimentares. Para brasileiros, geralmente exige TWV e é limitado a 24 semanas por ano. Não é caminho para residência permanente.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
         "fees": [
           {
@@ -1126,7 +1182,7 @@
       "nameOriginal": "Residence permit researcher (Directive (EU) 2016/801)",
       "notes": "Muito similar ao researcher-permit — ambas as entradas referem-se ao verblijfsvergunning onderzoeker. A principal diferença pode ser o tipo de instituição ou a duração do programa de pesquisa. Pesquisadores PhD podem ser elegíveis para a '30% ruling' fiscal se contratados de fora dos Países Baixos.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
         "fees": [
           {
@@ -1213,8 +1269,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1225,7 +1289,7 @@
       "nameOriginal": "Paid employment: residence permit only",
       "notes": "Modalidade para trabalhadores cujas categorias estão isentas de autorização de trabalho separada (TWV), mas ainda precisam de verblijfsvergunning. Inclui categorias como pesquisadores em intercâmbio, trainees de curto prazo, e outras categorias específicas previstas no Besluit uitvoering Wet arbeid vreemdelingen.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
         "fees": [
           {
@@ -1268,8 +1332,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -1280,7 +1352,7 @@
       "nameOriginal": "Residence permit for innovative start-up founder",
       "notes": "O Start-up permit holandês é válido por apenas 1 ano (não renovável) — é um programa de incubação acelerada. O facilitador erkend é uma aceleradora, incubadora ou organização reconhecida que orienta o empreendedor. Após 1 ano, a startup deve ter progredido suficientemente para que o fundador solicite a verblijfsvergunning zelfstandige pelo sistema de pontos do RVO. Países Baixos têm um ecossistema de startups muito desenvolvido — Eindhoven, Amsterdam e Rotterdam são centros principais.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "3 meses",
         "fees": [
           {
@@ -1379,8 +1451,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 5 anos de residência legal",
-        "pathToResidency": "Via conversão para verblijfsvergunning zelfstandige após 1 ano e 5 anos totais de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 1,
+          "conditions": [],
+          "summary": "Via conversão para verblijfsvergunning zelfstandige após 1 ano e 5 anos totais de residência legal"
+        }
       }
     }
   ]

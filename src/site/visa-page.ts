@@ -1,4 +1,4 @@
-import type { CountryData, VisaType } from '@/extractors/schema'
+import type { CountryData, PathInfo, VisaType } from '@/extractors/schema'
 import type { CountryPageConfig } from './country-page'
 
 function esc(s: string): string {
@@ -18,8 +18,15 @@ function monthLabel(iso: string): string {
 function fmtMoney(amount: number, currency: string, period?: string | null): string {
   const formatted = `${currency} ${amount.toLocaleString('pt-BR')}`
   if (!period) return formatted
-  const periods: Record<string, string> = { monthly: '/mês', yearly: '/ano', 'one-time': '' }
+  const periods: Record<string, string> = { monthly: '/mês', yearly: '/ano', 'one-time': '', total: ' no total' }
   return formatted + (periods[period] ?? '')
+}
+
+// Prefere a prosa rica (summary); cai para "Após N anos" quando ha prazo; senao "Disponível".
+function pathVerdict(path: PathInfo): string {
+  if (path.summary) return path.summary
+  if (path.yearsRequired != null) return `Após ${path.yearsRequired} anos`
+  return 'Disponível'
 }
 
 function tagLabel(visa: VisaType): string {
@@ -360,7 +367,7 @@ export function generateVisaPage(
     rightsItems.push({
       ok: true,
       label: 'Caminho à residência',
-      verdict: `Após ${visa.rights.pathToResidency.yearsRequired} anos`,
+      verdict: pathVerdict(visa.rights.pathToResidency),
       long: true,
       prose: 'O tempo neste visto conta para obtenção de residência permanente, desde que cumpridos os demais requisitos.',
     })
@@ -369,7 +376,7 @@ export function generateVisaPage(
     rightsItems.push({
       ok: true,
       label: 'Caminho à cidadania',
-      verdict: `Após ${visa.rights.pathToCitizenship.yearsRequired} anos`,
+      verdict: pathVerdict(visa.rights.pathToCitizenship),
       long: true,
       prose: 'Possível pleitear cidadania após o período mínimo de residência, mediante prova de integração e idioma.',
     })

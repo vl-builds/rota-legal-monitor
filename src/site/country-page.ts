@@ -1,4 +1,4 @@
-import type { CountryData, VisaType } from '@/extractors/schema'
+import type { CountryData, PathInfo, VisaType } from '@/extractors/schema'
 import type { VerificationUrl } from '@/types'
 
 export interface CountryPageConfig {
@@ -26,8 +26,15 @@ function monthLabel(iso: string): string {
 function fmtMoney(amount: number, currency: string, period?: string | null): string {
   const formatted = `${currency} ${amount.toLocaleString('pt-BR')}`
   if (!period) return formatted
-  const periods: Record<string, string> = { monthly: '/mês', yearly: '/ano', 'one-time': '' }
+  const periods: Record<string, string> = { monthly: '/mês', yearly: '/ano', 'one-time': '', total: ' no total' }
   return formatted + (periods[period] ?? '')
+}
+
+// Prefere a prosa rica (summary); cai para "após N anos" quando ha prazo; senao "disponível".
+function pathLabel(path: PathInfo): string {
+  if (path.summary) return path.summary
+  if (path.yearsRequired != null) return `após ${path.yearsRequired} anos`
+  return 'disponível'
 }
 
 function severityLabel(sev: string): string {
@@ -270,10 +277,10 @@ function renderVisaDetail(visa: VisaType, config: CountryPageConfig): string {
     { ok: visa.rights.canBringFamily, label: 'Trazer família' },
     { ok: visa.rights.canChangeEmployer, label: 'Mudar de empregador' },
     visa.rights.pathToResidency
-      ? { ok: true, label: `Residência permanente após ${visa.rights.pathToResidency.yearsRequired} anos` }
+      ? { ok: true, label: `Residência permanente: ${pathLabel(visa.rights.pathToResidency)}` }
       : null,
     visa.rights.pathToCitizenship
-      ? { ok: true, label: `Cidadania após ${visa.rights.pathToCitizenship.yearsRequired} anos` }
+      ? { ok: true, label: `Cidadania: ${pathLabel(visa.rights.pathToCitizenship)}` }
       : null,
   ].filter(Boolean) as { ok: boolean; label: string }[]
 

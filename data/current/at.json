@@ -206,8 +206,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal e alemão B1 — Daueraufenthalt EU"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal e alemão B1, Daueraufenthalt EU"
+        }
       }
     },
     {
@@ -338,8 +346,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal e alemão B1"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal e alemão B1"
+        }
       }
     },
     {
@@ -477,8 +493,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -738,8 +762,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal e alemão B1"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal e alemão B1"
+        }
       }
     },
     {
@@ -848,8 +880,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal e alemão B1 — Daueraufenthalt EU"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal e alemão B1, Daueraufenthalt EU"
+        }
       }
     },
     {
@@ -972,8 +1012,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal e alemão B1"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal e alemão B1"
+        }
       }
     },
     {
@@ -1101,8 +1149,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 10 anos de residência legal",
-        "pathToResidency": "Após 5 anos de residência legal e alemão B1"
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal e alemão B1"
+        }
       }
     }
   ]

@@ -189,8 +189,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 2 anos de residência legal para cidadãos ibero-americanos (incluindo brasileiros)",
-        "pathToResidency": "Após 5 anos de residência legal — Residência de Longa Duração (Diretiva 2003/109/CE)"
+        "pathToCitizenship": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos (incluindo brasileiros)"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Residência de Longa Duração (Diretiva 2003/109/CE)"
+        }
       }
     },
     {
@@ -299,8 +307,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 2 anos de residência legal para cidadãos ibero-americanos",
-        "pathToResidency": "Após 5 anos de residência legal total"
+        "pathToCitizenship": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal total"
+        }
       }
     },
     {
@@ -424,8 +440,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Após 2 anos de residência legal para cidadãos ibero-americanos (incluindo brasileiros)",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos (incluindo brasileiros)"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -536,7 +560,7 @@
         "incomeRequirement": {
           "amount": 40077,
           "currency": "EUR",
-          "period": "annual",
+          "period": "yearly",
           "notes": "1,5× o salário médio anual espanhol — equivale a aprox. €3.340/mês bruto (valor de 2024)"
         },
         "languageRequired": null,
@@ -550,8 +574,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 2 anos de residência legal para brasileiros",
-        "pathToResidency": "Após 5 anos de residência legal"
+        "pathToCitizenship": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para brasileiros"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
@@ -670,8 +702,16 @@
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": "Após 2 anos de residência legal para cidadãos ibero-americanos",
-        "pathToResidency": "Após 5 anos de residência legal total"
+        "pathToCitizenship": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal total"
+        }
       }
     }
   ]

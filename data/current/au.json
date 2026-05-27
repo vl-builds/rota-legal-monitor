@@ -207,7 +207,7 @@
       "nameOriginal": "Skilled Independent visa 189",
       "notes": "O visto 189 é o único caminho para residência permanente independente na Austrália sem patrocinador. A EOI não tem custo; a taxa só é paga após receber o convite. Pontuar 65 é o mínimo legal, mas os convites nas rodadas mensais têm sido emitidos para candidatos com 80-90+ pontos dependendo da ocupação.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "12-24 meses",
         "fees": [
           {
@@ -331,8 +331,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)",
-        "pathToResidency": "Visto já concede residência permanente"
+        "pathToCitizenship": {
+          "yearsRequired": 4,
+          "conditions": [],
+          "summary": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)"
+        },
+        "pathToResidency": {
+          "yearsRequired": null,
+          "conditions": [],
+          "summary": "Visto já concede residência permanente"
+        }
       }
     },
     {
@@ -347,7 +355,7 @@
       "nameOriginal": "Temporary Skill Shortage visa 482",
       "notes": "O antigo TSS 482 foi substituído pelo Skills in Demand (SID) 482 em 7 de dezembro de 2024. Três streams: Specialist Skills (AUD 141.210+, sem lista de ocupações, processamento em 7 dias), Core Skills (AUD 76.515-141.209, CSOL) e Labour Agreement. É ilegal que o trabalhador pague o SAF Levy — o empregador arca com SBS, nomination e SAF Levy.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "1-3 meses",
         "fees": [
           {
@@ -457,7 +465,7 @@
         "incomeRequirement": {
           "amount": 76515,
           "currency": "AUD",
-          "period": "annual",
+          "period": "yearly",
           "notes": "TSMIT vigente até 30 jun 2026; Specialist Skills stream exige AUD 141.210+. É ilegal que o trabalhador pague o SAF Levy."
         },
         "languageRequired": {
@@ -474,8 +482,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Elegível após obter PR e cumprir 4 anos de residência permanente",
-        "pathToResidency": "Core Skills: via ENS subclasse 186 após 2 anos com mesmo empregador patrocinador; Specialist Skills: via visto permanente de habilidades especializadas"
+        "pathToCitizenship": {
+          "yearsRequired": 4,
+          "conditions": [],
+          "summary": "Elegível após obter PR e cumprir 4 anos de residência permanente"
+        },
+        "pathToResidency": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Core Skills: via ENS subclasse 186 após 2 anos com mesmo empregador patrocinador; Specialist Skills: via visto permanente de habilidades especializadas"
+        }
       }
     },
     {
@@ -617,7 +633,7 @@
       "nameOriginal": "Graduate Temporary visa 485",
       "notes": "Duração do visto 485: bachelor/master = 2-3 anos; PhD = 4 anos. Visto só pode ser solicitado estando na Austrália. A taxa sofreu forte aumento em março de 2026 (de AUD 1.945 para AUD 4.600). Existe o Second Post-Higher Education Work stream para quem estudou em região designada.",
       "process": {
-        "applicationLocation": "australia",
+        "applicationLocation": "destino",
         "estimatedDuration": "3-6 meses",
         "fees": [
           {
@@ -725,7 +741,11 @@
         "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": null,
-        "pathToResidency": "Não confere PR diretamente — permite tempo para pontuar e solicitar vistos de habilidades (189, 190, 491) ou obter patrocinador (482)"
+        "pathToResidency": {
+          "yearsRequired": null,
+          "conditions": [],
+          "summary": "Não confere PR diretamente, permite tempo para pontuar e solicitar vistos de habilidades (189, 190, 491) ou obter patrocinador (482)"
+        }
       }
     },
     {
@@ -740,7 +760,7 @@
       "nameOriginal": "Skilled Nominated visa 190",
       "notes": "Confere residência permanente imediata como o 189, mas exige nomeação estadual. A nomeação adiciona 5 pontos ao score, tornando o 190 mais acessível para candidatos com 65-80 pontos. O candidato se compromete a viver no estado nomeador por 2 anos — sem sanção legal se mudar, mas por convenção é esperado. Cada estado abre e fecha vagas de forma independente.",
       "process": {
-        "applicationLocation": "qualquer",
+        "applicationLocation": "ambos",
         "estimatedDuration": "12-18 meses",
         "fees": [
           {
@@ -870,8 +890,16 @@
         "canBringFamily": true,
         "canChangeEmployer": true,
         "canWork": true,
-        "pathToCitizenship": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)",
-        "pathToResidency": "Visto já concede residência permanente — candidato se compromete a residir no estado nomeador por 2 anos"
+        "pathToCitizenship": {
+          "yearsRequired": 4,
+          "conditions": [],
+          "summary": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)"
+        },
+        "pathToResidency": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Visto já concede residência permanente, candidato se compromete a residir no estado nomeador por 2 anos"
+        }
       }
     }
   ]

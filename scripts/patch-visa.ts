@@ -16,15 +16,39 @@ if (!cc || !patchFile) {
   process.exit(1)
 }
 
-function mergeSteps(steps: Array<{ order: number; description: string }>): Array<{
-  order: number; description: string; estimatedDays: null; name: string | null
+function mergeSteps(steps: Array<{ order: number; description: string; name?: string | null; estimatedDays?: number | null }>): Array<{
+  order: number; description: string; estimatedDays: number | null; name: string | null
 }> {
   return steps.map(s => ({
     order: s.order,
     description: s.description,
-    estimatedDays: null,
-    name: null,
+    estimatedDays: s.estimatedDays ?? null,
+    name: s.name ?? null,
   }))
+}
+
+// Normaliza sinonimos para os enums do schema.
+function normLocation(loc: string): string {
+  if (loc === 'qualquer') return 'ambos'
+  // Nomes de pais usados por engano no lugar do enum significam "no destino".
+  if (/^(australia|austria|alemanha|portugal|espanha|holanda|paises baixos|belgica|franca|italia|irlanda)$/i.test(loc)) return 'destino'
+  return loc
+}
+
+function normMoney(m: unknown): unknown {
+  if (!m || typeof m !== 'object') return m
+  const money = m as Record<string, unknown>
+  if (money.period === 'annual') money.period = 'yearly'
+  return money
+}
+
+// Converte pathInfo em string descritiva para o objeto PathInfo conforme schema.
+// Mantem objetos/null inalterados. Espelha scripts/migrate-pathinfo.ts.
+function normalizePathInfo(value: unknown): unknown {
+  if (typeof value !== 'string') return value
+  const summary = value.replace(/\s*[—–]\s*/g, ', ').replace(/\s{2,}/g, ' ').trim()
+  const match = summary.match(/(\d+)\s*anos?/i)
+  return { yearsRequired: match ? Number.parseInt(match[1]!, 10) : null, conditions: [], summary }
 }
 
 async function main() {
@@ -42,13 +66,13 @@ async function main() {
 
     if (patch.process) {
       if (patch.process.estimatedDuration) visa.process.estimatedDuration = patch.process.estimatedDuration
-      if (patch.process.applicationLocation) visa.process.applicationLocation = patch.process.applicationLocation
+      if (patch.process.applicationLocation) visa.process.applicationLocation = normLocation(patch.process.applicationLocation)
       if (patch.process.fees?.length) visa.process.fees = patch.process.fees
       if (patch.process.steps?.length) visa.process.steps = mergeSteps(patch.process.steps)
     }
     if (patch.requirements) {
       if (patch.requirements.documents?.length) visa.requirements.documents = patch.requirements.documents
-      if (patch.requirements.incomeRequirement !== undefined) visa.requirements.incomeRequirement = patch.requirements.incomeRequirement
+      if (patch.requirements.incomeRequirement !== undefined) visa.requirements.incomeRequirement = normMoney(patch.requirements.incomeRequirement)
       if (patch.requirements.languageRequired !== undefined) visa.requirements.languageRequired = patch.requirements.languageRequired
       if (patch.requirements.qualificationsRequired?.length) visa.requirements.qualificationsRequired = patch.requirements.qualificationsRequired
     }
@@ -56,8 +80,8 @@ async function main() {
       visa.rights.canWork = patch.rights.canWork ?? visa.rights.canWork
       visa.rights.canBringFamily = patch.rights.canBringFamily ?? visa.rights.canBringFamily
       visa.rights.canChangeEmployer = patch.rights.canChangeEmployer ?? visa.rights.canChangeEmployer
-      if (patch.rights.pathToResidency !== undefined) visa.rights.pathToResidency = patch.rights.pathToResidency
-      if (patch.rights.pathToCitizenship !== undefined) visa.rights.pathToCitizenship = patch.rights.pathToCitizenship
+      if (patch.rights.pathToResidency !== undefined) visa.rights.pathToResidency = normalizePathInfo(patch.rights.pathToResidency)
+      if (patch.rights.pathToCitizenship !== undefined) visa.rights.pathToCitizenship = normalizePathInfo(patch.rights.pathToCitizenship)
     }
     if (patch.notes !== undefined) visa.notes = patch.notes
 

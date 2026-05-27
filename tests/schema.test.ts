@@ -39,17 +39,30 @@ describe("CountryDataSchema", () => {
     }
   });
 
-  it("rejeita MoneyAmount com amount negativo ou zero", () => {
-    const json = loadExample() as Record<string, unknown>;
-    const visaTypes = json["visaTypes"] as Array<Record<string, unknown>>;
-    const first = visaTypes[0];
-    if (first !== undefined) {
-      const req = first["requirements"] as Record<string, unknown>;
-      const income = req["incomeRequirement"] as Record<string, unknown>;
-      income["amount"] = 0;
+  it("rejeita MoneyAmount com amount negativo, mas aceita zero (gratuito)", () => {
+    const base = loadExample() as Record<string, unknown>;
+    const visaTypes = base["visaTypes"] as Array<Record<string, unknown>>;
+    const setAmount = (json: Record<string, unknown>, value: number) => {
+      const vts = json["visaTypes"] as Array<Record<string, unknown>>;
+      const first = vts[0];
+      if (first !== undefined) {
+        const req = first["requirements"] as Record<string, unknown>;
+        const income = req["incomeRequirement"] as Record<string, unknown>;
+        income["amount"] = value;
+      }
+    };
+
+    // negativo: rejeitado
+    const negative = structuredClone(base);
+    setAmount(negative, -1);
+    expect(CountryDataSchema.safeParse(negative).success).toBe(false);
+
+    // zero: valido (ex: taxa gratuita), desde que visaTypes[0] exista com incomeRequirement
+    if (visaTypes[0] !== undefined) {
+      const zero = structuredClone(base);
+      setAmount(zero, 0);
+      expect(CountryDataSchema.safeParse(zero).success).toBe(true);
     }
-    const result = CountryDataSchema.safeParse(json);
-    expect(result.success).toBe(false);
   });
 
   it("rejeita recentChanges em ordem ascendente", () => {
