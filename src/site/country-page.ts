@@ -1908,6 +1908,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
       <a class="nav-link" href="calculadora.html">Calculadora</a>
       <a class="nav-link" href="historico.html">Histórico</a>
       <a class="nav-link" href="sobre.html">Sobre</a>
+      <a class="nav-link" href="area-aluno/login.html">Área do Aluno</a>
     </div>
     <div class="nav-right">
       <a class="btn btn-secondary" href="paises.html">← Todos os países</a>
@@ -1936,6 +1937,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
       <a href="calculadora.html">Calculadora</a>
       <a href="historico.html">Histórico</a>
       <a href="sobre.html">Sobre</a>
+      <a href="area-aluno/login.html">Área do Aluno</a>
     </nav>
     <div class="mobile-drawer-cta">
       <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
