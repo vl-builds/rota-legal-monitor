@@ -56,6 +56,18 @@ jobs:
             bun run extract
           fi
 
+      - name: Reapply research patches
+        # A extracao sobrescreve data/current/ e perde os enriquecimentos
+        # manuais (ex: visto D7 portugues). Reaplicamos os patches aqui.
+        env:
+          COUNTRY_INPUT: ${{ inputs.country }}
+        run: |
+          if [ -n "$COUNTRY_INPUT" ]; then
+            bun run patch:all "--country=$COUNTRY_INPUT"
+          else
+            bun run patch:all
+          fi
+
       - name: Validate extracted data
         run: bun run validate
 

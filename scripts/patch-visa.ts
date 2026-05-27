@@ -15,12 +15,6 @@ import { join } from 'node:path'
 const ROOT = join(import.meta.dir, '..')
 const DATA_DIR = join(ROOT, 'data', 'current')
 
-const [, , cc, patchFile] = process.argv
-if (!cc || !patchFile) {
-  console.error('Uso: bun run scripts/patch-visa.ts <cc> <patches.json>')
-  process.exit(1)
-}
-
 function mergeSteps(steps: Array<{ order: number; description: string; name?: string | null; estimatedDays?: number | null }>): Array<{
   order: number; description: string; estimatedDays: number | null; name: string | null
 }> {
@@ -93,7 +87,10 @@ function buildVisaFromPatch(id: string, patch: any) {
   }
 }
 
-async function main() {
+// Aplica um arquivo de patch ao data/current/{cc}.json. Retorna contagem de
+// vistos atualizados e criados. Reutilizado por scripts/patch-all.ts para
+// reaplicar todos os enriquecimentos apos a extracao mensal.
+export async function applyPatch(cc: string, patchFile: string): Promise<{ patched: number; created: number }> {
   const dataPath = join(DATA_DIR, `${cc}.json`)
   const raw = await readFile(dataPath, 'utf-8')
   const data = JSON.parse(raw)
@@ -148,6 +145,15 @@ async function main() {
 
   await writeFile(dataPath, JSON.stringify(data, null, 2) + '\n', 'utf-8')
   console.log(`\n${patched} vistos atualizados, ${created} criados em ${cc}.json`)
+  return { patched, created }
 }
 
-main().catch(err => { console.error(err); process.exit(1) })
+// Entrypoint CLI: bun run scripts/patch-visa.ts <cc> <patches.json>
+if (import.meta.main) {
+  const [, , cc, patchFile] = process.argv
+  if (!cc || !patchFile) {
+    console.error('Uso: bun run scripts/patch-visa.ts <cc> <patches.json>')
+    process.exit(1)
+  }
+  applyPatch(cc, patchFile).catch(err => { console.error(err); process.exit(1) })
+}
