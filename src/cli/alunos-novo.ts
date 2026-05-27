@@ -69,7 +69,11 @@ async function saveCreds(file: CredentialsFile): Promise<void> {
   await writeFile(CRED_PATH, JSON.stringify(file, null, 2) + "\n", "utf8");
 }
 
+const DEPRECADO =
+  "[DEPRECADO] As credenciais agora vivem no D1 (Cloudflare), geridas pelo painel admin em /area-admin/. Este CLI escreve em credentials.json, que NAO e mais lido pelo login.";
+
 async function main(): Promise<void> {
+  console.warn(DEPRECADO);
   const { nome, email } = parseArgs(process.argv);
   const creds = await loadCreds();
 

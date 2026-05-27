@@ -28,7 +28,11 @@ function parseArgs(argv: string[]): { email: string } {
   return { email: args[emailIdx + 1]!.trim().toLowerCase() };
 }
 
+const DEPRECADO =
+  "[DEPRECADO] As credenciais agora vivem no D1 (Cloudflare), geridas pelo painel admin em /area-admin/. Este CLI escreve em credentials.json, que NAO e mais lido pelo login.";
+
 async function main(): Promise<void> {
+  console.warn(DEPRECADO);
   const { email } = parseArgs(process.argv);
   const raw = await readFile(CRED_PATH, "utf8");
   const file = JSON.parse(raw) as CredentialsFile;

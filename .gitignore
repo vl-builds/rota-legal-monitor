@@ -7,6 +7,10 @@
 # Cloudflare Wrangler (estado local do D1, build, etc.)
 .wrangler/
 
+# Credenciais da Area do Aluno: agora vivem no D1 (Cloudflare), nunca no Git.
+# O login.html antigo lia este arquivo; foi substituido por auth server-side.
+previews/area-aluno/credentials.json
+
 # Dependencias
 node_modules/
 
