@@ -78,32 +78,18 @@
 <script>
 (async function () {
   'use strict';
-  const SESSION_KEY = 'rota-legal:aluno-session';
-  const CREDS_URL = './credentials.json';
-
   const form = document.getElementById('login-form');
   const erro = document.getElementById('erro');
   const submitBtn = document.getElementById('submit-btn');
 
-  // Ja logado? Redireciona pro hub.
+  // Ja logado? Confirma a sessao no servidor e vai pro hub.
   try {
-    const raw = localStorage.getItem(SESSION_KEY);
-    if (raw) {
-      const sess = JSON.parse(raw);
-      if (sess && sess.email) {
-        window.location.replace('index.html');
-        return;
-      }
+    const r = await fetch('/api/aluno/session', { credentials: 'include' });
+    if (r.ok) {
+      window.location.replace('index.html');
+      return;
     }
-  } catch (_) { /* ignora */ }
-
-  async function sha256Hex(text) {
-    const bytes = new TextEncoder().encode(text);
-    const hashBuf = await crypto.subtle.digest('SHA-256', bytes);
-    return Array.from(new Uint8Array(hashBuf))
-      .map((b) => b.toString(16).padStart(2, '0'))
-      .join('');
-  }
+  } catch (_) { /* sem servidor: mostra o form */ }
 
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
@@ -115,33 +101,19 @@
     const senha = document.getElementById('senha').value;
 
     try {
-      const res = await fetch(CREDS_URL, { cache: 'no-store' });
-      if (!res.ok) throw new Error('credenciais-indisponiveis');
-      const file = await res.json();
-
-      const cred = (file.credentials || []).find(
-        (c) => c.email === email && !c.revokedAt,
-      );
-      if (!cred) {
-        erro.textContent = 'Email ou senha invalidos.';
+      const res = await fetch('/api/aluno/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, senha }),
+      });
+      if (res.ok) {
+        window.location.replace('index.html');
         return;
       }
-
-      const candidate = await sha256Hex(cred.salt + senha);
-      if (candidate !== cred.hash) {
-        erro.textContent = 'Email ou senha invalidos.';
-        return;
-      }
-
-      localStorage.setItem(
-        SESSION_KEY,
-        JSON.stringify({
-          email: cred.email,
-          nome: cred.nome || cred.email.split('@')[0],
-          loggedAt: Date.now(),
-        }),
-      );
-      window.location.replace('index.html');
+      erro.textContent = res.status === 429
+        ? 'Muitas tentativas. Aguarde alguns minutos.'
+        : 'Email ou senha invalidos.';
     } catch (err) {
       erro.textContent = 'Erro ao verificar credenciais. Tente novamente.';
       console.error(err);

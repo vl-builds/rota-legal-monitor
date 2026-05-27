@@ -138,8 +138,8 @@
 </footer>
 
 <script>
-(function () {
-  const sess = window.alunoSession;
+(async function () {
+  const sess = await window.alunoReady;
   if (!sess) return;
   const nome = sess.nome || (sess.email ? sess.email.split('@')[0] : 'Aluno');
   const primeiro = nome.split(' ')[0];
