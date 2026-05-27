@@ -141,8 +141,9 @@
 (function () {
   const sess = window.alunoSession;
   if (!sess) return;
-  const primeiro = sess.nome.split(' ')[0];
-  document.getElementById('aluno-nome').textContent = sess.nome;
+  const nome = sess.nome || (sess.email ? sess.email.split('@')[0] : 'Aluno');
+  const primeiro = nome.split(' ')[0];
+  document.getElementById('aluno-nome').textContent = nome;
   document.getElementById('aluno-nome-grande').textContent = primeiro;
 })();
 </script>

@@ -137,7 +137,7 @@
         SESSION_KEY,
         JSON.stringify({
           email: cred.email,
-          nome: cred.nome,
+          nome: cred.nome || cred.email.split('@')[0],
           loggedAt: Date.now(),
         }),
       );

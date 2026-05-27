@@ -17,8 +17,11 @@
     const raw = localStorage.getItem(SESSION_KEY);
     if (!raw) throw new Error('no-session');
     const sess = JSON.parse(raw);
-    if (!sess || !sess.email || !sess.nome || !sess.loggedAt) throw new Error('invalid');
+    // nome e opcional: credenciais criadas via add-aluno.ts nao tem nome.
+    // Sem fallback aqui o guard rejeitava a sessao e criava loop com o login.
+    if (!sess || !sess.email || !sess.loggedAt) throw new Error('invalid');
     if (Date.now() - sess.loggedAt > SESSION_TTL_MS) throw new Error('expired');
+    if (!sess.nome) sess.nome = sess.email.split('@')[0];
     // Sessao valida, expoe no window pra uso das paginas.
     window.alunoSession = sess;
   } catch (_err) {
