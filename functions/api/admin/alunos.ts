@@ -39,7 +39,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   if (senhaInput && senhaInput.length < 8) return error(400, 'Senha deve ter no minimo 8 caracteres')
 
   if (await getAlunoByEmail(ctx.env.DB, email)) {
-    return error(409, 'Email ja cadastrado. Use as acoes do aluno para reativar ou redefinir a senha.')
+    return error(409, 'Email já cadastrado. Use as ações do aluno para reativar ou redefinir a senha.')
   }
 
   const senha = senhaInput || randomPassword(16)
