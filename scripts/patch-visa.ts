@@ -3,6 +3,11 @@
  * Aplica patches de pesquisa nos arquivos data/current/{cc}.json
  * Uso: bun run scripts/patch-visa.ts <cc> <patches-file.json>
  * O patches-file.json é um objeto { "visa-id": { process, requirements, rights, notes } }
+ *
+ * Se o "visa-id" do patch nao existir em visaTypes e a entrada trouxer os campos
+ * de um visto completo (sinalizado por `name`), o visto e CRIADO. Isso permite
+ * manter vistos que nao saem da extracao mensal (ex: D7 portugues) no patch, que
+ * e reaplicado apos cada extracao para nao se perder.
  */
 import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
@@ -51,6 +56,43 @@ function normalizePathInfo(value: unknown): unknown {
   return { yearsRequired: match ? Number.parseInt(match[1]!, 10) : null, conditions: [], summary }
 }
 
+// Constroi um visto completo a partir de uma entrada de patch (caminho de criacao).
+// Preenche defaults conservadores para campos opcionais ausentes; os criticos
+// (name, etc) sao validados pelo schema no proximo `bun run validate`.
+function buildVisaFromPatch(id: string, patch: any) {
+  const req = patch.requirements ?? {}
+  const proc = patch.process ?? {}
+  const rights = patch.rights ?? {}
+  return {
+    id,
+    name: patch.name,
+    nameOriginal: patch.nameOriginal ?? patch.name,
+    description: patch.description ?? '',
+    eligibility: patch.eligibility ?? [],
+    requirements: {
+      documents: req.documents ?? [],
+      incomeRequirement: req.incomeRequirement !== undefined ? normMoney(req.incomeRequirement) : null,
+      qualificationsRequired: req.qualificationsRequired ?? [],
+      languageRequired: req.languageRequired ?? null,
+    },
+    process: {
+      steps: proc.steps?.length ? mergeSteps(proc.steps) : [],
+      estimatedDuration: proc.estimatedDuration ?? 'A determinar',
+      fees: proc.fees ?? [],
+      applicationLocation: proc.applicationLocation ? normLocation(proc.applicationLocation) : 'origem',
+    },
+    rights: {
+      canWork: rights.canWork ?? false,
+      canBringFamily: rights.canBringFamily ?? false,
+      canChangeEmployer: rights.canChangeEmployer ?? false,
+      pathToResidency: rights.pathToResidency !== undefined ? normalizePathInfo(rights.pathToResidency) : null,
+      pathToCitizenship: rights.pathToCitizenship !== undefined ? normalizePathInfo(rights.pathToCitizenship) : null,
+    },
+    relevanceForDelivery: patch.relevanceForDelivery ?? 'indirect',
+    notes: patch.notes ?? null,
+  }
+}
+
 async function main() {
   const dataPath = join(DATA_DIR, `${cc}.json`)
   const raw = await readFile(dataPath, 'utf-8')
@@ -58,6 +100,8 @@ async function main() {
 
   const patchRaw = await readFile(patchFile, 'utf-8')
   const patches = JSON.parse(patchRaw)
+
+  const existingIds = new Set<string>(data.visaTypes.map((v: { id: string }) => v.id))
 
   let patched = 0
   for (const visa of data.visaTypes) {
@@ -89,8 +133,21 @@ async function main() {
     console.log(`[ok] ${visa.id}`)
   }
 
-  await writeFile(dataPath, JSON.stringify(data, null, 2), 'utf-8')
-  console.log(`\n${patched} vistos atualizados em ${cc}.json`)
+  // Caminho de criacao: entradas do patch sem visaType correspondente.
+  let created = 0
+  for (const [id, patch] of Object.entries(patches as Record<string, any>)) {
+    if (existingIds.has(id)) continue
+    if (!patch.name) {
+      console.warn(`[skip] "${id}" nao existe e o patch nao traz visto completo (sem name)`)
+      continue
+    }
+    data.visaTypes.push(buildVisaFromPatch(id, patch))
+    created++
+    console.log(`[novo] ${id}`)
+  }
+
+  await writeFile(dataPath, JSON.stringify(data, null, 2) + '\n', 'utf-8')
+  console.log(`\n${patched} vistos atualizados, ${created} criados em ${cc}.json`)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })
