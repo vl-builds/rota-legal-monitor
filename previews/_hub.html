@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>rota-legal-monitor: hub de previews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/design-system.css" />
+<style>
+  /* Adições locais apenas para o hub. Componentes reutilizáveis ficam no design-system.css. */
+  .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-lg);
+  }
+  @media (max-width: 1024px) { .hub-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .hub-grid { grid-template-columns: 1fr; } }
+
+  .hub-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-sm);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 120ms ease, transform 120ms ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .hub-card:hover {
+    border-color: var(--hairline-strong);
+    transform: translateY(-2px);
+  }
+  .hub-card .hub-num {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: var(--s-md);
+  }
+  .hub-card .hub-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    color: var(--on-dark);
+  }
+  .hub-card .hub-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--body);
+    margin: var(--s-xs) 0 var(--s-md);
+  }
+  .hub-card .hub-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: var(--s-md);
+    border-top: 1px solid var(--hairline);
+  }
+  .hub-card .hub-path {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .hub-card .hub-arrow {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .hub-card.placeholder {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .hub-card.placeholder:hover {
+    border-color: var(--hairline);
+    transform: none;
+  }
+  .hub-card.placeholder .hub-arrow { color: var(--muted); }
+
+  .hub-card.featured {
+    background: var(--primary);
+    color: var(--on-primary);
+    border-color: var(--primary);
+  }
+  .hub-card.featured .hub-num,
+  .hub-card.featured .hub-title,
+  .hub-card.featured .hub-desc,
+  .hub-card.featured .hub-path,
+  .hub-card.featured .hub-arrow { color: var(--on-primary); }
+  .hub-card.featured .hub-meta { border-top-color: rgba(0,0,0,0.15); }
+  .hub-card.featured .hub-desc { opacity: 0.85; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-md);
+    margin-top: var(--s-lg);
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-xs);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .legend-dot.live { background: var(--accent-emerald); }
+  .legend-dot.todo { background: var(--muted-soft); }
+  .legend-dot.featured-d { background: var(--primary); }
+</style>
+</head>
+<body>
+<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
+
+<!-- ============== TOP NAV ============== -->
+<nav class="top-nav">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+      <span>rota-legal-monitor</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Hub</a>
+      <a class="nav-link" href="clickhouse-style.html">Showcase</a>
+      <a class="nav-link" href="template.html">Template</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-primary" href="clickhouse-style.html">Ver showcase</a>
+    </div>
+      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span><span></span><span></span>
+      </button>
+  </div>
+</nav>
+<!-- ============== MOBILE DRAWER ============== -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="Menu de navegação">
+  <div class="mobile-drawer-backdrop" data-close></div>
+  <aside class="mobile-drawer-panel">
+    <div class="mobile-drawer-header">
+      <span class="caption-up">Menu</span>
+      <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html">Início</a>
+      <a href="paises.html">Países</a>
+      <a href="comparar.html">Comparar</a>
+      <a href="qual-pais.html">Qual país é meu?</a>
+      <a href="guia-pratico.html">Guia Prático</a>
+      <a href="calculadora.html">Calculadora</a>
+      <a href="historico.html">Histórico</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="area-aluno/login.html">Área do Aluno</a>
+    </nav>
+    <div class="mobile-drawer-cta">
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
+      <a class="btn btn-secondary" href="comparar.html">Comparar países</a>
+    </div>
+  </aside>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span class="dot"></span>Hub de previews · 5173</div>
+    <h1 class="display-lg">
+      Cada página do site,<br/>
+      <span style="color: var(--primary);">num só lugar.</span>
+    </h1>
+    <p class="lede">
+      Este é o ponto de entrada para todas as páginas do site. As que já existem abrem direto.
+      As marcadas como "em construção" são placeholders prontos a transformar em páginas reais
+      seguindo o passo a passo em previews/CLAUDE.md.
+    </p>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot live"></span>página viva</span>
+      <span class="legend-item"><span class="legend-dot featured-d"></span>showcase principal</span>
+      <span class="legend-item"><span class="legend-dot todo"></span>placeholder</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SISTEMA DE DESIGN ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="eyebrow">Sistema de design</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-lg);">Páginas vivas</h2>
+
+    <div class="hub-grid">
+
+      <a class="hub-card featured" href="clickhouse-style.html">
+        <div class="hub-num">01 · showcase</div>
+        <div class="hub-title">Showcase completo<br/>do design system</div>
+        <p class="hub-desc">
+          Hero, stats em amarelo, code window, tabela de países, features grid, CTA band e footer.
+          Referência viva de cada componente em uso.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">clickhouse-style.html</span>
+          <span class="hub-arrow">abrir →</span>
+        </div>
+      </a>
+
+      <a class="hub-card" href="template.html">
+        <div class="hub-num">02 · boilerplate</div>
+        <div class="hub-title">Template<br/>vazio</div>
+        <p class="hub-desc">
+          Página em branco com nav e footer prontos. Copia este ficheiro para criar
+          páginas novas sem repetir o cabeçalho HTML do zero.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">template.html</span>
+          <span class="hub-arrow">abrir →</span>
+        </div>
+      </a>
+
+      <a class="hub-card" href="assets/design-system.css">
+        <div class="hub-num">03 · tokens</div>
+        <div class="hub-title">Folha de estilo<br/>do sistema</div>
+        <p class="hub-desc">
+          Fonte única dos tokens (cores, tipografia, espaçamento) e de todos os componentes.
+          Toca aqui para alterar a marca em todo o site.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">assets/design-system.css</span>
+          <span class="hub-arrow">ver código →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== PÁGINAS DO SITE ============== -->
+<section class="section-tight">
+  <div class="container">
+    <div class="eyebrow">Site rota-legal-monitor</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-md);">Páginas do produto</h2>
+    <p class="body-md" style="max-width: 640px; margin-bottom: var(--s-xl);">
+      Estes são os ecrãs planeados para o site público. Cada placeholder tem uma receita
+      pronta em previews/CLAUDE.md, basta pedir ao Claude Code "cria a página X".
+    </p>
+
+    <div class="hub-grid">
+
+      <a class="hub-card" href="index.html">
+        <div class="hub-num">04 · live</div>
+        <div class="hub-title">Home<br/>do site público</div>
+        <p class="hub-desc">
+          Hero com JSON real, strip de confiança, três caminhos por perfil, países em foco,
+          como funciona com YAML real do workflow, alterações recentes e CTA.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">index.html</span>
+          <span class="hub-arrow">abrir →</span>
+        </div>
+      </a>
+
+      <a class="hub-card" href="paises.html">
+        <div class="hub-num">05 · live</div>
+        <div class="hub-title">Lista de países<br/>com filtros</div>
+        <p class="hub-desc">
+          Grid de 10 países com filtros funcionais (Schengen, Autônomo, Working Holiday).
+          Cards com bandeira, dados chave, confiança e link para detalhe.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">paises.html</span>
+          <span class="hub-arrow">abrir →</span>
+        </div>
+      </a>
+
+      <a class="hub-card" href="pais-nl.html">
+        <div class="hub-num">06 · live</div>
+        <div class="hub-title">Detalhe de país<br/>(Países Baixos)</div>
+        <p class="hub-desc">
+          Header sticky + resumo rápido + 5 abas: Vistos (accordion), Para Brasileiros,
+          Requisitos Gerais, Mudanças Recentes e Fontes. Template para todos os países.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">pais-nl.html</span>
+          <span class="hub-arrow">abrir →</span>
+        </div>
+      </a>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">05 · em construção</div>
+        <div class="hub-title">Portugal</div>
+        <p class="hub-desc">
+          Detalhe das regras portuguesas. Mesma estrutura da página NL, fonte
+          portaldasfinancas.gov.pt e snapshot atual.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">pais-pt.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">06 · em construção</div>
+        <div class="hub-title">Alemanha</div>
+        <p class="hub-desc">
+          Detalhe das regras alemãs. Foco no histórico de alterações da bmas.de
+          ao longo dos últimos seis meses.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">pais-de.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">07 · em construção</div>
+        <div class="hub-title">França</div>
+        <p class="hub-desc">
+          Detalhe das regras francesas. Service-public.fr como fonte principal,
+          delta semanal e fila de revisão.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">pais-fr.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">08 · em construção</div>
+        <div class="hub-title">Espanha</div>
+        <p class="hub-desc">
+          Detalhe das regras espanholas. Sede.agenciatributaria.gob.es com
+          snapshot atual e histórico.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">pais-es.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">09 · em construção</div>
+        <div class="hub-title">Diff entre snapshots</div>
+        <p class="hub-desc">
+          Selector de país e datas, comparação lado a lado em duas code windows.
+          Linhas adicionadas em verde, removidas em vermelho.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">diff.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">10 · em construção</div>
+        <div class="hub-title">Histórico semanal</div>
+        <p class="hub-desc">
+          Timeline vertical com todos os ciclos do cron, cada entrada com
+          país, data, número de alterações e link para o commit no GitHub.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">historico.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">11 · em construção</div>
+        <div class="hub-title">Sobre o projeto</div>
+        <p class="hub-desc">
+          Contexto, motivação, stack (Bun, Anthropic SDK, Zod), arquitetura
+          em alto nível e como contribuir.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">sobre.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+      <div class="hub-card placeholder">
+        <div class="hub-num">12 · em construção</div>
+        <div class="hub-title">API e schema</div>
+        <p class="hub-desc">
+          Documentação do schema Zod, formato dos JSON em data/current
+          e exemplos de fetch direto via raw.githubusercontent.com.
+        </p>
+        <div class="hub-meta">
+          <span class="hub-path">api.html</span>
+          <span class="hub-arrow">placeholder</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section>
+  <div class="container">
+    <div class="cta-band-yellow">
+      <div>
+        <h2>Cria a próxima página em uma sessão.</h2>
+        <p>
+          Abre VS Code, escolhe um placeholder acima e diz ao Claude Code
+          "cria a página de Países Baixos". A receita está em previews/CLAUDE.md.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-on-yellow" href="CLAUDE.md">previews/CLAUDE.md</a>
+        <a class="btn btn-on-yellow" href="template.html">Abrir template</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="index.html" style="margin-bottom: var(--s-md); display: inline-flex;">
+          <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
+          <span>rota-legal-monitor</span>
+        </a>
+        <p class="body-sm" style="max-width: 320px; color: var(--muted);">
+          Hub local de previews. Serve a pasta previews/ na porta 5173.
+          Servidor configurado em .claude/launch.json.
+        </p>
+      </div>
+      <div>
+        <h4>Sistema</h4>
+        <ul>
+          <li><a href="clickhouse-style.html">Showcase</a></li>
+          <li><a href="template.html">Template</a></li>
+          <li><a href="assets/design-system.css">design-system.css</a></li>
+          <li><a href="CLAUDE.md">CLAUDE.md</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Páginas</h4>
+        <ul>
+          <li><a href="#">Países Baixos</a></li>
+          <li><a href="#">Portugal</a></li>
+          <li><a href="#">Alemanha</a></li>
+          <li><a href="#">França</a></li>
+          <li><a href="#">Espanha</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Funcional</h4>
+        <ul>
+          <li><a href="#">Diff</a></li>
+          <li><a href="#">Histórico</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">API</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projeto</h4>
+        <ul>
+          <li><a href="../README.md">README</a></li>
+          <li><a href="../PLAN.md">PLAN.md</a></li>
+          <li><a href="../spec.md">spec.md</a></li>
+          <li><a href="../CLAUDE.md">CLAUDE.md raiz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 rota-legal-monitor · MIT</span>
+      <span class="caption-up">Hub local · 2026-04-28</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nav.js" defer></script>
+</body>
+</html>

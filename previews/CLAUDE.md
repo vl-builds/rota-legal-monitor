@@ -8,10 +8,15 @@ Instruções para o Claude Code trabalhando dentro da pasta `previews/`. Este fi
 previews/
 ├── assets/
 │   └── design-system.css     fonte única de tokens e componentes
-├── clickhouse-style.html     exemplo completo, referência viva de uso
-├── template.html             boilerplate para páginas novas
+├── index.html                Home pública do site (servida na raiz /)
+├── _hub.html                 hub de dev (índice de todas as páginas), bloqueado no público
+├── clickhouse-style.html     exemplo completo, referência viva de uso (bloqueado no público)
+├── template.html             boilerplate para páginas novas (bloqueado no público)
+├── _redirects                bloqueia páginas internas no Cloudflare Pages
 └── CLAUDE.md                 este ficheiro
 ```
+
+`index.html` é a Home pública: **nunca a sobrescrevas** ao criar uma página nova (usa `template.html` como base). O hub de desenvolvimento ficou em `_hub.html`. As páginas internas (`_hub.html`, `clickhouse-style.html`, `template.html`, `app.html`) continuam no repo para uso local, mas o `_redirects` bloqueia o acesso público (regras do `_redirects` têm precedência sobre o arquivo estático no Cloudflare Pages). Para abrir uma dessas no dev local, acede ao ficheiro diretamente pelo servidor estático, que não aplica o `_redirects`.
 
 A estética é baseada no sistema visual da ClickHouse: canvas preto, accent âmbar dourado, tipografia Inter weight 700 com letter-spacing negativo, código em JetBrains Mono. Todos os tokens estão em `assets/design-system.css`.
 

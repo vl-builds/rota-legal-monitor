@@ -175,7 +175,7 @@ async function patchPaises(
 async function patchHome(
   allData: Array<{ code: string; data: CountryData }>,
 ): Promise<void> {
-  const path = join(PREVIEWS_DIR, 'home.html')
+  const path = join(PREVIEWS_DIR, 'index.html')
   let html = await readFile(path, 'utf-8')
 
   // Collect and sort all recentChanges across countries
@@ -231,7 +231,7 @@ async function patchHome(
 async function patchFooters(latestIso: string): Promise<void> {
   const label = monthLabel(latestIso)
   const files = [
-    'home.html',
+    'index.html',
     'paises.html',
     'comparar.html',
     'qual-pais.html',
@@ -295,7 +295,7 @@ async function main(): Promise<void> {
   console.log('[ok] paises.html atualizado')
 
   await patchHome(allData)
-  console.log('[ok] home.html atualizado')
+  console.log('[ok] index.html atualizado')
 
   const latestIso = allData.reduce(
     (best, { data }) => (data.meta.lastUpdated > best ? data.meta.lastUpdated : best),

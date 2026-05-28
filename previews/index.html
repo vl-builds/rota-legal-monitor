@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>rota-legal-monitor: hub de previews</title>
+<title>Rota Legal — Trabalhar no exterior com dados de verdade</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -12,16 +12,50 @@
 />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
-  /* Adições locais apenas para o hub. Componentes reutilizáveis ficam no design-system.css. */
-  .hub-grid {
+  /* ---- trust strip ---- */
+  .trust-strip {
+    background: var(--surface-soft);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: var(--s-xl) 0;
+  }
+  .trust-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .trust-item {
+    padding: 0 var(--s-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-xxs);
+  }
+  .trust-item + .trust-item { border-left: 1px solid var(--hairline); }
+  .trust-num {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    color: var(--on-dark);
+    font-variant-numeric: tabular-nums;
+  }
+  .trust-num .hi { color: var(--primary); }
+  .trust-num-text {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    color: var(--body-strong);
+    font-variant-numeric: tabular-nums;
+  }
+  .trust-label { font-size: 13px; color: var(--muted); font-weight: 500; line-height: 1.4; margin-top: var(--s-xxs); }
+
+  /* ---- path cards ---- */
+  .path-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--s-lg);
   }
-  @media (max-width: 1024px) { .hub-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px)  { .hub-grid { grid-template-columns: 1fr; } }
-
-  .hub-card {
+  .path-card {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -30,120 +64,210 @@
     padding: var(--s-xl);
     display: flex;
     flex-direction: column;
-    gap: var(--s-sm);
-    color: inherit;
+    gap: var(--s-md);
+    min-height: 300px;
     text-decoration: none;
-    transition: border-color 120ms ease, transform 120ms ease;
-    position: relative;
-    overflow: hidden;
+    color: inherit;
+    transition: border-color 150ms ease;
   }
-  .hub-card:hover {
-    border-color: var(--hairline-strong);
-    transform: translateY(-2px);
-  }
-  .hub-card .hub-num {
+  .path-card:hover { border-color: var(--hairline-strong); }
+  .path-num {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--muted);
     letter-spacing: 1px;
-    margin-bottom: var(--s-md);
   }
-  .hub-card .hub-title {
-    font-size: 22px;
+  .path-title {
+    font-size: 21px;
     font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.5px;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
     color: var(--on-dark);
+    margin: 0;
   }
-  .hub-card .hub-desc {
+  .path-quote {
     font-size: 14px;
-    line-height: 1.55;
-    color: var(--body);
-    margin: var(--s-xs) 0 var(--s-md);
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.45;
+    padding: var(--s-sm) var(--s-md);
+    background: var(--surface-elevated);
+    border-radius: var(--r-md);
+    margin: 0;
   }
-  .hub-card .hub-meta {
+  .path-desc {
+    font-size: 14px;
+    color: var(--body);
+    line-height: 1.55;
+    flex: 1;
+    margin: 0;
+  }
+  .path-cta {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--s-xxs);
+  }
+
+  /* ---- country focus ---- */
+  .country-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--s-md);
+  }
+  .cf-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-lg);
+    padding: var(--s-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 150ms ease, transform 120ms ease;
+  }
+  .cf-card:hover { border-color: var(--hairline-strong); transform: translateY(-2px); }
+  .cf-flag {
+    width: 36px;
+    height: 26px;
+    border-radius: 4px;
+    display: block;
+    flex-shrink: 0;
+    margin-bottom: var(--s-xxs);
+  }
+  .cf-name { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; color: var(--on-dark); }
+  .cf-meta { font-size: 12px; color: var(--body); line-height: 1.5; flex: 1; }
+  .cf-footer {
+    margin-top: var(--s-xs);
+    padding-top: var(--s-sm);
+    border-top: 1px solid var(--hairline);
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ---- recent changes ---- */
+  .changes-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .changes-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: auto;
-    padding-top: var(--s-md);
-    border-top: 1px solid var(--hairline);
+    padding: var(--s-md) var(--s-lg);
+    border-bottom: 1px solid var(--hairline);
+    background: rgba(19, 19, 19, 0.4);
   }
-  .hub-card .hub-path {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .hub-card .hub-arrow {
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  .hub-card.placeholder {
-    opacity: 0.55;
-    cursor: default;
-  }
-  .hub-card.placeholder:hover {
-    border-color: var(--hairline);
-    transform: none;
-  }
-  .hub-card.placeholder .hub-arrow { color: var(--muted); }
-
-  .hub-card.featured {
-    background: var(--primary);
-    color: var(--on-primary);
-    border-color: var(--primary);
-  }
-  .hub-card.featured .hub-num,
-  .hub-card.featured .hub-title,
-  .hub-card.featured .hub-desc,
-  .hub-card.featured .hub-path,
-  .hub-card.featured .hub-arrow { color: var(--on-primary); }
-  .hub-card.featured .hub-meta { border-top-color: rgba(0,0,0,0.15); }
-  .hub-card.featured .hub-desc { opacity: 0.85; }
-
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
+  .changes-body { padding: var(--s-xxs) 0; }
+  .change-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
     gap: var(--s-md);
-    margin-top: var(--s-lg);
+    align-items: center;
+    padding: var(--s-md) var(--s-lg);
   }
-  .legend-item {
-    display: inline-flex;
+  .change-row + .change-row { border-top: 1px solid var(--hairline); }
+  .change-country {
+    display: flex;
     align-items: center;
     gap: var(--s-xs);
-    font-size: 13px;
+  }
+  .change-flag {
+    width: 22px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .change-cc {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--on-dark);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+  .change-text { font-size: 14px; color: var(--body-strong); }
+  .change-date {
+    font-size: 12px;
     color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    white-space: nowrap;
   }
-  .legend-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+  .severity-high { color: var(--accent-rose); font-size: 11px; font-weight: 600; }
+  .severity-medium { color: var(--accent-blue); font-size: 11px; font-weight: 600; }
+
+  /* ---- hero amber ---- */
+  .hero-amber {
+    position: relative;
+    overflow: hidden;
   }
-  .legend-dot.live { background: var(--accent-emerald); }
-  .legend-dot.todo { background: var(--muted-soft); }
-  .legend-dot.featured-d { background: var(--primary); }
+  .hero-amber::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(240, 180, 41, 0.10) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-amber .container { position: relative; z-index: 1; }
+
+  /* ---- responsive ---- */
+  @media (max-width: 1024px) {
+    .trust-items { grid-template-columns: repeat(2, 1fr); gap: var(--s-lg) 0; }
+    .trust-item { padding: 0 var(--s-lg); }
+    .trust-item:nth-child(2n+1) { border-left: none; }
+    .trust-item:nth-child(2n) { border-left: 1px solid var(--hairline); }
+    .path-grid { grid-template-columns: 1fr; gap: var(--s-md); }
+    .country-focus-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .trust-items { grid-template-columns: repeat(2, 1fr); }
+    .trust-item { padding: 0 var(--s-md); }
+    .trust-item:nth-child(2n) { border-left: 1px solid var(--hairline); }
+    .country-focus-grid { grid-template-columns: repeat(2, 1fr); }
+    .change-row { grid-template-columns: 48px 1fr; }
+    .change-date { display: none; }
+  }
 </style>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
-<!-- ============== TOP NAV ============== -->
+<!-- ============== NAV ============== -->
 <nav class="top-nav">
   <div class="container">
     <a class="logo" href="index.html">
       <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
-      <span>rota-legal-monitor</span>
+      <span>Rota Legal</span>
     </a>
     <div class="nav-links">
-      <a class="nav-link" href="index.html">Hub</a>
-      <a class="nav-link" href="clickhouse-style.html">Showcase</a>
-      <a class="nav-link" href="template.html">Template</a>
-      <a class="nav-link" href="area-aluno/login.html">Área do Aluno</a>
+      <a class="nav-link" href="paises.html">Países</a>
+      <a class="nav-link" href="comparar.html">Comparar</a>
+      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
+      <a class="nav-link" href="calculadora.html">Calculadora</a>
+      <a class="nav-link" href="historico.html">Histórico</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
     </div>
     <div class="nav-right">
-      <a class="btn btn-primary" href="clickhouse-style.html">Ver showcase</a>
+      <a class="btn btn-secondary" href="area-aluno/login.html">Área do Aluno</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é o meu?</a>
     </div>
       <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
         <span></span><span></span><span></span>
@@ -159,7 +283,7 @@
       <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
     </div>
     <nav class="mobile-drawer-nav">
-      <a href="home.html">Início</a>
+      <a href="index.html">Início</a>
       <a href="paises.html">Países</a>
       <a href="comparar.html">Comparar</a>
       <a href="qual-pais.html">Qual país é meu?</a>
@@ -177,250 +301,362 @@
 </div>
 
 <!-- ============== HERO ============== -->
-<section class="hero">
+<section class="hero hero-amber">
   <div class="container">
-    <div class="eyebrow"><span class="dot"></span>Hub de previews · 5173</div>
-    <h1 class="display-lg">
-      Cada página do site,<br/>
-      <span style="color: var(--primary);">num só lugar.</span>
+    <div class="eyebrow"><span class="dot"></span>Atualizado em abril de 2026</div>
+    <h1 class="display-xl" style="max-width: 820px;">
+      Sua rota para a Europa existe.<br/>
+      <span class="accent">A gente ajuda a traçar.</span>
     </h1>
-    <p class="lede">
-      Este é o ponto de entrada para todas as páginas do site. As que já existem abrem direto.
-      As marcadas como "em construção" são placeholders prontos a transformar em páginas reais
-      seguindo o passo a passo em previews/CLAUDE.md.
+    <p class="lede" style="max-width: 560px;">
+      Informações oficiais de imigração para 10 países, em português, atualizadas todo mês.
     </p>
-    <div class="legend">
-      <span class="legend-item"><span class="legend-dot live"></span>página viva</span>
-      <span class="legend-item"><span class="legend-dot featured-d"></span>showcase principal</span>
-      <span class="legend-item"><span class="legend-dot todo"></span>placeholder</span>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="comparar.html">Comparar países</a>
+      <a class="btn btn-secondary" href="qual-pais.html">Qual país é o meu?</a>
     </div>
   </div>
 </section>
 
-<!-- ============== SISTEMA DE DESIGN ============== -->
-<section class="section-tight">
+<!-- ============== TRUST STRIP ============== -->
+<div class="trust-strip">
   <div class="container">
-    <div class="eyebrow">Sistema de design</div>
-    <h2 class="display-md" style="margin-bottom: var(--s-lg);">Páginas vivas</h2>
-
-    <div class="hub-grid">
-
-      <a class="hub-card featured" href="clickhouse-style.html">
-        <div class="hub-num">01 · showcase</div>
-        <div class="hub-title">Showcase completo<br/>do design system</div>
-        <p class="hub-desc">
-          Hero, stats em amarelo, code window, tabela de países, features grid, CTA band e footer.
-          Referência viva de cada componente em uso.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">clickhouse-style.html</span>
-          <span class="hub-arrow">abrir →</span>
-        </div>
-      </a>
-
-      <a class="hub-card" href="template.html">
-        <div class="hub-num">02 · boilerplate</div>
-        <div class="hub-title">Template<br/>vazio</div>
-        <p class="hub-desc">
-          Página em branco com nav e footer prontos. Copia este ficheiro para criar
-          páginas novas sem repetir o cabeçalho HTML do zero.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">template.html</span>
-          <span class="hub-arrow">abrir →</span>
-        </div>
-      </a>
-
-      <a class="hub-card" href="assets/design-system.css">
-        <div class="hub-num">03 · tokens</div>
-        <div class="hub-title">Folha de estilo<br/>do sistema</div>
-        <p class="hub-desc">
-          Fonte única dos tokens (cores, tipografia, espaçamento) e de todos os componentes.
-          Toca aqui para alterar a marca em todo o site.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">assets/design-system.css</span>
-          <span class="hub-arrow">ver código →</span>
-        </div>
-      </a>
-
+    <div class="trust-items">
+      <div class="trust-item">
+        <span class="trust-num"><span class="hi">10</span></span>
+        <span class="trust-label">países monitorados</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">40<span style="font-size:22px;font-weight:600;color:var(--muted);">+</span></span>
+        <span class="trust-label">tipos de visto catalogados</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num-text">Mensal</span>
+        <span class="trust-label">frequência de atualização automática</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num-text">Oficial</span>
+        <span class="trust-label">só fontes oficiais de imigração</span>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ============== PÁGINAS DO SITE ============== -->
-<section class="section-tight">
+<!-- ============== SUGESTÃO RÁPIDA ============== -->
+<style>
+  .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-lg);
+    margin-top: var(--s-xl);
+  }
+  @media (max-width: 900px) { .sg-grid { grid-template-columns: 1fr; } }
+
+  .sg-card {
+    background: var(--surface-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    padding: var(--s-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-md);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.18s;
+  }
+  .sg-card:hover { border-color: var(--primary); }
+
+  .sg-header {
+    display: flex;
+    align-items: center;
+    gap: var(--s-sm);
+  }
+  .sg-flag {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .sg-country { font-size: 18px; font-weight: 700; color: var(--on-dark); }
+  .sg-rank {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary);
+    background: rgba(240,180,41,0.1);
+    border: 1px solid rgba(240,180,41,0.25);
+    border-radius: var(--r-pill);
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  .sg-headline {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--on-dark);
+    line-height: 1.4;
+  }
+
+  .sg-reasons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+  .sg-reasons li {
+    font-size: 13px;
+    color: var(--body);
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+  }
+  .sg-reasons li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .sg-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding-top: var(--s-sm);
+    border-top: 1px solid var(--hairline);
+  }
+  .sg-stat-val { font-size: 20px; font-weight: 700; color: var(--primary); font-variant-numeric: tabular-nums; }
+  .sg-stat-lbl { font-size: 12px; color: var(--muted); }
+
+  .sg-cta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: var(--s-xs);
+  }
+</style>
+<section>
   <div class="container">
-    <div class="eyebrow">Site rota-legal-monitor</div>
-    <h2 class="display-md" style="margin-bottom: var(--s-md);">Páginas do produto</h2>
-    <p class="body-md" style="max-width: 640px; margin-bottom: var(--s-xl);">
-      Estes são os ecrãs planeados para o site público. Cada placeholder tem uma receita
-      pronta em previews/CLAUDE.md, basta pedir ao Claude Code "cria a página X".
+    <div class="eyebrow">Análise de maio de 2026</div>
+    <h2 class="display-md" style="margin-bottom: var(--s-sm);">Sugestão rápida: 3 países com janela aberta</h2>
+    <p class="body-md" style="max-width: 580px; margin-bottom: 0;">
+      Com base nos dados extraídos este mês, estes três países combinam processo acessível,
+      demanda ativa por profissionais brasileiros e visto com caminho claro para residência.
     </p>
+    <div class="sg-grid">
 
-    <div class="hub-grid">
-
-      <a class="hub-card" href="home.html">
-        <div class="hub-num">04 · live</div>
-        <div class="hub-title">Home<br/>do site público</div>
-        <p class="hub-desc">
-          Hero com JSON real, strip de confiança, três caminhos por perfil, países em foco,
-          como funciona com YAML real do workflow, alterações recentes e CTA.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">home.html</span>
-          <span class="hub-arrow">abrir →</span>
+      <a class="sg-card" href="pais-es.html">
+        <div class="sg-header">
+          <span class="sg-flag flag-es"></span>
+          <span class="sg-country">Espanha</span>
+          <span class="sg-rank">01 · recomendado</span>
         </div>
+        <p class="sg-headline">Idioma próximo, visto de nômade digital aprovado e comunidade brasileira consolidada.</p>
+        <ul class="sg-reasons">
+          <li>Visto de Nômade Digital (2023) permite trabalhar remotamente para clientes fora da Espanha com imposto reduzido nos primeiros 4 anos.</li>
+          <li>Espanhol e português têm 89% de inteligibilidade: adaptação de idioma em semanas, não anos.</li>
+          <li>Acordo bilateral Brasil-Espanha isenta brasileiros de algumas exigências consulares padrão.</li>
+          <li>Acesso à zona Schengen e mercado de trabalho europeu a partir do dia 1.</li>
+        </ul>
+        <div class="sg-stat">
+          <span class="sg-stat-val">EUR 1.221</span>
+          <span class="sg-stat-lbl">salário mínimo /mês · SMI 2026</span>
+        </div>
+        <span class="sg-cta">Ver detalhes completos →</span>
       </a>
 
-      <a class="hub-card" href="paises.html">
-        <div class="hub-num">05 · live</div>
-        <div class="hub-title">Lista de países<br/>com filtros</div>
-        <p class="hub-desc">
-          Grid de 10 países com filtros funcionais (Schengen, Autônomo, Working Holiday).
-          Cards com bandeira, dados chave, confiança e link para detalhe.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">paises.html</span>
-          <span class="hub-arrow">abrir →</span>
+      <a class="sg-card" href="pais-ie.html">
+        <div class="sg-header">
+          <span class="sg-flag flag-ie"></span>
+          <span class="sg-country">Irlanda</span>
+          <span class="sg-rank">02 · recomendado</span>
         </div>
+        <p class="sg-headline">Mercado de TI em inglês com um dos maiores salários mínimos da Europa e processo rápido.</p>
+        <ul class="sg-reasons">
+          <li>Critical Skills Employment Permit: processamento médio de 6 a 8 semanas e sem exigência de oferta de emprego prévia para áreas de escassez.</li>
+          <li>Google, Meta, LinkedIn, Stripe e Salesforce têm sedes europeias em Dublin: demanda ativa por profissionais de tecnologia.</li>
+          <li>Graduate Visa de 2 anos para quem conclui curso local, abrindo caminho para visto de trabalho sem patrocínio.</li>
+          <li>Residência permanente após 5 anos com critérios transparentes e histórico de aprovação alto para brasileiros.</li>
+        </ul>
+        <div class="sg-stat">
+          <span class="sg-stat-val">EUR 2.453</span>
+          <span class="sg-stat-lbl">salário mínimo /mês · NMW 2026</span>
+        </div>
+        <span class="sg-cta">Ver detalhes completos →</span>
       </a>
 
-      <a class="hub-card" href="pais-nl.html">
-        <div class="hub-num">06 · live</div>
-        <div class="hub-title">Detalhe de país<br/>(Países Baixos)</div>
-        <p class="hub-desc">
-          Header sticky + resumo rápido + 5 abas: Vistos (accordion), Para Brasileiros,
-          Requisitos Gerais, Mudanças Recentes e Fontes. Template para todos os países.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">pais-nl.html</span>
-          <span class="hub-arrow">abrir →</span>
+      <a class="sg-card" href="pais-pt.html">
+        <div class="sg-header">
+          <span class="sg-flag flag-pt"></span>
+          <span class="sg-country">Portugal</span>
+          <span class="sg-rank">03 · mais acessível</span>
         </div>
+        <p class="sg-headline">Mesmo idioma, Tratado de Amizade e múltiplos vistos para diferentes perfis profissionais.</p>
+        <ul class="sg-reasons">
+          <li>Tratado de Amizade Brasil-Portugal equipara direitos após 2 anos de residência legal, sem exigir naturalização.</li>
+          <li>Visto D3 para profissionais altamente qualificados e D2 para empreendedores: dois caminhos com critérios diferentes para o mesmo destino.</li>
+          <li>Zero barreira de idioma: integração imediata no trabalho, documentação e vida cotidiana.</li>
+          <li>Comunidade brasileira de mais de 300 mil pessoas: redes de apoio, indicações de emprego e suporte burocrático já estabelecidos.</li>
+        </ul>
+        <div class="sg-stat">
+          <span class="sg-stat-val">EUR 920</span>
+          <span class="sg-stat-lbl">salário mínimo /mês · SMN 2026</span>
+        </div>
+        <span class="sg-cta">Ver detalhes completos →</span>
       </a>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">05 · em construção</div>
-        <div class="hub-title">Portugal</div>
-        <p class="hub-desc">
-          Detalhe das regras portuguesas. Mesma estrutura da página NL, fonte
-          portaldasfinancas.gov.pt e snapshot atual.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">pais-pt.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">06 · em construção</div>
-        <div class="hub-title">Alemanha</div>
-        <p class="hub-desc">
-          Detalhe das regras alemãs. Foco no histórico de alterações da bmas.de
-          ao longo dos últimos seis meses.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">pais-de.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">07 · em construção</div>
-        <div class="hub-title">França</div>
-        <p class="hub-desc">
-          Detalhe das regras francesas. Service-public.fr como fonte principal,
-          delta semanal e fila de revisão.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">pais-fr.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">08 · em construção</div>
-        <div class="hub-title">Espanha</div>
-        <p class="hub-desc">
-          Detalhe das regras espanholas. Sede.agenciatributaria.gob.es com
-          snapshot atual e histórico.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">pais-es.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">09 · em construção</div>
-        <div class="hub-title">Diff entre snapshots</div>
-        <p class="hub-desc">
-          Selector de país e datas, comparação lado a lado em duas code windows.
-          Linhas adicionadas em verde, removidas em vermelho.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">diff.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">10 · em construção</div>
-        <div class="hub-title">Histórico semanal</div>
-        <p class="hub-desc">
-          Timeline vertical com todos os ciclos do cron, cada entrada com
-          país, data, número de alterações e link para o commit no GitHub.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">historico.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">11 · em construção</div>
-        <div class="hub-title">Sobre o projeto</div>
-        <p class="hub-desc">
-          Contexto, motivação, stack (Bun, Anthropic SDK, Zod), arquitetura
-          em alto nível e como contribuir.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">sobre.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
-
-      <div class="hub-card placeholder">
-        <div class="hub-num">12 · em construção</div>
-        <div class="hub-title">API e schema</div>
-        <p class="hub-desc">
-          Documentação do schema Zod, formato dos JSON em data/current
-          e exemplos de fetch direto via raw.githubusercontent.com.
-        </p>
-        <div class="hub-meta">
-          <span class="hub-path">api.html</span>
-          <span class="hub-arrow">placeholder</span>
-        </div>
-      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ============== CTA ============== -->
+<!-- ============== PAÍSES EM FOCO ============== -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="eyebrow">Destinos mais buscados por brasileiros</div>
+    <h2 class="display-sm" style="margin-bottom: var(--s-xl);">Países em foco</h2>
+    <div class="country-focus-grid">
+
+      <a class="cf-card" href="pais-nl.html">
+        <span class="cf-flag flag-nl" aria-hidden="true"></span>
+        <span class="cf-name">Países Baixos</span>
+        <span class="cf-meta">Visto Altamente Qualificado. Renda mínima EUR 5.688/mês. IND processa em 2 a 4 semanas.</span>
+        <span class="cf-footer">Schengen · 9 países vizinhos</span>
+      </a>
+
+      <a class="cf-card" href="pais-pt.html">
+        <span class="cf-flag flag-pt" aria-hidden="true"></span>
+        <span class="cf-name">Portugal</span>
+        <span class="cf-meta">Visto D3 para qualificados e Nômade Digital. Sem barreira de idioma para brasileiros.</span>
+        <span class="cf-footer">Schengen · Português</span>
+      </a>
+
+      <a class="cf-card" href="pais-ie.html">
+        <span class="cf-flag flag-ie" aria-hidden="true"></span>
+        <span class="cf-name">Irlanda</span>
+        <span class="cf-meta">Critical Skills Permit. Mercado de TI forte, processamento em 6 a 8 semanas.</span>
+        <span class="cf-footer">Fora do Schengen · Inglês</span>
+      </a>
+
+      <a class="cf-card" href="pais-de.html">
+        <span class="cf-flag flag-de" aria-hidden="true"></span>
+        <span class="cf-name">Alemanha</span>
+        <span class="cf-meta">Chancencard para busca de emprego no local. Lei de Imigração de Qualificados de 2023.</span>
+        <span class="cf-footer">Schengen · Maior mercado da UE</span>
+      </a>
+
+      <a class="cf-card" href="pais-fr.html">
+        <span class="cf-flag flag-fr" aria-hidden="true"></span>
+        <span class="cf-name">França</span>
+        <span class="cf-meta">Talent Passport para profissionais qualificados. Conhecimento de francês exigido.</span>
+        <span class="cf-footer">Schengen · Francês</span>
+      </a>
+
+    </div>
+    <div style="margin-top: var(--s-lg); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-md);">
+      <span class="body-sm" style="color: var(--muted);">
+        Também monitorados: Espanha, Itália, Bélgica, Áustria e Austrália.
+      </span>
+      <a class="text-link body-sm" href="paises.html">Ver todos os 10 países →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ÚLTIMA ATUALIZAÇÃO ============== -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--s-xl); flex-wrap: wrap; gap: var(--s-md);">
+      <div>
+        <div class="eyebrow">Ciclo de mai/2026</div>
+        <h2 class="display-sm">Alterações recentes</h2>
+      </div>
+      <a class="text-link body-sm" href="historico.html">Ver histórico completo →</a>
+    </div>
+    <div class="changes-card">
+      <div class="changes-head">
+        <span class="caption-up">País · Alteração detectada · Data</span>
+        <span class="badge up"><span class="pulse"></span>Verificado em mai/2026</span>
+      </div>
+      <div class="changes-body">
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-at"></span>
+            <span class="change-cc">AT</span>
+          </div>
+          <div>
+            <span class="change-text">Ajuste do Salário Mínimo Bruto Mensal</span>
+            <div class="severity-medium" style="margin-top:2px;">Relevância média</div>
+          </div>
+          <span class="change-date">2026-01-01</span>
+        </div>
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-de"></span>
+            <span class="change-cc">DE</span>
+          </div>
+          <div>
+            <span class="change-text">Atualização do salário mínimo para maiores de 45 anos</span>
+            <div class="severity-medium" style="margin-top:2px;">Relevância média</div>
+          </div>
+          <span class="change-date">2026-01-01</span>
+        </div>
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-ie"></span>
+            <span class="change-cc">IE</span>
+          </div>
+          <div>
+            <span class="change-text">Critical Skills Occupations List efetiva</span>
+            <div class="severity-high" style="margin-top:2px;">Alta relevância</div>
+          </div>
+          <span class="change-date">2024-09-02</span>
+        </div>
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-pt"></span>
+            <span class="change-cc">PT</span>
+          </div>
+          <div>
+            <span class="change-text">Revogação de Autorizações com Dispensa de Visto</span>
+            <div class="severity-high" style="margin-top:2px;">Alta relevância</div>
+          </div>
+          <span class="change-date">2024-06-04</span>
+        </div>
+        <div class="change-row">
+          <div class="change-country">
+            <span class="change-flag flag-pt"></span>
+            <span class="change-cc">PT</span>
+          </div>
+          <div>
+            <span class="change-text">Revogação da Autorização de Residência com Dispensa de Visto (Art. 88º n.º 2)</span>
+            <div class="severity-high" style="margin-top:2px;">Alta relevância</div>
+          </div>
+          <span class="change-date">2024-06-04</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA BAND ============== -->
 <section>
   <div class="container">
     <div class="cta-band-yellow">
       <div>
-        <h2>Cria a próxima página em uma sessão.</h2>
+        <h2>Qual país é o meu?</h2>
         <p>
-          Abre VS Code, escolhe um placeholder acima e diz ao Claude Code
-          "cria a página de Países Baixos". A receita está em previews/CLAUDE.md.
+          Responda 6 perguntas sobre área profissional, qualificação, idioma e prioridades.
+          Você recebe uma recomendação com justificativa e um plano B.
         </p>
       </div>
       <div class="actions">
-        <a class="btn btn-on-yellow" href="CLAUDE.md">previews/CLAUDE.md</a>
-        <a class="btn btn-on-yellow" href="template.html">Abrir template</a>
+        <a class="btn btn-on-yellow" href="paises.html">Ver todos os países</a>
+        <a class="btn btn-on-yellow" href="qual-pais.html">Fazer o questionário</a>
       </div>
     </div>
   </div>
@@ -433,54 +669,53 @@
       <div>
         <a class="logo" href="index.html" style="margin-bottom: var(--s-md); display: inline-flex;">
           <img src="assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
-          <span>rota-legal-monitor</span>
+          <span>Rota Legal</span>
         </a>
-        <p class="body-sm" style="max-width: 320px; color: var(--muted);">
-          Hub local de previews. Serve a pasta previews/ na porta 5173.
-          Servidor configurado em .claude/launch.json.
+        <p class="body-sm" style="max-width: 300px; color: var(--muted);">
+          Condições de imigração em 10 países para brasileiros que querem trabalhar no exterior.
+          Dados de fontes oficiais, atualizados todo mês.
         </p>
       </div>
       <div>
-        <h4>Sistema</h4>
+        <h4>Países</h4>
         <ul>
-          <li><a href="clickhouse-style.html">Showcase</a></li>
-          <li><a href="template.html">Template</a></li>
-          <li><a href="assets/design-system.css">design-system.css</a></li>
-          <li><a href="CLAUDE.md">CLAUDE.md</a></li>
+          <li><a href="pais-nl.html">Países Baixos</a></li>
+          <li><a href="pais-pt.html">Portugal</a></li>
+          <li><a href="pais-de.html">Alemanha</a></li>
+          <li><a href="pais-ie.html">Irlanda</a></li>
+          <li><a href="paises.html">Ver todos →</a></li>
         </ul>
       </div>
       <div>
-        <h4>Páginas</h4>
+        <h4>Ferramentas</h4>
         <ul>
-          <li><a href="#">Países Baixos</a></li>
-          <li><a href="#">Portugal</a></li>
-          <li><a href="#">Alemanha</a></li>
-          <li><a href="#">França</a></li>
-          <li><a href="#">Espanha</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Funcional</h4>
-        <ul>
-          <li><a href="#">Diff</a></li>
-          <li><a href="#">Histórico</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li><a href="#">API</a></li>
+          <li><a href="comparar.html">Comparar países</a></li>
+          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+          <li><a href="historico.html">Histórico</a></li>
         </ul>
       </div>
       <div>
         <h4>Projeto</h4>
         <ul>
-          <li><a href="../README.md">README</a></li>
-          <li><a href="../PLAN.md">PLAN.md</a></li>
-          <li><a href="../spec.md">spec.md</a></li>
-          <li><a href="../CLAUDE.md">CLAUDE.md raiz</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="sobre.html#metodologia">Metodologia</a></li>
+          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+          <li><a href="dev.html">Dev</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dados</h4>
+        <ul>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
+          <li><a href="historico.html">RSS de mudanças</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 rota-legal-monitor · MIT</span>
-      <span class="caption-up">Hub local · 2026-04-28</span>
+      <span>© 2026 Rota Legal · <a href="https://github.com/vl-builds" target="_blank" rel="noopener noreferrer">vl-builds</a> · MIT</span>
+      <span class="caption-up">Última extração: mai/2026</span>
     </div>
   </div>
 </footer>

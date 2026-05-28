@@ -1,0 +1,10 @@
+# Bloqueio de paginas internas (dev) no site publico.
+# Regras do _redirects tem precedencia sobre arquivos estaticos no Cloudflare Pages,
+# entao os arquivos continuam no repo para uso local, mas nao sao acessiveis no publico.
+# dev.html fica de fora de proposito: e a pagina de transparencia, linkada no rodape.
+
+/home.html              /  301
+/_hub.html              /  301
+/clickhouse-style.html  /  301
+/template.html          /  301
+/app.html               /  301

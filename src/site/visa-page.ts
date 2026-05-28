@@ -442,7 +442,7 @@ export function generateVisaPage(
 <!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="../home.html">
+    <a class="logo" href="../index.html">
       <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
       <span>Rota Legal</span>
     </a>
@@ -475,7 +475,7 @@ export function generateVisaPage(
       <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
     </div>
     <nav class="mobile-drawer-nav">
-      <a href="../home.html">Início</a>
+      <a href="../index.html">Início</a>
       <a href="../paises.html">Países</a>
       <a href="../comparar.html">Comparar</a>
       <a href="../qual-pais.html">Qual país é meu?</a>
@@ -627,7 +627,7 @@ export function generateVisaPage(
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a class="logo" href="../home.html" style="margin-bottom:8px;">
+        <a class="logo" href="../index.html" style="margin-bottom:8px;">
           <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:22px;width:auto;display:block;">
           <span>Rota Legal</span>
         </a>
