@@ -1,138 +1,137 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "",
-    "schengenVisaFree": false,
+    "notes": "Brasileiros necessitam de visto de trabalho. O visto de trabalho altamente qualificado ou de transferência intraempresarial é necessário para trabalhar na Espanha",
+    "schengenVisaFree": true,
     "specialAgreements": [],
-    "workPermitNeeded": false
+    "workPermitNeeded": true
   },
   "generalRequirements": {
-    "cleanCriminalRecord": false,
+    "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": null,
+        "notes": "Cobertura mínima por ocorrência, exigida para visto D de longa duração e visto Schengen. Seguro deve ser válido em toda a Espanha e sem copagamentos."
+      },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Seguro saúde com cobertura mínima de EUR 30.000 é obrigatório para solicitação de visto D de longa duração. Deve ser válido em toda a Espanha e sem copagamentos.",
+      "required": true
     },
-    "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "passportValidity": "Mínimo 1 ano, com duas páginas em branco. Passaportes emitidos há mais de 10 anos não são aceitos",
+    "proofOfFunds": {
+      "amount": 2849,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Visto de Nômade Digital (Teletrabajo): mínimo EUR 2.849/mês (200% do SMI em 12 pagamentos). Para trabalho subordinado (cuenta ajena): contrato com salário conforme convenção coletiva."
+    },
+    "minimumWage": {
+      "amount": 1221,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "SMI (Salario Mínimo Interprofesional) 2026: EUR 1.221/mês em 14 pagamentos (EUR 1.424,50/mês em 12 pagamentos, EUR 17.094/ano). Aumento de 3,1% face a 2025. Aprovado pelo Real Decreto 126/2026 de 18 fevereiro 2026, com efeito retroativo a janeiro 2026. Isenção de IRPF para quem recebe o SMI."
+    },
     "vaccinations": []
   },
   "meta": {
     "country": "es",
     "countryName": "Espanha",
-    "lastUpdated": "2026-04-29T12:31:03.479Z",
+    "lastUpdated": "2026-05-06T11:54:49.031Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:29:18.700Z",
+        "fetchedAt": "2026-05-06T11:52:07.715Z",
         "status": "ok",
-        "url": "https://www.inclusion.gob.es/en/web/migraciones/tipos-de-autorizacion"
+        "url": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Visado-de-trabajo-por-cuenta-ajena.aspx"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:30:27.081Z",
+        "fetchedAt": "2026-05-06T11:52:09.719Z",
         "status": "ok",
-        "url": "https://www.inclusion.gob.es/en/web/migraciones"
+        "url": "https://www.exteriores.gob.es/Consulados/houston/en/ServiciosConsulares/Paginas/Consular/TELEWORK-Visa-(Digital-Nomad-Visa)-.aspx"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:30:38.347Z",
+        "fetchedAt": "2026-05-06T11:52:11.732Z",
         "status": "ok",
-        "url": "https://www.inclusion.gob.es/web/migraciones/vivir-en-espana"
-      },
-      {
-        "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:30:46.538Z",
-        "status": "ok",
-        "url": "https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion"
-      },
-      {
-        "contentLanguage": "en",
-        "fetchedAt": "2026-04-29T12:30:57.073Z",
-        "status": "ok",
-        "url": "https://www.inclusion.gob.es/web/migraciones/informacion-util"
+        "url": "https://www.exteriores.gob.es/Embajadas/abudhabi/en/ServiciosConsulares/Paginas/Consular/Visado-para-trabajador-altamente-cualificado-y-para-traslado-intraempresarial.aspx"
       }
     ]
   },
-  "recentChanges": [
-    {
-      "affects": [
-        "nomade-digital"
-      ],
-      "date": "2023-01-01",
-      "severity": "major",
-      "sourceUrl": "https://www.inclusion.gob.es/en/web/migraciones/tipos-de-autorizacion",
-      "summary": "A Lei de Startups (Lei 28/2022) entrou em vigor criando a autorização de residência para trabalho à distância (nômades digitais), facilitando a entrada e permanência de profissionais que trabalham remotamente para empresas estrangeiras.",
-      "title": "Criação do Visto para Nômades Digitais"
-    },
-    {
-      "affects": [
-        "trabalhadores remotos",
-        "profissionais de tecnologia",
-        "empreendedores"
-      ],
-      "date": "2022-12-28",
-      "severity": "major",
-      "sourceUrl": "https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion",
-      "summary": "Nova lei que inclui visto para nômades digitais e facilita autorizações para empreendedores e profissionais de startups",
-      "title": "Ley de Startups 28/2022"
-    }
-  ],
+  "recentChanges": [],
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
     "humanReviewedAt": null,
-    "knownIssues": []
+    "knownIssues": [
+      "Extração mai/2026: proofOfFunds, healthInsurance e forBrazilians.schengenVisaFree requerem manutenção manual — LLM não extrai esses campos de forma confiável das fontes atuais."
+    ]
   },
   "visaTypes": [
     {
-      "description": "Autorização para cidadãos não comunitários que desejam trabalhar na Espanha pela primeira vez como trabalhadores assalariados.",
+      "description": "Visto para pessoas com 16 anos ou mais que desejam trabalhar como empregados na Espanha (com contrato de trabalho). Este visto cobre atividades de trabalho sazonal.",
       "eligibility": [
-        "Cidadãos de países fora da UE/EEE",
-        "Ter oferta de emprego de empresa espanhola",
-        "Não residir na Espanha",
-        "Não ter antecedentes criminais"
+        "Pessoas com 16 anos ou mais",
+        "Possuir contrato de trabalho na Espanha",
+        "Empregador deve ter obtido autorização prévia de residência e trabalho"
       ],
-      "id": "autorizacao-inicial-trabalho",
-      "name": "Autorização Inicial de Trabalho",
-      "nameOriginal": "Autorización Inicial de Trabajo",
-      "notes": "A autorização inicial geralmente tem duração de 1 ano e pode ser renovada.",
+      "id": "trabajo-cuenta-ajena",
+      "name": "Visto de Residência e Trabalho por Conta Alheia",
+      "nameOriginal": "Residence and Employment Work Visa (TRA)",
+      "notes": "O LMNT (limitações ao mercado nacional de trabalho) é uma das principais barreiras — o empregador deve demonstrar que não há candidato local disponível via Lista de Ocupaciones de Difícil Cobertura ou situação de exceção. Brasileiros têm vantagem na naturalização: apenas 2 anos de residência legal vs. 10 para a maioria das nacionalidades. A autorización inicial é vinculada ao empregador e setor; após 2 anos permite mobilidade maior.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "3 a 6 meses",
-        "fees": [],
+        "estimatedDuration": "2-4 meses",
+        "fees": [
+          {
+            "amount": 18,
+            "currency": "EUR",
+            "notes": "taxa de autorización de trabajo (modelo 790 código 052)"
+          },
+          {
+            "amount": 64,
+            "currency": "EUR",
+            "notes": "taxa de visto de larga duración no consulado espanhol"
+          }
+        ],
         "steps": [
           {
-            "description": "O empregador espanhol inicia o procedimento apresentando a solicitação na Espanha",
+            "order": 1,
+            "description": "Empregador espanhol verifica que o posto não pode ser preenchido por candidato do mercado nacional/UE (Lista Empleo de Difícil Cobertura) ou obtém exceção ao LMNT",
             "estimatedDays": null,
-            "name": "Empregador solicita autorização",
-            "order": 1
+            "name": null
           },
           {
-            "description": "A administração analisa a documentação e verifica os requisitos",
+            "order": 2,
+            "description": "Empregador submete pedido de Autorización de Trabajo e Residencia (conta alheia) junto à Oficina de Extranjería da Delegación del Gobierno competente",
             "estimatedDays": null,
-            "name": "Análise da documentação",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Emissão de resolução aprovando ou negando a autorização",
+            "order": 3,
+            "description": "Após aprovação da autorización (prazo de 1-3 meses), o trabalhador solicita o visto de larga duración no consulado espanhol no Brasil",
             "estimatedDays": null,
-            "name": "Decisão administrativa",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Com a autorização aprovada, o trabalhador solicita o visto no consulado espanhol em seu país",
+            "order": 4,
+            "description": "Pagar taxa de visto €64 e apresentar documentação completa incluindo o certificado de autorización",
             "estimatedDays": null,
-            "name": "Solicitação de visto",
-            "order": 4
+            "name": null
           },
           {
-            "description": "Entrada na Espanha e obtenção do cartão de residência (TIE)",
-            "estimatedDays": 30,
-            "name": "Entrada na Espanha e registro",
-            "order": 5
+            "order": 5,
+            "description": "Entrar na Espanha dentro da validade do visto e, dentro de um mês, registrar-se no Registro Central de Extranjeros e solicitar a Tarjeta de Identidad de Extranjero (TIE)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Obter o NIE (Número de Identificação de Estrangeiro) e registrar-se na Seguridade Social para iniciar o trabalho",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -140,313 +139,250 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte com validade superior à duração da autorização solicitada",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 6 meses além do período de autorización solicitado",
+            "isCritical": true
           },
           {
-            "description": "Oferta ou contrato de trabalho de empregador espanhol",
-            "isCritical": true,
-            "name": "Contrato de trabalho"
+            "name": "Autorización de trabajo (emitida para o empregador)",
+            "description": "Cópia certificada da autorización de trabajo aprovada pela Oficina de Extranjería",
+            "isCritical": true
           },
           {
-            "description": "Certificado de antecedentes criminais do país de origem ou de residência nos últimos 5 anos",
-            "isCritical": true,
-            "name": "Certificado de antecedentes criminais"
+            "name": "Contrato de trabalho assinado",
+            "description": "Contrato formal com empregador espanhol especificando cargo, salário (mínimo SMI vigente) e condições",
+            "isCritical": true
           },
           {
-            "description": "Certificado médico atestando não sofrer de doenças que possam ter repercussões de saúde pública",
-            "isCritical": true,
-            "name": "Certificado médico"
+            "name": "Formulário de solicitação de visto",
+            "description": "Formulário EX-01 ou similar disponível no consulado espanhol",
+            "isCritical": true
+          },
+          {
+            "name": "Foto recente em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          },
+          {
+            "name": "Certificado de antecedentes criminais apostilado",
+            "description": "Do Brasil (Certidão de Antecedentes Criminais da PF/Estadual) com Apostila de Haia e tradução juramentada",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de titulação profissional (se exigida)",
+            "description": "Para atividades que exijam qualificação específica regulamentada na Espanha",
+            "isCritical": false
+          },
+          {
+            "name": "Seguro médico de viagem (para o período do visto)",
+            "description": "Cobertura suficiente até alta pela Seguridade Social espanhola",
+            "isCritical": false
           }
         ],
         "incomeRequirement": null,
         "languageRequired": null,
-        "qualificationsRequired": []
+        "qualificationsRequired": [
+          "Qualificações compatíveis com a vaga especificada na autorización de trabajo"
+        ]
       },
       "rights": {
         "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Não ter antecedentes criminais",
-            "Integração na sociedade espanhola"
-          ],
-          "yearsRequired": 10
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos (incluindo brasileiros)"
         },
         "pathToResidency": {
-          "conditions": [
-            "Renovação contínua da autorização de residência",
-            "Permanência legal ininterrupta na Espanha"
-          ],
-          "yearsRequired": 5
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Residência de Longa Duração (Diretiva 2003/109/CE)"
         }
       }
     },
     {
-      "description": "Autorização para cidadãos não comunitários que desejam exercer atividade econômica ou profissional por conta própria na Espanha.",
+      "description": "Visto de residência para atividades profissionais específicas que estão isentas da necessidade de autorização de trabalho, destinado a categorias especiais de profissionais como técnicos, cientistas, professores universitários, correspondentes de mídia estrangeira, ministros religiosos, entre outros.",
       "eligibility": [
-        "Cidadãos de países fora da UE/EEE",
-        "Ter projeto de atividade econômica viável",
-        "Dispor de recursos econômicos suficientes",
-        "Não ter antecedentes criminais"
+        "Técnicos e cientistas convidados ou contratados por autoridades ou instituições públicas espanholas",
+        "Professores, técnicos, pesquisadores e cientistas convidados ou contratados por universidade espanhola",
+        "Pessoal gerencial, docente ou de pesquisa de instituições culturais ou educacionais privadas ou estatais de renome reconhecido",
+        "Funcionários civis ou militares de administrações de estados estrangeiros para atividades sob acordos de cooperação",
+        "Correspondentes de mídia estrangeira devidamente credenciados"
       ],
-      "id": "trabalho-conta-propria",
-      "name": "Trabalho por Conta Própria (Autônomo)",
-      "nameOriginal": "Trabajo por Cuenta Propia",
-      "notes": "A autorização inicial geralmente tem duração de 1 ano e pode ser renovada. O trabalhador autônomo deve cumprir as obrigações fiscais e de Segurança Social na Espanha.",
+      "id": "residencia-excepcion-trabajo",
+      "name": "Visto de Residência com Isenção de Autorização de Trabalho",
+      "nameOriginal": "Residence Visa with Working Permit Exemption (TRE) - More than 90 days",
+      "notes": "O arraigo é o caminho para regularização de quem já está na Espanha. Tipos: arraigo laboral (2 anos de residência + relação laboral de 6+ meses com empregador que declare o vínculo) e arraigo social (3 anos de residência + contrato de trabalho de 1 ano + vínculos familiares ou integração social). Uma nova modalidade, arraigo para a formação, permite regularização com compromisso de formação profissional.",
       "process": {
-        "applicationLocation": "origem",
-        "estimatedDuration": "3 a 6 meses",
-        "fees": [],
+        "applicationLocation": "destino",
+        "estimatedDuration": "3-6 meses",
+        "fees": [
+          {
+            "amount": 18,
+            "currency": "EUR",
+            "notes": "taxa de modificação de autorización (modelo 790 código 052)"
+          }
+        ],
         "steps": [
           {
-            "description": "O interessado apresenta a solicitação no consulado espanhol em seu país ou na Espanha se já estiver legalmente no país",
+            "order": 1,
+            "description": "Entrar na Espanha com visto de turista ou trabalho, ou já residir legalmente, e acumular 2 anos de residência (ou 3 anos com arraigo social)",
             "estimatedDays": null,
-            "name": "Apresentação da solicitação",
-            "order": 1
+            "name": null
           },
           {
-            "description": "A administração avalia a viabilidade do projeto de negócio e a qualificação do solicitante",
+            "order": 2,
+            "description": "Obter oferta de emprego de empregador espanhol disposto a assinar contrato de pelo menos 1 ano",
             "estimatedDays": null,
-            "name": "Análise do projeto",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Emissão de resolução aprovando ou negando a autorização",
+            "order": 3,
+            "description": "Reunir documentação de arraigo (vínculos sociais, familiares ou laborais na Espanha) para comprovar integração social",
             "estimatedDays": null,
-            "name": "Decisão administrativa",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Com a autorização aprovada, o solicitante obtém o visto no consulado espanhol",
+            "order": 4,
+            "description": "Solicitar a Autorización de Residencia por Arraigo Laboral ou Arraigo Social na Oficina de Extranjería local",
             "estimatedDays": null,
-            "name": "Solicitação de visto",
-            "order": 4
+            "name": null
           },
           {
-            "description": "Entrada na Espanha e obtenção do cartão de residência (TIE)",
-            "estimatedDays": 30,
-            "name": "Entrada na Espanha e registro",
-            "order": 5
+            "order": 5,
+            "description": "Após aprovação (prazo de 1-3 meses), receber autorización de residência e trabalho de 1-2 anos",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Registrar-se no padrão municipal (empadronamiento) e obter a Tarjeta de Identidad de Extranjero (TIE)",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
-      "relevanceForDelivery": "direct",
+      "relevanceForDelivery": "indirect",
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte com validade superior à duração da autorização solicitada",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Com carimbo de entrada na Espanha e/ou comprovante de residência atual",
+            "isCritical": true
           },
           {
-            "description": "Projeto ou plano de atividade econômica a desenvolver na Espanha, com estudo de viabilidade",
-            "isCritical": true,
-            "name": "Plano de negócios"
+            "name": "Contrato de trabalho de pelo menos 1 ano",
+            "description": "Contrato formal com empregador espanhol por mínimo de 12 meses",
+            "isCritical": true
           },
           {
-            "description": "Titulação ou experiência profissional acreditada para exercer a atividade",
-            "isCritical": true,
-            "name": "Prova de qualificações"
+            "name": "Comprovante de arraigo (vínculos na Espanha)",
+            "description": "Para arraigo social: 3 anos de residência + vínculos familiares ou integração social documentada; para arraigo laboral: 2 anos + relação laboral de pelo menos 6 meses",
+            "isCritical": true
           },
           {
-            "description": "Documentação que demonstre dispor de recursos suficientes para investimento inicial e subsistência",
-            "isCritical": true,
-            "name": "Prova de recursos econômicos"
+            "name": "Empadronamiento (registro municipal)",
+            "description": "Inscrição no registo de moradores do município espanhol",
+            "isCritical": true
           },
           {
-            "description": "Certificado de antecedentes criminais do país de origem ou de residência nos últimos 5 anos",
-            "isCritical": true,
-            "name": "Certificado de antecedentes criminais"
+            "name": "Certificado de antecedentes criminais",
+            "description": "Do Brasil e da Espanha, ambos apostilados e atualizados",
+            "isCritical": true
           },
           {
-            "description": "Certificado médico atestando não sofrer de doenças que possam ter repercussões de saúde pública",
-            "isCritical": true,
-            "name": "Certificado médico"
+            "name": "Foto recente em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           }
         ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": [
-          "Qualificação profissional ou experiência adequada à atividade a desenvolver"
+          "Qualificações específicas dependendo da categoria de isenção (técnicos, cientistas, professores universitários, correspondentes de mídia, etc.)"
         ]
       },
       "rights": {
         "canBringFamily": true,
-        "canChangeEmployer": true,
+        "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Não ter antecedentes criminais",
-            "Integração na sociedade espanhola"
-          ],
-          "yearsRequired": 10
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos"
         },
         "pathToResidency": {
-          "conditions": [
-            "Renovação contínua da autorização de residência",
-            "Permanência legal ininterrupta na Espanha"
-          ],
-          "yearsRequired": 5
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal total"
         }
       }
     },
     {
-      "description": "Autorização de residência para profissionais altamente qualificados com formação superior ou experiência profissional comprovada de pelo menos 3 anos.",
+      "description": "Visto destinado a estrangeiros que desejam viver na Espanha trabalhando remotamente para uma empresa localizada fora da Espanha, utilizando exclusivamente meios informáticos, telemáticos ou de telecomunicação.",
       "eligibility": [
-        "Cidadãos de países fora da UE/EEE",
-        "Ter título universitário ou experiência profissional de pelo menos 3 anos",
-        "Ter oferta de emprego ou contrato relacionado à sua qualificação",
-        "Não ter antecedentes criminais"
+        "Trabalhar remotamente para empresa localizada fora da Espanha",
+        "Possuir Bacharelado ou Mestrado de universidade ou escola de negócios reconhecida, ou demonstrar pelo menos 3 anos de experiência profissional no campo atual",
+        "Não ser cidadão da União Europeia ou protegido por legislação da UE",
+        "Se funcionário: apenas pode trabalhar para empresa fora da Espanha",
+        "Se autônomo: pode trabalhar para empresa na Espanha até 20% da atividade profissional total"
       ],
-      "id": "profissionais-altamente-qualificados",
-      "name": "Profissionais Altamente Qualificados",
-      "nameOriginal": "Profesionales Altamente Cualificados",
-      "notes": "Esta autorização oferece procedimento simplificado e permite maior mobilidade profissional. A duração inicial pode ser de até 3 anos.",
+      "id": "telework-nomad-visa",
+      "name": "Visto de Teletrabajo (Nômade Digital)",
+      "nameOriginal": "Telework Visa (Digital Nomad Visa)",
+      "notes": "Introduzida pela Ley de Startups (Lei 28/2022), a Visa Nômade Digital permite trabalhar remotamente para empregadores/clientes fora da Espanha. O visto inicial dura 1 ano; a TIE (após entrada) dura 3 anos e é renovável por períodos de 2 anos. No máximo 20% dos clientes podem ser espanhóis. Tributação via regime especial para impatriados (Lei Beckham) pode reduzir carga fiscal para taxa fixa de 24% nos primeiros 6 anos.",
       "process": {
         "applicationLocation": "origem",
-        "estimatedDuration": "2 a 4 meses",
-        "fees": [],
-        "steps": [
+        "estimatedDuration": "1-3 meses",
+        "fees": [
           {
-            "description": "O interessado ou empregador apresenta a solicitação na Espanha",
-            "estimatedDays": null,
-            "name": "Apresentação da solicitação",
-            "order": 1
+            "amount": 73,
+            "currency": "EUR",
+            "notes": "taxa de visto para Visa Nômade Digital no consulado espanhol"
           },
           {
-            "description": "A administração verifica as qualificações e a relação com o emprego oferecido",
-            "estimatedDays": null,
-            "name": "Análise de qualificações",
-            "order": 2
-          },
-          {
-            "description": "Emissão de resolução aprovando ou negando a autorização",
-            "estimatedDays": null,
-            "name": "Decisão administrativa",
-            "order": 3
-          },
-          {
-            "description": "Com a autorização aprovada, o profissional solicita o visto no consulado espanhol",
-            "estimatedDays": null,
-            "name": "Solicitação de visto",
-            "order": 4
-          },
-          {
-            "description": "Entrada na Espanha e obtenção do cartão de residência (TIE)",
-            "estimatedDays": 30,
-            "name": "Entrada na Espanha e registro",
-            "order": 5
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "description": "Passaporte com validade superior à duração da autorização solicitada",
-            "isCritical": true,
-            "name": "Passaporte válido"
-          },
-          {
-            "description": "Diploma de ensino superior ou certificação de experiência profissional de pelo menos 3 anos em área relacionada",
-            "isCritical": true,
-            "name": "Título universitário ou equivalente"
-          },
-          {
-            "description": "Contrato de trabalho ou carta de oferta de empregador espanhol relacionado à qualificação profissional",
-            "isCritical": true,
-            "name": "Contrato de trabalho"
-          },
-          {
-            "description": "Certificado de antecedentes criminais do país de origem ou de residência nos últimos 5 anos",
-            "isCritical": true,
-            "name": "Certificado de antecedentes criminais"
-          },
-          {
-            "description": "Certificado médico atestando não sofrer de doenças que possam ter repercussões de saúde pública",
-            "isCritical": true,
-            "name": "Certificado médico"
+            "amount": 0,
+            "currency": "EUR",
+            "notes": "processo inicial de visto sem taxa adicional de autorización separada"
           }
         ],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": [
-          "Título universitário ou formação superior",
-          "Ou experiência profissional comprovada de pelo menos 3 anos"
-        ]
-      },
-      "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": true,
-        "canWork": true,
-        "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Não ter antecedentes criminais",
-            "Integração na sociedade espanhola"
-          ],
-          "yearsRequired": 10
-        },
-        "pathToResidency": {
-          "conditions": [
-            "Renovação contínua da autorização de residência",
-            "Permanência legal ininterrupta na Espanha"
-          ],
-          "yearsRequired": 5
-        }
-      }
-    },
-    {
-      "description": "Autorização de residência para trabalho à distância, destinada a profissionais que prestam serviços a empresas não estabelecidas na Espanha através de meios telemáticos e tecnológicos.",
-      "eligibility": [
-        "Cidadãos de países fora da UE/EEE",
-        "Trabalhar remotamente para empresas fora da Espanha",
-        "Ter experiência profissional ou qualificação adequada",
-        "Comprovar rendimentos suficientes"
-      ],
-      "id": "nomade-digital",
-      "name": "Nômade Digital",
-      "nameOriginal": "Nómada Digital",
-      "notes": "Esta autorização foi criada pela Lei de Startups (Lei 28/2022). Permite realizar até 20% da atividade laboral para empresas espanholas. A duração inicial é de até 3 anos e pode ser renovada por mais 2 anos.",
-      "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "2 a 4 meses",
-        "fees": [],
         "steps": [
           {
-            "description": "O interessado apresenta a solicitação no consulado espanhol em seu país ou na Espanha se já estiver legalmente no país",
+            "order": 1,
+            "description": "Verificar elegibilidade: trabalhar remotamente para empresa(s) fora da Espanha, com no máximo 20% da renda proveniente de clientes espanhóis",
             "estimatedDays": null,
-            "name": "Apresentação da solicitação",
-            "order": 1
+            "name": null
           },
           {
-            "description": "A administração verifica os requisitos de rendimentos, qualificação e relação laboral remota",
+            "order": 2,
+            "description": "Comprovar renda mínima mensal de €2.646 (200% do SMI espanhol em 2024) via contrato de trabalho remoto ou contratos com clientes internacionais",
             "estimatedDays": null,
-            "name": "Análise da documentação",
-            "order": 2
+            "name": null
           },
           {
-            "description": "Emissão de resolução aprovando ou negando a autorização",
+            "order": 3,
+            "description": "Reunir documentação: contrato de trabalho remoto com empresa estrangeira com mínimo 3 meses de validade futura, comprovante de renda dos últimos 3 meses",
             "estimatedDays": null,
-            "name": "Decisão administrativa",
-            "order": 3
+            "name": null
           },
           {
-            "description": "Com a autorização aprovada, o solicitante obtém o visto no consulado espanhol",
+            "order": 4,
+            "description": "Solicitar a Visa de Nómada Digital no consulado espanhol em São Paulo ou Rio de Janeiro",
             "estimatedDays": null,
-            "name": "Solicitação de visto",
-            "order": 4
+            "name": null
           },
           {
-            "description": "Entrada na Espanha e obtenção do cartão de residência (TIE)",
-            "estimatedDays": 30,
-            "name": "Entrada na Espanha e registro",
-            "order": 5
+            "order": 5,
+            "description": "Pagar taxa de visto (~€73) e submeter documentação completa",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Após aprovação (prazo de 1 mês), entrar na Espanha e, dentro de 30 dias, solicitar a Tarjeta de Identidad de Extranjero (TIE) para residência de 1 ano renovável",
+            "estimatedDays": null,
+            "name": null
           }
         ]
       },
@@ -454,51 +390,50 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte com validade superior à duração da autorização solicitada",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 1 ano além do período solicitado",
+            "isCritical": true
           },
           {
-            "description": "Contrato de trabalho com empresa estrangeira ou documentação que comprove relação laboral ou prestação de serviços remotos",
-            "isCritical": true,
-            "name": "Contrato ou prova de relação laboral"
+            "name": "Contrato de trabalho remoto com empresa estrangeira",
+            "description": "Contrato em vigor por pelo menos 1 ano, com pelo menos 3 meses de atividade anterior — empresa fora da Espanha",
+            "isCritical": true
           },
           {
-            "description": "Título universitário ou formação profissional, ou experiência profissional de pelo menos 3 anos",
-            "isCritical": true,
-            "name": "Prova de qualificação profissional"
+            "name": "Comprovante de renda mínima de €2.646/mês",
+            "description": "Últimos 3 meses de holerites, extratos bancários ou contratos com clientes — valor equivalente a 200% do SMI espanhol",
+            "isCritical": true
           },
           {
-            "description": "Documentação que comprove rendimentos regulares suficientes (mínimo 200% do IPREM mensal)",
-            "isCritical": true,
-            "name": "Prova de rendimentos"
+            "name": "Seguro médico válido na Espanha",
+            "description": "Cobertura de saúde privada que cubra todo o período de estada — sem carências",
+            "isCritical": true
           },
           {
-            "description": "Certificado de antecedentes criminais do país de origem ou de residência nos últimos 5 anos",
-            "isCritical": true,
-            "name": "Certificado de antecedentes criminais"
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Do Brasil com Apostila de Haia e tradução juramentada para espanhol",
+            "isCritical": true
           },
           {
-            "description": "Certificado médico atestando não sofrer de doenças que possam ter repercussões de saúde pública",
-            "isCritical": true,
-            "name": "Certificado médico"
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
           },
           {
-            "description": "Seguro de saúde público ou privado",
-            "isCritical": true,
-            "name": "Seguro de saúde"
+            "name": "Comprovante de qualificações (se freelancer)",
+            "description": "Diplomas ou certificações relevantes para a atividade — mais importante para autônomos",
+            "isCritical": false
           }
         ],
         "incomeRequirement": {
-          "amount": 2334,
+          "amount": 2646,
           "currency": "EUR",
-          "notes": "Valor aproximado correspondente a 200% do IPREM (Indicador Público de Renda de Efeitos Múltiplos) mensal. O valor exato varia anualmente.",
-          "period": "monthly"
+          "period": "monthly",
+          "notes": "200% do SMI espanhol (Salário Mínimo Interprofissional) — valor de 2024. Para trabalho autônomo pode ser 75% (€1.985/mês) se tiver cônjuge dependente."
         },
         "languageRequired": null,
         "qualificationsRequired": [
-          "Título universitário ou formação profissional superior",
-          "Ou experiência profissional comprovada de pelo menos 3 anos"
+          "Contrato de trabalho remoto de pelo menos 1 ano com empresa fora da Espanha, ou contratos com clientes internacionais demonstrando atividade estabelecida"
         ]
       },
       "rights": {
@@ -506,19 +441,276 @@
         "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": {
-          "conditions": [
-            "Residência legal e contínua na Espanha por 10 anos",
-            "Não ter antecedentes criminais",
-            "Integração na sociedade espanhola"
-          ],
-          "yearsRequired": 10
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos (incluindo brasileiros)"
         },
         "pathToResidency": {
-          "conditions": [
-            "Renovação contínua da autorização de residência",
-            "Permanência legal ininterrupta na Espanha"
-          ],
-          "yearsRequired": 5
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
+      }
+    },
+    {
+      "description": "Visto para exercer uma atividade laboral como funcionário na Espanha como profissional altamente qualificado, membro de pessoal de gestão sênior atendendo critérios específicos da legislação vigente, ou como graduado ou pós-graduado de universidade prestigiosa e/ou escola de negócios",
+      "eligibility": [
+        "Profissional altamente qualificado",
+        "Membro de pessoal de gestão sênior",
+        "Graduado ou pós-graduado de universidade prestigiosa",
+        "Pós-graduado de escola de negócios prestigiosa"
+      ],
+      "id": "highly-qualified-worker-visa",
+      "name": "Visto para Trabalhador Altamente Qualificado",
+      "nameOriginal": "Visa for highly qualified workers",
+      "notes": "Processo diferenciado via UGE-CE (Unidad de Grandes Empresas y Colectivos Estratégicos) com prazo de resolução de 10 dias úteis — muito mais rápido que o processo padrão. Sem LMNT. A empresa deve ser grande empresa ou empresa com atividade relevante em Espanha. Pode-se optar pelo regime fiscal especial da Lei Beckham (24% fixo) nos primeiros 6 anos na Espanha.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "1-3 meses",
+        "fees": [
+          {
+            "amount": 18,
+            "currency": "EUR",
+            "notes": "taxa de autorización de trabajo (modelo 790 código 052)"
+          },
+          {
+            "amount": 64,
+            "currency": "EUR",
+            "notes": "taxa de visto de larga duración no consulado espanhol"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "Receber oferta de emprego de empresa espanhola qualificada (grande empresa ou com investimento significativo em I+D) com salário mínimo de €40.077 anuais",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Empregador verifica enquadramento nos critérios de empresa qualificada (art. 71 Lei 14/2013 — Ley de Emprendedores)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Empregador solicita Autorización de Residencia para Trabajadores Altamente Cualificados junto à Unidad de Grandes Empresas (UGE-CE) — sem LMNT",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Após aprovação da autorización (prazo de 10 dias úteis), solicitar o visto de larga duración no consulado espanhol",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Pagar taxa de visto e apresentar documentação completa",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Entrar na Espanha e solicitar a TIE dentro de 30 dias da chegada",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 1 ano além do período da autorización",
+            "isCritical": true
+          },
+          {
+            "name": "Autorización de residência para altamente cualificado (UGE-CE)",
+            "description": "Emitida pela Unidad de Grandes Empresas em prazo de 10 dias úteis",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho com salário mínimo de €40.077/ano",
+            "description": "Salário mínimo equivalente a 1,5× a média salarial espanhola — especificado no contrato",
+            "isCritical": true
+          },
+          {
+            "name": "Diploma universitário de ensino superior",
+            "description": "Grau universitário ou qualificação profissional superior compatível com o cargo altamente qualificado",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de experiência profissional relevante",
+            "description": "Experiência mínima de 3-5 anos na área (pode substituir o diploma em algumas situações)",
+            "isCritical": false
+          },
+          {
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Do Brasil com tradução juramentada para espanhol",
+            "isCritical": true
+          },
+          {
+            "name": "Foto recente em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 40077,
+          "currency": "EUR",
+          "period": "yearly",
+          "notes": "1,5× o salário médio anual espanhol — equivale a aprox. €3.340/mês bruto (valor de 2024)"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Diploma universitário (bachelor, master ou doutorado)",
+          "Ou qualificação profissional de nível superior equivalente",
+          "Ou experiência profissional mínima de 3 anos em função altamente qualificada"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para brasileiros"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
+      }
+    },
+    {
+      "description": "Visto para exercer uma atividade laboral como funcionário na Espanha como membro de pessoal de gestão sênior, especialista ou estagiário, para executar um contrato ou em relação profissional, quando a transferência é feita dentro da mesma empresa ou grupo de empresas",
+      "eligibility": [
+        "Membro de pessoal de gestão sênior",
+        "Especialista",
+        "Estagiário",
+        "Transferência dentro da mesma empresa ou grupo de empresas"
+      ],
+      "id": "intra-company-transfer-visa",
+      "name": "Visto para Transferência Intraempresarial",
+      "nameOriginal": "Visa for intra-company transfers",
+      "notes": "Processado pela UGE-CE em 10 dias úteis — processo mais rápido disponível para trabalhadores não-UE na Espanha. Sem LMNT. Três categorias: gestores, especialistas e trainees qualificados. A autorización inicial é de 1 ano renovável (máx. 3 anos para gestores e especialistas; 1 ano para trainees). Regime fiscal Lei Beckham pode ser aplicável.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "1-3 meses",
+        "fees": [
+          {
+            "amount": 18,
+            "currency": "EUR",
+            "notes": "taxa de autorización (modelo 790 código 052)"
+          },
+          {
+            "amount": 64,
+            "currency": "EUR",
+            "notes": "taxa de visto de larga duración no consulado espanhol"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "A empresa receptora espanhola do grupo multinacional documenta o vínculo empresarial com a empresa enviante no Brasil",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Empresa espanhola solicita Autorización de Traslado Intraempresarial junto à UGE-CE (Unidad de Grandes Empresas) do Ministerio de Inclusión, Seguridad Social y Migraciones",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "UGE-CE resolve em prazo de 10 dias úteis — sem necessidade de LMNT (verificação de mercado de trabalho local)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Após aprovação, solicitar o visto de traslado intraempresarial no consulado espanhol no Brasil",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Pagar taxa de visto (~€64) e submeter documentação completa",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Entrar na Espanha e solicitar a Tarjeta de Identidad de Extranjero (TIE) dentro de 30 dias",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 1 ano além do período solicitado",
+            "isCritical": true
+          },
+          {
+            "name": "Autorización de traslado intraempresarial (UGE-CE)",
+            "description": "Autorización emitida pela UGE-CE em 10 dias úteis — sem LMNT",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de vínculo empregatício com empresa do grupo (mín. 3 meses)",
+            "description": "Contrato, holerites e carta da empresa enviante comprovando vínculo anterior mínimo de 3 meses",
+            "isCritical": true
+          },
+          {
+            "name": "Carta de designação/transferência da empresa",
+            "description": "Documento formal descrevendo cargo, remuneração, duração e condições da transferência intragrupo",
+            "isCritical": true
+          },
+          {
+            "name": "Documentos do grupo empresarial",
+            "description": "Comprovantes de que a empresa enviante e a receptora pertencem ao mesmo grupo multinacional",
+            "isCritical": true
+          },
+          {
+            "name": "Qualificações profissionais compatíveis",
+            "description": "Para gestores e especialistas: diploma ou experiência equivalente; para trainees: diploma recente",
+            "isCritical": true
+          },
+          {
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Do Brasil com tradução juramentada para espanhol",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Vínculo empregatício mínimo de 3 meses com a empresa enviante antes da transferência",
+          "Cargo de gestor, especialista ou trainee qualificado (categorias previstas na Ley de Emprendedores)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 2,
+          "conditions": [],
+          "summary": "Após 2 anos de residência legal para cidadãos ibero-americanos"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal total"
         }
       }
     }

@@ -1,0 +1,624 @@
+{
+  "forBrazilians": {
+    "maxStayDaysAsTourist": 90,
+    "notes": "",
+    "schengenVisaFree": true,
+    "specialAgreements": [],
+    "workPermitNeeded": true
+  },
+  "generalRequirements": {
+    "cleanCriminalRecord": true,
+    "healthInsurance": {
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": "one-time",
+        "notes": "Por ocorrência para visto Schengen; cobertura pelo SSN após permesso di soggiorno"
+      },
+      "mustBeLocal": false,
+      "notes": "Para visto D de trabalho: seguro saúde exigido até obtenção do permesso di soggiorno, que dá acesso ao Sistema Sanitario Nazionale (SSN) italiano.",
+      "required": true
+    },
+    "passportValidity": "Minimo 6 meses apos a data de entrada",
+    "proofOfFunds": {
+      "amount": 8500,
+      "currency": "EUR",
+      "period": "yearly",
+      "notes": "Para Lavoro Subordinato via Decreto Flussi: contrato de trabalho é suficiente (salário mínimo setorial exigido). Para EU Blue Card: salário bruto anual de EUR 43.056 mínimo (2024). Para trabalho autônomo: mínimo EUR 8.500/ano demonstrado."
+    },
+    "minimumWage": {
+      "amount": 1100,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Itália não tem salário mínimo nacional por lei em 2026. Piso salarial fixado por convenções coletivas setoriais (CCNL): mais de 992 acordos, com valores entre EUR 7/hora (hotelaria) e EUR 14/hora (bancário). Referência média: EUR 1.000 a EUR 1.500/mês bruto. Proposta de EUR 9/hora nacional não aprovada."
+    },
+    "vaccinations": []
+  },
+  "meta": {
+    "country": "it",
+    "countryName": "Italia",
+    "lastUpdated": "2026-05-06T11:57:12.701Z",
+    "schemaVersion": "1.0.0",
+    "sources": [
+      {
+        "contentLanguage": "it",
+        "fetchedAt": "2026-05-06T11:56:11.408Z",
+        "status": "ok",
+        "url": "https://vistoperitalia.esteri.it/"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-06T11:56:11.927Z",
+        "status": "ok",
+        "url": "https://integrazionemigranti.gov.it/en-gb/"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-06T11:56:14.999Z",
+        "status": "ok",
+        "url": "https://www.poliziadistato.it/tematiche/immigrazione"
+      },
+      {
+        "contentLanguage": "en",
+        "fetchedAt": "2026-05-06T11:56:15.221Z",
+        "status": "ok",
+        "url": "https://www.lavoro.gov.it/en"
+      }
+    ]
+  },
+  "recentChanges": [],
+  "reliability": {
+    "extractedBy": "llm",
+    "extractionConfidence": "medium",
+    "humanReviewedAt": null,
+    "knownIssues": [
+      "Extração mai/2026: proofOfFunds, healthInsurance e forBrazilians.schengenVisaFree requerem manutenção manual — LLM não extrai esses campos de forma confiável das fontes atuais."
+    ]
+  },
+  "visaTypes": [
+    {
+      "description": "Visto nacional de longa duração (tipo D) para atividade de trabalho subordinado (emprego com vínculo empregatício) na Itália. Sujeito ao sistema de cotas anuais estabelecido pelo decreto flussi.",
+      "eligibility": [
+        "Cidadãos não comunitários com oferta de emprego de empregador italiano",
+        "Vagas disponíveis dentro das cotas estabelecidas pelo decreto flussi"
+      ],
+      "id": "lavoro-subordinato",
+      "name": "Trabalho Subordinado",
+      "nameOriginal": "Lavoro Subordinato",
+      "notes": "O Decreto Flussi é o principal mecanismo de entrada de trabalhadores não-UE na Itália. As vagas abrem uma vez ao ano (às vezes mais) e se esgotam em minutos no 'click day' — o empregador deve estar preparado para agir imediatamente. O número de vagas por país e tipo de trabalho é limitado e varia a cada decreto. O Permesso di Soggiorno fica vinculado ao empregador; para trocar de empregador é necessário obter nova autorização.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "3-8 meses",
+        "fees": [
+          {
+            "amount": 116,
+            "currency": "EUR",
+            "notes": "visto D de trabalho no consulado italiano"
+          },
+          {
+            "amount": 200,
+            "currency": "EUR",
+            "notes": "taxa do permesso di soggiorno eletrônico (carta di soggiorno)"
+          },
+          {
+            "amount": 30,
+            "currency": "EUR",
+            "notes": "taxa postal de envio do kit postale"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro do ano seguinte",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.servizisociali.gov.it em nome do trabalhador",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais próximo no Brasil",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Pagar taxa de visto D de €116 e apresentar documentação completa no consulado",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Entrar na Itália com o visto D dentro do prazo de validade (geralmente 6 meses)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Dentro de 8 dias úteis da chegada, apresentar-se ao Sportello Unico per l'Immigrazione para assinar o Contratto di Soggiorno e pagar kit postale (€30)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 7,
+            "description": "Solicitar o Permesso di Soggiorno (permissão de residência temporária) na Questura local — pagar taxa de €200 do permesso eletrônico",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 8,
+            "description": "Aguardar recebimento do Permesso di Soggiorno pelo correio (prazo variável de 30-120 dias)",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses a partir da data do visto",
+            "isCritical": true
+          },
+          {
+            "name": "Nulla Osta ao lavoro",
+            "description": "Autorização de trabalho emitida pelo Sportello Unico em nome do empregador italiano — documento obrigatório para o visto",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho ou pré-contrato",
+            "description": "Documento firmado pelo empregador italiano especificando cargo, salário e condições",
+            "isCritical": true
+          },
+          {
+            "name": "Formulário de pedido de visto de longo prazo (tipo D)",
+            "description": "Disponível no portal do consulado italiano",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos recentes em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          },
+          {
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Do Brasil e de outros países onde residiu — com tradução juramentada para italiano",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de meios de subsistência (se exigido)",
+            "description": "Pode ser necessário para o período até o primeiro salário",
+            "isCritical": false
+          },
+          {
+            "name": "Atestado médico de aptidão ao trabalho (se exigido pela função)",
+            "description": "Para atividades que exijam certificado de saúde específico",
+            "isCritical": false
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificações compatíveis com o cargo especificado no contrato de trabalho"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Permesso di Soggiorno CE per lungo soggiornanti"
+        }
+      }
+    },
+    {
+      "description": "Visto nacional de longa duração (tipo D) para exercício de atividade de trabalho autônomo na Itália. Permite trabalhar como profissional independente ou abrir empresa.",
+      "eligibility": [
+        "Cidadãos não comunitários que pretendem exercer atividade profissional autônoma ou empresarial na Itália",
+        "Sujeito às cotas do decreto flussi para trabalho autônomo"
+      ],
+      "id": "lavoro-autonomo",
+      "name": "Trabalho Autônomo",
+      "nameOriginal": "Lavoro Autonomo",
+      "notes": "A categoria lavoro autonomo inclui profissões liberais, artisticas, stagisti altamente qualificati e startups. Vagas são limitadas pelo Decreto Flussi anual. Para profissões regulamentadas na Itália (medicina, engenharia, advocacia), o diploma brasileiro pode precisar de reconhecimento (riconoscimento del titolo) antes da inscrição na ordem profissional italiana.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "3-6 meses",
+        "fees": [
+          {
+            "amount": 116,
+            "currency": "EUR",
+            "notes": "visto D de trabalho autônomo no consulado italiano"
+          },
+          {
+            "amount": 200,
+            "currency": "EUR",
+            "notes": "taxa do permesso di soggiorno eletrônico"
+          },
+          {
+            "amount": 30,
+            "currency": "EUR",
+            "notes": "taxa postal de envio do kit postale"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "Verificar se a categoria profissional está entre as contempladas pelo Decreto Flussi para lavoro autonomo (profissões liberais, artistas, startups qualificadas)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Reunir documentação comprobatória da atividade autônoma: contrato com cliente italiano, inscrição em ordem profissional, plano de negócios",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Verificar idoneidade financeira: renda mínima de €8.500 anuais (equivalente ao sussidio di accompagnamento mínimo) ou equivalente patrimonial",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Apresentar pedido de Nulla Osta ao lavoro autonomo no Sportello Unico per l'Immigrazione competente",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Após aprovação do Nulla Osta, solicitar o visto D no consulado italiano no Brasil e pagar taxa de €116",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Entrar na Itália e, dentro de 8 dias úteis, apresentar-se ao Sportello Unico e solicitar Permesso di Soggiorno na Questura",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
+          },
+          {
+            "name": "Nulla Osta ao lavoro autonomo",
+            "description": "Autorização emitida pelo Sportello Unico — obrigatória para o visto D",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de atividade autônoma na Itália",
+            "description": "Contrato com cliente italiano, carta de proposta ou plano de negócios detalhado",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de renda ou patrimônio",
+            "description": "Renda mínima de €8.500/ano ou patrimônio equivalente demonstrando sustentabilidade financeira",
+            "isCritical": true
+          },
+          {
+            "name": "Certificado de inscrição em ordem profissional italiana (se aplicável)",
+            "description": "Para profissões regulamentadas (engenheiro, médico, arquiteto) — pode exigir reconhecimento de diploma",
+            "isCritical": false
+          },
+          {
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Traduzida juramentada para italiano",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos em formato passaporte",
+            "description": "Padrão biométrico",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 8500,
+          "currency": "EUR",
+          "period": "yearly",
+          "notes": "Renda mínima anual exigida para lavoro autonomo — equivalente ao mínimo social italiano. Pode ser demonstrada por patrimônio equivalente."
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Habilitação profissional ou qualificação compatível com a atividade autônoma declarada"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
+      }
+    },
+    {
+      "description": "Visto nacional de longa duração (tipo D) para atividade profissional temporária na Itália, geralmente para transferências intraempresa ou missões de trabalho de média duração.",
+      "eligibility": [
+        "Profissionais enviados por empresas estrangeiras para realizar missões ou projetos na Itália",
+        "Transferências intraempresa"
+      ],
+      "id": "missione",
+      "name": "Missão",
+      "nameOriginal": "Missione",
+      "notes": "A modalidade de missione/ICT (Intra-Company Transfer) segue a Direttiva UE 2014/66/UE implementada na legislação italiana. Duas modalidades: 'distacco' (destacamento) para períodos curtos (<90 dias em 180) e 'ICT' para períodos mais longos com Nulla Osta específico. O permesso di soggiorno por missione não conta para a residência permanente de forma direta — verificar enquadramento com advogado de imigração.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "2-4 meses",
+        "fees": [
+          {
+            "amount": 116,
+            "currency": "EUR",
+            "notes": "visto D de trabalho (missione/ICT) no consulado italiano"
+          },
+          {
+            "amount": 200,
+            "currency": "EUR",
+            "notes": "taxa do permesso di soggiorno eletrônico"
+          },
+          {
+            "amount": 30,
+            "currency": "EUR",
+            "notes": "taxa postal de envio do kit postale"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "A empresa do grupo (enviante) em outro país estabelece formalmente o vínculo de transferência intragrupo com a empresa italiana (receptora)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "A empresa italiana solicita a Comunicazione di distacco (notificação de destacamento) ao Ministero del Lavoro para trabalhadores em missão de curta duração ou Nulla Osta para ICT de longa duração",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Solicitar visto D de lavoro (missione) no consulado italiano com a documentação de transferência",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Pagar taxa de visto €116 e apresentar documentação completa no consulado",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Entrar na Itália e, dentro de 8 dias úteis, solicitar Permesso di Soggiorno por missione na Questura local",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses",
+            "isCritical": true
+          },
+          {
+            "name": "Lettera di distacco (carta de missão da empresa)",
+            "description": "Documento formal da empresa enviante especificando cargo, duração e condições da transferência intragrupo",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de vínculo empregatício com a empresa enviante",
+            "description": "Contrato de trabalho ou holerites comprovando vínculo mínimo de 3 meses antes da transferência",
+            "isCritical": true
+          },
+          {
+            "name": "Documentos do grupo empresarial",
+            "description": "Comprovante de que empresa enviante e receptora pertencem ao mesmo grupo empresarial",
+            "isCritical": true
+          },
+          {
+            "name": "Nulla Osta ou Comunicazione di distacco",
+            "description": "Autorização italiana para o destacamento intragrupo — emitida pelo Sportello Unico ou pelo Ministero del Lavoro",
+            "isCritical": true
+          },
+          {
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Traduzida juramentada para italiano",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos em formato passaporte biométrico",
+            "description": "Fotos recentes",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Vínculo empregatício de pelo menos 3 meses com a empresa enviante antes da transferência",
+          "Qualificações compatíveis com cargo de gestão, especialista ou trainee (para ICT Direttiva UE)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal contínua"
+        }
+      }
+    },
+    {
+      "description": "Visto nacional de longa duração (tipo D) que permite trabalho altamente qualificado na Itália, destinado a profissionais com qualificações superiores e oferta de emprego com salário elevado.",
+      "eligibility": [
+        "Profissionais altamente qualificados com diploma de ensino superior ou qualificação profissional de alto nível",
+        "Oferta de emprego ou contrato de trabalho na Itália",
+        "Salário acima do limiar estabelecido pela legislação italiana"
+      ],
+      "id": "eu-blue-card",
+      "name": "Cartão Azul UE",
+      "nameOriginal": "EU Blue Card",
+      "notes": "A Carta Blu UE na Itália está fora das cotas do Decreto Flussi — pode ser solicitada a qualquer momento do ano sem aguardar o 'click day'. Após 18 meses de residência legal na Itália como titular de Carta Blu UE, o trabalhador pode mover-se para outro Estado-Membro da UE com processo simplificado. Salário mínimo pode ser reduzido para 1,2× a média para profissões em lista de escassez.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "2-4 meses",
+        "fees": [
+          {
+            "amount": 116,
+            "currency": "EUR",
+            "notes": "visto D de trabalho (Carta Blu UE) no consulado italiano"
+          },
+          {
+            "amount": 200,
+            "currency": "EUR",
+            "notes": "taxa do permesso di soggiorno eletrônico"
+          },
+          {
+            "amount": 30,
+            "currency": "EUR",
+            "notes": "taxa postal de envio do kit postale"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "Receber oferta de emprego de empregador italiano com salário mínimo de €35.000 bruto anuais (1,5× a média salarial nacional)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Verificar que a ocupação exige qualificação superior (diploma universitário de pelo menos 3 anos)",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "O empregador italiano solicita o Nulla Osta para Carta Blu UE no Sportello Unico per l'Immigrazione — fora das cotas do Decreto Flussi",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Após aprovação do Nulla Osta (prazo de 60-90 dias), solicitar o visto D de lavoro (Carta Blu UE) no consulado italiano com documentação completa",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Pagar taxa de visto €116 e apresentar toda a documentação no consulado",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Entrar na Itália e, dentro de 8 dias úteis, apresentar-se ao Sportello Unico e solicitar Permesso di Soggiorno para Carta Blu UE na Questura",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 18 meses a partir da data do visto",
+            "isCritical": true
+          },
+          {
+            "name": "Nulla Osta para Carta Blu UE",
+            "description": "Autorização emitida pelo Sportello Unico — obrigatória, fora das cotas do Decreto Flussi",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho com salário mínimo de €35.000/ano",
+            "description": "Salário bruto anual mínimo de €35.000 (equivalente a 1,5× a média salarial italiana) — especificado no contrato",
+            "isCritical": true
+          },
+          {
+            "name": "Diploma universitário de pelo menos 3 anos (riconoscimento)",
+            "description": "Qualificação superior reconhecida — pode exigir procedimento de riconoscimento do título estrangeiro",
+            "isCritical": true
+          },
+          {
+            "name": "Formulário de pedido de visto D",
+            "description": "Disponível no portal do consulado italiano",
+            "isCritical": true
+          },
+          {
+            "name": "2 fotos em formato passaporte biométrico",
+            "description": "Fotos recentes",
+            "isCritical": true
+          },
+          {
+            "name": "Certidão de antecedentes criminais apostilada",
+            "description": "Traduzida juramentada para italiano",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 35000,
+          "currency": "EUR",
+          "period": "yearly",
+          "notes": "Salário bruto anual mínimo de €35.000 exigido para Carta Blu UE Itália (1,5× a média salarial nacional). Para profissões em escassez pode ser reduzido para 1,2×."
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Diploma universitário de pelo menos 3 anos de duração (ensino superior reconhecido)",
+          "Qualificação compatível com a ocupação altamente qualificada especificada no contrato"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": true,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 10,
+          "conditions": [],
+          "summary": "Após 10 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal, Permesso CE per lungo soggiornanti; residência de longa duração UE possível após 2 anos como titular de Carta Blu em outro Estado-Membro"
+        }
+      }
+    }
+  ]
+}
