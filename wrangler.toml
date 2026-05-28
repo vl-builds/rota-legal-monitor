@@ -10,4 +10,4 @@ compatibility_date = "2025-05-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "rota-legal-alunos"
-database_id = "PREENCHER_APOS_CRIAR_D1"
+database_id = "58067df2-dcda-436c-849b-bca2c263acf6"
