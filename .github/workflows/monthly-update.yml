@@ -74,19 +74,11 @@ jobs:
       - name: Generate index.json
         run: bun run index
 
-      - name: Generate scenarios (dossies pre-computados)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_MODEL_PREMIUM: claude-sonnet-4-5
-          NODE_ENV: production
-        run: bun run scenarios:generate
-        continue-on-error: true
-
       - name: Generate site pages
         run: bun run site:generate
 
-      - name: Render scenarios as HTML
-        run: bun run scenarios:render
+      # Geracao do conteudo premium (cenarios) saiu do CI publico no modelo
+      # open-core. Roda em fluxo privado, com acesso a src/scenarios.
 
       - name: Detect changes
         id: diff

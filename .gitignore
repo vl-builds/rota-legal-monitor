@@ -11,6 +11,19 @@
 # O login.html antigo lia este arquivo; foi substituido por auth server-side.
 previews/area-aluno/credentials.json
 
+# Conteudo PREMIUM (produto pago). Fora do repo publico no modelo open-core.
+# Continua no disco para deploy via wrangler e deve ser versionado em repo privado.
+# Mantidos publicos (isca/shell): area-aluno/index.html, login.html, guias/, assets/.
+previews/area-aluno/cenarios/
+previews/area-aluno/alertas.html
+previews/area-aluno/calculadora-pro.html
+previews/area-aluno/comparar-pro.html
+previews/area-aluno/checklist.html
+previews/area-admin/
+src/scenarios/
+src/site/scenario-page.ts
+data/scenarios/
+
 # Dependencias
 node_modules/
 

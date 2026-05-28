@@ -40,6 +40,24 @@ Com este monitor:
 - O usuário vê exatamente quando e de onde cada dado foi extraído
 - Concorrentes que vendem PDF estático ficam visivelmente desatualizados
 
+## Open-core: o que é aberto e o que não é
+
+Este repositório é open-core. O motor de extração, os dados de imigração e o site público são abertos de propósito, porque transparência é o diferencial do projeto: qualquer pessoa pode auditar de onde vem cada número e como ele é extraído.
+
+Aberto (neste repositório):
+
+- Motor de extração e geração de páginas (`src/`)
+- Dados de imigração (`data/current`, `data/history`)
+- Site público (`previews/`, fora o conteúdo premium da Área do Aluno)
+- Código de autenticação da área logada (`functions/`), sem segredos embutidos
+
+Não incluído (produto pago, mantido em repositório privado):
+
+- Cenários personalizados, Ferramentas Pro, checklist e alertas da Área do Aluno
+- Painel administrativo e dados pessoais de alunos
+
+Licença: código sob MIT, dados sob CC BY-SA. O conteúdo premium é todos os direitos reservados e não faz parte deste repositório.
+
 ## Arquitetura em 30 segundos
 
 ```
