@@ -29,6 +29,7 @@
     "scenarios:render": "bun run src/site/scenario-page.ts",
     "alerts:send": "bun run src/alerts/send-email.ts",
     "dev:web": "wrangler pages dev",
+    "deploy:web": "bun run scripts/sync-data-to-previews.ts && wrangler pages deploy previews --commit-dirty=true",
     "typecheck:web": "tsc -p functions/tsconfig.json",
     "db:migrate:local": "wrangler d1 migrations apply rota-legal-alunos --local",
     "db:migrate": "wrangler d1 migrations apply rota-legal-alunos --remote",

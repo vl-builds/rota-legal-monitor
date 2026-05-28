@@ -31,6 +31,9 @@ node_modules/
 .cache/
 data/.diff-summary.md
 
+# Copia de data/current para o deploy do Cloudflare (gerada por deploy:web).
+previews/data/
+
 # Builds e artefatos
 dist/
 build/
