@@ -18,7 +18,9 @@
       setTimeout(() => { clearInterval(t); res(); }, 6000);
     });
     const box = document.getElementById('turnstile-box');
-    if (window.turnstile && box) widgetId = window.turnstile.render(box, { sitekey: siteKey });
+    try {
+      if (window.turnstile && box) widgetId = window.turnstile.render(box, { sitekey: siteKey });
+    } catch (_) { widgetId = null; }
   })();
   window.RotaTurnstile = {
     ready: () => ready,
