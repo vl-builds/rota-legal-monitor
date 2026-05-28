@@ -232,7 +232,8 @@
       <a class="nav-link" href="sobre.html">Sobre</a>
     </div>
     <div class="nav-right">
-      <a class="btn btn-secondary" href="area-aluno/login.html">Área do Aluno</a> href="qual-pais.html">Qual país é meu?</a>
+      <a class="btn btn-secondary" href="area-aluno/login.html">Área do Aluno</a>
+      <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
@@ -346,9 +347,9 @@
   </div>
 </footer>
 
+<script src="assets/data.js"></script>
 <script>
 /* ---- configuração ---- */
-const DATA_BASE = '/data';
 const ORDER = ['nl','de','pt','es','ie','fr','it','be','at','au'];
 const MAX = 3;
 let selected = ['nl','de','pt'];
@@ -584,7 +585,7 @@ function deriveCoverText(code, { langPct, minIncomeAnnual, familyAny, employerAn
 /* ---- carregamento assíncrono ---- */
 async function loadCountries() {
   const results = await Promise.allSettled(
-    ORDER.map(cc => fetch(`${DATA_BASE}/${cc}.json`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }))
+    ORDER.map(cc => RotaData.country(cc))
   );
   results.forEach((res, i) => {
     const code = ORDER[i];

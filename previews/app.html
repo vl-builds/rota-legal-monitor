@@ -164,6 +164,7 @@
   </div>
 </footer>
 
+<script src="assets/data.js"></script>
 <script>
 const FLAGS = { nl: '🇳🇱', pt: '🇵🇹', de: '🇩🇪', es: '🇪🇸', ie: '🇮🇪' }
 const NAMES = { nl: 'Países Baixos', pt: 'Portugal', de: 'Alemanha', es: 'Espanha', ie: 'Irlanda' }
@@ -236,7 +237,7 @@ document.querySelectorAll('.tab').forEach(tab => {
 
 // ---- carrega lista ----
 async function loadList() {
-  const idx = await fetch('/data/index.json').then(r => r.json())
+  const idx = await RotaData.index()
 
   document.getElementById('last-generated').textContent =
     'Gerado ' + relativeDate(idx.generatedAt)
@@ -276,7 +277,7 @@ async function loadList() {
   try {
     let src = 0
     for (const c of idx.countries) {
-      const d = await fetch(`/data/${c.code}.json`).then(r => r.json())
+      const d = await RotaData.country(c.code)
       src += d.meta.sources.length
     }
     document.getElementById('stat-sources').textContent = src
@@ -295,7 +296,7 @@ async function loadDetail(cc) {
   document.querySelector('[data-tab="vistos"]').classList.add('active')
   document.getElementById('tab-vistos').classList.add('active')
 
-  const d = await fetch(`/data/${cc}.json`).then(r => r.json())
+  const d = await RotaData.country(cc)
 
   document.getElementById('detail-header').innerHTML = `
     <span class="flag">${FLAGS[cc] || '🏳️'}</span>

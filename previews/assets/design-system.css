@@ -372,7 +372,7 @@ a { color: inherit; text-decoration: none; }
 }
 .mobile-drawer-cta .btn { width: 100%; }
 
-@media (max-width: 1023px) {
+@media (max-width: 1180px) {
   .nav-hamburger { display: block; }
   .top-nav .nav-links { display: none; }
   .top-nav .nav-right { display: none; }
@@ -394,6 +394,8 @@ html.drawer-open, html.drawer-open body { overflow: hidden; }
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
   border: 1px solid transparent;
   cursor: pointer;
   transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 120ms ease;
@@ -712,16 +714,16 @@ tbody tr:hover { background: rgba(255, 255, 255, 0.04); }
   width: 22px; height: 16px; border-radius: 3px; display: inline-block;
   background-size: cover; background-position: center;
 }
-.flag-nl { background-image: url(/imagens/pais-nl.png); background-size: cover; background-position: center; }
-.flag-pt { background-image: url(/imagens/pais-pt.png); background-size: cover; background-position: center; }
-.flag-de { background-image: url(/imagens/pais-de.png); background-size: cover; background-position: center; }
-.flag-fr { background-image: url(/imagens/pais-fr.png); background-size: cover; background-position: center; }
-.flag-es { background-image: url(/imagens/pais-es.png); background-size: cover; background-position: center; }
-.flag-ie { background-image: url(/imagens/pais-ie.png); background-size: cover; background-position: center; }
-.flag-it { background-image: url(/imagens/pais-it.png); background-size: cover; background-position: center; }
-.flag-be { background-image: url(/imagens/pais-be.png); background-size: cover; background-position: center; }
-.flag-at { background-image: url(/imagens/pais-at.png); background-size: cover; background-position: center; }
-.flag-au { background-image: url(/imagens/pais-au.png); background-size: cover; background-position: center; }
+.flag-nl { background-image: url(/imagens/flags/nl.svg); background-size: cover; background-position: center; }
+.flag-pt { background-image: url(/imagens/flags/pt.svg); background-size: cover; background-position: center; }
+.flag-de { background-image: url(/imagens/flags/de.svg); background-size: cover; background-position: center; }
+.flag-fr { background-image: url(/imagens/flags/fr.svg); background-size: cover; background-position: center; }
+.flag-es { background-image: url(/imagens/flags/es.svg); background-size: cover; background-position: center; }
+.flag-ie { background-image: url(/imagens/flags/ie.svg); background-size: cover; background-position: center; }
+.flag-it { background-image: url(/imagens/flags/it.svg); background-size: cover; background-position: center; }
+.flag-be { background-image: url(/imagens/flags/be.svg); background-size: cover; background-position: center; }
+.flag-at { background-image: url(/imagens/flags/at.svg); background-size: cover; background-position: center; }
+.flag-au { background-image: url(/imagens/flags/au.svg); background-size: cover; background-position: center; }
 
 .badge {
   display: inline-flex;
