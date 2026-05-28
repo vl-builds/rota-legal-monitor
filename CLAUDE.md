@@ -61,6 +61,28 @@ São regras do projeto que valem aqui também:
 - **Confiar cegamente no output do LLM**. Sempre validar com Zod e falhar alto se inválido.
 - **Deletar arquivos de `data/history/`**. O histórico é o produto.
 - **Hardcodar URLs no código de extração**. URLs ficam em `src/sources/{cc}.ts`.
+- **Comitar conteúdo privado/premium/PII neste repo público** (ver regra abaixo).
+
+## Conteúdo privado nunca vai pro repo público
+
+Este é um projeto **open-core**. O repositório `rota-legal-monitor` é **público**. O conteúdo pago e os dados de alunos vivem no repositório **privado** `rota-legal-premium` e nunca podem entrar aqui.
+
+**Sempre privado (vai pro `rota-legal-premium`, nunca pro público):**
+
+- Conteúdo pago da Área do Aluno: `previews/area-aluno/cenarios/`, `calculadora-pro.html`, `comparar-pro.html`, `checklist.html`, `alertas.html`
+- Painel administrativo: `previews/area-admin/`
+- Geradores e dados dos cenários: `src/scenarios/`, `src/site/scenario-page.ts`, `data/scenarios/`
+- Dados pessoais de alunos (PII), credenciais e segredos: qualquer `credentials.json`, `.env*`, `.dev.vars`, bancos `*.db`/`*.sqlite`
+
+**Pode ser público (isca/shell da área logada):** `previews/area-aluno/index.html`, `login.html`, `guias/`, `assets/`.
+
+Regra para qualquer conteúdo novo: se envolve material pago, painel admin ou dados de aluno, vai pro repo privado. Na dúvida, trate como privado e pergunte.
+
+Enforcement (não confiar só na memória):
+
+- `.gitignore` mantém esses caminhos fora do tracking público.
+- O hook `.githooks/pre-commit` **bloqueia o commit** desses arquivos no repo público. Ele é ativado por `git config core.hooksPath .githooks`, que o `bun install` configura automaticamente (script `prepare`). Num clone novo, rode `bun install` ou o comando manualmente.
+- O backup privado é versionado em `rota-legal-premium` (pasta irmã local, com `sync-from-main.ps1`).
 
 ## Verificação cruzada na extração mensal
 

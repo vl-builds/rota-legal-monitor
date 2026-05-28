@@ -32,7 +32,8 @@
     "typecheck:web": "tsc -p functions/tsconfig.json",
     "db:migrate:local": "wrangler d1 migrations apply rota-legal-alunos --local",
     "db:migrate": "wrangler d1 migrations apply rota-legal-alunos --remote",
-    "test": "bun test"
+    "test": "bun test",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.92.0",

@@ -1,0 +1,44 @@
+#!/bin/sh
+# Guardrail do repo PUBLICO open-core (rota-legal-monitor).
+# Bloqueia o commit de conteudo privado, premium ou com dados de alunos (PII).
+# Esses arquivos pertencem ao repo PRIVADO rota-legal-premium, nunca ao publico.
+# Ver CLAUDE.md, secao "Conteudo privado nunca vai pro repo publico".
+#
+# Ativado por: git config core.hooksPath .githooks  (rode uma vez por clone).
+
+blocked=""
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  case "$f" in
+    # Painel admin: sempre privado.
+    previews/area-admin/*) blocked="$blocked  $f\n" ;;
+    # Area do aluno: allowlist do que pode ser publico (shell, login, guias isca, assets).
+    previews/area-aluno/index.html|previews/area-aluno/login.html|previews/area-aluno/guias/*|previews/area-aluno/assets/*) : ;;
+    # Qualquer outra coisa da area do aluno e tratada como premium.
+    previews/area-aluno/*) blocked="$blocked  $f\n" ;;
+    # Geradores e dados dos cenarios: produto pago.
+    src/scenarios/*|src/site/scenario-page.ts|data/scenarios/*) blocked="$blocked  $f\n" ;;
+    # Credenciais, segredos e bancos com dados pessoais.
+    *credentials.json|.env|.env.*|.dev.vars|*.sqlite|*.sqlite3|*.db) blocked="$blocked  $f\n" ;;
+  esac
+done <<EOF
+$(git diff --cached --name-only --diff-filter=ACMR)
+EOF
+
+if [ -n "$blocked" ]; then
+  printf '\n\033[31mCOMMIT BLOQUEADO (repo publico open-core)\033[0m\n' >&2
+  printf 'Conteudo privado/premium/PII nao pode ir pro repo publico:\n' >&2
+  printf "$blocked" >&2
+  printf '\nEsses arquivos pertencem ao repo PRIVADO rota-legal-premium.\n' >&2
+  printf 'Detalhes em CLAUDE.md ("Conteudo privado nunca vai pro repo publico").\n' >&2
+  printf 'Se for um falso positivo, ajuste a allowlist em .githooks/pre-commit.\n\n' >&2
+  exit 1
+fi
+
+# Conteudo: barra chaves de API Anthropic acidentalmente coladas.
+if git diff --cached -U0 --diff-filter=ACMR | grep -qE 'sk-ant-[A-Za-z0-9_-]{20,}'; then
+  printf '\n\033[31mCOMMIT BLOQUEADO\033[0m: possivel chave Anthropic (sk-ant-...) no diff.\n\n' >&2
+  exit 1
+fi
+
+exit 0
