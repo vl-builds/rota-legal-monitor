@@ -330,7 +330,6 @@
         <button class="sev-btn active" onclick="setSev('all',this)">Todas</button>
         <button class="sev-btn" onclick="setSev('major',this)">Grandes</button>
         <button class="sev-btn" onclick="setSev('minor',this)">Menores</button>
-        <button class="sev-btn" onclick="setSev('info',this)">Info</button>
       </div>
     </div>
   </div>
@@ -433,116 +432,21 @@
   </div>
 </footer>
 
+<script src="assets/data.js"></script>
 <script>
 // ---- dados de mudanças (reais + sintéticos plausíveis) ----
-const CHANGES = [
-  // NL — sintético, baseado em example.json (limiar 2026)
-  {
-    country: 'nl', date: '2026-04-29', severity: 'info',
-    title: 'Extração mensal concluída: 21 tipos de visto mapeados',
-    summary: 'Ciclo de extração de abril/2026 finalizado. Foram confirmados 21 tipos de visto vigentes na Holanda, incluindo o Migrante Altamente Qualificado e o Visto de Orientação para Pessoas Altamente Qualificadas. Sem novas mudanças detectadas neste ciclo.',
-    affects: [],
-    sourceUrl: 'https://ind.nl/en/residence-permits/work',
-  },
-  // DE — sintético
-  {
-    country: 'de', date: '2026-04-29', severity: 'info',
-    title: 'Extração mensal concluída: 12 tipos de visto mapeados',
-    summary: 'Ciclo de extração de abril/2026 finalizado. Cartão Azul da UE e Chancenkarte confirmados como principais vias para profissionais de fora da UE. Sem novas mudanças detectadas neste ciclo.',
-    affects: [],
-    sourceUrl: 'https://www.make-it-in-germany.com/en/visa-residence/types',
-  },
-  // PT — sintético
-  {
-    country: 'pt', date: '2026-04-29', severity: 'info',
-    title: 'Extração mensal concluída: 12 tipos de visto mapeados',
-    summary: 'Ciclo de extração de abril/2026 finalizado. Identificadas 12 autorizações de residência vigentes, incluindo o regime de trabalho remoto e a autorização para atividade altamente qualificada.',
-    affects: [],
-    sourceUrl: 'https://aima.gov.pt/pt/trabalhar',
-  },
-  // BE — real
-  {
-    country: 'be', date: '2026-03-16', severity: 'minor',
-    title: 'Mudança de localização do Office of Immigration da Bélgica',
-    summary: 'Pessoas convocadas para entrevista de Proteção Internacional, outro procedimento de residência ou acompanhamento ICAM não devem mais se reportar ao PASSAGE 44 a partir de 16 de março de 2026. Nova localização comunicada individualmente.',
-    affects: ['Proteção Internacional', 'Procedimentos de residência', 'Acompanhamento ICAM'],
-    sourceUrl: 'https://dofi.ibz.be/en',
-  },
-  // NL — sintético, baseado em example.json
-  {
-    country: 'nl', date: '2026-01-01', severity: 'major',
-    title: 'Novos limiares salariais do IND para 2026',
-    summary: 'O IND publicou os valores mínimos de salário para o visto de Migrante Altamente Qualificado em 2026. Para profissionais acima de 30 anos: EUR 5.688/mês (antes EUR 5.331). Para profissionais abaixo de 30 anos: EUR 4.171/mês (antes EUR 3.909). Valores em vigor a partir de 1 de janeiro de 2026.',
-    affects: ['Migrante Altamente Qualificado'],
-    sourceUrl: 'https://ind.nl/en/news/normbedragen-2026',
-  },
-  // DE — sintético
-  {
-    country: 'de', date: '2026-01-01', severity: 'major',
-    title: 'Cartão Azul da UE: novo limiar salarial de EUR 50.700 em vigor',
-    summary: 'Reajuste anual do salário mínimo bruto para o EU Blue Card na Alemanha. Para profissões não consideradas de escassez: EUR 50.700/ano. Para profissões de escassez e profissionais em início de carreira: EUR 45.934. Valores em vigor desde 1 de janeiro de 2026.',
-    affects: ['Cartão Azul da UE'],
-    sourceUrl: 'https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card',
-  },
-  // IE — real
-  {
-    country: 'ie', date: '2024-09-02', severity: 'major',
-    title: 'Critical Skills Occupations List atualizada (SI 444/2024)',
-    summary: 'Nova versão da Critical Skills Occupations List entrou em vigor com a aprovação do SI 444 de 2024. A lista foi reorganizada para refletir as ocupações críticas elegíveis para o Employment Permit de Habilidades Críticas. Profissões em TI, ciências, engenharia, saúde e educação foram revisadas.',
-    affects: ['Critical Skills Employment Permit', 'TI e Tecnologia', 'Engenharia', 'Saúde', 'Educação'],
-    sourceUrl: 'https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/',
-  },
-  // PT — real
-  {
-    country: 'pt', date: '2024-06-04', severity: 'major',
-    title: 'Revogação das autorizações de residência com dispensa de visto',
-    summary: 'Revogadas as autorizações de residência para exercício de atividade profissional subordinada e independente com dispensa de visto de residência, a partir de 4 de junho de 2024. Continuam a aplicar-se aos pedidos anteriores a esta data. Afeta especialmente brasileiros que trabalhavam em Portugal sem documentação prévia.',
-    affects: ['AR Subordinada com Dispensa de Visto', 'AR Independente com Dispensa de Visto'],
-    sourceUrl: 'https://aima.gov.pt/pt/trabalhar',
-  },
-  // PT — real
-  {
-    country: 'pt', date: '2024-06-04', severity: 'major',
-    title: 'Revogação do Artigo 88º, nº 2 do REPSAE',
-    summary: 'O artigo 88º, nº 2 do REPSAE, que permitia a regularização sem visto prévio mediante promessa de contrato de trabalho, foi revogado pelo Decreto-Lei n.º 37-A/2024, de 3 de junho. Encerra uma via de regularização muito usada por brasileiros que já estavam no país.',
-    affects: ['AR Subordinada com Dispensa de Visto'],
-    sourceUrl: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-',
-  },
-  // IE — real
-  {
-    country: 'ie', date: '2024-01-01', severity: 'major',
-    title: 'Employment Permits Act 2024 entra em vigor',
-    summary: 'A nova lei consolida e atualiza todos os tipos de Employment Permits na Irlanda, agora regulados por um único instrumento legal. Nove categorias de vistos de trabalho definidas. Simplifica o processo para empregadores e candidatos estrangeiros.',
-    affects: ['Todos os tipos de Employment Permit'],
-    sourceUrl: 'https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html',
-  },
-  // ES — real
-  {
-    country: 'es', date: '2022-12-01', severity: 'major',
-    title: 'Lei de Startups cria visto de nômade digital na Espanha',
-    summary: 'A Lei 28/2022 de promoção do ecossistema de startups, em vigor desde dezembro de 2022, criou o visto e a autorização de residência para nômades digitais. Permite trabalho remoto na Espanha para empresas estrangeiras ou como autônomo, com benefícios fiscais no regime especial.',
-    affects: ['Visto de Nômade Digital', 'Trabalhadores Remotos', 'Autônomos'],
-    sourceUrl: 'https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion',
-  },
-];
-
-const COUNTRY_META = {
-  nl: { name:'Holanda',  flag:'nl' },
-  de: { name:'Alemanha', flag:'de' },
-  pt: { name:'Portugal', flag:'pt' },
-  es: { name:'Espanha',  flag:'es' },
-  ie: { name:'Irlanda',  flag:'ie' },
-  be: { name:'Bélgica',  flag:'be' },
-};
+let CHANGES = [];
+let COUNTRY_META = {};
+let META_GENERATED = null;
 
 const SEV_LABEL = { major:'Grande', minor:'Menor', info:'Info' };
 
 // ---- estado dos filtros ----
-const activeCountries = new Set(Object.keys(COUNTRY_META));
+let activeCountries = new Set();
 let activeSev = 'all';
 
 // ---- "novo" = últimos 90 dias ----
-const NOW = new Date('2026-04-30');
+const NOW = new Date();
 function isNew(dateStr) {
   const d = new Date(dateStr + 'T12:00:00Z');
   return (NOW - d) / (1000 * 60 * 60 * 24) <= 90;
@@ -625,7 +529,7 @@ function renderStats() {
     </div>
     <div class="stat-cell">
       <span class="stat-label">Últ. atualização</span>
-      <span class="stat-val" style="font-size:16px;">abr/2026</span>
+      <span class="stat-val" style="font-size:16px;">${META_GENERATED ? META_GENERATED.toLocaleDateString('pt-BR',{month:'short',year:'numeric',timeZone:'UTC'}).replace('.','') : '-'}</span>
       <span class="stat-sub">${recent} novas nos últimos 90 dias</span>
     </div>
   `;
@@ -663,10 +567,6 @@ function renderSidebar() {
         <div class="legend-row">
           <span class="legend-dot" style="background:var(--primary)"></span>
           <span class="legend-text">Menor<span class="legend-sub">Ajuste em taxas ou detalhes</span></span>
-        </div>
-        <div class="legend-row">
-          <span class="legend-dot" style="background:var(--accent-blue)"></span>
-          <span class="legend-text">Info<span class="legend-sub">Extração mensal concluída</span></span>
         </div>
       </div>
     </div>
@@ -734,10 +634,33 @@ function render() {
 }
 
 // ---- init ----
-renderStats();
-renderCountryChips();
-renderSidebar();
-render();
+async function loadHistorico() {
+  const tl = document.getElementById('timeline');
+  try {
+    const idx = await RotaData.index();
+    META_GENERATED = idx.generatedAt ? new Date(idx.generatedAt) : null;
+    COUNTRY_META = {};
+    for (const c of idx.countries) COUNTRY_META[c.code] = { name: c.name, flag: c.code };
+    activeCountries = new Set(Object.keys(COUNTRY_META));
+    const all = await Promise.all(
+      idx.countries.map((c) => RotaData.country(c.code).then((d) => ({ code: c.code, d })).catch(() => null)),
+    );
+    CHANGES = [];
+    for (const it of all) {
+      if (!it || !it.d) continue;
+      for (const ch of (it.d.recentChanges || [])) CHANGES.push({ ...ch, country: it.code });
+    }
+    CHANGES.sort((a, b) => b.date.localeCompare(a.date));
+  } catch (e) {
+    tl.innerHTML = '<div class="empty-state">Não foi possível carregar o histórico agora. Recarregue a página.</div>';
+    return;
+  }
+  renderStats();
+  renderCountryChips();
+  renderSidebar();
+  render();
+}
+loadHistorico();
 </script>
 
 <script src="assets/nav.js" defer></script>
