@@ -5,11 +5,12 @@ import { signJWT } from '../../_shared/jwt'
 import { serializeCookie } from '../../_shared/cookies'
 import { json, error } from '../../_shared/responses'
 import { checkRateLimit, recordAttempt } from '../../_shared/rate-limit'
+import { verifyTurnstile } from '../../_shared/captcha'
 
 const ALUNO_TTL = 60 * 60 * 24 * 30 // 30 dias
 
 export const onRequestPost: PagesFunction<Env> = async (ctx) => {
-  let body: { email?: unknown; senha?: unknown }
+  let body: { email?: unknown; senha?: unknown; turnstileToken?: unknown }
   try {
     body = await ctx.request.json()
   } catch {
@@ -21,6 +22,14 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   if (!email || !senha) return error(400, 'Email e senha obrigatorios')
 
   const ip = ctx.request.headers.get('CF-Connecting-IP') ?? 'desconhecido'
+
+  if (ctx.env.TURNSTILE_SECRET) {
+    const token = typeof body.turnstileToken === 'string' ? body.turnstileToken : ''
+    if (!(await verifyTurnstile(token, ctx.env.TURNSTILE_SECRET, ip))) {
+      return error(403, 'Verificacao de seguranca falhou. Recarregue e tente de novo.')
+    }
+  }
+
   if (await checkRateLimit(ctx.env.DB, email, ip)) {
     return error(429, 'Muitas tentativas. Tente novamente em alguns minutos.')
   }

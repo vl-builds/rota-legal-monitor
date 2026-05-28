@@ -32,4 +32,8 @@
     country: (cc) => json(`${cc}.json`),
     index: () => json('index.json'),
   };
+
+  // Escapa texto vindo de dados antes de injetar via innerHTML (defesa contra XSS).
+  const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  window.escHtml = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ESC[c]);
 })();

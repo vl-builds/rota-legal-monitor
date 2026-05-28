@@ -5,6 +5,9 @@ export interface Env {
   JWT_SECRET: string
   ADMIN_EMAIL: string
   ADMIN_PASSWORD_HASH: string
+  // Cloudflare Turnstile (CAPTCHA). Opcionais: se ausentes, o captcha e pulado.
+  TURNSTILE_SITE_KEY?: string
+  TURNSTILE_SECRET?: string
 }
 
 export type AlunoStatus = 'active' | 'revoked'

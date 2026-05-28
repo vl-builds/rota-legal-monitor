@@ -481,7 +481,7 @@ function renderCountryChips() {
   el.innerHTML = Object.entries(COUNTRY_META).map(([code, m]) => {
     const active = activeCountries.has(code);
     return `<button class="fchip${active ? ' active' : ''}" onclick="toggleCountry('${code}',this)">
-      <span class="fchip-flag flag-${m.flag}"></span>${m.name}
+      <span class="fchip-flag flag-${m.flag}"></span>${escHtml(m.name)}
     </button>`;
   }).join('');
 }
@@ -551,7 +551,7 @@ function renderSidebar() {
         return `<div class="sidebar-country-row">
           <div class="sidebar-country-left">
             <span class="sidebar-flag flag-${m.flag}"></span>
-            <span class="sidebar-country-name">${m.name}</span>
+            <span class="sidebar-country-name">${escHtml(m.name)}</span>
           </div>
           <span class="sidebar-count">${count}</span>
         </div>`;
@@ -595,24 +595,25 @@ function renderTimeline() {
           .toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric', timeZone:'UTC' });
 
         const affects = c.affects.length
-          ? `<div class="entry-affects">${c.affects.map(a => `<span class="entry-affect-tag">${a}</span>`).join('')}</div>`
+          ? `<div class="entry-affects">${c.affects.map(a => `<span class="entry-affect-tag">${escHtml(a)}</span>`).join('')}</div>`
           : '';
+        const safeUrl = /^https?:\/\//i.test(c.sourceUrl || '') ? c.sourceUrl : '#';
 
         return `
           <div class="entry-card sev-${c.severity}">
             <div class="entry-meta">
               <span class="entry-flag flag-${m.flag}"></span>
-              <span class="entry-country-name">${m.name}</span>
+              <span class="entry-country-name">${escHtml(m.name)}</span>
               <span class="entry-sep">·</span>
               <span class="entry-sev-badge">${SEV_LABEL[c.severity]}</span>
               ${novo ? '<span class="entry-new-badge">Novo</span>' : ''}
               <span class="entry-date-spacer"></span>
               <span class="entry-date">${dateLabel}</span>
             </div>
-            <h3 class="entry-title">${c.title}</h3>
-            <p class="entry-summary">${c.summary}</p>
+            <h3 class="entry-title">${escHtml(c.title)}</h3>
+            <p class="entry-summary">${escHtml(c.summary)}</p>
             ${affects}
-            <a href="${c.sourceUrl}" class="entry-source" target="_blank" rel="noopener">${c.sourceUrl}</a>
+            <a href="${escHtml(safeUrl)}" class="entry-source" target="_blank" rel="noopener">${escHtml(c.sourceUrl)}</a>
           </div>`;
       }).join('');
 

@@ -462,15 +462,15 @@ function transformCountry(code, j) {
     coverText,
     coverFigs: [
       { v: rendaFig, l: 'renda mín. / ano' },
-      { v: durFig, l: 'tempo de visto' },
+      { v: escHtml(durFig), l: 'tempo de visto' },
       { v: String(visas.length), l: 'tipos de visto' },
     ],
-    rendaLabel: fmtIncomeLabel(minIncomeAnnual, incomeCcy),
-    idioma: langLabel,
+    rendaLabel: escHtml(fmtIncomeLabel(minIncomeAnnual, incomeCcy)),
+    idioma: escHtml(langLabel),
     langRequired,
     residencia: residencyAny,
     trocarEmprego: employerAny,
-    tempoVisto: fastestDur || 'A determinar',
+    tempoVisto: escHtml(fastestDur || 'A determinar'),
     detailUrl: `pais-${code}.html`,
   };
 }

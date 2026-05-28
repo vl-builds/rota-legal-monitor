@@ -11,6 +11,8 @@
   rel="stylesheet"
 />
 <link rel="stylesheet" href="../assets/design-system.css" />
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+<script src="../assets/turnstile.js" defer></script>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
@@ -63,6 +65,7 @@
           />
           <div class="field-error" id="erro" role="alert" aria-live="polite"></div>
         </div>
+        <div id="turnstile-box" style="margin: var(--s-md) 0;"></div>
         <button class="btn btn-primary" type="submit" id="submit-btn">Entrar</button>
       </form>
 
@@ -100,19 +103,37 @@
     const email = document.getElementById('email').value.trim().toLowerCase();
     const senha = document.getElementById('senha').value;
 
+    const ts = window.RotaTurnstile;
+    let turnstileToken = '';
+    if (ts) {
+      await ts.ready();
+      if (ts.enabled()) {
+        turnstileToken = ts.token();
+        if (!turnstileToken) {
+          erro.textContent = 'Confirme que voce nao e um robo.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Entrar';
+          return;
+        }
+      }
+    }
+
     try {
       const res = await fetch('/api/aluno/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ email, senha }),
+        body: JSON.stringify({ email, senha, turnstileToken }),
       });
       if (res.ok) {
         window.location.replace('index.html');
         return;
       }
+      if (ts) ts.reset();
       erro.textContent = res.status === 429
         ? 'Muitas tentativas. Aguarde alguns minutos.'
+        : res.status === 403
+        ? 'Verificacao de seguranca falhou. Tente de novo.'
         : 'Email ou senha invalidos.';
     } catch (err) {
       erro.textContent = 'Erro ao verificar credenciais. Tente novamente.';
