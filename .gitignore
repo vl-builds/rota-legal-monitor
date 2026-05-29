@@ -11,6 +11,14 @@
 # O login.html antigo lia este arquivo; foi substituido por auth server-side.
 previews/area-aluno/credentials.json
 
+# Dados sensiveis / PII de alunos: independente de caminho.
+# Espelha o .githooks/pre-commit para que exports, backups ou bancos
+# criados em qualquer pasta sejam ignorados, nao so os caminhos atuais.
+**/credentials.json
+*.db
+*.sqlite
+*.sqlite3
+
 # Conteudo PREMIUM (produto pago). Fora do repo publico no modelo open-core.
 # Continua no disco para deploy via wrangler e deve ser versionado em repo privado.
 # Mantidos publicos (isca/shell): area-aluno/index.html, login.html, guias/, assets/.
@@ -67,3 +75,6 @@ coverage/
 
 # Planos e ideias para o futuro (nao versionar)
 projetos futuros/
+
+# Screenshots locais de preview (gerados via chrome-headless-shell)
+preview-shots/

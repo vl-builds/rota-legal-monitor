@@ -3,148 +3,1566 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Área Aluno — Rota Legal</title>
+<title>Hub — Área Aluno · Rota Legal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-  rel="stylesheet"
-/>
-<link rel="stylesheet" href="../assets/design-system.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <script src="assets/auth-guard.js"></script>
+<style>
+/* ── Design tokens (hub premium) ──────────────────────────────── */
+:root {
+  --bg:           #0a0a0c;
+  --bg-elev:      #111114;
+  --card-bg:      #0f0f12;
+  --card-border:  rgba(255,255,255,0.06);
+  --row-divider:  rgba(255,255,255,0.04);
+  --divider:      rgba(255,255,255,0.08);
+  --chip-bg:      rgba(255,255,255,0.04);
+  --chip-border:  rgba(255,255,255,0.10);
+
+  --text:         #f4f4f5;
+  --muted:        rgba(244,244,245,0.50);
+  --muted-2:      rgba(244,244,245,0.30);
+
+  --accent:       #F5C518;
+  --accent-bg:    rgba(245,197,24,0.12);
+  --accent-border:rgba(245,197,24,0.25);
+  --accent-on:    #1a1503;
+
+  --ok:           #34d399;
+  --bad:          #f87171;
+  --purple:       #a78bfa;
+
+  --sans:  'Geist', 'Inter', sans-serif;
+  --mono:  'Geist Mono', 'JetBrains Mono', monospace;
+  --display: 'Geist', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ── Top nav ──────────────────────────────────────────────────── */
+.hub-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 56px;
+  height: 56px;
+  border-bottom: 1px solid var(--divider);
+  background: rgba(10,10,12,0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hub-nav-left { display: flex; align-items: center; gap: 32px; }
+.hub-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.hub-logo-icon {
+  width: 26px; height: 26px; border-radius: 7px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hub-logo-name {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.hub-nav-links {
+  display: flex;
+  gap: 22px;
+}
+.hub-nav-link {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.15s;
+}
+.hub-nav-link:hover { color: var(--text); }
+.hub-nav-link.active {
+  color: var(--text);
+  font-weight: 500;
+}
+.hub-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 0; right: 0;
+  height: 1.5px;
+  background: var(--accent);
+}
+.hub-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hub-nav-user {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.hub-btn-sair {
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: opacity 0.15s;
+}
+.hub-btn-sair:hover { opacity: 0.88; }
+
+/* ── Main content wrapper ─────────────────────────────────────── */
+.hub-wrap {
+  padding: 40px 56px 64px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+/* ── Greeting + stats strip ───────────────────────────────────── */
+.hub-top {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 36px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+.hub-greeting-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ok);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+.hub-greeting-eyebrow .sdot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--ok);
+  box-shadow: 0 0 8px var(--ok);
+  flex-shrink: 0;
+}
+.hub-greeting-title {
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin-bottom: 6px;
+  font-family: var(--display);
+}
+.hub-greeting-body {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.55;
+}
+.hub-greeting-body .hl { color: var(--text); }
+.hub-greeting-body .hla { color: var(--accent); }
+
+.hub-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--card-border);
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+}
+.hub-stat-cell {
+  background: var(--card-bg);
+  padding: 18px 20px;
+}
+.hub-stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hub-stat-value {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  line-height: 1;
+}
+.hub-stat-value.urgent { color: var(--accent); }
+.hub-stat-hint {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: -0.005em;
+  margin-top: 6px;
+}
+.hub-stat-hint.urgent { color: var(--accent); }
+
+/* ── Bento grid ───────────────────────────────────────────────── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  grid-auto-rows: minmax(0, auto);
+}
+
+/* Featured card (Checklist, 2×2) */
+.bento-featured {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: linear-gradient(180deg, rgba(245,197,24,0.05) 0%, var(--card-bg) 60%);
+  border: 1px solid rgba(245,197,24,0.20);
+  border-radius: 18px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.bento-featured:hover { border-color: rgba(245,197,24,0.40); }
+
+/* Dot grid pattern */
+.dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse at top right, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, transparent 70%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.bento-featured-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  position: relative;
+}
+.bento-feat-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(245,197,24,0.12);
+  border: 1px solid rgba(245,197,24,0.25);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.bento-feat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(245,197,24,0.10);
+  border: 1px solid rgba(245,197,24,0.25);
+  font-size: 10px;
+  font-family: var(--mono);
+  color: var(--accent);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.bento-feat-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 8px;
+}
+.bento-feat-title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  font-family: var(--display);
+  position: relative;
+}
+.bento-feat-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 380px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.bento-feat-spacer { flex: 1; }
+.bento-feat-progress {
+  margin-bottom: 24px;
+  position: relative;
+}
+.bento-feat-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.prog-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.prog-value {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+.prog-pct { color: var(--accent); }
+.prog-meta { color: var(--muted); margin-left: 8px; }
+.progress-track {
+  width: 100%;
+  height: 5px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(245,197,24,0.35);
+  width: 0%;
+  transition: width 0.4s ease;
+}
+.bento-feat-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--row-divider);
+  position: relative;
+}
+.status-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.status-dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  flex-shrink: 0;
+}
+.status-dot.available { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+.status-dot.new-item  { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.status-dot.count     { background: var(--muted); }
+.btn-feat-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #1a1503;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: -0.005em;
+  font-family: var(--sans);
+  transition: opacity 0.15s;
+  text-decoration: none;
+}
+.btn-feat-cta:hover { opacity: 0.9; }
+
+/* Regular bento tile */
+.bento-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 200px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+.bento-card:hover {
+  border-color: rgba(255,255,255,0.10);
+  transform: translateY(-2px);
+}
+.bento-card.wide {
+  flex-direction: row;
+  gap: 24px;
+  min-height: 130px;
+}
+.bento-card.span2 { grid-column: span 2; }
+
+.bento-card-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 18px;
+}
+.bento-card.wide .bento-card-icon { margin-bottom: 0; }
+.bento-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.bento-card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+.bento-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-family: var(--sans);
+}
+.bento-card-arrow {
+  color: var(--muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.bento-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.bento-card.wide .bento-card-desc { -webkit-line-clamp: 2; }
+.bento-card:not(.wide) .bento-card-desc { -webkit-line-clamp: 3; }
+.bento-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+.bento-card-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted-2);
+  letter-spacing: 0.04em;
+}
+
+/* ── Activity timeline ────────────────────────────────────────── */
+.activity-section { margin-top: 28px; }
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 4px;
+}
+.section-heading-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-heading-line {
+  flex: 1;
+  height: 1px;
+  background: var(--divider);
+}
+.section-heading-right {
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.activity-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.activity-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 18px;
+  align-items: center;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--row-divider);
+  transition: background 0.12s;
+}
+.activity-row:last-child { border-bottom: none; }
+.activity-row:hover { background: rgba(255,255,255,0.02); }
+.activity-dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.activity-dot.doc    { background: rgba(52,211,153,0.10);  color: var(--ok); }
+.activity-dot.alert  { background: rgba(245,197,24,0.10);  color: var(--accent); }
+.activity-dot.export { background: rgba(167,139,250,0.10); color: var(--purple); }
+.activity-dot.new    { background: rgba(245,197,24,0.10);  color: var(--accent); }
+.activity-label { font-size: 13.5px; color: var(--text); letter-spacing: -0.005em; }
+.activity-tool  { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.activity-when  { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 30px; text-align: right; }
+
+/* ── Mobile header (hidden desktop) ──────────────────────────── */
+.mobile-header { display: none; }
+.mobile-deadline { display: none; }
+.mobile-stats    { display: none; }
+.mobile-sections { display: none; }
+.mobile-tabbar   { display: none; }
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1280px) {
+  .bento { grid-template-columns: repeat(4, 1fr); }
+  .hub-wrap { padding: 32px 32px 56px; }
+  .hub-nav { padding: 0 32px; }
+}
+@media (max-width: 1023px) {
+  .bento { grid-template-columns: repeat(3, 1fr); }
+  .bento-featured { grid-column: span 2; grid-row: span 1; }
+  .bento-card.span2 { grid-column: span 2; }
+  .hub-top { grid-template-columns: 1fr; gap: 20px; }
+  .hub-stats { grid-template-columns: repeat(2, 1fr); }
+  .hub-nav-links { gap: 14px; }
+}
+@media (max-width: 767px) {
+  /* Hide desktop elements */
+  .hub-nav      { display: none; }
+  .hub-wrap     { display: none; }
+
+  /* Show mobile elements */
+  .mobile-header   { display: flex; }
+  .mobile-deadline { display: block; }
+  .mobile-stats    { display: grid; }
+  .mobile-sections { display: block; }
+  .mobile-tabbar   { display: flex; }
+
+  body { padding-bottom: 88px; }
+}
+
+/* ── Mobile layout ────────────────────────────────────────────── */
+.mobile-scroll {
+  padding: 14px 20px 0;
+}
+
+/* Mobile header */
+.mobile-header {
+  padding: 54px 20px 18px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.mobile-header-left {}
+.mobile-header-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ok);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.mobile-header-eyebrow .sdot {
+  width: 5px; height: 5px; border-radius: 999px;
+  background: var(--ok);
+  box-shadow: 0 0 6px var(--ok);
+}
+.mobile-header-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-family: var(--display);
+}
+.mobile-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.mobile-bell-btn {
+  width: 36px; height: 36px; border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text);
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.mobile-bell-badge {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 7px; height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 1.5px solid var(--bg);
+}
+.mobile-avatar {
+  width: 36px; height: 36px; border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent) 0%, #e0a800 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  color: #1a1503;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Mobile deadline card */
+.mobile-deadline {
+  margin: 0 20px 16px;
+}
+.mobile-deadline-inner {
+  background: linear-gradient(135deg, rgba(245,197,24,0.10) 0%, var(--card-bg) 70%);
+  border: 1px solid rgba(245,197,24,0.22);
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.mobile-deadline-bg {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse at top right, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, transparent 65%);
+  pointer-events: none;
+}
+.mobile-deadline-left { position: relative; }
+.mobile-deadline-d {
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  font-family: var(--display);
+  line-height: 1;
+}
+.mobile-deadline-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+.mobile-deadline-doc {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.mobile-deadline-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.mobile-deadline-btn {
+  width: 38px; height: 38px; border-radius: 999px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: #1a1503;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Mobile stats */
+.mobile-stats {
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+.mobile-stat-cell {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 14px;
+}
+.mobile-stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.mobile-stat-value {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  font-family: var(--display);
+  line-height: 1;
+}
+.mobile-stat-value.urgent { color: var(--accent); }
+.mobile-stat-hint {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Mobile featured continue card */
+.mobile-sections { padding: 0 20px; }
+.mobile-section-heading {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.mobile-featured-card {
+  background: linear-gradient(135deg, rgba(245,197,24,0.06) 0%, var(--card-bg) 70%);
+  border: 1px solid rgba(245,197,24,0.22);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.mobile-feat-bg {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse at top right, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at top right, black 0%, transparent 65%);
+  pointer-events: none;
+}
+.mobile-feat-top {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.mobile-feat-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: rgba(245,197,24,0.12);
+  border: 1px solid rgba(245,197,24,0.25);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mobile-feat-title { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 4px; }
+.mobile-feat-meta  { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.mobile-feat-progress { position: relative; margin-bottom: 14px; }
+.mobile-feat-prog-row {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 11px;
+  margin-bottom: 8px;
+}
+.mobile-feat-prog-pct { color: var(--accent); font-weight: 500; }
+.mobile-feat-prog-meta { color: var(--muted); }
+.btn-mobile-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--accent);
+  color: #1a1503;
+  border: none;
+  padding: 11px 16px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--sans);
+  text-decoration: none;
+  position: relative;
+}
+
+/* Mobile tool rows */
+.mobile-tool-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+.mobile-tool-card:hover { border-color: rgba(255,255,255,0.10); }
+.mobile-tool-card.accent-variant {
+  background: linear-gradient(135deg, rgba(245,197,24,0.06) 0%, var(--card-bg) 70%);
+  border-color: rgba(245,197,24,0.18);
+}
+.mobile-tool-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mobile-tool-icon.accent {
+  background: rgba(245,197,24,0.12);
+  border-color: rgba(245,197,24,0.25);
+  color: var(--accent);
+}
+.mobile-tool-body { flex: 1; min-width: 0; }
+.mobile-tool-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; }
+.mobile-tool-desc  { font-size: 12.5px; color: var(--muted); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mobile-tool-footer { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
+
+.mobile-tool-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 13px 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+.mobile-tool-row:hover { border-color: rgba(255,255,255,0.10); }
+.mobile-tool-row-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mobile-tool-row-body { flex: 1; min-width: 0; }
+.mobile-tool-row-title { font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; }
+.mobile-tool-row-status { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.1em; }
+.mobile-tool-row-meta  { font-family: var(--mono); font-size: 11px; color: var(--muted-2); white-space: nowrap; }
+.mobile-tool-row-arrow { color: var(--muted); flex-shrink: 0; opacity: 0.5; }
+
+/* Mobile activity */
+.mobile-activity-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Mobile tab bar */
+.mobile-tabbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(10,10,12,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--divider);
+  padding: 8px 0 28px;
+  justify-content: stretch;
+}
+.mobile-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.15s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--sans);
+}
+.mobile-tab.active { color: var(--accent); }
+.mobile-tab:hover:not(.active) { color: var(--text); }
+.mobile-tab-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.mobile-tab.active .mobile-tab-label { font-weight: 600; }
+
+/* Sheet "Mais" do menu mobile */
+.hub-more-sheet { display: none; }
+@media (max-width: 767px) { .hub-more-sheet { display: block; } }
+.hub-more-sheet {
+  position: fixed; inset: 0; z-index: 300;
+  visibility: hidden; pointer-events: none;
+}
+.hub-more-sheet.open { visibility: visible; pointer-events: auto; }
+.hub-more-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.6); opacity: 0; transition: opacity 0.2s ease; }
+.hub-more-sheet.open .hub-more-backdrop { opacity: 1; }
+.hub-more-panel {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--card-bg); border-top: 1px solid var(--divider);
+  border-radius: 18px 18px 0 0; padding: 10px 14px calc(28px + env(safe-area-inset-bottom));
+  transform: translateY(100%); transition: transform 0.24s ease;
+}
+.hub-more-sheet.open .hub-more-panel { transform: translateY(0); }
+.hub-more-handle { width: 36px; height: 4px; border-radius: 999px; background: rgba(255,255,255,0.18); margin: 4px auto 12px; }
+.hub-more-title { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; padding: 0 8px 8px; }
+.hub-more-item {
+  display: flex; align-items: center; gap: 14px; padding: 13px 8px; border-radius: 12px;
+  color: var(--text); text-decoration: none; font-size: 15px; font-weight: 500;
+  border: none; background: none; width: 100%; cursor: pointer; font-family: var(--sans); text-align: left;
+}
+.hub-more-item:hover { background: rgba(255,255,255,0.04); }
+.hub-more-item .hub-more-ico {
+  width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text); display: flex; align-items: center; justify-content: center;
+}
+.hub-more-item.danger { color: var(--bad); }
+.hub-more-item.danger .hub-more-ico { color: var(--bad); }
+@media (prefers-reduced-motion: reduce) { .hub-more-backdrop, .hub-more-panel { transition: none; } }
+</style>
 </head>
 <body>
-<div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
 
-<nav class="top-nav">
-  <div class="container">
-    <a class="logo" href="../index.html">
-      <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height: 26px; width: auto; display: block;">
-      <span>rota-legal-monitor</span>
+<!-- ══════════════════════════════════════════════════════════════
+     DESKTOP LAYOUT
+════════════════════════════════════════════════════════════════ -->
+
+<!-- Top nav -->
+<nav class="hub-nav">
+  <div class="hub-nav-left">
+    <a class="hub-logo" href="../index.html">
+      <div class="hub-logo-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#1a1503"><path d="M12 2L4 8V20H10V14H14V20H20V8L12 2Z"/></svg>
+      </div>
+      <span class="hub-logo-name">rota-legal-monitor</span>
     </a>
-    <div class="nav-links">
-      <a class="nav-link" href="index.html">Hub</a>
-      <a class="nav-link" href="checklist.html">Checklist</a>
-      <a class="nav-link" href="calculadora-pro.html">Calculadora Pro</a>
-      <a class="nav-link" href="comparar-pro.html">Comparador Pro</a>
-      <a class="nav-link" href="cenarios/index.html">Cenários</a>
-      <a class="nav-link" href="guias/index.html">Guias</a>
-      <a class="nav-link" href="alertas.html">Alertas</a>
-      <a class="nav-link" href="../index.html">Site público</a>
-    </div>
-    <div class="nav-right">
-      <span class="caption-up" id="aluno-nome" style="color: var(--muted);"></span>
-      <button class="btn btn-secondary" type="button" onclick="window.alunoLogout()">Sair</button>
-    </div>
+    <nav class="hub-nav-links">
+      <a class="hub-nav-link active" href="index.html">Hub</a>
+      <a class="hub-nav-link" href="checklist.html">Checklist</a>
+      <a class="hub-nav-link" href="calculadora-pro.html">Calculadora Pro</a>
+      <a class="hub-nav-link" href="comparar-pro.html">Comparador Pro</a>
+      <a class="hub-nav-link" href="cenarios/index.html">Cenários</a>
+      <a class="hub-nav-link" href="guias/index.html">Guias</a>
+      <a class="hub-nav-link" href="alertas.html">Alertas</a>
+    </nav>
+  </div>
+  <div class="hub-nav-right">
+    <span class="hub-nav-user" id="nav-username">carregando</span>
+    <button class="hub-btn-sair" onclick="window.alunoLogout()">Sair</button>
   </div>
 </nav>
 
-<main>
-  <section class="section">
-    <div class="container">
-      <div class="eyebrow"><span class="dot"></span>Área Exclusiva</div>
-      <h1 class="display-lg">
-        Bem-vindo, <span class="accent" id="aluno-nome-grande">aluno</span>.
-      </h1>
-      <p class="lede">
-        Ferramentas, guias e cenários pré-prontos que só alunos do curso têm acesso.
-        Use para acelerar a sua decisão e preparar seus documentos.
+<!-- Main desktop content -->
+<div class="hub-wrap">
+
+  <!-- Greeting + stats strip -->
+  <div class="hub-top">
+    <div class="hub-greeting">
+      <div class="hub-greeting-eyebrow">
+        <span class="sdot"></span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3L13.5 9L19 10.5L13.5 12L12 18L10.5 12L5 10.5L10.5 9L12 3Z" stroke-linejoin="round"/><path d="M19 16L19.7 18.3L22 19L19.7 19.7L19 22L18.3 19.7L16 19L18.3 18.3L19 16Z" stroke-linejoin="round"/></svg>
+        Área exclusiva · membros
+      </div>
+      <h1 class="hub-greeting-title">Bem-vindo, <span id="greeting-name">aluno</span>.</h1>
+      <p class="hub-greeting-body">
+        Continue sua jornada. Você tem <span class="hl">14 de 22 documentos</span> coletados e o próximo prazo em <span class="hla">12 dias</span>.
       </p>
     </div>
-  </section>
 
-  <section class="section-tight">
-    <div class="container">
-      <div class="feature-grid">
-
-        <a href="checklist.html" class="feature-card-dark">
-          <div class="icon">CL</div>
-          <h3 class="title-md">Checklist Personalizada</h3>
-          <p class="body-md">
-            Marque seu país, visto e perfil. Geramos a lista priorizada de documentos,
-            exportável em PDF.
-          </p>
-          <span class="badge new">Disponível</span>
-        </a>
-
-        <a href="calculadora-pro.html" class="feature-card-dark">
-          <div class="icon">CP</div>
-          <h3 class="title-md">Calculadora Pro</h3>
-          <p class="body-md">
-            Projeção mês a mês com filhos, healthcare, IRS local e fees oficiais. Exporta em PDF.
-          </p>
-          <span class="badge new">Disponível</span>
-        </a>
-
-        <a href="comparar-pro.html" class="feature-card-dark">
-          <div class="icon">CO</div>
-          <h3 class="title-md">Comparador Pro</h3>
-          <p class="body-md">
-            Compare países com pesos personalizáveis por critério. Ranking sob medida pro seu perfil.
-          </p>
-          <span class="badge new">Disponível</span>
-        </a>
-
-        <a href="cenarios/index.html" class="feature-card-dark">
-          <div class="icon">CE</div>
-          <h3 class="title-md">Biblioteca de Cenários</h3>
-          <p class="body-md">
-            Dossiês prontos cobrindo combinações comuns (dev solo, família, aposentado).
-            Visto recomendado + plano mês a mês + bairros.
-          </p>
-          <span class="badge new">Disponível</span>
-        </a>
-
-        <a href="guias/index.html" class="feature-card-dark">
-          <div class="icon">GU</div>
-          <h3 class="title-md">Guias Práticos</h3>
-          <p class="body-md">
-            Tutoriais passo a passo dos procedimentos burocráticos: apostila, VFS, tradução juramentada.
-          </p>
-          <span class="badge new">3 guias</span>
-        </a>
-
-        <a class="feature-card-dark" href="alertas.html">
-          <div class="icon">AL</div>
-          <h3 class="title-md">Alertas por Email</h3>
-          <p class="body-md">
-            Receba aviso quando uma regra importante mudar nos países que você acompanha.
-          </p>
-          <span class="badge new">Novo</span>
-        </a>
-
-        <div class="feature-card-dark" style="opacity: 0.6;">
-          <div class="icon">TP</div>
-          <h3 class="title-md">Templates Baixáveis</h3>
-          <p class="body-md">
-            Cartas de motivação, planilhas de custos e formulários consulares preenchidos
-            como exemplo.
-          </p>
-          <span class="badge">Em breve</span>
-        </div>
-
+    <div class="hub-stats">
+      <div class="hub-stat-cell">
+        <div class="hub-stat-label">Países acompanhados</div>
+        <div class="hub-stat-value">3</div>
+        <div class="hub-stat-hint">PT · NL · DE</div>
+      </div>
+      <div class="hub-stat-cell">
+        <div class="hub-stat-label">Checklists ativas</div>
+        <div class="hub-stat-value">2</div>
+        <div class="hub-stat-hint">64% completas</div>
+      </div>
+      <div class="hub-stat-cell">
+        <div class="hub-stat-label">Documentos coletados</div>
+        <div class="hub-stat-value">14</div>
+        <div class="hub-stat-hint">de 22 necessários</div>
+      </div>
+      <div class="hub-stat-cell">
+        <div class="hub-stat-label">Próximo prazo</div>
+        <div class="hub-stat-value urgent">D-12</div>
+        <div class="hub-stat-hint urgent">Apostila Haia · PT</div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
 
-<footer>
-  <div class="container">
-    <div class="footer-bottom">
-      <span>© 2026 Rota Legal · Área Aluno · MIT</span>
-      <span class="caption-up">Acesso exclusivo para alunos do curso</span>
+  <!-- Bento grid -->
+  <div class="bento">
+
+    <!-- 1. Checklist — 2×2 hero -->
+    <a href="checklist.html" class="bento-featured" id="feat-card">
+      <div class="dot-grid"></div>
+
+      <div class="bento-featured-top">
+        <div class="bento-feat-icon">
+          <!-- check-list icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <path d="M5 6.5L6.2 7.7L8 5.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <path d="M5 17.5L6.2 18.7L8 16.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 6H21" stroke-linecap="round"/>
+            <path d="M13 9H18" stroke-linecap="round" opacity="0.55"/>
+            <path d="M13 17H21" stroke-linecap="round"/>
+            <path d="M13 20H18" stroke-linecap="round" opacity="0.55"/>
+          </svg>
+        </div>
+        <div class="bento-feat-pill">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3L13.5 9L19 10.5L13.5 12L12 18L10.5 12L5 10.5L10.5 9L12 3Z" stroke-linejoin="round"/></svg>
+          Continue
+        </div>
+      </div>
+
+      <div class="bento-feat-eyebrow">Próximo passo</div>
+      <h2 class="bento-feat-title">Checklist Personalizada</h2>
+      <p class="bento-feat-desc">Marque seu país, visto e perfil. Geramos a lista priorizada de documentos, exportável em PDF.</p>
+
+      <div class="bento-feat-spacer"></div>
+
+      <div class="bento-feat-progress">
+        <div class="bento-feat-progress-header">
+          <span class="prog-label">Progresso</span>
+          <span class="prog-value">
+            <span class="prog-pct">64%</span>
+            <span class="prog-meta">· 14 / 22 docs</span>
+          </span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="prog-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="bento-feat-footer">
+        <span class="status-line">
+          <span class="status-dot available"></span>
+          Disponível
+        </span>
+        <span class="btn-feat-cta">
+          Continuar checklist
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12H19"/><path d="M13 6L19 12L13 18"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- 2. Calculadora — 2×1 wide -->
+    <a href="calculadora-pro.html" class="bento-card wide span2">
+      <div class="bento-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="3" width="16" height="18" rx="2"/>
+          <rect x="7" y="6" width="10" height="3" rx="0.5"/>
+          <circle cx="8.5" cy="13" r="0.8" fill="currentColor"/>
+          <circle cx="12"  cy="13" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="13" r="0.8" fill="currentColor"/>
+          <circle cx="8.5" cy="17" r="0.8" fill="currentColor"/>
+          <circle cx="12"  cy="17" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="17" r="0.8" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="bento-card-content">
+        <div class="bento-card-title-row">
+          <h3 class="bento-card-title">Calculadora Pro</h3>
+          <svg class="bento-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7" stroke-linecap="round"/><path d="M8 7H17V16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="bento-card-desc">Projeção mês a mês com filhos, healthcare, IRS local e fees oficiais. Exporta em PDF.</p>
+        <div class="bento-card-footer">
+          <span class="status-line"><span class="status-dot available"></span>Disponível</span>
+          <span class="bento-card-meta">3 simulações</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 3. Comparador Pro — 1×1 -->
+    <a href="comparar-pro.html" class="bento-card">
+      <div class="bento-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M7 4V20" stroke-linecap="round"/>
+          <path d="M17 4V20" stroke-linecap="round"/>
+          <path d="M3 8L7 4L11 8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13 16L17 20L21 16" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="bento-card-content">
+        <div class="bento-card-title-row">
+          <h3 class="bento-card-title">Comparador Pro</h3>
+          <svg class="bento-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7" stroke-linecap="round"/><path d="M8 7H17V16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="bento-card-desc">Compare países com pesos personalizáveis por critério. Ranking sob medida pro seu perfil.</p>
+        <div class="bento-card-footer">
+          <span class="status-line"><span class="status-dot available"></span>Disponível</span>
+          <span class="bento-card-meta">3 países ativos</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 4. Cenários — 1×1 -->
+    <a href="cenarios/index.html" class="bento-card">
+      <div class="bento-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="4" height="18" rx="1"/>
+          <rect x="9" y="3" width="4" height="18" rx="1"/>
+          <path d="M15.5 4.5L19.5 5.5L17 21L13 20L15.5 4.5Z"/>
+        </svg>
+      </div>
+      <div class="bento-card-content">
+        <div class="bento-card-title-row">
+          <h3 class="bento-card-title">Biblioteca de Cenários</h3>
+          <svg class="bento-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7" stroke-linecap="round"/><path d="M8 7H17V16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="bento-card-desc">Dossiês prontos cobrindo combinações comuns (dev solo, família, aposentado). Visto recomendado + plano mês a mês.</p>
+        <div class="bento-card-footer">
+          <span class="status-line"><span class="status-dot available"></span>Disponível</span>
+          <span class="bento-card-meta">24 cenários</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 5. Guias — 2×1 wide -->
+    <a href="guias/index.html" class="bento-card wide span2">
+      <div class="bento-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4H10C11.1 4 12 4.9 12 6V20C12 19 11 18 10 18H4V4Z" stroke-linejoin="round"/>
+          <path d="M20 4H14C12.9 4 12 4.9 12 6V20C12 19 13 18 14 18H20V4Z" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="bento-card-content">
+        <div class="bento-card-title-row">
+          <h3 class="bento-card-title">Guias Práticos</h3>
+          <svg class="bento-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7" stroke-linecap="round"/><path d="M8 7H17V16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="bento-card-desc">Tutoriais passo a passo dos procedimentos burocráticos: apostila, VFS, tradução juramentada.</p>
+        <div class="bento-card-footer">
+          <span class="status-line"><span class="status-dot count"></span>3 guias</span>
+          <span class="bento-card-meta">3 guias</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 6. Alertas — 1×1 -->
+    <a href="alertas.html" class="bento-card">
+      <div class="bento-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 8C6 4.7 8.7 2 12 2C15.3 2 18 4.7 18 8V13L20 16H4L6 13V8Z" stroke-linejoin="round"/>
+          <path d="M10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19" stroke-linecap="round"/>
+          <circle cx="18" cy="5" r="2.5" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="bento-card-content">
+        <div class="bento-card-title-row">
+          <h3 class="bento-card-title">Alertas por Email</h3>
+          <svg class="bento-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7" stroke-linecap="round"/><path d="M8 7H17V16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="bento-card-desc">Receba aviso quando uma regra importante mudar nos países que você acompanha.</p>
+        <div class="bento-card-footer">
+          <span class="status-line"><span class="status-dot new-item"></span>Novo</span>
+          <span class="bento-card-meta">2 ativos</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 7. Templates — 1×1 -->
+    <a href="#" class="bento-card" style="opacity: 0.7; pointer-events: none;">
+      <div class="bento-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 3V15" stroke-linecap="round"/>
+          <path d="M7 10L12 15L17 10" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 18V20C4 20.5 4.5 21 5 21H19C19.5 21 20 20.5 20 20V18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="bento-card-content">
+        <div class="bento-card-title-row">
+          <h3 class="bento-card-title">Templates Baixáveis</h3>
+          <svg class="bento-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7" stroke-linecap="round"/><path d="M8 7H17V16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="bento-card-desc">Cartas de motivação, planilhas de custos e formulários consulares preenchidos como exemplo.</p>
+        <div class="bento-card-footer">
+          <span class="status-line"><span class="status-dot count"></span>Em breve</span>
+          <span class="bento-card-meta">18 arquivos</span>
+        </div>
+      </div>
+    </a>
+
+  </div><!-- /bento -->
+
+  <!-- Activity timeline -->
+  <div class="activity-section">
+    <div class="section-heading">
+      <span class="section-heading-label">· Atividade recente</span>
+      <span class="section-heading-line"></span>
+      <span class="section-heading-right">Ver tudo →</span>
+    </div>
+    <div class="activity-card">
+      <div class="activity-row">
+        <div class="activity-dot doc">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><path d="M5 6.5L6.2 7.7L8 5.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M5 17.5L6.2 18.7L8 16.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 6H21" stroke-linecap="round"/><path d="M13 17H21" stroke-linecap="round"/></svg>
+        </div>
+        <div class="activity-label">Certidão de nascimento adicionada à checklist</div>
+        <div class="activity-tool">Checklist</div>
+        <div class="activity-when">2h</div>
+      </div>
+      <div class="activity-row">
+        <div class="activity-dot alert">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8C6 4.7 8.7 2 12 2C15.3 2 18 4.7 18 8V13L20 16H4L6 13V8Z" stroke-linejoin="round"/><path d="M10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19" stroke-linecap="round"/></svg>
+        </div>
+        <div class="activity-label">Países Baixos atualizou exigência do MVV</div>
+        <div class="activity-tool">Alertas</div>
+        <div class="activity-when">8h</div>
+      </div>
+      <div class="activity-row">
+        <div class="activity-dot export">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3V15" stroke-linecap="round"/><path d="M7 10L12 15L17 10" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 18V20C4 20.5 4.5 21 5 21H19C19.5 21 20 20.5 20 20V18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="activity-label">Calculadora · simulação PT exportada em PDF</div>
+        <div class="activity-tool">Calculadora Pro</div>
+        <div class="activity-when">1d</div>
+      </div>
+      <div class="activity-row">
+        <div class="activity-dot new">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3L13.5 9L19 10.5L13.5 12L12 18L10.5 12L5 10.5L10.5 9L12 3Z" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="activity-label">Novo cenário: Família com 1 filho · DE</div>
+        <div class="activity-tool">Cenários</div>
+        <div class="activity-when">2d</div>
+      </div>
     </div>
   </div>
-</footer>
+
+</div><!-- /hub-wrap -->
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     MOBILE LAYOUT
+════════════════════════════════════════════════════════════════ -->
+
+<!-- Mobile header -->
+<div class="mobile-header">
+  <div class="mobile-header-left">
+    <div class="mobile-header-eyebrow">
+      <span class="sdot"></span>
+      Área exclusiva
+    </div>
+    <div class="mobile-header-title">Olá, <span id="mobile-greeting-name">aluno</span>.</div>
+  </div>
+  <div class="mobile-header-right">
+    <button class="mobile-bell-btn" onclick="window.location.href='alertas.html'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8C6 4.7 8.7 2 12 2C15.3 2 18 4.7 18 8V13L20 16H4L6 13V8Z" stroke-linejoin="round"/><path d="M10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19" stroke-linecap="round"/></svg>
+      <div class="mobile-bell-badge"></div>
+    </button>
+    <div class="mobile-avatar" id="mobile-avatar">A</div>
+  </div>
+</div>
+
+<!-- Mobile deadline card -->
+<div class="mobile-deadline">
+  <div class="mobile-deadline-inner">
+    <div class="mobile-deadline-bg"></div>
+    <div class="mobile-deadline-left">
+      <div class="mobile-deadline-d">D-12</div>
+      <div class="mobile-deadline-date">09 jun 2026</div>
+      <div class="mobile-deadline-doc">Apostila de Haia</div>
+      <div class="mobile-deadline-sub">Certidão de nascimento · PT</div>
+    </div>
+    <a href="checklist.html" class="mobile-deadline-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12H19"/><path d="M13 6L19 12L13 18"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Mobile stats 2×2 -->
+<div class="mobile-stats">
+  <div class="mobile-stat-cell">
+    <div class="mobile-stat-label">Países</div>
+    <div class="mobile-stat-value">3</div>
+    <div class="mobile-stat-hint">PT · NL · DE</div>
+  </div>
+  <div class="mobile-stat-cell">
+    <div class="mobile-stat-label">Próximo prazo</div>
+    <div class="mobile-stat-value urgent">D-12</div>
+    <div class="mobile-stat-hint">Apostila Haia</div>
+  </div>
+  <div class="mobile-stat-cell">
+    <div class="mobile-stat-label">Documentos</div>
+    <div class="mobile-stat-value">14</div>
+    <div class="mobile-stat-hint">de 22 coletados</div>
+  </div>
+  <div class="mobile-stat-cell">
+    <div class="mobile-stat-label">Checklists</div>
+    <div class="mobile-stat-value">2</div>
+    <div class="mobile-stat-hint">64% completas</div>
+  </div>
+</div>
+
+<!-- Mobile sections -->
+<div class="mobile-sections">
+
+  <!-- Continue -->
+  <div class="mobile-section-heading">Continue de onde parou</div>
+  <div class="mobile-featured-card">
+    <div class="mobile-feat-bg"></div>
+    <div class="mobile-feat-top">
+      <div class="mobile-feat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1.5"/><path d="M5 6.5L6.2 7.7L8 5.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M5 17.5L6.2 18.7L8 16.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 6H21" stroke-linecap="round"/><path d="M13 17H21" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="mobile-feat-title">Checklist Personalizada</div>
+        <div class="mobile-feat-meta">14 / 22 documentos</div>
+      </div>
+    </div>
+    <div class="mobile-feat-progress">
+      <div class="mobile-feat-prog-row">
+        <span class="mobile-feat-prog-pct">64%</span>
+        <span class="mobile-feat-prog-meta">14 / 22 docs</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="mobile-prog-fill" style="width: 0%"></div>
+      </div>
+    </div>
+    <a href="checklist.html" class="btn-mobile-cta">
+      Continuar checklist
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12H19"/><path d="M13 6L19 12L13 18"/></svg>
+    </a>
+  </div>
+
+  <!-- 01 Decisão -->
+  <div class="mobile-section-heading" style="margin-top: 24px;">01 · Decisão</div>
+  <a href="comparar-pro.html" class="mobile-tool-card accent-variant">
+    <div class="mobile-tool-icon accent">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4V20" stroke-linecap="round"/><path d="M17 4V20" stroke-linecap="round"/><path d="M3 8L7 4L11 8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 16L17 20L21 16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="mobile-tool-body">
+      <div class="mobile-tool-title">Comparador Pro</div>
+      <div class="mobile-tool-desc">Compare países com pesos personalizáveis. Ranking sob medida pro seu perfil.</div>
+      <div class="mobile-tool-footer">
+        <span class="status-line"><span class="status-dot available"></span>Disponível</span>
+      </div>
+    </div>
+  </a>
+  <a href="calculadora-pro.html" class="mobile-tool-row">
+    <div class="mobile-tool-row-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="2"/><rect x="7" y="6" width="10" height="3" rx="0.5"/><circle cx="8.5" cy="13" r="0.8" fill="currentColor"/><circle cx="12" cy="13" r="0.8" fill="currentColor"/><circle cx="15.5" cy="13" r="0.8" fill="currentColor"/><circle cx="8.5" cy="17" r="0.8" fill="currentColor"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/><circle cx="15.5" cy="17" r="0.8" fill="currentColor"/></svg>
+    </div>
+    <div class="mobile-tool-row-body">
+      <div class="mobile-tool-row-title">Calculadora Pro</div>
+      <div class="mobile-tool-row-status">Disponível</div>
+    </div>
+    <div class="mobile-tool-row-meta">3 simulações</div>
+    <svg class="mobile-tool-row-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12H19" stroke-linecap="round"/><path d="M13 6L19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <a href="cenarios/index.html" class="mobile-tool-row">
+    <div class="mobile-tool-row-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="4" height="18" rx="1"/><rect x="9" y="3" width="4" height="18" rx="1"/><path d="M15.5 4.5L19.5 5.5L17 21L13 20L15.5 4.5Z"/></svg>
+    </div>
+    <div class="mobile-tool-row-body">
+      <div class="mobile-tool-row-title">Biblioteca de Cenários</div>
+      <div class="mobile-tool-row-status">Disponível</div>
+    </div>
+    <div class="mobile-tool-row-meta">24 cenários</div>
+    <svg class="mobile-tool-row-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12H19" stroke-linecap="round"/><path d="M13 6L19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <!-- 02 Documentos -->
+  <div class="mobile-section-heading" style="margin-top: 24px;">02 · Documentos</div>
+  <a href="guias/index.html" class="mobile-tool-row">
+    <div class="mobile-tool-row-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4H10C11.1 4 12 4.9 12 6V20C12 19 11 18 10 18H4V4Z" stroke-linejoin="round"/><path d="M20 4H14C12.9 4 12 4.9 12 6V20C12 19 13 18 14 18H20V4Z" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="mobile-tool-row-body">
+      <div class="mobile-tool-row-title">Guias Práticos</div>
+      <div class="mobile-tool-row-status">3 guias</div>
+    </div>
+    <div class="mobile-tool-row-meta">3 guias</div>
+    <svg class="mobile-tool-row-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12H19" stroke-linecap="round"/><path d="M13 6L19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <a href="#" class="mobile-tool-row" style="opacity: 0.6; pointer-events: none;">
+    <div class="mobile-tool-row-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3V15" stroke-linecap="round"/><path d="M7 10L12 15L17 10" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 18V20C4 20.5 4.5 21 5 21H19C19.5 21 20 20.5 20 20V18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="mobile-tool-row-body">
+      <div class="mobile-tool-row-title">Templates Baixáveis</div>
+      <div class="mobile-tool-row-status">Em breve</div>
+    </div>
+    <div class="mobile-tool-row-meta">18 arquivos</div>
+    <svg class="mobile-tool-row-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12H19" stroke-linecap="round"/><path d="M13 6L19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <!-- 03 Acompanhamento -->
+  <div class="mobile-section-heading" style="margin-top: 24px;">03 · Acompanhamento</div>
+  <a href="alertas.html" class="mobile-tool-row">
+    <div class="mobile-tool-row-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8C6 4.7 8.7 2 12 2C15.3 2 18 4.7 18 8V13L20 16H4L6 13V8Z" stroke-linejoin="round"/><path d="M10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19" stroke-linecap="round"/><circle cx="18" cy="5" r="2.5" fill="currentColor" stroke="none"/></svg>
+    </div>
+    <div class="mobile-tool-row-body">
+      <div class="mobile-tool-row-title">Alertas por Email</div>
+      <div class="mobile-tool-row-status" style="color: var(--accent);">Novo</div>
+    </div>
+    <div class="mobile-tool-row-meta">2 ativos</div>
+    <svg class="mobile-tool-row-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12H19" stroke-linecap="round"/><path d="M13 6L19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <!-- Mobile activity -->
+  <div class="mobile-section-heading" style="margin-top: 24px;">· Atividade recente</div>
+  <div class="mobile-activity-card">
+    <div class="activity-row">
+      <div class="activity-dot doc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><path d="M5 6.5L6.2 7.7L8 5.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M5 17.5L6.2 18.7L8 16.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 6H21" stroke-linecap="round"/><path d="M13 17H21" stroke-linecap="round"/></svg></div>
+      <div class="activity-label">Certidão de nascimento adicionada</div>
+      <div class="activity-when">2h</div>
+    </div>
+    <div class="activity-row">
+      <div class="activity-dot alert"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8C6 4.7 8.7 2 12 2C15.3 2 18 4.7 18 8V13L20 16H4L6 13V8Z" stroke-linejoin="round"/></svg></div>
+      <div class="activity-label">Países Baixos atualizou exigência do MVV</div>
+      <div class="activity-when">8h</div>
+    </div>
+    <div class="activity-row">
+      <div class="activity-dot export"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3V15" stroke-linecap="round"/><path d="M7 10L12 15L17 10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="activity-label">Simulação PT exportada em PDF</div>
+      <div class="activity-when">1d</div>
+    </div>
+    <div class="activity-row">
+      <div class="activity-dot new"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3L13.5 9L19 10.5L13.5 12L12 18L10.5 12L5 10.5L10.5 9L12 3Z" stroke-linejoin="round"/></svg></div>
+      <div class="activity-label">Novo cenário: Família com 1 filho · DE</div>
+      <div class="activity-when">2d</div>
+    </div>
+  </div>
+
+</div><!-- /mobile-sections -->
+
+<!-- Mobile tab bar -->
+<nav class="mobile-tabbar">
+  <button class="mobile-tab active" onclick="window.location.href='index.html'">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/>
+      <rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/>
+    </svg>
+    <span class="mobile-tab-label">Hub</span>
+  </button>
+  <button class="mobile-tab" onclick="window.location.href='checklist.html'">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <rect x="3" y="3" width="7" height="7" rx="1.5"/><path d="M5 6.5L6.2 7.7L8 5.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M5 17.5L6.2 18.7L8 16.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13 6H21" stroke-linecap="round"/><path d="M13 17H21" stroke-linecap="round"/>
+    </svg>
+    <span class="mobile-tab-label">Checklist</span>
+  </button>
+  <button class="mobile-tab" onclick="window.location.href='comparar-pro.html'">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M7 4V20" stroke-linecap="round"/><path d="M17 4V20" stroke-linecap="round"/>
+      <path d="M3 8L7 4L11 8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 16L17 20L21 16" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="mobile-tab-label">Comparar</span>
+  </button>
+  <button class="mobile-tab" onclick="window.location.href='guias/index.html'">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M4 4H10C11.1 4 12 4.9 12 6V20C12 19 11 18 10 18H4V4Z" stroke-linejoin="round"/>
+      <path d="M20 4H14C12.9 4 12 4.9 12 6V20C12 19 13 18 14 18H20V4Z" stroke-linejoin="round"/>
+    </svg>
+    <span class="mobile-tab-label">Guias</span>
+  </button>
+  <button class="mobile-tab" id="hub-more-btn" type="button" aria-expanded="false" aria-controls="hub-more-sheet">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/>
+    </svg>
+    <span class="mobile-tab-label">Mais</span>
+  </button>
+</nav>
+<div class="hub-more-sheet" id="hub-more-sheet">
+  <div class="hub-more-backdrop" data-close></div>
+  <div class="hub-more-panel" role="dialog" aria-label="Mais opções">
+    <div class="hub-more-handle"></div>
+    <div class="hub-more-title">Mais opções</div>
+    <a class="hub-more-item" href="calculadora-pro.html"><span class="hub-more-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><rect x="7" y="6" width="10" height="3" rx="0.5"/><circle cx="8.5" cy="13" r="0.8" fill="currentColor"/><circle cx="12" cy="13" r="0.8" fill="currentColor"/><circle cx="15.5" cy="13" r="0.8" fill="currentColor"/><circle cx="8.5" cy="17" r="0.8" fill="currentColor"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/><circle cx="15.5" cy="17" r="0.8" fill="currentColor"/></svg></span>Calculadora Pro</a>
+    <a class="hub-more-item" href="cenarios/index.html"><span class="hub-more-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="4" height="18" rx="1"/><rect x="9" y="3" width="4" height="18" rx="1"/><path d="M15.5 4.5L19.5 5.5L17 21L13 20L15.5 4.5Z"/></svg></span>Cenários</a>
+    <a class="hub-more-item" href="alertas.html"><span class="hub-more-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8C6 4.7 8.7 2 12 2C15.3 2 18 4.7 18 8V13L20 16H4L6 13V8Z" stroke-linejoin="round"/><path d="M10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19" stroke-linecap="round"/></svg></span>Alertas</a>
+    <a class="hub-more-item" href="../index.html"><span class="hub-more-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12H21"/></svg></span>Países</a>
+    <button class="hub-more-item danger" type="button" onclick="window.alunoLogout()">
+      <span class="hub-more-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H6C4.9 21 4 20.1 4 19V5C4 3.9 4.9 3 6 3H9" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 17L21 12L16 7" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12H9" stroke-linecap="round"/></svg></span>Sair
+    </button>
+  </div>
+</div>
 
 <script>
 (async function () {
+  'use strict';
   const sess = await window.alunoReady;
   if (!sess) return;
   const nome = sess.nome || (sess.email ? sess.email.split('@')[0] : 'Aluno');
   const primeiro = nome.split(' ')[0];
-  document.getElementById('aluno-nome').textContent = nome;
-  document.getElementById('aluno-nome-grande').textContent = primeiro;
+  const inicialMaiuscula = primeiro.charAt(0).toUpperCase();
+  const nomeMono = primeiro.toUpperCase();
+
+  // Desktop
+  const navUser = document.getElementById('nav-username');
+  if (navUser) navUser.textContent = nomeMono;
+  const greet = document.getElementById('greeting-name');
+  if (greet) greet.textContent = primeiro;
+
+  // Mobile
+  const mGreet = document.getElementById('mobile-greeting-name');
+  if (mGreet) mGreet.textContent = primeiro;
+  const mAvatar = document.getElementById('mobile-avatar');
+  if (mAvatar) mAvatar.textContent = inicialMaiuscula;
+
+  // Animate progress bars after paint
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const fills = document.querySelectorAll('.progress-fill');
+      fills.forEach(f => { f.style.width = '64%'; });
+    }, 120);
+  });
+})();
+(function () {
+  // Sheet "Mais" do menu mobile
+  const btn = document.getElementById('hub-more-btn');
+  const sheet = document.getElementById('hub-more-sheet');
+  if (!btn || !sheet) return;
+  const setOpen = (open) => {
+    sheet.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+  btn.addEventListener('click', () => setOpen(!sheet.classList.contains('open')));
+  sheet.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close')) setOpen(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 })();
 </script>
 </body>
