@@ -6,14 +6,31 @@ Avisa por email os alunos quando o ciclo mensal detecta uma mudança de alta rel
 
 A primeira versão guardava assinantes em `data/subscribers.json` e coletava email por uma issue pública do GitHub. Isso expunha os emails e não tinha double opt-in. Trocamos por um provedor gerenciado (Kit), que resolve consentimento, confirmação em duas etapas, cancelamento e armazenamento privado, com free tier folgado (10.000 contatos, emails ilimitados).
 
-## Fluxo de inscrição (captura de lead, sem backend)
+## Fluxo de inscrição (server-side, aluno autenticado)
 
-1. O aluno abre `previews/area-aluno/alertas.html`, marca os países e envia o formulário.
-2. O JS da página faz um POST (modo `no-cors`, sucesso otimista) direto para o endpoint público do Kit `https://app.convertkit.com/forms/{FORM_ID}/subscriptions`, com `email_address` e o campo personalizado `fields[paises]` (códigos separados por vírgula, ex: `pt,es`). Nenhuma chave secreta vai para o cliente.
-3. O Kit dispara o **double opt-in**: o aluno confirma pelo email e só então vira contato ativo.
-4. O lead fica no Kit, disponível para o Vitor usar em campanhas do curso.
+A inscrição passa pela Cloudflare Function `functions/api/aluno/alertas.ts`, não mais por um POST direto do navegador ao Kit. O aluno já está logado na Área do Aluno, então o email vem do JWT da sessão (cookie `aluno_session`), nunca do corpo da requisição: isso impede inscrever o email de outra pessoa.
 
-Países vazios no formulário significam "todos os países".
+1. O aluno abre `previews/area-aluno/alertas.html`, marca os países e clica em "Quero receber os alertas".
+2. O JS chama `POST /api/aluno/alertas` com `{ paises: [...], consent: true }` (mesma origem, com cookie).
+3. A Function decide pelo estado do assinante no Kit:
+   - **Primeira inscrição** (ausente, inativo ou cancelado): chama o endpoint público de formulário `https://app.convertkit.com/forms/{KIT_FORM_ID}/subscriptions`, que dispara o **double opt-in**. Server-side não há CORS, então o status real é lido (sem o "sucesso otimista" antigo). Responde `{ pending: true }`.
+   - **Já ativo**: atualiza só o campo `paises` via `PUT /v4/subscribers/{id}`. Responde `{ updated: true }`.
+4. O Kit dispara o email de confirmação no caso de primeira inscrição. O aluno confirma e vira contato ativo.
+5. O lead fica no Kit, disponível para o Vitor usar em campanhas do curso.
+
+Países vazios significam "todos os países". Os códigos recebidos são validados contra a lista oficial antes de gravar.
+
+## Gestão de preferências
+
+A mesma página e o mesmo endpoint cobrem ver, editar e cancelar:
+
+- `GET /api/aluno/alertas` devolve `{ subscribed, state, paises }`. A página pré-marca os países salvos e mostra o estado (inscrito, pendente de confirmação ou cancelado).
+- `POST` com a nova lista de países atualiza as preferências de quem já está ativo.
+- `DELETE /api/aluno/alertas` cancela a inscrição (`POST /v4/subscribers/{id}/unsubscribe`), idempotente se o aluno não estiver inscrito.
+
+O estado vive só no Kit, não há espelho no D1.
+
+O cliente do Kit para o runtime de Pages está em `functions/_shared/kit.ts` (recebe a `apiKey` por parâmetro e usa só `fetch`). O cliente do cron mensal (`src/alerts/kit.ts`) continua separado por rodar em Bun.
 
 ## Fluxo de envio (mensal)
 
@@ -40,14 +57,17 @@ O dry-run não exige `KIT_API_KEY`: apenas registra, por país mudado, qual broa
 
 | Nome | Onde | Para que |
 |------|------|----------|
-| `KIT_API_KEY` | Secret do repositório (Actions) | Autenticar na API V4 do Kit para criar tags e enviar broadcasts. |
+| `KIT_API_KEY` | Secret do repositório (Actions) **e** secret do Cloudflare Pages | Autenticar na API V4 do Kit. No Actions: criar tags e enviar broadcasts. No Pages: ler/atualizar/cancelar a inscrição do aluno. |
+| `KIT_FORM_ID` | Secret do Cloudflare Pages | Endpoint de formulário com double opt-in usado na primeira inscrição (a Function fala com ele server-side). |
+
+Os secrets do Pages são definidos com `wrangler pages secret put KIT_API_KEY` e `wrangler pages secret put KIT_FORM_ID`. Não vão para `wrangler.toml` nem para o cliente.
 
 ## Setup manual no Kit (uma vez)
 
-1. Criar conta no Kit e um formulário. Anotar o `FORM_ID` e colá-lo na constante `KIT_FORM_ID` em `previews/area-aluno/alertas.html`.
-2. Ativar **double opt-in** no formulário.
-3. Criar o campo personalizado `paises`.
-4. Gerar uma **API key V4** (Settings, aba Developer) e salvá-la como secret `KIT_API_KEY` no repositório.
+1. Criar conta no Kit e um **formulário com double opt-in ativo** (não "auto-confirm"). Anotar o `FORM_ID`.
+2. Criar o campo personalizado com a key exata `paises` (Settings, Custom Fields). Sem ele o `PUT` retorna 422 e o formulário ignora o campo.
+3. Gerar uma **API key V4** (Settings, aba Developer).
+4. Salvar `KIT_API_KEY` como secret do repositório (Actions) e do Pages, e `KIT_FORM_ID` como secret do Pages.
 
 As tags `pais-<cc>` são criadas automaticamente pelo envio mensal, não precisa criá-las à mão.
 
@@ -63,4 +83,6 @@ O envio mira as tags `pais-<cc>` via `subscriber_filter` (caminho garantido). Co
 | `src/alerts/send-email.ts` | CLI de envio mensal: diff por país mudado, reconcilia tags e dispara broadcasts. |
 | `src/diff/run.ts` | `diffCountry()` e `diffAllCountries()` reusados pela CLI e pelo envio. |
 | `.github/workflows/monthly-update.yml` | Dispara o envio mensal. |
-| `previews/area-aluno/alertas.html` | Página da Área Aluno com o formulário de captura. |
+| `functions/_shared/kit.ts` | Cliente do Kit para o runtime de Pages (buscar, atualizar, cancelar, inscrever via formulário). |
+| `functions/api/aluno/alertas.ts` | Endpoint da Área do Aluno: GET (estado), POST (inscrever/atualizar), DELETE (cancelar). |
+| `previews/area-aluno/alertas.html` | Página da Área Aluno: inscrição e gestão de preferências, falando com o endpoint acima. |

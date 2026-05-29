@@ -8,6 +8,10 @@ export interface Env {
   // Cloudflare Turnstile (CAPTCHA). Opcionais: se ausentes, o captcha e pulado.
   TURNSTILE_SITE_KEY?: string
   TURNSTILE_SECRET?: string
+  // Alertas por email (Kit/ConvertKit). KIT_API_KEY autentica a API V4 (ler/editar/cancelar).
+  // KIT_FORM_ID e o formulario com double opt-in usado na primeira inscricao.
+  KIT_API_KEY?: string
+  KIT_FORM_ID?: string
 }
 
 export type AlunoStatus = 'active' | 'revoked'

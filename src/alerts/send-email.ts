@@ -5,7 +5,7 @@ import { listActiveSubscribers, ensureTag, tagSubscriber, sendBroadcastToTag } f
 import { log } from '@/lib/log'
 
 const COUNTRY_CODES = Object.keys(sources)
-const SITE_URL = 'https://vl-builds.github.io/rota-legal-monitor'
+const SITE_URL = 'https://rotalegal.pro'
 
 function tagName(cc: string): string {
   return `pais-${cc}`
@@ -43,7 +43,7 @@ function formatValue(v: unknown): string {
 }
 
 function describeChange(c: FieldChange): string {
-  if (c.path === 'visaTypes.added') return `Novo visto disponivel: ${formatValue(c.after)}`
+  if (c.path === 'visaTypes.added') return `Novo visto disponível: ${formatValue(c.after)}`
   if (c.path === 'visaTypes.removed') return `Visto descontinuado: ${formatValue(c.before)}`
   if (c.path.includes('incomeRequirement')) {
     return `Renda exigida: ${formatValue(c.before)} passou para ${formatValue(c.after)}`
@@ -52,17 +52,17 @@ function describeChange(c: FieldChange): string {
     return `Taxas: ${formatValue(c.before)} passou para ${formatValue(c.after)}`
   }
   if (c.path.includes('proofOfFunds')) {
-    return `Comprovacao de fundos: ${formatValue(c.before)} passou para ${formatValue(c.after)}`
+    return `Comprovação de fundos: ${formatValue(c.before)} passou para ${formatValue(c.after)}`
   }
   if (c.path.startsWith('recentChanges.new')) return `${formatValue(c.after)}`
   if (c.path === 'forBrazilians.workPermitNeeded') {
-    return `Exigencia de autorizacao de trabalho mudou para ${formatValue(c.after)}`
+    return `Exigência de autorização de trabalho mudou para ${formatValue(c.after)}`
   }
   if (c.path === 'forBrazilians.maxStayDaysAsTourist') {
-    return `Estadia maxima como turista: ${formatValue(c.before)} passou para ${formatValue(c.after)} dias`
+    return `Estadia máxima como turista: ${formatValue(c.before)} passou para ${formatValue(c.after)} dias`
   }
   if (c.path === 'forBrazilians.schengenVisaFree') {
-    return `Isencao de visto Schengen mudou para ${formatValue(c.after)}`
+    return `Isenção de visto Schengen mudou para ${formatValue(c.after)}`
   }
   return `${c.path}: ${formatValue(c.before)} passou para ${formatValue(c.after)}`
 }
@@ -96,22 +96,22 @@ function buildCountryEmail(summary: ChangeSummary): CountryEmail {
     `<span style="color:#888;font-size:13px;display:block;margin-top:2px;">Alerta de ${escapeHtml(nome)} &middot; ${date}</span>`,
     `</div>`,
     `<div style="padding:28px;">`,
-    `<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#1a1a1a;">Detectamos mudancas de alta relevancia em <strong>${escapeHtml(nome)}</strong>, um dos paises que voce acompanha:</p>`,
+    `<p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#1a1a1a;">Detectamos mudanças de alta relevância em <strong>${escapeHtml(nome)}</strong>, um dos países que você acompanha:</p>`,
     `<ul style="margin:0;padding-left:20px;">${items}</ul>`,
     `<div style="margin-top:24px;padding-top:20px;border-top:1px solid #e5e5e5;">`,
     `<a href="${SITE_URL}/pais-${summary.country}.html" style="display:inline-block;background:#f0b429;color:#0a0a0a;font-weight:600;font-size:14px;padding:10px 20px;border-radius:8px;text-decoration:none;">Ver detalhes de ${escapeHtml(nome)}</a>`,
     `</div>`,
     `</div>`,
     `<div style="padding:16px 28px;background:#fafafa;border-top:1px solid #e5e5e5;">`,
-    `<p style="margin:0;font-size:12px;color:#888;line-height:1.5;">Voce recebe este alerta por ter pedido para acompanhar ${escapeHtml(nome)}. Os dados sao extraidos automaticamente de fontes oficiais e podem conter erros: confirme sempre na fonte antes de decidir.</p>`,
+    `<p style="margin:0;font-size:12px;color:#888;line-height:1.5;">Você recebe este alerta por ter pedido para acompanhar ${escapeHtml(nome)}. Os dados são extraídos automaticamente de fontes oficiais e podem conter erros: confirme sempre na fonte antes de decidir.</p>`,
     `</div>`,
     `</div>`,
     `</div>`,
   ].join('')
 
   return {
-    subject: `Rota Legal: mudancas importantes em ${nome}`,
-    previewText: `Resumo das mudancas de alta relevancia em ${nome}.`,
+    subject: `Rota Legal: mudanças importantes em ${nome}`,
+    previewText: `Resumo das mudanças de alta relevância em ${nome}.`,
     content,
   }
 }
