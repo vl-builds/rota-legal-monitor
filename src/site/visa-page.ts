@@ -662,6 +662,11 @@ export function generateVisaPage(
     </div>
     <div class="footer-bottom">
       <p class="body-sm" style="color:var(--muted);">Rota Legal não é escritório de advocacia. Dados para fins informativos.</p>
+      <nav class="footer-legal" aria-label="Links legais">
+        <a href="../politica-privacidade.html">Privacidade</a>
+        <a href="../politica-cookies.html">Cookies</a>
+        <a href="../termos-uso.html">Termos</a>
+      </nav>
       <p class="body-sm" style="color:var(--muted);">Atualizado em ${updated}.</p>
     </div>
   </div>
@@ -687,6 +692,7 @@ export function generateVisaPage(
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
 })();
 </script>
+<script src="../assets/site-extras.js" defer></script>
 </body>
 </html>`
 }

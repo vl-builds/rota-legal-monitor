@@ -813,11 +813,16 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-sm);
   padding-top: var(--s-lg);
   border-top: 1px solid var(--hairline);
   color: var(--muted);
   font-size: 13px;
 }
+.footer-legal { display: flex; gap: var(--s-md); flex-wrap: wrap; }
+.footer-legal a { color: var(--muted); font-size: 13px; }
+.footer-legal a:hover { color: var(--on-dark); }
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px) {

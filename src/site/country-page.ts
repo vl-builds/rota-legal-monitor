@@ -2117,6 +2117,11 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
     </div>
     <div class="footer-bottom">
       <span>© 2026 Rota Legal · <a href="https://github.com/vl-builds" target="_blank" rel="noopener noreferrer">vl-builds</a> · MIT</span>
+      <nav class="footer-legal" aria-label="Links legais">
+        <a href="politica-privacidade.html">Privacidade</a>
+        <a href="politica-cookies.html">Cookies</a>
+        <a href="termos-uso.html">Termos</a>
+      </nav>
       <span class="caption-up">Última extração: ${updated}</span>
     </div>
   </div>
@@ -2412,6 +2417,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   })()
 </script>
 <script src="assets/nav.js" defer></script>
+<script src="assets/site-extras.js" defer></script>
 </body>
 </html>`
 }

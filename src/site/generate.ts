@@ -245,14 +245,40 @@ async function patchFooters(latestIso: string): Promise<void> {
   const footerRe =
     /(Última extração:\s*)(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)\/\d{4}/g
 
+  // Chrome global injetado de forma idempotente nas paginas estaticas publicas:
+  // links legais no rodape e o script site-extras.js (aviso de cookies + mini-form de lead).
+  const legalNav =
+    '<nav class="footer-legal" aria-label="Links legais">' +
+    '<a href="politica-privacidade.html">Privacidade</a>' +
+    '<a href="politica-cookies.html">Cookies</a>' +
+    '<a href="termos-uso.html">Termos</a>' +
+    '</nav>'
+
   for (const name of files) {
     const path = join(PREVIEWS_DIR, name)
     try {
       const html = await readFile(path, 'utf-8')
-      const updated = html.replace(footerRe, `$1${label}`)
+      let updated = html.replace(footerRe, `$1${label}`)
+
+      // Links legais: inserir antes do "Última extração" do footer-bottom, se ainda nao existirem.
+      if (!updated.includes('footer-legal')) {
+        updated = updated.replace(
+          /(\n?\s*)(<span class="caption-up">Última extração)/,
+          `$1${legalNav}$1$2`,
+        )
+      }
+
+      // Script global: inserir antes de </body>, se ainda nao referenciado.
+      if (!updated.includes('assets/site-extras.js')) {
+        updated = updated.replace(
+          /<\/body>/,
+          '<script src="assets/site-extras.js" defer></script>\n</body>',
+        )
+      }
+
       if (updated !== html) {
         await writeFile(path, updated, 'utf-8')
-        console.log(`[ok] ${name} — rodapé atualizado para ${label}`)
+        console.log(`[ok] ${name} — rodapé/chrome atualizado`)
       }
     } catch {
       // file may not exist; skip silently
