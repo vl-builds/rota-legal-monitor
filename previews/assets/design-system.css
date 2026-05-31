@@ -842,6 +842,33 @@ footer {
   thead th, tbody td { padding: var(--s-sm); }
   /* lighter glass on mobile (perf) */
   .top-nav { backdrop-filter: blur(12px) saturate(120%); -webkit-backdrop-filter: blur(12px) saturate(120%); }
+
+  /* ---- legibilidade mobile: alvos de toque >= 44px ---- */
+  .btn { min-height: 44px; }
+  .variant-btn { min-height: 44px; }
+  .qp-chip { min-height: 40px; }
+  .chip { min-height: 36px; padding: 8px 14px; }
+  .mobile-drawer-close { width: 44px; height: 44px; }
+
+  /* ---- legibilidade mobile: grids de 4 stats nao apertam ---- */
+  .guide-stats-row,
+  .mb-stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ---- legibilidade mobile: piso de fonte dos micro-labels mono (9-11px -> 12px) ---- */
+  .gs-label,
+  .mb-stat-label,
+  .mb-op-code,
+  .mb-op-status,
+  .mb-obj-tag,
+  .qp-meta-chip,
+  .qp-obj-tag,
+  .qp-phase-eyebrow,
+  .hp-meta-chip,
+  .hp-obj-tag,
+  .hp-phase-eyebrow,
+  .st-detail-tag,
+  .step-tag,
+  .phase-num { font-size: 12px; }
 }
 
 /* =========================================================
@@ -908,6 +935,12 @@ footer {
   .trust-item + .trust-item { border-left: none !important; border-top: 1px solid var(--hairline) !important; }
   /* comparison: third stat in a 3-col grid wraps to its own row */
   .cc-grid-3 .cc-stat:nth-child(3) { grid-column: 1 / -1; }
+
+  /* ---- legibilidade mobile (telas estreitas): mais largura util e 1 coluna ---- */
+  .container { padding: 0 var(--s-md); }
+  .guide-stats-row,
+  .mb-stats-grid,
+  .stats { grid-template-columns: 1fr; }
 }
 
 /* =========================================================

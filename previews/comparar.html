@@ -124,6 +124,8 @@
     background: radial-gradient(circle, rgba(245,197,24,0.08), rgba(245,197,24,0.02) 70%, transparent);
     border: 1px solid rgba(245,197,24,0.25);
     position: relative; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
   }
   .ed-med-r1 { position: absolute; inset: 30px; border-radius: 50%; border: 1px dashed rgba(245,197,24,0.18); }
   .ed-med-r2 { position: absolute; inset: 70px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.06); }
@@ -211,6 +213,16 @@
     .ed-headline { font-size: 40px; }
     .ed-card { grid-template-columns: 1fr; }
     .ed-rank { display: none; }
+    /* legibilidade mobile: alvo de toque dos chips de pais */
+    .country-chip { min-height: 38px; padding: 9px 12px; font-size: 12px; }
+    /* legibilidade mobile: pisos de fonte dos micro-labels mono */
+    .selector-label,
+    .ed-figure-lbl,
+    .ed-radar-lbl,
+    .ed-rank-lbl { font-size: 11px; }
+    .chip-partial-tag { font-size: 10px; }
+    /* radar/grafico nunca estoura a largura */
+    .ed-radar svg { max-width: 100%; height: auto; }
   }
 </style>
 </head>
@@ -675,7 +687,7 @@ function ticksSVG(score) {
     const op = i < filled ? '0.7' : '1';
     lines += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="1.4" opacity="${op}"/>`;
   }
-  return `<svg style="position:absolute;inset:0;width:360px;height:360px;pointer-events:none;" viewBox="0 0 360 360">${lines}</svg>`;
+  return `<svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 360 360">${lines}</svg>`;
 }
 
 /* ---- helpers ---- */

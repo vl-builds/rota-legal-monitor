@@ -1218,7 +1218,7 @@ const PAGE_CSS = `
   .visa-chip:hover { color: var(--on-dark); border-color: rgba(255,255,255,0.18); }
   .visa-chip.active { color: var(--canvas); background: var(--primary); border-color: var(--primary); font-weight: 600; }
   /* ---- visa grid + cards ---- */
-  .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .visa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
   .visa-card-wrap { display: flex; flex-direction: column; gap: 0; }
   .visa-card-wrap[hidden] { display: none !important; }
   .visa-card-page-link { display: block; text-align: right; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-decoration: none; padding: 5px 6px 0; transition: color 150ms ease; }
@@ -1441,6 +1441,8 @@ const PAGE_CSS = `
     .timeline-entry { grid-template-columns: 1fr; gap: var(--s-sm); }
     .timeline-date { align-items: flex-start; flex-direction: row; gap: var(--s-sm); }
     .rights-grid { grid-template-columns: 1fr; }
+    /* legibilidade mobile: alvo de toque do fechar-modal */
+    .visa-modal-close { width: 44px; height: 44px; }
   }
 
   /* ====================================================== */
@@ -1852,12 +1854,18 @@ const PAGE_CSS = `
     .st-canvas { padding: 36px 14px 16px; }
     .st-sidebar { display: none; }
     .st-disclaimer { margin-top: 14px; }
+    /* legibilidade mobile: alvo de toque dos botoes do skill-tree */
+    .st-mnode-toggle, .st-mnode-link { min-height: 44px; }
+    .st-detail-btn { min-height: 44px; }
   }
   @media (max-width: 640px) {
     .st-hero-title { font-size: 26px; letter-spacing: -0.5px; }
-    .st-hero-eyebrow { font-size: 10px; }
+    .st-hero-eyebrow { font-size: 12px; }
     .st-progress-num { font-size: 30px; }
     .st-progress-card { padding: 14px 16px; }
+    /* legibilidade mobile: piso de fonte dos micro-labels (10px -> 12px) */
+    .st-mphase-tag, .st-mphase-meta, .st-progress-meta,
+    .st-detail-eyebrow, .st-legend-title { font-size: 12px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .st-progress-fill, .st-node, .st-detail-btn { transition: none; }

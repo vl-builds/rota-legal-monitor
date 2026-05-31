@@ -259,6 +259,11 @@ const PAGE_CSS = `
   @media (max-width: 640px) {
     .vp-hero { padding: 72px 0 32px; }
     .vp-body { padding: 40px 0 60px; }
+    /* legibilidade mobile: alvo de toque dos CTAs */
+    .vp-cta-primary, .vp-cta-secondary { min-height: 44px; }
+    /* legibilidade mobile: piso de fonte dos micro-labels (11px -> 12px) */
+    .vp-stat-label, .vp-section-title, .vp-card-title,
+    .vp-field-label, .vp-notes-label { font-size: 12px; }
   }
 `
 

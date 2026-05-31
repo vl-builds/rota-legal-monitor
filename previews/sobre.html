@@ -39,7 +39,7 @@
   /* ---- passos da metodologia ---- */
   .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
     gap: var(--s-md);
     margin-top: var(--s-xl);
   }
@@ -115,7 +115,7 @@
   /* ---- stack ---- */
   .stack-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
     gap: var(--s-md);
     margin-top: var(--s-xl);
   }
@@ -204,7 +204,7 @@
   /* ---- métricas ---- */
   .metrics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
     gap: var(--s-md);
     margin-top: var(--s-xl);
   }
@@ -225,6 +225,11 @@
   @media (max-width: 768px) {
     .section-title { font-size: 22px; }
     .decision-row { grid-template-columns: 1fr; gap: var(--s-xs); }
+  }
+  @media (max-width: 640px) {
+    /* code window: fonte e padding menores, scroll horizontal contido */
+    .schema-body { font-size: 11px; padding: var(--s-md); }
+    .sobre-intro { font-size: 16px; }
   }
 
 </style>
