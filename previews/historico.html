@@ -11,6 +11,8 @@
   rel="stylesheet"
 />
 <link rel="stylesheet" href="assets/design-system.css" />
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+<script src="assets/turnstile.js" defer></script>
 <style>
 
   /* ---- stats strip ---- */
@@ -110,6 +112,9 @@
   .alert-email-input::placeholder { color: var(--muted); }
   .alert-email-input:focus { outline: none; border-color: var(--primary); }
   .alert-note { font-size: 11px; color: var(--muted-soft); margin-top: var(--s-xs); font-family: "JetBrains Mono", monospace; }
+  .alert-feedback { font-size: 13px; line-height: 1.5; margin: var(--s-sm) 0 0; }
+  .alert-feedback.is-ok { color: var(--accent-emerald); }
+  .alert-feedback.is-err { color: var(--accent-rose); }
 
   /* ---- timeline ---- */
   .timeline-area { min-width: 0; }
@@ -251,6 +256,10 @@
     /* legibilidade mobile: chips e botoes de filtro com alvo de toque maior */
     .fchip { padding: 10px 14px; min-height: 40px; }
     .sev-btn { padding: 10px 16px; min-height: 40px; }
+    /* form de alertas empilha: input e botao ocupam a largura toda, sem estouro */
+    .alert-signup-form { flex-direction: column; }
+    .alert-signup-form .btn { width: 100%; min-height: 44px; }
+    .alert-email-input { min-height: 44px; }
   }
 
 </style>
@@ -347,12 +356,14 @@
       <div class="timeline-area">
         <div class="alert-signup">
           <p class="alert-signup-title">Receba alertas quando algo mudar</p>
-          <p class="alert-signup-sub">Notificação por email a cada ciclo mensal com as mudanças detectadas nos países que você acompanha.</p>
-          <div class="alert-signup-form">
-            <input type="email" class="alert-email-input" placeholder="seu@email.com" />
-            <button class="btn btn-primary" style="white-space:nowrap;">Ativar alertas</button>
-          </div>
-          <p class="alert-note">Funcionalidade em desenvolvimento. Sem spam, cancelamento a qualquer momento.</p>
+          <p class="alert-signup-sub">Notificação por email a cada ciclo mensal com as mudanças detectadas nos países monitorados.</p>
+          <form class="alert-signup-form" id="alert-form" novalidate>
+            <input type="email" id="alert-email" class="alert-email-input" placeholder="seu@email.com" autocomplete="email" required />
+            <button type="submit" class="btn btn-primary" id="alert-submit" style="white-space:nowrap;">Ativar alertas</button>
+          </form>
+          <div id="turnstile-box" style="margin-top:var(--s-sm);"></div>
+          <p class="alert-feedback" id="alert-feedback" role="status" aria-live="polite" hidden></p>
+          <p class="alert-note">Você recebe um email para confirmar a inscrição. Sem spam, cancelamento a qualquer momento.</p>
         </div>
         <div id="timeline"></div>
       </div>
@@ -665,6 +676,78 @@ async function loadHistorico() {
   render();
 }
 loadHistorico();
+</script>
+
+<script>
+// Inscricao em alertas por email (double opt-in via Kit). Endpoint publico /api/alertas.
+(function () {
+  const form = document.getElementById('alert-form');
+  const input = document.getElementById('alert-email');
+  const btn = document.getElementById('alert-submit');
+  const feedback = document.getElementById('alert-feedback');
+  if (!form || !input || !btn || !feedback) return;
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function showFeedback(msg, ok) {
+    feedback.textContent = msg;
+    feedback.classList.toggle('is-ok', ok);
+    feedback.classList.toggle('is-err', !ok);
+    feedback.hidden = false;
+  }
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    feedback.hidden = true;
+    feedback.classList.remove('is-ok', 'is-err');
+
+    const email = input.value.trim().toLowerCase();
+    if (!EMAIL_RE.test(email)) {
+      showFeedback('Informe um email válido.', false);
+      input.focus();
+      return;
+    }
+
+    const ts = window.RotaTurnstile;
+    let turnstileToken = '';
+    if (ts) {
+      await ts.ready();
+      if (ts.enabled()) {
+        turnstileToken = ts.token();
+        if (!turnstileToken) {
+          showFeedback('Confirme que você não é um robô.', false);
+          return;
+        }
+      }
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    try {
+      const res = await fetch('/api/alertas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, consent: true, turnstileToken }),
+      });
+      if (res.ok) {
+        form.hidden = true;
+        showFeedback('Quase lá: enviamos um email de confirmação para ' + email + '. Confirme para começar a receber os alertas.', true);
+        return;
+      }
+      if (ts) ts.reset();
+      let msg = 'Não foi possível ativar os alertas agora. Tente mais tarde.';
+      try { const d = await res.json(); if (d && d.error) msg = d.error; } catch (_) {}
+      showFeedback(msg, false);
+    } catch (err) {
+      if (ts) ts.reset();
+      showFeedback('Erro de conexão. Verifique sua internet e tente de novo.', false);
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Ativar alertas';
+    }
+  });
+})();
 </script>
 
 <script src="assets/nav.js" defer></script>
