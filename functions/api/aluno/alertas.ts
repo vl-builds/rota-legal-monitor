@@ -44,6 +44,11 @@ function normalizePaises(input: unknown): string {
 
 // Converte um erro do Kit em resposta amigavel (429 = rate limit compartilhado com o cron).
 function kitErrorResponse(err: unknown): Response {
+  // Log de diagnostico: status + mensagem do Kit, nunca a chave. Aparece no `wrangler tail`.
+  const status = err instanceof KitError ? err.status : 'n/a'
+  const message = err instanceof Error ? err.message : String(err)
+  console.error(`[alertas] falha na chamada ao Kit: status=${status} message=${message}`)
+
   if (err instanceof KitError && err.status === 429) {
     return error(429, 'Muitas solicitacoes ao servico de email. Tente de novo em alguns minutos.')
   }
