@@ -1,57 +1,72 @@
 {
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
-    "notes": "Brasileiros não são cidadãos da UE/EEA ou Suíça e, portanto, precisam de permissão de residência e frequentemente de permissão de trabalho para trabalhar na Holanda. A Holanda não possui acordos bilaterais especiais de trabalho com o Brasil mencionados nesta página.",
-    "schengenVisaFree": false,
+    "notes": "Nenhum acordo bilateral específico com o Brasil foi mencionado na página. Brasileiros precisarão se submeter aos mesmos requisitos que outros nacionais não-EEA para trabalhar na Holanda.",
+    "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
   },
   "generalRequirements": {
     "cleanCriminalRecord": true,
     "healthInsurance": {
-      "minimumCoverage": null,
+      "minimumCoverage": {
+        "amount": 30000,
+        "currency": "EUR",
+        "period": null,
+        "notes": "Cobertura mínima por ocorrência para visto Schengen"
+      },
       "mustBeLocal": false,
-      "notes": "",
-      "required": false
+      "notes": "Seguro saúde é obrigatório para residentes na Holanda. Após chegada, deve-se contratar seguro holandês (zorgverzekering) dentro de 4 meses. Para o período de visto, cobertura internacional de EUR 30.000 mínima.",
+      "required": true
     },
-    "minimumWage": null,
     "passportValidity": "Minimo 6 meses apos a data de entrada",
-    "proofOfFunds": null,
+    "proofOfFunds": {
+      "amount": 2304,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Para Highly Skilled Migrant: limiar salarial mínimo de EUR 5.942/mês (acima de 30 anos) ou EUR 4.357/mês (abaixo de 30 anos). Para outros vistos: demonstração de contrato de trabalho ou renda suficiente."
+    },
+    "minimumWage": {
+      "amount": 2304,
+      "currency": "EUR",
+      "period": "monthly",
+      "notes": "Wettelijk minimumloon (WML) 2026: EUR 14,71/hora desde 1 janeiro 2026 (aumento de 2,15% face a julho 2025). EUR 2.303,59/mês para jornada de 36h semanais. Reajuste semestral (janeiro e julho). Aplica-se a maiores de 21 anos."
+    },
     "vaccinations": []
   },
   "meta": {
     "country": "nl",
     "countryName": "Holanda",
-    "lastUpdated": "2026-06-01T11:31:04.359Z",
+    "lastUpdated": "2026-05-06T11:46:28.063Z",
     "schemaVersion": "1.0.0",
     "sources": [
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-06-01T11:29:08.856Z",
+        "fetchedAt": "2026-05-06T11:44:48.144Z",
         "status": "ok",
         "url": "https://ind.nl/en/residence-permits/work"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-06-01T11:29:10.857Z",
+        "fetchedAt": "2026-05-06T11:44:50.151Z",
         "status": "ok",
         "url": "https://ind.nl/en/residence-permits/work/highly-skilled-migrant"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-06-01T11:29:12.859Z",
+        "fetchedAt": "2026-05-06T11:44:52.164Z",
         "status": "ok",
         "url": "https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-06-01T11:29:14.861Z",
+        "fetchedAt": "2026-05-06T11:44:54.171Z",
         "status": "ok",
         "url": "https://ind.nl/en/fees-costs-of-an-application"
       },
       {
         "contentLanguage": "en",
-        "fetchedAt": "2026-06-01T11:29:16.863Z",
+        "fetchedAt": "2026-05-06T11:44:56.192Z",
         "status": "ok",
         "url": "https://ind.nl/en/work"
       }
@@ -62,187 +77,17 @@
     "extractedBy": "llm",
     "extractionConfidence": "medium",
     "humanReviewedAt": null,
-    "knownIssues": []
+    "knownIssues": [
+      "Extração mai/2026: proofOfFunds, healthInsurance e forBrazilians.schengenVisaFree requerem manutenção manual — LLM não extrai esses campos de forma confiável das fontes atuais."
+    ]
   },
   "visaTypes": [
     {
-      "description": "Você deseja trabalhar em emprego remunerado na Holanda. Você precisa de uma permissão de residência com uma permissão de trabalho (GVVA).",
-      "eligibility": [],
-      "id": "paid-employment-gvva",
-      "name": "Emprego remunerado: permissão de residência com permissão de trabalho",
-      "nameOriginal": "Paid employment: residence permit with work permit (GVVA)",
-      "notes": "A GVVA combina permissão de trabalho e de residência em um documento único. Para cargos que não se qualificam como kennismigrant, é o caminho padrão. O teste de mercado de trabalho pelo UWV é exigido na maioria dos casos — empregador deve demonstrar que não há candidato local disponível.",
-      "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "4-8 semanas",
-        "fees": [
-          {
-            "amount": 345,
-            "currency": "EUR",
-            "notes": "taxa IND para GVVA (gecombineerde vergunning voor verblijf en arbeid)"
-          },
-          {
-            "amount": 225,
-            "currency": "EUR",
-            "notes": "taxa MVV no consulado holandês — se aplicável"
-          }
-        ],
-        "steps": [
-          {
-            "order": 1,
-            "description": "Empregador holandês solicita GVVA ao IND em nome do trabalhador — verifica-se o mercado de trabalho (UWV) se aplicável",
-            "estimatedDays": null,
-            "name": null
-          },
-          {
-            "order": 2,
-            "description": "UWV (Uitvoeringsinstituut Werknemersverzekeringen) pode verificar se há trabalhadores locais disponíveis para o cargo",
-            "estimatedDays": null,
-            "name": null
-          },
-          {
-            "order": 3,
-            "description": "IND analisa o pedido — prazo de 4-8 semanas",
-            "estimatedDays": null,
-            "name": null
-          },
-          {
-            "order": 4,
-            "description": "Após aprovação, solicitar MVV no consulado holandês se necessário",
-            "estimatedDays": null,
-            "name": null
-          },
-          {
-            "order": 5,
-            "description": "Entrar nos Países Baixos e registrar-se na gemeente",
-            "estimatedDays": null,
-            "name": null
-          }
-        ]
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "name": "Passaporte brasileiro válido",
-            "description": "Validade mínima de 6 meses além do período",
-            "isCritical": true
-          },
-          {
-            "name": "Contrato de trabalho ou carta de oferta",
-            "description": "Com empregador holandês — salário conforme CAO do setor",
-            "isCritical": true
-          },
-          {
-            "name": "Qualificações compatíveis com o cargo",
-            "description": "Diplomas e experiência profissional relevantes",
-            "isCritical": true
-          }
-        ],
-        "incomeRequirement": {
-          "amount": 1934,
-          "currency": "EUR",
-          "period": "monthly",
-          "notes": "Salário mínimo holandês (minimumloon) como referência — verificar CAO aplicável ao setor"
-        },
-        "languageRequired": null,
-        "qualificationsRequired": [
-          "Qualificações compatíveis com o cargo oferecido"
-        ]
-      },
-      "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": {
-          "yearsRequired": 5,
-          "conditions": [],
-          "summary": "Após 5 anos de residência legal"
-        },
-        "pathToResidency": {
-          "yearsRequired": 5,
-          "conditions": [],
-          "summary": "Após 5 anos de residência legal"
-        }
-      }
-    },
-    {
-      "description": "Você quer trabalhar em emprego remunerado na Holanda e não pode se candidatar a um GVVA. Ou você não precisa de uma permissão de trabalho.",
-      "eligibility": [
-        "Aqueles que não podem solicitar GVVA",
-        "Aqueles que não precisam de permissão de trabalho"
-      ],
-      "id": "paid-employment-no-gvva",
-      "name": "Emprego remunerado sem permissão de trabalho",
-      "nameOriginal": "Paid employment: residence permit only",
-      "notes": "Modalidade para casos em que a GVVA não é aplicável mas o trabalhador precisa de verblijfsvergunning separada da autorização de trabalho. Menos comum que a GVVA. Verificar com o IND qual modalidade se aplica ao caso específico.",
-      "process": {
-        "applicationLocation": "ambos",
-        "estimatedDuration": "4-8 semanas",
-        "fees": [
-          {
-            "amount": 345,
-            "currency": "EUR",
-            "notes": "taxa IND para verblijfsvergunning para trabalho sem GVVA"
-          },
-          {
-            "amount": 160,
-            "currency": "EUR",
-            "notes": "taxa tewerkstellingsvergunning (TWV — autorização de trabalho) no UWV — paga pelo empregador"
-          }
-        ],
-        "steps": []
-      },
-      "relevanceForDelivery": "direct",
-      "requirements": {
-        "documents": [
-          {
-            "name": "Passaporte brasileiro válido",
-            "description": "Validade mínima de 6 meses além do período",
-            "isCritical": true
-          },
-          {
-            "name": "Contrato de trabalho com empregador holandês",
-            "description": "Salário mínimo conforme CAO do setor aplicável",
-            "isCritical": true
-          },
-          {
-            "name": "Tewerkstellingsvergunning (TWV) aprovada",
-            "description": "Autorização de trabalho emitida pelo UWV ao empregador — equivale ao trabalho sem GVVA em certas situações",
-            "isCritical": true
-          }
-        ],
-        "incomeRequirement": {
-          "amount": 1934,
-          "currency": "EUR",
-          "period": "monthly",
-          "notes": "Salário mínimo holandês como referência — verificar CAO do setor"
-        },
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": true,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": {
-          "yearsRequired": 5,
-          "conditions": [],
-          "summary": "Após 5 anos de residência legal"
-        },
-        "pathToResidency": {
-          "yearsRequired": 5,
-          "conditions": [],
-          "summary": "Após 5 anos de residência legal"
-        }
-      }
-    },
-    {
-      "description": "Você deseja trabalhar na Holanda como um migrante altamente qualificado.",
+      "description": "Você quer trabalhar na Holanda como um migrante altamente qualificado.",
       "eligibility": [],
       "id": "highly-skilled-migrant",
-      "name": "Migrante altamente qualificado",
-      "nameOriginal": "Highly skilled migrant",
+      "name": "Permissão de residência para trabalhador altamente qualificado",
+      "nameOriginal": "Residence permit for highly skilled migrant",
       "notes": "O Highly Skilled Migrant (kennismigrant) é a via principal para trabalhadores qualificados nos Países Baixos. O requisito central é o salário mínimo (atualizado em jan/2025: €5.688/mês para 30+). O empregador deve ser erkend referent — a maioria das multinacionais e universidades já tem. Processo muito rápido: 2 semanas de processamento. Possível acumular com a '30% ruling' (isenção fiscal de 30% da renda por até 5 anos) se contratado de fora dos Países Baixos.",
       "process": {
         "applicationLocation": "ambos",
@@ -351,13 +196,11 @@
       }
     },
     {
-      "description": "Você deseja solicitar um Cartão Azul Europeu como trabalhador altamente educado para viver e trabalhar na Holanda.",
-      "eligibility": [
-        "Trabalhador altamente educado"
-      ],
+      "description": "Você quer solicitar um Cartão Azul Europeu como trabalhador altamente educado para viver e trabalhar na Holanda.",
+      "eligibility": [],
       "id": "european-blue-card",
       "name": "Cartão Azul Europeu",
-      "nameOriginal": "European Blue Card",
+      "nameOriginal": "European blue card residence permit",
       "notes": "A EU Blue Card nos Países Baixos é uma alternativa ao kennismigrant com limiar salarial ligeiramente menor. Vantagem adicional: mobilidade simplificada para outros países da UE após 18 meses. Para a maioria dos candidatos, o kennismigrant é equivalente ou superior em vantagens — escolher conforme salário e planos de mobilidade europeia.",
       "process": {
         "applicationLocation": "ambos",
@@ -462,13 +305,9 @@
     },
     {
       "description": "Você está sendo transferido por uma empresa de fora da UE para uma filial na Holanda para trabalhar como gerente, especialista ou estagiário.",
-      "eligibility": [
-        "Gerente",
-        "Especialista",
-        "Estagiário"
-      ],
+      "eligibility": [],
       "id": "intra-corporate-transferee",
-      "name": "Permissão de residência para transferido intraempresarial",
+      "name": "Permissão de residência para transferência intraempresarial",
       "nameOriginal": "Intra-corporate transferee residence permit (Directive 2014/66/EU)",
       "notes": "O ICT permit holandês segue a Diretiva 2014/66/UE. Após aprovação em um Estado-Membro, mobilidade simplificada para outros países da UE. Limite de 3 anos máximo (gestores/especialistas) ou 1 ano (trainees). Para carreira de longo prazo nos Países Baixos, transitar para kennismigrant é mais vantajoso.",
       "process": {
@@ -583,14 +422,14 @@
       }
     },
     {
-      "description": "Você deseja viver e trabalhar na Holanda como pesquisador.",
+      "description": "Você quer viver e trabalhar na Holanda como pesquisador.",
       "eligibility": [
-        "Pesquisador"
+        "Pesquisadores"
       ],
-      "id": "researcher",
-      "name": "Permissão de residência para pesquisador",
+      "id": "researcher-permit",
+      "name": "Permissão de Residência para Pesquisador",
       "nameOriginal": "Residence permit researcher (Directive (EU) 2016/801)",
-      "notes": "Muito similar ao researcher-permit — ambas as entradas referem-se ao verblijfsvergunning onderzoeker. A principal diferença pode ser o tipo de instituição ou a duração do programa de pesquisa. Pesquisadores PhD podem ser elegíveis para a '30% ruling' fiscal se contratados de fora dos Países Baixos.",
+      "notes": "O Researcher permit é específico para pesquisadores acadêmicos vinculados a instituições de pesquisa reconhecidas. Processo similar ao kennismigrant mas com limiar salarial seguindo o CAO das universidades, que pode ser inferior ao do kennismigrant regular. Pesquisadores PhD podem ser elegíveis para a '30% ruling' fiscal.",
       "process": {
         "applicationLocation": "ambos",
         "estimatedDuration": "2-4 semanas",
@@ -598,7 +437,7 @@
           {
             "amount": 345,
             "currency": "EUR",
-            "notes": "taxa IND para onderzoeker (pesquisador) verblijfsvergunning"
+            "notes": "taxa IND para Researcher permit"
           },
           {
             "amount": 225,
@@ -609,25 +448,25 @@
         "steps": [
           {
             "order": 1,
-            "description": "Instituição de pesquisa reconhecida nos Países Baixos assina gastovereenkomst (acordo de acolhimento) com o pesquisador",
+            "description": "Instituição de pesquisa reconhecida nos Países Baixos (universidade, instituto de pesquisa aprovado pelo IND) assina acordo de acolhimento (gastovereenkomst) com o pesquisador",
             "estimatedDays": null,
             "name": null
           },
           {
             "order": 2,
-            "description": "Instituição submete pedido de verblijfsvergunning onderzoeker ao IND",
+            "description": "Instituição submete pedido de verblijfsvergunning para onderzoeker (pesquisador) ao IND em nome do pesquisador",
             "estimatedDays": null,
             "name": null
           },
           {
             "order": 3,
-            "description": "IND decide em 2 semanas (instituições erkend referent) ou até 8 semanas",
+            "description": "Pagar taxa IND de €345 e aguardar decisão (2 semanas para instituições erkend referent)",
             "estimatedDays": null,
             "name": null
           },
           {
             "order": 4,
-            "description": "Solicitar MVV no consulado holandês se necessário",
+            "description": "Solicitar MVV no consulado holandês se necessário — pagar ~€225",
             "estimatedDays": null,
             "name": null
           },
@@ -639,7 +478,7 @@
           }
         ]
       },
-      "relevanceForDelivery": "direct",
+      "relevanceForDelivery": "low",
       "requirements": {
         "documents": [
           {
@@ -648,18 +487,18 @@
             "isCritical": true
           },
           {
-            "name": "Gastovereenkomst com instituição de pesquisa reconhecida",
-            "description": "Acordo de acolhimento assinado com universidade ou instituto de pesquisa aprovado pelo IND",
+            "name": "Gastovereenkomst (acordo de acolhimento) com instituição de pesquisa reconhecida",
+            "description": "Acordo formal assinado com universidade ou instituto de pesquisa aprovado pelo IND",
             "isCritical": true
           },
           {
-            "name": "Diploma de ensino superior (doutorado ou equivalente)",
-            "description": "Qualificação de pesquisador — PhD ou nível equivalente",
+            "name": "Diploma de doutorado (PhD) ou equivalente",
+            "description": "Para pesquisa de nível pós-doutoral — ou prova de nível correspondente",
             "isCritical": true
           },
           {
-            "name": "Projeto de pesquisa",
-            "description": "Descrição do projeto que será desenvolvido na instituição holandesa",
+            "name": "Projeto de pesquisa aprovado",
+            "description": "Descrição do projeto de pesquisa que será desenvolvido na instituição holandesa",
             "isCritical": true
           }
         ],
@@ -667,11 +506,11 @@
           "amount": 2835,
           "currency": "EUR",
           "period": "monthly",
-          "notes": "Salário conforme CAO NU (universidades holandesas) — varia por função e nível (PhD, postdoc, associate researcher)"
+          "notes": "O salário para pesquisadores varia conforme a CAO (convenção coletiva) das universidades holandesas — o CAO NU define escalas salariais específicas para PhD e postdoc"
         },
         "languageRequired": null,
         "qualificationsRequired": [
-          "Doutorado ou nível de pesquisa equivalente",
+          "Diploma de doutorado (PhD) ou nível de pesquisa equivalente",
           "Acordo de acolhimento com instituição de pesquisa reconhecida pelo IND"
         ]
       },
@@ -692,7 +531,178 @@
       }
     },
     {
-      "description": "Você deseja começar a trabalhar de forma autônoma na Holanda.",
+      "description": "Você quer trabalhar em emprego remunerado na Holanda. Você precisa de permissão de residência com permissão de trabalho (GVVA).",
+      "eligibility": [],
+      "id": "paid-employment-gvva",
+      "name": "Emprego remunerado com permissão de residência e permissão de trabalho (GVVA)",
+      "nameOriginal": "Paid employment: residence permit with work permit (GVVA)",
+      "notes": "A GVVA combina permissão de trabalho e de residência em um documento único. Para cargos que não se qualificam como kennismigrant, é o caminho padrão. O teste de mercado de trabalho pelo UWV é exigido na maioria dos casos — empregador deve demonstrar que não há candidato local disponível.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "4-8 semanas",
+        "fees": [
+          {
+            "amount": 345,
+            "currency": "EUR",
+            "notes": "taxa IND para GVVA (gecombineerde vergunning voor verblijf en arbeid)"
+          },
+          {
+            "amount": 225,
+            "currency": "EUR",
+            "notes": "taxa MVV no consulado holandês — se aplicável"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "Empregador holandês solicita GVVA ao IND em nome do trabalhador — verifica-se o mercado de trabalho (UWV) se aplicável",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "UWV (Uitvoeringsinstituut Werknemersverzekeringen) pode verificar se há trabalhadores locais disponíveis para o cargo",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "IND analisa o pedido — prazo de 4-8 semanas",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Após aprovação, solicitar MVV no consulado holandês se necessário",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Entrar nos Países Baixos e registrar-se na gemeente",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 6 meses além do período",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho ou carta de oferta",
+            "description": "Com empregador holandês — salário conforme CAO do setor",
+            "isCritical": true
+          },
+          {
+            "name": "Qualificações compatíveis com o cargo",
+            "description": "Diplomas e experiência profissional relevantes",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 1934,
+          "currency": "EUR",
+          "period": "monthly",
+          "notes": "Salário mínimo holandês (minimumloon) como referência — verificar CAO aplicável ao setor"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Qualificações compatíveis com o cargo oferecido"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
+      }
+    },
+    {
+      "description": "Você quer trabalhar em emprego remunerado na Holanda e não pode se candidatar a um GVVA. Ou você não precisa de permissão de trabalho.",
+      "eligibility": [
+        "Trabalhadores assalariados isentos de permissão de trabalho"
+      ],
+      "id": "paid-employment-no-gvva",
+      "name": "Emprego Remunerado: Permissão de Residência Apenas",
+      "nameOriginal": "Paid employment: residence permit only",
+      "notes": "Modalidade para casos em que a GVVA não é aplicável mas o trabalhador precisa de verblijfsvergunning separada da autorização de trabalho. Menos comum que a GVVA. Verificar com o IND qual modalidade se aplica ao caso específico.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "4-8 semanas",
+        "fees": [
+          {
+            "amount": 345,
+            "currency": "EUR",
+            "notes": "taxa IND para verblijfsvergunning para trabalho sem GVVA"
+          },
+          {
+            "amount": 160,
+            "currency": "EUR",
+            "notes": "taxa tewerkstellingsvergunning (TWV — autorização de trabalho) no UWV — paga pelo empregador"
+          }
+        ],
+        "steps": []
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 6 meses além do período",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho com empregador holandês",
+            "description": "Salário mínimo conforme CAO do setor aplicável",
+            "isCritical": true
+          },
+          {
+            "name": "Tewerkstellingsvergunning (TWV) aprovada",
+            "description": "Autorização de trabalho emitida pelo UWV ao empregador — equivale ao trabalho sem GVVA em certas situações",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 1934,
+          "currency": "EUR",
+          "period": "monthly",
+          "notes": "Salário mínimo holandês como referência — verificar CAO do setor"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": []
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
+      }
+    },
+    {
+      "description": "Você quer começar a trabalhar como autônomo na Holanda.",
       "eligibility": [],
       "id": "self-employed",
       "name": "Permissão de residência para trabalhador autônomo",
@@ -815,24 +825,33 @@
       }
     },
     {
-      "description": "Você quer contratar um funcionário estrangeiro que é essencial para sua start-up.",
-      "eligibility": [
-        "Funcionários essenciais de start-ups",
-        "Pessoal-chave em empresas iniciantes inovadoras"
-      ],
-      "id": "startup-personnel",
-      "name": "Pessoal essencial de start-up",
-      "nameOriginal": "Residence permit for essential start-up personnel",
-      "notes": null,
+      "description": "Você quer viver e trabalhar temporariamente na Holanda sob a Regulação de Comércio Internacional.",
+      "eligibility": [],
+      "id": "international-trade-regulation",
+      "name": "Regulação de Comércio Internacional",
+      "nameOriginal": "International Trade Regulation",
+      "notes": "Modalidade específica para trabalhadores cobertos por regulamentações de comércio internacional (acordos GATS, WTO etc.). Verificar elegibilidade com o IND conforme o acordo específico aplicável.",
       "process": {
         "applicationLocation": "destino",
         "estimatedDuration": "A determinar",
-        "fees": [],
+        "fees": [
+          {
+            "amount": 345,
+            "currency": "EUR",
+            "notes": "taxa IND para verblijfsvergunning sob regulamento de comércio internacional"
+          }
+        ],
         "steps": []
       },
       "relevanceForDelivery": "indirect",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 6 meses além do período",
+            "isCritical": true
+          }
+        ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": []
@@ -846,7 +865,7 @@
       }
     },
     {
-      "description": "Você deseja trabalhar no setor agrícola da Holanda por um máximo de 24 semanas.",
+      "description": "Você quer trabalhar no setor agrícola da Holanda por no máximo 6 meses.",
       "eligibility": [],
       "id": "seasonal-work",
       "name": "Permissão de residência para trabalho sazonal",
@@ -864,7 +883,7 @@
         ],
         "steps": []
       },
-      "relevanceForDelivery": "low",
+      "relevanceForDelivery": "direct",
       "requirements": {
         "documents": [
           {
@@ -896,24 +915,45 @@
       }
     },
     {
-      "description": "Você trabalha para uma empresa em um país da UE/EEA ou Suíça. Você trabalhará temporariamente na Holanda para esta empresa.",
+      "description": "Você trabalha para uma empresa em um país da UE/EEA ou Suíça. Você trabalhará temporariamente na Holanda para essa empresa.",
       "eligibility": [
-        "Funcionários de empresas da UE/EEA ou Suíça",
-        "Provedores de serviços transfronteiriços"
+        "Trabalhadores de países da UE/EEA ou Suíça"
       ],
-      "id": "cross-border-service",
-      "name": "Provedor de serviços transfronteiriços",
+      "id": "cross-border-service-provider",
+      "name": "Permissão de Residência para Prestador de Serviços Transfronteiriços",
       "nameOriginal": "Residence permit cross-border service provider",
-      "notes": null,
+      "notes": "Modalidade para trabalhadores designados por empresa estrangeira para prestar serviços nos Países Baixos por período determinado. Geralmente requer autorização de trabalho (TWV) além da verblijfsvergunning.",
       "process": {
         "applicationLocation": "destino",
         "estimatedDuration": "A determinar",
-        "fees": [],
+        "fees": [
+          {
+            "amount": 345,
+            "currency": "EUR",
+            "notes": "taxa IND para verblijfsvergunning para prestação de serviços transfronteiriça"
+          }
+        ],
         "steps": []
       },
       "relevanceForDelivery": "low",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 6 meses além do período",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de serviços entre empresa estrangeira e cliente holandês",
+            "description": "Contrato B2B formal para prestação de serviços nos Países Baixos",
+            "isCritical": true
+          },
+          {
+            "name": "Carta de designação da empresa enviante",
+            "description": "Indicando o trabalhador designado para executar o contrato nos Países Baixos",
+            "isCritical": true
+          }
+        ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": []
@@ -927,42 +967,54 @@
       }
     },
     {
-      "description": "Você deseja ser um estagiário ou aprendiz na Holanda.",
-      "eligibility": [],
-      "id": "intern-apprentice",
-      "name": "Estagiário ou aprendiz na Holanda",
-      "nameOriginal": "Intern or apprentice in the Netherlands",
-      "notes": null,
+      "description": "Você vai trabalhar na Holanda mas vive em outro país da UE.",
+      "eligibility": [
+        "Cidadãos da UE/EEA"
+      ],
+      "id": "intra-eu-frontier-worker",
+      "name": "Trabalhador Fronteiriço Intra-UE",
+      "nameOriginal": "Work as an EU frontier worker",
+      "notes": "Esta modalidade é específica para trabalhadores fronteiriços da UE — cidadãos da UE que residem em país vizinho e trabalham nos Países Baixos. Não é aplicável a cidadãos brasileiros diretamente. Brasileiro precisaria de outro tipo de permit.",
       "process": {
-        "applicationLocation": "destino",
+        "applicationLocation": "ambos",
         "estimatedDuration": "A determinar",
-        "fees": [],
+        "fees": [
+          {
+            "amount": 0,
+            "currency": "EUR",
+            "notes": "trabalhadores fronteiriços intra-UE geralmente não precisam de verblijfsvergunning nos Países Baixos"
+          }
+        ],
         "steps": []
       },
-      "relevanceForDelivery": "indirect",
+      "relevanceForDelivery": "low",
       "requirements": {
-        "documents": [],
+        "documents": [
+          {
+            "name": "Passaporte ou documento de identidade válido da UE",
+            "description": "Para trabalhadores fronteiriços com residência em país vizinho (Bélgica, Alemanha) e trabalho nos Países Baixos — não aplicável a brasileiros diretamente",
+            "isCritical": true
+          }
+        ],
         "incomeRequirement": null,
         "languageRequired": null,
         "qualificationsRequired": []
       },
       "rights": {
         "canBringFamily": false,
-        "canChangeEmployer": false,
+        "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": null,
         "pathToResidency": null
       }
     },
     {
-      "description": "Você quer prestar serviço de navegação marítima a bordo de um navio em um porto marítimo holandês por mais de 90 dias.",
+      "description": "Você quer realizar serviço marítimo em um navio em um porto holandês por mais de 90 dias.",
       "eligibility": [
-        "Tripulantes de navios",
-        "Trabalhadores marítimos",
-        "Permanência superior a 90 dias"
+        "Marinheiros"
       ],
       "id": "seafaring-crew",
-      "name": "Tripulação de navio de navegação marítima",
+      "name": "Serviço Marítimo como Membro da Tripulação",
       "nameOriginal": "Seafaring service as a crew member on board a seagoing vessel",
       "notes": "Modalidade específica para tripulação de embarcações em águas holandesas ou portos holandeses. Geralmente enquadrado em regulamentação marítima internacional. Verificar com a autoridade marítima holandesa (ILT) e o IND os requisitos específicos para o tipo de embarcação e rota.",
       "process": {
@@ -1014,50 +1066,18 @@
       }
     },
     {
-      "description": "Você quer procurar um emprego na Holanda após sua graduação, promoção ou pesquisa científica.",
+      "description": "Visto para recém-graduados, pesquisadores ou profissionais com doutorado que desejam procurar trabalho na Holanda após conclusão de estudos ou pesquisa. Permite trabalho livre sem necessidade de permissão do empregador.",
       "eligibility": [
-        "Recém-graduados",
-        "Pesquisadores",
-        "Pessoas em busca de emprego após estudos ou pesquisa"
-      ],
-      "id": "orientation-year",
-      "name": "Ano de orientação",
-      "nameOriginal": "Residence permit for orientation year",
-      "notes": null,
-      "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [],
-        "steps": []
-      },
-      "relevanceForDelivery": "indirect",
-      "requirements": {
-        "documents": [],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Visto para recém-graduados, doutores ou pesquisadores que desejam procurar trabalho na Holanda após conclusão de seus estudos ou pesquisa. Permite trabalhar livremente durante o período de orientação.",
-      "eligibility": [
-        "Ter realizado pesquisa científica na Holanda nos 3 anos anteriores à data da solicitação com visto de pesquisa (Diretiva UE 2016/801) ou como altamente qualificado",
-        "Ter obtido diploma de mestrado nos 3 anos anteriores como parte de programa Erasmus Mundus Joint Master",
-        "Ter completado programa de bacharel ou mestrado em instituição de ensino superior holandesa nos 3 anos anteriores",
-        "Ter completado programa de pós-mestrado na Holanda com duração mínima de um ano acadêmico (10 meses)",
-        "Ter completado programa de mestrado, doutorado ou pós-mestrado em instituição educacional estrangeira designada (top 200 em rankings internacionais)"
+        "Ter conduzido pesquisa científica nos Países Baixos nos 3 anos anteriores à data do pedido",
+        "Ter tido permissão de residência para pesquisa conforme Diretiva (EU) 2016/801 ou para trabalhador altamente qualificado em pesquisa científica",
+        "Ter obtido mestrado nos 3 anos anteriores no contexto de programa Erasmus Mundus Joint Master",
+        "Ter completado programa de estudo acreditado em instituição holandesa de ensino superior (bacharelado ou mestrado) nos 3 anos anteriores",
+        "Ter completado programa de pós-mestrado na Holanda por pelo menos um ano acadêmico (mínimo 10 meses)"
       ],
       "id": "orientation-year-highly-educated",
-      "name": "Visto de Orientação para Altamente Educados",
+      "name": "Visto de Orientação para Recém-Graduados - Pessoa Altamente Educada",
       "nameOriginal": "Residence permit for orientation year for highly educated persons",
-      "notes": "O visto é válido por 1 ano e não pode ser prorrogado. Durante o período de orientação, o titular pode trabalhar livremente sem necessidade de visto de trabalho (TWV). Permite trabalhar como empregado, estagiário, empreendedor, autônomo ou freelancer. Não é possível prorrogar este visto. Pode-se solicitar segundo visto de orientação após completar diferentes projetos de pesquisa ou programas de estudo, desde que o novo programa tenha sido completado após o anterior. Diplomas estrangeiros devem ser avaliados por Nuffic antes de serem aceitos, exceto diplomas acreditados de instituições na Flandres (Bélgica). Solicitantes podem começar a trabalhar durante o processo de solicitação se tiverem adesivo de Endosso de Residência no passaporte.",
+      "notes": "Permissão de residência válida por 1 ano, tipo I, permissão de residência temporária regular. Não é extensível. Permite trabalho livre sem necessidade de permissão do empregador (TWV). Pode trabalhar como trabalhador autônomo, profissional liberal ou empreendedor. Se encontrar emprego durante o ano de orientação, pode solicitar outro tipo de permissão de residência (ex: trabalhador altamente qualificado, startup, autônomo). É possível solicitar segundo ou subsequentes anos de orientação se tiver completado diferentes projetos de pesquisa ou programas de estudo após o ano anterior. Aplicação deve ser feita enquanto residente na Holanda com permissão válida para o propósito anterior (estudo/pesquisa).",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "A determinar",
@@ -1075,34 +1095,28 @@
         ],
         "steps": [
           {
-            "description": "Reunir todos os documentos necessários incluindo diploma, certificado de inglês, e comprovante de residência (BRP e BSN)",
+            "description": "Reunir cópia de diploma/certificado de conclusão, documentação de pesquisa se aplicável, comprovante de inscrição no BRP e BSN",
             "estimatedDays": null,
-            "name": "Preparação de documentos",
+            "name": "Preparar documentação",
             "order": 1
           },
           {
-            "description": "Submeter formulário de solicitação online através do site da IND usando DigiD. Apenas possível se atender aos requisitos (residente na Holanda, graduado/doutor na Holanda, visto válido anterior, registrado no BRP, com BSN)",
+            "description": "Se diploma é estrangeiro, solicitar avaliação à Nuffic antes da aplicação (não necessário para Flanders, Bélgica)",
             "estimatedDays": null,
-            "name": "Submissão da solicitação online",
+            "name": "Solicitar avaliação de diploma estrangeiro (se aplicável)",
             "order": 2
           },
           {
-            "description": "Pagar a taxa de solicitação via iDEAL ou Wero",
+            "description": "Submeter formulário de aplicação online através do portal IND usando DigiD com verificação SMS e internet banking (iDEAL). Requer residência atual na Holanda com permissão válida para estudos/pesquisa",
             "estimatedDays": null,
-            "name": "Pagamento de taxa",
+            "name": "Preencher formulário de aplicação online",
             "order": 3
           },
           {
-            "description": "Agendar e realizar teste de TB na Gemeenschappelijke Gezondheidsdienst (GGD) dentro de 3 meses após aprovação do visto",
+            "description": "Após aprovação, agendar teste de tuberculose na Gemeenschappelijke Gezondheidsdienst (GGD) dentro de 3 meses",
             "estimatedDays": 90,
-            "name": "Teste de TB (tuberculose)",
+            "name": "Agendar teste de TB",
             "order": 4
-          },
-          {
-            "description": "Agendar consulta com IND para colocar adesivo de Endosso de Residência no passaporte com autorização para trabalhar",
-            "estimatedDays": null,
-            "name": "Obtenção do adesivo de Endosso de Residência",
-            "order": 5
           }
         ]
       },
@@ -1110,35 +1124,35 @@
       "requirements": {
         "documents": [
           {
-            "description": "Passaporte ou documento de identidade válido",
+            "description": "Cópia de diploma holandês, certificado ou declaração de conclusão de estudo. Para diplomas estrangeiros, deve estar avaliado pela Nuffic (exceto Flanders, Bélgica)",
             "isCritical": true,
-            "name": "Documento de identidade válido"
+            "name": "Diploma ou certificado de conclusão de estudos"
           },
           {
-            "description": "Cópia de diploma holandês, certificado, declaração de conclusão de estudos, ou diploma estrangeiro avaliado por Nuffic",
-            "isCritical": true,
-            "name": "Diploma ou certificado"
-          },
-          {
-            "description": "Registro no Banco de Dados de Registros Pessoais (BRP) e Número de Serviço do Cidadão (BSN)",
-            "isCritical": true,
-            "name": "Prova de residência na Holanda"
-          },
-          {
-            "description": "Visto de residência válido para fins de estudo, pesquisa ou trabalho altamente qualificado",
-            "isCritical": true,
-            "name": "Visto de residência válido anterior"
-          },
-          {
-            "description": "Certificado de teste de inglês (IELTS mínimo 6.0, TOEFL, TOEIC, Cambridge English) ou diploma em programa em inglês/holandês",
+            "description": "Documentação comprovando condução de pesquisa científica nos 3 anos anteriores",
             "isCritical": false,
-            "name": "Teste de proficiência em inglês"
+            "name": "Evidência de pesquisa científica"
+          },
+          {
+            "description": "Registro no Personal Records Database (Basisregistratie Personen) do município",
+            "isCritical": true,
+            "name": "Comprovante de inscrição no BRP"
+          },
+          {
+            "description": "Burgerservicenummer (Citizen Service Number)",
+            "isCritical": true,
+            "name": "Número de Serviço do Cidadão (BSN)"
+          },
+          {
+            "description": "Teste de tuberculose a ser realizado dentro de 3 meses após obtenção da permissão de residência",
+            "isCritical": false,
+            "name": "Teste de TB"
           }
         ],
         "incomeRequirement": null,
         "languageRequired": {
-          "language": "inglês",
-          "level": "IELTS 6.0 ou equivalente",
+          "language": "Inglês",
+          "level": "6.0",
           "testsAccepted": [
             "IELTS (Academic ou General Training)",
             "TOEFL",
@@ -1147,8 +1161,9 @@
           ]
         },
         "qualificationsRequired": [
-          "Conclusão de programa de educação superior (bacharel, mestrado ou doutorado)",
-          "Pesquisa científica ou estudos completados na Holanda ou em instituição estrangeira designada (top 200)"
+          "Conclusão de programa de estudo acreditado (bacharelado ou mestrado)",
+          "Conclusão de doutorado",
+          "Pesquisa científica conduzida na Holanda"
         ]
       },
       "rights": {
@@ -1160,58 +1175,152 @@
       }
     },
     {
-      "description": "Você deseja trabalhar em emprego remunerado na Holanda e não pode solicitar um GVVA. Ou você não precisa de uma permissão de trabalho.",
+      "description": "Você quer viver e trabalhar na Holanda como pesquisador.",
       "eligibility": [],
-      "id": "paid-employment-only",
+      "id": "researcher",
+      "name": "Permissão de residência para pesquisador",
+      "nameOriginal": "Residence permit researcher (Directive (EU) 2016/801)",
+      "notes": "Muito similar ao researcher-permit — ambas as entradas referem-se ao verblijfsvergunning onderzoeker. A principal diferença pode ser o tipo de instituição ou a duração do programa de pesquisa. Pesquisadores PhD podem ser elegíveis para a '30% ruling' fiscal se contratados de fora dos Países Baixos.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "2-4 semanas",
+        "fees": [
+          {
+            "amount": 345,
+            "currency": "EUR",
+            "notes": "taxa IND para onderzoeker (pesquisador) verblijfsvergunning"
+          },
+          {
+            "amount": 225,
+            "currency": "EUR",
+            "notes": "taxa MVV no consulado holandês — se aplicável"
+          }
+        ],
+        "steps": [
+          {
+            "order": 1,
+            "description": "Instituição de pesquisa reconhecida nos Países Baixos assina gastovereenkomst (acordo de acolhimento) com o pesquisador",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Instituição submete pedido de verblijfsvergunning onderzoeker ao IND",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "IND decide em 2 semanas (instituições erkend referent) ou até 8 semanas",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Solicitar MVV no consulado holandês se necessário",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Entrar nos Países Baixos e registrar-se na gemeente",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
+      },
+      "relevanceForDelivery": "direct",
+      "requirements": {
+        "documents": [
+          {
+            "name": "Passaporte brasileiro válido",
+            "description": "Validade mínima de 6 meses além do período",
+            "isCritical": true
+          },
+          {
+            "name": "Gastovereenkomst com instituição de pesquisa reconhecida",
+            "description": "Acordo de acolhimento assinado com universidade ou instituto de pesquisa aprovado pelo IND",
+            "isCritical": true
+          },
+          {
+            "name": "Diploma de ensino superior (doutorado ou equivalente)",
+            "description": "Qualificação de pesquisador — PhD ou nível equivalente",
+            "isCritical": true
+          },
+          {
+            "name": "Projeto de pesquisa",
+            "description": "Descrição do projeto que será desenvolvido na instituição holandesa",
+            "isCritical": true
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 2835,
+          "currency": "EUR",
+          "period": "monthly",
+          "notes": "Salário conforme CAO NU (universidades holandesas) — varia por função e nível (PhD, postdoc, associate researcher)"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Doutorado ou nível de pesquisa equivalente",
+          "Acordo de acolhimento com instituição de pesquisa reconhecida pelo IND"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
+      }
+    },
+    {
+      "description": "Você quer trabalhar em emprego remunerado na Holanda e não pode solicitar um GVVA. Ou você não precisa de permissão de trabalho.",
+      "eligibility": [],
+      "id": "paid-employment-no-permit",
       "name": "Emprego remunerado: apenas permissão de residência",
       "nameOriginal": "Paid employment: residence permit only",
-      "notes": null,
+      "notes": "Modalidade para trabalhadores cujas categorias estão isentas de autorização de trabalho separada (TWV), mas ainda precisam de verblijfsvergunning. Inclui categorias como pesquisadores em intercâmbio, trainees de curto prazo, e outras categorias específicas previstas no Besluit uitvoering Wet arbeid vreemdelingen.",
       "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [],
+        "applicationLocation": "ambos",
+        "estimatedDuration": "2-4 semanas",
+        "fees": [
+          {
+            "amount": 345,
+            "currency": "EUR",
+            "notes": "taxa IND para verblijfsvergunning regulier"
+          },
+          {
+            "amount": 225,
+            "currency": "EUR",
+            "notes": "taxa MVV no consulado holandês — se aplicável"
+          }
+        ],
         "steps": []
       },
       "relevanceForDelivery": "direct",
       "requirements": {
-        "documents": [],
-        "incomeRequirement": null,
-        "languageRequired": null,
-        "qualificationsRequired": []
-      },
-      "rights": {
-        "canBringFamily": false,
-        "canChangeEmployer": false,
-        "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
-      }
-    },
-    {
-      "description": "Você deseja viver e trabalhar temporariamente na Holanda sob a Regulação de Comércio Internacional.",
-      "eligibility": [],
-      "id": "international-trade-regulation",
-      "name": "Regulação de Comércio Internacional",
-      "nameOriginal": "International Trade Regulation",
-      "notes": "Modalidade específica para trabalhadores cobertos por regulamentações de comércio internacional (acordos GATS, WTO etc.). Verificar elegibilidade com o IND conforme o acordo específico aplicável.",
-      "process": {
-        "applicationLocation": "destino",
-        "estimatedDuration": "A determinar",
-        "fees": [
-          {
-            "amount": 345,
-            "currency": "EUR",
-            "notes": "taxa IND para verblijfsvergunning sob regulamento de comércio internacional"
-          }
-        ],
-        "steps": []
-      },
-      "relevanceForDelivery": "indirect",
-      "requirements": {
         "documents": [
           {
             "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 6 meses além do período",
+            "isCritical": true
+          },
+          {
+            "name": "Contrato de trabalho",
+            "description": "Para categorias isentas de autorização de trabalho separada",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de enquadramento na categoria isenta de TWV",
+            "description": "Demonstrar que a atividade se enquadra em categoria que não requer tewerkstellingsvergunning (ex.: pesquisador, trainee, transferência intragrupo etc.)",
             "isCritical": true
           }
         ],
@@ -1220,35 +1329,83 @@
         "qualificationsRequired": []
       },
       "rights": {
-        "canBringFamily": false,
+        "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        }
       }
     },
     {
-      "description": "Você trabalha para uma empresa em um país da UE/EEA ou Suíça. Você trabalhará temporariamente na Holanda para esta empresa.",
-      "eligibility": [
-        "Cidadão da UE/EEA ou Suíça"
-      ],
-      "id": "cross-border-service-provider",
-      "name": "Permissão de residência para prestador de serviço transfronteiriço",
-      "nameOriginal": "Residence permit cross-border service provider",
-      "notes": "Modalidade para trabalhadores designados por empresa estrangeira para prestar serviços nos Países Baixos por período determinado. Geralmente requer autorização de trabalho (TWV) além da verblijfsvergunning.",
+      "description": "Você quer começar uma empresa inovadora na Holanda.",
+      "eligibility": [],
+      "id": "start-up-founder",
+      "name": "Permissão de residência para fundador de startup inovadora",
+      "nameOriginal": "Residence permit for innovative start-up founder",
+      "notes": "O Start-up permit holandês é válido por apenas 1 ano (não renovável) — é um programa de incubação acelerada. O facilitador erkend é uma aceleradora, incubadora ou organização reconhecida que orienta o empreendedor. Após 1 ano, a startup deve ter progredido suficientemente para que o fundador solicite a verblijfsvergunning zelfstandige pelo sistema de pontos do RVO. Países Baixos têm um ecossistema de startups muito desenvolvido — Eindhoven, Amsterdam e Rotterdam são centros principais.",
       "process": {
         "applicationLocation": "ambos",
-        "estimatedDuration": "A determinar",
+        "estimatedDuration": "3 meses",
         "fees": [
           {
             "amount": 345,
             "currency": "EUR",
-            "notes": "taxa IND para verblijfsvergunning para prestação de serviços transfronteiriça"
+            "notes": "taxa IND para Start-up permit"
+          },
+          {
+            "amount": 225,
+            "currency": "EUR",
+            "notes": "taxa MVV no consulado holandês — se aplicável"
           }
         ],
-        "steps": []
+        "steps": [
+          {
+            "order": 1,
+            "description": "Selecionar um facilitador reconhecido (erkend facilitator) de entre os aprovados pelo RVO — obrigatório para o Start-up permit",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 2,
+            "description": "Desenvolver o plano de startup com o facilitador e obter sua carta de apoio — demonstrar produto/serviço inovador e escalável",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 3,
+            "description": "Submeter pedido de Start-up verblijfsvergunning ao IND com carta do facilitador e documentação completa",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 4,
+            "description": "Pagar taxa IND de €345 — prazo de decisão de 4-8 semanas",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 5,
+            "description": "Entrar nos Países Baixos, registrar empresa na KvK e iniciar atividade — Start-up permit válido por 1 ano",
+            "estimatedDays": null,
+            "name": null
+          },
+          {
+            "order": 6,
+            "description": "Após 1 ano, demonstrar progresso e solicitar conversão para verblijfsvergunning zelfstandige (autônomo) pelo sistema de pontos regular",
+            "estimatedDays": null,
+            "name": null
+          }
+        ]
       },
-      "relevanceForDelivery": "indirect",
+      "relevanceForDelivery": "direct",
       "requirements": {
         "documents": [
           {
@@ -1257,26 +1414,53 @@
             "isCritical": true
           },
           {
-            "name": "Contrato de serviços entre empresa estrangeira e cliente holandês",
-            "description": "Contrato B2B formal para prestação de serviços nos Países Baixos",
+            "name": "Carta de apoio de facilitador erkend reconhecido pelo RVO",
+            "description": "Obrigatória — o facilitador avalia o plano de startup e endossa o pedido. Lista de facilitadores disponível em rvo.nl",
             "isCritical": true
           },
           {
-            "name": "Carta de designação da empresa enviante",
-            "description": "Indicando o trabalhador designado para executar o contrato nos Países Baixos",
+            "name": "Plano de startup inovador e escalável",
+            "description": "Produto, serviço ou tecnologia inovadora com potencial de escala — avaliado em conjunto com o facilitador",
             "isCritical": true
+          },
+          {
+            "name": "Comprovante de meios de subsistência por 1 ano",
+            "description": "Demonstrar recursos financeiros para sustento durante o período do Start-up permit",
+            "isCritical": true
+          },
+          {
+            "name": "Comprovante de qualificações ou experiência relevante",
+            "description": "Diplomas, histórico profissional demonstrando capacidade de executar o plano",
+            "isCritical": false
           }
         ],
-        "incomeRequirement": null,
+        "incomeRequirement": {
+          "amount": 13000,
+          "currency": "EUR",
+          "period": "total",
+          "notes": "Recursos necessários para sustento durante 1 ano do Start-up permit — equivalente a aprox. €1.100/mês"
+        },
         "languageRequired": null,
-        "qualificationsRequired": []
+        "qualificationsRequired": [
+          "Plano de startup inovador e escalável",
+          "Carta de apoio de facilitador erkend aprovado pelo RVO",
+          "Produto ou serviço inovador com diferencial competitivo"
+        ]
       },
       "rights": {
-        "canBringFamily": false,
+        "canBringFamily": true,
         "canChangeEmployer": false,
         "canWork": true,
-        "pathToCitizenship": null,
-        "pathToResidency": null
+        "pathToCitizenship": {
+          "yearsRequired": 5,
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal"
+        },
+        "pathToResidency": {
+          "yearsRequired": 1,
+          "conditions": [],
+          "summary": "Via conversão para verblijfsvergunning zelfstandige após 1 ano e 5 anos totais de residência legal"
+        }
       }
     }
   ]
