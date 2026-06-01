@@ -61,15 +61,27 @@
       }
     ]
   },
-  "recentChanges": [],
+  "recentChanges": [
+    {
+      "affects": [
+        "lavoro-subordinato",
+        "lavoro-autonomo"
+      ],
+      "date": "2026-02-16",
+      "severity": "major",
+      "sourceUrl": "https://www.lavoro.gov.it/notizie/pagine/flussi-2026-attribuite-le-quote-per-lavoro-subordinato-non-stagionale-click-day-il-16-febbraio",
+      "summary": "Programação trienal 2026-2028 (DPCM 02/10/2025). Cota total de 164.850 ingressos de trabalhadores não-UE em 2026: 76.200 trabalho subordinado não sazonal (incl. 13.600 assistência familiar), 650 autônomo, 88.000 sazonal. Click days em 9, 16 e 18 de fevereiro de 2026.",
+      "title": "Decreto Flussi 2026: cotas e click days"
+    }
+  ],
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
     "humanReviewedAt": "2026-06-02T00:00:00.000Z",
     "knownIssues": [
       "Auditoria 2026-06-02: minimumWage removido (Itália não tem mínimo legal; piso por CCNL). EU Blue Card corrigida 35.000→~€27.000 (D.Lgs 152/2023; validade 2 anos; mobilidade 12 meses, não 18). lavoro autonomo/proofOfFunds ~€8.400.",
-      "ESTRUTURAL Decreto Flussi 2026 (DPCM 02/10/2025): total 164.850 (76.200 subordinado não sazonal incl. 13.600 colf/badanti; 650 autônomo; 88.000 sazonal); click days 09/16/18 de fevereiro 2026; moldura trienal 2026-2028.",
-      "Taxa do permesso (€200) é imprecisa: compor marca da bollo €16 + bollettino €30,46 + contributo €40-100; adicionar a marca da bollo de €16. Visto D ~€116 e correio ~€30 CURRENT."
+      "Taxa do permesso (€200) é imprecisa: compor marca da bollo €16 + bollettino €30,46 + contributo €40-100; adicionar a marca da bollo de €16. Visto D ~€116 e correio ~€30 CURRENT.",
+      "Decreto Flussi 2026 registrado em recentChanges (cotas + click days fev/2026)."
     ]
   },
   "visaTypes": [
@@ -82,7 +94,7 @@
       "id": "lavoro-subordinato",
       "name": "Trabalho Subordinado",
       "nameOriginal": "Lavoro Subordinato",
-      "notes": "O Decreto Flussi é o principal mecanismo de entrada de trabalhadores não-UE na Itália. As vagas abrem uma vez ao ano (às vezes mais) e se esgotam em minutos no 'click day' — o empregador deve estar preparado para agir imediatamente. O número de vagas por país e tipo de trabalho é limitado e varia a cada decreto. O Permesso di Soggiorno fica vinculado ao empregador; para trocar de empregador é necessário obter nova autorização.",
+      "notes": "O Decreto Flussi é o principal mecanismo de entrada de trabalhadores não-UE na Itália. As vagas abrem uma vez ao ano (às vezes mais) e se esgotam em minutos no 'click day' — o empregador deve estar preparado para agir imediatamente. O número de vagas por país e tipo de trabalho é limitado e varia a cada decreto. O Permesso di Soggiorno fica vinculado ao empregador; para trocar de empregador é necessário obter nova autorização. Ingresso via Decreto Flussi 2026 (cota de 76.200 para subordinado não sazonal; click day 16/02/2026).",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "3-8 meses",

@@ -309,5 +309,93 @@
       }
     },
     "notes": "A Professional Card é o instrumento para trabalhadores autônomos não-UE na Bélgica. A avaliação é baseada no impacto econômico positivo para a Bélgica — o plano de negócios é o documento mais importante do processo. A card é válida por 1 ano e renovável anualmente. Para profissões regulamentadas (médico, advogado, engenheiro), além da Professional Card é necessário reconhecimento da qualificação e inscrição no órgão regulador belga."
+  },
+  "eu-blue-card": {
+    "name": "Cartão Azul UE",
+    "nameOriginal": "European Blue Card / Carte bleue européenne / Europese blauwe kaart",
+    "description": "Autorização única para trabalhadores altamente qualificados com diploma de ensino superior (ou experiência equivalente) e oferta de emprego que pague acima do limiar da região onde o trabalho é exercido. Caminho mais rápido para residência de longa duração e mobilidade dentro da UE.",
+    "eligibility": [
+      "Diploma de ensino superior reconhecido ou 5 anos de experiência profissional equivalente",
+      "Contrato de trabalho de pelo menos 6 meses na Bélgica",
+      "Salário bruto acima do limiar da região (Bruxelas, Valônia ou Flandres)"
+    ],
+    "requirements": {
+      "documents": [
+        {
+          "name": "Passaporte válido",
+          "description": "Validade compatível com a duração do contrato",
+          "isCritical": true
+        },
+        {
+          "name": "Diploma de ensino superior reconhecido",
+          "description": "Equivalência pode ser exigida pela região",
+          "isCritical": true
+        },
+        {
+          "name": "Contrato de trabalho assinado",
+          "description": "Mínimo de 6 meses, com salário acima do limiar regional",
+          "isCritical": true
+        }
+      ],
+      "incomeRequirement": {
+        "amount": 4748,
+        "currency": "EUR",
+        "period": "monthly",
+        "notes": "Limiar de Bruxelas 2026 (€4.748/mês). Valônia: €68.815/ano. Flandres: €63.586/ano. A Bélgica define o limiar pela região onde o trabalho é exercido."
+      },
+      "qualificationsRequired": [
+        "Diploma de ensino superior ou experiência profissional equivalente (5 anos)"
+      ],
+      "languageRequired": null
+    },
+    "process": {
+      "steps": [
+        {
+          "order": 1,
+          "name": "Empregador inicia o pedido",
+          "description": "O empregador belga solicita a autorização única (single permit) na categoria Blue Card junto à região onde o trabalho será exercido.",
+          "estimatedDays": null
+        },
+        {
+          "order": 2,
+          "name": "Decisão regional + federal",
+          "description": "A região avalia o emprego/salário e o nível federal emite a autorização de residência.",
+          "estimatedDays": null
+        },
+        {
+          "order": 3,
+          "name": "Visto D e chegada",
+          "description": "Com a aprovação, o trabalhador solicita o visto D no consulado belga no Brasil e registra-se na comuna ao chegar.",
+          "estimatedDays": null
+        }
+      ],
+      "estimatedDuration": "2 a 4 meses",
+      "fees": [
+        {
+          "amount": 152,
+          "currency": "EUR",
+          "period": "one-time",
+          "notes": "Redevance federal 2026. A Flandres cobra taxa regional adicional (~€200-250) desde 01/01/2026."
+        }
+      ],
+      "applicationLocation": "ambos"
+    },
+    "rights": {
+      "canWork": true,
+      "canBringFamily": true,
+      "canChangeEmployer": false,
+      "pathToResidency": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Após 5 anos de residência legal na UE como Blue Card (período cumulável em vários países), residência de longa duração."
+      },
+      "pathToCitizenship": {
+        "yearsRequired": 5,
+        "conditions": [],
+        "summary": "Naturalização belga em geral após 5 anos de residência legal e integração."
+      }
+    },
+    "relevanceForDelivery": "indirect",
+    "notes": "Limiares 2026 por região: Bruxelas €4.748/mês; Valônia €68.815/ano; Flandres €63.586/ano (a confirmar com Statbel). É a rota principal para qualificados e não estava coberta antes da auditoria 2026."
   }
 }

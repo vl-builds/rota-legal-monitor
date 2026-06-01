@@ -63,8 +63,8 @@
     "knownIssues": [
       "Auditoria 2026-06-02: RMMMG €2.189,81/mês (01/04/2026) CURRENT. Os limiares belgas são POR REGIÃO e atualizados anualmente.",
       "single-permit altamente qualificado: €3.703,44/mês é o de Bruxelas 2026; Valônia €53.220/ano; Flandres €48.912/ano (a reindexar). A nota deve deixar claro que é por região.",
-      "GAP: falta a EU Blue Card (Bruxelas €4.748/mês; Valônia €68.815/ano; Flandres €63.586/ano).",
-      "Taxa single permit corrigida 215→€152 (redevance federal 2026) + nova taxa regional flamenga (~€200-250). professional-card sem piso de renda fixo (avaliação de viabilidade) — €26.087 removido."
+      "Taxa single permit corrigida 215→€152 (redevance federal 2026) + nova taxa regional flamenga (~€200-250). professional-card sem piso de renda fixo (avaliação de viabilidade) — €26.087 removido.",
+      "EU Blue Card adicionada na auditoria 2026 (limiares por região: Bruxelas €4.748/mês, Valônia €68.815/ano, Flandres €63.586/ano)."
     ]
   },
   "visaTypes": [
@@ -435,6 +435,95 @@
         "pathToResidency": {
           "conditions": [],
           "summary": "Após 5 anos de residência legal estável e comprovação de integração",
+          "yearsRequired": 5
+        }
+      }
+    },
+    {
+      "description": "Autorização única para trabalhadores altamente qualificados com diploma de ensino superior (ou experiência equivalente) e oferta de emprego que pague acima do limiar da região onde o trabalho é exercido. Caminho mais rápido para residência de longa duração e mobilidade dentro da UE.",
+      "eligibility": [
+        "Diploma de ensino superior reconhecido ou 5 anos de experiência profissional equivalente",
+        "Contrato de trabalho de pelo menos 6 meses na Bélgica",
+        "Salário bruto acima do limiar da região (Bruxelas, Valônia ou Flandres)"
+      ],
+      "id": "eu-blue-card",
+      "name": "Cartão Azul UE",
+      "nameOriginal": "European Blue Card / Carte bleue européenne / Europese blauwe kaart",
+      "notes": "Limiares 2026 por região: Bruxelas €4.748/mês; Valônia €68.815/ano; Flandres €63.586/ano (a confirmar com Statbel). É a rota principal para qualificados e não estava coberta antes da auditoria 2026.",
+      "process": {
+        "applicationLocation": "ambos",
+        "estimatedDuration": "2 a 4 meses",
+        "fees": [
+          {
+            "amount": 152,
+            "currency": "EUR",
+            "notes": "Redevance federal 2026. A Flandres cobra taxa regional adicional (~€200-250) desde 01/01/2026.",
+            "period": "one-time"
+          }
+        ],
+        "steps": [
+          {
+            "description": "O empregador belga solicita a autorização única (single permit) na categoria Blue Card junto à região onde o trabalho será exercido.",
+            "estimatedDays": null,
+            "name": "Empregador inicia o pedido",
+            "order": 1
+          },
+          {
+            "description": "A região avalia o emprego/salário e o nível federal emite a autorização de residência.",
+            "estimatedDays": null,
+            "name": "Decisão regional + federal",
+            "order": 2
+          },
+          {
+            "description": "Com a aprovação, o trabalhador solicita o visto D no consulado belga no Brasil e registra-se na comuna ao chegar.",
+            "estimatedDays": null,
+            "name": "Visto D e chegada",
+            "order": 3
+          }
+        ]
+      },
+      "relevanceForDelivery": "indirect",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Validade compatível com a duração do contrato",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "Equivalência pode ser exigida pela região",
+            "isCritical": true,
+            "name": "Diploma de ensino superior reconhecido"
+          },
+          {
+            "description": "Mínimo de 6 meses, com salário acima do limiar regional",
+            "isCritical": true,
+            "name": "Contrato de trabalho assinado"
+          }
+        ],
+        "incomeRequirement": {
+          "amount": 4748,
+          "currency": "EUR",
+          "notes": "Limiar de Bruxelas 2026 (€4.748/mês). Valônia: €68.815/ano. Flandres: €63.586/ano. A Bélgica define o limiar pela região onde o trabalho é exercido.",
+          "period": "monthly"
+        },
+        "languageRequired": null,
+        "qualificationsRequired": [
+          "Diploma de ensino superior ou experiência profissional equivalente (5 anos)"
+        ]
+      },
+      "rights": {
+        "canBringFamily": true,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": {
+          "conditions": [],
+          "summary": "Naturalização belga em geral após 5 anos de residência legal e integração.",
+          "yearsRequired": 5
+        },
+        "pathToResidency": {
+          "conditions": [],
+          "summary": "Após 5 anos de residência legal na UE como Blue Card (período cumulável em vários países), residência de longa duração.",
           "yearsRequired": 5
         }
       }

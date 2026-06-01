@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-01T22:27:49.310Z",
+  "generatedAt": "2026-06-01T22:50:30.121Z",
   "schemaVersion": "1.0.0",
   "countries": [
     {
@@ -23,7 +23,7 @@
       "name": "Belgica",
       "lastUpdated": "2026-05-06T12:00:49.010Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 3,
+      "visaTypesCount": 4,
       "confidence": "medium"
     },
     {
@@ -55,7 +55,7 @@
       "name": "Irlanda",
       "lastUpdated": "2026-05-06T11:56:11.404Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 9,
+      "visaTypesCount": 10,
       "confidence": "medium"
     },
     {

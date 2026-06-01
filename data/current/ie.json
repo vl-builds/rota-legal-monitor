@@ -107,7 +107,8 @@
       "Auditoria 2026-06-02: limiares CURRENT para 2026 (vigentes desde 01/03/2026): Critical Skills €40.904, General €36.605, ICT €49.523; salário mínimo €14,15/h. Fonte enterprise.gov.ie.",
       "Corrigir nas notas/steps: CSEP rota salário alto 64.000→€68.911; setores de baixa remuneração 30.000→€32.691; Contract for Services confirmar (€40.904 vs €49.523).",
       "ESTRUTURAL: roadmap de aumentos faseados até 2030 (anúncio 02/12/2025); Seasonal Employment Permit (fev/2025) ausente; data do Employment Permits Act é 2024-09-02.",
-      "sport-cultural (€30.000) e internship (€22.920): UNVERIFIED, provável desatualizado."
+      "sport-cultural (€30.000) e internship (€22.920): UNVERIFIED, provável desatualizado.",
+      "Seasonal Employment Permit adicionado na auditoria 2026 (taxa a confirmar no DETE)."
     ]
   },
   "visaTypes": [
@@ -1037,6 +1038,68 @@
           "Matrícula ativa em curso de ensino superior (bachelor ou pós-graduação) fora da Irlanda",
           "Estágio deve ser relevante para o curso de estudos"
         ]
+      },
+      "rights": {
+        "canBringFamily": false,
+        "canChangeEmployer": false,
+        "canWork": true,
+        "pathToCitizenship": null,
+        "pathToResidency": null
+      }
+    },
+    {
+      "description": "Permite a trabalhadores de fora do EEE atuar até 7 meses por ano civil em ocupações sazonais recorrentes (ex: agricultura, horticultura), para empregadores pré-aprovados como Approved Seasonal Employer. Criado pelo Employment Permits Act 2024.",
+      "eligibility": [
+        "Oferta de emprego sazonal de um Approved Seasonal Employer",
+        "Ocupação na lista de trabalhos sazonais elegíveis",
+        "Estadia limitada a 7 meses por ano civil"
+      ],
+      "id": "seasonal-employment-permit",
+      "name": "Permissão de Trabalho Sazonal",
+      "nameOriginal": "Seasonal Employment Permit",
+      "notes": "Novo (Employment Permits Act 2024, em vigor desde fev/2025). Até 7 meses por ano civil. Salário ao menos o mínimo nacional (€14,15/h em 2026). O empregador precisa de pré-aprovação anual. Valor da taxa a confirmar no DETE.",
+      "process": {
+        "applicationLocation": "origem",
+        "estimatedDuration": "algumas semanas",
+        "fees": [],
+        "steps": [
+          {
+            "description": "O empregador precisa estar registrado como Approved Seasonal Employer junto ao DETE (aprovação anual).",
+            "estimatedDays": null,
+            "name": "Empregador pré-aprovado",
+            "order": 1
+          },
+          {
+            "description": "O empregador ou o trabalhador solicita o Seasonal Employment Permit ao DETE.",
+            "estimatedDays": null,
+            "name": "Pedido da permissão",
+            "order": 2
+          },
+          {
+            "description": "Com a permissão, o trabalhador entra na Irlanda e atua na função sazonal por até 7 meses no ano civil.",
+            "estimatedDays": null,
+            "name": "Entrada e trabalho",
+            "order": 3
+          }
+        ]
+      },
+      "relevanceForDelivery": "low",
+      "requirements": {
+        "documents": [
+          {
+            "description": "Validade compatível com o período sazonal",
+            "isCritical": true,
+            "name": "Passaporte válido"
+          },
+          {
+            "description": "De empregador pré-aprovado pelo DETE",
+            "isCritical": true,
+            "name": "Oferta de emprego sazonal"
+          }
+        ],
+        "incomeRequirement": null,
+        "languageRequired": null,
+        "qualificationsRequired": []
       },
       "rights": {
         "canBringFamily": false,

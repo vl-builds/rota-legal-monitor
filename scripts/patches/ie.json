@@ -781,5 +781,66 @@
       "pathToCitizenship": null
     },
     "notes": "O Internship EP é específico para estudantes em programas de estágio curricular. Duração máxima de 12 meses. Não é um caminho para residência permanente. Taxa reduzida de €500. O estágio deve ser remunerado ao salário mínimo nacional e ser relevante para o curso de estudos do candidato."
+  },
+  "seasonal-employment-permit": {
+    "name": "Permissão de Trabalho Sazonal",
+    "nameOriginal": "Seasonal Employment Permit",
+    "description": "Permite a trabalhadores de fora do EEE atuar até 7 meses por ano civil em ocupações sazonais recorrentes (ex: agricultura, horticultura), para empregadores pré-aprovados como Approved Seasonal Employer. Criado pelo Employment Permits Act 2024.",
+    "eligibility": [
+      "Oferta de emprego sazonal de um Approved Seasonal Employer",
+      "Ocupação na lista de trabalhos sazonais elegíveis",
+      "Estadia limitada a 7 meses por ano civil"
+    ],
+    "requirements": {
+      "documents": [
+        {
+          "name": "Passaporte válido",
+          "description": "Validade compatível com o período sazonal",
+          "isCritical": true
+        },
+        {
+          "name": "Oferta de emprego sazonal",
+          "description": "De empregador pré-aprovado pelo DETE",
+          "isCritical": true
+        }
+      ],
+      "incomeRequirement": null,
+      "qualificationsRequired": [],
+      "languageRequired": null
+    },
+    "process": {
+      "steps": [
+        {
+          "order": 1,
+          "name": "Empregador pré-aprovado",
+          "description": "O empregador precisa estar registrado como Approved Seasonal Employer junto ao DETE (aprovação anual).",
+          "estimatedDays": null
+        },
+        {
+          "order": 2,
+          "name": "Pedido da permissão",
+          "description": "O empregador ou o trabalhador solicita o Seasonal Employment Permit ao DETE.",
+          "estimatedDays": null
+        },
+        {
+          "order": 3,
+          "name": "Entrada e trabalho",
+          "description": "Com a permissão, o trabalhador entra na Irlanda e atua na função sazonal por até 7 meses no ano civil.",
+          "estimatedDays": null
+        }
+      ],
+      "estimatedDuration": "algumas semanas",
+      "fees": [],
+      "applicationLocation": "origem"
+    },
+    "rights": {
+      "canWork": true,
+      "canBringFamily": false,
+      "canChangeEmployer": false,
+      "pathToResidency": null,
+      "pathToCitizenship": null
+    },
+    "relevanceForDelivery": "low",
+    "notes": "Novo (Employment Permits Act 2024, em vigor desde fev/2025). Até 7 meses por ano civil. Salário ao menos o mínimo nacional (€14,15/h em 2026). O empregador precisa de pré-aprovação anual. Valor da taxa a confirmar no DETE."
   }
 }
