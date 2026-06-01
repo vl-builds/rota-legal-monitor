@@ -109,9 +109,14 @@
   .pa-card:hover { border-color: #3a3a3a; transform: translateY(-3px); box-shadow: 0 18px 48px rgba(0,0,0,0.45); }
   .pa-card.is-featured { grid-column: span 2; }
 
-  .pa-feature { display: grid; grid-template-columns: 1fr 1.35fr; }
-  .pa-feature-body { padding: 28px; display: flex; flex-direction: column; justify-content: center; }
-  .pa-feature-media { padding: 16px 16px 16px 0; display: flex; align-items: center; }
+  /* Card destaque: mídia (vídeo/imagem) em banner grande no topo, infos embaixo */
+  .pa-feature { display: block; }
+  .pa-feature-media { padding: 0; }
+  .pa-feature-media .video-embed {
+    aspect-ratio: 16 / 9; border-radius: 0; border: 0;
+    border-bottom: 1px solid var(--hairline); background: var(--surface-elevated);
+  }
+  .pa-feature-body { padding: 26px 28px; display: flex; flex-direction: column; }
   .pa-card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
   .pa-logo {
     width: 56px; height: 56px; border-radius: 15px; flex-shrink: 0;
@@ -182,9 +187,7 @@
     .pa-chips::-webkit-scrollbar { display: none; }
     .pa-grid { grid-template-columns: 1fr; gap: 14px; }
     .pa-card.is-featured { grid-column: auto; }
-    .pa-feature { grid-template-columns: 1fr; }
     .pa-feature-body { padding: 20px; }
-    .pa-feature-media { padding: 14px; padding-bottom: 0; order: -1; }
     .pa-suggest { padding: 24px 20px; }
     .pa-suggest .btn { width: 100%; justify-content: center; }
   }
@@ -303,6 +306,14 @@
       <!-- DeliveryBase (parceiro real, destaque com vídeo) -->
       <article class="pa-card is-featured pa-in" data-cat="tools">
         <div class="pa-feature">
+          <div class="pa-feature-media">
+            <div class="video-embed">
+              <button class="video-facade" type="button" data-video="qnNoAvgEQFE" aria-label="Assistir à apresentação do DeliveryBase (abre o vídeo do YouTube)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/qnNoAvgEQFE/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+                <span class="video-play"></span>
+              </button>
+            </div>
+          </div>
           <div class="pa-feature-body">
             <div class="pa-card-head">
               <span class="pa-logo" style="background: #FF6B35; color: #1a1410;" aria-hidden="true">D</span>
@@ -320,17 +331,6 @@
                 <span class="pa-flag"><span style="background:#AE1C28"></span><span style="background:#FFFFFF"></span><span style="background:#21468B"></span></span>
               </span>
               <a class="btn btn-primary" href="https://deliverybase.pro/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=deliverybase" target="_blank" rel="noopener noreferrer">Visitar DeliveryBase →</a>
-            </div>
-          </div>
-          <div class="pa-feature-media">
-            <div>
-              <div class="video-embed">
-                <button class="video-facade" type="button" data-video="qnNoAvgEQFE" aria-label="Assistir à apresentação do DeliveryBase (abre o vídeo do YouTube)">
-                  <img class="video-thumb" src="https://i.ytimg.com/vi/qnNoAvgEQFE/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
-                  <span class="video-play"></span>
-                </button>
-              </div>
-              <span class="video-cap">Apresentação · DeliveryBase</span>
             </div>
           </div>
         </div>
