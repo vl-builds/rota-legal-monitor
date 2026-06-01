@@ -53,6 +53,17 @@
   .partner-desc { margin: 0; font-size: 15px; color: var(--body); line-height: 1.6; }
   .partner-benefit { margin: 0; font-size: 13px; color: var(--muted); }
   .partner-cta { margin-top: auto; align-self: flex-start; }
+
+  /* Card destaque (parceiro único / em evidência): layout horizontal */
+  .partner-featured { display: flex; align-items: center; gap: var(--s-lg); }
+  .partner-featured-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--s-sm); }
+  .partner-top-row { display: flex; align-items: center; gap: var(--s-md); flex-wrap: wrap; }
+  .partner-mono-lg { width: 56px; height: 56px; font-size: 24px; border-radius: 12px; }
+  .partner-featured-cta { flex-shrink: 0; }
+  @media (max-width: 720px) {
+    .partner-featured { flex-direction: column; align-items: flex-start; }
+    .partner-featured-cta { width: 100%; justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -135,89 +146,26 @@
   </div>
 </section>
 
-<!--
-  ============== PARCEIROS (PLACEHOLDER) ==============
-  Os cards abaixo são EXEMPLOS para validar o layout. Substituir pelos parceiros
-  reais antes de publicar: nome, categoria, tipo (Parceiro pago ou Indicação),
-  URL com UTM e o benefício para o leitor. Logos reais podem entrar depois em
-  previews/assets/images/partners/ no lugar do monograma.
--->
+<!-- ============== PARCEIROS ============== -->
 
-<!-- Categoria: Assessoria de imigração -->
+<!-- Categoria: Ferramentas para entregadores -->
 <section class="section-tight">
   <div class="container">
-    <span class="cat-label">Assessoria de imigração</span>
-    <div class="feature-grid">
-      <article class="feature-card-dark partner-card">
-        <div class="partner-top">
-          <span class="partner-mono" aria-hidden="true">V</span>
-          <div>
-            <h3 class="partner-name">Vistos Já</h3>
-            <div class="partner-badges">
-              <span class="badge">Assessoria</span>
-              <span class="badge new"><span class="pulse"></span>Parceiro</span>
-            </div>
+    <span class="cat-label">Ferramentas para entregadores</span>
+    <article class="feature-card-dark partner-featured">
+      <span class="partner-mono partner-mono-lg" aria-hidden="true">D</span>
+      <div class="partner-featured-body">
+        <div class="partner-top-row">
+          <h3 class="partner-name">DeliveryBase</h3>
+          <div class="partner-badges">
+            <span class="badge">Ferramenta</span>
+            <span class="badge">Indicação</span>
           </div>
         </div>
-        <p class="partner-desc">Acompanhamento de processo de visto de trabalho do começo ao fim, com revisão de documentos e prazos.</p>
-        <p class="partner-benefit">Primeira consulta gratuita para leitores do Rota Legal.</p>
-        <a class="text-link partner-cta" href="https://exemplo-parceiro.com/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=vistos-ja" target="_blank" rel="sponsored noopener noreferrer">Visitar Vistos Já →</a>
-      </article>
-      <article class="feature-card-dark partner-card">
-        <div class="partner-top">
-          <span class="partner-mono" aria-hidden="true">M</span>
-          <div>
-            <h3 class="partner-name">Mudei Certo</h3>
-            <div class="partner-badges">
-              <span class="badge">Assessoria</span>
-              <span class="badge">Indicação</span>
-            </div>
-          </div>
-        </div>
-        <p class="partner-desc">Conteúdo gratuito e checklists sobre o processo de imigração para quem prefere fazer por conta própria.</p>
-        <p class="partner-benefit">Sem custo. Indicação por qualidade do material.</p>
-        <a class="text-link partner-cta" href="https://exemplo-indicacao.com/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=mudei-certo" target="_blank" rel="noopener noreferrer">Visitar Mudei Certo →</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- Categoria: Câmbio e remessas -->
-<section class="section-tight">
-  <div class="container">
-    <span class="cat-label">Câmbio e remessas</span>
-    <div class="feature-grid">
-      <article class="feature-card-dark partner-card">
-        <div class="partner-top">
-          <span class="partner-mono" aria-hidden="true">C</span>
-          <div>
-            <h3 class="partner-name">Câmbio Global</h3>
-            <div class="partner-badges">
-              <span class="badge">Câmbio</span>
-              <span class="badge new"><span class="pulse"></span>Parceiro</span>
-            </div>
-          </div>
-        </div>
-        <p class="partner-desc">Envio de dinheiro para o exterior com taxas menores que as do banco e câmbio acompanhável em tempo real.</p>
-        <p class="partner-benefit">Primeira transferência sem taxa com o cupom ROTALEGAL.</p>
-        <a class="text-link partner-cta" href="https://exemplo-parceiro.com/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=cambio-global" target="_blank" rel="sponsored noopener noreferrer">Visitar Câmbio Global →</a>
-      </article>
-      <article class="feature-card-dark partner-card">
-        <div class="partner-top">
-          <span class="partner-mono" aria-hidden="true">S</span>
-          <div>
-            <h3 class="partner-name">Seguro Viva</h3>
-            <div class="partner-badges">
-              <span class="badge">Seguro</span>
-              <span class="badge new"><span class="pulse"></span>Parceiro</span>
-            </div>
-          </div>
-        </div>
-        <p class="partner-desc">Seguro viagem e saúde aceito para pedido de visto, com cobertura mínima exigida pelos consulados.</p>
-        <p class="partner-benefit">Desconto para planos de longa permanência.</p>
-        <a class="text-link partner-cta" href="https://exemplo-parceiro.com/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=seguro-viva" target="_blank" rel="sponsored noopener noreferrer">Visitar Seguro Viva →</a>
-      </article>
-    </div>
+        <p class="partner-desc">Controle de ganhos e calculadora de imposto holandês (loonheffingskorting) para entregadores de Thuisbezorgd e Uber Eats na Holanda. Em português, com leitura automática dos recibos das plataformas.</p>
+      </div>
+      <a class="btn btn-secondary partner-featured-cta" href="https://deliverybase.pro/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=deliverybase" target="_blank" rel="noopener noreferrer">Visitar DeliveryBase →</a>
+    </article>
   </div>
 </section>
 
