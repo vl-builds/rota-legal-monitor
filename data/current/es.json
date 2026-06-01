@@ -76,8 +76,8 @@
     "humanReviewedAt": "2026-06-02T00:00:00.000Z",
     "knownIssues": [
       "Auditoria 2026-06-02: SMI €1.221/mês (RD 126/2026) e proofOfFunds €2.849/mês CURRENT. Nômade digital corrigido 2.646→€2.849; altamente qualificado 40.077→~€39.270.",
-      "Taxas (18/64/73) não casam com os trâmites atuais — mapear: tasa 052 residencia €10,94 / prórroga €16,40; tasa 062 trabajo €203,84 (ou €407,71 se ≥2×SMI); TIE €16,08. UNVERIFIED como estão.",
-      "RD 1155/2024 registrado em recentChanges. Revisar conteúdo dos processos (pode refletir o RD 557/2011 antigo). Busca de emprego agora 1 ano."
+      "RD 1155/2024 registrado em recentChanges. Revisar conteúdo dos processos (pode refletir o RD 557/2011 antigo). Busca de emprego agora 1 ano.",
+      "Taxas 2026 mapeadas por código (modelo 790, BOE-A-2025-12056): regime geral tasa 062 trabajo €203,84 (€407,71 se ≥2×SMI) + tasa 052 residencia €10,94 + TIE €16,08; Ley 14/2013 (nômade/altamente qualificado/ICT) tasa 038 ~€73,26 + TIE €16,08. A taxa do visto consular (MNE) é separada."
     ]
   },
   "visaTypes": [
@@ -97,14 +97,22 @@
         "estimatedDuration": "2-4 meses",
         "fees": [
           {
-            "amount": 18,
+            "amount": 203.84,
             "currency": "EUR",
-            "notes": "taxa de autorización de trabajo (modelo 790 código 052)"
+            "notes": "Tasa 062 - autorización de trabajo por cuenta ajena (<2×SMI; €407,71 se ≥2×SMI). Costuma ser paga pelo empregador.",
+            "period": "one-time"
           },
           {
-            "amount": 64,
+            "amount": 10.94,
             "currency": "EUR",
-            "notes": "taxa de visto de larga duración no consulado espanhol"
+            "notes": "Tasa 052 - autorización de residencia (inicial).",
+            "period": "one-time"
+          },
+          {
+            "amount": 16.08,
+            "currency": "EUR",
+            "notes": "TIE - tarjeta de identidad de extranjero.",
+            "period": "one-time"
           }
         ],
         "steps": [
@@ -230,9 +238,16 @@
         "estimatedDuration": "3-6 meses",
         "fees": [
           {
-            "amount": 18,
+            "amount": 10.94,
             "currency": "EUR",
-            "notes": "taxa de modificação de autorización (modelo 790 código 052)"
+            "notes": "Tasa 052 - autorización de residencia.",
+            "period": "one-time"
+          },
+          {
+            "amount": 16.08,
+            "currency": "EUR",
+            "notes": "TIE - tarjeta de identidad de extranjero.",
+            "period": "one-time"
           }
         ],
         "steps": [
@@ -348,14 +363,16 @@
         "estimatedDuration": "1-3 meses",
         "fees": [
           {
-            "amount": 73,
+            "amount": 73.26,
             "currency": "EUR",
-            "notes": "taxa de visto para Visa Nômade Digital no consulado espanhol"
+            "notes": "Tasa 038 - autorización de residencia e trabalho Ley 14/2013 (nómada digital), via UGE.",
+            "period": "one-time"
           },
           {
-            "amount": 0,
+            "amount": 16.08,
             "currency": "EUR",
-            "notes": "processo inicial de visto sem taxa adicional de autorización separada"
+            "notes": "TIE - tarjeta de identidad de extranjero.",
+            "period": "one-time"
           }
         ],
         "steps": [
@@ -480,14 +497,16 @@
         "estimatedDuration": "1-3 meses",
         "fees": [
           {
-            "amount": 18,
+            "amount": 73.26,
             "currency": "EUR",
-            "notes": "taxa de autorización de trabajo (modelo 790 código 052)"
+            "notes": "Tasa 038 - autorización Ley 14/2013 (profesional altamente cualificado), via UGE.",
+            "period": "one-time"
           },
           {
-            "amount": 64,
+            "amount": 16.08,
             "currency": "EUR",
-            "notes": "taxa de visto de larga duración no consulado espanhol"
+            "notes": "TIE - tarjeta de identidad de extranjero.",
+            "period": "one-time"
           }
         ],
         "steps": [
@@ -614,14 +633,16 @@
         "estimatedDuration": "1-3 meses",
         "fees": [
           {
-            "amount": 18,
+            "amount": 73.26,
             "currency": "EUR",
-            "notes": "taxa de autorización (modelo 790 código 052)"
+            "notes": "Tasa 038 - autorización Ley 14/2013 (traslado intraempresarial), via UGE.",
+            "period": "one-time"
           },
           {
-            "amount": 64,
+            "amount": 16.08,
             "currency": "EUR",
-            "notes": "taxa de visto de larga duración no consulado espanhol"
+            "notes": "TIE - tarjeta de identidad de extranjero.",
+            "period": "one-time"
           }
         ],
         "steps": [
