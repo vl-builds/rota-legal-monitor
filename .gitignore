@@ -78,3 +78,21 @@ projetos futuros/
 
 # Screenshots locais de preview (gerados via chrome-headless-shell)
 preview-shots/
+
+# Projeto de video (HyperFrames): pesado (200MB+ de assets/renders), fica fora
+# do repo publico. Versionar a parte, se preciso.
+video/
+
+# Handoff de design da Area do Aluno (conteudo paga, modelo open-core).
+design premium/
+
+# Saida do knowledge graph (graphify): cache/transcripts/chunks, efemero.
+graphify-out/
+src/graphify-out/
+
+# Estado de tooling de agentes (ruflo/swarm), efemero.
+.claude-flow/
+.swarm/
+
+# Export zipado temporario de vistos.
+/vistos/
