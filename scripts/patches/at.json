@@ -5,7 +5,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 160,
+          "amount": 120,
           "currency": "EUR",
           "notes": "taxa de solicitação RWR Card"
         },
@@ -117,7 +117,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 160,
+          "amount": 120,
           "currency": "EUR",
           "notes": "taxa de solicitação da RWR Card"
         },
@@ -236,7 +236,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 160,
+          "amount": 120,
           "currency": "EUR",
           "notes": "taxa de solicitação da RWR Card para Start-up Founders"
         },
@@ -322,7 +322,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 50000,
+        "amount": 30000,
         "currency": "EUR",
         "period": "total",
         "notes": "Capital da empresa com pelo menos 50% como equity — não é renda pessoal mensal"
@@ -362,7 +362,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 150,
+          "amount": 195,
           "currency": "EUR",
           "notes": "taxa do visto D para busca de emprego no consulado austríaco"
         }
@@ -472,7 +472,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 160,
+          "amount": 120,
           "currency": "EUR",
           "notes": "taxa de solicitação da RWR Card"
         },
@@ -585,7 +585,7 @@
       "applicationLocation": "destino",
       "fees": [
         {
-          "amount": 160,
+          "amount": 120,
           "currency": "EUR",
           "notes": "taxa de renovação/conversão da RWR Card Plus"
         }
@@ -682,7 +682,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 160,
+          "amount": 120,
           "currency": "EUR",
           "notes": "taxa de solicitação da RWR Card"
         },
@@ -790,7 +790,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 160,
+          "amount": 120,
           "currency": "EUR",
           "notes": "taxa de solicitação da RWR Card"
         },

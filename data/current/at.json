@@ -14,18 +14,13 @@
       "notes": "Seguro saúde compulsório austríaco ou apólice equivalente que cubra todos os riscos é obrigatório como requisito geral de lei de assentamento e residência austríaca",
       "required": true
     },
+    "minimumWage": null,
     "passportValidity": "Minimo 6 meses apos a data de entrada",
     "proofOfFunds": {
-      "amount": 3465,
+      "amount": 1308.39,
       "currency": "EUR",
-      "period": "monthly",
-      "notes": "Red-White-Red Card 2026 — Other Key Workers: EUR 3.465/mês bruto mínimo (14 pagamentos anuais, costumeiro na Áustria), 55 pontos mínimos no sistema de pontuação. Very Highly Qualified Workers: EUR 3.465/mês, 70 pontos mínimos. EU Blue Card: EUR 55.678/ano (EUR 3.977/mês). Valores atualizados em janeiro de 2026."
-    },
-    "minimumWage": {
-      "amount": 1900,
-      "currency": "EUR",
-      "period": "monthly",
-      "notes": "Áustria não tem salário mínimo nacional por lei. Pisos setoriais fixados por convenções coletivas (KV). Referência 2026: maioria dos setores entre EUR 1.800 e EUR 2.000/mês bruto. Setor de comércio: ~EUR 1.945/mês. Turismo/hotelaria: ~EUR 1.800/mês."
+      "notes": "Áustria não tem salário mínimo legal (definido por convenção coletiva). Subsistência = Ausgleichszulagenrichtsatz 2026: €1.308,39/mês (solteiro), €2.064,12 (casal), +€201,88/filho.",
+      "period": "monthly"
     },
     "vaccinations": []
   },
@@ -78,9 +73,11 @@
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
-    "humanReviewedAt": null,
+    "humanReviewedAt": "2026-06-02T00:00:00.000Z",
     "knownIssues": [
-      "Extração mai/2026: proofOfFunds, healthInsurance e forBrazilians.schengenVisaFree requerem manutenção manual — LLM não extrai esses campos de forma confiável das fontes atuais."
+      "Auditoria 2026-06-02: rwr-other-key-workers €3.465/mês (2026) CURRENT. minimumWage removido (Áustria não tem mínimo legal). proofOfFunds corrigido para o Ausgleichszulagenrichtsatz 2026 (€1.308,39).",
+      "startup-founders corrigido para €30.000 de capital. Taxas RWR 160→€120 (+€20 biométrico) e job-seeker 150→€195. Fonte migration.gv.at.",
+      "job-seeker (Very Highly Qualified): requisito é 70 pontos, sem montante fixo; o valor €7.200 é UNVERIFIED."
     ]
   },
   "visaTypes": [
@@ -100,7 +97,7 @@
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
-            "amount": 160,
+            "amount": 120,
             "currency": "EUR",
             "notes": "taxa de solicitação RWR Card"
           },
@@ -112,40 +109,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Verificar a qual categoria da RWR Card se enquadra e calcular pontuação em migration.gv.at/en/service-and-links/points-calculator",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Reunir documentação: diplomas apostilados com tradução juramentada, cartas de referência, certificados de idioma",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Obter oferta de emprego de empregador austríaco com salário conforme convenção coletiva",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Apresentar pedido pessoalmente na embaixada ou consulado austríaco no Brasil com documentos originais",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "AMS (Serviço Público de Emprego) e autoridade de residência analisam o pedido — prazo legal de 8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Áustria, registrar endereço (Meldezettel) em até 3 dias e retirar cartão físico no Magistrat",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -153,44 +150,44 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Validade mínima de 18 meses a partir da data do pedido",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "Formulário de pedido de visto/residência",
             "description": "Formulário oficial disponível na embaixada austríaca",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Formulário de pedido de visto/residência"
           },
           {
-            "name": "Foto tipo passaporte biométrica",
             "description": "Foto recente conforme padrões austríacos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Foto tipo passaporte biométrica"
           },
           {
-            "name": "Diplomas e certificados acadêmicos/profissionais",
             "description": "Apostilados e traduzidos juramentados para alemão ou inglês",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Diplomas e certificados acadêmicos/profissionais"
           },
           {
-            "name": "Oferta de emprego do empregador austríaco",
             "description": "Contrato ou carta formal com cargo e salário especificados",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Oferta de emprego do empregador austríaco"
           },
           {
-            "name": "Seguro de saúde",
             "description": "Cobertura válida na Áustria até cobertura pelo regime estatal",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde"
           },
           {
-            "name": "Certidão de antecedentes criminais do Brasil",
             "description": "Apostilada e traduzida juramentada para alemão ou inglês",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais do Brasil"
           },
           {
-            "name": "Certificado de idioma (alemão ou inglês)",
             "description": "A1 ou superior — não obrigatório, mas confere pontos no sistema",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Certificado de idioma (alemão ou inglês)"
           }
         ],
         "incomeRequirement": null,
@@ -207,14 +204,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 10,
           "conditions": [],
-          "summary": "Após 10 anos de residência legal"
+          "summary": "Após 10 anos de residência legal",
+          "yearsRequired": 10
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal e alemão B1, Daueraufenthalt EU"
+          "summary": "Após 5 anos de residência legal e alemão B1, Daueraufenthalt EU",
+          "yearsRequired": 5
         }
       }
     },
@@ -233,7 +230,7 @@
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
-            "amount": 160,
+            "amount": 120,
             "currency": "EUR",
             "notes": "taxa de solicitação da RWR Card"
           },
@@ -245,40 +242,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Calcular pontuação no sistema de pontos para Very Highly Qualified Workers em migration.gv.at — mínimo 70 pontos de 100",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Obter oferta de emprego de empregador austríaco com salário conforme convenção coletiva aplicável ao setor",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Reunir documentação: diploma universitário (mín. 4 anos) apostilado, experiência profissional, certificados de idioma, publicações ou patentes se aplicável",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Apresentar pedido na embaixada/consulado austríaco no Brasil com documentos originais e traduções juramentadas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "AMS e autoridade de residência analisam — prazo legal máximo de 8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Áustria, registrar endereço (Meldezettel) e retirar cartão físico no Magistrat",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -286,49 +283,49 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Validade mínima de 18 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "Diploma universitário de no mínimo 4 anos",
             "description": "Apostilado e traduzido — verificar reconhecimento em nostrifikation.gv.at; MINT confere mais pontos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Diploma universitário de no mínimo 4 anos"
           },
           {
-            "name": "Comprovante de doutorado ou habilitation (se aplicável)",
             "description": "PhD ou habilitation confere 40 pontos (máximo na categoria de qualificações especiais)",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Comprovante de doutorado ou habilitation (se aplicável)"
           },
           {
-            "name": "Comprovante de experiência profissional",
             "description": "Contratos, holerites e cartas de referência — 1 ponto por semestre de experiência",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de experiência profissional"
           },
           {
-            "name": "Oferta de emprego do empregador austríaco",
             "description": "Contrato ou carta formal — salário deve seguir convenção coletiva do setor",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Oferta de emprego do empregador austríaco"
           },
           {
-            "name": "Certificado de idioma (alemão ou inglês)",
             "description": "A1 ou superior, não mais antigo que 5 anos — confere até 15 pontos",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Certificado de idioma (alemão ou inglês)"
           },
           {
-            "name": "Seguro de saúde",
             "description": "Cobertura válida na Áustria",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde"
           },
           {
-            "name": "Certidão de antecedentes criminais do Brasil",
             "description": "Apostilada e traduzida juramentada",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais do Brasil"
           },
           {
-            "name": "Patentes ou publicações científicas (se aplicável)",
             "description": "Documentos de PI ou publicações peer-reviewed para pontuação adicional",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Patentes ou publicações científicas (se aplicável)"
           }
         ],
         "incomeRequirement": null,
@@ -347,14 +344,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 10,
           "conditions": [],
-          "summary": "Após 10 anos de residência legal"
+          "summary": "Após 10 anos de residência legal",
+          "yearsRequired": 10
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal e alemão B1"
+          "summary": "Após 5 anos de residência legal e alemão B1",
+          "yearsRequired": 5
         }
       }
     },
@@ -373,7 +370,7 @@
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
-            "amount": 160,
+            "amount": 120,
             "currency": "EUR",
             "notes": "taxa de solicitação da RWR Card para Start-up Founders"
           },
@@ -385,40 +382,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Elaborar plano de negócios detalhado demonstrando inovação em produto, serviço, processo ou tecnologia",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Comprovar capital mínimo de €50.000 (com pelo menos 50% como equity)",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Calcular pontuação no sistema de pontos para Start-up Founders — mínimo 50 pontos",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Demonstrar influência substancial e pessoal na gestão da empresa via contrato social ou documentos societários",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Apresentar pedido na embaixada/consulado austríaco no Brasil com todos os documentos",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Áustria, registrar endereço (Meldezettel) e retirar cartão físico no Magistrat",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -426,56 +423,56 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Validade mínima de 18 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "Plano de negócios detalhado",
             "description": "Demonstrando inovação e viabilidade financeira para fundação e operação da empresa",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Plano de negócios detalhado"
           },
           {
-            "name": "Comprovante de capital disponível",
             "description": "Mínimo €50.000 com pelo menos 50% como capital próprio — extrato bancário ou declaração de investidores",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de capital disponível"
           },
           {
-            "name": "Documentos societários",
             "description": "Contrato social ou documentos que comprovem influência substancial e pessoal na gestão",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Documentos societários"
           },
           {
-            "name": "Diplomas e certificados acadêmicos",
             "description": "Qualificações educacionais — conferem pontos no sistema",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Diplomas e certificados acadêmicos"
           },
           {
-            "name": "Comprovante de participação em aceleradora ou incubadora reconhecida",
             "description": "Carta de aceitação ou certificado — confere pontos extras no sistema",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Comprovante de participação em aceleradora ou incubadora reconhecida"
           },
           {
-            "name": "Certificado de idioma (alemão ou inglês)",
             "description": "Qualquer nível certificado confere pontos",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Certificado de idioma (alemão ou inglês)"
           },
           {
-            "name": "Seguro de saúde",
             "description": "Cobertura válida na Áustria",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde"
           },
           {
-            "name": "Certidão de antecedentes criminais do Brasil",
             "description": "Apostilada e traduzida juramentada",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais do Brasil"
           }
         ],
         "incomeRequirement": {
-          "amount": 50000,
+          "amount": 30000,
           "currency": "EUR",
-          "period": "total",
-          "notes": "Capital da empresa com pelo menos 50% como equity — não é renda pessoal mensal"
+          "notes": "Capital mínimo €30.000 (≥50% próprio). Os €50.000 são investimento adicional que dá pontos-bônus, não requisito.",
+          "period": "total"
         },
         "languageRequired": {
           "language": "Alemão ou inglês",
@@ -494,14 +491,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 10,
           "conditions": [],
-          "summary": "Após 10 anos de residência legal"
+          "summary": "Após 10 anos de residência legal",
+          "yearsRequired": 10
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal"
+          "summary": "Após 5 anos de residência legal",
+          "yearsRequired": 5
         }
       }
     },
@@ -522,47 +519,47 @@
         "estimatedDuration": "4-6 meses",
         "fees": [
           {
-            "amount": 150,
+            "amount": 195,
             "currency": "EUR",
             "notes": "taxa do visto D para busca de emprego no consulado austríaco"
           }
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Calcular pontuação no sistema de pontos para Very Highly Qualified Workers em migration.gv.at — mínimo 70 pontos de 100",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Reunir documentação comprobatória dos critérios de pontuação (diplomas apostilados, experiência, idioma, prêmios, patentes)",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Comprovar recursos financeiros de aproximadamente €7.200-€8.000 para 6 meses de estada na Áustria",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Contratar seguro de saúde internacional válido na Áustria por todo o período de estada",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Solicitar o Visto D Jobsuche na embaixada/consulado austríaco no Brasil — documentos encaminhados ao AMS na Áustria para análise",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Áustria e buscar emprego por até 6 meses — ao encontrar oferta, solicitar a RWR Card internamente",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -570,56 +567,56 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Validade mínima de 18 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "Formulário de pedido de visto D",
             "description": "Formulário oficial disponível na embaixada austríaca",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Formulário de pedido de visto D"
           },
           {
-            "name": "Foto tipo passaporte biométrica",
             "description": "Foto recente conforme padrões austríacos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Foto tipo passaporte biométrica"
           },
           {
-            "name": "Diplomas acadêmicos apostilados",
             "description": "Grau universitário de mínimo 4 anos — apostilado e traduzido juramentado",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Diplomas acadêmicos apostilados"
           },
           {
-            "name": "Comprovante de experiência profissional",
             "description": "Cartas de referência e contratos de trabalho anteriores",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de experiência profissional"
           },
           {
-            "name": "Comprovante de recursos financeiros",
             "description": "Extrato bancário com aprox. €7.200-€8.000 para 6 meses de estada",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de recursos financeiros"
           },
           {
-            "name": "Seguro de saúde internacional",
             "description": "Cobertura válida na Áustria por todo o período de 6 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde internacional"
           },
           {
-            "name": "Certificado de idioma (alemão ou inglês)",
             "description": "A1 ou superior — confere pontos no sistema",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Certificado de idioma (alemão ou inglês)"
           },
           {
-            "name": "Certidão de antecedentes criminais do Brasil",
             "description": "Apostilada e traduzida juramentada",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais do Brasil"
           }
         ],
         "incomeRequirement": {
           "amount": 7200,
           "currency": "EUR",
-          "period": "total",
-          "notes": "Valor total para 6 meses de estada (~€1.200/mês) — verificar valor atualizado no consulado"
+          "notes": "Valor total para 6 meses de estada (~€1.200/mês) — verificar valor atualizado no consulado",
+          "period": "total"
         },
         "languageRequired": {
           "language": "Alemão ou inglês",
@@ -655,7 +652,7 @@
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
-            "amount": 160,
+            "amount": 120,
             "currency": "EUR",
             "notes": "taxa de solicitação da RWR Card"
           },
@@ -667,40 +664,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Calcular pontuação em migration.gv.at/en/service-and-links/points-calculator — mínimo 70 pontos de 100 para Very Highly Qualified Workers",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Obter oferta de emprego de empregador austríaco com salário conforme convenção coletiva",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Reunir documentação: diploma universitário (mín. 4 anos) apostilado, experiência, idioma, publicações/patentes se aplicável",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Apresentar pedido na embaixada/consulado austríaco com documentos originais e traduções juramentadas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Aguardar análise pelo AMS e autoridade de residência — prazo legal máximo de 8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Áustria, registrar endereço (Meldezettel) e retirar cartão no Magistrat",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -708,44 +705,44 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Validade mínima de 18 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "Diploma universitário de mínimo 4 anos",
             "description": "Apostilado e traduzido — verificar reconhecimento em nostrifikation.gv.at; MINT agrega mais pontos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Diploma universitário de mínimo 4 anos"
           },
           {
-            "name": "Comprovante de doutorado (se aplicável)",
             "description": "PhD ou habilitation confere 40 pontos (máximo na categoria especial)",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Comprovante de doutorado (se aplicável)"
           },
           {
-            "name": "Comprovante de experiência profissional",
             "description": "Contratos, holerites, cartas de referência — 1 ponto por semestre de experiência",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de experiência profissional"
           },
           {
-            "name": "Oferta de emprego do empregador austríaco",
             "description": "Salário deve seguir a convenção coletiva do setor",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Oferta de emprego do empregador austríaco"
           },
           {
-            "name": "Certificado de idioma (alemão ou inglês)",
             "description": "A1 ou superior, não mais antigo que 5 anos — confere até 15 pontos",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Certificado de idioma (alemão ou inglês)"
           },
           {
-            "name": "Seguro de saúde",
             "description": "Cobertura válida na Áustria",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde"
           },
           {
-            "name": "Certidão de antecedentes criminais do Brasil",
             "description": "Apostilada e traduzida juramentada",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais do Brasil"
           }
         ],
         "incomeRequirement": null,
@@ -763,14 +760,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 10,
           "conditions": [],
-          "summary": "Após 10 anos de residência legal"
+          "summary": "Após 10 anos de residência legal",
+          "yearsRequired": 10
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal e alemão B1"
+          "summary": "Após 5 anos de residência legal e alemão B1",
+          "yearsRequired": 5
         }
       }
     },
@@ -789,47 +786,47 @@
         "estimatedDuration": "4-12 semanas",
         "fees": [
           {
-            "amount": 160,
+            "amount": 120,
             "currency": "EUR",
             "notes": "taxa de renovação/conversão da RWR Card Plus"
           }
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Após 2 anos de residência legal com RWR Card ou outro título elegível, verificar elegibilidade para conversão",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Cumprir o Módulo 1 do Acordo de Integração (alemão A2 e conhecimento cívico básico) para renovação de 3 anos",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Solicitar a RWR Card Plus na autoridade de residência competente (Magistrat, Bezirkshauptmannschaft) — não pode ser solicitada no exterior",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Submeter pedido com até 3 meses de antecedência do vencimento do título atual",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Durante a análise, continuar residindo e trabalhando normalmente na Áustria",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, receber RWR Card Plus — 1 ano na primeira emissão; 3 anos se com 2 anos de residência e Módulo 1 cumprido",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -837,34 +834,34 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Com validade superior ao período de residência solicitado",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "RWR Card atual ou outro título de residência elegível",
             "description": "Comprovante do título anterior que autoriza a conversão",
-            "isCritical": true
+            "isCritical": true,
+            "name": "RWR Card atual ou outro título de residência elegível"
           },
           {
-            "name": "Comprovante de Módulo 1 do Acordo de Integração",
             "description": "Certificado de alemão A2 e conhecimento cívico — para renovação de 3 anos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de Módulo 1 do Acordo de Integração"
           },
           {
-            "name": "Comprovante de emprego atual",
             "description": "Contrato vigente ou comprovante de atividade autônoma",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de emprego atual"
           },
           {
-            "name": "Comprovante de meios de subsistência",
             "description": "Holerites recentes ou declaração do empregador",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de meios de subsistência"
           },
           {
-            "name": "Seguro de saúde",
             "description": "Cobertura vigente na Áustria",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde"
           }
         ],
         "incomeRequirement": null,
@@ -881,14 +878,14 @@
         "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 10,
           "conditions": [],
-          "summary": "Após 10 anos de residência legal"
+          "summary": "Após 10 anos de residência legal",
+          "yearsRequired": 10
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal e alemão B1, Daueraufenthalt EU"
+          "summary": "Após 5 anos de residência legal e alemão B1, Daueraufenthalt EU",
+          "yearsRequired": 5
         }
       }
     },
@@ -910,7 +907,7 @@
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
-            "amount": 160,
+            "amount": 120,
             "currency": "EUR",
             "notes": "taxa de solicitação da RWR Card"
           },
@@ -922,40 +919,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Verificar se a ocupação desejada consta na lista anual de profissões em escassez (Skilled Workers Ordinance) em migration.gv.at",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Obter oferta de emprego de empregador austríaco na ocupação em escassez com salário conforme convenção coletiva",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Calcular pontuação no sistema de pontos — mínimo 55 pontos de 90 — avaliando qualificações, experiência e idioma",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Reunir documentação e apresentar pedido na embaixada/consulado austríaco no Brasil",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "AMS realiza verificação do mercado de trabalho — prazo legal máximo de 8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Áustria, registrar endereço (Meldezettel) e retirar cartão no Magistrat",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -963,39 +960,39 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Validade mínima de 18 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "Diplomas e certificados de formação profissional",
             "description": "Qualificação deve ser comparável ao nível austríaco — verificar reconhecimento",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Diplomas e certificados de formação profissional"
           },
           {
-            "name": "Comprovante de experiência profissional relevante",
             "description": "1 ponto por semestre de experiência após a conclusão da formação",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de experiência profissional relevante"
           },
           {
-            "name": "Oferta de emprego em profissão da lista de escassez",
             "description": "Contrato ou carta do empregador austríaco especificando cargo e salário",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Oferta de emprego em profissão da lista de escassez"
           },
           {
-            "name": "Certificado de idioma",
             "description": "Alemão, inglês, francês, espanhol ou bósnio-croata-sérvio — confere pontos",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Certificado de idioma"
           },
           {
-            "name": "Seguro de saúde",
             "description": "Cobertura válida na Áustria",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde"
           },
           {
-            "name": "Certidão de antecedentes criminais do Brasil",
             "description": "Apostilada e traduzida juramentada",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais do Brasil"
           }
         ],
         "incomeRequirement": null,
@@ -1013,14 +1010,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 10,
           "conditions": [],
-          "summary": "Após 10 anos de residência legal"
+          "summary": "Após 10 anos de residência legal",
+          "yearsRequired": 10
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal e alemão B1"
+          "summary": "Após 5 anos de residência legal e alemão B1",
+          "yearsRequired": 5
         }
       }
     },
@@ -1042,7 +1039,7 @@
         "estimatedDuration": "4-8 semanas",
         "fees": [
           {
-            "amount": 160,
+            "amount": 120,
             "currency": "EUR",
             "notes": "taxa de solicitação da RWR Card"
           },
@@ -1054,40 +1051,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Obter oferta de emprego de empregador austríaco com salário mínimo de €3.465 bruto/mês (a partir de jan/2026)",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Calcular pontuação no sistema de pontos — mínimo 55 pontos de 90 — avaliando qualificações, experiência e idioma",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "O empregador solicita verificação ao AMS: teste de mercado de trabalho confirma que não há trabalhador local disponível",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Reunir documentação e apresentar pedido na embaixada/consulado austríaco no Brasil",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Aguardar análise — prazo legal máximo de 8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Áustria, registrar endereço (Meldezettel) e retirar cartão no Magistrat",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -1095,46 +1092,46 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte válido",
             "description": "Validade mínima de 18 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte válido"
           },
           {
-            "name": "Diplomas e certificados acadêmicos ou profissionais",
             "description": "Qualificação relevante para o cargo",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Diplomas e certificados acadêmicos ou profissionais"
           },
           {
-            "name": "Comprovante de experiência profissional",
             "description": "1 ponto por semestre de experiência relevante após formação",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de experiência profissional"
           },
           {
-            "name": "Oferta de emprego com salário mínimo de €3.465/mês",
             "description": "Contrato com salário bruto mínimo de €3.465/mês (2026) calculado sobre 14 pagamentos anuais",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Oferta de emprego com salário mínimo de €3.465/mês"
           },
           {
-            "name": "Certificado de idioma (alemão ou inglês)",
             "description": "Qualquer nível certificado confere pontos — inglês como idioma da empresa confere 5 pontos extras",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Certificado de idioma (alemão ou inglês)"
           },
           {
-            "name": "Seguro de saúde",
             "description": "Cobertura válida na Áustria",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Seguro de saúde"
           },
           {
-            "name": "Certidão de antecedentes criminais do Brasil",
             "description": "Apostilada e traduzida juramentada",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Certidão de antecedentes criminais do Brasil"
           }
         ],
         "incomeRequirement": {
           "amount": 3465,
           "currency": "EUR",
-          "period": "monthly",
-          "notes": "Valor vigente a partir de jan/2026; em 2025 era €3.225 bruto/mês. Calculado sobre 14 pagamentos anuais."
+          "notes": "Valor vigente a partir de jan/2026; em 2025 era €3.225 bruto/mês. Calculado sobre 14 pagamentos anuais.",
+          "period": "monthly"
         },
         "languageRequired": {
           "language": "Alemão ou inglês",
@@ -1150,14 +1147,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 10,
           "conditions": [],
-          "summary": "Após 10 anos de residência legal"
+          "summary": "Após 10 anos de residência legal",
+          "yearsRequired": 10
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal e alemão B1"
+          "summary": "Após 5 anos de residência legal e alemão B1",
+          "yearsRequired": 5
         }
       }
     }

@@ -10,7 +10,7 @@
           "notes": "taxa de visto de longa duração (VLS-TS) no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação do VLS-TS ao chegar na França (máx. 12 meses de autorização)"
         }
@@ -81,7 +81,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 1801,
+        "amount": 1867.02,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Salário mínimo (SMIC) de €11,88/h equivale a aprox. €1.801/mês bruto em 2024 — referência para maioria dos contratos"
@@ -119,7 +119,7 @@
           "notes": "taxa de visto de longa duração (VLS-TS) no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -224,7 +224,7 @@
           "notes": "taxa de visto VLS-TS no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -281,7 +281,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 1801,
+        "amount": 1867.02,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Salário mínimo SMIC como referência — pode ser menor para algumas categorias temporárias"
@@ -403,7 +403,7 @@
           "notes": "taxa de visto VLS-TS no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -485,7 +485,7 @@
           "notes": "taxa de visto Passeport Talent no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -585,7 +585,7 @@
           "notes": "taxa de visto Passeport Talent / Carte Bleue Européenne no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -685,7 +685,7 @@
           "notes": "taxa de visto Passeport Talent no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -785,7 +785,7 @@
           "notes": "taxa de visto Passeport Talent no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -875,7 +875,7 @@
           "notes": "taxa de visto Passeport Talent no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de validação ao chegar na França"
         }
@@ -979,12 +979,12 @@
           "notes": "taxa de visto de longa duração no consulado francês"
         },
         {
-          "amount": 269,
+          "amount": 200,
           "currency": "EUR",
           "notes": "taxa OFII de primeira emissão do titre de séjour"
         },
         {
-          "amount": 225,
+          "amount": 350,
           "currency": "EUR",
           "notes": "taxa de renovação da carte de séjour temporaire na prefecture"
         }
@@ -1041,7 +1041,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 1801,
+        "amount": 1867.02,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Salário mínimo SMIC como referência"
@@ -1072,7 +1072,7 @@
       "applicationLocation": "destino",
       "fees": [
         {
-          "amount": 225,
+          "amount": 350,
           "currency": "EUR",
           "notes": "taxa de emissão da carte de séjour pluriannuelle na prefecture"
         }
@@ -1163,7 +1163,7 @@
       "applicationLocation": "destino",
       "fees": [
         {
-          "amount": 225,
+          "amount": 350,
           "currency": "EUR",
           "notes": "taxa de emissão da carte de résident (10 anos) na prefecture"
         }

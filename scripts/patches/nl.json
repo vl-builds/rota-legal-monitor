@@ -5,7 +5,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para Highly Skilled Migrant permit (trabalhador empregado)"
         },
@@ -66,7 +66,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 5688,
+        "amount": 5942,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Salário bruto mensal mínimo para trabalhadores com 30 anos ou mais (2025, atualizado anualmente pelo IND). Para menores de 30: €4.171/mês. Não inclui férias, bônus ou benefícios não monetários — apenas salário base."
@@ -100,7 +100,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para European Blue Card nos Países Baixos"
         },
@@ -156,7 +156,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 5331,
+        "amount": 5942,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Limiar salarial para EU Blue Card nos Países Baixos (2025) — ligeiramente abaixo do kennismigrant para +30. Para profissões regulamentadas pode haver exigências adicionais."
@@ -190,7 +190,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para ICT (Intra-Company Transfer) permit"
         },
@@ -256,7 +256,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 5688,
+        "amount": 5942,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Mesmo limiar do kennismigrant: €5.688/mês para +30 anos, €4.171/mês para <30 anos (2025)"
@@ -290,7 +290,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para Researcher permit"
         },
@@ -381,7 +381,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para verblijfsvergunning como zelfstandige (autônomo)"
         },
@@ -486,7 +486,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para Start-up permit"
         },
@@ -585,7 +585,7 @@
     "process": {
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para orientatiejaar hoog opgeleiden"
         },
@@ -603,7 +603,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para GVVA (gecombineerde vergunning voor verblijf en arbeid)"
         },
@@ -655,7 +655,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 1934,
+        "amount": 2294.4,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Salário mínimo holandês (minimumloon) como referência — verificar CAO aplicável ao setor"
@@ -688,7 +688,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para verblijfsvergunning para trabalho sem GVVA"
         },
@@ -718,7 +718,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 1934,
+        "amount": 2294.4,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Salário mínimo holandês como referência — verificar CAO do setor"
@@ -749,7 +749,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para verblijfsvergunning regulier"
         },
@@ -825,7 +825,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 1934,
+        "amount": 2294.4,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Salário mínimo holandês — verificar CAO do setor agrícola"
@@ -846,7 +846,7 @@
     "process": {
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para verblijfsvergunning para prestação de serviços transfronteiriça"
         }
@@ -887,7 +887,7 @@
     "process": {
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para verblijfsvergunning sob regulamento de comércio internacional"
         }
@@ -997,7 +997,7 @@
       "applicationLocation": "ambos",
       "fees": [
         {
-          "amount": 345,
+          "amount": 423,
           "currency": "EUR",
           "notes": "taxa IND para onderzoeker (pesquisador) verblijfsvergunning"
         },

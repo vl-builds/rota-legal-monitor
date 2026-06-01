@@ -5,7 +5,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D de trabalho subordinado no consulado português"
         },
@@ -123,7 +123,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D de procura de emprego no consulado português"
         },
@@ -199,7 +199,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 760,
+        "amount": 2760,
         "currency": "EUR",
         "period": "monthly",
         "notes": "Equivalente ao limiar de recursos mínimos exigido — demonstrar capacidade para sustento sem trabalho durante o período de busca"
@@ -225,7 +225,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D para atividade independente no consulado português"
         },
@@ -339,7 +339,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D no consulado português"
         },
@@ -440,7 +440,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D no consulado português"
         },
@@ -541,7 +541,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D Nômade Digital no consulado português"
         },
@@ -650,7 +650,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D de transferência intragrupo no consulado português"
         },
@@ -989,7 +989,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D no consulado português"
         },
@@ -1069,7 +1069,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "notes": "taxa de visto D Nômade Digital no consulado português"
         },
@@ -1233,7 +1233,7 @@
       "estimatedDuration": "60-90 dias para o visto",
       "fees": [
         {
-          "amount": 90,
+          "amount": 110,
           "currency": "EUR",
           "period": "one-time",
           "notes": "taxa de visto D7 no consulado português"

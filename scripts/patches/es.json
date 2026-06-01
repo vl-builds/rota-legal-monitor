@@ -282,7 +282,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 2646,
+        "amount": 2849,
         "currency": "EUR",
         "period": "monthly",
         "notes": "200% do SMI espanhol (Salário Mínimo Interprofissional) — valor de 2024. Para trabalho autônomo pode ser 75% (€1.985/mês) se tiver cônjuge dependente."
@@ -391,7 +391,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 40077,
+        "amount": 39270,
         "currency": "EUR",
         "period": "yearly",
         "notes": "1,5× o salário médio anual espanhol — equivale a aprox. €3.340/mês bruto (valor de 2024)"

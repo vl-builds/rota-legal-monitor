@@ -14,18 +14,18 @@
       "notes": "",
       "required": false
     },
+    "minimumWage": {
+      "amount": 2453,
+      "currency": "EUR",
+      "notes": "National Minimum Wage 2026: EUR 14,15/hora desde 1 janeiro 2026 (aumento de EUR 0,65 face a 2025). Equivalente a EUR 2.453/mês bruto (40h semanais). Aumento de 4,8% recomendado pela Low Pay Commission no âmbito do Budget 2026.",
+      "period": "monthly"
+    },
     "passportValidity": "Minimo 6 meses apos a data de entrada",
     "proofOfFunds": {
       "amount": 40904,
       "currency": "EUR",
-      "period": "yearly",
-      "notes": "Critical Skills Employment Permit (CSEP): EUR 40.904/ano para ocupações críticas. Recém-graduados: EUR 36.848/ano. Rota salário alto: acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano."
-    },
-    "minimumWage": {
-      "amount": 2453,
-      "currency": "EUR",
-      "period": "monthly",
-      "notes": "National Minimum Wage 2026: EUR 14,15/hora desde 1 janeiro 2026 (aumento de EUR 0,65 face a 2025). Equivalente a EUR 2.453/mês bruto (40h semanais). Aumento de 4,8% recomendado pela Low Pay Commission no âmbito do Budget 2026."
+      "notes": "Critical Skills Employment Permit (CSEP): EUR 40.904/ano para ocupações críticas. Recém-graduados: EUR 36.848/ano. Rota salário alto: acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano.",
+      "period": "yearly"
     },
     "vaccinations": []
   },
@@ -102,9 +102,12 @@
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
-    "humanReviewedAt": null,
+    "humanReviewedAt": "2026-06-02T00:00:00.000Z",
     "knownIssues": [
-      "Extração mai/2026: proofOfFunds, healthInsurance e forBrazilians.schengenVisaFree requerem manutenção manual — LLM não extrai esses campos de forma confiável das fontes atuais."
+      "Auditoria 2026-06-02: limiares CURRENT para 2026 (vigentes desde 01/03/2026): Critical Skills €40.904, General €36.605, ICT €49.523; salário mínimo €14,15/h. Fonte enterprise.gov.ie.",
+      "Corrigir nas notas/steps: CSEP rota salário alto 64.000→€68.911; setores de baixa remuneração 30.000→€32.691; Contract for Services confirmar (€40.904 vs €49.523).",
+      "ESTRUTURAL: roadmap de aumentos faseados até 2030 (anúncio 02/12/2025); Seasonal Employment Permit (fev/2025) ausente; data do Employment Permits Act é 2024-09-02.",
+      "sport-cultural (€30.000) e internship (€22.920): UNVERIFIED, provável desatualizado."
     ]
   },
   "visaTypes": [
@@ -127,40 +130,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Verificar que a ocupação consta na Critical Skills Occupations List (CSOL) do Department of Enterprise, Trade and Employment, ou que o salário é superior a €64.000/ano",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Empregador e trabalhador submetem o pedido de CSEP conjuntamente através do portal Employment Permits Online do DETE — o trabalhador pode submeter independentemente",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Pagar taxa de €1.000 (cobrada pelo empregador na maioria dos casos) — reembolsada se recusado",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de candidaturas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Após aprovação, o trabalhador fora da Irlanda solicita o visto de entrada (Long Stay 'D' Visa) na Embaixada Irlandesa — pode ser feito em paralelo",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Entrar na Irlanda e registrar-se no GNIB/INIS (Irish Naturalisation and Immigration Service) dentro de 90 dias para obter o IRP (Irish Residence Permit)",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -168,41 +171,41 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses além do período do permit",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Contrato de trabalho ou carta de oferta assinada",
             "description": "Com salário mínimo de €40.904/ano (2024) para ocupações na CSOL, ou €64.000 para ocupações fora da lista",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Contrato de trabalho ou carta de oferta assinada"
           },
           {
-            "name": "Qualificações educacionais relevantes",
             "description": "Diploma de nível 8 do NFQ ou equivalente (bachelor), ou qualificações profissionais equivalentes — apostilados e traduzidos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Qualificações educacionais relevantes"
           },
           {
-            "name": "Comprovante de experiência profissional",
             "description": "Cartas de referência, contratos anteriores e histórico profissional comprovando expertise na ocupação",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de experiência profissional"
           },
           {
-            "name": "Formulário de pedido de Employment Permit",
             "description": "Preenchido no portal Employment Permits Online do DETE",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Formulário de pedido de Employment Permit"
           },
           {
-            "name": "Comprovante de registro da empresa empregadora na Irlanda",
             "description": "CRO (Companies Registration Office) — empresa deve estar registrada e em atividade na Irlanda",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de registro da empresa empregadora na Irlanda"
           }
         ],
         "incomeRequirement": {
           "amount": 40904,
           "currency": "EUR",
-          "period": "yearly",
-          "notes": "Salário mínimo para ocupações na Critical Skills Occupations List (2024). Para ocupações não listadas: €64.000/ano."
+          "notes": "Salário mínimo para ocupações na Critical Skills Occupations List (2024). Para ocupações não listadas: €64.000/ano.",
+          "period": "yearly"
         },
         "languageRequired": null,
         "qualificationsRequired": [
@@ -216,14 +219,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal contínua (incluindo período com CSEP)"
+          "summary": "Após 5 anos de residência legal contínua (incluindo período com CSEP)",
+          "yearsRequired": 5
         },
         "pathToResidency": {
-          "yearsRequired": 2,
           "conditions": [],
-          "summary": "Após 2 anos com CSEP e sem interrupções, elegível para Stamp 4 (acesso irrestrito ao mercado de trabalho)"
+          "summary": "Após 2 anos com CSEP e sem interrupções, elegível para Stamp 4 (acesso irrestrito ao mercado de trabalho)",
+          "yearsRequired": 2
         }
       }
     },
@@ -246,40 +249,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Verificar que a ocupação não consta na Ineligible Occupations List (lista de ocupações proibidas para GEP) do DETE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Empregador realiza o Labour Market Needs Test (LMNT): publicar vaga por pelo menos 2 semanas no EURES e em meios nacionais e comprovar que não houve candidato adequado disponível no EEE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Empregador e trabalhador submetem pedido de GEP conjuntamente no portal Employment Permits Online do DETE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Pagar taxa de €1.000 — reembolsada se recusado",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "DETE analisa o pedido — prazo de 4-8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, trabalhador fora da Irlanda solicita visto de entrada — entrar na Irlanda e registrar-se no GNIB/INIS dentro de 90 dias para o IRP",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -287,41 +290,41 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses além do período do permit",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Contrato de trabalho ou carta de oferta com salário mínimo de €36.605/ano",
             "description": "Salário bruto anual mínimo de €36.605 (2024) para GEP — salvo setores com limiar diferenciado",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Contrato de trabalho ou carta de oferta com salário mínimo de €36.605/ano"
           },
           {
-            "name": "Comprovante de LMNT realizado pelo empregador",
             "description": "Evidência da publicação da vaga no EURES e em jornais nacionais por pelo menos 2 semanas sem candidato EEE adequado",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de LMNT realizado pelo empregador"
           },
           {
-            "name": "Qualificações educacionais e/ou experiência profissional",
             "description": "Compatíveis com a função — apostiladas e traduzidas para inglês",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Qualificações educacionais e/ou experiência profissional"
           },
           {
-            "name": "Formulário de pedido no Employment Permits Online",
             "description": "Submetido conjuntamente por empregador e trabalhador",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Formulário de pedido no Employment Permits Online"
           },
           {
-            "name": "Comprovante de registro da empresa empregadora na Irlanda",
             "description": "CRO — empresa deve estar registrada e ativa na Irlanda",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de registro da empresa empregadora na Irlanda"
           }
         ],
         "incomeRequirement": {
           "amount": 36605,
           "currency": "EUR",
-          "period": "yearly",
-          "notes": "Limiar mínimo de 2024 — pode ser mais baixo para certos setores como agricultura sazonal (€30.000). Para trabalhadores domésticos o mínimo é o salário mínimo nacional."
+          "notes": "Limiar mínimo de 2024 — pode ser mais baixo para certos setores como agricultura sazonal (€30.000). Para trabalhadores domésticos o mínimo é o salário mínimo nacional.",
+          "period": "yearly"
         },
         "languageRequired": null,
         "qualificationsRequired": [
@@ -334,14 +337,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal contínua"
+          "summary": "Após 5 anos de residência legal contínua",
+          "yearsRequired": 5
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal contínua, elegível para Stamp 4"
+          "summary": "Após 5 anos de residência legal contínua, elegível para Stamp 4",
+          "yearsRequired": 5
         }
       }
     },
@@ -364,34 +367,34 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Cônjuge/parceiro de titular de CSEP ou Stamp 4 que já está na Irlanda registra-se no GNIB/INIS e obtém Stamp 3 (inicialmente) ou Stamp 1G",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Para cônjuge de titular de CSEP: solicitar Stamp 1G na INIS que permite trabalho sem necessidade de Employment Permit",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Para cônjuge de titular de GEP ou outros permits: solicitar o Dependant/Partner/Spouse Employment Permit no portal do DETE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Apresentar documentação: comprovante de relação com o titular, IRP do titular, documentos pessoais",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Após aprovação, receber Stamp 1 que permite trabalho para empregador específico — ou Stamp 1G se dependente de CSEP",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           }
         ]
       },
@@ -399,24 +402,24 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "IRP (Irish Residence Permit) do titular do permit/visto principal",
             "description": "Comprovante de que o parceiro/cônjuge está legalmente residente na Irlanda com CSEP ou outro permit",
-            "isCritical": true
+            "isCritical": true,
+            "name": "IRP (Irish Residence Permit) do titular do permit/visto principal"
           },
           {
-            "name": "Comprovante de relação (certidão de casamento ou equivalente)",
             "description": "Certidão de casamento apostilada ou comprovante de parceria reconhecida",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de relação (certidão de casamento ou equivalente)"
           },
           {
-            "name": "Contrato de trabalho (para dependente de GEP)",
             "description": "Oferta de emprego de empregador irlandês — não necessário para dependente de CSEP (Stamp 1G)",
-            "isCritical": false
+            "isCritical": false,
+            "name": "Contrato de trabalho (para dependente de GEP)"
           }
         ],
         "incomeRequirement": null,
@@ -428,14 +431,14 @@
         "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal contínua"
+          "summary": "Após 5 anos de residência legal contínua",
+          "yearsRequired": 5
         },
         "pathToResidency": {
-          "yearsRequired": null,
           "conditions": [],
-          "summary": "Via renovação contínua dependendo do titular principal"
+          "summary": "Via renovação contínua dependendo do titular principal",
+          "yearsRequired": null
         }
       }
     },
@@ -458,40 +461,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Empresa irlandesa (receptora) documenta o vínculo corporativo com a empresa enviante e o plano de transferência do trabalhador",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Verificar que o trabalhador tem vínculo de pelo menos 12 meses com a empresa enviante (para gestores/diretores: 6 meses)",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Submeter pedido de ICT EP no portal Employment Permits Online do DETE — sem LMNT exigido",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Pagar taxa de €1.000 e apresentar documentação da transferência intragrupo",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "DETE analisa — prazo de 2-4 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Irlanda e registrar-se no GNIB/INIS para IRP",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -499,41 +502,41 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses além do período do permit",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Contrato de trabalho com salário mínimo de €49.523/ano",
             "description": "Salário mínimo para ICT EP (2024) — acima do GEP por ser para trabalhadores qualificados intragrupo",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Contrato de trabalho com salário mínimo de €49.523/ano"
           },
           {
-            "name": "Comprovante de vínculo com empresa enviante (mín. 12 meses)",
             "description": "Contrato, holerites e cartas comprovando 12 meses de vínculo (6 meses para gestores/diretores)",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de vínculo com empresa enviante (mín. 12 meses)"
           },
           {
-            "name": "Carta de transferência da empresa",
             "description": "Especificando cargo, duração, condições e relação entre empresa enviante e receptora",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Carta de transferência da empresa"
           },
           {
-            "name": "Comprovante de vínculo corporativo entre as empresas",
             "description": "Documentos que comprovem que são parte do mesmo grupo multinacional",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de vínculo corporativo entre as empresas"
           },
           {
-            "name": "Qualificações educacionais ou profissionais",
             "description": "Compatíveis com cargo de gestor, especialista ou trainee qualificado",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Qualificações educacionais ou profissionais"
           }
         ],
         "incomeRequirement": {
           "amount": 49523,
           "currency": "EUR",
-          "period": "yearly",
-          "notes": "Salário mínimo para ICT EP em 2024 — superior ao GEP por ser destinado a pessoal qualificado intragrupo"
+          "notes": "Salário mínimo para ICT EP em 2024 — superior ao GEP por ser destinado a pessoal qualificado intragrupo",
+          "period": "yearly"
         },
         "languageRequired": null,
         "qualificationsRequired": [
@@ -546,14 +549,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Tempo com ICT EP pode contar parcialmente para os 5 anos de residência legal"
+          "summary": "Tempo com ICT EP pode contar parcialmente para os 5 anos de residência legal",
+          "yearsRequired": 5
         },
         "pathToResidency": {
-          "yearsRequired": null,
           "conditions": [],
-          "summary": "ICT EP não conta diretamente para residência permanente, para PR precisar mudar para outro tipo de permit"
+          "summary": "ICT EP não conta diretamente para residência permanente, para PR precisar mudar para outro tipo de permit",
+          "yearsRequired": null
         }
       }
     },
@@ -576,40 +579,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Empresa estrangeira recebe contrato de prestação de serviços de cliente irlandês e designa trabalhador para execução do contrato na Irlanda",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Verificar que o salário atende ao mínimo de €40.904/ano e que o cargo é qualificado",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Submeter pedido de Contract for Services EP no portal Employment Permits Online do DETE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Pagar €1.000 e apresentar documentação: contrato de serviços, carta de designação, qualificações",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "DETE analisa — prazo de 4-8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, entrar na Irlanda e registrar-se no GNIB/INIS",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -617,36 +620,36 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses além do período do permit",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Contrato de prestação de serviços entre empresa estrangeira e cliente irlandês",
             "description": "Contrato B2B formal especificando escopo, duração e condições dos serviços",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Contrato de prestação de serviços entre empresa estrangeira e cliente irlandês"
           },
           {
-            "name": "Carta de designação da empresa enviante",
             "description": "Indicando que o trabalhador foi designado para executar o contrato de serviços na Irlanda",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Carta de designação da empresa enviante"
           },
           {
-            "name": "Comprovante de salário mínimo de €40.904/ano",
             "description": "Salário do trabalhador deve ser mínimo de €40.904/ano (2024)",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de salário mínimo de €40.904/ano"
           },
           {
-            "name": "Qualificações educacionais e experiência profissional",
             "description": "Compatíveis com o serviço prestado — apostiladas e traduzidas",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Qualificações educacionais e experiência profissional"
           }
         ],
         "incomeRequirement": {
           "amount": 40904,
           "currency": "EUR",
-          "period": "yearly",
-          "notes": "Salário mínimo para Contract for Services EP — igual ao CSEP threshold (2024)"
+          "notes": "Salário mínimo para Contract for Services EP — igual ao CSEP threshold (2024)",
+          "period": "yearly"
         },
         "languageRequired": null,
         "qualificationsRequired": [
@@ -658,14 +661,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal"
+          "summary": "Após 5 anos de residência legal",
+          "yearsRequired": 5
         },
         "pathToResidency": {
-          "yearsRequired": null,
           "conditions": [],
-          "summary": "Via renovações, não conta diretamente para Stamp 4"
+          "summary": "Via renovações, não conta diretamente para Stamp 4",
+          "yearsRequired": null
         }
       }
     },
@@ -688,40 +691,40 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Verificar elegibilidade: trabalhador que estava legalmente na Irlanda com Employment Permit e ficou sem trabalho em situação de abuso ou exploração pelo empregador",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Reunir evidências da situação anterior — relatórios de autoridades, denúncias ao WRC, comprovantes de trabalho",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Submeter pedido de Reactivation EP no portal Employment Permits Online com contrato de novo empregador",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Pagar €500 e apresentar documentação completa incluindo evidências da situação de vulnerabilidade",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "DETE analisa — prazo de 4-8 semanas",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           },
           {
-            "order": 6,
             "description": "Após aprovação, continuar na Irlanda com novo empregador",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 6
           }
         ]
       },
@@ -729,24 +732,24 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Comprovante de Employment Permit anterior válido",
             "description": "Evidência de que estava legalmente na Irlanda com EP anterior",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de Employment Permit anterior válido"
           },
           {
-            "name": "Evidências de exploração ou abuso pelo empregador anterior",
             "description": "Relatórios do WRC (Workplace Relations Commission), Garda, MRCI ou organizações de suporte",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Evidências de exploração ou abuso pelo empregador anterior"
           },
           {
-            "name": "Contrato de trabalho com novo empregador",
             "description": "Nova oferta de emprego compatível com qualificações e condições do EP",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Contrato de trabalho com novo empregador"
           }
         ],
         "incomeRequirement": null,
@@ -760,14 +763,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal"
+          "summary": "Após 5 anos de residência legal",
+          "yearsRequired": 5
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal contínua total"
+          "summary": "Após 5 anos de residência legal contínua total",
+          "yearsRequired": 5
         }
       }
     },
@@ -790,34 +793,34 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Receber oferta de emprego de clube/organização desportiva ou cultural irlandesa reconhecida",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Verificar que a função exige habilidades específicas não disponíveis no mercado irlandês/EEE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Submeter pedido de Sports & Cultural EP no portal Employment Permits Online do DETE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Pagar €1.000 e apresentar contrato, comprovante de carreira/portfólio, documentação da organização",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Após aprovação, entrar na Irlanda e registrar-se no GNIB/INIS",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           }
         ]
       },
@@ -825,31 +828,31 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses além do período do permit",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Contrato com organização desportiva ou cultural irlandesa",
             "description": "Contrato formal com clube, federação, teatro, museu ou organização cultural reconhecida",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Contrato com organização desportiva ou cultural irlandesa"
           },
           {
-            "name": "Portfolio ou comprovante de carreira profissional",
             "description": "Evidência de atuação profissional na área desportiva ou cultural (contratos anteriores, prêmios, credenciais)",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Portfolio ou comprovante de carreira profissional"
           },
           {
-            "name": "Salário mínimo aplicável",
             "description": "Deve cumprir o salário mínimo nacional irlandês — alguns cargos têm limiares específicos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Salário mínimo aplicável"
           }
         ],
         "incomeRequirement": {
           "amount": 30000,
           "currency": "EUR",
-          "period": "yearly",
-          "notes": "Limiar indicativo — verificar requisito atual no DETE, pode variar por tipo de função"
+          "notes": "Limiar indicativo — verificar requisito atual no DETE, pode variar por tipo de função",
+          "period": "yearly"
         },
         "languageRequired": null,
         "qualificationsRequired": [
@@ -861,14 +864,14 @@
         "canChangeEmployer": false,
         "canWork": true,
         "pathToCitizenship": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal"
+          "summary": "Após 5 anos de residência legal",
+          "yearsRequired": 5
         },
         "pathToResidency": {
-          "yearsRequired": 5,
           "conditions": [],
-          "summary": "Após 5 anos de residência legal"
+          "summary": "Após 5 anos de residência legal",
+          "yearsRequired": 5
         }
       }
     },
@@ -891,28 +894,28 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Verificar participação em programa de intercâmbio reconhecido com base em acordo bilateral entre Irlanda e outro país ou organização",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Obter designação/carta do programa de intercâmbio reconhecendo a participação do trabalhador",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Submeter pedido de Exchange Agreement EP no portal Employment Permits Online",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Após aprovação, entrar na Irlanda com a documentação do programa de intercâmbio",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           }
         ]
       },
@@ -920,19 +923,19 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Carta de participação em programa de intercâmbio reconhecido",
             "description": "Documento oficial do programa confirmando participação e condições",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Carta de participação em programa de intercâmbio reconhecido"
           },
           {
-            "name": "Documentos do programa de intercâmbio",
             "description": "Descrição do programa, organização patrocinadora e termos da participação",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Documentos do programa de intercâmbio"
           }
         ],
         "incomeRequirement": null,
@@ -968,34 +971,34 @@
         ],
         "steps": [
           {
-            "order": 1,
             "description": "Verificar elegibilidade: estudante matriculado em instituição de ensino superior fora da Irlanda, com oferta de estágio remunerado de empresa irlandesa relacionado ao curso",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 1
           },
           {
-            "order": 2,
             "description": "Obter carta da instituição de ensino confirmando matrícula ativa e relevância do estágio para o curso",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 2
           },
           {
-            "order": 3,
             "description": "Submeter pedido de Internship EP no portal Employment Permits Online do DETE",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 3
           },
           {
-            "order": 4,
             "description": "Pagar €500 e apresentar carta de oferta de estágio, carta da universidade, qualificações",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 4
           },
           {
-            "order": 5,
             "description": "Após aprovação, entrar na Irlanda e registrar-se no GNIB/INIS",
             "estimatedDays": null,
-            "name": null
+            "name": null,
+            "order": 5
           }
         ]
       },
@@ -1003,31 +1006,31 @@
       "requirements": {
         "documents": [
           {
-            "name": "Passaporte brasileiro válido",
             "description": "Validade mínima de 12 meses além do período do permit",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Passaporte brasileiro válido"
           },
           {
-            "name": "Carta de oferta de estágio da empresa irlandesa",
             "description": "Com cargo, duração (máx. 12 meses) e remuneração — mínimo o salário mínimo nacional",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Carta de oferta de estágio da empresa irlandesa"
           },
           {
-            "name": "Carta da instituição de ensino confirmando matrícula",
             "description": "Confirmando matrícula ativa e que o estágio é relevante para o programa de estudos",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Carta da instituição de ensino confirmando matrícula"
           },
           {
-            "name": "Comprovante de matrícula no curso de ensino superior",
             "description": "Certidão de matrícula da universidade/faculdade fora da Irlanda",
-            "isCritical": true
+            "isCritical": true,
+            "name": "Comprovante de matrícula no curso de ensino superior"
           }
         ],
         "incomeRequirement": {
           "amount": 22920,
           "currency": "EUR",
-          "period": "yearly",
-          "notes": "Salário mínimo nacional irlandês (National Minimum Wage) como referência mínima para o estágio remunerado"
+          "notes": "Salário mínimo nacional irlandês (National Minimum Wage) como referência mínima para o estágio remunerado",
+          "period": "yearly"
         },
         "languageRequired": null,
         "qualificationsRequired": [

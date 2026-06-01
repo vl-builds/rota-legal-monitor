@@ -5,7 +5,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 635,
+          "amount": 670,
           "currency": "AUD",
           "notes": "taxa de solicitação WHV 462 (taxa vigente em 2025)"
         }
@@ -104,7 +104,7 @@
       "applicationLocation": "origem",
       "fees": [
         {
-          "amount": 635,
+          "amount": 670,
           "currency": "AUD",
           "notes": "taxa de solicitação WHV 462 (taxa vigente em 2025)"
         }
@@ -208,12 +208,12 @@
           "notes": "taxa de solicitação para o requerente principal (2025-26)"
         },
         {
-          "amount": 2455,
+          "amount": 2320,
           "currency": "AUD",
           "notes": "taxa para cônjuge ou companheiro acima de 18 anos"
         },
         {
-          "amount": 1230,
+          "amount": 1160,
           "currency": "AUD",
           "notes": "taxa para dependente menor de 18 anos"
         }
@@ -446,7 +446,8 @@
         "summary": "Elegível após obter PR e cumprir 4 anos de residência permanente"
       }
     },
-    "notes": "O antigo TSS 482 foi substituído pelo Skills in Demand (SID) 482 em 7 de dezembro de 2024. Três streams: Specialist Skills (AUD 141.210+, sem lista de ocupações, processamento em 7 dias), Core Skills (AUD 76.515-141.209, CSOL) e Labour Agreement. É ilegal que o trabalhador pague o SAF Levy — o empregador arca com SBS, nomination e SAF Levy."
+    "notes": "O antigo TSS 482 foi substituído pelo Skills in Demand (SID) 482 em 7 de dezembro de 2024. Três streams: Specialist Skills (AUD 141.210+, sem lista de ocupações, processamento em 7 dias), Core Skills (AUD 76.515-141.209, CSOL) e Labour Agreement. É ilegal que o trabalhador pague o SAF Levy — o empregador arca com SBS, nomination e SAF Levy.",
+    "nameOriginal": "Skills in Demand visa (subclass 482)"
   },
   "graduate-485": {
     "process": {
@@ -564,12 +565,12 @@
           "notes": "taxa de solicitação para o requerente principal (2025-26)"
         },
         {
-          "amount": 2455,
+          "amount": 2320,
           "currency": "AUD",
           "notes": "taxa para cônjuge ou companheiro acima de 18 anos"
         },
         {
-          "amount": 1230,
+          "amount": 1160,
           "currency": "AUD",
           "notes": "taxa para dependente menor de 18 anos"
         }

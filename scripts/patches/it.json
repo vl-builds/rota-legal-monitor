@@ -208,7 +208,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 8500,
+        "amount": 8400,
         "currency": "EUR",
         "period": "yearly",
         "notes": "Renda mínima anual exigida para lavoro autonomo — equivalente ao mínimo social italiano. Pode ser demonstrada por patrimônio equivalente."
@@ -428,7 +428,7 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 35000,
+        "amount": 27000,
         "currency": "EUR",
         "period": "yearly",
         "notes": "Salário bruto anual mínimo de €35.000 exigido para Carta Blu UE Itália (1,5× a média salarial nacional). Para profissões em escassez pode ser reduzido para 1,2×."
