@@ -64,6 +64,35 @@
     .partner-featured { flex-direction: column; align-items: flex-start; }
     .partner-featured-cta { width: 100%; justify-content: center; }
   }
+
+  /* Vídeo de apresentação (click-to-load: nada do YouTube carrega até o clique) */
+  .partner-video { margin-top: var(--s-lg); max-width: 760px; }
+  .video-embed {
+    position: relative; aspect-ratio: 16 / 9; border-radius: var(--r-lg);
+    overflow: hidden; border: 1px solid var(--hairline); background: var(--surface-elevated);
+  }
+  .video-facade {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    padding: 0; border: 0; cursor: pointer; background: none; display: block;
+  }
+  .video-thumb {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(0.68); transition: filter 0.2s ease;
+  }
+  .video-facade:hover .video-thumb,
+  .video-facade:focus-visible .video-thumb { filter: brightness(0.85); }
+  .video-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 66px; height: 66px; border-radius: 50%; background: var(--primary);
+    display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease;
+  }
+  .video-facade:hover .video-play { transform: translate(-50%, -50%) scale(1.06); }
+  .video-play::after {
+    content: ''; border-style: solid; border-width: 11px 0 11px 18px;
+    border-color: transparent transparent transparent var(--on-primary); margin-left: 4px;
+  }
+  .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-caption { display: block; margin-top: var(--s-xs); font-size: 13px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -166,6 +195,15 @@
       </div>
       <a class="btn btn-secondary partner-featured-cta" href="https://deliverybase.pro/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=deliverybase" target="_blank" rel="noopener noreferrer">Visitar DeliveryBase →</a>
     </article>
+    <div class="partner-video">
+      <div class="video-embed">
+        <button class="video-facade" type="button" data-video="qnNoAvgEQFE" aria-label="Assistir à apresentação do DeliveryBase (abre o vídeo do YouTube)">
+          <img class="video-thumb" src="https://i.ytimg.com/vi/qnNoAvgEQFE/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+          <span class="video-play"></span>
+        </button>
+      </div>
+      <span class="video-caption">Apresentação do DeliveryBase</span>
+    </div>
   </div>
 </section>
 
@@ -245,5 +283,22 @@
 
 <script src="assets/nav.js" defer></script>
 <script src="assets/site-extras.js" defer></script>
+<script>
+  // Click-to-load: o iframe do YouTube (youtube-nocookie) só é injetado ao clicar,
+  // então nenhum cookie de rastreio carrega na abertura da página.
+  document.querySelectorAll('.video-facade').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-video');
+      var embed = btn.closest('.video-embed');
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      iframe.title = 'Apresentação do DeliveryBase';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      embed.innerHTML = '';
+      embed.appendChild(iframe);
+    });
+  });
+</script>
 </body>
 </html>
