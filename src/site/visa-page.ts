@@ -454,16 +454,14 @@ export function generateVisaPage(
     <div class="nav-links">
       <a class="nav-link" href="../paises.html">Países</a>
       <a class="nav-link" href="../comparar.html">Comparar</a>
-      <a class="nav-link" href="../qual-pais.html">Qual país?</a>
       <a class="nav-link" href="../guia-pratico.html">Guia Prático</a>
       <a class="nav-link" href="../calculadora.html">Calculadora</a>
       <a class="nav-link" href="../historico.html">Histórico</a>
       <a class="nav-link" href="../sobre.html">Sobre</a>
-      <a class="nav-link" href="../area-aluno/login.html">Área do Aluno</a>
     </div>
     <div class="nav-right">
-      <a class="btn btn-secondary" href="../pais-${esc(config.code)}.html#vistos">← ${esc(config.displayName)}</a>
-      <a class="btn btn-primary" href="../comparar.html">Comparar</a>
+      <a class="btn btn-secondary" href="../area-aluno/login.html">Área do Aluno</a>
+      <a class="btn btn-primary" href="../qual-pais.html">Qual país é o meu?</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
@@ -491,8 +489,8 @@ export function generateVisaPage(
       <a href="../area-aluno/login.html">Área do Aluno</a>
     </nav>
     <div class="mobile-drawer-cta">
-      <a class="btn btn-primary" href="../qual-pais.html">Qual país é meu?</a>
-      <a class="btn btn-secondary" href="../pais-${esc(config.code)}.html#vistos">← ${esc(config.displayName)}</a>
+      <a class="btn btn-primary" href="../qual-pais.html">Qual país é o meu?</a>
+      <a class="btn btn-secondary" href="../area-aluno/login.html">Área do Aluno</a>
     </div>
   </aside>
 </div>
