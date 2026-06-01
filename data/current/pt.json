@@ -130,8 +130,9 @@
     "knownIssues": [
       "Auditoria 2026-06-02: salário mínimo €920/mês (DL 139/2025) e D8 nômade digital €3.680/mês (4x RMMG) CURRENT. Corrigir notas que citam \"SMN de 2024\" e o erro \"€3.480\".",
       "ESTRUTURAL Lei 61/2025 (23/10/2025): fim da manifestação de interesse; visto de procura de trabalho só qualificado (~3x RMMG, 120 dias); reagrupamento mais exigente; decisão AIMA até 9 meses.",
-      "Taxa visto D consular atualizada 90→€110. Taxa AIMA de atividade profissional subiu para ~€99,80 (tabela 01/03/2026, Portaria 307/2023); concessão ~€307,20 e taxas de AR D8/renovação a confirmar no PDF oficial AIMA — UNVERIFIED.",
-      "Via CPLP (acordo de mobilidade) não detalhada — lacuna de cobertura."
+      "Via CPLP (acordo de mobilidade) não detalhada — lacuna de cobertura.",
+      "Taxas AIMA 2026 confirmadas no PDF oficial (Portaria 307/2023, atual. 26.02.2026, canal digital): receção e análise AR €99,80; concessão AR temporária €85,80; título €59,40; Cartão Azul receção €126,90 / título €120,40; dispensa de visto consular €230,40. Taxa de visto D consular (MNE) €110.",
+      "CPLP: brasileiros são ISENTOS das taxas de concessão/renovação de residência (pagam só receção e análise + título). Fonte: Tabela AIMA pág. 5."
     ]
   },
   "visaTypes": [
@@ -144,7 +145,7 @@
       "id": "work-subordinate-with-visa",
       "name": "Autorização de Residência para Exercício de Atividade Profissional Subordinada com Visto de Residência",
       "nameOriginal": "Autorização de Residência para Exercício de Atividade Profissional Subordinada, com Visto de Residência",
-      "notes": "O visto D para atividade subordinada foi reformulado em 2023 com a criação da AIMA (substituta do SEF). A Autorização de Empregador é o novo mecanismo central — obtida pelo empregador via plataforma digital. O atraso nos agendamentos da AIMA tem sido um problema recorrente — quem entra com visto D pode trabalhar legalmente mesmo sem o título de residência físico enquanto aguarda o agendamento.",
+      "notes": "O visto D para atividade subordinada foi reformulado em 2023 com a criação da AIMA (substituta do SEF). A Autorização de Empregador é o novo mecanismo central — obtida pelo empregador via plataforma digital. O atraso nos agendamentos da AIMA tem sido um problema recorrente — quem entra com visto D pode trabalhar legalmente mesmo sem o título de residência físico enquanto aguarda o agendamento. Brasileiros (CPLP) são ISENTOS das taxas de concessão e renovação de residência — pagam apenas a receção e análise (€99,80) e o título de residência (€59,40), canal digital (Tabela AIMA 2026).",
       "process": {
         "applicationLocation": "origem",
         "estimatedDuration": "2-4 meses",
@@ -155,9 +156,9 @@
             "notes": "taxa de visto D de trabalho subordinado no consulado português"
           },
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência na AIMA (primeira emissão)"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -296,9 +297,9 @@
             "notes": "taxa de visto D de procura de emprego no consulado português"
           },
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência na AIMA (se converter para AR após encontrar emprego)"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -419,9 +420,9 @@
             "notes": "taxa de visto D para atividade independente no consulado português"
           },
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -554,9 +555,9 @@
             "notes": "taxa de visto D no consulado português"
           },
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -674,9 +675,9 @@
             "notes": "taxa de visto D no consulado português"
           },
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -794,9 +795,9 @@
             "notes": "taxa de visto D Nômade Digital no consulado português"
           },
           {
-            "amount": 320,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência D8 na AIMA (primeira emissão — maior que AR padrão)"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital)."
           }
         ],
         "steps": [
@@ -924,9 +925,9 @@
             "notes": "taxa de visto D de transferência intragrupo no consulado português"
           },
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -1040,9 +1041,9 @@
         "estimatedDuration": "2-4 meses",
         "fees": [
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de autorização de residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -1134,14 +1135,14 @@
         "estimatedDuration": "1-3 meses (para quem já está em Portugal)",
         "fees": [
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de primeira emissão da Autorização de Residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           },
           {
-            "amount": 28,
+            "amount": 59.4,
             "currency": "EUR",
-            "notes": "taxa de renovação após 2 anos (primeira renovação)"
+            "notes": "Título de residência / impressos (AIMA 2026, canal digital)."
           }
         ],
         "steps": [
@@ -1245,14 +1246,14 @@
         "estimatedDuration": "2-4 meses",
         "fees": [
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de Autorização de Residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           },
           {
-            "amount": 28,
+            "amount": 59.4,
             "currency": "EUR",
-            "notes": "taxa de renovação após 2 anos"
+            "notes": "Título de residência / impressos (AIMA 2026, canal digital)."
           }
         ],
         "steps": [
@@ -1374,9 +1375,9 @@
             "notes": "taxa de visto D no consulado português"
           },
           {
-            "amount": 83,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de Autorização de Residência na AIMA"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital). Fonte: Tabela de Taxas Portaria 307/2023 (atual. 26.02.2026)."
           }
         ],
         "steps": [
@@ -1486,9 +1487,9 @@
             "notes": "taxa de visto D Nômade Digital no consulado português"
           },
           {
-            "amount": 320,
+            "amount": 99.8,
             "currency": "EUR",
-            "notes": "taxa de Autorização de Residência D8 na AIMA (primeira emissão)"
+            "notes": "Receção e análise da Autorização de Residência (AIMA 2026, canal digital)."
           }
         ],
         "steps": [
