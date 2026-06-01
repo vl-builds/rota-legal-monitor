@@ -134,6 +134,21 @@
   .pa-card-desc { font-size: 14.5px; color: var(--body); line-height: 1.55; margin: 0; flex: 1; }
   .pa-card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; gap: 12px; flex-wrap: wrap; }
 
+  /* Influenciador: avatar circular, handle e badge de plataforma */
+  .pa-avatar {
+    width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 19px; letter-spacing: -0.01em;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35); border: 2px solid rgba(255,255,255,0.1);
+  }
+  .pa-handle { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: var(--muted); margin-top: 3px; }
+  .pa-platform {
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .pa-platform-yt { color: #ff4d6a; background: rgba(255, 0, 51, 0.10); border: 1px solid rgba(255, 0, 51, 0.28); }
+
   /* Bandeiras (faixas CSS, sem imagens) */
   .pa-flags { display: flex; align-items: center; gap: 6px; }
   .pa-flag { width: 20px; height: 14px; border-radius: 3px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 0 1.5px var(--surface-card); }
@@ -277,7 +292,7 @@
   <nav class="pa-anchor-inner" aria-label="Seções de parceiros">
     <a class="pa-tab is-active" href="#ferramentas">Ferramentas <span class="pa-tab-count">01</span></a>
     <a class="pa-tab" href="#patrocinadores">Patrocinadores <span class="pa-tab-count">00</span></a>
-    <a class="pa-tab" href="#influenciadores">Influenciadores <span class="pa-tab-count">00</span></a>
+    <a class="pa-tab" href="#influenciadores">Influenciadores <span class="pa-tab-count">01</span></a>
   </nav>
 </div>
 
@@ -370,14 +385,43 @@
       <div class="pa-sh-top">
         <span class="pa-sh-index">03</span>
         <span class="pa-sh-kicker">Criadores</span>
+        <span class="pa-sh-count">01 item</span>
       </div>
       <h2 class="pa-h2">Influenciadores que recomendamos</h2>
       <p class="pa-sh-desc">Criadores de conteúdo que acompanhamos e que ajudam de verdade quem está planejando a mudança.</p>
     </div>
-    <div class="pa-empty">
-      <strong>Em breve</strong>
-      <p>Estamos montando a lista de criadores que recomendamos. É criador e fala sobre imigração para brasileiros?</p>
-      <a class="btn btn-secondary" href="mailto:contato@rotalegal.pro?subject=Sou%20criador%20e%20quero%20aparecer%20no%20Rota%20Legal">Indicar um criador</a>
+    <div class="pa-grid">
+      <article class="pa-card is-featured pa-in">
+        <div class="pa-feature">
+          <div class="pa-feature-body">
+            <div class="pa-card-head">
+              <span class="pa-avatar" style="background: linear-gradient(135deg, #FF5630 0%, #C81E1E 100%);" aria-hidden="true">HZ</span>
+              <div>
+                <div class="pa-card-name">HenryZuca</div>
+                <div class="pa-handle">@HenryZuca</div>
+              </div>
+            </div>
+            <div class="pa-card-meta" style="margin-bottom: 14px;">
+              <span class="pa-platform pa-platform-yt">▶ YouTube</span>
+            </div>
+            <p class="pa-card-desc">Vida real de quem foi trabalhar como entregador no exterior, direto da Holanda. Bastidores, frio de verdade, ganhos e a rotina de quem já está lá.</p>
+            <div class="pa-card-foot">
+              <span class="pa-flags" title="Holanda">
+                <span class="pa-flag"><span style="background:#AE1C28"></span><span style="background:#FFFFFF"></span><span style="background:#21468B"></span></span>
+              </span>
+              <a class="btn btn-primary" href="https://www.youtube.com/@HenryZuca" target="_blank" rel="noopener noreferrer">Seguir →</a>
+            </div>
+          </div>
+          <div class="pa-feature-media">
+            <div class="video-embed">
+              <button class="video-facade" type="button" data-video="ctgrlzQ9sIE" aria-label="Assistir ao vídeo em destaque do HenryZuca (abre o vídeo do YouTube)">
+                <img class="video-thumb" src="https://i.ytimg.com/vi/ctgrlzQ9sIE/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720" />
+                <span class="video-play"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -511,7 +555,7 @@
       var iframe = document.createElement('iframe');
       // vq=hd1080 pede a melhor qualidade disponível; cai para a maior que o vídeo tiver.
       iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&vq=hd1080';
-      iframe.title = 'Apresentação do DeliveryBase';
+      iframe.title = btn.getAttribute('aria-label') || 'Vídeo';
       iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
       iframe.allowFullscreen = true;
       embed.innerHTML = '';
