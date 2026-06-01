@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parceiros — Rota Legal</title>
-<meta name="description" content="Serviços que indicamos para quem vai trabalhar no exterior: assessoria de imigração, câmbio, seguro e mais. Marcamos com transparência o que é parceria e o que é indicação." />
+<meta name="description" content="Quem indicamos: ferramentas, serviços, patrocinadores e criadores recomendados para brasileiros que vão trabalhar no exterior. Marcamos com transparência o que é parceria e o que é indicação." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -13,86 +13,181 @@
 />
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>
-  .parceiros-intro {
-    font-size: 17px; color: var(--body); max-width: 620px;
-    margin: 0; line-height: 1.7;
-  }
+  /* ====== Página Parceiros: design do handoff mapeado aos tokens do site ====== */
+  .pa-wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  .pa-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
-  /* Bloco de transparência logo abaixo do hero */
-  .transparency {
-    border: 1px solid var(--hairline); border-radius: var(--r-lg);
-    background: var(--surface-card); padding: var(--s-lg);
-    display: flex; gap: var(--s-lg); flex-wrap: wrap;
+  /* Header */
+  .pa-header { max-width: 1180px; margin: 0 auto; padding: 64px 40px 36px; }
+  .pa-eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--primary); font-weight: 500; display: block; margin-bottom: 16px;
   }
-  .transparency-item { flex: 1; min-width: 220px; }
-  .transparency-item p {
-    margin: var(--s-xs) 0 0; font-size: 14px; color: var(--body); line-height: 1.6;
+  .pa-h1 {
+    font-size: clamp(34px, 5vw, 56px); font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.02; margin: 0 0 18px; color: var(--on-dark);
   }
+  .pa-lede { font-size: 17px; color: var(--body); max-width: 580px; line-height: 1.55; margin: 0; }
 
-  /* Rótulo de categoria */
-  .cat-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--muted);
-    display: block; margin-bottom: var(--s-md);
+  /* Legenda de confiança */
+  .pa-legend { max-width: 1180px; margin: 0 auto; padding: 0 40px 8px; }
+  .pa-legend-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--hairline); border: 1px solid var(--hairline);
+    border-radius: 16px; overflow: hidden;
   }
+  .pa-legend-cell { background: var(--surface-card); padding: 22px 26px; }
+  .pa-legend-cell p { margin: 12px 0 0; font-size: 14px; color: var(--body); line-height: 1.5; }
 
-  /* Card de parceiro (estende feature-card-dark) */
-  .partner-card { display: flex; flex-direction: column; gap: var(--s-sm); }
-  .partner-top { display: flex; align-items: center; gap: var(--s-sm); }
-  .partner-mono {
-    width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-    background: rgba(240, 180, 41, 0.12); border: 1px solid rgba(240, 180, 41, 0.28);
-    color: var(--primary); font-weight: 700; font-size: 18px;
+  /* Selos */
+  .pa-badge {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .pa-badge::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+  .pa-badge.is-partner { color: var(--primary); }
+  .pa-badge.is-tip { color: var(--muted); }
+
+  /* Sub-nav âncora */
+  .pa-anchor {
+    position: sticky; top: 64px; z-index: 40;
+    background: rgba(10, 10, 10, 0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .pa-anchor-inner {
+    max-width: 1180px; margin: 0 auto; padding: 0 40px;
+    display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
+  }
+  .pa-anchor-inner::-webkit-scrollbar { display: none; }
+  .pa-tab {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 15px 16px 13px; text-decoration: none; white-space: nowrap;
+    color: var(--body); font-size: 14px; font-weight: 500;
+    border-bottom: 2px solid transparent; transition: color 180ms ease;
+  }
+  .pa-tab:hover { color: var(--on-dark); }
+  .pa-tab.is-active { color: var(--on-dark); font-weight: 600; border-bottom-color: var(--primary); }
+  .pa-tab-count { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; color: var(--muted); }
+  .pa-tab.is-active .pa-tab-count { color: var(--primary); }
+
+  /* Main + seções */
+  .pa-main { max-width: 1180px; margin: 0 auto; padding: 44px 40px 120px; }
+  .pa-section { margin-bottom: 88px; scroll-margin-top: 128px; }
+  .pa-section:last-child { margin-bottom: 0; }
+
+  /* Cabeçalho de seção */
+  .pa-sh { margin-bottom: 28px; }
+  .pa-sh-top { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .pa-sh-index { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: var(--primary); letter-spacing: 0.1em; font-weight: 500; }
+  .pa-sh-kicker { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .pa-sh-count { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted); padding: 2px 8px; border-radius: 999px; border: 1px solid var(--hairline); }
+  .pa-h2 { font-size: clamp(25px, 3.4vw, 40px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 12px; color: var(--on-dark); }
+  .pa-sh-desc { font-size: 15.5px; color: var(--body); line-height: 1.55; margin: 0; max-width: 600px; }
+
+  /* Chips de categoria */
+  .pa-chips { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 26px; }
+  .pa-chip {
+    display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+    padding: 9px 15px; border-radius: 999px; font-size: 13px; font-weight: 500;
+    cursor: pointer; background: var(--surface-card); color: var(--body);
+    border: 1px solid var(--hairline); transition: all 180ms ease; font-family: inherit;
+  }
+  .pa-chip:hover { border-color: #3a3a3a; color: var(--on-dark); }
+  .pa-chip.is-active { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+  .pa-chip-count { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; opacity: 0.65; }
+  .pa-chip:focus-visible, .pa-tab:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+  /* Grid de ferramentas (mosaico) */
+  .pa-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .pa-card {
+    background: var(--surface-card); border: 1px solid var(--hairline);
+    border-radius: 18px; overflow: hidden;
+    transition: border-color 240ms ease, transform 240ms cubic-bezier(0.22,1,0.36,1), box-shadow 240ms ease;
+  }
+  .pa-card:hover { border-color: #3a3a3a; transform: translateY(-3px); box-shadow: 0 18px 48px rgba(0,0,0,0.45); }
+  .pa-card.is-featured { grid-column: span 2; }
+
+  .pa-feature { display: grid; grid-template-columns: 1.1fr 1fr; }
+  .pa-feature-body { padding: 28px; display: flex; flex-direction: column; }
+  .pa-feature-media { padding: 20px; display: flex; align-items: center; }
+  .pa-card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .pa-logo {
+    width: 56px; height: 56px; border-radius: 15px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 24px; letter-spacing: -0.02em;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   }
-  .partner-name {
-    margin: 0; font-size: 18px; font-weight: 700;
-    letter-spacing: -0.3px; color: var(--on-dark);
+  .pa-card-name { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; color: var(--on-dark); }
+  .pa-card-meta { display: flex; gap: 8px; margin-top: 6px; align-items: center; flex-wrap: wrap; }
+  .pa-tag {
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.06em;
+    color: var(--body); padding: 4px 9px; border-radius: 6px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--hairline); white-space: nowrap;
   }
-  .partner-badges { display: flex; gap: var(--s-xs); margin-top: 5px; flex-wrap: wrap; }
-  .partner-desc { margin: 0; font-size: 15px; color: var(--body); line-height: 1.6; }
-  .partner-benefit { margin: 0; font-size: 13px; color: var(--muted); }
-  .partner-cta { margin-top: auto; align-self: flex-start; }
+  .pa-card-desc { font-size: 14.5px; color: var(--body); line-height: 1.55; margin: 0; flex: 1; }
+  .pa-card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; gap: 12px; flex-wrap: wrap; }
 
-  /* Card destaque (parceiro único / em evidência): layout horizontal */
-  .partner-featured { display: flex; align-items: center; gap: var(--s-lg); }
-  .partner-featured-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--s-sm); }
-  .partner-top-row { display: flex; align-items: center; gap: var(--s-md); flex-wrap: wrap; }
-  .partner-mono-lg { width: 56px; height: 56px; font-size: 24px; border-radius: 12px; }
-  .partner-featured-cta { flex-shrink: 0; }
-  @media (max-width: 720px) {
-    .partner-featured { flex-direction: column; align-items: flex-start; }
-    .partner-featured-cta { width: 100%; justify-content: center; }
-  }
+  /* Bandeiras (faixas CSS, sem imagens) */
+  .pa-flags { display: flex; align-items: center; gap: 6px; }
+  .pa-flag { width: 20px; height: 14px; border-radius: 3px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 0 1.5px var(--surface-card); }
+  .pa-flag span { flex: 1; display: block; }
 
-  /* Vídeo de apresentação (click-to-load: nada do YouTube carrega até o clique) */
-  .partner-video { margin-top: var(--s-lg); max-width: 760px; }
-  .video-embed {
-    position: relative; aspect-ratio: 16 / 9; border-radius: var(--r-lg);
-    overflow: hidden; border: 1px solid var(--hairline); background: var(--surface-elevated);
+  /* Estado vazio / em breve */
+  .pa-empty {
+    border: 1px dashed var(--hairline); border-radius: 16px; background: var(--surface-card);
+    padding: 40px 28px; text-align: center;
   }
-  .video-facade {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    padding: 0; border: 0; cursor: pointer; background: none; display: block;
+  .pa-empty strong { display: block; font-size: 16px; font-weight: 600; color: var(--on-dark); margin-bottom: 8px; }
+  .pa-empty p { margin: 0 0 14px; font-size: 14px; color: var(--muted); line-height: 1.55; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+  /* CTA Sugerir */
+  .pa-suggest {
+    border: 1px solid rgba(240, 180, 41, 0.3);
+    background: linear-gradient(100deg, rgba(240, 180, 41, 0.10) 0%, var(--surface-card) 58%);
+    border-radius: 18px; padding: 30px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
   }
-  .video-thumb {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    filter: brightness(0.68); transition: filter 0.2s ease;
-  }
-  .video-facade:hover .video-thumb,
-  .video-facade:focus-visible .video-thumb { filter: brightness(0.85); }
-  .video-play {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 66px; height: 66px; border-radius: 50%; background: var(--primary);
-    display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease;
-  }
-  .video-facade:hover .video-play { transform: translate(-50%, -50%) scale(1.06); }
-  .video-play::after {
-    content: ''; border-style: solid; border-width: 11px 0 11px 18px;
-    border-color: transparent transparent transparent var(--on-primary); margin-left: 4px;
-  }
+  .pa-suggest-title { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; color: var(--on-dark); margin: 0 0 6px; }
+  .pa-suggest p { margin: 0; font-size: 14.5px; color: var(--body); line-height: 1.5; max-width: 540px; }
+
+  /* Vídeo (click-to-load) */
+  .video-embed { position: relative; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; border: 1px solid var(--hairline); background: var(--surface-elevated); width: 100%; }
+  .video-facade { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: none; display: block; }
+  .video-thumb { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.7); transition: filter 0.2s ease; }
+  .video-facade:hover .video-thumb, .video-facade:focus-visible .video-thumb { filter: brightness(0.85); }
+  .video-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; }
+  .video-facade:hover .video-play { transform: translate(-50%, -50%) scale(1.07); }
+  .video-play::after { content: ''; border-style: solid; border-width: 10px 0 10px 16px; border-color: transparent transparent transparent var(--on-primary); margin-left: 4px; }
   .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .video-caption { display: block; margin-top: var(--s-xs); font-size: 13px; color: var(--muted); }
+  .video-cap { display: block; margin-top: 10px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* Entrada (só transform, para não sumir em aba de fundo) */
+  @keyframes pa-card-in { from { transform: translateY(14px); } to { transform: translateY(0); } }
+  .pa-in { animation: pa-card-in 560ms cubic-bezier(0.22, 1, 0.36, 1); }
+  @media (prefers-reduced-motion: reduce) { .pa-in { animation: none; } }
+
+  /* ====== Responsivo (720px) ====== */
+  @media (max-width: 720px) {
+    .pa-header { padding: 40px 18px 26px; }
+    .pa-lede { font-size: 15px; }
+    .pa-legend { padding: 0 18px 8px; }
+    .pa-legend-grid { grid-template-columns: 1fr; }
+    .pa-anchor { top: 56px; }
+    .pa-anchor-inner { padding: 0 14px; }
+    .pa-main { padding: 28px 16px 90px; }
+    .pa-section { margin-bottom: 60px; scroll-margin-top: 108px; }
+    .pa-chips { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px 22px; padding: 0 16px 4px; scrollbar-width: none; }
+    .pa-chips::-webkit-scrollbar { display: none; }
+    .pa-grid { grid-template-columns: 1fr; gap: 14px; }
+    .pa-card.is-featured { grid-column: auto; }
+    .pa-feature { grid-template-columns: 1fr; }
+    .pa-feature-body { padding: 20px; }
+    .pa-feature-media { padding: 14px; padding-bottom: 0; order: -1; }
+    .pa-suggest { padding: 24px 20px; }
+    .pa-suggest .btn { width: 100%; justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -150,77 +245,148 @@
   </aside>
 </div>
 
-<!-- ============== HERO ============== -->
-<div class="page-hero">
-  <div class="container">
-    <span class="page-eyebrow">Parceiros</span>
-    <h1 class="page-title">Quem indicamos</h1>
-    <p class="parceiros-intro">Serviços úteis para quem está organizando a mudança: assessoria de imigração, câmbio, seguro e mais. Indicamos só quem avaliamos, e marcamos com clareza o que é parceria comercial e o que é indicação sem pagamento.</p>
+<!-- ============== HEADER ============== -->
+<header class="pa-header">
+  <span class="pa-eyebrow">Parceiros</span>
+  <h1 class="pa-h1">Quem indicamos</h1>
+  <p class="pa-lede">Serviços úteis para quem está organizando a mudança: assessoria de imigração, câmbio, seguro e mais. Indicamos só quem avaliamos, e marcamos com clareza o que é parceria comercial e o que é indicação sem pagamento.</p>
+</header>
+
+<!-- ============== LEGENDA DE CONFIANÇA ============== -->
+<div class="pa-legend">
+  <div class="pa-legend-grid">
+    <div class="pa-legend-cell">
+      <span class="pa-badge is-partner">Parceiro</span>
+      <p>Parceria comercial. Pode haver remuneração ou comissão quando você usa o serviço. Mesmo assim, só entra quem passa pela nossa avaliação.</p>
+    </div>
+    <div class="pa-legend-cell">
+      <span class="pa-badge is-tip">Indicação</span>
+      <p>Recomendação sem pagamento. Listamos porque consideramos útil para quem está emigrando, sem nenhum acordo comercial por trás.</p>
+    </div>
   </div>
 </div>
 
-<!-- ============== TRANSPARÊNCIA ============== -->
-<section class="section-tight">
-  <div class="container">
-    <div class="transparency">
-      <div class="transparency-item">
-        <span class="badge new"><span class="pulse"></span>Parceiro</span>
-        <p>Parceria comercial. Pode haver remuneração ou comissão quando você usa o serviço. Mesmo assim, só entra quem passa pela nossa avaliação.</p>
+<!-- ============== SUB-NAV ÂNCORA ============== -->
+<div class="pa-anchor">
+  <nav class="pa-anchor-inner" aria-label="Seções de parceiros">
+    <a class="pa-tab is-active" href="#ferramentas">Ferramentas <span class="pa-tab-count">01</span></a>
+    <a class="pa-tab" href="#patrocinadores">Patrocinadores <span class="pa-tab-count">00</span></a>
+    <a class="pa-tab" href="#influenciadores">Influenciadores <span class="pa-tab-count">00</span></a>
+  </nav>
+</div>
+
+<main class="pa-main">
+  <!-- ===== Seção 1: Ferramentas ===== -->
+  <section class="pa-section" id="ferramentas">
+    <div class="pa-sh">
+      <div class="pa-sh-top">
+        <span class="pa-sh-index">01</span>
+        <span class="pa-sh-kicker">Ferramentas &amp; serviços</span>
+        <span class="pa-sh-count">01 item</span>
       </div>
-      <div class="transparency-item">
-        <span class="badge">Indicação</span>
-        <p>Recomendação sem pagamento. Listamos porque consideramos útil para quem está emigrando, sem nenhum acordo comercial por trás.</p>
-      </div>
+      <h2 class="pa-h2">Ferramentas &amp; serviços</h2>
+      <p class="pa-sh-desc">Apps, assessorias e serviços que ajudam na mudança e no dia a dia no exterior. Filtre por categoria.</p>
     </div>
-  </div>
-</section>
 
-<!-- ============== PARCEIROS ============== -->
+    <div class="pa-chips" role="group" aria-label="Filtrar por categoria">
+      <button class="pa-chip is-active" type="button" data-cat="all" aria-pressed="true">Todos <span class="pa-chip-count"></span></button>
+      <button class="pa-chip" type="button" data-cat="immigration" aria-pressed="false">Imigração &amp; vistos <span class="pa-chip-count"></span></button>
+      <button class="pa-chip" type="button" data-cat="money" aria-pressed="false">Câmbio &amp; remessas <span class="pa-chip-count"></span></button>
+      <button class="pa-chip" type="button" data-cat="insurance" aria-pressed="false">Seguro &amp; saúde <span class="pa-chip-count"></span></button>
+      <button class="pa-chip" type="button" data-cat="housing" aria-pressed="false">Moradia <span class="pa-chip-count"></span></button>
+      <button class="pa-chip" type="button" data-cat="language" aria-pressed="false">Idiomas <span class="pa-chip-count"></span></button>
+      <button class="pa-chip" type="button" data-cat="banking" aria-pressed="false">Banco &amp; conta <span class="pa-chip-count"></span></button>
+      <button class="pa-chip" type="button" data-cat="tools" aria-pressed="false">Ferramentas <span class="pa-chip-count"></span></button>
+    </div>
 
-<!-- Categoria: Ferramentas para entregadores -->
-<section class="section-tight">
-  <div class="container">
-    <span class="cat-label">Ferramentas para entregadores</span>
-    <article class="feature-card-dark partner-featured">
-      <span class="partner-mono partner-mono-lg" aria-hidden="true">D</span>
-      <div class="partner-featured-body">
-        <div class="partner-top-row">
-          <h3 class="partner-name">DeliveryBase</h3>
-          <div class="partner-badges">
-            <span class="badge">Ferramenta</span>
-            <span class="badge">Indicação</span>
+    <div class="pa-grid" id="pa-tools-grid">
+      <!-- DeliveryBase (parceiro real, destaque com vídeo) -->
+      <article class="pa-card is-featured pa-in" data-cat="tools">
+        <div class="pa-feature">
+          <div class="pa-feature-body">
+            <div class="pa-card-head">
+              <span class="pa-logo" style="background: #FF6B35; color: #1a1410;" aria-hidden="true">D</span>
+              <div>
+                <div class="pa-card-name">DeliveryBase</div>
+                <div class="pa-card-meta">
+                  <span class="pa-badge is-tip">Indicação</span>
+                  <span class="pa-tag">Ferramentas</span>
+                </div>
+              </div>
+            </div>
+            <p class="pa-card-desc">Controle de ganhos e calculadora de imposto holandês (loonheffingskorting) para entregadores de Thuisbezorgd e Uber Eats. Em português, com leitura automática dos recibos das plataformas.</p>
+            <div class="pa-card-foot">
+              <span class="pa-flags" title="Holanda">
+                <span class="pa-flag"><span style="background:#AE1C28"></span><span style="background:#FFFFFF"></span><span style="background:#21468B"></span></span>
+              </span>
+              <a class="btn btn-primary" href="https://deliverybase.pro/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=deliverybase" target="_blank" rel="noopener noreferrer">Visitar DeliveryBase →</a>
+            </div>
+          </div>
+          <div class="pa-feature-media">
+            <div>
+              <div class="video-embed">
+                <button class="video-facade" type="button" data-video="qnNoAvgEQFE" aria-label="Assistir à apresentação do DeliveryBase (abre o vídeo do YouTube)">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/qnNoAvgEQFE/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
+                  <span class="video-play"></span>
+                </button>
+              </div>
+              <span class="video-cap">Apresentação · DeliveryBase</span>
+            </div>
           </div>
         </div>
-        <p class="partner-desc">Controle de ganhos e calculadora de imposto holandês (loonheffingskorting) para entregadores de Thuisbezorgd e Uber Eats na Holanda. Em português, com leitura automática dos recibos das plataformas.</p>
-      </div>
-      <a class="btn btn-secondary partner-featured-cta" href="https://deliverybase.pro/?utm_source=rotalegal&utm_medium=parceiros&utm_campaign=deliverybase" target="_blank" rel="noopener noreferrer">Visitar DeliveryBase →</a>
-    </article>
-    <div class="partner-video">
-      <div class="video-embed">
-        <button class="video-facade" type="button" data-video="qnNoAvgEQFE" aria-label="Assistir à apresentação do DeliveryBase (abre o vídeo do YouTube)">
-          <img class="video-thumb" src="https://i.ytimg.com/vi/qnNoAvgEQFE/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" />
-          <span class="video-play"></span>
-        </button>
-      </div>
-      <span class="video-caption">Apresentação do DeliveryBase</span>
+      </article>
     </div>
-  </div>
-</section>
 
-<!-- ============== CTA RECRUTAMENTO ============== -->
-<div class="cta-band-yellow">
-  <div class="container">
-    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--s-lg);">
-      <div>
-        <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.8px; color: var(--on-primary); margin-bottom: var(--s-xs);">Seja um parceiro</div>
-        <p class="cta-subtitle">Tem um serviço útil para quem vai trabalhar no exterior? Conte para a gente e veja se faz sentido aparecer aqui.</p>
-      </div>
-      <div style="display: flex; gap: var(--s-sm); flex-wrap: wrap;">
-        <a class="btn btn-on-yellow" href="mailto:contato@rotalegal.pro?subject=Quero%20ser%20parceiro%20do%20Rota%20Legal">Falar com a gente</a>
-      </div>
+    <div class="pa-empty" id="pa-tools-empty" style="display: none;">
+      <strong>Ainda não temos parceiros nesta categoria</strong>
+      <p>Estamos selecionando os melhores serviços para cada categoria. Conhece um que deveria estar aqui?</p>
+      <a class="btn btn-secondary" href="mailto:contato@rotalegal.pro?subject=Sugest%C3%A3o%20de%20parceiro%20para%20o%20Rota%20Legal">Indicar um serviço</a>
     </div>
+  </section>
+
+  <!-- ===== Seção 2: Patrocinadores ===== -->
+  <section class="pa-section" id="patrocinadores">
+    <div class="pa-sh">
+      <div class="pa-sh-top">
+        <span class="pa-sh-index">02</span>
+        <span class="pa-sh-kicker">Patrocinadores</span>
+      </div>
+      <h2 class="pa-h2">Patrocinadores</h2>
+      <p class="pa-sh-desc">Marcas que apoiam o Rota Legal e mantêm o conteúdo gratuito. Sempre identificadas como patrocínio.</p>
+    </div>
+    <div class="pa-empty">
+      <strong>Em breve</strong>
+      <p>Estamos selecionando patrocinadores que valham a pena para quem está se mudando. Quer apoiar o projeto e aparecer aqui?</p>
+      <a class="btn btn-secondary" href="mailto:contato@rotalegal.pro?subject=Quero%20patrocinar%20o%20Rota%20Legal">Falar sobre patrocínio</a>
+    </div>
+  </section>
+
+  <!-- ===== Seção 3: Influenciadores ===== -->
+  <section class="pa-section" id="influenciadores">
+    <div class="pa-sh">
+      <div class="pa-sh-top">
+        <span class="pa-sh-index">03</span>
+        <span class="pa-sh-kicker">Criadores</span>
+      </div>
+      <h2 class="pa-h2">Influenciadores que recomendamos</h2>
+      <p class="pa-sh-desc">Criadores de conteúdo que acompanhamos e que ajudam de verdade quem está planejando a mudança.</p>
+    </div>
+    <div class="pa-empty">
+      <strong>Em breve</strong>
+      <p>Estamos montando a lista de criadores que recomendamos. É criador e fala sobre imigração para brasileiros?</p>
+      <a class="btn btn-secondary" href="mailto:contato@rotalegal.pro?subject=Sou%20criador%20e%20quero%20aparecer%20no%20Rota%20Legal">Indicar um criador</a>
+    </div>
+  </section>
+
+  <!-- ===== CTA Sugerir ===== -->
+  <div class="pa-suggest">
+    <div>
+      <p class="pa-suggest-title">Conhece um serviço ou criador que deveria estar aqui?</p>
+      <p>Indique parceiros, patrocinadores ou criadores que ajudam brasileiros a trabalhar no exterior. A gente avalia cada sugestão.</p>
+    </div>
+    <a class="btn btn-primary" href="mailto:contato@rotalegal.pro?subject=Sugest%C3%A3o%20para%20a%20p%C3%A1gina%20de%20Parceiros">Sugerir →</a>
   </div>
-</div>
+</main>
 
 <!-- ============== FOOTER ============== -->
 <footer>
@@ -284,8 +450,57 @@
 <script src="assets/nav.js" defer></script>
 <script src="assets/site-extras.js" defer></script>
 <script>
-  // Click-to-load: o iframe do YouTube (youtube-nocookie) só é injetado ao clicar,
-  // então nenhum cookie de rastreio carrega na abertura da página.
+  // ---- Filtro de categorias ----
+  (function () {
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.pa-chip'));
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#ferramentas .pa-card[data-cat]'));
+    var grid = document.getElementById('pa-tools-grid');
+    var empty = document.getElementById('pa-tools-empty');
+    // Contagens reais por categoria
+    chips.forEach(function (chip) {
+      var cat = chip.getAttribute('data-cat');
+      var n = cat === 'all' ? cards.length : cards.filter(function (c) { return c.getAttribute('data-cat') === cat; }).length;
+      var span = chip.querySelector('.pa-chip-count');
+      if (span) span.textContent = n;
+    });
+    function apply(cat) {
+      var visible = 0;
+      cards.forEach(function (c) {
+        var show = cat === 'all' || c.getAttribute('data-cat') === cat;
+        c.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (grid) grid.style.display = visible ? '' : 'none';
+      if (empty) empty.style.display = visible ? 'none' : '';
+    }
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false'); });
+        chip.classList.add('is-active'); chip.setAttribute('aria-pressed', 'true');
+        apply(chip.getAttribute('data-cat'));
+      });
+    });
+  })();
+
+  // ---- Sub-nav âncora: destaca a seção visível (só destaca, não rola) ----
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    var tabs = {};
+    document.querySelectorAll('.pa-tab').forEach(function (t) {
+      tabs[t.getAttribute('href').slice(1)] = t;
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        Object.keys(tabs).forEach(function (k) { tabs[k].classList.remove('is-active'); });
+        var t = tabs[e.target.id];
+        if (t) t.classList.add('is-active');
+      });
+    }, { rootMargin: '-140px 0px -55% 0px', threshold: 0 });
+    document.querySelectorAll('main section[id]').forEach(function (s) { io.observe(s); });
+  })();
+
+  // ---- Vídeo click-to-load (youtube-nocookie; nenhum cookie até o clique) ----
   document.querySelectorAll('.video-facade').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var id = btn.getAttribute('data-video');
