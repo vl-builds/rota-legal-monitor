@@ -27,6 +27,7 @@ bun install              # instalar dependencias
 bun run extract:nl       # extrair so a Holanda
 bun run extract          # extrair todos os paises
 bun run diff             # comparar current vs ultimo do history
+bun run guard            # detectar extracao degradada (churn de IDs, perda de enriquecimento) vs HEAD
 bun run validate         # validar todos os JSON em current contra o schema
 bun run typecheck        # tsc --noEmit
 bun test                 # rodar testes

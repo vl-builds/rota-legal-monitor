@@ -71,6 +71,29 @@ jobs:
       - name: Validate extracted data
         run: bun run validate
 
+      - name: Guard against degraded extraction
+        # Compara o data/current novo (ja com patch:all) contra o HEAD anterior e
+        # falha se detectar ruido de re-extracao (churn de IDs, contagem disparando,
+        # generalRequirements zerado, enriquecimento perdido). Falhar aqui faz o
+        # commit e o deploy serem pulados, e abre issue de revisao manual.
+        id: guard
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          bun run guard 2>&1 | tee guard-output.md
+
+      - name: Open issue on suspect extraction
+        if: steps.guard.outcome == 'failure'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "data-update"        --color "0075ca" --description "Dados extraidos atualizados"        --force 2>/dev/null || true
+          gh label create "extraction-suspect" --color "b60205" --description "Extracao mensal degradada, revisar" --force 2>/dev/null || true
+          gh issue create \
+            --title "Extracao suspeita em $(date +%Y-%m-%d)" \
+            --body-file guard-output.md \
+            --label "data-update,extraction-suspect"
+
       - name: Generate index.json
         run: bun run index
 
@@ -110,6 +133,7 @@ jobs:
         continue-on-error: true
 
       - name: Commit and push
+        if: steps.guard.outcome == 'success'
         run: |
           git config user.name  "rota-legal-bot"
           git config user.email "rota-legal-bot@users.noreply.github.com"
@@ -122,6 +146,7 @@ jobs:
           fi
 
       - name: Deploy to GitHub Pages
+        if: steps.guard.outcome == 'success'
         uses: peaceiris/actions-gh-pages@e9c66a37f080288a11235e32cbe2dc5fb3a679cc  # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -132,4 +157,4 @@ jobs:
 
       - name: Cleanup temp files
         if: always()
-        run: rm -f diff-output.md
+        run: rm -f diff-output.md guard-output.md

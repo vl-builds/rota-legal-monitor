@@ -17,6 +17,7 @@
     "extract:at": "bun run src/cli/extract.ts --country=at",
     "extract:au": "bun run src/cli/extract.ts --country=au",
     "diff": "bun run src/cli/diff.ts",
+    "guard": "bun run scripts/extraction-guard.ts",
     "validate": "bun run src/cli/validate.ts",
     "typecheck": "tsc --noEmit",
     "index": "bun run src/cli/index-gen.ts",

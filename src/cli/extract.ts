@@ -7,6 +7,7 @@ import type { PartialExtraction, PartialVisaType, PartialMoneyAmount } from '@/e
 import { CountryDataSchema } from '@/extractors/schema'
 import type { CountryData, SourceRef, PolicyChange, MoneyAmount } from '@/extractors/schema'
 import { readCurrent, writeCurrent, archiveCurrent } from '@/storage/snapshot'
+import { reconcileVisaIds } from '@/extractors/reconcile-ids'
 import { hashContent, isUnchanged, updateHashes } from '@/lib/content-cache'
 import { log } from '@/lib/log'
 import type { ModelKey } from '@/lib/models'
@@ -258,6 +259,32 @@ async function extractCountry(countryCode: string, forceModel?: ModelKey): Promi
   }
 
   const merged = mergeExtractions(partials)
+
+  // Reconcilia os IDs extraidos com o snapshot anterior (ainda em disco neste
+  // ponto: writeCurrent so roda no fim). Mantem os IDs estaveis entre ciclos para
+  // os patches continuarem casando e nao gerar paginas orfas.
+  const previous = readCurrent(countryCode)
+  if (previous && previous.visaTypes.length > 0) {
+    const registry = previous.visaTypes.map((v) => ({
+      id: v.id,
+      name: v.name,
+      nameOriginal: v.nameOriginal,
+    }))
+    const { visas, report } = reconcileVisaIds(merged.visaTypes, registry)
+    merged.visaTypes = visas
+    if (report.remapped.length || report.newVisas.length || report.mergedDuplicates.length) {
+      log.info('ids de visto reconciliados', {
+        country: countryCode,
+        remapeados: report.remapped.length,
+        novos: report.newVisas.length,
+        duplicados: report.mergedDuplicates.length,
+      })
+      for (const r of report.remapped) {
+        log.debug('id remapeado', { country: countryCode, de: r.from, para: r.to, score: r.score })
+      }
+    }
+  }
+
   const countryData = buildCountryData(merged, sourceRefs, config)
   const validation = CountryDataSchema.safeParse(countryData)
 

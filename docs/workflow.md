@@ -49,9 +49,10 @@ Para cada país:
 
 1. Carregar `src/sources/{cc}.ts`
 2. Para cada URL: fetch -> readability -> llm-extractor (Haiku ou Sonnet conforme campo `model`) -> acumular
-3. Validar o objeto consolidado
-4. Se inválido: registrar erro, NÃO sobrescrever o `current`, abrir issue de extração quebrada
-5. Se válido: escrever `data/current/{cc}.json`
+3. Reconciliar IDs de visto com o snapshot anterior (`src/extractors/reconcile-ids.ts`). A extração por LLM é não-determinística e troca os IDs entre ciclos, o que quebra os patches (chaveados por ID). A reconciliação remapeia cada visto extraído para o ID canônico do snapshot anterior quando há match (exato ou por nome), mantendo os IDs estáveis. Vistos sem match viram novos.
+4. Validar o objeto consolidado
+5. Se inválido: registrar erro, NÃO sobrescrever o `current`, abrir issue de extração quebrada
+6. Se válido: escrever `data/current/{cc}.json`
 
 ### 7. Diff por país
 
@@ -69,6 +70,17 @@ Se algum país tem mudança de relevância **alta**:
 - Labels: `data-update`, `relevance/high`
 
 Mudanças médias e baixas não geram issue. Vão pro log do Actions e pro corpo do commit.
+
+### 8.5 Guarda contra extração degradada
+
+Antes de comitar, o cron roda `bun run guard` (`scripts/extraction-guard.ts`), que compara o `data/current` recém-extraído e enriquecido contra o estado anterior (`git HEAD`). Ele bloqueia o ciclo quando detecta os sintomas típicos do ruído de re-extração do LLM, mesmo que a reconciliação de IDs não tenha pego tudo:
+
+- churn de IDs acima do limiar (vistos canônicos que sumiram)
+- contagem de vistos variando demais
+- `generalRequirements` (proofOfFunds, minimumWage, healthInsurance) regredindo para vazio
+- vistos que continuam existindo mas perderam o enriquecimento (documentos, taxas, passos)
+
+Se o guard falhar, o commit e o deploy são pulados e uma issue `extraction-suspect` é aberta para revisão manual. Nada de ruído é publicado automaticamente. O mantenedor revisa, reverte o que for ruído (ver `docs/` e a memória do projeto) e dispara de novo se preciso.
 
 ### 9. Commit
 
