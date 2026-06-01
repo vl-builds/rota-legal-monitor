@@ -238,6 +238,7 @@ async function patchFooters(latestIso: string): Promise<void> {
     'calculadora.html',
     'historico.html',
     'sobre.html',
+    'parceiros.html',
     'guia-pratico.html',
     'dev.html',
   ]
