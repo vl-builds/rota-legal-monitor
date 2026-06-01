@@ -101,6 +101,25 @@
   },
   "recentChanges": [
     {
+      "affects": [],
+      "date": "2026-03-01",
+      "severity": "minor",
+      "sourceUrl": "https://aima.gov.pt/pt/noticias/atualizacao-da-tabela-de-taxas",
+      "summary": "Tabela de Taxas (Portaria 307/2023, atualizada em 26.02.2026): receção e análise da Autorização de Residência €99,80 (canal digital), título €59,40. Brasileiros (CPLP) são isentos das taxas de concessão e renovação de residência.",
+      "title": "Nova tabela de taxas da AIMA"
+    },
+    {
+      "affects": [
+        "work-job-search",
+        "autorizacao-residencia-atividade-subordinada-dispensa-visto"
+      ],
+      "date": "2025-10-23",
+      "severity": "major",
+      "sourceUrl": "https://vistos.mne.gov.pt/pt/vistos-nacionais/documentacao-instrutoria/procura-de-trabalho",
+      "summary": "Fim da manifestação de interesse: já não é possível regularizar a partir de Portugal sem visto prévio emitido na origem. O visto de procura de trabalho passou a ser só para qualificados (meios ~3x RMMG, regra dos 120 dias e bloqueio de 1 ano). Reagrupamento familiar mais exigente e decisão da AIMA em até 9 meses.",
+      "title": "Lei 61/2025: nova lei de imigração"
+    },
+    {
       "affects": [
         "Atividade profissional subordinada com dispensa de visto",
         "Atividade profissional independente com dispensa de visto"
@@ -1240,7 +1259,7 @@
       "id": "autorizacao-residencia-atividade-subordinada-dispensa-visto",
       "name": "Autorização de Residência para Atividade Profissional Subordinada com Dispensa de Visto",
       "nameOriginal": "Autorização de Residência para Exercício de Atividade Profissional Subordinada com Dispensa de Visto de Residência",
-      "notes": "Modalidade de Autorização de Residência para quem já está em Portugal e encontrou emprego — não requer visto D específico de trabalho como pré-condição. Regularização direta a partir de Portugal. O sistema de Autorização de Empregador via AIMA é o elemento central. Processo mais complexo e com maior risco de recusa que o visto D padrão — recomenda-se apoio jurídico.",
+      "notes": "Modalidade de Autorização de Residência para quem já está em Portugal e encontrou emprego — não requer visto D específico de trabalho como pré-condição. Regularização direta a partir de Portugal. O sistema de Autorização de Empregador via AIMA é o elemento central. Processo mais complexo e com maior risco de recusa que o visto D padrão — recomenda-se apoio jurídico. ATENÇÃO: a Lei 61/2025 (em vigor 23/10/2025) acabou com a manifestação de interesse — não é mais possível regularizar a partir de Portugal sem visto prévio emitido no consulado de origem.",
       "process": {
         "applicationLocation": "destino",
         "estimatedDuration": "2-4 meses",

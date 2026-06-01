@@ -60,7 +60,16 @@
       }
     ]
   },
-  "recentChanges": [],
+  "recentChanges": [
+    {
+      "affects": [],
+      "date": "2025-05-20",
+      "severity": "major",
+      "sourceUrl": "https://www.boe.es/buscar/doc.php?id=BOE-A-2024-24099",
+      "summary": "Em vigor desde 20/05/2025, o RD 1155/2024 reformou arraigos, vistos e residências e revogou o RD 557/2011. O visto de busca de emprego foi ampliado de 3 meses para 1 ano. Parte do conteúdo de processos pode ainda refletir o regulamento antigo e precisa de revisão.",
+      "title": "Novo Regulamento de Estrangeiria (RD 1155/2024)"
+    }
+  ],
   "reliability": {
     "extractedBy": "llm",
     "extractionConfidence": "medium",
@@ -68,7 +77,7 @@
     "knownIssues": [
       "Auditoria 2026-06-02: SMI €1.221/mês (RD 126/2026) e proofOfFunds €2.849/mês CURRENT. Nômade digital corrigido 2.646→€2.849; altamente qualificado 40.077→~€39.270.",
       "Taxas (18/64/73) não casam com os trâmites atuais — mapear: tasa 052 residencia €10,94 / prórroga €16,40; tasa 062 trabajo €203,84 (ou €407,71 se ≥2×SMI); TIE €16,08. UNVERIFIED como estão.",
-      "ESTRUTURAL: RD 1155/2024 (novo Reglamento de Extranjería, vigente 20/05/2025) reformou arraigos/vistos; busca de emprego ampliada para 1 ano; o conteúdo pode refletir o regulamento antigo (RD 557/2011)."
+      "RD 1155/2024 registrado em recentChanges. Revisar conteúdo dos processos (pode refletir o RD 557/2011 antigo). Busca de emprego agora 1 ano."
     ]
   },
   "visaTypes": [
