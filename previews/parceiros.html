@@ -509,7 +509,8 @@
       var id = btn.getAttribute('data-video');
       var embed = btn.closest('.video-embed');
       var iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      // vq=hd1080 pede a melhor qualidade disponível; cai para a maior que o vídeo tiver.
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&vq=hd1080';
       iframe.title = 'Apresentação do DeliveryBase';
       iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
       iframe.allowFullscreen = true;
