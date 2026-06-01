@@ -28,6 +28,7 @@ bun run extract:nl       # extrair so a Holanda
 bun run extract          # extrair todos os paises
 bun run diff             # comparar current vs ultimo do history
 bun run guard            # detectar extracao degradada (churn de IDs, perda de enriquecimento) vs HEAD
+bun run audit            # auditoria cruzada: compara valores extraidos vs verificationUrls (LLM), anota divergencias
 bun run validate         # validar todos os JSON em current contra o schema
 bun run typecheck        # tsc --noEmit
 bun test                 # rodar testes
@@ -90,6 +91,8 @@ Enforcement (não confiar só na memória):
 Cada arquivo `src/sources/{cc}.ts` contém um campo `verificationUrls` com links de referência independentes (portais oficiais do governo, comunidades de expatriados, análises especializadas). Regra obrigatória:
 
 Ao realizar ou revisar uma extração mensal, compare os valores críticos extraídos (salário mínimo exigido, taxas, prazos) contra os `verificationUrls` do país. Se houver divergência maior que 5%, anote em `reliability.knownIssues` do JSON extraído e registre a discrepância. Isso garante que erros de extração não passem despercebidos entre ciclos mensais.
+
+Essa verificação roda **automaticamente** no cron via `bun run audit` (`src/cli/audit.ts` + `src/audit/cross-check.ts`): busca os `verificationUrls`, usa o LLM para comparar contra os valores extraídos, anota as divergências em `reliability.knownIssues` (com prefixo `[auto-audit]`, idempotente) e abre uma issue no GitHub se houver divergência. Não bloqueia o ciclo (o `guard` é quem bloqueia degradação estrutural). A auditoria profunda multi-agente com busca web aberta continua sendo manual/on-demand.
 
 Para adicionar ou atualizar fontes de verificação de um país: edite `verificationUrls` em `src/sources/{cc}.ts`. O gerador de páginas (`bun run generate`) propagará automaticamente para o HTML da aba Fontes.
 

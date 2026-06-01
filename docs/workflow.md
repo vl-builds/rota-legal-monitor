@@ -82,6 +82,12 @@ Antes de comitar, o cron roda `bun run guard` (`scripts/extraction-guard.ts`), q
 
 Se o guard falhar, o commit e o deploy são pulados e uma issue `extraction-suspect` é aberta para revisão manual. Nada de ruído é publicado automaticamente. O mantenedor revisa, reverte o que for ruído (ver `docs/` e a memória do projeto) e dispara de novo se preciso.
 
+### 8.6 Auditoria cruzada automática
+
+Depois do guard, o cron roda `bun run audit` (`src/cli/audit.ts` + `src/audit/cross-check.ts`), automatizando a regra de "Verificação cruzada" do CLAUDE.md. Para cada país, busca as duas primeiras `verificationUrls` oficiais (com fallback Playwright para portais JS-pesados, disponível no CI), e usa o LLM (Haiku) para comparar os valores extraídos (salário mínimo, proofOfFunds, limiares de renda e taxas por visto) com o conteúdo das fontes.
+
+As divergências (> 5% ou contradição clara) são anotadas em `reliability.knownIssues` com prefixo `[auto-audit YYYY-MM-DD]` (idempotente: substitui as anotações automáticas do ciclo anterior e preserva as manuais) e entram no commit. Se houver qualquer divergência, abre-se uma issue `audit` com o relatório. Diferente do guard, a auditoria **não bloqueia** o commit/deploy: é informativa. Custo: ~2 fontes por país × 10 países, modelo Haiku.
+
 ### 9. Commit
 
 Mensagem padrão: `chore(data): monthly snapshot YYYY-MM-DD`

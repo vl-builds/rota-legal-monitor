@@ -94,6 +94,33 @@ jobs:
             --body-file guard-output.md \
             --label "data-update,extraction-suspect"
 
+      - name: Cross-check audit
+        # Compara os valores extraidos contra as verificationUrls oficiais (via LLM)
+        # e anota divergencias em reliability.knownIssues. Nao bloqueia o ciclo:
+        # so abre issue de revisao. Roda apos patch:all para auditar o estado final.
+        id: audit
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL_DEFAULT: claude-haiku-4-5
+        run: bun run audit > audit-output.md
+
+      - name: Open issue if audit finds divergences
+        if: steps.audit.outputs.has_divergences == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "data-update" --color "0075ca" --description "Dados extraidos atualizados"            --force 2>/dev/null || true
+          gh label create "audit"       --color "5319e7" --description "Auditoria cruzada: divergencia vs fonte" --force 2>/dev/null || true
+          if [ $(wc -c < audit-output.md) -gt 65000 ]; then
+            { head -c 65000 audit-output.md; printf '\n\n_(relatorio truncado)_'; } > audit-trunc.md
+            mv audit-trunc.md audit-output.md
+          fi
+          gh issue create \
+            --title "Auditoria: divergencias em $(date +%Y-%m-%d)" \
+            --body-file audit-output.md \
+            --label "data-update,audit"
+
       - name: Generate index.json
         run: bun run index
 
