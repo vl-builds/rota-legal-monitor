@@ -86,6 +86,9 @@ video/
 # Handoff de design da Area do Aluno (conteudo paga, modelo open-core).
 design premium/
 
+# Handoff de design da pagina de Parceiros (referencia de design, nao publicar).
+/parceiros/
+
 # Saida do knowledge graph (graphify): cache/transcripts/chunks, efemero.
 graphify-out/
 src/graphify-out/
