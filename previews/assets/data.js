@@ -31,6 +31,7 @@
     json,
     country: (cc) => json(`${cc}.json`),
     index: () => json('index.json'),
+    historico: () => json('historico.json'),
   };
 
   // Escapa texto vindo de dados antes de injetar via innerHTML (defesa contra XSS).

@@ -664,17 +664,26 @@ async function loadHistorico() {
   const tl = document.getElementById('timeline');
   try {
     const idx = await RotaData.index();
-    META_GENERATED = idx.generatedAt ? new Date(idx.generatedAt) : null;
     COUNTRY_META = {};
     for (const c of idx.countries) COUNTRY_META[c.code] = { name: c.name, flag: c.code };
     activeCountries = new Set(Object.keys(COUNTRY_META));
-    const all = await Promise.all(
-      idx.countries.map((c) => RotaData.country(c.code).then((d) => ({ code: c.code, d })).catch(() => null)),
-    );
-    CHANGES = [];
-    for (const it of all) {
-      if (!it || !it.d) continue;
-      for (const ch of (it.d.recentChanges || [])) CHANGES.push({ ...ch, country: it.code });
+
+    // Tenta carregar o historico.json agregado (gerado pelo site:generate com todos os snapshots).
+    // Fallback: carrega só recentChanges do current (comportamento antigo).
+    try {
+      const hist = await RotaData.historico();
+      META_GENERATED = hist.generatedAt ? new Date(hist.generatedAt) : null;
+      CHANGES = hist.changes || [];
+    } catch {
+      META_GENERATED = idx.generatedAt ? new Date(idx.generatedAt) : null;
+      const all = await Promise.all(
+        idx.countries.map((c) => RotaData.country(c.code).then((d) => ({ code: c.code, d })).catch(() => null)),
+      );
+      CHANGES = [];
+      for (const it of all) {
+        if (!it || !it.d) continue;
+        for (const ch of (it.d.recentChanges || [])) CHANGES.push({ ...ch, country: it.code });
+      }
     }
     CHANGES.sort((a, b) => b.date.localeCompare(a.date));
   } catch (e) {

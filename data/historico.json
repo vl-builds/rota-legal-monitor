@@ -1,0 +1,351 @@
+{
+  "generatedAt": "2026-06-07T23:16:35.750Z",
+  "total": 28,
+  "changes": [
+    {
+      "affects": [
+        "immigration-office-location"
+      ],
+      "date": "2026-03-16",
+      "severity": "minor",
+      "sourceUrl": "https://dofi.ibz.be/en",
+      "summary": "Pessoas convidadas para entrevista de Proteção Internacional, outro procedimento de residência ou acompanhamento ICAM não devem mais se reportar ao PASSAGE 44 a partir de segunda-feira, 16 de março",
+      "title": "Mudança de Localização do Office of Immigration",
+      "country": "be"
+    },
+    {
+      "affects": [],
+      "date": "2026-03-01",
+      "severity": "minor",
+      "sourceUrl": "https://aima.gov.pt/pt/noticias/atualizacao-da-tabela-de-taxas",
+      "summary": "Tabela de Taxas (Portaria 307/2023, atualizada em 26.02.2026): receção e análise da Autorização de Residência €99,80 (canal digital), título €59,40. Brasileiros (CPLP) são isentos das taxas de concessão e renovação de residência.",
+      "title": "Nova tabela de taxas da AIMA",
+      "country": "pt"
+    },
+    {
+      "affects": [
+        "lavoro-subordinato",
+        "lavoro-autonomo"
+      ],
+      "date": "2026-02-16",
+      "severity": "major",
+      "sourceUrl": "https://www.lavoro.gov.it/notizie/pagine/flussi-2026-attribuite-le-quote-per-lavoro-subordinato-non-stagionale-click-day-il-16-febbraio",
+      "summary": "Programação trienal 2026-2028 (DPCM 02/10/2025). Cota total de 164.850 ingressos de trabalhadores não-UE em 2026: 76.200 trabalho subordinado não sazonal (incl. 13.600 assistência familiar), 650 autônomo, 88.000 sazonal. Click days em 9, 16 e 18 de fevereiro de 2026.",
+      "title": "Decreto Flussi 2026: cotas e click days",
+      "country": "it"
+    },
+    {
+      "affects": [
+        "Red-White-Red Card - Other Key Workers",
+        "requisitos de salário",
+        "elegibilidade de candidatura"
+      ],
+      "date": "2026-01-01",
+      "severity": "minor",
+      "sourceUrl": "https://www.migration.gv.at/index.php?id=1051",
+      "summary": "O salário mínimo bruto mensal exigido para Red-White-Red Card foi atualizado para € 3.465 a partir de 2026",
+      "title": "Ajuste do Salário Mínimo Bruto Mensal",
+      "country": "at"
+    },
+    {
+      "affects": [
+        "Profissionais qualificados maiores de 45 anos"
+      ],
+      "date": "2026-01-01",
+      "severity": "minor",
+      "sourceUrl": "https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals",
+      "summary": "Salário mínimo anual bruto para maiores de 45 anos em primeira vinda aumentado para €55.770",
+      "title": "Atualização do salário mínimo para maiores de 45 anos",
+      "country": "de"
+    },
+    {
+      "affects": [
+        "work-qualified-professionals"
+      ],
+      "date": "2026-01-01",
+      "severity": "minor",
+      "sourceUrl": "https://www.make-it-in-germany.com/en/visa-residence/types/work-qualified-professionals",
+      "summary": "Para profissionais acima de 45 anos vindo trabalhar na Alemanha pela primeira vez, o salário bruto anual mínimo é de €55.770 (válido a partir de 2026).",
+      "title": "Requisito de salário mínimo para profissionais acima de 45 anos",
+      "country": "de"
+    },
+    {
+      "affects": [
+        "eu-blue-card"
+      ],
+      "date": "2026-01-01",
+      "severity": "major",
+      "sourceUrl": "https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card",
+      "summary": "Os limites salariais para EU Blue Card foram atualizados para 2026: salário padrão de €50.700 e salário reduzido de €45.934,20 para profissões em escassez e jovens profissionais.",
+      "title": "Atualização dos limites salariais para EU Blue Card 2026",
+      "country": "de"
+    },
+    {
+      "affects": [
+        "Todos os tipos de permissão"
+      ],
+      "date": "2025-12-23",
+      "severity": "minor",
+      "sourceUrl": "https://www.irishimmigration.ie/registering-your-immigration-permission/",
+      "summary": "Última atualização da página sobre registro de permissões de imigração irlandesas",
+      "title": "Atualização da página de registro",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "work-job-search",
+        "autorizacao-residencia-atividade-subordinada-dispensa-visto"
+      ],
+      "date": "2025-10-23",
+      "severity": "major",
+      "sourceUrl": "https://vistos.mne.gov.pt/pt/vistos-nacionais/documentacao-instrutoria/procura-de-trabalho",
+      "summary": "Fim da manifestação de interesse: já não é possível regularizar a partir de Portugal sem visto prévio emitido na origem. O visto de procura de trabalho passou a ser só para qualificados (meios ~3x RMMG, regra dos 120 dias e bloqueio de 1 ano). Reagrupamento familiar mais exigente e decisão da AIMA em até 9 meses.",
+      "title": "Lei 61/2025: nova lei de imigração",
+      "country": "pt"
+    },
+    {
+      "affects": [],
+      "date": "2025-05-20",
+      "severity": "major",
+      "sourceUrl": "https://www.boe.es/buscar/doc.php?id=BOE-A-2024-24099",
+      "summary": "Em vigor desde 20/05/2025, o RD 1155/2024 reformou arraigos, vistos e residências e revogou o RD 557/2011. O visto de busca de emprego foi ampliado de 3 meses para 1 ano. Parte do conteúdo de processos pode ainda refletir o regulamento antigo e precisa de revisão.",
+      "title": "Novo Regulamento de Estrangeiria (RD 1155/2024)",
+      "country": "es"
+    },
+    {
+      "affects": [
+        "Lista de profissões elegíveis",
+        "Critérios de elegibilidade",
+        "Requisitos de qualificação"
+      ],
+      "date": "2025-01-01",
+      "severity": "major",
+      "sourceUrl": "https://www.migration.gv.at/index.php?id=1050",
+      "summary": "A Fachkräfteverordnung (Regulamento de Profissões Especializadas) é promulgada anualmente pelo Ministério Federal do Trabalho e Economia (Arbeits- und Wirschaftsminister), determinando quais ocupações são consideradas profissões em escassez com base na evolução do mercado de trabalho austríaco.",
+      "title": "Lista anual de profissões em escassez (Mangelberufe) para 2025",
+      "country": "at"
+    },
+    {
+      "affects": [
+        "Todos os candidatos a Critical Skills Employment Permit"
+      ],
+      "date": "2024-09-02",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/",
+      "summary": "A lista de ocupações elegíveis para Critical Skills Employment Permit entrou em vigor com a implementação da SI 444 de 2024",
+      "title": "Critical Skills Occupations List efetiva",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "Critical Skills Employment Permit",
+        "Todas as ocupações listadas"
+      ],
+      "date": "2024-09-02",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/",
+      "summary": "Lista de ocupações elegíveis para Critical Skills Employment Permit foi atualizada através do SI 444 of 2024, entrando em vigor em 02 de setembro de 2024. A lista está definida no Schedule 3 dos Regulamentos e organiza ocupações usando o sistema SOC 2010.",
+      "title": "Atualização da Critical Skills Occupations List",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "Critical Skills Employment Permit",
+        "Ocupações em TI/Tecnologia",
+        "Ocupações em Ciências",
+        "Ocupações em Engenharia",
+        "Ocupações em Saúde",
+        "Ocupações em Educação"
+      ],
+      "date": "2024-09-02",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Employment-Permit-Eligibility/Highly-Skilled-Eligible-Occupations-List/",
+      "summary": "Nova versão da Critical Skills Occupations List entrou em vigor com a aprovação de SI 444 de 2024. A lista foi reorganizada e atualizada para refletir as ocupações críticas e habilidades específicas elegíveis para o visto de trabalho.",
+      "title": "Critical Skills Occupations List Atualizada",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "Atividade profissional subordinada com dispensa de visto",
+        "Atividade profissional independente com dispensa de visto"
+      ],
+      "date": "2024-06-04",
+      "severity": "major",
+      "sourceUrl": "https://aima.gov.pt/pt/trabalhar",
+      "summary": "A partir de 04 de junho de 2024, foram revogadas as autorizações de residência com dispensa de visto para atividade profissional subordinada e independente (Art. 88.º, n.º 2 e Art. 89.º, n.º 2), continuando a aplicarem-se apenas aos pedidos anteriores a esta data",
+      "title": "Revogação de Autorizações com Dispensa de Visto",
+      "country": "pt"
+    },
+    {
+      "affects": [
+        "Trabalhadores assalariados que pretendiam regularizar sua situação em Portugal sem visto prévio",
+        "Manifestações de interesse pendentes sob o Art. 88º n.º 2"
+      ],
+      "date": "2024-06-04",
+      "severity": "major",
+      "sourceUrl": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-",
+      "summary": "O artigo 88º, n.º 2 do REPSAE, que permitia solicitar autorização de residência para atividade profissional subordinada com dispensa de visto de residência (através de manifestação de interesse), foi revogado pelo Decreto-Lei n.º 37-A/2024, de 3 de junho. Esta modalidade não está mais disponível para novos pedidos a partir desta data.",
+      "title": "Revogação da Autorização de Residência com Dispensa de Visto (Art. 88º n.º 2)",
+      "country": "pt"
+    },
+    {
+      "affects": [
+        "Cidadãos estrangeiros que pretendem trabalhar em Portugal sem visto prévio",
+        "Brasileiros cobertos pelo Estatuto de Igualdade",
+        "Trabalhadores que buscam regularização com base em 12 meses de contribuições à segurança social"
+      ],
+      "date": "2024-06-04",
+      "severity": "major",
+      "sourceUrl": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-",
+      "summary": "O artigo 88º, n.º 2 do REPSAE, que regulamentava a Autorização de Residência para Exercício de Atividade Profissional Subordinada com Dispensa de Visto de Residência, foi revogado pelo Decreto-Lei n.º 37-A/2024, de 3 de junho de 2024. Esta alteração pode impactar significativamente a possibilidade de regularização de trabalho subordinado sem visto prévio.",
+      "title": "Revogação do Artigo 88º, n.º 2 do REPSAE",
+      "country": "pt"
+    },
+    {
+      "affects": [
+        "autorizacao-residencia-trabalho-subordinado-dispensa-visto"
+      ],
+      "date": "2024-06-04",
+      "severity": "major",
+      "sourceUrl": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-",
+      "summary": "O artigo 88º, nº 2 do REPSAE, que permitia a autorização de residência para atividade subordinada com dispensa de visto, foi revogado pelo Decreto-Lei n.º 37-A/2024, de 3 de junho. Esta revogação entrou em vigor a partir de 4 de junho de 2024, encerrando esta via de regularização.",
+      "title": "Revogação do Artigo 88º, nº 2 do REPSAE",
+      "country": "pt"
+    },
+    {
+      "affects": [
+        "subordinada-sem-visto-revogado",
+        "independente-sem-visto-revogado"
+      ],
+      "date": "2024-06-04",
+      "severity": "major",
+      "sourceUrl": "https://aima.gov.pt/pt/trabalhar",
+      "summary": "Revogação das autorizações de residência para exercício de atividade profissional subordinada e independente com dispensa de visto de residência",
+      "title": "Revogação de autorizações com dispensa de visto",
+      "country": "pt"
+    },
+    {
+      "affects": [
+        "Trabalhadores subordinados estrangeiros",
+        "Cidadãos que pretendiam regularizar situação em Portugal através desta modalidade",
+        "Manifestações de interesse pendentes apresentadas antes da revogação"
+      ],
+      "date": "2024-06-04",
+      "severity": "major",
+      "sourceUrl": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-subordinada-com-dispensa-de-visto-de-residencia-art-88-o-n-o-",
+      "summary": "O Decreto-Lei n.º 37-A/2024, de 3 de junho, revogou o Artigo 88.º, n.º 2 do REPSAE a partir de 4 de junho de 2024. Esta modalidade permitia que trabalhadores subordinados obtivessem autorização de residência em Portugal sem necessidade de visto prévio, desde que comprovassem entrada legal (por visto válido ou 12 meses de contribuições à segurança social). Com a revogação, esta via de regularização deixou de existir e não aceita mais novos pedidos.",
+      "title": "Revogação do Artigo 88.º n.º 2 do REPSAE - Fim da Dispensa de Visto para Trabalho Subordinado",
+      "country": "pt"
+    },
+    {
+      "affects": [
+        "Todos os tipos de Employment Permits"
+      ],
+      "date": "2024-01-01",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Permit-Types/Permit-Types.html",
+      "summary": "O Employment Permits Act 2024, conforme emendado, permite a concessão de nove tipos diferentes de Employment Permits na Irlanda.",
+      "title": "Employment Permits Act 2024",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "nomade-digital"
+      ],
+      "date": "2023-01-01",
+      "severity": "major",
+      "sourceUrl": "https://www.inclusion.gob.es/en/web/migraciones/tipos-de-autorizacion",
+      "summary": "A Lei de Startups (Lei 28/2022) entrou em vigor criando a autorização de residência para trabalho à distância (nômades digitais), facilitando a entrada e permanência de profissionais que trabalham remotamente para empresas estrangeiras.",
+      "title": "Criação do Visto para Nômades Digitais",
+      "country": "es"
+    },
+    {
+      "affects": [
+        "trabalhadores remotos",
+        "profissionais de tecnologia",
+        "empreendedores"
+      ],
+      "date": "2022-12-28",
+      "severity": "major",
+      "sourceUrl": "https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion",
+      "summary": "Nova lei que inclui visto para nômades digitais e facilita autorizações para empreendedores e profissionais de startups",
+      "title": "Ley de Startups 28/2022",
+      "country": "es"
+    },
+    {
+      "affects": [
+        "nomades-digitais",
+        "trabalhadores-remotos",
+        "autonomos"
+      ],
+      "date": "2022-12-01",
+      "severity": "major",
+      "sourceUrl": "https://www.inclusion.gob.es/web/migraciones/tipos-de-autorizacion",
+      "summary": "Entrada em vigor da Lei 28/2022 de promoção do ecossistema de startups, que criou o novo visto e autorização de residência para nômades digitais (teletrabalhadores internacionais). Permite que profissionais trabalhem remotamente na Espanha para empresas estrangeiras ou como autônomos com benefícios fiscais.",
+      "title": "Lei de Startups (Lei 28/2022) - Criação do Visto de Nômade Digital",
+      "country": "es"
+    },
+    {
+      "affects": [
+        "Todas as categorias de permissão de emprego"
+      ],
+      "date": "2021-03-22",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/",
+      "summary": "Última atualização da tabela de taxas e categorias de permissão de emprego na Irlanda",
+      "title": "Tabela de taxas de permissão de emprego",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "General Employment Permit",
+        "Critical Skills Employment Permit",
+        "Intra-Company Transfer Employment Permit",
+        "Contract for Services Employment Permit",
+        "Reactivation Employment Permit",
+        "Sport and Cultural Employment Permit",
+        "Internship Employment Permit"
+      ],
+      "date": "2021-03-22",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/",
+      "summary": "Taxas vigentes para permissões de trabalho recebidas a partir de 1 de outubro de 2014, incluindo valores para primeira aplicação e renovação de diversos tipos de permissões.",
+      "title": "Tabela de taxas de Employment Permits atualizada",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "General Employment Permit",
+        "Critical Skills Employment Permit",
+        "Intra-Company Transfer Employment Permit",
+        "Contract for Services Employment Permit",
+        "Reactivation Employment Permit",
+        "Sport and Cultural Employment Permit",
+        "Internship Employment Permit"
+      ],
+      "date": "2021-03-22",
+      "severity": "minor",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/",
+      "summary": "Tabela de taxas de permissão de trabalho foi atualizada com vigência a partir de 1 de outubro de 2014. Inclui diferentes categorias de permissão com diferentes valores de taxa conforme o período de validade",
+      "title": "Tabela de taxas de Permissão de Trabalho atualizada",
+      "country": "ie"
+    },
+    {
+      "affects": [
+        "General Employment Permit",
+        "Critical Skills Employment Permit",
+        "Intra-Company Transfer Employment Permit",
+        "Contract for Services Employment Permit",
+        "Reactivation Employment Permit",
+        "Sport and Cultural Employment Permit",
+        "Internship Employment Permit"
+      ],
+      "date": "2014-10-01",
+      "severity": "major",
+      "sourceUrl": "https://enterprise.gov.ie/en/What-We-Do/Workplace-and-Skills/Employment-Permits/Fees/",
+      "summary": "A partir de 1º de outubro de 2014, o Departamento não aceita mais pagamentos em papel de candidatos comerciais. Pagamento deve ser feito por transferência eletrônica de fundos. Candidatos individuais podem continuar com cheques em euros ou optar por transferência eletrônica.",
+      "title": "Alteração nas modalidades de pagamento de taxas",
+      "country": "ie"
+    }
+  ]
+}

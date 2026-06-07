@@ -22,4 +22,12 @@ const files = readdirSync(SRC).filter((f) => f.endsWith('.json'))
 for (const f of files) {
   copyFileSync(join(SRC, f), join(DEST, f))
 }
-console.log(`[sync-data] ${files.length} arquivos copiados para previews/data/`)
+
+// Copia historico.json agregado (gerado pelo site:generate) se existir
+const HISTORICO_SRC = join(ROOT, 'data', 'historico.json')
+try {
+  copyFileSync(HISTORICO_SRC, join(DEST, 'historico.json'))
+  console.log(`[sync-data] ${files.length + 1} arquivos copiados para previews/data/ (inclui historico.json)`)
+} catch {
+  console.log(`[sync-data] ${files.length} arquivos copiados para previews/data/`)
+}

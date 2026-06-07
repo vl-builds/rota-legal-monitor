@@ -651,6 +651,49 @@ async function main(): Promise<void> {
 
   await patchOpenGraph()
   console.log('[ok] open graph atualizado nas páginas estáticas')
+
+  await generateHistoricoJson(allData)
+  console.log('[ok] historico.json gerado')
+}
+
+async function generateHistoricoJson(allData: Array<{ code: string; data: CountryData }>) {
+  const HISTORY_DIR = join(ROOT, 'data', 'history')
+  const seen = new Set<string>()
+  const changes: Array<ReturnType<typeof normalizeChange>> = []
+
+  function normalizeChange(ch: CountryData['recentChanges'][number], cc: string) {
+    return { ...ch, country: cc }
+  }
+
+  for (const { code, data } of allData) {
+    for (const ch of data.recentChanges ?? []) {
+      const key = `${code}:${ch.date}:${ch.title}`
+      if (!seen.has(key)) { seen.add(key); changes.push(normalizeChange(ch, code)) }
+    }
+  }
+
+  for (const { code } of allData) {
+    const dir = join(HISTORY_DIR, code)
+    try {
+      const files = (await readdir(dir)).filter(f => f.endsWith('.json'))
+      for (const file of files) {
+        const raw = await readFile(join(dir, file), 'utf-8')
+        const snap = JSON.parse(raw) as CountryData
+        for (const ch of snap.recentChanges ?? []) {
+          const key = `${code}:${ch.date}:${ch.title}`
+          if (!seen.has(key)) { seen.add(key); changes.push(normalizeChange(ch, code)) }
+        }
+      }
+    } catch { /* pasta inexistente */ }
+  }
+
+  changes.sort((a, b) => b.date.localeCompare(a.date))
+
+  await writeFile(
+    join(ROOT, 'data', 'historico.json'),
+    JSON.stringify({ generatedAt: new Date().toISOString(), total: changes.length, changes }, null, 2),
+    'utf-8',
+  )
 }
 
 main().catch(err => {
