@@ -24,6 +24,85 @@ const COUNTRY_CONFIG: Record<string, Omit<CountryPageConfig, 'code'>> = {
   au: { displayName: 'Austrália',     flagClass: 'flag-au', workingHoliday: true  },
 }
 
+const VISA_FAMILIES: Array<{ label: string; members: Array<{ cc: string; id: string }> }> = [
+  { label: 'EU Blue Card', members: [
+    { cc: 'be', id: 'eu-blue-card' },
+    { cc: 'de', id: 'eu-blue-card' },
+    { cc: 'it', id: 'eu-blue-card' },
+    { cc: 'nl', id: 'european-blue-card' },
+    { cc: 'fr', id: 'talent-carte-bleue-europeia' },
+  ]},
+  { label: 'Nômade Digital', members: [
+    { cc: 'es', id: 'telework-nomad-visa' },
+    { cc: 'pt', id: 'nomada-digital' },
+    { cc: 'pt', id: 'work-digital-nomad' },
+  ]},
+  { label: 'Transferência Intraempresarial', members: [
+    { cc: 'es', id: 'intra-company-transfer-visa' },
+    { cc: 'nl', id: 'intra-corporate-transferee' },
+    { cc: 'ie', id: 'intra-company-transfer-employment-permit' },
+    { cc: 'pt', id: 'work-intra-company-transfer' },
+    { cc: 'pt', id: 'work-intra-company-mobility' },
+  ]},
+  { label: 'Profissional Altamente Qualificado', members: [
+    { cc: 'at', id: 'very-highly-qualified-workers' },
+    { cc: 'at', id: 'red-white-red-card-highly-qualified' },
+    { cc: 'es', id: 'highly-qualified-worker-visa' },
+    { cc: 'nl', id: 'highly-skilled-migrant' },
+    { cc: 'pt', id: 'work-highly-qualified' },
+    { cc: 'pt', id: 'pt-highly-qualified-activity' },
+    { cc: 'ie', id: 'critical-skills-employment-permit' },
+  ]},
+  { label: 'Procura de Emprego', members: [
+    { cc: 'at', id: 'job-seeker-visa' },
+    { cc: 'pt', id: 'work-job-search' },
+    { cc: 'de', id: 'opportunity-card-chancenkarte' },
+  ]},
+  { label: 'Trabalho Sazonal', members: [
+    { cc: 'nl', id: 'seasonal-work' },
+    { cc: 'ie', id: 'seasonal-employment-permit' },
+  ]},
+  { label: 'Working Holiday', members: [
+    { cc: 'au', id: 'work-holiday-462' },
+    { cc: 'au', id: 'working-holiday-462' },
+    { cc: 'fr', id: 'working-holiday-brasil' },
+  ]},
+  { label: 'Empreendedor / Startup', members: [
+    { cc: 'at', id: 'startup-founders' },
+    { cc: 'nl', id: 'start-up-founder' },
+  ]},
+]
+
+export type RelatedVisa = { cc: string; id: string; name: string; displayName: string }
+
+function buildRelatedMap(
+  allData: Array<{ code: string; data: CountryData }>,
+): Map<string, RelatedVisa[]> {
+  const nameMap = new Map<string, string>()
+  for (const { code, data } of allData) {
+    for (const visa of data.visaTypes) {
+      nameMap.set(`${code}/${visa.id}`, visa.name)
+    }
+  }
+  const result = new Map<string, RelatedVisa[]>()
+  for (const family of VISA_FAMILIES) {
+    for (const member of family.members) {
+      const key = `${member.cc}/${member.id}`
+      const others = family.members
+        .filter(m => m.cc !== member.cc || m.id !== member.id)
+        .map(m => ({
+          cc: m.cc,
+          id: m.id,
+          name: nameMap.get(`${m.cc}/${m.id}`) ?? '',
+          displayName: COUNTRY_CONFIG[m.cc]?.displayName ?? m.cc.toUpperCase(),
+        }))
+        .filter(m => m.name)
+      if (others.length > 0) result.set(key, others)
+    }
+  }
+  return result
+}
+
 function monthLabel(iso: string): string {
   const d = new Date(iso)
   const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
@@ -551,11 +630,13 @@ async function main(): Promise<void> {
   // Generate individual visa pages
   const VISTOS_DIR = join(PREVIEWS_DIR, 'vistos')
   await mkdir(VISTOS_DIR, { recursive: true })
+  const relatedMap = buildRelatedMap(allData)
   let visaCount = 0
   for (const { code, data } of allData) {
     const cfg = COUNTRY_CONFIG[code]!
     for (const visa of data.visaTypes) {
-      const html = generateVisaPage(visa, data, { code, ...cfg })
+      const related = relatedMap.get(`${code}/${visa.id}`) ?? []
+      const html = generateVisaPage(visa, data, { code, ...cfg }, related)
       const slug = visaPageSlug(code, visa.id)
       await writeFile(join(VISTOS_DIR, slug), html, 'utf-8')
       visaCount++

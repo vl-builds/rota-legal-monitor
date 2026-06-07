@@ -1,5 +1,6 @@
 import type { CountryData, PathInfo, VisaType } from '@/extractors/schema'
 import type { CountryPageConfig } from './country-page'
+import type { RelatedVisa } from './generate'
 
 function esc(s: string): string {
   return s
@@ -269,6 +270,11 @@ const PAGE_CSS = `
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
+  .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
+  .related-card:hover { border-color: var(--accent); }
+  .related-country { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+  .related-name { font-size: 13px; color: var(--on-dark); line-height: 1.4; }
 `
 
 export function visaPageSlug(cc: string, visaId: string): string {
@@ -279,6 +285,7 @@ export function generateVisaPage(
   visa: VisaType,
   data: CountryData,
   config: CountryPageConfig,
+  relatedVisas: RelatedVisa[] = [],
 ): string {
   const updated = monthLabel(data.meta.lastUpdated)
   const year = new Date(data.meta.lastUpdated).getUTCFullYear()
@@ -487,6 +494,18 @@ export function generateVisaPage(
       </div>`
     : ''
 
+  const relatedHtml = relatedVisas.length > 0
+    ? `<div class="vp-section">
+        <p class="vp-section-title">Vistos relacionados</p>
+        <div class="related-grid">
+          ${relatedVisas.map(r => `<a class="related-card" href="../vistos/${visaPageSlug(r.cc, r.id)}">
+            <span class="related-country">${esc(r.displayName)}</span>
+            <span class="related-name">${esc(r.name)}</span>
+          </a>`).join('')}
+        </div>
+      </div>`
+    : ''
+
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -683,6 +702,8 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
         </div>` : ''}
 
         ${faqHtml}
+
+        ${relatedHtml}
 
         <div class="vp-cta-row">
           <a class="vp-cta-primary" href="../pais-${esc(config.code)}.html#vistos">← Ver todos os vistos de ${esc(config.displayName)}</a>
