@@ -249,15 +249,17 @@
         <div class="pipeline-step">
           <span class="pipeline-n">04</span>
           <div>
-            <h3 class="pipeline-title">Zod valida, Git versionia</h3>
+            <h3 class="pipeline-title">Zod valida, travas verificam, Git versionia</h3>
             <p class="pipeline-desc">
               Cada campo do JSON é validado contra o schema Zod antes de qualquer escrita.
-              Falha na validação interrompe o processo — nada inválido é publicado.
-              O snapshot vai para <code>data/current/</code> e uma cópia arquivada para
-              <code>data/history/</code>. Se houver mudança significativa, uma issue é aberta
-              automaticamente no GitHub.
+              Depois, a reconciliação de IDs mapeia cada visto extraído para seu ID canônico do
+              ciclo anterior (evita que nomes ligeiramente diferentes criem duplicatas).
+              O <code>guard</code> detecta degradação estrutural e aborta o commit se o resultado
+              piorou. O <code>audit</code> compara valores críticos contra os
+              <code>verificationUrls</code> oficiais e anota divergências maiores que 5%.
+              Só então o snapshot vai para <code>data/current/</code> e o site é gerado.
             </p>
-            <div class="pipeline-detail">Zod schema  →  data/current/  →  data/history/  →  GitHub Issue</div>
+            <div class="pipeline-detail">reconcile-ids  →  guard (bloqueia)  →  audit  →  site:generate  →  data/history/</div>
           </div>
         </div>
       </div>
@@ -276,32 +278,22 @@
 <span class="pl"> 4</span>    - <span class="kw">cron:</span> <span class="str">'0 6 1 * *'</span>
 <span class="pl"> 5</span>  <span class="kw">workflow_dispatch:</span> <span class="com"># disparo manual</span>
 <span class="pl"> 6</span>
-<span class="pl"> 7</span><span class="kw">jobs:</span>
-<span class="pl"> 8</span>  <span class="kw">update:</span>
-<span class="pl"> 9</span>    <span class="kw">runs-on:</span> <span class="str">ubuntu-latest</span>
-<span class="pl">10</span>    <span class="kw">steps:</span>
-<span class="pl">11</span>      - <span class="kw">name:</span> <span class="str">Checkout</span>
-<span class="pl">12</span>        <span class="kw">uses:</span> <span class="str">actions/checkout@v4</span>
-<span class="pl">13</span>
-<span class="pl">14</span>      - <span class="kw">name:</span> <span class="str">Setup Bun</span>
-<span class="pl">15</span>        <span class="kw">uses:</span> <span class="str">oven-sh/setup-bun@v2</span>
-<span class="pl">16</span>
-<span class="pl">17</span>      - <span class="kw">name:</span> <span class="str">Instalar dependências</span>
-<span class="pl">18</span>        <span class="kw">run:</span> <span class="fn">bun install</span>
-<span class="pl">19</span>
-<span class="pl">20</span>      - <span class="kw">name:</span> <span class="str">Extrair todos os países</span>
-<span class="pl">21</span>        <span class="kw">run:</span> <span class="fn">bun run extract</span>
-<span class="pl">22</span>        <span class="kw">env:</span>
-<span class="pl">23</span>          <span class="kw">ANTHROPIC_API_KEY:</span> <span class="str">${{ secrets.ANTHROPIC_API_KEY }}</span>
-<span class="pl">24</span>
-<span class="pl">25</span>      - <span class="kw">name:</span> <span class="str">Detectar mudanças</span>
-<span class="pl">26</span>        <span class="kw">run:</span> <span class="fn">bun run diff</span>
-<span class="pl">27</span>
-<span class="pl">28</span>      - <span class="kw">name:</span> <span class="str">Publicar no GitHub Pages</span>
-<span class="pl">29</span>        <span class="kw">uses:</span> <span class="str">peaceiris/actions-gh-pages@v4</span>
-<span class="pl">30</span>        <span class="kw">with:</span>
-<span class="pl">31</span>          <span class="kw">publish_dir:</span> <span class="str">./data/current</span>
-<span class="pl">32</span>          <span class="kw">publish_branch:</span> <span class="str">gh-pages</span></pre>
+<span class="pl"> 7</span><span class="kw">steps:</span>
+<span class="pl"> 8</span>  - <span class="fn">bun run validate</span>      <span class="com"># valida JSON atual antes</span>
+<span class="pl"> 9</span>  - <span class="fn">bun run extract</span>       <span class="com"># extrai todos os países</span>
+<span class="pl">10</span>  - <span class="fn">bun run patch:all</span>     <span class="com"># reaplica enriquecimentos manuais</span>
+<span class="pl">11</span>  - <span class="fn">bun run validate</span>      <span class="com"># valida resultado extraído</span>
+<span class="pl">12</span>  - <span class="fn">bun run guard</span>         <span class="com"># trava: aborta se extração degradou</span>
+<span class="pl">13</span>  - <span class="fn">bun run audit</span>         <span class="com"># auditoria: compara vs verificationUrls</span>
+<span class="pl">14</span>  - <span class="fn">bun run index</span>         <span class="com"># gera index.json</span>
+<span class="pl">15</span>  - <span class="fn">bun run site:generate</span> <span class="com"># gera as páginas HTML</span>
+<span class="pl">16</span>  - <span class="fn">bun run diff</span>          <span class="com"># detecta mudanças significativas</span>
+<span class="pl">17</span>
+<span class="pl">18</span>  <span class="com"># Commit e deploy ocorrem somente se guard passou</span>
+<span class="pl">19</span>  - <span class="kw">uses:</span> <span class="str">peaceiris/actions-gh-pages@v4</span>
+<span class="pl">20</span>    <span class="kw">with:</span>
+<span class="pl">21</span>      <span class="kw">publish_dir:</span> <span class="str">./data/current</span>
+<span class="pl">22</span>      <span class="kw">publish_branch:</span> <span class="str">gh-pages</span></pre>
         </div>
       </div>
 
@@ -327,25 +319,29 @@
           <span class="file">data/current/nl.json (resumido)</span>
         </div>
         <pre class="code-body"><span class="pl"> 1</span><span class="kw">{</span>
-<span class="pl"> 2</span>  <span class="str">"country"</span><span class="kw">:</span> <span class="str">"nl"</span><span class="kw">,</span>
-<span class="pl"> 3</span>  <span class="str">"lastUpdated"</span><span class="kw">:</span> <span class="str">"2026-04-01T06:00:00Z"</span><span class="kw">,</span>
-<span class="pl"> 4</span>  <span class="str">"visaTypes"</span><span class="kw">: [{</span>
-<span class="pl"> 5</span>    <span class="str">"id"</span><span class="kw">:</span> <span class="str">"highly-skilled-migrant"</span><span class="kw">,</span>
-<span class="pl"> 6</span>    <span class="str">"name"</span><span class="kw">:</span> <span class="str">"Altamente Qualificado"</span><span class="kw">,</span>
-<span class="pl"> 7</span>    <span class="str">"processingTime"</span><span class="kw">:</span> <span class="str">"2-4 semanas"</span><span class="kw">,</span>
-<span class="pl"> 8</span>    <span class="str">"requirements"</span><span class="kw">: {</span>
-<span class="pl"> 9</span>      <span class="str">"incomeRequirement"</span><span class="kw">: {</span>
-<span class="pl">10</span>        <span class="str">"amount"</span><span class="kw">:</span> <span class="num">5688</span><span class="kw">,</span>
-<span class="pl">11</span>        <span class="str">"currency"</span><span class="kw">:</span> <span class="str">"EUR"</span><span class="kw">,</span>
-<span class="pl">12</span>        <span class="str">"period"</span><span class="kw">:</span> <span class="str">"monthly"</span>
-<span class="pl">13</span>      <span class="kw">}</span>
-<span class="pl">14</span>    <span class="kw">}</span>
-<span class="pl">15</span>  <span class="kw">}],</span>
-<span class="pl">16</span>  <span class="str">"reliability"</span><span class="kw">: {</span>
-<span class="pl">17</span>    <span class="str">"extractionConfidence"</span><span class="kw">:</span> <span class="str">"high"</span><span class="kw">,</span>
-<span class="pl">18</span>    <span class="str">"lastVerified"</span><span class="kw">:</span> <span class="str">"2026-04-01"</span>
-<span class="pl">19</span>  <span class="kw">}</span>
-<span class="pl">20</span><span class="kw">}</span></pre>
+<span class="pl"> 2</span>  <span class="str">"meta"</span><span class="kw">: {</span>
+<span class="pl"> 3</span>    <span class="str">"country"</span><span class="kw">:</span> <span class="str">"nl"</span><span class="kw">,</span>
+<span class="pl"> 4</span>    <span class="str">"countryName"</span><span class="kw">:</span> <span class="str">"Países Baixos"</span><span class="kw">,</span>
+<span class="pl"> 5</span>    <span class="str">"lastUpdated"</span><span class="kw">:</span> <span class="str">"2026-06-01T06:00:00Z"</span>
+<span class="pl"> 6</span>  <span class="kw">},</span>
+<span class="pl"> 7</span>  <span class="str">"visaTypes"</span><span class="kw">: [{</span>
+<span class="pl"> 8</span>    <span class="str">"id"</span><span class="kw">:</span> <span class="str">"highly-skilled-migrant"</span><span class="kw">,</span>
+<span class="pl"> 9</span>    <span class="str">"name"</span><span class="kw">:</span> <span class="str">"Altamente Qualificado"</span><span class="kw">,</span>
+<span class="pl">10</span>    <span class="str">"requirements"</span><span class="kw">: {</span>
+<span class="pl">11</span>      <span class="str">"incomeRequirement"</span><span class="kw">: {</span>
+<span class="pl">12</span>        <span class="str">"amount"</span><span class="kw">:</span> <span class="num">5688</span><span class="kw">,</span>
+<span class="pl">13</span>        <span class="str">"currency"</span><span class="kw">:</span> <span class="str">"EUR"</span><span class="kw">,</span>
+<span class="pl">14</span>        <span class="str">"period"</span><span class="kw">:</span> <span class="str">"monthly"</span>
+<span class="pl">15</span>      <span class="kw">}</span>
+<span class="pl">16</span>    <span class="kw">}</span>
+<span class="pl">17</span>  <span class="kw">}],</span>
+<span class="pl">18</span>  <span class="str">"reliability"</span><span class="kw">: {</span>
+<span class="pl">19</span>    <span class="str">"extractedBy"</span><span class="kw">:</span> <span class="str">"llm"</span><span class="kw">,</span>
+<span class="pl">20</span>    <span class="str">"extractionConfidence"</span><span class="kw">:</span> <span class="str">"high"</span><span class="kw">,</span>
+<span class="pl">21</span>    <span class="str">"humanReviewedAt"</span><span class="kw">:</span> <span class="kw">null,</span>
+<span class="pl">22</span>    <span class="str">"knownIssues"</span><span class="kw">: []</span>
+<span class="pl">23</span>  <span class="kw">}</span>
+<span class="pl">24</span><span class="kw">}</span></pre>
       </div>
       <div class="code-window">
         <div class="code-bar">
@@ -354,25 +350,26 @@
           <span class="dot g"></span>
           <span class="file">src/extractors/schema.ts (campos principais)</span>
         </div>
-        <pre class="code-body"><span class="pl"> 1</span><span class="kw">const</span> <span class="fn">VisaTypeSchema</span> <span class="kw">=</span> z.object<span class="kw">({</span>
-<span class="pl"> 2</span>  <span class="str">id</span><span class="kw">:</span>            z.string<span class="kw">(),</span>
-<span class="pl"> 3</span>  <span class="str">name</span><span class="kw">:</span>          z.string<span class="kw">(),</span>
-<span class="pl"> 4</span>  <span class="str">processingTime</span><span class="kw">:</span> z.string().optional<span class="kw">(),</span>
-<span class="pl"> 5</span>  <span class="str">requirements</span><span class="kw">:</span>  z.object<span class="kw">({</span>
-<span class="pl"> 6</span>    <span class="str">incomeRequirement</span><span class="kw">:</span> z.object<span class="kw">({</span>
-<span class="pl"> 7</span>      <span class="str">amount</span><span class="kw">:</span>   z.number<span class="kw">(),</span>
-<span class="pl"> 8</span>      <span class="str">currency</span><span class="kw">:</span> z.literal<span class="kw">(</span><span class="str">'EUR'</span><span class="kw">),</span>
-<span class="pl"> 9</span>      <span class="str">period</span><span class="kw">:</span>   z.enum<span class="kw">([</span><span class="str">'monthly'</span><span class="kw">,</span><span class="str">'annual'</span><span class="kw">])</span>
-<span class="pl">10</span>    <span class="kw">}).optional()</span>
-<span class="pl">11</span>  <span class="kw">})</span>
-<span class="pl">12</span><span class="kw">})</span>
-<span class="pl">13</span>
-<span class="pl">14</span><span class="kw">const</span> <span class="fn">CountrySchema</span> <span class="kw">=</span> z.object<span class="kw">({</span>
-<span class="pl">15</span>  <span class="str">country</span><span class="kw">:</span>     z.string().length<span class="kw">(</span><span class="num">2</span><span class="kw">),</span>
-<span class="pl">16</span>  <span class="str">lastUpdated</span><span class="kw">:</span> z.string().datetime<span class="kw">(),</span>
-<span class="pl">17</span>  <span class="str">visaTypes</span><span class="kw">:</span>   z.array<span class="kw">(</span>VisaTypeSchema<span class="kw">),</span>
-<span class="pl">18</span>  <span class="str">reliability</span><span class="kw">:</span> ReliabilitySchema
-<span class="pl">19</span><span class="kw">})</span></pre>
+        <pre class="code-body"><span class="pl"> 1</span><span class="kw">const</span> <span class="fn">MoneyAmountSchema</span> <span class="kw">=</span> z.object<span class="kw">({</span>
+<span class="pl"> 2</span>  <span class="str">amount</span><span class="kw">:</span>   z.number().nonnegative<span class="kw">(),</span>
+<span class="pl"> 3</span>  <span class="str">currency</span><span class="kw">:</span> z.enum<span class="kw">([</span><span class="str">'EUR'</span><span class="kw">,</span><span class="str">'USD'</span><span class="kw">,</span><span class="str">'BRL'</span><span class="kw">,</span><span class="str">'AUD'</span><span class="kw">]),</span>
+<span class="pl"> 4</span>  <span class="str">period</span><span class="kw">:</span>   z.enum<span class="kw">([</span><span class="str">'one-time'</span><span class="kw">,</span><span class="str">'monthly'</span><span class="kw">,</span><span class="str">'yearly'</span><span class="kw">,</span><span class="str">'total'</span><span class="kw">])</span>
+<span class="pl"> 5</span>              .nullable().optional<span class="kw">(),</span>
+<span class="pl"> 6</span><span class="kw">})</span>
+<span class="pl"> 7</span>
+<span class="pl"> 8</span><span class="kw">const</span> <span class="fn">ReliabilitySchema</span> <span class="kw">=</span> z.object<span class="kw">({</span>
+<span class="pl"> 9</span>  <span class="str">extractedBy</span><span class="kw">:</span>          z.enum<span class="kw">([</span><span class="str">'llm'</span><span class="kw">,</span><span class="str">'manual'</span><span class="kw">]),</span>
+<span class="pl">10</span>  <span class="str">extractionConfidence</span><span class="kw">:</span> z.enum<span class="kw">([</span><span class="str">'high'</span><span class="kw">,</span><span class="str">'medium'</span><span class="kw">,</span><span class="str">'low'</span><span class="kw">]),</span>
+<span class="pl">11</span>  <span class="str">humanReviewedAt</span><span class="kw">:</span>      z.string().datetime().nullable<span class="kw">(),</span>
+<span class="pl">12</span>  <span class="str">knownIssues</span><span class="kw">:</span>          z.array<span class="kw">(</span>z.string<span class="kw">()),</span>
+<span class="pl">13</span><span class="kw">})</span>
+<span class="pl">14</span>
+<span class="pl">15</span><span class="kw">const</span> <span class="fn">CountryDataSchema</span> <span class="kw">=</span> z.object<span class="kw">({</span>
+<span class="pl">16</span>  <span class="str">meta</span><span class="kw">:</span>                MetaSchema<span class="kw">,</span>
+<span class="pl">17</span>  <span class="str">visaTypes</span><span class="kw">:</span>          z.array<span class="kw">(</span>VisaTypeSchema<span class="kw">),</span>
+<span class="pl">18</span>  <span class="str">generalRequirements</span><span class="kw">:</span> GeneralRequirementsSchema<span class="kw">,</span>
+<span class="pl">19</span>  <span class="str">reliability</span><span class="kw">:</span>         ReliabilitySchema<span class="kw">,</span>
+<span class="pl">20</span><span class="kw">})</span></pre>
       </div>
     </div>
   </div>
@@ -543,7 +540,7 @@
     <div class="footer-bottom">
       <span>© 2026 Rota Legal · <a href="https://github.com/vl-builds" target="_blank" rel="noopener noreferrer">vl-builds</a> · MIT</span>
       <nav class="footer-legal" aria-label="Links legais"><a href="politica-privacidade.html">Privacidade</a><a href="politica-cookies.html">Cookies</a><a href="termos-uso.html">Termos</a></nav>
-      <span class="caption-up">Última extração: mai/2026</span>
+      <span class="caption-up">Última extração: jun/2026</span>
     </div>
   </div>
 </footer>

@@ -676,29 +676,30 @@
   <div class="container">
     <span class="section-header">Como contribuir</span>
     <h2 class="section-title">O projeto é aberto</h2>
-    <p class="section-body">Correções, novos países e melhorias no schema são bem-vindas. O processo é simples.</p>
+    <p class="section-body">Correções, novos países e melhorias no schema são bem-vindas. O repositório é público e o pipeline está todo documentado.</p>
 
     <div class="contrib-card">
       <div class="contrib-step">
         <div class="contrib-step-num">1</div>
-        <div class="contrib-step-text"><strong>Reportar um erro nos dados.</strong> Se encontrar um valor incorreto ou desatualizado, abra uma issue no GitHub com o país, o campo e a fonte oficial que contradiz o dado.</div>
+        <div class="contrib-step-text"><strong>Reportar um erro nos dados.</strong> Se encontrar um valor incorreto ou desatualizado, abra uma issue no GitHub com o país, o campo e a fonte oficial que contradiz o dado. Apenas o pipeline de dados e as páginas públicas são abertas: conteúdo pago e dados de alunos vivem em repositório privado separado.</div>
       </div>
       <div class="contrib-step">
         <div class="contrib-step-num">2</div>
-        <div class="contrib-step-text"><strong>Sugerir um país novo.</strong> Os 10 países da v1.0 estão definidos. Para sugerir adições à v1.1, abra uma issue com o código ISO do país e links para as fontes oficiais de imigração.</div>
+        <div class="contrib-step-text"><strong>Sugerir um país novo.</strong> Para sugerir adições, abra uma issue com o código ISO do país e links para pelo menos 3 fontes oficiais de imigração. O campo <code class="code-inline">verificationUrls</code> é obrigatório ao criar um novo país e alimenta a auditoria cruzada automática.</div>
       </div>
       <div class="contrib-step">
         <div class="contrib-step-num">3</div>
-        <div class="contrib-step-text"><strong>Corrigir uma extração.</strong> Clone o repositório, edite o arquivo <code style="font-size:12px;color:var(--primary);">data/current/{cc}.json</code> com o valor correto e abra um PR com link para a fonte. Alterações em <code style="font-size:12px;color:var(--primary);">src/</code> exigem que os testes passem.</div>
+        <div class="contrib-step-text"><strong>Corrigir uma extração.</strong> Clone o repositório, edite <code class="code-inline">data/current/{cc}.json</code> com o valor correto, rode <code class="code-inline">bun run validate</code> e abra um PR com link para a fonte. Alterações em <code class="code-inline">src/</code> exigem que os testes e o <code class="code-inline">bun run typecheck</code> passem.</div>
       </div>
       <div class="contrib-step">
         <div class="contrib-step-num">4</div>
-        <div class="contrib-step-text"><strong>Melhorar o schema.</strong> Mudanças no schema exigem migração simultânea de <code style="font-size:12px;color:var(--primary);">src/extractors/schema.ts</code>, <code style="font-size:12px;color:var(--primary);">docs/data-schema.md</code> e de todos os arquivos em <code style="font-size:12px;color:var(--primary);">data/current/</code>.</div>
+        <div class="contrib-step-text"><strong>Melhorar o schema.</strong> Mudanças no schema exigem migração simultânea de <code class="code-inline">src/extractors/schema.ts</code>, <code class="code-inline">docs/data-schema.md</code> e de todos os arquivos em <code class="code-inline">data/current/</code>. Abra uma issue primeiro para alinhar a mudança antes de implementar.</div>
       </div>
     </div>
 
     <div style="margin-top: var(--s-xl); display: flex; gap: var(--s-md); flex-wrap: wrap;">
-      <a class="btn btn-secondary" href="#" style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">Ver repositório no GitHub</a>
+      <a class="btn btn-secondary" href="https://github.com/vl-builds/rota-legal-monitor" target="_blank" rel="noopener noreferrer">Ver repositório no GitHub</a>
+      <a class="btn btn-secondary" href="https://github.com/vl-builds/rota-legal-monitor/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Guia de contribuição</a>
       <a class="btn btn-secondary" href="historico.html">Ver histórico de mudanças</a>
     </div>
   </div>
