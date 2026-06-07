@@ -81,7 +81,7 @@
       "Auditoria 2026-06-02: salário mínimo (€2.303,59/mês 01/01/2026) e proofOfFunds CURRENT; limiares de visto atualizados para 2026 (fonte ind.nl/required-amounts).",
       "Taxa IND atualizada 345→€423 (HSM/Blue Card/ICT/single permit). Researcher e orientation year: €254. A taxa MVV de €225 é obsoleta no modelo TEV (aplicação única) — revisar.",
       "researcher: limiar legal IND 2026 é €1.606,08/mês (na prática segue CAO-NU, maior); valor armazenado a revisar.",
-      "self-employed (€1.400) e start-up-founder (€13.000) sem limiar fixo IND — UNVERIFIED, revisar."
+      "self-employed: IND exige lucro bruto mínimo de €1.734,57/mês (com férias, vigente 01/01/2026–30/06/2026). Fonte: ind.nl/en/required-amounts-income-requirements. start-up-founder: sem limiar de renda fixo IND — requer facilitador RVO reconhecido e avaliação por pontos (mínimo 90/100). Ver ind.nl/en/residence-permits/work/start-up. [verificado 2026-06-07]"
     ]
   },
   "visaTypes": [

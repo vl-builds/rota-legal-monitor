@@ -452,10 +452,10 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 1400,
+        "amount": 1734.57,
         "currency": "EUR",
         "period": "monthly",
-        "notes": "Rendimento mínimo esperado após estabelecimento — o plano de negócios deve demonstrar sustentabilidade financeira. Não há limiar fixo como para o kennismigrant."
+        "notes": "Lucro bruto mínimo exigido pelo IND para autônomo: €1.734,57/mês (com férias, vigente 01/01–30/06/2026). Não é um limiar de salário fixo, mas de lucro bruto da atividade. Fonte: ind.nl/en/required-amounts-income-requirements."
       },
       "languageRequired": null,
       "qualificationsRequired": [

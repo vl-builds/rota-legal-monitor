@@ -317,7 +317,7 @@
       "steps": [
         {
           "order": 1,
-          "description": "Verificar elegibilidade: 18-35 anos, passaporte brasileiro, não ter tido PVT França anteriormente, sem dependentes"
+          "description": "Verificar elegibilidade: 18-30 anos, passaporte brasileiro, não ter tido PVT França anteriormente, sem dependentes"
         },
         {
           "order": 2,
@@ -378,7 +378,7 @@
         "amount": 2500,
         "currency": "EUR",
         "period": "total",
-        "notes": "Recursos mínimos para o período inicial — demonstrado em conta bancária no momento da solicitação"
+        "notes": "€2.500 mínimos exigidos pelo consulado francês — confirmado na campanha 2026 (Recife). Demonstrar saldo em conta bancária no momento da solicitação. Fonte: br.diplomatie.gouv.fr + pvtistes.net 2026."
       },
       "languageRequired": null,
       "qualificationsRequired": []
@@ -390,7 +390,7 @@
       "pathToResidency": null,
       "pathToCitizenship": null
     },
-    "notes": "O PVT Brasil-França (Accord de Réciprocité de 2013) permite trabalhar legalmente na França por 12 meses sem oferta prévia de emprego. Limite de idade: 30 anos (não 35) em alguns anos — verificar condições atuais no consulado. O visto é não renovável, mas permite trabalhar livremente para qualquer empregador durante o período. Não se aplica restrição de setor ou atividade. Para estadas mais longas, o PVT pode ser trampolim para obter VLS-TS Salarié com empregador encontrado durante o período."
+    "notes": "O PVT Brasil-França (Accord de Réciprocité de 2013) permite trabalhar legalmente na França por 12 meses sem oferta prévia de emprego. Limite de idade: 18-30 anos (confirmado 2026 — consulado francês Recife + pvtistes.net). O visto é não renovável, mas permite trabalhar livremente para qualquer empregador durante o período. Não se aplica restrição de setor ou atividade. Para estadas mais longas, o PVT pode ser trampolim para obter VLS-TS Salarié com empregador encontrado durante o período."
   },
   "vls-temporaire-artiste": {
     "process": {

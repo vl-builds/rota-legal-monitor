@@ -614,10 +614,10 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 30000,
+        "amount": 28696.2,
         "currency": "EUR",
         "period": "yearly",
-        "notes": "Limiar indicativo — verificar requisito atual no DETE, pode variar por tipo de função"
+        "notes": "National Minimum Wage (NMW): €14,15/h × 39h × 52 semanas = €28.696,20/ano a partir de 01/01/2026. Fonte: enterprise.gov.ie e employment permits notices 2026."
       },
       "languageRequired": null,
       "qualificationsRequired": [
@@ -762,10 +762,10 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 22920,
+        "amount": 28696.2,
         "currency": "EUR",
         "period": "yearly",
-        "notes": "Salário mínimo nacional irlandês (National Minimum Wage) como referência mínima para o estágio remunerado"
+        "notes": "National Minimum Wage (NMW): €14,15/h × 39h × 52 semanas = €28.696,20/ano a partir de 01/01/2026. Fonte: enterprise.gov.ie e employment permits notices 2026."
       },
       "languageRequired": null,
       "qualificationsRequired": [
