@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /area-aluno/
+Disallow: /area-admin/
+Disallow: /login.html
+Disallow: /app.html
+Disallow: /_hub.html
+Disallow: /template.html
+Disallow: /dev.html
+Disallow: /clickhouse-style.html
+
+Sitemap: https://rotalegal.pro/sitemap.xml

@@ -30,6 +30,12 @@ function monthLabel(iso: string): string {
   return `${months[d.getUTCMonth()]}/${d.getUTCFullYear()}`
 }
 
+function monthLabelLong(iso: string): string {
+  const d = new Date(iso)
+  const months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+  return `${months[d.getUTCMonth()]} de ${d.getUTCFullYear()}`
+}
+
 // Extract the full <div class="tab-panel" id="PANELID">...</div> block using balanced div counting
 function extractTabPanel(html: string, panelId: string): string | null {
   const openTag = `<div class="tab-panel" id="${panelId}">`
@@ -120,6 +126,17 @@ async function patchPaises(
 ): Promise<void> {
   const path = join(PREVIEWS_DIR, 'paises.html')
   let html = await readFile(path, 'utf-8')
+
+  const latestIso = allData.reduce(
+    (best, { data }) => (data.meta.lastUpdated > best ? data.meta.lastUpdated : best),
+    '',
+  )
+  if (latestIso) {
+    html = html.replace(
+      /Atualizado em (?:janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro) de \d{4}/g,
+      `Atualizado em ${monthLabelLong(latestIso)}`,
+    )
+  }
 
   for (const { code, data } of allData) {
     const marker = `<!-- ${code.toUpperCase()} -->`
@@ -215,6 +232,7 @@ async function patchHome(
   }, '')
   if (latestIso) {
     const label = monthLabel(latestIso)
+    const labelLong = monthLabelLong(latestIso)
     html = html.replace(
       /<div class="eyebrow">Ciclo de [^<]+<\/div>/,
       `<div class="eyebrow">Ciclo de ${label}</div>`,
@@ -223,6 +241,40 @@ async function patchHome(
       /<span class="badge up"><span class="pulse"><\/span>Verificado em [^<]+<\/span>/,
       `<span class="badge up"><span class="pulse"></span>Verificado em ${label}</span>`,
     )
+    html = html.replace(
+      /Atualizado em (?:janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro) de \d{4}/g,
+      `Atualizado em ${labelLong}`,
+    )
+  }
+
+  // Organization + WebSite JSON-LD (idempotente)
+  if (!html.includes('"@type":"Organization"') && !html.includes('"@type": "Organization"')) {
+    const orgLd = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': 'https://rotalegal.pro/#organization',
+          name: 'Rota Legal',
+          url: 'https://rotalegal.pro',
+          logo: 'https://rotalegal.pro/assets/og-default.png',
+        },
+        {
+          '@type': 'WebSite',
+          '@id': 'https://rotalegal.pro/#website',
+          url: 'https://rotalegal.pro',
+          name: 'Rota Legal',
+          description: 'Monitore requisitos de visto de trabalho em 10 países europeus. Dados atualizados mensalmente com fontes oficiais.',
+          publisher: { '@id': 'https://rotalegal.pro/#organization' },
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: { '@type': 'EntryPoint', urlTemplate: 'https://rotalegal.pro/paises.html?q={search_term_string}' },
+            'query-input': 'required name=search_term_string',
+          },
+        },
+      ],
+    })
+    html = html.replace('</head>', `<script type="application/ld+json">${orgLd}</script>\n</head>`)
   }
 
   await writeFile(path, html, 'utf-8')
@@ -287,6 +339,167 @@ async function patchFooters(latestIso: string): Promise<void> {
   }
 }
 
+const SITE_URL = 'https://rotalegal.pro'
+
+function escAttr(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+}
+
+const STATIC_OG: Array<{ file: string; title: string; description: string }> = [
+  {
+    file: 'index.html',
+    title: 'Rota Legal — Trabalhar no exterior com dados de verdade',
+    description: 'Monitore requisitos de visto de trabalho em 10 países europeus. Dados atualizados mensalmente com fontes oficiais.',
+  },
+  {
+    file: 'paises.html',
+    title: 'Países — Rota Legal',
+    description: 'Compare requisitos de imigração em 10 países: Portugal, Alemanha, Países Baixos e mais. Dados atualizados mensalmente.',
+  },
+  {
+    file: 'comparar.html',
+    title: 'Comparar países — Rota Legal',
+    description: 'Compare vistos de trabalho entre países europeus lado a lado. Salários, requisitos e taxas atualizados.',
+  },
+  {
+    file: 'qual-pais.html',
+    title: 'Qual país combina com você? — Rota Legal',
+    description: 'Descubra qual país europeu combina com seu perfil. Responda 6 perguntas e receba uma recomendação personalizada.',
+  },
+  {
+    file: 'calculadora.html',
+    title: 'Calculadora de Reserva — Rota Legal',
+    description: 'Calcule quanto você precisa guardar para emigrar. Reserva mínima por país, duração e estilo de vida.',
+  },
+  {
+    file: 'historico.html',
+    title: 'Histórico de mudanças — Rota Legal',
+    description: 'Acompanhe o histórico de mudanças nas regras de imigração europeia. Alterações mensais em vistos, salários e taxas.',
+  },
+  {
+    file: 'guia-pratico.html',
+    title: 'Guia Prático — Rota Legal',
+    description: 'Guia prático para emigrar para a Europa. Passo a passo, documentação e dicas para brasileiros.',
+  },
+  {
+    file: 'sobre.html',
+    title: 'Sobre — Rota Legal',
+    description: 'Metodologia, fontes e limitações do Rota Legal. Dados de imigração para 10 países europeus, atualizados mensalmente.',
+  },
+  {
+    file: 'parceiros.html',
+    title: 'Parceiros — Rota Legal',
+    description: 'Serviços parceiros para quem vai trabalhar no exterior: contabilidade, seguro, câmbio e mais.',
+  },
+]
+
+async function patchOpenGraph(): Promise<void> {
+  for (const { file, title, description } of STATIC_OG) {
+    const path = join(PREVIEWS_DIR, file)
+    try {
+      let html = await readFile(path, 'utf-8')
+      const url = `${SITE_URL}/${file === 'index.html' ? '' : file}`
+      const ogBlock = [
+        `<meta property="og:type" content="website" />`,
+        `<meta property="og:site_name" content="Rota Legal" />`,
+        `<meta property="og:title" content="${escAttr(title)}" />`,
+        `<meta property="og:description" content="${escAttr(description)}" />`,
+        `<meta property="og:url" content="${url}" />`,
+        `<meta property="og:image" content="${SITE_URL}/assets/og-default.png" />`,
+      ].join('\n')
+
+      if (html.includes('property="og:title"')) {
+        html = html
+          .replace(/(<meta property="og:title" content=")[^"]*(")/,   `$1${escAttr(title)}$2`)
+          .replace(/(<meta property="og:description" content=")[^"]*(")/,  `$1${escAttr(description)}$2`)
+          .replace(/(<meta property="og:url" content=")[^"]*(")/,      `$1${url}$2`)
+      } else {
+        html = html.replace('</title>', `</title>\n${ogBlock}`)
+      }
+
+      // meta description
+      if (!html.includes('name="description"')) {
+        html = html.replace('</title>', `</title>\n<meta name="description" content="${escAttr(description)}" />`)
+      }
+
+      // canonical
+      if (!html.includes('rel="canonical"')) {
+        html = html.replace('</title>', `</title>\n<link rel="canonical" href="${url}" />`)
+      }
+
+      // twitter card
+      if (!html.includes('twitter:card')) {
+        html = html.replace('</title>', `</title>\n<meta name="twitter:card" content="summary_large_image" />`)
+      }
+
+      // favicon
+      if (!html.includes('rel="icon"')) {
+        html = html.replace('</title>', `</title>\n<link rel="icon" type="image/png" href="favicon.png" />\n<link rel="apple-touch-icon" href="favicon.png" />`)
+      }
+
+      // fontes não-bloqueantes
+      const fontUrl = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap'
+      if (html.includes(fontUrl) && !html.includes('media="print"')) {
+        // aceita tanto <link href="..." rel="stylesheet" /> (uma linha) quanto multi-linha
+        html = html.replace(
+          /<link[\s\S]*?href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]*display=swap"[\s\S]*?\/>/,
+          `<link rel="preload" href="${fontUrl}" as="style" />\n<link href="${fontUrl}" rel="stylesheet" media="print" onload="this.media='all'" />\n<noscript><link href="${fontUrl}" rel="stylesheet" /></noscript>`,
+        )
+      }
+
+      await writeFile(path, html, 'utf-8')
+    } catch {
+      // arquivo pode nao existir; ignorar
+    }
+  }
+}
+
+const STATIC_PAGES: Array<{ path: string; priority: string; changefreq: string }> = [
+  { path: '/',                       priority: '1.0', changefreq: 'monthly' },
+  { path: '/paises.html',            priority: '0.9', changefreq: 'monthly' },
+  { path: '/comparar.html',          priority: '0.8', changefreq: 'monthly' },
+  { path: '/qual-pais.html',         priority: '0.8', changefreq: 'monthly' },
+  { path: '/calculadora.html',       priority: '0.7', changefreq: 'monthly' },
+  { path: '/historico.html',         priority: '0.7', changefreq: 'monthly' },
+  { path: '/guia-pratico.html',      priority: '0.6', changefreq: 'monthly' },
+  { path: '/sobre.html',             priority: '0.5', changefreq: 'monthly' },
+  { path: '/parceiros.html',         priority: '0.4', changefreq: 'monthly' },
+  { path: '/politica-privacidade.html', priority: '0.3', changefreq: 'yearly' },
+  { path: '/politica-cookies.html',  priority: '0.3', changefreq: 'yearly' },
+  { path: '/termos-uso.html',        priority: '0.3', changefreq: 'yearly' },
+]
+
+async function generateSitemap(
+  allData: Array<{ code: string; data: CountryData }>,
+): Promise<void> {
+  const today = new Date().toISOString().slice(0, 10)
+
+  const urlTags: string[] = []
+
+  for (const { path, priority, changefreq } of STATIC_PAGES) {
+    urlTags.push(
+      `  <url>\n    <loc>${SITE_URL}${path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+    )
+  }
+
+  for (const { code, data } of allData) {
+    const lastmod = data.meta.lastUpdated.slice(0, 10)
+    urlTags.push(
+      `  <url>\n    <loc>${SITE_URL}/pais-${code}.html</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`,
+    )
+    for (const visa of data.visaTypes) {
+      const slug = visaPageSlug(code, visa.id)
+      urlTags.push(
+        `  <url>\n    <loc>${SITE_URL}/vistos/${slug}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
+      )
+    }
+  }
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urlTags.join('\n')}\n</urlset>\n`
+
+  await writeFile(join(PREVIEWS_DIR, 'sitemap.xml'), xml, 'utf-8')
+}
+
 async function main(): Promise<void> {
   const files = await readdir(DATA_DIR)
   const codes = files
@@ -348,6 +561,12 @@ async function main(): Promise<void> {
   }
 
   console.log(`\nTotal: ${allData.length} países + ${visaCount} páginas de visto.`)
+
+  await generateSitemap(allData)
+  console.log('[ok] sitemap.xml gerado')
+
+  await patchOpenGraph()
+  console.log('[ok] open graph atualizado nas páginas estáticas')
 }
 
 main().catch(err => {

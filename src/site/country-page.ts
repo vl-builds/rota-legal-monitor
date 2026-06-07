@@ -1879,6 +1879,12 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   const needsPermit = data.forBrazilians.workPermitNeeded
   const visaCount = data.visaTypes.length
 
+  const mw = data.generalRequirements?.minimumWage
+  const salaryPart = mw?.amount
+    ? `, salário mínimo ${mw.currency} ${Math.round(mw.amount).toLocaleString('pt-BR')}`
+    : ''
+  const metaDescription = `Guia completo para trabalhar em ${config.displayName}: ${visaCount} tipos de visto monitorados${salaryPart}. Requisitos, taxas e prazos atualizados em ${updated} com fontes oficiais.`
+
   const visaCardsHtml = sorted.length > 0
     ? sorted.map(v => renderVisaCard(v, config.code)).join('')
     : `<div style="padding:var(--s-xxl);text-align:center;color:var(--muted);">Vistos em levantamento para este ciclo.</div>`
@@ -1892,11 +1898,47 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(config.displayName)} — Rota Legal</title>
+<meta name="description" content="${esc(metaDescription)}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Rota Legal" />
+<meta property="og:title" content="${esc(config.displayName)} — Rota Legal" />
+<meta property="og:description" content="${esc(metaDescription)}" />
+<meta property="og:url" content="https://rotalegal.pro/pais-${config.code}.html" />
+<meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="favicon.png" />
+<link rel="canonical" href="https://rotalegal.pro/pais-${config.code}.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 <link rel="stylesheet" href="assets/design-system.css" />
 <style>${PAGE_CSS}</style>
+<script type="application/ld+json">${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `https://rotalegal.pro/pais-${config.code}.html`,
+      url: `https://rotalegal.pro/pais-${config.code}.html`,
+      name: `${config.displayName} — Rota Legal`,
+      description: metaDescription,
+      dateModified: data.meta.lastUpdated.slice(0, 10),
+      inLanguage: 'pt-BR',
+      publisher: { '@type': 'Organization', name: 'Rota Legal', url: 'https://rotalegal.pro' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://rotalegal.pro/' },
+        { '@type': 'ListItem', position: 2, name: 'Países', item: 'https://rotalegal.pro/paises.html' },
+        { '@type': 'ListItem', position: 3, name: config.displayName },
+      ],
+    },
+  ],
+})}</script>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>

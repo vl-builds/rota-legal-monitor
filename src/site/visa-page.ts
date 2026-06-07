@@ -435,11 +435,46 @@ export function generateVisaPage(
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(visa.name)} — ${esc(config.displayName)} — Rota Legal</title>
 <meta name="description" content="${esc(visa.description.slice(0, 160))}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Rota Legal" />
+<meta property="og:title" content="${esc(visa.name)} — ${esc(config.displayName)} — Rota Legal" />
+<meta property="og:description" content="${esc(visa.description.slice(0, 160))}" />
+<meta property="og:url" content="https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}" />
+<meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<link rel="apple-touch-icon" href="../favicon.png" />
+<link rel="canonical" href="https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 <link rel="stylesheet" href="../assets/design-system.css" />
 <style>${PAGE_CSS}</style>
+<script type="application/ld+json">${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}`,
+      url: `https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}`,
+      name: `${visa.name} — ${config.displayName} — Rota Legal`,
+      description: visa.description.slice(0, 160),
+      dateModified: data.meta.lastUpdated.slice(0, 10),
+      inLanguage: 'pt-BR',
+      publisher: { '@type': 'Organization', name: 'Rota Legal', url: 'https://rotalegal.pro' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://rotalegal.pro/' },
+        { '@type': 'ListItem', position: 2, name: config.displayName, item: `https://rotalegal.pro/pais-${config.code}.html` },
+        { '@type': 'ListItem', position: 3, name: visa.name },
+      ],
+    },
+  ],
+})}</script>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
