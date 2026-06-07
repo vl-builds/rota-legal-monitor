@@ -443,10 +443,10 @@
         }
       ],
       "incomeRequirement": {
-        "amount": 7200,
+        "amount": 7851,
         "currency": "EUR",
         "period": "total",
-        "notes": "Valor total para 6 meses de estada (~€1.200/mês) — verificar valor atualizado no consulado"
+        "notes": "Sem valor fixo oficial — a Áustria exige apenas comprovante de meios adequados de subsistência. Estimativa prática: 6 meses x Ausgleichszulagenrichtsatz 2026 (€1.308,39/mês) = €7.851. Fonte: migration.gv.at (verificado 2026-06-07)."
       },
       "languageRequired": {
         "language": "Alemão ou inglês",

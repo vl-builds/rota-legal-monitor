@@ -77,7 +77,7 @@
     "knownIssues": [
       "Auditoria 2026-06-02: rwr-other-key-workers €3.465/mês (2026) CURRENT. minimumWage removido (Áustria não tem mínimo legal). proofOfFunds corrigido para o Ausgleichszulagenrichtsatz 2026 (€1.308,39).",
       "startup-founders corrigido para €30.000 de capital. Taxas RWR 160→€120 (+€20 biométrico) e job-seeker 150→€195. Fonte migration.gv.at.",
-      "job-seeker (Very Highly Qualified): requisito é 70 pontos, sem montante fixo; o valor €7.200 é UNVERIFIED."
+      "job-seeker (Very Highly Qualified): sem valor fixo oficial de subsistência. Referência prática: 6 × Ausgleichszulagenrichtsatz 2026 (€1.308,39/mês) = €7.851. migration.gv.at confirma critério qualitativo, não numérico. [verificado 2026-06-07]"
     ]
   },
   "visaTypes": [
