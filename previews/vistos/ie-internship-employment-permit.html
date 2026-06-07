@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -492,6 +499,33 @@
           <div class="vp-notes-label">Observação</div>
           O Internship EP é específico para estudantes em programas de estágio curricular. Duração máxima de 12 meses. Não é um caminho para residência permanente. Taxa reduzida de €500. O estágio deve ser remunerado ao salário mínimo nacional e ser relevante para o curso de estudos do candidato.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar elegibilidade: estudante matriculado em instituição de ensino superior fora da Irlanda, com oferta de estágio remunerado de empresa irlandesa relacionado ao curso</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Obter carta da instituição de ensino confirmando matrícula ativa e relevância do estágio para o curso</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Submeter pedido de Internship EP no portal Employment Permits Online do DETE</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €500 e apresentar carta de oferta de estágio, carta da universidade, qualificações</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação, entrar na Irlanda e registrar-se no GNIB/INIS</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

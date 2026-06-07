@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -541,6 +548,37 @@
           <div class="vp-notes-label">Observação</div>
           O sistema de pontos do RVO para autônomos é rigoroso (mínimo 90/100). Pontos por: experiência empreendedora, educação relevante, histórico de atividade empresarial, qualidade do plano de negócios, inovação, exportação, cooperação com empresas holandesas. Processo mais lento que o kennismigrant. Após aprovação, registrar na KvK (Câmara de Comércio holandesa) é obrigatório.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Preparar plano de negócios detalhado demonstrando contribuição econômica para os Países Baixos — avaliado pelo RVO (Rijksdienst voor Ondernemend Nederland) via sistema de pontos</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">O RVO avalia o plano de negócios em 3 critérios: empreendedor (experiência, educação, empreendedorismo prévio — máx. 40 pts), plano de negócios (50 pts) e valor para Países Baixos (10 pts) — mínimo de 90/100 pontos necessários</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Submeter pedido de verblijfsvergunning zelfstandige ao IND com avaliação positiva do RVO</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa IND de €345 e aguardar decisão do IND (2-6 meses)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar MVV no consulado holandês se necessário — pagar ~€225</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar nos Países Baixos, registrar empresa na KvK (Kamer van Koophandel) e registrar-se na gemeente</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

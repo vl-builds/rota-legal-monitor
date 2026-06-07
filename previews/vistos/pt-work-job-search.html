@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -532,6 +539,37 @@
           <div class="vp-notes-label">Observação</div>
           O visto de Procura de Emprego permite residir em Portugal por 120 dias para busca ativa de trabalho — não autoriza trabalho remunerado durante esse período. Ao encontrar emprego, deve-se solicitar a Autorização de Residência na AIMA sem precisar sair de Portugal para obter novo visto D.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Demonstrar qualificações de nível superior (diploma universitário) reconhecidas ou competência comprovada em área com escassez de mão de obra em Portugal</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Comprovar meios de subsistência suficientes para período de busca (aprox. €760/mês — equivalente ao limiar mínimo português)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar Visto D de Procura de Emprego no consulado português no Brasil</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €90 e apresentar documentação: diploma apostilado, extrato bancário, seguro de saúde, certidão de antecedentes</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar em Portugal com o visto D de Procura de Emprego — válido por 120 dias</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Buscar emprego ativamente e, ao encontrar oferta, solicitar Autorização de Residência na AIMA</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

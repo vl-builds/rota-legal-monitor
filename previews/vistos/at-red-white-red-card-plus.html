@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -532,6 +539,37 @@
           <div class="vp-notes-label">Observação</div>
           A RWR Card Plus concede acesso irrestrito ao mercado de trabalho austríaco como empregado ou autônomo, sem vinculação a empregador específico. Elegíveis: titulares de RWR Card, EU Blue Card, familiares e outras categorias. Validade: 1 ano na primeira emissão; 3 anos se com 2 anos de residência e Módulo 1 cumprido.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Após 2 anos de residência legal com RWR Card ou outro título elegível, verificar elegibilidade para conversão</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Cumprir o Módulo 1 do Acordo de Integração (alemão A2 e conhecimento cívico básico) para renovação de 3 anos</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar a RWR Card Plus na autoridade de residência competente (Magistrat, Bezirkshauptmannschaft) — não pode ser solicitada no exterior</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Submeter pedido com até 3 meses de antecedência do vencimento do título atual</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Durante a análise, continuar residindo e trabalhando normalmente na Áustria</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação, receber RWR Card Plus — 1 ano na primeira emissão; 3 anos se com 2 anos de residência e Módulo 1 cumprido</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

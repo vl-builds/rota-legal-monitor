@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -559,6 +566,37 @@
           <div class="vp-notes-label">Observação</div>
           O visto D para atividade independente é para trabalhadores autônomos, freelancers e prestadores de serviços. Após entrar em Portugal, o trabalhador deve abrir a atividade nas Finanças (ato de abertura de atividade) e inscrever-se na Segurança Social como trabalhador independente. Para profissões regulamentadas (arquitetura, medicina, direito, engenharia), o reconhecimento de diploma pela ordem profissional portuguesa pode ser necessário antes de exercer a profissão.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Preparar documentação que comprove atividade independente: contratos com clientes portugueses ou internacionais, portfolio, inscrição em ordem profissional se aplicável</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Comprovar rendimentos previstos compatíveis com atividade independente (mínimo equivalente ao salário mínimo nacional: €920/mês)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar Visto D para Exercício de Atividade Profissional Independente no consulado português no Brasil</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €90 e apresentar documentação: contratos/clientes, qualificações, meios de subsistência, certidão de antecedentes</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar em Portugal e, dentro de 4 meses, abrir atividade como trabalhador independente nas Finanças (Autoridade Tributária) e na Segurança Social</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar Autorização de Residência na AIMA — pagar €83 e comparecer para biometria</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

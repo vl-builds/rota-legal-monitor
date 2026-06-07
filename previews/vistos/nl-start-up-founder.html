@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -532,6 +539,37 @@
           <div class="vp-notes-label">Observação</div>
           O Start-up permit holandês é válido por apenas 1 ano (não renovável) — é um programa de incubação acelerada. O facilitador erkend é uma aceleradora, incubadora ou organização reconhecida que orienta o empreendedor. Após 1 ano, a startup deve ter progredido suficientemente para que o fundador solicite a verblijfsvergunning zelfstandige pelo sistema de pontos do RVO. Países Baixos têm um ecossistema de startups muito desenvolvido — Eindhoven, Amsterdam e Rotterdam são centros principais.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Selecionar um facilitador reconhecido (erkend facilitator) de entre os aprovados pelo RVO — obrigatório para o Start-up permit</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Desenvolver o plano de startup com o facilitador e obter sua carta de apoio — demonstrar produto/serviço inovador e escalável</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Submeter pedido de Start-up verblijfsvergunning ao IND com carta do facilitador e documentação completa</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa IND de €345 — prazo de decisão de 4-8 semanas</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar nos Países Baixos, registrar empresa na KvK e iniciar atividade — Start-up permit válido por 1 ano</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após 1 ano, demonstrar progresso e solicitar conversão para verblijfsvergunning zelfstandige (autônomo) pelo sistema de pontos regular</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

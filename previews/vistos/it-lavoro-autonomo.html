@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -559,6 +566,37 @@
           <div class="vp-notes-label">Observação</div>
           A categoria lavoro autonomo inclui profissões liberais, artisticas, stagisti altamente qualificati e startups. Vagas são limitadas pelo Decreto Flussi anual. Para profissões regulamentadas na Itália (medicina, engenharia, advocacia), o diploma brasileiro pode precisar de reconhecimento (riconoscimento del titolo) antes da inscrição na ordem profissional italiana.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar se a categoria profissional está entre as contempladas pelo Decreto Flussi para lavoro autonomo (profissões liberais, artistas, startups qualificadas)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Reunir documentação comprobatória da atividade autônoma: contrato com cliente italiano, inscrição em ordem profissional, plano de negócios</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Verificar idoneidade financeira: renda mínima de €8.500 anuais (equivalente ao sussidio di accompagnamento mínimo) ou equivalente patrimonial</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Apresentar pedido de Nulla Osta ao lavoro autonomo no Sportello Unico per l'Immigrazione competente</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação do Nulla Osta, solicitar o visto D no consulado italiano no Brasil e pagar taxa de €116</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na Itália e, dentro de 8 dias úteis, apresentar-se ao Sportello Unico e solicitar Permesso di Soggiorno na Questura</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

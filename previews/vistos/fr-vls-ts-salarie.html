@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -550,6 +557,37 @@
           <div class="vp-notes-label">Observação</div>
           O VLS-TS Salarié é o caminho principal para trabalho assalariado na França. O processo de Autorisation de Travail via DREETS pode envolver verificação da situação do mercado de trabalho (oposabilité de l'emploi) — o empregador deve demonstrar que não encontrou candidato local. Após validação no OFII, o VLS-TS funciona como título de residência válido por 12 meses, sem necessidade de ir à prefecture para obter carte de séjour no primeiro ano.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">O empregador francês solicita a Autorisation de Travail (DA) junto à DREETS (Direction régionale de l'économie, de l'emploi, du travail et des solidarités) da região — prazo de 1 mês</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação da DA, o trabalhador solicita o VLS-TS Mention Salarié no consulado francês no Brasil</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa de €99 e apresentar documentação completa incluindo a DA aprovada, contrato de trabalho e documentos pessoais</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação (prazo de 2-4 semanas), entrar na França dentro do prazo de validade do visto (3 meses)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Dentro de 3 meses da chegada, validar o VLS-TS no portal do OFII (Office Français de l'Immigration et de l'Intégration) — visa torna-se o título de residência</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa OFII de €269 e completar o processamento — o VLS-TS validado serve como titre de séjour por 12 meses</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

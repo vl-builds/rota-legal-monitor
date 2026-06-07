@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -564,6 +571,33 @@
           <div class="vp-notes-label">Observação</div>
           Difere do §18a/18b pois não exige reconhecimento formal da qualificação pela Alemanha — basta que seja reconhecida no país de origem. Ideal para brasileiros com formação técnica (SENAI, cursos técnicos de 2+ anos) em profissões não regulamentadas. Para profissões regulamentadas (medicina, advocacia, engenharia), o reconhecimento alemão ainda é exigido.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar que a qualificação não acadêmica (mínimo 2 anos de formação) é reconhecida pelo governo do país onde foi obtida — não exige reconhecimento formal alemão para profissões não regulamentadas</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Comprovar mínimo de 2 anos de experiência profissional na área pretendida</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Obter contrato de trabalho com salário adequado ao cargo (mínimo €45.630/ano para menores de 45 anos; €55.770/ano para maiores de 45)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar visto de trabalho no consulado alemão no Brasil; Bundesagentur für Arbeit aprova em conjunto</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na Alemanha, registrar endereço (Anmeldung) e converter em permissão de residência na Ausländerbehörde</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

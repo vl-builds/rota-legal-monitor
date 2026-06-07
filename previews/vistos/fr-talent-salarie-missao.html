@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -532,6 +539,37 @@
           <div class="vp-notes-label">Observação</div>
           Modalidade para transferências intragrupo de trabalhadores altamente qualificados. Sem DA prévia. Cônjuge recebe Passeport Talent famille com autorização de trabalho. Válido pela duração da missão, máximo 4 anos.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">A empresa francesa (receptora) documenta o vínculo com a empresa enviante e os termos da missão intragrupo</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Verificar elegibilidade: vínculo empregatício mínimo de 3 meses com empresa enviante, cargo de gestor/especialista</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar Passeport Talent Mention Salarié en Mission no consulado francês — sem DA prévia</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €99 e apresentar: carta de missão, contrato com empresa enviante, documentação do grupo empresarial</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na França e validar no OFII dentro de 3 meses — pagar €269</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Receber Passeport Talent válido por até 4 anos (duração da missão)</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

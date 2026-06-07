@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -541,6 +548,37 @@
           <div class="vp-notes-label">Observação</div>
           A PAE é o maior obstáculo: o processo de reconhecimento de diplomas médicos no CNG pode levar de 6 a 18 meses. Após obter a PAE, o Passeport Talent elimina a necessidade de DA via DREETS e é válido por 4 anos. Brasileiro precisará de nível B2 de francês comprovado para inscrição no CNOM.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Obter autorização prévia de exercício (PAE — Procédure d'Autorisation d'Exercice) junto ao Centre National de Gestion (CNG) para médicos/farmacêuticos/dentistas/parteiras estrangeiros</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Apresentar diplomas para validação — processo de reconhecimento pode levar de 3 a 12 meses dependendo da especialidade e do fluxo de candidatos</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após PAE aprovada, obter oferta de emprego em estabelecimento de saúde francês (hospital, clínica, farmácia)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar Passeport Talent Mention Professions médicales et de la pharmacie no consulado francês — sem DA prévia</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €99 e apresentar PAE, contrato de trabalho, diplomas apostilados</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na França e validar no OFII dentro de 3 meses — pagar €269</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -546,6 +553,33 @@
           <div class="vp-notes-label">Observação</div>
           O Tech Visa é um programa prioritário criado para atrair talentos tecnológicos estrangeiros. A chave é o Termo de Responsabilidade emitido por empresa certificada pelo IAPMEI — o processo é significativamente mais rápido que o visto de trabalho padrão. Empresas certificadas comprometem-se com o processo de integração do trabalhador. Lista de empresas certificadas disponível no site do IAPMEI e Startup Portugal.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">A empresa portuguesa candidata-se ao estatuto de empresa tecnológica reconhecida junto ao IAPMEI (Agência para a Competitividade e Inovação) ou Startup Portugal — processo de certificação da empresa</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Empresa certificada emite Termo de Responsabilidade (TR) em nome do trabalhador não-UE que deseja contratar — o TR substitui a Autorização de Empregador</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Trabalhador solicita o Visto D Tech Visa no consulado português no Brasil, apresentando o Termo de Responsabilidade e documentação pessoal</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €90 e aguardar aprovação — prazo de 2-4 semanas (processo prioritário)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar em Portugal e solicitar Autorização de Residência na AIMA dentro de 4 meses — pagar €83</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

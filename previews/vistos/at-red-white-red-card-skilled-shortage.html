@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -550,6 +557,37 @@
           <div class="vp-notes-label">Observação</div>
           Lista de escassez é renovada anualmente pelo Ministério do Trabalho austríaco — 64 ocupações nacionais e 66 regionais em 2026. Sistema de pontos (mín. 55/90): qualificações educacionais compatíveis com a função em escassez; experiência profissional (1 ponto por semestre); idiomas (até 25 pontos para alemão, inglês, francês, espanhol ou BCS). Sem salário mínimo além da convenção coletiva. RWR Card válida 24 meses.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar se a ocupação desejada consta na lista anual de profissões em escassez (Skilled Workers Ordinance) em migration.gv.at</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Obter oferta de emprego de empregador austríaco na ocupação em escassez com salário conforme convenção coletiva</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Calcular pontuação no sistema de pontos — mínimo 55 pontos de 90 — avaliando qualificações, experiência e idioma</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Reunir documentação e apresentar pedido na embaixada/consulado austríaco no Brasil</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">AMS realiza verificação do mercado de trabalho — prazo legal máximo de 8 semanas</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação, entrar na Áustria, registrar endereço (Meldezettel) e retirar cartão no Magistrat</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

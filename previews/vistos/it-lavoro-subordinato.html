@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -576,6 +583,45 @@
           <div class="vp-notes-label">Observação</div>
           O Decreto Flussi é o principal mecanismo de entrada de trabalhadores não-UE na Itália. As vagas abrem uma vez ao ano (às vezes mais) e se esgotam em minutos no 'click day' — o empregador deve estar preparado para agir imediatamente. O número de vagas por país e tipo de trabalho é limitado e varia a cada decreto. O Permesso di Soggiorno fica vinculado ao empregador; para trocar de empregador é necessário obter nova autorização. Ingresso via Decreto Flussi 2026 (cota de 76.200 para subordinado não sazonal; click day 16/02/2026).
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Aguardar a abertura do Decreto Flussi anual — publicado no Gazzetta Ufficiale, geralmente entre outubro e fevereiro do ano seguinte</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">No 'click day' (abertura das vagas), o empregador italiano submete pedido de Nulla Osta no portal di-lavoro.servizisociali.gov.it em nome do trabalhador</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação do Nulla Osta (prazo legal de 60 dias), solicitar o visto D de trabalho no consulado italiano mais próximo no Brasil</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa de visto D de €116 e apresentar documentação completa no consulado</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na Itália com o visto D dentro do prazo de validade (geralmente 6 meses)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Dentro de 8 dias úteis da chegada, apresentar-se ao Sportello Unico per l'Immigrazione para assinar o Contratto di Soggiorno e pagar kit postale (€30)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar o Permesso di Soggiorno (permissão de residência temporária) na Questura local — pagar taxa de €200 do permesso eletrônico</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Aguardar recebimento do Permesso di Soggiorno pelo correio (prazo variável de 30-120 dias)</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

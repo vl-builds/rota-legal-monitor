@@ -270,6 +270,13 @@ const PAGE_CSS = `
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -487,6 +494,20 @@ export function generateVisaPage(
       : `Não há exigência formal de comprovação de idioma para este visto.`,
   })
 
+  const sortedSteps = (visa.process?.steps ?? []).slice().sort((a, b) => a.order - b.order)
+  const stepsSectionHtml = sortedSteps.length > 0
+    ? `<div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          ${sortedSteps.map(s => `<li class="step-item">
+            ${s.name ? `<span class="step-name">${esc(s.name)}</span>` : ''}
+            <span class="step-desc">${esc(s.description)}</span>
+            ${s.estimatedDays ? `<span class="step-days">${s.estimatedDays} dias</span>` : ''}
+          </li>`).join('')}
+        </ol>
+      </div>`
+    : ''
+
   const faqHtml = faqItems.length > 0
     ? `<div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>
@@ -700,6 +721,8 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
           <div class="vp-notes-label">Observação</div>
           ${esc(visa.notes)}
         </div>` : ''}
+
+        ${stepsSectionHtml}
 
         ${faqHtml}
 

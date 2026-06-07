@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -532,6 +539,37 @@
           <div class="vp-notes-label">Observação</div>
           Equivalente ao vls-ts-talent — ambos se referem ao Passeport Talent Salarié Qualifié. Vantagem principal: válido por 4 anos sem renovação anual, sem Autorisation de Travail prévia, cônjuge com autorização de trabalho automática.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar elegibilidade: diploma de nível master + contrato de trabalho com empregador francês com salário mínimo de €39.582/ano (2× SMIC anual de 2024)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Não é necessária Autorisation de Travail via DREETS — processo simplificado direto no consulado</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar Passeport Talent Mention Salarié Qualifié no consulado francês no Brasil</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €99 e apresentar: contrato de trabalho, diploma master apostilado, formulário de visto</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na França e validar junto ao OFII dentro de 3 meses — pagar €269</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Receber Passeport Talent válido por 4 anos — cônjuge recebe Passeport Talent famille automaticamente</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -541,6 +548,37 @@
           <div class="vp-notes-label">Observação</div>
           Permite permanência de até 6 meses na Áustria para busca ativa de trabalho — não autoriza trabalho remunerado durante esse período. Ao conseguir oferta de emprego compatível, solicitar a RWR Card dentro da Áustria. Tempo de processamento pode ser de 4 a 6 meses — planejar com antecedência. Critérios de pontuação são idênticos aos da RWR Card para Very Highly Qualified Workers (mínimo 70 pontos).
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Calcular pontuação no sistema de pontos para Very Highly Qualified Workers em migration.gv.at — mínimo 70 pontos de 100</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Reunir documentação comprobatória dos critérios de pontuação (diplomas apostilados, experiência, idioma, prêmios, patentes)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Comprovar recursos financeiros de aproximadamente €7.200-€8.000 para 6 meses de estada na Áustria</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Contratar seguro de saúde internacional válido na Áustria por todo o período de estada</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar o Visto D Jobsuche na embaixada/consulado austríaco no Brasil — documentos encaminhados ao AMS na Áustria para análise</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação, entrar na Áustria e buscar emprego por até 6 meses — ao encontrar oferta, solicitar a RWR Card internamente</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

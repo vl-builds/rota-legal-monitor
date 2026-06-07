@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -532,6 +539,37 @@
           <div class="vp-notes-label">Observação</div>
           O CSEP é o permit mais vantajoso da Irlanda: permite reunificação familiar imediata (cônjuge recebe Stamp 1G com acesso ao mercado de trabalho), caminho para Stamp 4 após 2 anos (sem necessidade de permit), e path para cidadania em 5 anos. Não há LMNT (Labour Market Needs Test) — empregador não precisa demonstrar que não encontrou candidato local. Limite de 50% de não-EEA na empresa não se aplica ao CSEP.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar que a ocupação consta na Critical Skills Occupations List (CSOL) do Department of Enterprise, Trade and Employment, ou que o salário é superior a €64.000/ano</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Empregador e trabalhador submetem o pedido de CSEP conjuntamente através do portal Employment Permits Online do DETE — o trabalhador pode submeter independentemente</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa de €1.000 (cobrada pelo empregador na maioria dos casos) — reembolsada se recusado</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de candidaturas</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação, o trabalhador fora da Irlanda solicita o visto de entrada (Long Stay 'D' Visa) na Embaixada Irlandesa — pode ser feito em paralelo</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na Irlanda e registrar-se no GNIB/INIS (Irish Naturalisation and Immigration Service) dentro de 90 dias para obter o IRP (Irish Residence Permit)</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

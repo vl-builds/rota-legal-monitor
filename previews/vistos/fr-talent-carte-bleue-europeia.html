@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -536,6 +543,41 @@
           <div class="vp-notes-label">Observação</div>
           Duração varia conforme contrato: se contrato ≥2 anos, cartão emitido pela duração do contrato (máx. 4 anos); se contrato &lt;2 anos, cartão emitido pela duração do contrato + 3 meses (máx. 2 anos). Cônjuge e filhos menores podem obter cartão 'Talent-Famille'
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            <span class="step-name">Verificar condições de elegibilidade</span>
+            <span class="step-desc">Confirmar qualificações, contrato de trabalho e remuneração</span>
+            
+          </li><li class="step-item">
+            <span class="step-name">Determinar procedimento aplicável</span>
+            <span class="step-desc">Se no estrangeiro: solicitar visto nas autoridades consulares francesas. Se na França: solicitar título de residência online</span>
+            
+          </li><li class="step-item">
+            <span class="step-name">Preparar documentação</span>
+            <span class="step-desc">Reunir todos os documentos necessários</span>
+            
+          </li><li class="step-item">
+            <span class="step-name">Submeter solicitação</span>
+            <span class="step-desc">Depositar solicitação de visto ou título de residência online</span>
+            
+          </li><li class="step-item">
+            <span class="step-name">Receber confirmação da prefeitura</span>
+            <span class="step-desc">Prefeitura confirma disponibilidade do cartão de residência e valor da taxa</span>
+            
+          </li><li class="step-item">
+            <span class="step-name">Comprar timbre fiscal</span>
+            <span class="step-desc">Efetuar pagamento de 350 EUR (direito de 50 EUR + taxa de 300 EUR) via internet ou escritório de tabaco</span>
+            
+          </li><li class="step-item">
+            <span class="step-name">Retirar cartão de residência</span>
+            <span class="step-desc">Cartão entregue pela prefeitura ou subprefeitura de residência</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

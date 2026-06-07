@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -555,6 +562,33 @@
           <div class="vp-notes-label">Observação</div>
           A partir de 2026 a restrição de atuar apenas na área de qualificação foi removida. A permissão é concedida por 4 anos (ou prazo do contrato + 3 meses). O procedimento acelerado (Beschleunigtes Fachkräfteverfahren) pode reduzir o prazo total para 4-6 semanas. Salário mínimo de €55.770/ano obrigatório apenas para maiores de 45 anos em primeira vinda.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Confirmar que a qualificação estrangeira é reconhecida ou equivalente ao padrão alemão — verificar ANABIN; caso contrário, solicitar avaliação na ZAB</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Obter oferta ou contrato de trabalho assinado em função qualificada; auxiliares ou funções de nível básico não são aceitos</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Aprovação da Bundesagentur für Arbeit verifica condições de trabalho equivalentes às de trabalhadores locais</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar visto de trabalho no consulado alemão no Brasil com todos os documentos exigidos</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na Alemanha, fazer Anmeldung (registro de endereço) e solicitar permissão de residência na Ausländerbehörde local</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

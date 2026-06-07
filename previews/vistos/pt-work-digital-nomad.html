@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -550,6 +557,37 @@
           <div class="vp-notes-label">Observação</div>
           O Visto D8 Nômade Digital foi criado em 2022 e é muito procurado por brasileiros. O requisito de renda (4× SMN = €3.680/mês em 2024) é significativamente mais alto que outros vistos D. A taxa da AIMA para este visto (€320) é também mais alta. Benefício: após 5 anos em Portugal, elegível para naturalização portuguesa e cidadania europeia. Atenção: a permanência em Portugal pode criar obrigações fiscais — consultar regime de Residente Não Habitual (RNH) ou NHR2.0 para potenciais vantagens fiscais.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar elegibilidade: trabalhar remotamente para empregador ou clientes fora de Portugal, com rendimentos mensais mínimos de €3.680/mês (4× o salário mínimo português de 2024)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Reunir documentação: contrato de trabalho remoto ou contratos com clientes internacionais, extratos bancários dos últimos 3 meses demonstrando rendimentos</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar Visto D Nômade Digital (D8) no consulado português no Brasil — especificar modalidade nômade digital</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar €90 e apresentar: contratos de trabalho remoto, extratos bancários, seguro de saúde, certidão de antecedentes</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Após aprovação (prazo de 30-60 dias), entrar em Portugal dentro da validade do visto</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Dentro de 4 meses da chegada, solicitar Autorização de Residência D8 na AIMA — pagar €320 e comparecer para biometria</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

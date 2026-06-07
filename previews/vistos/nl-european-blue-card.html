@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -514,6 +521,37 @@
           <div class="vp-notes-label">Observação</div>
           A EU Blue Card nos Países Baixos é uma alternativa ao kennismigrant com limiar salarial ligeiramente menor. Vantagem adicional: mobilidade simplificada para outros países da UE após 18 meses. Para a maioria dos candidatos, o kennismigrant é equivalente ou superior em vantagens — escolher conforme salário e planos de mobilidade europeia.
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Empregador erkend referent nos Países Baixos submete pedido de EU Blue Card ao IND para o trabalhador candidato</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Verificar que o salário bruto mensal é de pelo menos €5.331/mês (2025 — limiar específico para EU Blue Card, ligeiramente abaixo do kennismigrant para +30)</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa IND de €345 — prazo de decisão de 2 semanas</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar MVV no consulado holandês no Brasil (se não estiver nos Países Baixos) — custo ~€225</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar nos Países Baixos e registrar-se na gemeente para obter BSN</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Retirar cartão físico de EU Blue Card no IND</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>

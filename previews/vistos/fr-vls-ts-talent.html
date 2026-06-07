@@ -246,6 +246,13 @@
   .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
   .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
   .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
+  .steps-list { list-style: none; padding: 0; margin: 12px 0 0; counter-reset: steps; }
+  .step-item { counter-increment: steps; display: grid; grid-template-columns: 28px 1fr; gap: 0 12px; padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .step-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .step-item::before { content: counter(steps); font-size: 12px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-name { grid-column: 2; font-size: 13px; font-weight: 600; color: var(--on-dark); margin-bottom: 4px; display: block; }
+  .step-desc { grid-column: 2; font-size: 14px; color: var(--body); line-height: 1.6; }
+  .step-days { grid-column: 2; font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
   .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
   .related-card { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; text-decoration: none; transition: border-color .15s; }
   .related-card:hover { border-color: var(--accent); }
@@ -541,6 +548,37 @@
           <div class="vp-notes-label">Observação</div>
           O Passeport Talent (categoria Salarié Qualifié) é o caminho mais rápido para trabalhadores qualificados: sem Autorisation de Travail via DREETS, sem oposabilité de l'emploi, válido por 4 anos. Duas condições obrigatórias: diploma master + salário ≥ 2× SMIC. O cônjuge recebe automaticamente autorização de trabalho (Passeport Talent famille).
         </div>
+
+        <div class="vp-section">
+        <p class="vp-section-title">Como solicitar</p>
+        <ol class="steps-list">
+          <li class="step-item">
+            
+            <span class="step-desc">Verificar elegibilidade: diploma de master ou equivalente + oferta de emprego com salário mínimo de €39.582 anuais (2× o SMIC anual) em empresa com atividade significativa</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Sem necessidade de Autorisation de Travail prévia pela DREETS — processo simplificado direto no consulado</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Solicitar o VLS-TS Mention Passeport Talent (Talent category Salarié qualifié) no consulado francês no Brasil com contrato de trabalho e documentação de qualificações</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa de €99 e apresentar documentação completa — prazo de resposta de 2-4 semanas</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Entrar na França dentro do prazo do visto e validar no OFII dentro de 3 meses</span>
+            
+          </li><li class="step-item">
+            
+            <span class="step-desc">Pagar taxa OFII de €269 — o Passeport Talent é válido por 4 anos diretamente, sem necessidade de renovação anual</span>
+            
+          </li>
+        </ol>
+      </div>
 
         <div class="vp-section">
         <p class="vp-section-title">Perguntas frequentes</p>
