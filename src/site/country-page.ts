@@ -1909,7 +1909,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
 <meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/png" href="favicon.png" />
-<link rel="apple-touch-icon" href="favicon.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="canonical" href="https://rotalegal.pro/pais-${config.code}.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

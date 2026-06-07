@@ -516,7 +516,7 @@ async function patchOpenGraph(): Promise<void> {
 
       // favicon
       if (!html.includes('rel="icon"')) {
-        html = html.replace('</title>', `</title>\n<link rel="icon" type="image/png" href="favicon.png" />\n<link rel="apple-touch-icon" href="favicon.png" />`)
+        html = html.replace('</title>', `</title>\n<link rel="icon" type="image/png" href="favicon.png" />\n<link rel="apple-touch-icon" href="apple-touch-icon.png" />`)
       }
 
       // fontes não-bloqueantes
