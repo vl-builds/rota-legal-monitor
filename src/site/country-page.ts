@@ -1879,11 +1879,13 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   const needsPermit = data.forBrazilians.workPermitNeeded
   const visaCount = data.visaTypes.length
 
+  const year = new Date(data.meta.lastUpdated).getUTCFullYear()
   const mw = data.generalRequirements?.minimumWage
   const salaryPart = mw?.amount
     ? `, salário mínimo ${mw.currency} ${Math.round(mw.amount).toLocaleString('pt-BR')}`
     : ''
   const metaDescription = `Guia completo para trabalhar em ${config.displayName}: ${visaCount} tipos de visto monitorados${salaryPart}. Requisitos, taxas e prazos atualizados em ${updated} com fontes oficiais.`
+  const pageTitle = `Vistos de Trabalho em ${config.displayName} ${year}: ${visaCount} opções | Rota Legal`
 
   const visaCardsHtml = sorted.length > 0
     ? sorted.map(v => renderVisaCard(v, config.code)).join('')
@@ -1897,11 +1899,11 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>${esc(config.displayName)} — Rota Legal</title>
+<title>${esc(pageTitle)}</title>
 <meta name="description" content="${esc(metaDescription)}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Rota Legal" />
-<meta property="og:title" content="${esc(config.displayName)} — Rota Legal" />
+<meta property="og:title" content="${esc(pageTitle)}" />
 <meta property="og:description" content="${esc(metaDescription)}" />
 <meta property="og:url" content="https://rotalegal.pro/pais-${config.code}.html" />
 <meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />

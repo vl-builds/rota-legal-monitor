@@ -265,6 +265,10 @@ const PAGE_CSS = `
     .vp-stat-label, .vp-section-title, .vp-card-title,
     .vp-field-label, .vp-notes-label { font-size: 12px; }
   }
+  .faq-item { border-top: 1px solid var(--hairline); padding: 16px 0; }
+  .faq-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .faq-q { font-size: 15px; font-weight: 600; color: var(--on-dark); margin: 0 0 8px; }
+  .faq-a { font-size: 14px; color: var(--body); line-height: 1.65; margin: 0; }
 `
 
 export function visaPageSlug(cc: string, visaId: string): string {
@@ -277,6 +281,8 @@ export function generateVisaPage(
   config: CountryPageConfig,
 ): string {
   const updated = monthLabel(data.meta.lastUpdated)
+  const year = new Date(data.meta.lastUpdated).getUTCFullYear()
+  const pageTitle = `${visa.name} — ${config.displayName} ${year}: requisitos e documentação | Rota Legal`
   const tag = tagLabel(visa)
 
   const tagClass =
@@ -428,16 +434,69 @@ export function generateVisaPage(
 
   const hasSidebarReqs = incomeHtml || langHtml || qualsHtml
 
+  // FAQ — gerado automaticamente dos dados disponíveis
+  const faqItems: Array<{q: string; a: string}> = []
+
+  if (visa.requirements.incomeRequirement?.amount) {
+    const ir = visa.requirements.incomeRequirement
+    const amt = ir.amount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    const per = ir.period === 'monthly' ? '/mês' : ir.period === 'yearly' ? '/ano' : ''
+    faqItems.push({
+      q: `Qual é a renda mínima exigida para o ${visa.name}?`,
+      a: `${ir.currency} ${amt}${per}${ir.notes ? '. ' + ir.notes : ''}.`,
+    })
+  }
+
+  if (visa.process.estimatedDuration) {
+    faqItems.push({
+      q: `Quanto tempo leva o processo do ${visa.name}?`,
+      a: `O prazo estimado é de ${visa.process.estimatedDuration}. O tempo real pode variar conforme a demanda do consulado e da autoridade migratória local.`,
+    })
+  }
+
+  if (visa.process.fees.length > 0) {
+    const byCur: Record<string, number> = {}
+    for (const f of visa.process.fees) byCur[f.currency] = (byCur[f.currency] || 0) + f.amount
+    const totalStr = Object.entries(byCur).map(([cur, amt]) => `${cur} ${amt.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`).join(' + ')
+    faqItems.push({
+      q: `Qual é o custo total do processo?`,
+      a: `O custo estimado em taxas oficiais é de ${totalStr}. Valores sujeitos a atualização — confirme no consulado ou na autoridade migratória.`,
+    })
+  }
+
+  if (visa.requirements.documents.length > 0) {
+    const critical = visa.requirements.documents.filter(d => d.isCritical)
+    const names = critical.slice(0, 4).map(d => d.name).join(', ')
+    faqItems.push({
+      q: `Quais são os documentos essenciais para o ${visa.name}?`,
+      a: `São necessários ${visa.requirements.documents.length} documentos no total, sendo ${critical.length} essenciais: ${names}${critical.length > 4 ? ` e mais ${critical.length - 4}` : ''}.`,
+    })
+  }
+
+  faqItems.push({
+    q: `É necessário comprovar proficiência em idioma?`,
+    a: visa.requirements.languageRequired
+      ? `Sim: ${visa.requirements.languageRequired.language}, nível ${visa.requirements.languageRequired.level}.`
+      : `Não há exigência formal de comprovação de idioma para este visto.`,
+  })
+
+  const faqHtml = faqItems.length > 0
+    ? `<div class="vp-section">
+        <p class="vp-section-title">Perguntas frequentes</p>
+        ${faqItems.map(({ q, a }) => `<div class="faq-item"><p class="faq-q">${esc(q)}</p><p class="faq-a">${esc(a)}</p></div>`).join('')}
+      </div>`
+    : ''
+
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>${esc(visa.name)} — ${esc(config.displayName)} — Rota Legal</title>
+<title>${esc(pageTitle)}</title>
 <meta name="description" content="${esc(visa.description.slice(0, 160))}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Rota Legal" />
-<meta property="og:title" content="${esc(visa.name)} — ${esc(config.displayName)} — Rota Legal" />
+<meta property="og:title" content="${esc(pageTitle)}" />
 <meta property="og:description" content="${esc(visa.description.slice(0, 160))}" />
 <meta property="og:url" content="https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}" />
 <meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
@@ -475,6 +534,15 @@ export function generateVisaPage(
     },
   ],
 })}</script>
+${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+})}</script>` : ''}
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
@@ -613,6 +681,8 @@ export function generateVisaPage(
           <div class="vp-notes-label">Observação</div>
           ${esc(visa.notes)}
         </div>` : ''}
+
+        ${faqHtml}
 
         <div class="vp-cta-row">
           <a class="vp-cta-primary" href="../pais-${esc(config.code)}.html#vistos">← Ver todos os vistos de ${esc(config.displayName)}</a>

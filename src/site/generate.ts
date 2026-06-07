@@ -348,47 +348,47 @@ function escAttr(s: string): string {
 const STATIC_OG: Array<{ file: string; title: string; description: string }> = [
   {
     file: 'index.html',
-    title: 'Rota Legal — Trabalhar no exterior com dados de verdade',
+    title: 'Trabalhar na Europa 2026: vistos, requisitos e salários com dados oficiais | Rota Legal',
     description: 'Monitore requisitos de visto de trabalho em 10 países europeus. Dados atualizados mensalmente com fontes oficiais.',
   },
   {
     file: 'paises.html',
-    title: 'Países — Rota Legal',
+    title: 'Comparar Vistos de Trabalho na Europa 2026: Portugal, Alemanha, Holanda e mais | Rota Legal',
     description: 'Compare requisitos de imigração em 10 países: Portugal, Alemanha, Países Baixos e mais. Dados atualizados mensalmente.',
   },
   {
     file: 'comparar.html',
-    title: 'Comparar países — Rota Legal',
+    title: 'Comparar Países para Imigrar: salários, vistos e requisitos lado a lado | Rota Legal',
     description: 'Compare vistos de trabalho entre países europeus lado a lado. Salários, requisitos e taxas atualizados.',
   },
   {
     file: 'qual-pais.html',
-    title: 'Qual país combina com você? — Rota Legal',
+    title: 'Qual País Europeu é Melhor para Morar e Trabalhar? Descubra o seu | Rota Legal',
     description: 'Descubra qual país europeu combina com seu perfil. Responda 6 perguntas e receba uma recomendação personalizada.',
   },
   {
     file: 'calculadora.html',
-    title: 'Calculadora de Reserva — Rota Legal',
+    title: 'Calculadora: Quanto Guardar para Emigrar para a Europa? | Rota Legal',
     description: 'Calcule quanto você precisa guardar para emigrar. Reserva mínima por país, duração e estilo de vida.',
   },
   {
     file: 'historico.html',
-    title: 'Histórico de mudanças — Rota Legal',
+    title: 'Histórico de Mudanças em Vistos Europeus 2024-2026: alterações mensais | Rota Legal',
     description: 'Acompanhe o histórico de mudanças nas regras de imigração europeia. Alterações mensais em vistos, salários e taxas.',
   },
   {
     file: 'guia-pratico.html',
-    title: 'Guia Prático — Rota Legal',
+    title: 'Guia Prático para Emigrar para a Europa: passo a passo para brasileiros | Rota Legal',
     description: 'Guia prático para emigrar para a Europa. Passo a passo, documentação e dicas para brasileiros.',
   },
   {
     file: 'sobre.html',
-    title: 'Sobre — Rota Legal',
+    title: 'Sobre o Rota Legal: metodologia e fontes dos dados de imigração europeia | Rota Legal',
     description: 'Metodologia, fontes e limitações do Rota Legal. Dados de imigração para 10 países europeus, atualizados mensalmente.',
   },
   {
     file: 'parceiros.html',
-    title: 'Parceiros — Rota Legal',
+    title: 'Parceiros Rota Legal: serviços para quem vai trabalhar no exterior | Rota Legal',
     description: 'Serviços parceiros para quem vai trabalhar no exterior: contabilidade, seguro, câmbio e mais.',
   },
 ]
@@ -407,6 +407,9 @@ async function patchOpenGraph(): Promise<void> {
         `<meta property="og:url" content="${url}" />`,
         `<meta property="og:image" content="${SITE_URL}/assets/og-default.png" />`,
       ].join('\n')
+
+      // atualiza <title>
+      html = html.replace(/<title>[^<]*<\/title>/, `<title>${escAttr(title)}</title>`)
 
       if (html.includes('property="og:title"')) {
         html = html
