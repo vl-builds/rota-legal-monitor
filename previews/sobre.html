@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sobre o Rota Legal: metodologia e fontes dos dados de imigração europeia | Rota Legal</title>
 <link rel="icon" type="image/png" href="favicon.png" />
-<link rel="apple-touch-icon" href="favicon.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <link rel="canonical" href="https://rotalegal.pro/sobre.html" />
 <meta name="description" content="Metodologia, fontes e limitações do Rota Legal. Dados de imigração para 10 países europeus, atualizados mensalmente." />
 <meta property="og:type" content="website" />
@@ -381,6 +381,44 @@
         <h3 class="step-title">Diff e versionamento</h3>
         <p class="step-body">O snapshot novo é comparado com o anterior. Mudanças de alta relevância abrem uma issue automática no GitHub. Tudo é versionado em Git, sem banco de dados.</p>
       </div>
+      <div class="step-card">
+        <div class="step-num">07</div>
+        <h3 class="step-title">Auditoria cruzada</h3>
+        <p class="step-body">Após a extração, valores críticos (salário mínimo, taxas, prazos) são comparados contra <code style="font-size:11px;color:var(--primary);">verificationUrls</code> independentes via LLM. Divergências acima de 5% são anotadas em <code style="font-size:11px;color:var(--primary);">reliability.knownIssues</code> e geram uma issue no GitHub automaticamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VERIFICAÇÃO INDEPENDENTE ============== -->
+<section class="section">
+  <div class="container">
+    <span class="section-header">Garantia de qualidade</span>
+    <h2 class="section-title">Como evitamos erros silenciosos</h2>
+    <p class="section-body" style="max-width: 560px;">Extração por LLM pode produzir valores plausíveis mas errados. O pipeline tem duas travas independentes para detectar isso antes que o dado errado chegue ao usuário.</p>
+
+    <div class="limit-list" style="margin-top: var(--s-xl);">
+      <div class="limit-card">
+        <div class="limit-accent yellow"></div>
+        <div class="limit-content">
+          <p class="limit-title">Guard: bloqueia degradação estrutural</p>
+          <p class="limit-body"><code style="font-size:11px;color:var(--primary);">bun run guard</code> compara o snapshot novo com o anterior e detecta sinais de degradação: IDs de vistos trocados, campos de enriquecimento zerados, vistos duplicados. Se encontrar, bloqueia o commit e abre uma issue no GitHub. O cron mensal nunca publica um snapshot degradado.</p>
+        </div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-accent yellow"></div>
+        <div class="limit-content">
+          <p class="limit-title">Audit: verifica valores contra fontes independentes</p>
+          <p class="limit-body"><code style="font-size:11px;color:var(--primary);">bun run audit</code> usa um segundo LLM para buscar os <code style="font-size:11px;color:var(--primary);">verificationUrls</code> de cada país (portais independentes de expatriados, análises especializadas) e compara os valores críticos extraídos. Divergências maiores que 5% ficam anotadas visivelmente no JSON e na interface, para que o usuário saiba que aquele dado tem ressalva.</p>
+        </div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-accent"></div>
+        <div class="limit-content">
+          <p class="limit-title">Código aberto: qualquer pessoa pode auditar</p>
+          <p class="limit-body">Todo o pipeline de extração, o schema de dados e o histórico de snapshots são públicos no GitHub. Qualquer pessoa pode verificar como os dados foram gerados, comparar com a fonte oficial e abrir uma issue se encontrar discrepância. Não existe dado oculto ou processamento fora do repositório público.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -662,6 +700,45 @@
     <div style="margin-top: var(--s-xl); display: flex; gap: var(--s-md); flex-wrap: wrap;">
       <a class="btn btn-secondary" href="#" style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">Ver repositório no GitHub</a>
       <a class="btn btn-secondary" href="historico.html">Ver histórico de mudanças</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== QUEM MANTÉM ============== -->
+<section class="section" style="background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
+  <div class="container">
+    <span class="section-header">Quem mantém</span>
+    <h2 class="section-title">Projeto independente, sem patrocinador</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-xxl); align-items: start;">
+      <div class="section-body">
+        <p>O Rota Legal é mantido por um brasileiro que passou pelo processo de pesquisa de visto de trabalho na Europa e frustrou-se com a falta de uma fonte confiável, atualizada e objetiva.</p>
+        <p>Não é um escritório de imigração, não tem afiliação com governos e não recebe comissão por indicações de vistos. Os parceiros listados na página de parceiros são indicações editoriais ou acordos comerciais transparentes, sempre identificados como tal.</p>
+        <p>O repositório de dados é MIT. Os dados em si são de domínio público (fontes governamentais). O código da interface é proprietário.</p>
+      </div>
+      <div>
+        <div class="stack-grid" style="margin-top: 0;">
+          <div class="stack-card">
+            <div class="stack-role">Origem</div>
+            <div class="stack-name">Brasil</div>
+            <div class="stack-note">Feito por e para brasileiros pesquisando trabalho na Europa</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-role">Modelo</div>
+            <div class="stack-name">Open-core</div>
+            <div class="stack-note">Dados e pipeline públicos. Ferramentas avançadas na Área do Aluno</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-role">Conflito de interesse</div>
+            <div class="stack-name">Nenhum</div>
+            <div class="stack-note">Sem patrocinadores, sem comissão por indicação de visto</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-role">Contato</div>
+            <div class="stack-name">contato@rotalegal.pro</div>
+            <div class="stack-note">Para erros nos dados, sugestões ou parcerias editoriais</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
