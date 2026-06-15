@@ -3,7 +3,7 @@ import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
 import { generateCountryPage } from './country-page'
 import type { CountryPageConfig } from './country-page'
-import { generateVisaPage, visaPageSlug } from './visa-page'
+import { generateVisaPage, visaPageSlug, visaPageUrlSlug } from './visa-page'
 import type { CountryData, PolicyChange } from '@/extractors/schema'
 import { sources } from '@/sources'
 
@@ -536,19 +536,21 @@ async function patchOpenGraph(): Promise<void> {
   }
 }
 
+// Caminhos publicos sem .html: o Cloudflare Pages redireciona .html (308) para esta forma,
+// entao o sitemap aponta direto para a URL que retorna 200.
 const STATIC_PAGES: Array<{ path: string; priority: string; changefreq: string }> = [
   { path: '/',                       priority: '1.0', changefreq: 'monthly' },
-  { path: '/paises.html',            priority: '0.9', changefreq: 'monthly' },
-  { path: '/comparar.html',          priority: '0.8', changefreq: 'monthly' },
-  { path: '/qual-pais.html',         priority: '0.8', changefreq: 'monthly' },
-  { path: '/calculadora.html',       priority: '0.7', changefreq: 'monthly' },
-  { path: '/historico.html',         priority: '0.7', changefreq: 'monthly' },
-  { path: '/guia-pratico.html',      priority: '0.6', changefreq: 'monthly' },
-  { path: '/sobre.html',             priority: '0.5', changefreq: 'monthly' },
-  { path: '/parceiros.html',         priority: '0.4', changefreq: 'monthly' },
-  { path: '/politica-privacidade.html', priority: '0.3', changefreq: 'yearly' },
-  { path: '/politica-cookies.html',  priority: '0.3', changefreq: 'yearly' },
-  { path: '/termos-uso.html',        priority: '0.3', changefreq: 'yearly' },
+  { path: '/paises',                 priority: '0.9', changefreq: 'monthly' },
+  { path: '/comparar',               priority: '0.8', changefreq: 'monthly' },
+  { path: '/qual-pais',              priority: '0.8', changefreq: 'monthly' },
+  { path: '/calculadora',            priority: '0.7', changefreq: 'monthly' },
+  { path: '/historico',              priority: '0.7', changefreq: 'monthly' },
+  { path: '/guia-pratico',           priority: '0.6', changefreq: 'monthly' },
+  { path: '/sobre',                  priority: '0.5', changefreq: 'monthly' },
+  { path: '/parceiros',              priority: '0.4', changefreq: 'monthly' },
+  { path: '/politica-privacidade',   priority: '0.3', changefreq: 'yearly' },
+  { path: '/politica-cookies',       priority: '0.3', changefreq: 'yearly' },
+  { path: '/termos-uso',             priority: '0.3', changefreq: 'yearly' },
 ]
 
 async function generateSitemap(
@@ -567,10 +569,10 @@ async function generateSitemap(
   for (const { code, data } of allData) {
     const lastmod = data.meta.lastUpdated.slice(0, 10)
     urlTags.push(
-      `  <url>\n    <loc>${SITE_URL}/pais-${code}.html</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`,
+      `  <url>\n    <loc>${SITE_URL}/pais-${code}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`,
     )
     for (const visa of data.visaTypes) {
-      const slug = visaPageSlug(code, visa.id)
+      const slug = visaPageUrlSlug(code, visa.id)
       urlTags.push(
         `  <url>\n    <loc>${SITE_URL}/vistos/${slug}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
       )

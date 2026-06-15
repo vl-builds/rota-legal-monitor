@@ -288,6 +288,13 @@ export function visaPageSlug(cc: string, visaId: string): string {
   return `${cc}-${visaId}.html`
 }
 
+// URL publica sem extensao. O Cloudflare Pages redireciona .html (308) para esta forma,
+// entao canonical/og:url/sitemap apontam direto para a URL que retorna 200 e evitam o
+// canonical auto-anulante que confunde o rastreador.
+export function visaPageUrlSlug(cc: string, visaId: string): string {
+  return `${cc}-${visaId}`
+}
+
 export function generateVisaPage(
   visa: VisaType,
   data: CountryData,
@@ -538,12 +545,12 @@ export function generateVisaPage(
 <meta property="og:site_name" content="Rota Legal" />
 <meta property="og:title" content="${esc(pageTitle)}" />
 <meta property="og:description" content="${esc(visa.description.slice(0, 160))}" />
-<meta property="og:url" content="https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}" />
+<meta property="og:url" content="https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}" />
 <meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/png" href="../favicon.png" />
 <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
-<link rel="canonical" href="https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}" />
+<link rel="canonical" href="https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" />
