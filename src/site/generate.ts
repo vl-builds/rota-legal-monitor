@@ -441,48 +441,48 @@ function escAttr(s: string): string {
 const STATIC_OG: Array<{ file: string; title: string; description: string }> = [
   {
     file: 'index.html',
-    title: 'Trabalhar na Europa 2026: vistos, requisitos e salários com dados oficiais | Rota Legal',
-    description: 'Monitore requisitos de visto de trabalho em 10 países europeus. Dados atualizados mensalmente com fontes oficiais.',
+    title: 'Trabalhar na Europa 2026: vistos e salários | Rota Legal',
+    description: 'Monitore requisitos de visto de trabalho em 10 países europeus, com salário mínimo, prazos e taxas. Fontes oficiais, atualizado todo mês.',
   },
   {
     file: 'paises.html',
-    title: 'Comparar Vistos de Trabalho na Europa 2026: Portugal, Alemanha, Holanda e mais | Rota Legal',
-    description: 'Compare requisitos de imigração em 10 países: Portugal, Alemanha, Países Baixos e mais. Dados atualizados mensalmente.',
+    title: 'Vistos de Trabalho na Europa 2026: 10 países | Rota Legal',
+    description: 'Compare requisitos de imigração em 10 países europeus: Portugal, Alemanha, Países Baixos, Irlanda e mais. Salários e prazos atualizados todo mês.',
   },
   {
     file: 'comparar.html',
-    title: 'Comparar Países para Imigrar: salários, vistos e requisitos lado a lado | Rota Legal',
-    description: 'Compare vistos de trabalho entre países europeus lado a lado. Salários, requisitos e taxas atualizados.',
+    title: 'Comparar Países para Imigrar na Europa | Rota Legal',
+    description: 'Compare vistos de trabalho entre países europeus lado a lado: salários, requisitos, prazos e taxas, com dados oficiais atualizados todo mês.',
   },
   {
     file: 'qual-pais.html',
-    title: 'Qual País Europeu é Melhor para Morar e Trabalhar? Descubra o seu | Rota Legal',
-    description: 'Descubra qual país europeu combina com seu perfil. Responda 6 perguntas e receba uma recomendação personalizada.',
+    title: 'Qual País Europeu é o Seu? Teste rápido | Rota Legal',
+    description: 'Descubra qual país europeu combina com seu perfil profissional. Responda 6 perguntas e receba uma recomendação com justificativa e um plano B.',
   },
   {
     file: 'calculadora.html',
-    title: 'Calculadora: Quanto Guardar para Emigrar para a Europa? | Rota Legal',
-    description: 'Calcule quanto você precisa guardar para emigrar. Reserva mínima por país, duração e estilo de vida.',
+    title: 'Calculadora: Quanto Guardar para Emigrar | Rota Legal',
+    description: 'Calcule quanto guardar para emigrar para a Europa: reserva mínima por país, duração e estilo de vida, com base em custos reais atualizados.',
   },
   {
     file: 'historico.html',
-    title: 'Histórico de Mudanças em Vistos Europeus 2024-2026: alterações mensais | Rota Legal',
-    description: 'Acompanhe o histórico de mudanças nas regras de imigração europeia. Alterações mensais em vistos, salários e taxas.',
+    title: 'Histórico de Mudanças em Vistos Europeus | Rota Legal',
+    description: 'Acompanhe o histórico de mudanças nas regras de imigração europeia: alterações mensais em vistos, salários mínimos, taxas e prazos, mês a mês.',
   },
   {
     file: 'guia-pratico.html',
-    title: 'Guia Prático para Emigrar para a Europa: passo a passo para brasileiros | Rota Legal',
-    description: 'Guia prático para emigrar para a Europa. Passo a passo, documentação e dicas para brasileiros.',
+    title: 'Guia Prático para Emigrar para a Europa | Rota Legal',
+    description: 'Guia prático para emigrar para a Europa: escolha do país, visto, documentação, custos e chegada, passo a passo para brasileiros. Atualizado todo mês.',
   },
   {
     file: 'sobre.html',
-    title: 'Sobre o Rota Legal: metodologia e fontes dos dados de imigração europeia | Rota Legal',
-    description: 'Metodologia, fontes e limitações do Rota Legal. Dados de imigração para 10 países europeus, atualizados mensalmente.',
+    title: 'Sobre o Rota Legal: metodologia e fontes | Rota Legal',
+    description: 'Conheça a metodologia, as fontes oficiais e as limitações do Rota Legal. Dados de imigração para 10 países europeus, atualizados todo mês.',
   },
   {
     file: 'parceiros.html',
-    title: 'Parceiros Rota Legal: serviços para quem vai trabalhar no exterior | Rota Legal',
-    description: 'Serviços parceiros para quem vai trabalhar no exterior: contabilidade, seguro, câmbio e mais.',
+    title: 'Parceiros Rota Legal: serviços para o exterior | Rota Legal',
+    description: 'Serviços parceiros para quem vai trabalhar no exterior: contabilidade, seguro, câmbio, remessas e mais, selecionados para brasileiros na Europa.',
   },
 ]
 
@@ -516,8 +516,11 @@ async function patchOpenGraph(): Promise<void> {
         html = html.replace('</title>', `</title>\n${ogBlock}`)
       }
 
-      // meta description
-      if (!html.includes('name="description"')) {
+      // meta description: autoritativa. Reescreve a existente (mantem o STATIC_OG
+      // como fonte de verdade) ou injeta se faltar.
+      if (html.includes('name="description"')) {
+        html = html.replace(/(<meta name="description" content=")[^"]*(")/, `$1${escAttr(description)}$2`)
+      } else {
         html = html.replace('</title>', `</title>\n<meta name="description" content="${escAttr(description)}" />`)
       }
 

@@ -1942,6 +1942,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
       dateModified: data.meta.lastUpdated.slice(0, 10),
       inLanguage: 'pt-BR',
       isPartOf: { '@id': 'https://rotalegal.pro/#website' },
+      author: { '@id': 'https://rotalegal.pro/#organization' },
       publisher: { '@id': 'https://rotalegal.pro/#organization' },
     },
     {
@@ -2025,6 +2026,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
           ${config.workingHoliday ? '<span class="badge new">Working Holiday</span>' : ''}
           <span class="badge new">Atualizado ${updated}</span>
         </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:14px;line-height:1.5;max-width:560px;">Curadoria <a href="/sobre#metodologia" style="color:var(--body-strong);border-bottom:1px solid var(--hairline-strong);text-decoration:none;">Rota Legal</a> a partir de fontes oficiais de imigração, verificadas a cada ciclo mensal.</p>
       </div>
     </div>
   </div>

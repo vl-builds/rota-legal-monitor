@@ -91,6 +91,11 @@ const PAGE_CSS = `
     font-size: 13px; font-family: 'JetBrains Mono', monospace;
     color: var(--muted); margin-top: 8px;
   }
+  .vp-byline {
+    font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.5;
+  }
+  .vp-byline a { color: var(--body-strong); text-decoration: none; border-bottom: 1px solid var(--hairline-strong); }
+  .vp-byline a:hover { color: var(--primary); border-bottom-color: var(--primary); }
 
   .vp-stats-strip {
     display: flex; flex-wrap: wrap; gap: 0;
@@ -590,6 +595,7 @@ export function generateVisaPage(
       dateModified: data.meta.lastUpdated.slice(0, 10),
       inLanguage: 'pt-BR',
       isPartOf: { '@id': 'https://rotalegal.pro/#website' },
+      author: { '@id': 'https://rotalegal.pro/#organization' },
       publisher: { '@id': 'https://rotalegal.pro/#organization' },
     },
     {
@@ -687,6 +693,7 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
         <div class="vp-hero-tag"><span class="${tagClass}">${esc(tag)}</span></div>
         <h1 class="vp-hero-title">${esc(visa.name)}</h1>
         <p class="vp-hero-original">${esc(visa.nameOriginal)}</p>
+        <p class="vp-byline">Curadoria <a href="/sobre#metodologia">Rota Legal</a> a partir de fontes oficiais de imigração. Atualizado em ${updated}.</p>
       </div>
     </div>
 

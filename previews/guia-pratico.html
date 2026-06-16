@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Guia Prático para Emigrar para a Europa: passo a passo para brasileiros | Rota Legal</title>
+<title>Guia Prático para Emigrar para a Europa | Rota Legal</title>
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="apple-touch-icon" href="favicon.png" />
 <link rel="canonical" href="https://rotalegal.pro/guia-pratico" />
-<meta name="description" content="Guia prático para emigrar para a Europa. Passo a passo, documentação e dicas para brasileiros." />
-<meta property="og:type" content="website" />
+<meta name="description" content="Guia prático para emigrar para a Europa: escolha do país, visto, documentação, custos e chegada, passo a passo para brasileiros. Atualizado todo mês." />
+<meta property="og:type" content="article" />
 <meta property="og:site_name" content="Rota Legal" />
-<meta property="og:title" content="Guia Prático para Emigrar para a Europa: passo a passo para brasileiros | Rota Legal" />
-<meta property="og:description" content="Guia prático para emigrar para a Europa. Passo a passo, documentação e dicas para brasileiros." />
+<meta property="og:title" content="Guia Prático para Emigrar para a Europa | Rota Legal" />
+<meta property="og:description" content="Guia prático para emigrar para a Europa: escolha do país, visto, documentação, custos e chegada, passo a passo para brasileiros. Atualizado todo mês." />
 <meta property="og:url" content="https://rotalegal.pro/guia-pratico" />
 <meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -23,9 +23,66 @@
   .gp-hero { padding: var(--s-section) 0 var(--s-xl); text-align: center; }
   .gp-hero h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.05; letter-spacing: -1.5px; font-weight: 700; margin: 0 0 var(--s-md); }
   .gp-hero h1 .accent { color: var(--primary); }
-  .gp-hero .lede { max-width: 620px; margin: 0 auto; color: var(--body); font-size: 17px; line-height: 1.55; }
+  .gp-hero .lede { max-width: 640px; margin: 0 auto; color: var(--body); font-size: 17px; line-height: 1.6; }
   .gp-hero .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: var(--s-md); }
   .gp-hero .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+
+  /* ---- prose do guia ---- */
+  .gp-prose { max-width: 760px; margin: 0 auto; }
+  .gp-prose h2 {
+    font-size: clamp(24px, 3.4vw, 30px); font-weight: 700; letter-spacing: -0.6px;
+    color: var(--on-dark); line-height: 1.2; margin: var(--s-section) 0 var(--s-md);
+    scroll-margin-top: 90px;
+  }
+  .gp-prose h2 .gp-step {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px;
+    color: var(--primary); font-weight: 500; display: block; margin-bottom: 6px; letter-spacing: 1px;
+  }
+  .gp-prose h3 { font-size: 18px; font-weight: 600; color: var(--on-dark); margin: var(--s-lg) 0 var(--s-xs); }
+  .gp-prose p { font-size: 16px; line-height: 1.7; color: var(--body); margin: 0 0 var(--s-md); }
+  .gp-prose a { color: var(--primary); text-decoration: none; border-bottom: 1px solid rgba(240,180,41,0.35); }
+  .gp-prose a:hover { border-bottom-color: var(--primary); }
+  .gp-prose ul { margin: 0 0 var(--s-md); padding-left: 0; list-style: none; }
+  .gp-prose ul li { font-size: 16px; line-height: 1.6; color: var(--body); padding-left: 22px; position: relative; margin-bottom: 10px; }
+  .gp-prose ul li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+  .gp-prose strong { color: var(--on-dark); font-weight: 600; }
+
+  .gp-lede-strong { font-size: 18px; line-height: 1.65; color: var(--body-strong); margin: 0 0 var(--s-lg); }
+
+  .gp-toc {
+    background: var(--surface-card); border: 1px solid var(--hairline);
+    border-radius: var(--r-lg); padding: var(--s-lg); margin: var(--s-xl) 0 0;
+  }
+  .gp-toc .caption-up { display: block; margin-bottom: var(--s-sm); color: var(--muted); }
+  .gp-toc ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+  .gp-toc ol li { font-size: 15px; color: var(--body); }
+  .gp-toc ol li a { color: var(--body-strong); text-decoration: none; border-bottom: 1px solid transparent; }
+  .gp-toc ol li a:hover { border-bottom-color: var(--primary); color: var(--primary); }
+
+  .gp-checklist {
+    background: var(--surface-card); border: 1px solid var(--hairline);
+    border-radius: var(--r-lg); padding: var(--s-lg); margin: var(--s-md) 0 var(--s-lg);
+  }
+  .gp-checklist .caption-up { display: block; margin-bottom: var(--s-sm); color: var(--primary); }
+  .gp-checklist ul li::before { top: 9px; width: 14px; height: 14px; border-radius: 4px; background: transparent; border: 1.5px solid var(--primary); left: 0; }
+  .gp-checklist ul li { padding-left: 26px; }
+
+  .gp-callout {
+    border-left: 3px solid var(--primary); background: rgba(240,180,41,0.06);
+    padding: var(--s-md) var(--s-lg); border-radius: 0 var(--r-md) var(--r-md) 0; margin: var(--s-md) 0 var(--s-lg);
+  }
+  .gp-callout p { margin: 0; font-size: 15px; color: var(--body-strong); }
+
+  .gp-faq { max-width: 760px; margin: 0 auto; }
+  .gp-faq-item { border-top: 1px solid var(--hairline); padding: var(--s-lg) 0; }
+  .gp-faq-item:last-child { border-bottom: 1px solid var(--hairline); }
+  .gp-faq-q { font-size: 18px; font-weight: 600; color: var(--on-dark); margin: 0 0 var(--s-xs); }
+  .gp-faq-a { font-size: 16px; line-height: 1.7; color: var(--body); margin: 0; }
+  .gp-faq-a a { color: var(--primary); text-decoration: none; border-bottom: 1px solid rgba(240,180,41,0.35); }
+
+  .gp-section-label { text-align: center; margin-bottom: var(--s-lg); }
+  .gp-section-label h2 { font-size: clamp(24px, 3.4vw, 30px); font-weight: 700; letter-spacing: -0.6px; color: var(--on-dark); margin: 0 0 var(--s-xs); }
+  .gp-section-label p { color: var(--muted); font-size: 15px; margin: 0; }
 
   .gp-grid {
     display: grid;
@@ -33,87 +90,25 @@
     gap: var(--s-md);
     padding-bottom: var(--s-section);
   }
-
   .gp-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--s-md);
-    padding: var(--s-lg);
-    background: var(--surface-card);
-    border: 1px solid var(--hairline);
-    border-radius: var(--r-lg);
-    text-decoration: none;
-    color: var(--on-dark);
+    display: flex; flex-direction: column; gap: var(--s-md); padding: var(--s-lg);
+    background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg);
+    text-decoration: none; color: var(--on-dark);
     transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
-  .gp-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    background: var(--surface-elevated);
-  }
-  .gp-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    border: 1px solid transparent;
-    pointer-events: none;
-    transition: border-color 160ms ease;
-  }
-
-  .gp-card-top {
-    display: flex;
-    align-items: center;
-    gap: var(--s-sm);
-  }
-  .gp-card-top .cc-flag {
-    width: 36px;
-    height: 27px;
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
-  .gp-card-name {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--on-dark);
-  }
-  .gp-card-code {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 2px;
-  }
-  .gp-card-desc {
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--body);
-    margin: 0;
-  }
-  .gp-card-foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: var(--s-md);
-    border-top: 1px solid var(--hairline);
-    margin-top: auto;
-  }
-  .gp-card-cue {
-    font-size: 12px;
-    color: var(--muted);
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-  }
-  .gp-card-arrow {
-    font-size: 14px;
-    color: var(--primary);
-    font-weight: 600;
-    transition: transform 160ms ease;
-  }
+  .gp-card:hover { border-color: var(--primary); transform: translateY(-2px); background: var(--surface-elevated); }
+  .gp-card-top { display: flex; align-items: center; gap: var(--s-sm); }
+  .gp-card-top .cc-flag { width: 36px; height: 27px; border-radius: 4px; flex-shrink: 0; }
+  .gp-card-name { font-size: 18px; font-weight: 600; color: var(--on-dark); }
+  .gp-card-code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .gp-card-desc { font-size: 14px; line-height: 1.5; color: var(--body); margin: 0; }
+  .gp-card-foot { display: flex; justify-content: space-between; align-items: center; padding-top: var(--s-md); border-top: 1px solid var(--hairline); margin-top: auto; }
+  .gp-card-cue { font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .gp-card-arrow { font-size: 14px; color: var(--primary); font-weight: 600; transition: transform 160ms ease; }
   .gp-card:hover .gp-card-arrow { transform: translateX(4px); }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://rotalegal.pro/guia-pratico","url":"https://rotalegal.pro/guia-pratico","name":"Guia Prático para Emigrar para a Europa","description":"Passo a passo para brasileiros emigrarem e trabalharem legalmente na Europa: escolha do país, documentação, visto, custos e regularização após a chegada.","inLanguage":"pt-BR","isPartOf":{"@id":"https://rotalegal.pro/#website"},"publisher":{"@id":"https://rotalegal.pro/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://rotalegal.pro/"},{"@type":"ListItem","position":2,"name":"Guia Prático"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Brasileiro precisa de visto para trabalhar na Europa?","acceptedAnswer":{"@type":"Answer","text":"Sim. Brasileiros entram na zona Schengen sem visto por até 90 dias, mas isso vale apenas para turismo. Para trabalhar de forma legal é preciso um visto de trabalho ou uma autorização de residência específica, solicitada antes de viajar na maioria dos casos."}},{"@type":"Question","name":"Qual a diferença entre visto e autorização de residência?","acceptedAnswer":{"@type":"Answer","text":"O visto é a permissão de entrada emitida pelo consulado no Brasil. A autorização de residência é o documento que permite morar e trabalhar no país, normalmente emitida ou validada após a chegada, junto ao órgão de imigração local."}},{"@type":"Question","name":"Preciso de uma oferta de emprego antes de ir?","acceptedAnswer":{"@type":"Answer","text":"Na maioria dos vistos de trabalho, sim. Alguns países oferecem vistos de procura de emprego, como o Job Seeker da Áustria, a Opportunity Card da Alemanha e o visto de procura de trabalho de Portugal, que permitem entrar para buscar emprego no local."}},{"@type":"Question","name":"Quais documentos preciso apostilar?","acceptedAnswer":{"@type":"Answer","text":"Em geral o diploma, o histórico escolar, a certidão de antecedentes criminais e certidões civis. O Brasil faz parte da Convenção de Haia, então esses documentos recebem a Apostila de Haia em cartório e costumam exigir tradução juramentada para o idioma do país de destino."}},{"@type":"Question","name":"Quanto tempo leva todo o processo?","acceptedAnswer":{"@type":"Answer","text":"Varia por país e tipo de visto, em geral de 1 a 6 meses entre reunir documentos, conseguir a oferta de emprego, a análise consular e a regularização após a chegada. Cada página de país no Rota Legal traz o prazo médio de processamento atualizado."}},{"@type":"Question","name":"Preciso saber o idioma do país?","acceptedAnswer":{"@type":"Answer","text":"Depende do destino. Irlanda e Países Baixos têm forte mercado em inglês, Portugal compartilha o idioma com o Brasil e Espanha tem alta inteligibilidade com o português. Alemanha, França, Itália, Bélgica e Áustria costumam exigir ou valorizar o idioma local conforme o visto."}}]}]}</script>
 </head>
 <body>
 <div class="bg-orbs" aria-hidden="true"><div class="orb-3"></div></div>
@@ -174,165 +169,322 @@
   <section class="gp-hero">
     <div class="container">
       <div class="eyebrow"><span class="dot"></span>Roteiro passo a passo</div>
-      <h1>Guia <span class="accent">Prático</span></h1>
+      <h1>Guia <span class="accent">Prático</span> para Emigrar</h1>
       <p class="lede">
-        Escolha o país de destino e veja a jornada completa em 3 fases:
-        documentação no Brasil, processo do visto e regularização após a chegada.
+        O caminho legal para trabalhar na Europa tem etapas previsíveis. Este guia
+        explica cada uma delas, da decisão do país à regularização depois da chegada,
+        pensado para brasileiros e atualizado com dados oficiais todo mês.
       </p>
+    </div>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="container">
+      <article class="gp-prose">
+        <p class="gp-lede-strong">
+          Emigrar com segurança é menos sobre sorte e mais sobre ordem. Quem trata o
+          processo como um projeto, com documentos certos e prazos claros, evita a
+          maioria dos problemas que travam ou encarecem a mudança. As regras mudam de
+          país para país, mas a sequência é quase sempre a mesma.
+        </p>
+
+        <nav class="gp-toc" aria-label="Índice do guia">
+          <span class="caption-up">Neste guia</span>
+          <ol>
+            <li><a href="#entender">Entender as regras: visto, residência e os 90 dias</a></li>
+            <li><a href="#escolher">Passo 1: escolher o país certo para o seu perfil</a></li>
+            <li><a href="#documentos">Passo 2: reunir e apostilar a documentação no Brasil</a></li>
+            <li><a href="#emprego">Passo 3: oferta de emprego ou visto de procura</a></li>
+            <li><a href="#visto">Passo 4: solicitar o visto no consulado</a></li>
+            <li><a href="#chegada">Passo 5: chegar e se regularizar</a></li>
+            <li><a href="#custos">Quanto custa e quanto tempo leva</a></li>
+            <li><a href="#erros">Erros comuns que atrasam o processo</a></li>
+            <li><a href="#faq">Perguntas frequentes</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="entender">Entender as regras: visto, residência e os 90 dias</h2>
+        <p>
+          Brasileiros podem entrar na zona Schengen sem visto e permanecer por até 90
+          dias dentro de um período de 180. Essa entrada serve para turismo e visitas,
+          <strong>não para trabalhar</strong>. Quem quer trabalhar de forma legal precisa
+          de um visto de trabalho ou de uma autorização de residência que permita
+          atividade remunerada.
+        </p>
+        <p>
+          Vale separar dois conceitos que costumam ser confundidos. O <strong>visto</strong>
+          é a permissão de entrada, emitida pelo consulado do país no Brasil. A
+          <strong>autorização de residência</strong> é o documento que permite morar e
+          trabalhar, em geral emitido ou validado depois da chegada, junto ao órgão de
+          imigração local. Em muitos países você primeiro recebe um visto de longa
+          duração e, já no destino, troca esse visto por um título de residência.
+        </p>
+        <p>
+          A Irlanda fica fora do espaço Schengen e tem regras próprias de imigração e de
+          permanência. A Austrália, embora não seja Europa, entra na cobertura do Rota
+          Legal por ser um destino frequente de brasileiros, com seus próprios vistos de
+          trabalho. Para comparar as condições de cada destino lado a lado, use a
+          ferramenta de <a href="/comparar">comparação de países</a>.
+        </p>
+
+        <h2 id="escolher"><span class="gp-step">Passo 1</span>Escolher o país certo para o seu perfil</h2>
+        <p>
+          O melhor destino não é o mais bonito no Instagram, e sim aquele em que o seu
+          perfil profissional tem demanda e o visto tem um caminho claro. Quatro
+          critérios costumam decidir a escolha:
+        </p>
+        <ul>
+          <li><strong>Idioma:</strong> Portugal compartilha o idioma, Espanha tem alta inteligibilidade com o português, e Irlanda e Países Baixos têm mercados fortes em inglês. Alemanha, França, Itália, Bélgica e Áustria valorizam o idioma local.</li>
+          <li><strong>Demanda pela sua profissão:</strong> tecnologia, saúde, engenharia e construção têm listas de ocupações em falta em vários países, o que acelera o visto.</li>
+          <li><strong>Salário mínimo e custo de vida:</strong> um salário alto não significa mais dinheiro no bolso se o aluguel consumir tudo. Compare os dois juntos.</li>
+          <li><strong>Caminho para residência permanente:</strong> alguns países dão residência permanente após 5 anos com critérios transparentes, o que importa se o plano é ficar.</li>
+        </ul>
+        <div class="gp-callout">
+          <p>
+            Sem ideia de por onde começar? O teste <a href="/qual-pais">Qual país é o meu?</a>
+            faz 6 perguntas e devolve uma recomendação com justificativa e um plano B.
+            Para ver todos os destinos monitorados, visite a página de <a href="/paises">países</a>.
+          </p>
+        </div>
+
+        <h2 id="documentos"><span class="gp-step">Passo 2</span>Reunir e apostilar a documentação no Brasil</h2>
+        <p>
+          Esta é a etapa que mais atrasa quem deixa para a última hora. A maioria dos
+          documentos brasileiros precisa de <strong>Apostila de Haia</strong>, feita em
+          cartório, e de <strong>tradução juramentada</strong> para o idioma do país de
+          destino. O Brasil faz parte da Convenção de Haia, então a apostila substitui a
+          antiga legalização consular.
+        </p>
+        <div class="gp-checklist">
+          <span class="caption-up">Checklist base de documentos</span>
+          <ul>
+            <li>Passaporte válido por pelo menos mais 1 ano, com páginas em branco</li>
+            <li>Diploma e histórico escolar, apostilados e traduzidos</li>
+            <li>Certidão de antecedentes criminais (Polícia Federal), apostilada</li>
+            <li>Certidões civis (nascimento ou casamento) quando exigidas, apostiladas</li>
+            <li>Comprovante de meios de subsistência ou contrato de trabalho</li>
+            <li>Seguro saúde com cobertura no país de destino</li>
+            <li>Currículo no formato do país e comprovantes de experiência</li>
+          </ul>
+        </div>
+        <p>
+          A lista exata muda conforme o visto. Cada <a href="/paises">página de país</a>
+          do Rota Legal traz os documentos específicos e o link para a fonte oficial,
+          que é sempre a referência final.
+        </p>
+
+        <h2 id="emprego"><span class="gp-step">Passo 3</span>Oferta de emprego ou visto de procura</h2>
+        <p>
+          A maioria dos vistos de trabalho parte de uma <strong>oferta de emprego</strong>
+          de uma empresa no país de destino. O empregador costuma ter um papel ativo no
+          processo, às vezes patrocinando ou registrando a contratação junto ao órgão de
+          imigração. Por isso, candidatar-se a vagas com empresas abertas a contratar de
+          fora é parte do trabalho.
+        </p>
+        <p>
+          Existe um caminho alternativo: os <strong>vistos de procura de emprego</strong>,
+          que permitem entrar no país para buscar trabalho no local. Exemplos são a
+          Opportunity Card da Alemanha, o Job Seeker da Áustria e o visto de procura de
+          trabalho de Portugal. Eles servem para quem tem qualificação reconhecida, mas
+          ainda não tem contrato assinado.
+        </p>
+        <p>
+          Vistos de transferência dentro da mesma empresa e vistos para profissionais
+          altamente qualificados, como o EU Blue Card, costumam ter prazos mais curtos e
+          critérios mais previsíveis. Veja os tipos disponíveis em cada
+          <a href="/paises">país monitorado</a>.
+        </p>
+
+        <h2 id="visto"><span class="gp-step">Passo 4</span>Solicitar o visto no consulado</h2>
+        <p>
+          Com documentos prontos e, na maioria dos casos, a oferta de emprego em mãos,
+          chega o pedido formal. O fluxo costuma seguir esta ordem:
+        </p>
+        <ul>
+          <li>Agendar atendimento no consulado ou no centro de vistos responsável pela sua região</li>
+          <li>Preencher o formulário oficial e reunir o dossiê de documentos apostilados e traduzidos</li>
+          <li>Pagar as taxas e comparecer para coleta de biometria, quando exigida</li>
+          <li>Aguardar a análise, que pode pedir documentos complementares</li>
+          <li>Receber o visto de longa duração no passaporte</li>
+        </ul>
+        <p>
+          Os prazos de análise variam bastante entre países e épocas do ano. Cada página
+          de país traz o <strong>prazo médio de processamento</strong> atualizado todo
+          mês, junto com o valor das taxas. Acompanhe também o
+          <a href="/historico">histórico de mudanças</a> para não ser pego de surpresa
+          por uma nova regra ou tabela de taxas.
+        </p>
+
+        <h2 id="chegada"><span class="gp-step">Passo 5</span>Chegar e se regularizar</h2>
+        <p>
+          O visto abre a porta, mas a regularização acontece no destino. Nas primeiras
+          semanas você normalmente precisa cumprir uma sequência parecida em quase todos
+          os países:
+        </p>
+        <ul>
+          <li><strong>Registro de endereço:</strong> declarar onde mora, como o empadronamiento na Espanha, o Anmeldung na Alemanha ou o registro na comuna na Bélgica</li>
+          <li><strong>Número fiscal e de seguridade social:</strong> necessário para ser contratado e pagar impostos, como o NIF, o número fiscal ou equivalente</li>
+          <li><strong>Título de residência:</strong> trocar o visto de entrada pelo cartão de residência junto ao órgão de imigração</li>
+          <li><strong>Conta bancária:</strong> abrir conta local para receber salário e pagar contas</li>
+          <li><strong>Sistema de saúde:</strong> registrar-se no sistema público ou ativar o seguro privado</li>
+        </ul>
+        <p>
+          A ordem exata e os nomes dos documentos mudam por país. Os detalhes de
+          regularização de cada destino estão na respectiva página, listadas no fim
+          desta página.
+        </p>
+
+        <h2 id="custos">Quanto custa e quanto tempo leva</h2>
+        <p>
+          O custo total reúne taxas de visto, apostilas, traduções juramentadas, seguro
+          saúde, passagem e a reserva financeira que muitos países exigem como prova de
+          subsistência. Essa reserva costuma ser a maior parte e varia conforme o país e
+          o tempo de permanência.
+        </p>
+        <p>
+          Para estimar quanto guardar antes de viajar, com base no destino, na duração e
+          no estilo de vida, use a <a href="/calculadora">calculadora de reserva</a>.
+          Sobre o tempo, conte de 1 a 6 meses entre reunir documentos, conseguir a
+          oferta, a análise consular e a regularização, com variação grande por país.
+        </p>
+
+        <h2 id="erros">Erros comuns que atrasam o processo</h2>
+        <ul>
+          <li><strong>Apostilar tarde demais:</strong> apostila e tradução levam dias ou semanas. Comece por elas.</li>
+          <li><strong>Confiar em informação desatualizada:</strong> regras de imigração mudam. Confira sempre a data da informação e a fonte oficial.</li>
+          <li><strong>Subestimar a reserva financeira:</strong> faltar comprovação de meios de subsistência é causa frequente de recusa.</li>
+          <li><strong>Ignorar o idioma:</strong> mesmo onde o inglês resolve, o idioma local pesa na contratação e na integração.</li>
+          <li><strong>Misturar turismo e trabalho:</strong> entrar como turista e trabalhar sem autorização coloca toda a sua situação em risco.</li>
+        </ul>
+        <div class="gp-callout">
+          <p>
+            O Rota Legal monitora as condições oficiais de 10 países e registra cada
+            alteração no <a href="/historico">histórico de mudanças</a>. Entenda como os
+            dados são coletados e verificados na página <a href="/sobre#metodologia">sobre a metodologia</a>.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top: 0;">
+    <div class="container">
+      <div class="gp-faq">
+        <h2 style="font-size:clamp(24px,3.4vw,30px);font-weight:700;letter-spacing:-0.6px;color:var(--on-dark);margin:0 0 var(--s-md);">Perguntas frequentes</h2>
+        <div class="gp-faq-item">
+          <p class="gp-faq-q">Brasileiro precisa de visto para trabalhar na Europa?</p>
+          <p class="gp-faq-a">Sim. A entrada sem visto por até 90 dias vale só para turismo. Para trabalhar de forma legal é preciso um visto de trabalho ou uma autorização de residência específica, solicitada antes de viajar na maioria dos casos.</p>
+        </div>
+        <div class="gp-faq-item">
+          <p class="gp-faq-q">Qual a diferença entre visto e autorização de residência?</p>
+          <p class="gp-faq-a">O visto é a permissão de entrada emitida pelo consulado no Brasil. A autorização de residência é o documento que permite morar e trabalhar, em geral emitido ou validado depois da chegada, junto ao órgão de imigração local.</p>
+        </div>
+        <div class="gp-faq-item">
+          <p class="gp-faq-q">Preciso de uma oferta de emprego antes de ir?</p>
+          <p class="gp-faq-a">Na maioria dos vistos, sim. Alguns países oferecem vistos de procura de emprego, como a Opportunity Card da Alemanha, o Job Seeker da Áustria e o visto de procura de trabalho de Portugal, que permitem entrar para buscar emprego no local.</p>
+        </div>
+        <div class="gp-faq-item">
+          <p class="gp-faq-q">Quais documentos preciso apostilar?</p>
+          <p class="gp-faq-a">Em geral o diploma, o histórico, a certidão de antecedentes criminais e certidões civis. Como o Brasil faz parte da Convenção de Haia, esses documentos recebem a Apostila de Haia em cartório e costumam exigir tradução juramentada.</p>
+        </div>
+        <div class="gp-faq-item">
+          <p class="gp-faq-q">Quanto tempo leva todo o processo?</p>
+          <p class="gp-faq-a">Varia por país e tipo de visto, em geral de 1 a 6 meses. Cada <a href="/paises">página de país</a> traz o prazo médio de processamento atualizado todo mês.</p>
+        </div>
+        <div class="gp-faq-item">
+          <p class="gp-faq-q">Preciso saber o idioma do país?</p>
+          <p class="gp-faq-a">Depende do destino. Irlanda e Países Baixos têm forte mercado em inglês, Portugal compartilha o idioma e Espanha tem alta inteligibilidade com o português. Os demais costumam valorizar o idioma local conforme o visto.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section>
     <div class="container">
+      <div class="gp-section-label">
+        <h2>Escolha o seu país para o passo a passo detalhado</h2>
+        <p>Cada destino tem documentos, prazos e fases próprias, atualizados todo mês.</p>
+      </div>
       <div class="gp-grid">
         <a class="gp-card" href="/pais-nl#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-nl" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Países Baixos</div>
-              <div class="gp-card-code">nl</div>
-            </div>
+            <div><div class="gp-card-name">Países Baixos</div><div class="gp-card-code">nl</div></div>
           </div>
           <p class="gp-card-desc">Visto Altamente Qualificado, IND, processo via empregador.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-pt#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-pt" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Portugal</div>
-              <div class="gp-card-code">pt</div>
-            </div>
+            <div><div class="gp-card-name">Portugal</div><div class="gp-card-code">pt</div></div>
           </div>
           <p class="gp-card-desc">Visto D, AIMA, NIF e título de residência.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-de#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-de" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Alemanha</div>
-              <div class="gp-card-code">de</div>
-            </div>
+            <div><div class="gp-card-name">Alemanha</div><div class="gp-card-code">de</div></div>
           </div>
           <p class="gp-card-desc">EU Blue Card, Anmeldung, Aufenthaltstitel.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-ie#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-ie" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Irlanda</div>
-              <div class="gp-card-code">ie</div>
-            </div>
+            <div><div class="gp-card-name">Irlanda</div><div class="gp-card-code">ie</div></div>
           </div>
           <p class="gp-card-desc">Critical Skills, GNIB, registro PPS.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-es#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-es" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Espanha</div>
-              <div class="gp-card-code">es</div>
-            </div>
+            <div><div class="gp-card-name">Espanha</div><div class="gp-card-code">es</div></div>
           </div>
           <p class="gp-card-desc">Visado Nacional, NIE, TIE e empadronamiento.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-fr#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-fr" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">França</div>
-              <div class="gp-card-code">fr</div>
-            </div>
+            <div><div class="gp-card-name">França</div><div class="gp-card-code">fr</div></div>
           </div>
           <p class="gp-card-desc">Visa Long Séjour, OFII, titre de séjour.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-it#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-it" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Itália</div>
-              <div class="gp-card-code">it</div>
-            </div>
+            <div><div class="gp-card-name">Itália</div><div class="gp-card-code">it</div></div>
           </div>
           <p class="gp-card-desc">Nulla Osta, Visto D, permesso di soggiorno.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-be#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-be" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Bélgica</div>
-              <div class="gp-card-code">be</div>
-            </div>
+            <div><div class="gp-card-name">Bélgica</div><div class="gp-card-code">be</div></div>
           </div>
           <p class="gp-card-desc">Visto D, registro na comuna, carteira A.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-at#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-at" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Áustria</div>
-              <div class="gp-card-code">at</div>
-            </div>
+            <div><div class="gp-card-name">Áustria</div><div class="gp-card-code">at</div></div>
           </div>
           <p class="gp-card-desc">Rot-Weiß-Rot Karte, Meldezettel, registro MA35.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
-
         <a class="gp-card" href="/pais-au#guia">
           <div class="gp-card-top">
             <span class="cc-flag flag-au" aria-hidden="true"></span>
-            <div>
-              <div class="gp-card-name">Austrália</div>
-              <div class="gp-card-code">au</div>
-            </div>
+            <div><div class="gp-card-name">Austrália</div><div class="gp-card-code">au</div></div>
           </div>
           <p class="gp-card-desc">Subclass 482/186, ImmiAccount, Medicare e TFN.</p>
-          <div class="gp-card-foot">
-            <span class="gp-card-cue">3 fases · ~3-6 meses</span>
-            <span class="gp-card-arrow">Ver guia →</span>
-          </div>
+          <div class="gp-card-foot"><span class="gp-card-cue">3 fases · ~3-6 meses</span><span class="gp-card-arrow">Ver guia →</span></div>
         </a>
       </div>
     </div>
