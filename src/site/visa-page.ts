@@ -16,6 +16,17 @@ function monthLabel(iso: string): string {
   return `${months[d.getUTCMonth()]}/${d.getUTCFullYear()}`
 }
 
+// Normaliza e limita uma meta description ao intervalo ideal de SERP,
+// cortando na fronteira de palavra e terminando com ponto final.
+function clampDesc(s: string, max = 155): string {
+  const norm = s.replace(/\s+/g, ' ').trim()
+  if (norm.length <= max) return norm
+  const cut = norm.slice(0, max + 1)
+  const lastSpace = cut.lastIndexOf(' ')
+  const base = cut.slice(0, lastSpace > 100 ? lastSpace : max)
+  return base.replace(/[\s.,;:]+$/, '') + '.'
+}
+
 function fmtMoney(amount: number, currency: string, period?: string | null): string {
   const formatted = `${currency} ${amount.toLocaleString('pt-BR')}`
   if (!period) return formatted
@@ -115,7 +126,7 @@ const PAGE_CSS = `
   .vp-section-title {
     font-size: 11px; font-weight: 500; line-height: 1;
     letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(245,245,240,.5); margin-bottom: 18px;
+    color: rgba(245,245,240,.5); margin: 0 0 18px;
     padding: 0; border: none;
   }
 
@@ -303,7 +314,15 @@ export function generateVisaPage(
 ): string {
   const updated = monthLabel(data.meta.lastUpdated)
   const year = new Date(data.meta.lastUpdated).getUTCFullYear()
-  const pageTitle = `${visa.name} — ${config.displayName} ${year}: requisitos e documentação | Rota Legal`
+  const pageTitle = `${visa.name} — ${config.displayName} ${year} | Rota Legal`
+  // Meta description com tamanho garantido (120-155): usa a descrição do visto
+  // e, se curta, complementa com requisitos/prazos do ciclo corrente.
+  const descBase = visa.description.replace(/\s+/g, ' ').trim().replace(/[.\s]+$/, '')
+  const metaDescription = clampDesc(
+    descBase.length >= 120
+      ? descBase
+      : `${descBase}. Requisitos, documentação e prazos para ${config.displayName} ${year}, com dados oficiais atualizados.`,
+  )
   const tag = tagLabel(visa)
 
   const tagClass =
@@ -504,7 +523,7 @@ export function generateVisaPage(
   const sortedSteps = (visa.process?.steps ?? []).slice().sort((a, b) => a.order - b.order)
   const stepsSectionHtml = sortedSteps.length > 0
     ? `<div class="vp-section">
-        <p class="vp-section-title">Como solicitar</p>
+        <h2 class="vp-section-title">Como solicitar</h2>
         <ol class="steps-list">
           ${sortedSteps.map(s => `<li class="step-item">
             ${s.name ? `<span class="step-name">${esc(s.name)}</span>` : ''}
@@ -517,16 +536,16 @@ export function generateVisaPage(
 
   const faqHtml = faqItems.length > 0
     ? `<div class="vp-section">
-        <p class="vp-section-title">Perguntas frequentes</p>
+        <h2 class="vp-section-title">Perguntas frequentes</h2>
         ${faqItems.map(({ q, a }) => `<div class="faq-item"><p class="faq-q">${esc(q)}</p><p class="faq-a">${esc(a)}</p></div>`).join('')}
       </div>`
     : ''
 
   const relatedHtml = relatedVisas.length > 0
     ? `<div class="vp-section">
-        <p class="vp-section-title">Vistos relacionados</p>
+        <h2 class="vp-section-title">Vistos relacionados</h2>
         <div class="related-grid">
-          ${relatedVisas.map(r => `<a class="related-card" href="../vistos/${visaPageSlug(r.cc, r.id)}">
+          ${relatedVisas.map(r => `<a class="related-card" href="/vistos/${visaPageUrlSlug(r.cc, r.id)}">
             <span class="related-country">${esc(r.displayName)}</span>
             <span class="related-name">${esc(r.name)}</span>
           </a>`).join('')}
@@ -540,11 +559,11 @@ export function generateVisaPage(
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(pageTitle)}</title>
-<meta name="description" content="${esc(visa.description.slice(0, 160))}" />
+<meta name="description" content="${esc(metaDescription)}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Rota Legal" />
 <meta property="og:title" content="${esc(pageTitle)}" />
-<meta property="og:description" content="${esc(visa.description.slice(0, 160))}" />
+<meta property="og:description" content="${esc(metaDescription)}" />
 <meta property="og:url" content="https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}" />
 <meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -563,19 +582,21 @@ export function generateVisaPage(
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': `https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}`,
-      url: `https://rotalegal.pro/vistos/${visaPageSlug(config.code, visa.id)}`,
+      '@id': `https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}`,
+      url: `https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}`,
       name: `${visa.name} — ${config.displayName} — Rota Legal`,
-      description: visa.description.slice(0, 160),
+      description: metaDescription,
+      datePublished: data.meta.lastUpdated.slice(0, 10),
       dateModified: data.meta.lastUpdated.slice(0, 10),
       inLanguage: 'pt-BR',
-      publisher: { '@type': 'Organization', name: 'Rota Legal', url: 'https://rotalegal.pro' },
+      isPartOf: { '@id': 'https://rotalegal.pro/#website' },
+      publisher: { '@id': 'https://rotalegal.pro/#organization' },
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://rotalegal.pro/' },
-        { '@type': 'ListItem', position: 2, name: config.displayName, item: `https://rotalegal.pro/pais-${config.code}.html` },
+        { '@type': 'ListItem', position: 2, name: config.displayName, item: `https://rotalegal.pro/pais-${config.code}` },
         { '@type': 'ListItem', position: 3, name: visa.name },
       ],
     },
@@ -597,22 +618,22 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
 <!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="../index.html">
+    <a class="logo" href="/">
       <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
       <span>Rota Legal</span>
     </a>
     <div class="nav-links">
-      <a class="nav-link" href="../paises.html">Países</a>
-      <a class="nav-link" href="../comparar.html">Comparar</a>
-      <a class="nav-link" href="../guia-pratico.html">Guia Prático</a>
-      <a class="nav-link" href="../calculadora.html">Calculadora</a>
-      <a class="nav-link" href="../historico.html">Histórico</a>
-      <a class="nav-link" href="../parceiros.html">Parceiros</a>
-      <a class="nav-link" href="../sobre.html">Sobre</a>
+      <a class="nav-link" href="/paises">Países</a>
+      <a class="nav-link" href="/comparar">Comparar</a>
+      <a class="nav-link" href="/guia-pratico">Guia Prático</a>
+      <a class="nav-link" href="/calculadora">Calculadora</a>
+      <a class="nav-link" href="/historico">Histórico</a>
+      <a class="nav-link" href="/parceiros">Parceiros</a>
+      <a class="nav-link" href="/sobre">Sobre</a>
     </div>
     <div class="nav-right">
       <a class="btn btn-secondary" href="../area-aluno/login.html">Área do Aluno</a>
-      <a class="btn btn-primary" href="../qual-pais.html">Qual país é o meu?</a>
+      <a class="btn btn-primary" href="/qual-pais">Qual país é o meu?</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
@@ -629,19 +650,19 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
       <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
     </div>
     <nav class="mobile-drawer-nav">
-      <a href="../index.html">Início</a>
-      <a href="../paises.html">Países</a>
-      <a href="../comparar.html">Comparar</a>
-      <a href="../qual-pais.html">Qual país é meu?</a>
-      <a href="../guia-pratico.html">Guia Prático</a>
-      <a href="../calculadora.html">Calculadora</a>
-      <a href="../historico.html">Histórico</a>
-      <a href="../parceiros.html">Parceiros</a>
-      <a href="../sobre.html">Sobre</a>
+      <a href="/">Início</a>
+      <a href="/paises">Países</a>
+      <a href="/comparar">Comparar</a>
+      <a href="/qual-pais">Qual país é meu?</a>
+      <a href="/guia-pratico">Guia Prático</a>
+      <a href="/calculadora">Calculadora</a>
+      <a href="/historico">Histórico</a>
+      <a href="/parceiros">Parceiros</a>
+      <a href="/sobre">Sobre</a>
       <a href="../area-aluno/login.html">Área do Aluno</a>
     </nav>
     <div class="mobile-drawer-cta">
-      <a class="btn btn-primary" href="../qual-pais.html">Qual país é o meu?</a>
+      <a class="btn btn-primary" href="/qual-pais">Qual país é o meu?</a>
       <a class="btn btn-secondary" href="../area-aluno/login.html">Área do Aluno</a>
     </div>
   </aside>
@@ -651,11 +672,11 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
 <section class="vp-hero">
   <div class="container">
     <nav class="vp-breadcrumb" aria-label="Navegação estrutural">
-      <a href="../paises.html">Países</a>
+      <a href="/paises">Países</a>
       <span class="vp-breadcrumb-sep">/</span>
-      <a href="../pais-${esc(config.code)}.html">${esc(config.displayName)}</a>
+      <a href="/pais-${esc(config.code)}">${esc(config.displayName)}</a>
       <span class="vp-breadcrumb-sep">/</span>
-      <a href="../pais-${esc(config.code)}.html#vistos">Vistos</a>
+      <a href="/pais-${esc(config.code)}#vistos">Vistos</a>
       <span class="vp-breadcrumb-sep">/</span>
       <span>${esc(visa.name)}</span>
     </nav>
@@ -704,22 +725,22 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
         <p style="font-size:15px;color:var(--body);line-height:1.65;margin-bottom:40px;">${esc(visa.description)}</p>
 
         <div class="vp-section">
-          <p class="vp-section-title">Documentos necessários</p>
+          <h2 class="vp-section-title">Documentos necessários</h2>
           ${docsHtml}
         </div>
 
         <div class="vp-section">
-          <p class="vp-section-title">Processo passo a passo</p>
+          <h2 class="vp-section-title">Processo passo a passo</h2>
           ${stepsHtml}
         </div>
 
         <div class="vp-section">
-          <p class="vp-section-title">Taxas</p>
+          <h2 class="vp-section-title">Taxas</h2>
           ${feesHtml}
         </div>
 
         <div class="vp-section">
-          <p class="vp-section-title">Direitos com este visto</p>
+          <h2 class="vp-section-title">Direitos com este visto</h2>
           ${rightsHtml}
         </div>
 
@@ -736,8 +757,8 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
         ${relatedHtml}
 
         <div class="vp-cta-row">
-          <a class="vp-cta-primary" href="../pais-${esc(config.code)}.html#vistos">← Ver todos os vistos de ${esc(config.displayName)}</a>
-          <a class="vp-cta-secondary" href="../historico.html">Histórico de mudanças</a>
+          <a class="vp-cta-primary" href="/pais-${esc(config.code)}#vistos">← Ver todos os vistos de ${esc(config.displayName)}</a>
+          <a class="vp-cta-secondary" href="/historico">Histórico de mudanças</a>
         </div>
       </div>
 
@@ -765,7 +786,7 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
 
         <div class="vp-card">
           <div class="vp-card-title">Outros vistos de ${esc(config.displayName)}</div>
-          <a class="vp-cta-secondary" href="../pais-${esc(config.code)}.html#vistos" style="width:100%;justify-content:center;margin-top:4px;">Ver todos os ${data.visaTypes.length} vistos →</a>
+          <a class="vp-cta-secondary" href="/pais-${esc(config.code)}#vistos" style="width:100%;justify-content:center;margin-top:4px;">Ver todos os ${data.visaTypes.length} vistos →</a>
         </div>
 
         <div class="vp-card" style="border-color:var(--hairline);background:transparent;">
@@ -788,7 +809,7 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a class="logo" href="../index.html" style="margin-bottom:8px;">
+        <a class="logo" href="/" style="margin-bottom:8px;">
           <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:22px;width:auto;display:block;">
           <span>Rota Legal</span>
         </a>
@@ -797,31 +818,31 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
       <div class="footer-links">
         <div class="footer-col">
           <p class="caption-up" style="color:var(--muted);margin-bottom:12px;">Países</p>
-          <a class="footer-link" href="../pais-nl.html">Países Baixos</a>
-          <a class="footer-link" href="../pais-pt.html">Portugal</a>
-          <a class="footer-link" href="../pais-de.html">Alemanha</a>
-          <a class="footer-link" href="../pais-fr.html">França</a>
+          <a class="footer-link" href="/pais-nl">Países Baixos</a>
+          <a class="footer-link" href="/pais-pt">Portugal</a>
+          <a class="footer-link" href="/pais-de">Alemanha</a>
+          <a class="footer-link" href="/pais-fr">França</a>
         </div>
         <div class="footer-col">
           <p class="caption-up" style="color:var(--muted);margin-bottom:12px;">Ferramentas</p>
-          <a class="footer-link" href="../comparar.html">Comparar países</a>
-          <a class="footer-link" href="../qual-pais.html">Qual país é meu?</a>
-          <a class="footer-link" href="../calculadora.html">Calculadora</a>
-          <a class="footer-link" href="../historico.html">Histórico</a>
+          <a class="footer-link" href="/comparar">Comparar países</a>
+          <a class="footer-link" href="/qual-pais">Qual país é meu?</a>
+          <a class="footer-link" href="/calculadora">Calculadora</a>
+          <a class="footer-link" href="/historico">Histórico</a>
         </div>
         <div class="footer-col">
           <p class="caption-up" style="color:var(--muted);margin-bottom:12px;">Sobre</p>
-          <a class="footer-link" href="../sobre.html">Metodologia</a>
-          <a class="footer-link" href="../sobre.html#limitacoes">Limitações</a>
+          <a class="footer-link" href="/sobre">Metodologia</a>
+          <a class="footer-link" href="/sobre#limitacoes">Limitações</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="body-sm" style="color:var(--muted);">Rota Legal não é escritório de advocacia. Dados para fins informativos.</p>
       <nav class="footer-legal" aria-label="Links legais">
-        <a href="../politica-privacidade.html">Privacidade</a>
-        <a href="../politica-cookies.html">Cookies</a>
-        <a href="../termos-uso.html">Termos</a>
+        <a href="/politica-privacidade">Privacidade</a>
+        <a href="/politica-cookies">Cookies</a>
+        <a href="/termos-uso">Termos</a>
       </nav>
       <p class="body-sm" style="color:var(--muted);">Atualizado em ${updated}.</p>
     </div>

@@ -17,6 +17,17 @@ function esc(s: string): string {
     .replace(/"/g, '&quot;')
 }
 
+// Limita uma meta description ao intervalo ideal de SERP (<=155), cortando
+// na fronteira de palavra e terminando com ponto final.
+function clampDesc(s: string, max = 155): string {
+  const norm = s.replace(/\s+/g, ' ').trim()
+  if (norm.length <= max) return norm
+  const cut = norm.slice(0, max + 1)
+  const lastSpace = cut.lastIndexOf(' ')
+  const base = cut.slice(0, lastSpace > 100 ? lastSpace : max)
+  return base.replace(/[\s.,;:]+$/, '') + '.'
+}
+
 function monthLabel(iso: string): string {
   const d = new Date(iso)
   const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
@@ -176,7 +187,7 @@ function renderVisaCard(visa: VisaType, code?: string): string {
   const illoKey = pickIllustrationKey(visa)
   const description = truncateForCard(visa.description)
   const inactive = isRevokedVisa(visa)
-  const pageLink = code ? `vistos/${code}-${esc(visa.id)}.html` : null
+  const pageLink = code ? `/vistos/${code}-${esc(visa.id)}` : null
   return `
         <div class="visa-card-wrap" data-visa-tag="${esc(tagSlug(tag))}" data-visa-active="${inactive ? 'false' : 'true'}">
           <button type="button" class="visa-card${inactive ? ' is-inactive' : ''}" data-visa-id="${esc(visa.id)}">
@@ -342,7 +353,7 @@ function renderVisaDetail(visa: VisaType, config: CountryPageConfig): string {
         ${visa.notes ? `<div class="visa-modal-notes">${esc(visa.notes)}</div>` : ''}
 
         <div class="visa-modal-cta-row">
-          <a class="visa-cta-primary" href="vistos/${esc(config.code)}-${esc(visa.id)}.html">Ver página completa</a>
+          <a class="visa-cta-primary" href="/vistos/${esc(config.code)}-${esc(visa.id)}">Ver página completa</a>
           <a class="visa-cta-secondary" href="#fontes" data-visa-cta="fontes">Fontes</a>
         </div>`
 }
@@ -594,7 +605,7 @@ function renderMudancasTab(data: CountryData): string {
           <p style="color:var(--muted);margin:0;">Nenhuma mudança detectada no último ciclo de extração.</p>
         </div>
         <div style="margin-top:var(--s-xl);text-align:center;">
-          <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
+          <a class="text-link body-sm" href="/historico">Ver histórico completo de todos os países →</a>
         </div>
       </div>
     </section>
@@ -632,7 +643,7 @@ function renderMudancasTab(data: CountryData): string {
           ${entriesHtml}
         </div>
         <div style="margin-top:var(--s-xl);text-align:center;">
-          <a class="text-link body-sm" href="historico.html">Ver histórico completo de todos os países →</a>
+          <a class="text-link body-sm" href="/historico">Ver histórico completo de todos os países →</a>
         </div>
       </div>
     </section>
@@ -921,7 +932,7 @@ function buildSkillPhases(data: CountryData, config: CountryPageConfig): SkillPh
     objectives: p3,
   })
 
-  const visaPageUrl = firstVisa ? `vistos/${config.code}-${firstVisa.id}.html` : null
+  const visaPageUrl = firstVisa ? `/vistos/${config.code}-${firstVisa.id}` : null
   for (const phase of phases) {
     for (const o of phase.objectives) {
       if (o.id.startsWith('p1-')) o.link = '#requisitos'
@@ -1884,7 +1895,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   const salaryPart = mw?.amount
     ? `, salário mínimo ${mw.currency} ${Math.round(mw.amount).toLocaleString('pt-BR')}`
     : ''
-  const metaDescription = `Guia completo para trabalhar em ${config.displayName}: ${visaCount} tipos de visto monitorados${salaryPart}. Requisitos, taxas e prazos atualizados em ${updated} com fontes oficiais.`
+  const metaDescription = clampDesc(`Guia completo para trabalhar em ${config.displayName}: ${visaCount} tipos de visto monitorados${salaryPart}. Requisitos, taxas e prazos atualizados em ${updated} com fontes oficiais.`)
   const pageTitle = `Vistos de Trabalho em ${config.displayName} ${year}: ${visaCount} opções | Rota Legal`
 
   const visaCardsHtml = sorted.length > 0
@@ -1923,19 +1934,21 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': `https://rotalegal.pro/pais-${config.code}.html`,
-      url: `https://rotalegal.pro/pais-${config.code}.html`,
+      '@id': `https://rotalegal.pro/pais-${config.code}`,
+      url: `https://rotalegal.pro/pais-${config.code}`,
       name: `${config.displayName} — Rota Legal`,
       description: metaDescription,
+      datePublished: data.meta.lastUpdated.slice(0, 10),
       dateModified: data.meta.lastUpdated.slice(0, 10),
       inLanguage: 'pt-BR',
-      publisher: { '@type': 'Organization', name: 'Rota Legal', url: 'https://rotalegal.pro' },
+      isPartOf: { '@id': 'https://rotalegal.pro/#website' },
+      publisher: { '@id': 'https://rotalegal.pro/#organization' },
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://rotalegal.pro/' },
-        { '@type': 'ListItem', position: 2, name: 'Países', item: 'https://rotalegal.pro/paises.html' },
+        { '@type': 'ListItem', position: 2, name: 'Países', item: 'https://rotalegal.pro/paises' },
         { '@type': 'ListItem', position: 3, name: config.displayName },
       ],
     },
@@ -1948,22 +1961,22 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
 <!-- NAV -->
 <nav class="top-nav">
   <div class="container">
-    <a class="logo" href="index.html">
+    <a class="logo" href="/">
       <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
       <span>Rota Legal</span>
     </a>
     <div class="nav-links">
-      <a class="nav-link" href="paises.html" style="color:var(--on-dark);">Países</a>
-      <a class="nav-link" href="comparar.html">Comparar</a>
-      <a class="nav-link" href="guia-pratico.html">Guia Prático</a>
-      <a class="nav-link" href="calculadora.html">Calculadora</a>
-      <a class="nav-link" href="historico.html">Histórico</a>
-      <a class="nav-link" href="parceiros.html">Parceiros</a>
-      <a class="nav-link" href="sobre.html">Sobre</a>
+      <a class="nav-link" href="/paises" style="color:var(--on-dark);">Países</a>
+      <a class="nav-link" href="/comparar">Comparar</a>
+      <a class="nav-link" href="/guia-pratico">Guia Prático</a>
+      <a class="nav-link" href="/calculadora">Calculadora</a>
+      <a class="nav-link" href="/historico">Histórico</a>
+      <a class="nav-link" href="/parceiros">Parceiros</a>
+      <a class="nav-link" href="/sobre">Sobre</a>
     </div>
     <div class="nav-right">
       <a class="btn btn-secondary" href="area-aluno/login.html">Área do Aluno</a>
-      <a class="btn btn-primary" href="qual-pais.html">Qual país é o meu?</a>
+      <a class="btn btn-primary" href="/qual-pais">Qual país é o meu?</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
@@ -1980,20 +1993,20 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
       <button class="mobile-drawer-close" aria-label="Fechar menu" data-close>&times;</button>
     </div>
     <nav class="mobile-drawer-nav">
-      <a href="index.html">Início</a>
-      <a href="paises.html">Países</a>
-      <a href="comparar.html">Comparar</a>
-      <a href="qual-pais.html">Qual país é meu?</a>
-      <a href="guia-pratico.html">Guia Prático</a>
-      <a href="calculadora.html">Calculadora</a>
-      <a href="historico.html">Histórico</a>
-      <a href="parceiros.html">Parceiros</a>
-      <a href="sobre.html">Sobre</a>
+      <a href="/">Início</a>
+      <a href="/paises">Países</a>
+      <a href="/comparar">Comparar</a>
+      <a href="/qual-pais">Qual país é meu?</a>
+      <a href="/guia-pratico">Guia Prático</a>
+      <a href="/calculadora">Calculadora</a>
+      <a href="/historico">Histórico</a>
+      <a href="/parceiros">Parceiros</a>
+      <a href="/sobre">Sobre</a>
       <a href="area-aluno/login.html">Área do Aluno</a>
     </nav>
     <div class="mobile-drawer-cta">
-      <a class="btn btn-primary" href="qual-pais.html">Qual país é meu?</a>
-      <a class="btn btn-secondary" href="comparar.html">Comparar países</a>
+      <a class="btn btn-primary" href="/qual-pais">Qual país é meu?</a>
+      <a class="btn btn-secondary" href="/comparar">Comparar países</a>
     </div>
   </aside>
 </div>
@@ -2103,8 +2116,8 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
         <p>Veja ${esc(config.displayName)} lado a lado com outros destinos. Todos os critérios na mesma tabela.</p>
       </div>
       <div class="actions">
-        <a class="btn btn-on-yellow" href="paises.html">← Lista de países</a>
-        <a class="btn btn-on-yellow" href="comparar.html">Abrir comparador</a>
+        <a class="btn btn-on-yellow" href="/paises">← Lista de países</a>
+        <a class="btn btn-on-yellow" href="/comparar">Abrir comparador</a>
       </div>
     </div>
   </div>
@@ -2115,7 +2128,7 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="logo" href="index.html" style="margin-bottom:var(--s-md);display:inline-flex;">
+        <a class="logo" href="/" style="margin-bottom:var(--s-md);display:inline-flex;">
           <img src="assets/images/logonobg.png" alt="Rota Legal" style="height:26px;width:auto;display:block;">
           <span>Rota Legal</span>
         </a>
@@ -2126,28 +2139,28 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
       <div>
         <h4>Países</h4>
         <ul>
-          <li><a href="pais-nl.html">Países Baixos</a></li>
-          <li><a href="pais-pt.html">Portugal</a></li>
-          <li><a href="pais-de.html">Alemanha</a></li>
-          <li><a href="pais-ie.html">Irlanda</a></li>
-          <li><a href="paises.html">Ver todos →</a></li>
+          <li><a href="/pais-nl">Países Baixos</a></li>
+          <li><a href="/pais-pt">Portugal</a></li>
+          <li><a href="/pais-de">Alemanha</a></li>
+          <li><a href="/pais-ie">Irlanda</a></li>
+          <li><a href="/paises">Ver todos →</a></li>
         </ul>
       </div>
       <div>
         <h4>Ferramentas</h4>
         <ul>
-          <li><a href="comparar.html">Comparar países</a></li>
-          <li><a href="qual-pais.html">Qual país é o meu?</a></li>
-          <li><a href="calculadora.html">Calculadora</a></li>
-          <li><a href="historico.html">Histórico</a></li>
+          <li><a href="/comparar">Comparar países</a></li>
+          <li><a href="/qual-pais">Qual país é o meu?</a></li>
+          <li><a href="/calculadora">Calculadora</a></li>
+          <li><a href="/historico">Histórico</a></li>
         </ul>
       </div>
       <div>
         <h4>Projeto</h4>
         <ul>
-          <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="sobre.html#metodologia">Metodologia</a></li>
-          <li><a href="sobre.html#contribuir">Contribuir</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+          <li><a href="/sobre#metodologia">Metodologia</a></li>
+          <li><a href="/sobre#contribuir">Contribuir</a></li>
         </ul>
       </div>
       <div>
@@ -2155,16 +2168,16 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
         <ul>
           <li><a href="https://github.com/vl-builds/rota-legal-monitor" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           <li><a href="https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current" target="_blank" rel="noopener noreferrer">JSON direto</a></li>
-          <li><a href="historico.html">RSS de mudanças</a></li>
+          <li><a href="/historico">RSS de mudanças</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Rota Legal · <a href="https://github.com/vl-builds" target="_blank" rel="noopener noreferrer">vl-builds</a> · MIT</span>
       <nav class="footer-legal" aria-label="Links legais">
-        <a href="politica-privacidade.html">Privacidade</a>
-        <a href="politica-cookies.html">Cookies</a>
-        <a href="termos-uso.html">Termos</a>
+        <a href="/politica-privacidade">Privacidade</a>
+        <a href="/politica-cookies">Cookies</a>
+        <a href="/termos-uso">Termos</a>
       </nav>
       <span class="caption-up">Última extração: ${updated}</span>
     </div>

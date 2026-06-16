@@ -1,0 +1,32 @@
+# Rota Legal
+
+> Monitor mensal de condições de imigração legal para brasileiros que querem trabalhar na Europa. Dados de fontes oficiais de 10 países, em português, atualizados todo mês (ciclo atual: maio de 2026).
+
+Conteúdo factual e citável: nomes oficiais de vistos, salário mínimo exigido, prazos de processamento, documentação e direitos. Cada página de país lista seus vistos; cada visto tem página própria em https://rotalegal.pro/vistos/.
+
+## Países monitorados
+
+- [Áustria](https://rotalegal.pro/pais-at): 8 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Austrália](https://rotalegal.pro/pais-au): 6 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Bélgica](https://rotalegal.pro/pais-be): 4 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Alemanha](https://rotalegal.pro/pais-de): 6 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Espanha](https://rotalegal.pro/pais-es): 5 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [França](https://rotalegal.pro/pais-fr): 13 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Irlanda](https://rotalegal.pro/pais-ie): 10 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Itália](https://rotalegal.pro/pais-it): 4 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Países Baixos](https://rotalegal.pro/pais-nl): 16 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Portugal](https://rotalegal.pro/pais-pt): 13 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+
+## Ferramentas
+
+- [Comparar países](https://rotalegal.pro/comparar): vistos, salários e requisitos lado a lado.
+- [Qual país é o meu](https://rotalegal.pro/qual-pais): recomendação por perfil em 6 perguntas.
+- [Calculadora de reserva](https://rotalegal.pro/calculadora): quanto guardar para emigrar.
+- [Histórico de mudanças](https://rotalegal.pro/historico): alterações mensais em vistos, salários e taxas.
+- [Guia prático](https://rotalegal.pro/guia-pratico): passo a passo para brasileiros.
+
+## Metodologia e dados
+
+- [Sobre, metodologia e fontes](https://rotalegal.pro/sobre)
+- [Dados abertos em JSON (GitHub)](https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current)
+- [Código-fonte (MIT)](https://github.com/vl-builds/rota-legal-monitor)

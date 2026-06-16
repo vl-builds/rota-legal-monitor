@@ -324,36 +324,50 @@ async function patchHome(
       /Atualizado em (?:janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro) de \d{4}/g,
       `Atualizado em ${labelLong}`,
     )
+    // Eyebrow "Análise de <mês>" da seção de sugestão rápida.
+    html = html.replace(
+      /Análise de (?:janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro) de \d{4}/g,
+      `Análise de ${labelLong}`,
+    )
   }
 
-  // Organization + WebSite JSON-LD (idempotente)
-  if (!html.includes('"@type":"Organization"') && !html.includes('"@type": "Organization"')) {
-    const orgLd = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'Organization',
-          '@id': 'https://rotalegal.pro/#organization',
-          name: 'Rota Legal',
-          url: 'https://rotalegal.pro',
-          logo: 'https://rotalegal.pro/assets/og-default.png',
+  // Organization + WebSite JSON-LD. Autoritativo: reescreve o bloco existente
+  // (sem SearchAction nao-funcional; logo como ImageObject; sameAs; inLanguage).
+  const orgLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://rotalegal.pro/#organization',
+        name: 'Rota Legal',
+        url: 'https://rotalegal.pro',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://rotalegal.pro/assets/images/logonobg.png',
         },
-        {
-          '@type': 'WebSite',
-          '@id': 'https://rotalegal.pro/#website',
-          url: 'https://rotalegal.pro',
-          name: 'Rota Legal',
-          description: 'Monitore requisitos de visto de trabalho em 10 países europeus. Dados atualizados mensalmente com fontes oficiais.',
-          publisher: { '@id': 'https://rotalegal.pro/#organization' },
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: { '@type': 'EntryPoint', urlTemplate: 'https://rotalegal.pro/paises.html?q={search_term_string}' },
-            'query-input': 'required name=search_term_string',
-          },
-        },
-      ],
-    })
-    html = html.replace('</head>', `<script type="application/ld+json">${orgLd}</script>\n</head>`)
+        description: 'Monitor mensal de condições de imigração legal para brasileiros que querem trabalhar na Europa.',
+        sameAs: [
+          'https://github.com/vl-builds/rota-legal-monitor',
+          'https://github.com/vl-builds',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://rotalegal.pro/#website',
+        url: 'https://rotalegal.pro',
+        name: 'Rota Legal',
+        inLanguage: 'pt-BR',
+        description: 'Monitore requisitos de visto de trabalho em 10 países europeus. Dados atualizados mensalmente com fontes oficiais.',
+        publisher: { '@id': 'https://rotalegal.pro/#organization' },
+      },
+    ],
+  })
+  const orgScript = `<script type="application/ld+json">${orgLd}</script>`
+  const ldRe = /<script type="application\/ld\+json">[\s\S]*?"@type":\s*"Organization"[\s\S]*?<\/script>/
+  if (ldRe.test(html)) {
+    html = html.replace(ldRe, orgScript)
+  } else {
+    html = html.replace('</head>', `${orgScript}\n</head>`)
   }
 
   await writeFile(path, html, 'utf-8')
@@ -381,9 +395,9 @@ async function patchFooters(latestIso: string): Promise<void> {
   // links legais no rodape e o script site-extras.js (aviso de cookies + mini-form de lead).
   const legalNav =
     '<nav class="footer-legal" aria-label="Links legais">' +
-    '<a href="politica-privacidade.html">Privacidade</a>' +
-    '<a href="politica-cookies.html">Cookies</a>' +
-    '<a href="termos-uso.html">Termos</a>' +
+    '<a href="/politica-privacidade">Privacidade</a>' +
+    '<a href="/politica-cookies">Cookies</a>' +
+    '<a href="/termos-uso">Termos</a>' +
     '</nav>'
 
   for (const name of files) {
@@ -477,7 +491,10 @@ async function patchOpenGraph(): Promise<void> {
     const path = join(PREVIEWS_DIR, file)
     try {
       let html = await readFile(path, 'utf-8')
-      const url = `${SITE_URL}/${file === 'index.html' ? '' : file}`
+      // URL limpa (sem .html) para canonical/og:url: casa com a forma que o
+      // Cloudflare Pages serve com 200 e com as entradas do sitemap.
+      const cleanPath = file === 'index.html' ? '' : file.replace(/\.html$/, '')
+      const url = `${SITE_URL}/${cleanPath}`
       const ogBlock = [
         `<meta property="og:type" content="website" />`,
         `<meta property="og:site_name" content="Rota Legal" />`,
@@ -504,8 +521,11 @@ async function patchOpenGraph(): Promise<void> {
         html = html.replace('</title>', `</title>\n<meta name="description" content="${escAttr(description)}" />`)
       }
 
-      // canonical
-      if (!html.includes('rel="canonical"')) {
+      // canonical: autoritativo. Se ja existe (possivelmente apontando para
+      // a variante .html de um build anterior), reescreve para a URL limpa.
+      if (html.includes('rel="canonical"')) {
+        html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`)
+      } else {
         html = html.replace('</title>', `</title>\n<link rel="canonical" href="${url}" />`)
       }
 
@@ -584,6 +604,53 @@ async function generateSitemap(
   await writeFile(join(PREVIEWS_DIR, 'sitemap.xml'), xml, 'utf-8')
 }
 
+// llms.txt: índice curado para assistentes de IA autorizados (busca/retrieval).
+// Mantido em sincronia com os dados a cada build.
+async function generateLlmsTxt(
+  allData: Array<{ code: string; data: CountryData }>,
+): Promise<void> {
+  const latestIso = allData.reduce(
+    (best, { data }) => (data.meta.lastUpdated > best ? data.meta.lastUpdated : best),
+    '',
+  )
+  const cycle = latestIso ? monthLabelLong(latestIso) : ''
+
+  const countryLines = allData
+    .map(({ code, data }) => {
+      const name = COUNTRY_CONFIG[code]?.displayName ?? code.toUpperCase()
+      const n = data.visaTypes.length
+      return `- [${name}](${SITE_URL}/pais-${code}): ${n} tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.`
+    })
+    .join('\n')
+
+  const txt = `# Rota Legal
+
+> Monitor mensal de condições de imigração legal para brasileiros que querem trabalhar na Europa. Dados de fontes oficiais de 10 países, em português, atualizados todo mês${cycle ? ` (ciclo atual: ${cycle})` : ''}.
+
+Conteúdo factual e citável: nomes oficiais de vistos, salário mínimo exigido, prazos de processamento, documentação e direitos. Cada página de país lista seus vistos; cada visto tem página própria em ${SITE_URL}/vistos/.
+
+## Países monitorados
+
+${countryLines}
+
+## Ferramentas
+
+- [Comparar países](${SITE_URL}/comparar): vistos, salários e requisitos lado a lado.
+- [Qual país é o meu](${SITE_URL}/qual-pais): recomendação por perfil em 6 perguntas.
+- [Calculadora de reserva](${SITE_URL}/calculadora): quanto guardar para emigrar.
+- [Histórico de mudanças](${SITE_URL}/historico): alterações mensais em vistos, salários e taxas.
+- [Guia prático](${SITE_URL}/guia-pratico): passo a passo para brasileiros.
+
+## Metodologia e dados
+
+- [Sobre, metodologia e fontes](${SITE_URL}/sobre)
+- [Dados abertos em JSON (GitHub)](https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current)
+- [Código-fonte (MIT)](https://github.com/vl-builds/rota-legal-monitor)
+`
+
+  await writeFile(join(PREVIEWS_DIR, 'llms.txt'), txt, 'utf-8')
+}
+
 async function main(): Promise<void> {
   const files = await readdir(DATA_DIR)
   const codes = files
@@ -650,6 +717,9 @@ async function main(): Promise<void> {
 
   await generateSitemap(allData)
   console.log('[ok] sitemap.xml gerado')
+
+  await generateLlmsTxt(allData)
+  console.log('[ok] llms.txt gerado')
 
   await patchOpenGraph()
   console.log('[ok] open graph atualizado nas páginas estáticas')

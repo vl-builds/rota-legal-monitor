@@ -1,3 +1,21 @@
+# Bots de busca por IA que citam com link (geram tráfego de referência):
+# permitidos explicitamente. Política: liberar busca/retrieval, manter treino
+# bloqueado. O bloqueio dos bots de treino (GPTBot, Google-Extended, CCBot,
+# ClaudeBot, Bytespider, etc.) é aplicado pelo Cloudflare Managed Robots
+# (painel: AI Audit > Manage AI bot traffic), prependido a este arquivo.
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: *
 Allow: /
 Disallow: /area-aluno/
