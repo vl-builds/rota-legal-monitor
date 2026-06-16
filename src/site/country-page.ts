@@ -7,6 +7,7 @@ export interface CountryPageConfig {
   flagClass: string
   workingHoliday: boolean
   verificationUrls?: VerificationUrl[]
+  comparisons?: Array<{ slug: string; label: string }>
 }
 
 function esc(s: string): string {
@@ -2032,6 +2033,15 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   </div>
 </div>
 
+${(config.comparisons && config.comparisons.length) ? `<!-- COMPARACOES -->
+<div style="border-bottom:1px solid var(--hairline);">
+  <div class="container" style="padding:16px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <span style="font-size:13px;color:var(--muted);font-weight:500;">Comparar ${esc(config.displayName)} com:</span>
+    ${config.comparisons.map(c => `<a href="/comparar-paises/${c.slug}" style="font-size:13px;padding:6px 12px;border:1px solid var(--hairline);border-radius:var(--r-pill);color:var(--body-strong);text-decoration:none;">${esc(c.label.replace(config.displayName + ' ou ', '').replace(' ou ' + config.displayName, ''))}</a>`).join('')}
+    <a href="/comparar-paises" style="font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;">Todas as comparações →</a>
+  </div>
+</div>
+` : ''}
 <!-- STICKY SUBHEADER + TABS -->
 <div class="country-sticky" id="sticky">
   <div class="container">

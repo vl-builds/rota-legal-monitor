@@ -4,6 +4,8 @@ import { join } from 'node:path'
 import { generateCountryPage } from './country-page'
 import type { CountryPageConfig } from './country-page'
 import { generateVisaPage, visaPageSlug, visaPageUrlSlug } from './visa-page'
+import { generateComparePage, generateCompareHub, compareSlug } from './compare-page'
+import type { CompareCountry } from './compare-page'
 import type { CountryData, PolicyChange } from '@/extractors/schema'
 import { sources } from '@/sources'
 
@@ -32,6 +34,42 @@ const VISA_DUPLICATES: Record<string, string> = {
   'au/work-holiday-462': 'au/working-holiday-462',
   'nl/researcher-permit': 'nl/researcher',
 }
+// Metadados de comparacao por pais: slug na URL e idioma (dados que nao estao
+// no JSON extraido). Combina com COUNTRY_CONFIG para montar a CompareCountry.
+const COMPARE_META: Record<string, { slug: string; language: string; languageNote: string }> = {
+  pt: { slug: 'portugal',      language: 'Português',          languageNote: 'mesmo idioma do Brasil' },
+  es: { slug: 'espanha',       language: 'Espanhol',           languageNote: 'alta semelhança com o português' },
+  de: { slug: 'alemanha',      language: 'Alemão',             languageNote: 'exigido na maioria dos vistos' },
+  ie: { slug: 'irlanda',       language: 'Inglês',             languageNote: 'mercado forte em inglês' },
+  nl: { slug: 'paises-baixos', language: 'Holandês e inglês',  languageNote: 'inglês resolve em muitas áreas' },
+  fr: { slug: 'franca',        language: 'Francês',            languageNote: 'exigido na maioria dos casos' },
+  it: { slug: 'italia',        language: 'Italiano',           languageNote: 'próximo do português' },
+  be: { slug: 'belgica',       language: 'Francês e holandês', languageNote: 'varia por região' },
+  at: { slug: 'austria',       language: 'Alemão',             languageNote: 'exigido na maioria dos vistos' },
+  au: { slug: 'australia',     language: 'Inglês',             languageNote: 'exigido (destino fora da Europa)' },
+}
+
+// Pares de comparacao priorizados (validados por pesquisa de SERP). Cada par
+// gera uma pagina /comparar-paises/{a}-vs-{b}.
+const COMPARE_PAIRS: Array<[string, string]> = [
+  ['pt', 'es'], ['pt', 'ie'], ['de', 'ie'], ['pt', 'de'], ['ie', 'au'],
+  ['nl', 'de'], ['es', 'ie'], ['fr', 'de'], ['it', 'pt'], ['at', 'de'],
+  ['be', 'nl'], ['au', 'de'],
+]
+
+function compareCountry(cc: string): CompareCountry {
+  const cfg = COUNTRY_CONFIG[cc]!
+  const meta = COMPARE_META[cc]!
+  return {
+    code: cc,
+    name: cfg.displayName,
+    slug: meta.slug,
+    flagClass: cfg.flagClass,
+    language: meta.language,
+    languageNote: meta.languageNote,
+  }
+}
+
 function visaCanonicalUrl(code: string, visaId: string): string | undefined {
   const target = VISA_DUPLICATES[`${code}/${visaId}`]
   if (!target) return undefined
@@ -595,6 +633,7 @@ const STATIC_PAGES: Array<{ path: string; priority: string; changefreq: string }
 
 async function generateSitemap(
   allData: Array<{ code: string; data: CountryData }>,
+  comparePairs: Array<{ a: CompareCountry; b: CompareCountry }> = [],
 ): Promise<void> {
   const today = new Date().toISOString().slice(0, 10)
 
@@ -604,6 +643,18 @@ async function generateSitemap(
     urlTags.push(
       `  <url>\n    <loc>${SITE_URL}${path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
     )
+  }
+
+  // Hub e paginas de comparacao pais x pais
+  if (comparePairs.length) {
+    urlTags.push(
+      `  <url>\n    <loc>${SITE_URL}/comparar-paises</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`,
+    )
+    for (const { a, b } of comparePairs) {
+      urlTags.push(
+        `  <url>\n    <loc>${SITE_URL}/comparar-paises/${compareSlug(a, b)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
+      )
+    }
   }
 
   for (const { code, data } of allData) {
@@ -657,6 +708,7 @@ ${countryLines}
 
 ## Ferramentas
 
+- [Comparações país a país](${SITE_URL}/comparar-paises): páginas editoriais comparando dois países (salário, vistos, idioma) para brasileiros.
 - [Comparar países](${SITE_URL}/comparar): vistos, salários e requisitos lado a lado.
 - [Qual país é o meu](${SITE_URL}/qual-pais): recomendação por perfil em 6 perguntas.
 - [Calculadora de reserva](${SITE_URL}/calculadora): quanto guardar para emigrar.
@@ -681,6 +733,20 @@ async function main(): Promise<void> {
 
   const allData: Array<{ code: string; data: CountryData }> = []
 
+  // Pares de comparacao e links por pais (para "Comparar com outros paises").
+  const comparePairs = COMPARE_PAIRS
+    .filter(([x, y]) => COUNTRY_CONFIG[x] && COUNTRY_CONFIG[y])
+    .map(([x, y]) => ({ a: compareCountry(x), b: compareCountry(y) }))
+  const comparisonsByCode = new Map<string, Array<{ slug: string; label: string }>>()
+  for (const { a, b } of comparePairs) {
+    const slug = compareSlug(a, b)
+    for (const [self, other] of [[a, b], [b, a]] as const) {
+      const list = comparisonsByCode.get(self.code) ?? []
+      list.push({ slug, label: `${self.name} ou ${other.name}` })
+      comparisonsByCode.set(self.code, list)
+    }
+  }
+
   for (const code of codes) {
     const cfg = COUNTRY_CONFIG[code]
     if (!cfg) {
@@ -695,6 +761,7 @@ async function main(): Promise<void> {
       code,
       ...cfg,
       ...(src?.verificationUrls ? { verificationUrls: src.verificationUrls } : {}),
+      comparisons: comparisonsByCode.get(code) ?? [],
     })
 
     const out = join(PREVIEWS_DIR, `pais-${code}.html`)
@@ -737,7 +804,29 @@ async function main(): Promise<void> {
 
   console.log(`\nTotal: ${allData.length} países + ${visaCount} páginas de visto.`)
 
-  await generateSitemap(allData)
+  // Paginas de comparacao pais x pais + hub
+  const COMPARE_DIR = join(PREVIEWS_DIR, 'comparar-paises')
+  await mkdir(COMPARE_DIR, { recursive: true })
+  const dataByCode = new Map(allData.map(x => [x.code, x.data]))
+  const cycleShort = latestIso ? monthLabel(latestIso) : ''
+  let compareCount = 0
+  for (const { a, b } of comparePairs) {
+    const da = dataByCode.get(a.code)
+    const db = dataByCode.get(b.code)
+    if (!da || !db) continue
+    const slug = compareSlug(a, b)
+    const related = comparePairs
+      .filter(p => p.a !== a || p.b !== b)
+      .filter(p => p.a.code === a.code || p.b.code === a.code || p.a.code === b.code || p.b.code === b.code)
+      .slice(0, 6)
+      .map(p => ({ slug: compareSlug(p.a, p.b), label: `${p.a.name} ou ${p.b.name}` }))
+    await writeFile(join(COMPARE_DIR, `${slug}.html`), generateComparePage(a, b, da, db, related), 'utf-8')
+    compareCount++
+  }
+  await writeFile(join(PREVIEWS_DIR, 'comparar-paises.html'), generateCompareHub(comparePairs, cycleShort), 'utf-8')
+  console.log(`[ok] ${compareCount} páginas de comparação + hub gerados`)
+
+  await generateSitemap(allData, comparePairs)
   console.log('[ok] sitemap.xml gerado')
 
   await generateLlmsTxt(allData)
