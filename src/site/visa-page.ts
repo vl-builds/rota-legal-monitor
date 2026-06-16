@@ -311,15 +311,100 @@ export function visaPageUrlSlug(cc: string, visaId: string): string {
   return `${cc}-${visaId}`
 }
 
+// Nome curto e keyword-rico para o <title> dos vistos cujo nome oficial estoura
+// o limite de exibicao da SERP (~60 chars). O H1 e o schema mantem o nome oficial
+// completo. Dimensionado para caber <=60 com o sufixo " — Pais Ano | Rota Legal".
+const SHORT_TITLES: Record<string, string> = {
+  // Portugal
+  'pt/work-job-search': 'Visto para Procura de Trabalho',
+  'pt/work-independent-with-visa': 'Trabalho Independente',
+  'pt/work-subordinate-with-visa': 'Trabalho Subordinado',
+  'pt/nomada-digital': 'Nômade Digital (Remoto)',
+  'pt/work-digital-nomad': 'Nômade Digital',
+  'pt/autorizacao-residencia-atividade-subordinada-dispensa-visto': 'Trabalho com Dispensa de Visto',
+  'pt/work-tech-visa': 'Tech Visa (Qualificado)',
+  'pt/work-intra-company-transfer': 'Transferência Intraempresa',
+  'pt/work-intra-company-mobility': 'Mobilidade ICT Intraempresa',
+  'pt/ar-atividade-profissional-subordinada': 'Atividade Subordinada',
+  'pt/work-highly-qualified': 'Altamente Qualificado',
+  'pt/pt-highly-qualified-activity': 'Atividade Altamente Qualificada',
+  'pt/passive-income-d7': 'Visto D7 (Rendimentos Próprios)',
+  // Países Baixos (sufixo mais longo: nomes mais curtos)
+  'nl/paid-employment-gvva': 'Emprego com GVVA',
+  'nl/cross-border-service-provider': 'Serviços Transfronteiriços',
+  'nl/orientation-year-highly-educated': 'Ano de Orientação',
+  'nl/highly-skilled-migrant': 'Migrante Qualificado',
+  'nl/intra-corporate-transferee': 'Transferência Intraempresa',
+  'nl/start-up-founder': 'Fundador de Startup',
+  'nl/paid-employment-no-gvva': 'Emprego sem GVVA',
+  'nl/paid-employment-no-permit': 'Emprego sem Permissão',
+  'nl/self-employed': 'Trabalhador Autônomo',
+  'nl/seasonal-work': 'Trabalho Sazonal',
+  'nl/seafaring-crew': 'Tripulação Marítima',
+  'nl/researcher-permit': 'Pesquisador',
+  'nl/researcher': 'Pesquisador',
+  'nl/international-trade-regulation': 'Comércio Internacional',
+  'nl/intra-eu-frontier-worker': 'Trabalhador Fronteiriço UE',
+  // Áustria
+  'at/red-white-red-card-highly-qualified': 'RWR Card (Muito Qualificado)',
+  'at/red-white-red-card-skilled-shortage': 'RWR Card (Profissão em Falta)',
+  'at/rwr-other-key-workers': 'RWR Card (Outros Essenciais)',
+  'at/red-white-red-card-plus': 'RWR Card Plus',
+  // Austrália
+  'au/skilled-independent-189': 'Qualificado Independente (189)',
+  'au/skilled-nominated-190': 'Qualificado Nomeado (190)',
+  'au/tss-482': 'Patrocínio Temporário (482)',
+  'au/work-holiday-462': 'Working Holiday (462)',
+  'au/working-holiday-462': 'Working Holiday (462)',
+  // França
+  'fr/vls-carte-travailleur': 'VLS Carte de Séjour Trabalho',
+  'fr/vls-ts-salarie': 'VLS-TS Assalariado',
+  'fr/vls-ts-talent': 'VLS-TS Talent',
+  'fr/vls-temporaire-artiste': 'VLS Temporário Artístico',
+  'fr/working-holiday-brasil': 'Working Holiday (Brasil)',
+  'fr/carte-sejour-temporaire-salarie': 'Carte de Séjour Assalariado',
+  'fr/talent-empresa-inovante': 'Talent Empresa Inovadora',
+  'fr/talent-profissoes-medicas-farmacia': 'Talent Médicos e Farmácia',
+  // Espanha
+  'es/residencia-excepcion-trabajo': 'Residência sem Autorização',
+  'es/highly-qualified-worker-visa': 'Trabalhador Muito Qualificado',
+  'es/intra-company-transfer-visa': 'Transferência Intraempresa',
+  'es/trabajo-cuenta-ajena': 'Trabalho por Conta Alheia',
+  'es/telework-nomad-visa': 'Teletrabalho (Nômade Digital)',
+  // Irlanda
+  'ie/intra-company-transfer-employment-permit': 'Transferência Intracorporativa',
+  'ie/dependant-partner-spouse-employment-permit': 'Dependente ou Cônjuge',
+  'ie/critical-skills-employment-permit': 'Competências Críticas',
+  'ie/contract-for-services-employment-permit': 'Contrato de Serviços',
+  'ie/exchange-agreement-employment-permit': 'Acordo de Intercâmbio',
+  'ie/sport-cultural-employment-permit': 'Esporte e Cultura',
+  'ie/reactivation-employment-permit': 'Reativação de Permissão',
+  'ie/internship-employment-permit': 'Permissão de Estágio',
+  // Alemanha
+  'de/visa-professionally-experienced-workers': 'Profissionais Experientes',
+  'de/work-qualified-professionals': 'Profissionais Qualificados',
+  'de/skilled-worker-visa': 'Trabalhadores Qualificados',
+  // Bélgica
+  'be/work-authorization-belgium': 'Autorização de Trabalho',
+  'be/professional-card-self-employed': 'Cartão Profissional (Autônomo)',
+}
+
 export function generateVisaPage(
   visa: VisaType,
   data: CountryData,
   config: CountryPageConfig,
   relatedVisas: RelatedVisa[] = [],
+  canonicalUrl?: string,
 ): string {
   const updated = monthLabel(data.meta.lastUpdated)
   const year = new Date(data.meta.lastUpdated).getUTCFullYear()
-  const pageTitle = `${visa.name} — ${config.displayName} ${year} | Rota Legal`
+  // URL canonica: por padrao a propria pagina. Para vistos duplicados (mesma
+  // realidade extraida com dois ids), aponta para a pagina canonica, consolidando
+  // o sinal de SEO sem quebrar a URL existente.
+  const selfUrl = `https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}`
+  const canonical = canonicalUrl || selfUrl
+  const titleName = SHORT_TITLES[`${config.code}/${visa.id}`] ?? visa.name
+  const pageTitle = `${titleName} — ${config.displayName} ${year} | Rota Legal`
   // Meta description com tamanho garantido (120-155): usa a descrição do visto
   // e, se curta, complementa com requisitos/prazos do ciclo corrente.
   const descBase = visa.description.replace(/\s+/g, ' ').trim().replace(/[.\s]+$/, '')
@@ -569,12 +654,12 @@ export function generateVisaPage(
 <meta property="og:site_name" content="Rota Legal" />
 <meta property="og:title" content="${esc(pageTitle)}" />
 <meta property="og:description" content="${esc(metaDescription)}" />
-<meta property="og:url" content="https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}" />
+<meta property="og:url" content="${canonical}" />
 <meta property="og:image" content="https://rotalegal.pro/assets/og-default.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/png" href="../favicon.png" />
 <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
-<link rel="canonical" href="https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}" />
+<link rel="canonical" href="${canonical}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" />
@@ -587,8 +672,8 @@ export function generateVisaPage(
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': `https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}`,
-      url: `https://rotalegal.pro/vistos/${visaPageUrlSlug(config.code, visa.id)}`,
+      '@id': canonical,
+      url: canonical,
       name: `${visa.name} — ${config.displayName} — Rota Legal`,
       description: metaDescription,
       datePublished: data.meta.lastUpdated.slice(0, 10),

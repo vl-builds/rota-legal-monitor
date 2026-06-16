@@ -24,6 +24,23 @@ const COUNTRY_CONFIG: Record<string, Omit<CountryPageConfig, 'code'>> = {
   au: { displayName: 'Austrália',     flagClass: 'flag-au', workingHoliday: true  },
 }
 
+// Vistos duplicados: a mesma realidade extraida em dois ids. Chave = id duplicado
+// (cc/id), valor = id canonico no mesmo pais. A pagina duplicada continua existindo
+// (nao quebra URLs), mas aponta canonical/og:url/@id para a canonica e sai do
+// sitemap, consolidando o sinal de SEO em uma unica URL.
+const VISA_DUPLICATES: Record<string, string> = {
+  'au/work-holiday-462': 'au/working-holiday-462',
+  'nl/researcher-permit': 'nl/researcher',
+}
+function visaCanonicalUrl(code: string, visaId: string): string | undefined {
+  const target = VISA_DUPLICATES[`${code}/${visaId}`]
+  if (!target) return undefined
+  const slash = target.indexOf('/')
+  const tcc = target.slice(0, slash)
+  const tid = target.slice(slash + 1)
+  return `https://rotalegal.pro/vistos/${visaPageUrlSlug(tcc, tid)}`
+}
+
 const VISA_FAMILIES: Array<{ label: string; members: Array<{ cc: string; id: string }> }> = [
   { label: 'EU Blue Card', members: [
     { cc: 'be', id: 'eu-blue-card' },
@@ -595,6 +612,8 @@ async function generateSitemap(
       `  <url>\n    <loc>${SITE_URL}/pais-${code}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`,
     )
     for (const visa of data.visaTypes) {
+      // Vistos duplicados nao entram no sitemap: o sinal vai para a URL canonica.
+      if (visaCanonicalUrl(code, visa.id)) continue
       const slug = visaPageUrlSlug(code, visa.id)
       urlTags.push(
         `  <url>\n    <loc>${SITE_URL}/vistos/${slug}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`,
@@ -708,7 +727,7 @@ async function main(): Promise<void> {
     const cfg = COUNTRY_CONFIG[code]!
     for (const visa of data.visaTypes) {
       const related = relatedMap.get(`${code}/${visa.id}`) ?? []
-      const html = generateVisaPage(visa, data, { code, ...cfg }, related)
+      const html = generateVisaPage(visa, data, { code, ...cfg }, related, visaCanonicalUrl(code, visa.id))
       const slug = visaPageSlug(code, visa.id)
       await writeFile(join(VISTOS_DIR, slug), html, 'utf-8')
       visaCount++
