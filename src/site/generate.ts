@@ -6,6 +6,8 @@ import type { CountryPageConfig } from './country-page'
 import { generateVisaPage, visaPageSlug, visaPageUrlSlug } from './visa-page'
 import { generateComparePage, generateCompareHub, compareSlug } from './compare-page'
 import type { CompareCountry } from './compare-page'
+import { generateProfessionPage, generateProfessionHub, PROFESSIONS } from './profession-page'
+import type { ProfCountryInfo } from './profession-page'
 import type { CountryData, PolicyChange } from '@/extractors/schema'
 import { sources } from '@/sources'
 
@@ -415,6 +417,24 @@ async function patchHome(
         description: 'Monitore requisitos de visto de trabalho em 10 países europeus. Dados atualizados mensalmente com fontes oficiais.',
         publisher: { '@id': 'https://rotalegal.pro/#organization' },
       },
+      {
+        '@type': 'Dataset',
+        '@id': 'https://rotalegal.pro/#dataset',
+        name: 'Condições de imigração e vistos de trabalho de 10 países',
+        description: 'Dados mensais de vistos de trabalho, salário mínimo, prazos de processamento, taxas e requisitos de imigração de 10 países (Portugal, Espanha, Alemanha, Irlanda, Países Baixos, França, Itália, Bélgica, Áustria e Austrália), em português, extraídos de fontes oficiais.',
+        url: 'https://rotalegal.pro',
+        inLanguage: 'pt-BR',
+        isAccessibleForFree: true,
+        license: 'https://opensource.org/licenses/MIT',
+        creator: { '@id': 'https://rotalegal.pro/#organization' },
+        publisher: { '@id': 'https://rotalegal.pro/#organization' },
+        keywords: ['vistos de trabalho', 'imigração', 'salário mínimo', 'Europa', 'brasileiros'],
+        distribution: [{
+          '@type': 'DataDownload',
+          encodingFormat: 'application/json',
+          contentUrl: 'https://github.com/vl-builds/rota-legal-monitor/tree/master/data/current',
+        }],
+      },
     ],
   })
   const orgScript = `<script type="application/ld+json">${orgLd}</script>`
@@ -657,6 +677,18 @@ async function generateSitemap(
     }
   }
 
+  // Hub e paginas por profissao
+  if (PROFESSIONS.length) {
+    urlTags.push(
+      `  <url>\n    <loc>${SITE_URL}/profissoes</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`,
+    )
+    for (const p of PROFESSIONS) {
+      urlTags.push(
+        `  <url>\n    <loc>${SITE_URL}/profissoes/${p.slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
+      )
+    }
+  }
+
   for (const { code, data } of allData) {
     const lastmod = data.meta.lastUpdated.slice(0, 10)
     urlTags.push(
@@ -709,6 +741,7 @@ ${countryLines}
 ## Ferramentas
 
 - [Comparações país a país](${SITE_URL}/comparar-paises): páginas editoriais comparando dois países (salário, vistos, idioma) para brasileiros.
+- [Trabalhar por profissão](${SITE_URL}/profissoes): guias por profissão (enfermeiro, TI, motorista e mais) com países que contratam, visto e diploma.
 - [Comparar países](${SITE_URL}/comparar): vistos, salários e requisitos lado a lado.
 - [Qual país é o meu](${SITE_URL}/qual-pais): recomendação por perfil em 6 perguntas.
 - [Calculadora de reserva](${SITE_URL}/calculadora): quanto guardar para emigrar.
@@ -747,6 +780,16 @@ async function main(): Promise<void> {
     }
   }
 
+  // Profissoes relevantes por pais (para "Profissoes em alta" na pagina de pais).
+  const professionsByCode = new Map<string, Array<{ slug: string; label: string }>>()
+  for (const p of PROFESSIONS) {
+    for (const cc of p.countries) {
+      const list = professionsByCode.get(cc) ?? []
+      list.push({ slug: p.slug, label: p.titleNoun })
+      professionsByCode.set(cc, list)
+    }
+  }
+
   for (const code of codes) {
     const cfg = COUNTRY_CONFIG[code]
     if (!cfg) {
@@ -762,6 +805,7 @@ async function main(): Promise<void> {
       ...cfg,
       ...(src?.verificationUrls ? { verificationUrls: src.verificationUrls } : {}),
       comparisons: comparisonsByCode.get(code) ?? [],
+      professions: (professionsByCode.get(code) ?? []).slice(0, 6),
     })
 
     const out = join(PREVIEWS_DIR, `pais-${code}.html`)
@@ -825,6 +869,28 @@ async function main(): Promise<void> {
   }
   await writeFile(join(PREVIEWS_DIR, 'comparar-paises.html'), generateCompareHub(comparePairs, cycleShort), 'utf-8')
   console.log(`[ok] ${compareCount} páginas de comparação + hub gerados`)
+
+  // Paginas por profissao + hub
+  const PROF_DIR = join(PREVIEWS_DIR, 'profissoes')
+  await mkdir(PROF_DIR, { recursive: true })
+  const profInfo = new Map<string, ProfCountryInfo>()
+  for (const { code, data } of allData) {
+    const cfg = COUNTRY_CONFIG[code]!
+    profInfo.set(code, {
+      code,
+      name: cfg.displayName,
+      flagClass: cfg.flagClass,
+      language: COMPARE_META[code]?.language ?? '',
+      data,
+    })
+  }
+  const profYear = latestIso ? new Date(latestIso).getUTCFullYear() : new Date().getUTCFullYear()
+  for (const p of PROFESSIONS) {
+    const related = PROFESSIONS.filter(q => q.slug !== p.slug).slice(0, 6).map(q => ({ slug: q.slug, titleNoun: q.titleNoun }))
+    await writeFile(join(PROF_DIR, `${p.slug}.html`), generateProfessionPage(p, profInfo, related), 'utf-8')
+  }
+  await writeFile(join(PREVIEWS_DIR, 'profissoes.html'), generateProfessionHub(PROFESSIONS, cycleShort, profYear), 'utf-8')
+  console.log(`[ok] ${PROFESSIONS.length} páginas de profissão + hub gerados`)
 
   await generateSitemap(allData, comparePairs)
   console.log('[ok] sitemap.xml gerado')

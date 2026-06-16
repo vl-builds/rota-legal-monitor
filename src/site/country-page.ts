@@ -8,6 +8,7 @@ export interface CountryPageConfig {
   workingHoliday: boolean
   verificationUrls?: VerificationUrl[]
   comparisons?: Array<{ slug: string; label: string }>
+  professions?: Array<{ slug: string; label: string }>
 }
 
 function esc(s: string): string {
@@ -2039,6 +2040,15 @@ ${(config.comparisons && config.comparisons.length) ? `<!-- COMPARACOES -->
     <span style="font-size:13px;color:var(--muted);font-weight:500;">Comparar ${esc(config.displayName)} com:</span>
     ${config.comparisons.map(c => `<a href="/comparar-paises/${c.slug}" style="font-size:13px;padding:6px 12px;border:1px solid var(--hairline);border-radius:var(--r-pill);color:var(--body-strong);text-decoration:none;">${esc(c.label.replace(config.displayName + ' ou ', '').replace(' ou ' + config.displayName, ''))}</a>`).join('')}
     <a href="/comparar-paises" style="font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;">Todas as comparações →</a>
+  </div>
+</div>
+` : ''}
+${(config.professions && config.professions.length) ? `<!-- PROFISSOES -->
+<div style="border-bottom:1px solid var(--hairline);">
+  <div class="container" style="padding:16px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <span style="font-size:13px;color:var(--muted);font-weight:500;">Profissões em alta:</span>
+    ${config.professions.map(pf => `<a href="/profissoes/${pf.slug}" style="font-size:13px;padding:6px 12px;border:1px solid var(--hairline);border-radius:var(--r-pill);color:var(--body-strong);text-decoration:none;">${esc(pf.label)}</a>`).join('')}
+    <a href="/profissoes" style="font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;">Todas as profissões →</a>
   </div>
 </div>
 ` : ''}

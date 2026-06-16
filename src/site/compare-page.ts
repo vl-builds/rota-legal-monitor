@@ -24,7 +24,8 @@ function monthLabel(iso: string): string {
 }
 
 function fmtMoney(m?: { amount?: number; currency?: string } | null): string {
-  if (!m || !m.amount) return 'Não informado'
+  // Italia e Austria nao tem salario minimo nacional legal (vale acordo coletivo).
+  if (!m || !m.amount) return 'Sem mínimo legal'
   const v = Math.round(m.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
   return `${m.currency || 'EUR'} ${v}`
 }
@@ -259,7 +260,10 @@ export function generateComparePage(
 
   const wageA = da.generalRequirements?.minimumWage?.amount || 0
   const wageB = db.generalRequirements?.minimumWage?.amount || 0
-  const wageWinner: 0 | 1 | 2 = wageA === wageB ? 0 : wageA > wageB ? 1 : 2
+  const bothHaveWage = wageA > 0 && wageB > 0
+  // Sem comparacao de "vencedor" quando um pais nao tem salario minimo legal.
+  const wageWinner: 0 | 1 | 2 = !bothHaveWage ? 0 : wageA === wageB ? 0 : wageA > wageB ? 1 : 2
+  const noWageCountry = wageA === 0 ? a.name : wageB === 0 ? b.name : null
   const visaWinner: 0 | 1 | 2 = ma.visaCount === mb.visaCount ? 0 : ma.visaCount > mb.visaCount ? 1 : 2
 
   const titleCore = `${a.name} ou ${b.name} para brasileiros (${year})`
@@ -269,6 +273,7 @@ export function generateComparePage(
   // Texto interpretativo derivado dos dados (sem inventar)
   const verdicts: string[] = []
   if (wageWinner !== 0) verdicts.push(`<strong>${wageWinner === 1 ? a.name : b.name}</strong> tem o salário mínimo mais alto (${wageWinner === 1 ? ma.minWage : mb.minWage} contra ${wageWinner === 1 ? mb.minWage : ma.minWage}).`)
+  else if (noWageCountry) verdicts.push(`<strong>${noWageCountry}</strong> não tem salário mínimo nacional fixado por lei: a remuneração segue os acordos coletivos do setor, o que pode significar pisos altos em áreas qualificadas.`)
   const ptLang = [a, b].find(c => c.code === 'pt')
   if (ptLang) verdicts.push(`<strong>Portugal</strong> não tem barreira de idioma para brasileiros, vantagem direta na contratação e na vida cotidiana.`)
   if (ma.agreement && a.code === 'pt') verdicts.push(`Portugal oferece o <strong>${ma.agreement}</strong>, que aproxima direitos de brasileiros residentes.`)
@@ -299,11 +304,13 @@ export function generateComparePage(
   const faqs: Array<{ q: string; a: string }> = [
     {
       q: `${a.name} ou ${b.name}: qual é mais fácil para brasileiros?`,
-      a: `Depende do seu perfil. ${a.code === 'pt' || b.code === 'pt' ? 'Portugal costuma ser o mais acessível pelo idioma e pelos acordos com o Brasil. ' : ''}${wageWinner === 1 ? a.name : wageWinner === 2 ? b.name : a.name} oferece salário mínimo ${wageWinner === 0 ? 'semelhante' : 'mais alto'}, e cada país tem vistos com requisitos próprios. Use o questionário Qual país é o meu para uma recomendação por perfil.`,
+      a: `Depende do seu perfil. ${a.code === 'pt' || b.code === 'pt' ? 'Portugal costuma ser o mais acessível pelo idioma e pelos acordos com o Brasil. ' : ''}Cada país tem vistos com requisitos próprios, e o melhor depende da sua profissão e qualificação. Use o questionário Qual país é o meu para uma recomendação por perfil.`,
     },
     {
       q: `Qual paga mais, ${a.name} ou ${b.name}?`,
-      a: `Pelo salário mínimo nacional, ${wageWinner === 0 ? `os dois são semelhantes (${ma.minWage})` : `${wageWinner === 1 ? a.name : b.name} paga mais (${wageWinner === 1 ? ma.minWage : mb.minWage} contra ${wageWinner === 1 ? mb.minWage : ma.minWage})`}. O salário real da sua profissão pode variar bastante acima do mínimo.`,
+      a: noWageCountry
+        ? `${noWageCountry} não tem salário mínimo nacional fixado por lei: a remuneração segue acordos coletivos por setor. Compare pelo salário real da sua profissão, que costuma ficar acima de qualquer piso.`
+        : `Pelo salário mínimo nacional, ${wageWinner === 0 ? `os dois são semelhantes (${ma.minWage})` : `${wageWinner === 1 ? a.name : b.name} paga mais (${wageWinner === 1 ? ma.minWage : mb.minWage} contra ${wageWinner === 1 ? mb.minWage : ma.minWage})`}. O salário real da sua profissão pode variar bastante acima do mínimo.`,
     },
     {
       q: `Preciso saber o idioma para trabalhar em ${a.name} ou ${b.name}?`,
