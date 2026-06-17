@@ -2047,6 +2047,7 @@ ${(config.professions && config.professions.length) ? `<!-- PROFISSOES -->
 <div style="border-bottom:1px solid var(--hairline);">
   <div class="container" style="padding:16px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
     <span style="font-size:13px;color:var(--muted);font-weight:500;">Profissões em alta:</span>
+    <a href="/trabalhar-na-europa" style="font-size:13px;padding:6px 12px;border:1px solid var(--primary);border-radius:var(--r-pill);color:var(--primary);text-decoration:none;font-weight:600;">Guia: Trabalhar na Europa</a>
     ${config.professions.map(pf => `<a href="/profissoes/${pf.slug}" style="font-size:13px;padding:6px 12px;border:1px solid var(--hairline);border-radius:var(--r-pill);color:var(--body-strong);text-decoration:none;">${esc(pf.label)}</a>`).join('')}
     <a href="/profissoes" style="font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;">Todas as profissões →</a>
   </div>

@@ -8,6 +8,8 @@ import { generateComparePage, generateCompareHub, compareSlug } from './compare-
 import type { CompareCountry } from './compare-page'
 import { generateProfessionPage, generateProfessionHub, PROFESSIONS } from './profession-page'
 import type { ProfCountryInfo } from './profession-page'
+import { generateEuropaHub } from './europa-hub'
+import type { EuropaCountry } from './europa-hub'
 import type { CountryData, PolicyChange } from '@/extractors/schema'
 import { sources } from '@/sources'
 
@@ -388,6 +390,14 @@ async function patchHome(
     )
   }
 
+  // Link de descoberta para o hub /trabalhar-na-europa no rodape (idempotente).
+  if (!html.includes('href="/trabalhar-na-europa"')) {
+    html = html.replace(
+      '<li><a href="/comparar">Comparar países</a></li>',
+      '<li><a href="/trabalhar-na-europa">Trabalhar na Europa</a></li>\n          <li><a href="/comparar">Comparar países</a></li>',
+    )
+  }
+
   // Organization + WebSite JSON-LD. Autoritativo: reescreve o bloco existente
   // (sem SearchAction nao-funcional; logo como ImageObject; sameAs; inLanguage).
   const orgLd = JSON.stringify({
@@ -638,6 +648,7 @@ async function patchOpenGraph(): Promise<void> {
 // entao o sitemap aponta direto para a URL que retorna 200.
 const STATIC_PAGES: Array<{ path: string; priority: string; changefreq: string }> = [
   { path: '/',                       priority: '1.0', changefreq: 'monthly' },
+  { path: '/trabalhar-na-europa',    priority: '0.9', changefreq: 'monthly' },
   { path: '/paises',                 priority: '0.9', changefreq: 'monthly' },
   { path: '/comparar',               priority: '0.8', changefreq: 'monthly' },
   { path: '/qual-pais',              priority: '0.8', changefreq: 'monthly' },
@@ -733,6 +744,8 @@ async function generateLlmsTxt(
 > Monitor mensal de condições de imigração legal para brasileiros que querem trabalhar na Europa. Dados de fontes oficiais de 10 países, em português, atualizados todo mês${cycle ? ` (ciclo atual: ${cycle})` : ''}.
 
 Conteúdo factual e citável: nomes oficiais de vistos, salário mínimo exigido, prazos de processamento, documentação e direitos. Cada página de país lista seus vistos; cada visto tem página própria em ${SITE_URL}/vistos/.
+
+Ponto de partida: [Trabalhar na Europa: guia para brasileiros](${SITE_URL}/trabalhar-na-europa) reúne os 10 países, salário, vistos e por onde começar.
 
 ## Países monitorados
 
@@ -891,6 +904,21 @@ async function main(): Promise<void> {
   }
   await writeFile(join(PREVIEWS_DIR, 'profissoes.html'), generateProfessionHub(PROFESSIONS, cycleShort, profYear), 'utf-8')
   console.log(`[ok] ${PROFESSIONS.length} páginas de profissão + hub gerados`)
+
+  // Hub editorial de topo de funil: /trabalhar-na-europa
+  const europaCountries: EuropaCountry[] = allData.map(({ code, data }) => ({
+    code,
+    name: COUNTRY_CONFIG[code]!.displayName,
+    flagClass: COUNTRY_CONFIG[code]!.flagClass,
+    language: COMPARE_META[code]?.language ?? '',
+    data,
+  }))
+  await writeFile(
+    join(PREVIEWS_DIR, 'trabalhar-na-europa.html'),
+    generateEuropaHub(europaCountries, comparePairs, PROFESSIONS, cycleShort, profYear),
+    'utf-8',
+  )
+  console.log('[ok] hub /trabalhar-na-europa gerado')
 
   await generateSitemap(allData, comparePairs)
   console.log('[ok] sitemap.xml gerado')
