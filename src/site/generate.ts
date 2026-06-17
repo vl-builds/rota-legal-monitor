@@ -10,6 +10,7 @@ import { generateProfessionPage, generateProfessionHub, PROFESSIONS } from './pr
 import type { ProfCountryInfo } from './profession-page'
 import { generateEuropaHub } from './europa-hub'
 import type { EuropaCountry } from './europa-hub'
+import { generateGuidePage, generateGuidesHub, GUIDES } from './guides-page'
 import type { CountryData, PolicyChange } from '@/extractors/schema'
 import { sources } from '@/sources'
 
@@ -390,11 +391,17 @@ async function patchHome(
     )
   }
 
-  // Link de descoberta para o hub /trabalhar-na-europa no rodape (idempotente).
+  // Links de descoberta no rodape (idempotentes): hub Trabalhar na Europa e Guias.
   if (!html.includes('href="/trabalhar-na-europa"')) {
     html = html.replace(
       '<li><a href="/comparar">Comparar países</a></li>',
       '<li><a href="/trabalhar-na-europa">Trabalhar na Europa</a></li>\n          <li><a href="/comparar">Comparar países</a></li>',
+    )
+  }
+  if (!html.includes('href="/guias"')) {
+    html = html.replace(
+      '<li><a href="/sobre#contribuir">Contribuir</a></li>',
+      '<li><a href="/guias">Guias</a></li>\n          <li><a href="/sobre#contribuir">Contribuir</a></li>',
     )
   }
 
@@ -700,6 +707,18 @@ async function generateSitemap(
     }
   }
 
+  // Hub e guias editoriais
+  if (GUIDES.length) {
+    urlTags.push(
+      `  <url>\n    <loc>${SITE_URL}/guias</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
+    )
+    for (const g of GUIDES) {
+      urlTags.push(
+        `  <url>\n    <loc>${SITE_URL}/guias/${g.slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
+      )
+    }
+  }
+
   for (const { code, data } of allData) {
     const lastmod = data.meta.lastUpdated.slice(0, 10)
     urlTags.push(
@@ -755,6 +774,7 @@ ${countryLines}
 
 - [Comparações país a país](${SITE_URL}/comparar-paises): páginas editoriais comparando dois países (salário, vistos, idioma) para brasileiros.
 - [Trabalhar por profissão](${SITE_URL}/profissoes): guias por profissão (enfermeiro, TI, motorista e mais) com países que contratam, visto e diploma.
+- [Guias de imigração](${SITE_URL}/guias): explicações diretas (Chancenkarte da Alemanha, ETIAS) com fontes oficiais.
 - [Comparar países](${SITE_URL}/comparar): vistos, salários e requisitos lado a lado.
 - [Qual país é o meu](${SITE_URL}/qual-pais): recomendação por perfil em 6 perguntas.
 - [Calculadora de reserva](${SITE_URL}/calculadora): quanto guardar para emigrar.
@@ -953,6 +973,15 @@ async function main(): Promise<void> {
     'utf-8',
   )
   console.log('[ok] hub /trabalhar-na-europa gerado')
+
+  // Guias editoriais + hub /guias
+  const GUIAS_DIR = join(PREVIEWS_DIR, 'guias')
+  await mkdir(GUIAS_DIR, { recursive: true })
+  for (const g of GUIDES) {
+    await writeFile(join(GUIAS_DIR, `${g.slug}.html`), generateGuidePage(g, cycleShort, profYear), 'utf-8')
+  }
+  await writeFile(join(PREVIEWS_DIR, 'guias.html'), generateGuidesHub(GUIDES, cycleShort, profYear), 'utf-8')
+  console.log(`[ok] ${GUIDES.length} guias + hub gerados`)
 
   await generateSitemap(allData, comparePairs)
   console.log('[ok] sitemap.xml gerado')

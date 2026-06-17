@@ -23,6 +23,7 @@ Ponto de partida: [Trabalhar na Europa: guia para brasileiros](https://rotalegal
 
 - [Comparações país a país](https://rotalegal.pro/comparar-paises): páginas editoriais comparando dois países (salário, vistos, idioma) para brasileiros.
 - [Trabalhar por profissão](https://rotalegal.pro/profissoes): guias por profissão (enfermeiro, TI, motorista e mais) com países que contratam, visto e diploma.
+- [Guias de imigração](https://rotalegal.pro/guias): explicações diretas (Chancenkarte da Alemanha, ETIAS) com fontes oficiais.
 - [Comparar países](https://rotalegal.pro/comparar): vistos, salários e requisitos lado a lado.
 - [Qual país é o meu](https://rotalegal.pro/qual-pais): recomendação por perfil em 6 perguntas.
 - [Calculadora de reserva](https://rotalegal.pro/calculadora): quanto guardar para emigrar.
