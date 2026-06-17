@@ -771,40 +771,6 @@ ${countryLines}
   await writeFile(join(PREVIEWS_DIR, 'llms.txt'), txt, 'utf-8')
 }
 
-// Inlina o CSS critico (acima da dobra) e carrega o design-system.css completo
-// de forma assincrona, removendo o unico recurso render-blocking. Idempotente:
-// reescreve o bloco a cada build para manter o critical fresco.
-async function inlineCriticalCss(): Promise<void> {
-  let critical: string
-  try {
-    critical = (await readFile(join(ROOT, 'src', 'assets', 'critical.css'), 'utf-8')).trim()
-  } catch {
-    console.log('[skip] src/assets/critical.css ausente — CSS segue render-blocking')
-    return
-  }
-  const block =
-    `<style id="rl-crit">${critical}</style>\n` +
-    `<link rel="preload" href="/assets/design-system.css" as="style" onload="this.onload=null;this.rel='stylesheet'">\n` +
-    `<noscript><link rel="stylesheet" href="/assets/design-system.css"></noscript>`
-
-  const linkRe = /<link rel="stylesheet" href="[^"]*design-system\.css[^"]*"\s*\/?>/
-  const blockRe = /<style id="rl-crit">[\s\S]*?<\/style>\s*<link rel="preload" href="[^"]*design-system\.css[^"]*"[^>]*>\s*<noscript>[\s\S]*?<\/noscript>/
-
-  const entries = await readdir(PREVIEWS_DIR, { recursive: true }) as string[]
-  let count = 0
-  for (const rel of entries) {
-    if (!rel.endsWith('.html')) continue
-    const path = join(PREVIEWS_DIR, rel)
-    let html = await readFile(path, 'utf-8')
-    let out = html
-    if (blockRe.test(html)) out = html.replace(blockRe, block)
-    else if (linkRe.test(html)) out = html.replace(linkRe, block)
-    else continue
-    if (out !== html) { await writeFile(path, out, 'utf-8'); count++ }
-  }
-  console.log(`[ok] critical CSS inline em ${count} páginas (design-system.css assíncrono)`)
-}
-
 async function main(): Promise<void> {
   const files = await readdir(DATA_DIR)
   const codes = files
@@ -962,8 +928,6 @@ async function main(): Promise<void> {
 
   await patchOpenGraph()
   console.log('[ok] open graph atualizado nas páginas estáticas')
-
-  await inlineCriticalCss()
 
   await generateHistoricoJson(allData)
   console.log('[ok] historico.json gerado')
