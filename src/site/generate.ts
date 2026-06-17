@@ -771,6 +771,40 @@ ${countryLines}
   await writeFile(join(PREVIEWS_DIR, 'llms.txt'), txt, 'utf-8')
 }
 
+// Correcoes de acessibilidade aplicadas a todas as paginas (idempotente):
+// 1. envolve o conteudo em <main> (landmark) quando ausente;
+// 2. converte os <h4> de coluna de rodape em <h3> para nao pular nivel de heading
+//    (h4 so e usado nos rodapes; estilo coberto por .footer-grid h3 no CSS).
+async function patchA11y(): Promise<void> {
+  const entries = await readdir(PREVIEWS_DIR, { recursive: true }) as string[]
+  let mainCount = 0
+  let headCount = 0
+  for (const rel of entries) {
+    if (!rel.endsWith('.html')) continue
+    const path = join(PREVIEWS_DIR, rel)
+    let html = await readFile(path, 'utf-8')
+    const orig = html
+
+    if (/<h4(\s|>)/.test(html)) {
+      html = html.replace(/<h4(\s[^>]*)?>/g, '<h3$1>').replace(/<\/h4>/g, '</h3>')
+      headCount++
+    }
+
+    if (!/<main(\s|>)/.test(html)) {
+      const secIdx = html.indexOf('<section')
+      const footIdx = html.indexOf('<footer')
+      if (secIdx !== -1 && footIdx !== -1 && secIdx < footIdx) {
+        html = html.slice(0, footIdx) + '</main>\n' + html.slice(footIdx)
+        html = html.slice(0, secIdx) + '<main>\n' + html.slice(secIdx)
+        mainCount++
+      }
+    }
+
+    if (html !== orig) await writeFile(path, html, 'utf-8')
+  }
+  console.log(`[ok] a11y: <main> adicionado em ${mainCount} páginas, headings de rodapé corrigidos em ${headCount}`)
+}
+
 async function main(): Promise<void> {
   const files = await readdir(DATA_DIR)
   const codes = files
@@ -928,6 +962,8 @@ async function main(): Promise<void> {
 
   await patchOpenGraph()
   console.log('[ok] open graph atualizado nas páginas estáticas')
+
+  await patchA11y()
 
   await generateHistoricoJson(allData)
   console.log('[ok] historico.json gerado')

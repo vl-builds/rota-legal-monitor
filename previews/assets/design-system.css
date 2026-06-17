@@ -801,7 +801,7 @@ footer {
   gap: var(--s-xl);
   margin-bottom: var(--s-xxl);
 }
-.footer-grid h4 {
+.footer-grid h3, .footer-grid h4 {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.5px;
