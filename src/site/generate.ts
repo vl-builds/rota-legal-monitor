@@ -576,6 +576,21 @@ const STATIC_OG: Array<{ file: string; title: string; description: string }> = [
     title: 'Parceiros Rota Legal: serviços para o exterior | Rota Legal',
     description: 'Serviços parceiros para quem vai trabalhar no exterior: contabilidade, seguro, câmbio, remessas e mais, selecionados para brasileiros na Europa.',
   },
+  {
+    file: 'politica-privacidade.html',
+    title: 'Política de Privacidade | Rota Legal',
+    description: 'Como o Rota Legal trata os seus dados: o que coletamos, por que e quais são os seus direitos no monitor de imigração para a Europa.',
+  },
+  {
+    file: 'politica-cookies.html',
+    title: 'Política de Cookies | Rota Legal',
+    description: 'Como o Rota Legal usa cookies: quais são essenciais, para que servem e como você controla as preferências no seu navegador.',
+  },
+  {
+    file: 'termos-uso.html',
+    title: 'Termos de Uso | Rota Legal',
+    description: 'Termos de uso do Rota Legal: condições, limitações de responsabilidade e como usar os dados de imigração. Leia antes de utilizar o site.',
+  },
 ]
 
 async function patchOpenGraph(): Promise<void> {
@@ -638,8 +653,10 @@ async function patchOpenGraph(): Promise<void> {
       const fontUrl = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap'
       if (html.includes(fontUrl) && !html.includes('media="print"')) {
         // aceita tanto <link href="..." rel="stylesheet" /> (uma linha) quanto multi-linha
+        // [^>] (em vez de [\s\S]) impede que o match atravesse outras tags <link>
+        // ja injetadas (canonical, favicon), mantendo-se dentro do proprio <link> da fonte.
         html = html.replace(
-          /<link[\s\S]*?href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]*display=swap"[\s\S]*?\/>/,
+          /<link[^>]*?href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]*display=swap"[^>]*?\/>/,
           `<link rel="preload" href="${fontUrl}" as="style" />\n<link href="${fontUrl}" rel="stylesheet" media="print" onload="this.media='all'" />\n<noscript><link href="${fontUrl}" rel="stylesheet" /></noscript>`,
         )
       }
