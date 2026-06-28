@@ -114,7 +114,7 @@ const PAGE_CSS = `
   .pf-lede { font-size:17px; line-height:1.6; color:var(--body); max-width:680px; margin:0; }
   .pf-body h2 { font-size:clamp(22px,3.2vw,28px); font-weight:700; letter-spacing:-0.5px; color:var(--on-dark); margin:46px 0 16px; scroll-margin-top:90px; }
   .pf-body p { font-size:16px; line-height:1.7; color:var(--body); margin:0 0 16px; }
-  .pf-body a { color:var(--primary); text-decoration:none; border-bottom:1px solid rgba(240,180,41,0.35); }
+  .pf-body a:not(.btn) { color:var(--primary); text-decoration:none; border-bottom:1px solid rgba(240,180,41,0.35); }
   .pf-body strong { color:var(--on-dark); font-weight:600; }
   .pf-table { width:100%; border-collapse:collapse; margin:8px 0 18px; font-size:15px; border:1px solid var(--hairline); border-radius:var(--r-lg); overflow:hidden; }
   .pf-table th, .pf-table td { padding:12px 15px; text-align:left; border-bottom:1px solid var(--hairline); }
