@@ -152,6 +152,8 @@ function nav(): string {
       <a class="nav-link" href="/paises">Países</a>
       <a class="nav-link" href="/comparar">Comparar</a>
       <a class="nav-link" href="/guia-pratico">Guia Prático</a>
+      <a class="nav-link" href="/profissoes">Profissões</a>
+      <a class="nav-link" href="/guias">Guias</a>
       <a class="nav-link" href="/calculadora">Calculadora</a>
       <a class="nav-link" href="/historico">Histórico</a>
       <a class="nav-link" href="/sobre">Sobre</a>
@@ -182,6 +184,8 @@ function head(title: string, desc: string, url: string, ld: object): string {
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" href="/favicon.png" />
 <link rel="canonical" href="${url}" />
+<link rel="alternate" hreflang="pt-BR" href="${url}" />
+<link rel="alternate" hreflang="x-default" href="${url}" />
 <meta name="description" content="${esc(desc)}" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Rota Legal" />

@@ -639,6 +639,14 @@ async function patchOpenGraph(): Promise<void> {
         html = html.replace('</title>', `</title>\n<link rel="canonical" href="${url}" />`)
       }
 
+      // hreflang: pt-BR + x-default
+      if (!html.includes('hreflang=')) {
+        html = html.replace(
+          /(<link rel="canonical" href="[^"]*" \/>)/,
+          `$1\n<link rel="alternate" hreflang="pt-BR" href="${url}" />\n<link rel="alternate" hreflang="x-default" href="${url}" />`,
+        )
+      }
+
       // twitter card
       if (!html.includes('twitter:card')) {
         html = html.replace('</title>', `</title>\n<meta name="twitter:card" content="summary_large_image" />`)

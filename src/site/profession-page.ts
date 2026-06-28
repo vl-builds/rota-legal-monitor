@@ -142,6 +142,8 @@ function navHtml(): string {
       <a class="nav-link" href="/paises">Países</a>
       <a class="nav-link" href="/comparar">Comparar</a>
       <a class="nav-link" href="/guia-pratico">Guia Prático</a>
+      <a class="nav-link" href="/profissoes">Profissões</a>
+      <a class="nav-link" href="/guias">Guias</a>
       <a class="nav-link" href="/calculadora">Calculadora</a>
       <a class="nav-link" href="/historico">Histórico</a>
       <a class="nav-link" href="/sobre">Sobre</a>
@@ -256,6 +258,8 @@ export function generateProfessionPage(
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" href="/favicon.png" />
 <link rel="canonical" href="${url}" />
+<link rel="alternate" hreflang="pt-BR" href="${url}" />
+<link rel="alternate" hreflang="x-default" href="${url}" />
 <meta name="description" content="${esc(desc)}" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Rota Legal" />
@@ -348,6 +352,8 @@ export function generateProfessionHub(professions: Profession[], updated: string
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" href="/favicon.png" />
 <link rel="canonical" href="${url}" />
+<link rel="alternate" hreflang="pt-BR" href="${url}" />
+<link rel="alternate" hreflang="x-default" href="${url}" />
 <meta name="description" content="${desc}" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Rota Legal" />

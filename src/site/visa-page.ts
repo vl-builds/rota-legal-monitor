@@ -660,6 +660,8 @@ export function generateVisaPage(
 <link rel="icon" type="image/png" href="../favicon.png" />
 <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 <link rel="canonical" href="${canonical}" />
+<link rel="alternate" hreflang="pt-BR" href="${canonical}" />
+<link rel="alternate" hreflang="x-default" href="${canonical}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" />
@@ -717,6 +719,8 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
       <a class="nav-link" href="/paises">Países</a>
       <a class="nav-link" href="/comparar">Comparar</a>
       <a class="nav-link" href="/guia-pratico">Guia Prático</a>
+      <a class="nav-link" href="/profissoes">Profissões</a>
+      <a class="nav-link" href="/guias">Guias</a>
       <a class="nav-link" href="/calculadora">Calculadora</a>
       <a class="nav-link" href="/historico">Histórico</a>
       <a class="nav-link" href="/parceiros">Parceiros</a>
@@ -746,6 +750,8 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
       <a href="/comparar">Comparar</a>
       <a href="/qual-pais">Qual país é meu?</a>
       <a href="/guia-pratico">Guia Prático</a>
+      <a href="/profissoes">Profissões</a>
+      <a href="/guias">Guias</a>
       <a href="/calculadora">Calculadora</a>
       <a href="/historico">Histórico</a>
       <a href="/parceiros">Parceiros</a>

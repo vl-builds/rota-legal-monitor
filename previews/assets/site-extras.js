@@ -53,7 +53,7 @@
     box.setAttribute('aria-label', 'Aviso de cookies');
     box.innerHTML =
       '<p>Usamos apenas cookies essenciais de sessao e guardamos preferencias no seu navegador. ' +
-      'Nao rastreamos voce. <a href="/politica-cookies.html">Saiba mais</a>.</p>' +
+      'Nao rastreamos voce. <a href="/politica-cookies">Saiba mais</a>.</p>' +
       '<button class="rl-cookie-btn" type="button">Entendi</button>';
     box.querySelector('.rl-cookie-btn').addEventListener('click', function () {
       try { localStorage.setItem(COOKIE_KEY, '1'); } catch (_) {}
