@@ -1900,6 +1900,29 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
   const metaDescription = clampDesc(`Guia completo para trabalhar em ${config.displayName}: ${visaCount} tipos de visto monitorados${salaryPart}. Requisitos, taxas e prazos atualizados em ${updated} com fontes oficiais.`)
   const pageTitle = `Vistos de Trabalho em ${config.displayName} ${year}: ${visaCount} opções | Rota Legal`
 
+  const pageFaqs = [
+    {
+      q: `Brasileiro precisa de visto para trabalhar em ${config.displayName}?`,
+      a: `Sim. A entrada sem visto por até 90 dias vale apenas para turismo. Para trabalhar legalmente é obrigatório um visto de trabalho ou autorização de residência, solicitado geralmente antes de viajar. ${config.displayName} tem ${visaCount} modalidade${visaCount !== 1 ? 's' : ''} de visto de trabalho monitorada${visaCount !== 1 ? 's' : ''} neste guia.`,
+    },
+    {
+      q: mw?.amount
+        ? `Qual o salário mínimo em ${config.displayName}?`
+        : `Existe salário mínimo legal em ${config.displayName}?`,
+      a: mw?.amount
+        ? `O salário mínimo legal em ${config.displayName} é ${mw.currency} ${Math.round(mw.amount).toLocaleString('pt-BR')} por mês. A remuneração real varia por setor e convenção coletiva, mas nenhum empregador pode pagar abaixo desse piso.`
+        : `${config.displayName} não tem salário mínimo legal único. A remuneração mínima é fixada por setor em acordos coletivos de trabalho, que variam por profissão e região.`,
+    },
+    {
+      q: `Quanto tempo leva para obter um visto de trabalho para ${config.displayName}?`,
+      a: `O prazo varia por modalidade, mas em geral conta-se entre 1 e 6 meses somando documentação no Brasil, oferta de emprego, análise consular e regularização após a chegada. Verifique o prazo médio de cada visto na aba Vistos desta página.`,
+    },
+    {
+      q: `Preciso de uma oferta de emprego para ir para ${config.displayName}?`,
+      a: `Na maioria dos vistos de trabalho, sim. Alguns países têm vistos de procura de emprego que permitem buscar trabalho já no destino por um período limitado. Veja os tipos disponíveis na aba Vistos.`,
+    },
+  ]
+
   const visaCardsHtml = sorted.length > 0
     ? sorted.map(v => renderVisaCard(v, config.code)).join('')
     : `<div style="padding:var(--s-xxl);text-align:center;color:var(--muted);">Vistos em levantamento para este ciclo.</div>`
@@ -1956,6 +1979,14 @@ export function generateCountryPage(data: CountryData, config: CountryPageConfig
         { '@type': 'ListItem', position: 2, name: 'Países', item: 'https://rotalegal.pro/paises' },
         { '@type': 'ListItem', position: 3, name: config.displayName },
       ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: pageFaqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
     },
   ],
 })}</script>

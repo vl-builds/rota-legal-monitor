@@ -389,6 +389,10 @@ ${navHtml()}
   </section>
   <section style="padding-top:0;">
     <div class="container">
+      <div style="max-width:760px;margin:0 0 40px;">
+        <p class="body-md" style="color:var(--body);line-height:1.7;">A Europa está com escassez de mão de obra em áreas que vão da saúde à tecnologia, e há caminhos legais abertos para brasileiros em dezenas de profissões. Mas cada área tem sua lógica própria: um enfermeiro precisa revalidar o diploma no país de destino e se registrar no conselho profissional local antes de assinar qualquer contrato. Um desenvolvedor de TI pode qualificar para o EU Blue Card com um salário acima do limiar exigido, sem precisar de reconhecimento de diploma. Um motorista profissional tem demanda alta em vários países, mas precisa converter a habilitação para a categoria europeia.</p>
+        <p class="body-md" style="color:var(--body);line-height:1.7;margin-top:14px;">Os guias abaixo reúnem, por área, quais países mais contratam, se o diploma é obrigatório, quais vistos se aplicam e o que fazer antes de viajar. Cada guia traz os requisitos reais atualizados mensalmente com fontes oficiais. Para uma recomendação por perfil e situação, use o questionário <a class="text-link" href="/qual-pais">Qual país é o meu</a>.</p>
+      </div>
       <div class="pf-hub-grid">${cards}</div>
       <p class="body-sm" style="color:var(--muted);">Não encontrou a sua área? Veja <a class="text-link" href="/paises">todos os 10 países</a> ou faça o <a class="text-link" href="/qual-pais">questionário Qual país é o meu</a>.</p>
     </div>
