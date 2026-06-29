@@ -71,11 +71,16 @@
     if (e.key === 'Escape' && drawer.classList.contains('is-open')) close(true);
   });
 
-  // highlight active link based on current page
-  const currentPath = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  drawer.querySelectorAll('a[href]').forEach(a => {
-    const href = a.getAttribute('href').toLowerCase();
-    if (href === currentPath) a.classList.add('is-active');
-    if (currentPath.startsWith('pais-') && href === 'paises.html') a.classList.add('is-active');
-  });
+  // highlight active link based on current page (drawer + desktop nav)
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  function markActive(a) {
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var norm = href.replace(/\/$/, '') || '/';
+    if (norm === currentPath) { a.classList.add('is-active'); return; }
+    // section match: /paises matches /pais-nl, /pais-de, etc.
+    if (norm !== '/' && currentPath.startsWith(norm)) a.classList.add('is-active');
+  }
+  drawer.querySelectorAll('a[href]').forEach(markActive);
+  document.querySelectorAll('.nav-links .nav-link[href], .nav-links .nav-dropdown-item[href]').forEach(markActive);
 })();
