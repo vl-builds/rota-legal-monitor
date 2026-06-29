@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
@@ -733,15 +733,20 @@
       <span>Rota Legal</span>
     </a>
     <div class="nav-links">
-      <a class="nav-link" href="/paises" style="color:var(--on-dark);">Países</a>
+      <a class="nav-link" href="/paises">Países</a>
       <a class="nav-link" href="/comparar">Comparar</a>
       <a class="nav-link" href="/guia-pratico">Guia Prático</a>
       <a class="nav-link" href="/profissoes">Profissões</a>
       <a class="nav-link" href="/guias">Guias</a>
-      <a class="nav-link" href="/calculadora">Calculadora</a>
-      <a class="nav-link" href="/historico">Histórico</a>
-      <a class="nav-link" href="/parceiros">Parceiros</a>
-      <a class="nav-link" href="/sobre">Sobre</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">Mais <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a class="nav-dropdown-item" href="/calculadora" role="menuitem">Calculadora</a>
+          <a class="nav-dropdown-item" href="/historico" role="menuitem">Histórico</a>
+          <a class="nav-dropdown-item" href="/parceiros" role="menuitem">Parceiros</a>
+          <a class="nav-dropdown-item" href="/sobre" role="menuitem">Sobre</a>
+        </div>
+      </div>
     </div>
     <div class="nav-right">
       <a class="btn btn-secondary" href="area-aluno/login.html">Área do Aluno</a>
@@ -1108,7 +1113,7 @@
                 </div>
                 <div class="step-item">
                   <span class="step-n">4</span>
-                  <span class="step-text">DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de candidaturas</span>
+                  <span class="step-text">DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de solicitações</span>
                 </div>
                 <div class="step-item">
                   <span class="step-n">5</span>
@@ -2484,7 +2489,7 @@
         <foreignObject x="268" y="1362" width="380" height="120" style="pointer-events:none;">
           <div xmlns="http://www.w3.org/1999/xhtml" class="st-node-label" data-for="p2-step-4">
             <div class="st-node-title">DETE analisa o pedido</div>
-            <div class="st-node-desc">DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de candidaturas</div>
+            <div class="st-node-desc">DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de solicitações</div>
             
             <div class="st-node-actions">
               <button type="button" class="st-node-action st-node-toggle" data-toggle="p2-step-4">
@@ -2800,7 +2805,7 @@
             </div>
             <div class="st-mnode-body" data-for="p2-step-4">
               <div class="st-mnode-title">DETE analisa o pedido</div>
-              <div class="st-mnode-desc">DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de candidaturas</div>
+              <div class="st-mnode-desc">DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de solicitações</div>
               
               <div class="st-mnode-actions">
                 <button type="button" class="st-mnode-toggle" data-mtoggle="p2-step-4">
@@ -2901,7 +2906,7 @@
           <div class="st-disclaimer">// Dados extraídos em mai/2026. Confirme nas fontes oficiais antes de iniciar.</div>
         </div>
 
-        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 40.904/ano.","detail":"Critical Skills Employment Permit (CSEP): EUR 40.904/ano para ocupações críticas. Recém-graduados: EUR 36.848/ano. Rota salário alto: acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"10 tipos de visto monitorados em Irlanda.","detail":"Permissão de Emprego para Competências Críticas é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["10 tipos"]},{"id":"p2-step-1","title":"Verificar que a ocupação consta na Critical Skills...","summary":"Verificar que a ocupação consta na Critical Skills Occupations List (CSOL) do Department of Enterprise, Trade and Employment, ou que o sa...","detail":"Verificar que a ocupação consta na Critical Skills Occupations List (CSOL) do Department of Enterprise, Trade and Employment, ou que o salário é superior a €64.000/ano","tip":"","tags":[]},{"id":"p2-step-2","title":"Empregador e trabalhador submetem o pedido de CSEP...","summary":"Empregador e trabalhador submetem o pedido de CSEP conjuntamente através do portal Employment Permits Online do DETE — o trabalhador pode...","detail":"Empregador e trabalhador submetem o pedido de CSEP conjuntamente através do portal Employment Permits Online do DETE — o trabalhador pode submeter independentemente","tip":"","tags":[]},{"id":"p2-step-3","title":"Pagar taxa de €1.000 (cobrada pelo empregador na maioria...","summary":"Pagar taxa de €1.000 (cobrada pelo empregador na maioria dos casos) — reembolsada se recusado","detail":"Pagar taxa de €1.000 (cobrada pelo empregador na maioria dos casos) — reembolsada se recusado","tip":"","tags":[]},{"id":"p2-step-4","title":"DETE analisa o pedido","summary":"DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de candidaturas","detail":"DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de candidaturas","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Irlanda, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
+        <script type="application/json" data-skill-data>[{"number":1,"title":"Documentação Essencial","objectives":[{"id":"p1-passport","title":"Passaporte válido","summary":"Validade mínima: Minimo 6 meses apos a data de entrada.","detail":"Verifique com antecedência: renovação no Brasil pode levar várias semanas. Confirme também páginas em branco suficientes para vistos.","tip":"Renovação online via Polícia Federal é mais rápida.","tags":["Obrigatório","Brasil"]},{"id":"p1-criminal","title":"Certidão de antecedentes criminais","summary":"Emitida pela Polícia Federal, apostilada pela Convenção de Haia.","detail":"Solicite com pelo menos 30 dias de antecedência. A apostila de Haia é feita em cartório autorizado e tem custo separado.","tip":"Validade típica de 90 dias após emissão.","tags":["Obrigatório","Apostila Haia"]},{"id":"p1-funds","title":"Comprovante de fundos","summary":"Mínimo EUR 40.904/ano.","detail":"Critical Skills Employment Permit (CSEP): EUR 40.904/ano para ocupações críticas. Recém-graduados: EUR 36.848/ano. Rota salário alto: acima de EUR 68.911/ano. General Employment Permit: mínimo EUR 30.000/ano.","tip":"Extratos dos últimos 3 meses + saldo atual costumam ser exigidos.","tags":["Financeiro"]},{"id":"p1-address","title":"Comprovante de morada","summary":"Contrato de arrendamento ou termo de responsabilidade.","detail":"No país de destino, o comprovante deve estar em seu nome ou ter um termo de responsabilidade emitido por residente legal.","tip":"Reservas de hospedagem por 3+ meses costumam ser aceitas.","tags":["No destino"]}]},{"number":2,"title":"Processo do Visto","objectives":[{"id":"p2-choose","title":"Escolher o tipo de visto","summary":"10 tipos de visto monitorados em Irlanda.","detail":"Permissão de Emprego para Competências Críticas é uma das opções mais relevantes para brasileiros. Cada tipo tem requisitos específicos. Consulte a aba Vistos para o panorama completo.","tip":"Confira a aba Vistos para ver todos os tipos lado a lado.","tags":["10 tipos"]},{"id":"p2-step-1","title":"Verificar que a ocupação consta na Critical Skills...","summary":"Verificar que a ocupação consta na Critical Skills Occupations List (CSOL) do Department of Enterprise, Trade and Employment, ou que o sa...","detail":"Verificar que a ocupação consta na Critical Skills Occupations List (CSOL) do Department of Enterprise, Trade and Employment, ou que o salário é superior a €64.000/ano","tip":"","tags":[]},{"id":"p2-step-2","title":"Empregador e trabalhador submetem o pedido de CSEP...","summary":"Empregador e trabalhador submetem o pedido de CSEP conjuntamente através do portal Employment Permits Online do DETE — o trabalhador pode...","detail":"Empregador e trabalhador submetem o pedido de CSEP conjuntamente através do portal Employment Permits Online do DETE — o trabalhador pode submeter independentemente","tip":"","tags":[]},{"id":"p2-step-3","title":"Pagar taxa de €1.000 (cobrada pelo empregador na maioria...","summary":"Pagar taxa de €1.000 (cobrada pelo empregador na maioria dos casos) — reembolsada se recusado","detail":"Pagar taxa de €1.000 (cobrada pelo empregador na maioria dos casos) — reembolsada se recusado","tip":"","tags":[]},{"id":"p2-step-4","title":"DETE analisa o pedido","summary":"DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de solicitações","detail":"DETE analisa o pedido — prazo de 4-8 semanas dependendo do volume de solicitações","tip":"","tags":[]}]},{"number":3,"title":"Chegada e Regularização","objectives":[{"id":"p3-arrival","title":"Chegada ao país","summary":"Apresente-se na fronteira com seu visto válido e documentação completa.","detail":"No controle de fronteira, tenha em mãos passaporte, visto, comprovante de hospedagem e comprovante de fundos. Em países Schengen, o carimbo de entrada autoriza permanência no espaço.","tip":"Tire foto de todos os documentos antes de embarcar.","tags":["Fronteira"]},{"id":"p3-register","title":"Registro local de residência","summary":"Maioria dos países exige registro municipal ou de imigração após chegada.","detail":"Em Irlanda, há um prazo para se registrar nas autoridades locais (imigração, prefeitura ou equivalente). Esse registro é o que oficializa sua residência legal.","tip":"Agende a entrevista o quanto antes: as filas podem ser longas.","tags":["Pós-chegada"]},{"id":"p3-permit","title":"Título / cartão de residência","summary":"Documento físico que comprova sua estadia legal.","detail":"Renovável conforme as regras do país. Após alguns anos de residência legal contínua, é geralmente possível solicitar residência permanente ou cidadania.","tip":"Cidadania local em país da UE = passaporte da União Europeia.","tags":["Recompensa final"]}]}]</script>
       </div>
     </section>
   </div>

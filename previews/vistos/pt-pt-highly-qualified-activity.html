@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
@@ -285,10 +285,15 @@
       <a class="nav-link" href="/guia-pratico">Guia Prático</a>
       <a class="nav-link" href="/profissoes">Profissões</a>
       <a class="nav-link" href="/guias">Guias</a>
-      <a class="nav-link" href="/calculadora">Calculadora</a>
-      <a class="nav-link" href="/historico">Histórico</a>
-      <a class="nav-link" href="/parceiros">Parceiros</a>
-      <a class="nav-link" href="/sobre">Sobre</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">Mais <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a class="nav-dropdown-item" href="/calculadora" role="menuitem">Calculadora</a>
+          <a class="nav-dropdown-item" href="/historico" role="menuitem">Histórico</a>
+          <a class="nav-dropdown-item" href="/parceiros" role="menuitem">Parceiros</a>
+          <a class="nav-dropdown-item" href="/sobre" role="menuitem">Sobre</a>
+        </div>
+      </div>
     </div>
     <div class="nav-right">
       <a class="btn btn-secondary" href="../area-aluno/login.html">Área do Aluno</a>
@@ -669,7 +674,7 @@
           <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:22px;width:auto;display:block;">
           <span>Rota Legal</span>
         </a>
-        <p class="body-sm" style="color:var(--muted);max-width:280px;">Monitorização mensal de vistos e regulamentações de trabalho para brasileiros na Europa e Oceania.</p>
+        <p class="body-sm" style="color:var(--muted);max-width:280px;">Monitoramento mensal de vistos e regulamentações de trabalho para brasileiros na Europa e Oceania.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">

@@ -1,3 +1,36 @@
+// Nav dropdown "Mais"
+(function () {
+  var dropdowns = document.querySelectorAll('.nav-dropdown');
+  if (!dropdowns.length) return;
+
+  function closeAll() {
+    dropdowns.forEach(function (d) {
+      d.classList.remove('is-open');
+      var btn = d.querySelector('.nav-dropdown-btn');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  dropdowns.forEach(function (dropdown) {
+    var btn = dropdown.querySelector('.nav-dropdown-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var opening = !dropdown.classList.contains('is-open');
+      closeAll();
+      if (opening) {
+        dropdown.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', closeAll);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+})();
+
 // Mobile drawer / hamburger menu
 (function () {
   const drawer = document.getElementById('mobile-drawer');

@@ -911,7 +911,7 @@ ${faqItems.length > 0 ? `<script type="application/ld+json">${JSON.stringify({
           <img src="../assets/images/logonobg.png" alt="Rota Legal" style="height:22px;width:auto;display:block;">
           <span>Rota Legal</span>
         </a>
-        <p class="body-sm" style="color:var(--muted);max-width:280px;">Monitorização mensal de vistos e regulamentações de trabalho para brasileiros na Europa e Oceania.</p>
+        <p class="body-sm" style="color:var(--muted);max-width:280px;">Monitoramento mensal de vistos e regulamentações de trabalho para brasileiros na Europa e Oceania.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">

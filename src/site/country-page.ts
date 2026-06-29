@@ -825,7 +825,7 @@ function buildSkillPhases(data: CountryData, config: CountryPageConfig): SkillPh
           ? ins.notes.slice(0, 117) + '...'
           : ins.notes
         : 'Seguro saúde obrigatório para o período do visto.',
-      detail: ins.notes || 'Cobertura mínima exigida na candidatura ao visto. Após regularização, possível acesso ao sistema público local.',
+      detail: ins.notes || 'Cobertura mínima exigida na solicitação do visto. Após regularização, possível acesso ao sistema público local.',
       tip: 'Compare seguros com cobertura Schengen completa quando aplicável.',
       tags: ['Obrigatório', 'Visto D'],
     })
