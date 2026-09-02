@@ -129,34 +129,34 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Obter oferta de emprego com salário mínimo de €50.700/ano bruto (ou €45.934 para profissões com escassez de mão de obra, incluindo STEM, TI e saúde)",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Verificar reconhecimento do diploma universitário em anabin.kmk.org; diplomas não listados requerem avaliação da ZAB (Central Office for Foreign Education)",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Solicitar visto nacional de trabalho no consulado alemão no Brasil via portal online do Auswärtiges Amt",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Entrar na Alemanha e realizar o Anmeldung (registro de endereço) em até 2 semanas",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Solicitar o Cartão Azul EU na Ausländerbehörde local apresentando contrato de trabalho, passaporte e comprovante de seguro de saúde",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           }
         ]
       },
@@ -164,39 +164,39 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte válido",
             "description": "Validade superior à duração do visto solicitado",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Diploma universitário",
             "description": "Reconhecido ou comparável ao padrão alemão — verificar em anabin.kmk.org; se não listado, solicitar avaliação na ZAB",
-            "isCritical": true,
-            "name": "Diploma universitário"
+            "isCritical": true
           },
           {
+            "name": "Contrato de trabalho assinado",
             "description": "Com salário mínimo bruto anual de €50.700 (geral) ou €45.934 (STEM, TI, medicina e outras profissões com escassez)",
-            "isCritical": true,
-            "name": "Contrato de trabalho assinado"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de seguro de saúde",
             "description": "Seguro de saúde alemão (gesetzlich ou privat) válido; durante o processo, seguro de viagem pode ser aceito",
-            "isCritical": true,
-            "name": "Comprovante de seguro de saúde"
+            "isCritical": true
           },
           {
+            "name": "Foto biométrica",
             "description": "Conforme especificações do consulado alemão",
-            "isCritical": true,
-            "name": "Foto biométrica"
+            "isCritical": true
           },
           {
+            "name": "Formulário de solicitação de visto",
             "description": "Preenchido e assinado, disponível no portal do Auswärtiges Amt",
-            "isCritical": true,
-            "name": "Formulário de solicitação de visto"
+            "isCritical": true
           },
           {
+            "name": "Currículo (Lebenslauf)",
             "description": "Em alemão ou inglês, preferencialmente no formato europeu",
-            "isCritical": false,
-            "name": "Currículo (Lebenslauf)"
+            "isCritical": false
           }
         ],
         "incomeRequirement": {
@@ -253,34 +253,34 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Obter reconhecimento formal da qualificação estrangeira na Alemanha via ANABIN ou ZAB; profissões regulamentadas exigem reconhecimento completo antes do visto",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Conseguir contrato ou oferta de emprego qualificado assinado pelo empregador alemão",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Obter aprovação da Bundesagentur für Arbeit (BA) para o emprego; geralmente processada junto ao visto",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Solicitar visto de trabalho (§ 18a ou § 18b AufenthG) no consulado alemão no Brasil",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Entrar na Alemanha, realizar Anmeldung (registro de endereço) e converter visto em permissão de residência na Ausländerbehörde",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           }
         ]
       },
@@ -288,44 +288,44 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte válido",
             "description": "Com validade superior ao período do visto",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Diploma ou certificado de qualificação profissional",
             "description": "§ 18a: qualificação profissional não acadêmica com mínimo de 2 anos de formação; § 18b: diploma universitário — ambos reconhecidos ou equivalentes ao padrão alemão",
-            "isCritical": true,
-            "name": "Diploma ou certificado de qualificação profissional"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de reconhecimento da qualificação",
             "description": "Resultado positivo de reconhecimento emitido pela autoridade competente alemã (ANABIN, ZAB ou órgão regulamentador)",
-            "isCritical": true,
-            "name": "Comprovante de reconhecimento da qualificação"
+            "isCritical": true
           },
           {
+            "name": "Contrato de trabalho assinado",
             "description": "Para emprego qualificado; auxiliares ou funções de nível básico não são aceitos",
-            "isCritical": true,
-            "name": "Contrato de trabalho assinado"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de seguro de saúde",
             "description": "Seguro de saúde alemão válido ou seguro de viagem durante o processo",
-            "isCritical": true,
-            "name": "Comprovante de seguro de saúde"
+            "isCritical": true
           },
           {
+            "name": "Foto biométrica",
             "description": "Conforme especificações do consulado",
-            "isCritical": true,
-            "name": "Foto biométrica"
+            "isCritical": true
           },
           {
+            "name": "Formulário de solicitação de visto",
             "description": "Preenchido e assinado",
-            "isCritical": true,
-            "name": "Formulário de solicitação de visto"
+            "isCritical": true
           },
           {
+            "name": "Currículo (Lebenslauf)",
             "description": "Em alemão ou inglês",
-            "isCritical": false,
-            "name": "Currículo (Lebenslauf)"
+            "isCritical": false
           }
         ],
         "incomeRequirement": null,
@@ -380,34 +380,34 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Verificar que a qualificação não acadêmica (mínimo 2 anos de formação) é reconhecida pelo governo do país onde foi obtida — não exige reconhecimento formal alemão para profissões não regulamentadas",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Comprovar mínimo de 2 anos de experiência profissional na área pretendida",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Obter contrato de trabalho com salário adequado ao cargo (mínimo €45.630/ano para menores de 45 anos; €55.770/ano para maiores de 45)",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Solicitar visto de trabalho no consulado alemão no Brasil; Bundesagentur für Arbeit aprova em conjunto",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Entrar na Alemanha, registrar endereço (Anmeldung) e converter em permissão de residência na Ausländerbehörde",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           }
         ]
       },
@@ -415,44 +415,44 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte válido",
             "description": "Com validade superior ao período do visto",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Qualificação profissional não acadêmica",
             "description": "Diploma ou certificado com mínimo de 2 anos de formação, reconhecido pelo governo do país de origem (não exige reconhecimento alemão para profissões não regulamentadas)",
-            "isCritical": true,
-            "name": "Qualificação profissional não acadêmica"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de experiência profissional",
             "description": "Cartas de empregadores ou contratos comprovando mínimo de 2 anos de experiência na área pretendida",
-            "isCritical": true,
-            "name": "Comprovante de experiência profissional"
+            "isCritical": true
           },
           {
+            "name": "Contrato de trabalho assinado",
             "description": "Com salário adequado ao cargo e à convenção coletiva do setor",
-            "isCritical": true,
-            "name": "Contrato de trabalho assinado"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de seguro de saúde",
             "description": "Seguro de saúde alemão ou seguro de viagem durante o processo",
-            "isCritical": true,
-            "name": "Comprovante de seguro de saúde"
+            "isCritical": true
           },
           {
+            "name": "Foto biométrica",
             "description": "Conforme especificações do consulado",
-            "isCritical": true,
-            "name": "Foto biométrica"
+            "isCritical": true
           },
           {
+            "name": "Formulário de solicitação de visto",
             "description": "Preenchido e assinado",
-            "isCritical": true,
-            "name": "Formulário de solicitação de visto"
+            "isCritical": true
           },
           {
+            "name": "Currículo (Lebenslauf)",
             "description": "Em alemão ou inglês, detalhando experiência profissional",
-            "isCritical": false,
-            "name": "Currículo (Lebenslauf)"
+            "isCritical": false
           }
         ],
         "incomeRequirement": {
@@ -506,28 +506,28 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Comprovar mínimo de 2 anos de experiência profissional em TI nos últimos 7 anos",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Obter contrato de trabalho com salário mínimo de €45.934/ano bruto (ou €55.770/ano para maiores de 45 anos)",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Solicitar visto de trabalho (§ 19c AufenthG) no consulado alemão no Brasil — Bundesagentur für Arbeit aprova automaticamente em conjunto",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Entrar na Alemanha, realizar Anmeldung e converter o visto em permissão de residência na Ausländerbehörde",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           }
         ]
       },
@@ -535,39 +535,39 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte válido",
             "description": "Com validade superior ao período do visto",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de experiência profissional em TI",
             "description": "Cartas de empregadores anteriores, contratos ou declarações comprovando mínimo de 2 anos de atuação em TI nos últimos 7 anos",
-            "isCritical": true,
-            "name": "Comprovante de experiência profissional em TI"
+            "isCritical": true
           },
           {
+            "name": "Contrato de trabalho assinado",
             "description": "Em área de TI, com salário mínimo bruto de €45.934/ano",
-            "isCritical": true,
-            "name": "Contrato de trabalho assinado"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de seguro de saúde",
             "description": "Seguro de saúde alemão ou seguro de viagem válido",
-            "isCritical": true,
-            "name": "Comprovante de seguro de saúde"
+            "isCritical": true
           },
           {
+            "name": "Foto biométrica",
             "description": "Conforme especificações do consulado",
-            "isCritical": true,
-            "name": "Foto biométrica"
+            "isCritical": true
           },
           {
+            "name": "Formulário de solicitação de visto",
             "description": "Preenchido e assinado",
-            "isCritical": true,
-            "name": "Formulário de solicitação de visto"
+            "isCritical": true
           },
           {
+            "name": "Currículo técnico (Lebenslauf)",
             "description": "Detalhando projetos e tecnologias utilizadas, em alemão ou inglês",
-            "isCritical": false,
-            "name": "Currículo técnico (Lebenslauf)"
+            "isCritical": false
           }
         ],
         "incomeRequirement": {
@@ -628,34 +628,34 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Confirmar que a qualificação estrangeira é reconhecida ou equivalente ao padrão alemão — verificar ANABIN; caso contrário, solicitar avaliação na ZAB",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Obter oferta ou contrato de trabalho assinado em função qualificada; auxiliares ou funções de nível básico não são aceitos",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Aprovação da Bundesagentur für Arbeit verifica condições de trabalho equivalentes às de trabalhadores locais",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Solicitar visto de trabalho no consulado alemão no Brasil com todos os documentos exigidos",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Entrar na Alemanha, fazer Anmeldung (registro de endereço) e solicitar permissão de residência na Ausländerbehörde local",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           }
         ]
       },
@@ -663,39 +663,39 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte válido",
             "description": "Com validade superior ao período do visto",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Diploma ou qualificação profissional reconhecida",
             "description": "Qualificação acadêmica ou profissional não acadêmica (mínimo 2 anos de formação) reconhecida ou equivalente ao padrão alemão",
-            "isCritical": true,
-            "name": "Diploma ou qualificação profissional reconhecida"
+            "isCritical": true
           },
           {
+            "name": "Contrato de trabalho assinado",
             "description": "Para função qualificada correspondente à área de formação; inclui detalhes de salário, jornada e início",
-            "isCritical": true,
-            "name": "Contrato de trabalho assinado"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de seguro de saúde",
             "description": "Seguro de saúde alemão (público ou privado)",
-            "isCritical": true,
-            "name": "Comprovante de seguro de saúde"
+            "isCritical": true
           },
           {
+            "name": "Foto biométrica",
             "description": "Conforme especificações do consulado alemão",
-            "isCritical": true,
-            "name": "Foto biométrica"
+            "isCritical": true
           },
           {
+            "name": "Formulário de solicitação de visto",
             "description": "Preenchido e assinado",
-            "isCritical": true,
-            "name": "Formulário de solicitação de visto"
+            "isCritical": true
           },
           {
+            "name": "Currículo (Lebenslauf)",
             "description": "Em alemão ou inglês",
-            "isCritical": false,
-            "name": "Currículo (Lebenslauf)"
+            "isCritical": false
           }
         ],
         "incomeRequirement": {
@@ -744,40 +744,40 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Verificar pontuação mínima de 6 pontos no sistema de critérios (qualificação, experiência, idioma, idade, escassez, parceiro)",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Comprovar meios financeiros: conta bloqueada com mínimo de €1.091/mês ou declaração de compromisso (Verpflichtungserklärung) de familiar na Alemanha",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Comprovar alemão nível A1 OU inglês nível B2 (CEFR)",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Solicitar visto Chancenkarte no consulado alemão no Brasil",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Entrar na Alemanha (até 1 ano) para buscar emprego qualificado; trabalho de teste (Probebeschäftigung) de até 20h/semana por máximo 2 semanas é permitido",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           },
           {
+            "order": 6,
             "description": "Ao obter oferta de emprego qualificado, converter o Chancenkarte em permissão de residência (Blue Card, § 18a/18b, etc.) na Ausländerbehörde",
             "estimatedDays": null,
-            "name": null,
-            "order": 6
+            "name": null
           }
         ]
       },
@@ -785,39 +785,39 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte válido",
             "description": "Com validade superior ao período do visto",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Diploma ou certificado de qualificação profissional",
             "description": "Qualificação acadêmica ou profissional (mínimo 2 anos de formação) reconhecida no país de origem",
-            "isCritical": true,
-            "name": "Diploma ou certificado de qualificação profissional"
+            "isCritical": true
           },
           {
+            "name": "Certificado de idioma",
             "description": "Certificado de alemão nível A1 OU inglês nível B2 (CEFR) de instituição reconhecida",
-            "isCritical": true,
-            "name": "Certificado de idioma"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de meios financeiros",
             "description": "Extrato de conta bloqueada (Sperrkonto) com mínimo de €1.091/mês ou declaração de compromisso (Verpflichtungserklärung)",
-            "isCritical": true,
-            "name": "Comprovante de meios financeiros"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de experiência profissional",
             "description": "Cartas de empregadores ou contratos comprovando experiência — 2 anos nos últimos 5 anos valem 2 pontos; 5 anos nos últimos 7 valem 3 pontos",
-            "isCritical": false,
-            "name": "Comprovante de experiência profissional"
+            "isCritical": false
           },
           {
+            "name": "Foto biométrica",
             "description": "Conforme especificações do consulado",
-            "isCritical": true,
-            "name": "Foto biométrica"
+            "isCritical": true
           },
           {
+            "name": "Formulário de solicitação de visto",
             "description": "Preenchido e assinado",
-            "isCritical": true,
-            "name": "Formulário de solicitação de visto"
+            "isCritical": true
           }
         ],
         "incomeRequirement": {

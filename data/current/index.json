@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-06-01T23:25:29.799Z",
+  "generatedAt": "2026-09-02T14:31:43.077Z",
   "schemaVersion": "1.0.0",
   "countries": [
     {
       "code": "at",
       "name": "Austria",
-      "lastUpdated": "2026-05-06T12:03:02.248Z",
+      "lastUpdated": "2026-09-02T14:02:59.352Z",
       "schemaVersion": "1.0.0",
       "visaTypesCount": 8,
       "confidence": "medium"
@@ -45,17 +45,17 @@
     {
       "code": "fr",
       "name": "Franca",
-      "lastUpdated": "2026-05-06T12:00:01.649Z",
+      "lastUpdated": "2026-09-02T14:00:48.760Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 13,
+      "visaTypesCount": 15,
       "confidence": "medium"
     },
     {
       "code": "ie",
       "name": "Irlanda",
-      "lastUpdated": "2026-05-06T11:56:11.404Z",
+      "lastUpdated": "2026-09-02T13:56:31.882Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 10,
+      "visaTypesCount": 13,
       "confidence": "medium"
     },
     {
@@ -69,15 +69,15 @@
     {
       "code": "nl",
       "name": "Holanda",
-      "lastUpdated": "2026-05-06T11:46:28.063Z",
+      "lastUpdated": "2026-09-02T13:53:31.343Z",
       "schemaVersion": "1.0.0",
-      "visaTypesCount": 16,
+      "visaTypesCount": 19,
       "confidence": "medium"
     },
     {
       "code": "pt",
       "name": "Portugal",
-      "lastUpdated": "2026-05-06T11:49:38.770Z",
+      "lastUpdated": "2026-09-02T14:19:01.643Z",
       "schemaVersion": "1.0.0",
       "visaTypesCount": 13,
       "confidence": "medium"

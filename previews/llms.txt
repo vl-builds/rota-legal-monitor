@@ -1,6 +1,6 @@
 # Rota Legal
 
-> Monitor mensal de condições de imigração legal para brasileiros que querem trabalhar na Europa. Dados de fontes oficiais de 10 países, em português, atualizados todo mês (ciclo atual: maio de 2026).
+> Monitor mensal de condições de imigração legal para brasileiros que querem trabalhar na Europa. Dados de fontes oficiais de 10 países, em português, atualizados todo mês (ciclo atual: setembro de 2026).
 
 Conteúdo factual e citável: nomes oficiais de vistos, salário mínimo exigido, prazos de processamento, documentação e direitos. Cada página de país lista seus vistos; cada visto tem página própria em https://rotalegal.pro/vistos/.
 
@@ -13,10 +13,10 @@ Ponto de partida: [Trabalhar na Europa: guia para brasileiros](https://rotalegal
 - [Bélgica](https://rotalegal.pro/pais-be): 4 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
 - [Alemanha](https://rotalegal.pro/pais-de): 6 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
 - [Espanha](https://rotalegal.pro/pais-es): 5 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
-- [França](https://rotalegal.pro/pais-fr): 13 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
-- [Irlanda](https://rotalegal.pro/pais-ie): 10 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [França](https://rotalegal.pro/pais-fr): 15 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Irlanda](https://rotalegal.pro/pais-ie): 13 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
 - [Itália](https://rotalegal.pro/pais-it): 4 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
-- [Países Baixos](https://rotalegal.pro/pais-nl): 16 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
+- [Países Baixos](https://rotalegal.pro/pais-nl): 19 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
 - [Portugal](https://rotalegal.pro/pais-pt): 13 tipos de visto de trabalho monitorados, com requisitos, salário mínimo, taxas e prazos.
 
 ## Ferramentas

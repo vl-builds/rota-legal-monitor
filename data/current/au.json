@@ -93,58 +93,58 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Verificar elegibilidade: 18-35 anos, passaporte brasileiro, sem filhos dependentes viajando junto",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Verificar a cota anual do Brasil no portal immi.homeaffairs.gov.au — Brasil tem cota limitada e pode estar pausada ou fechada durante o ano",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Criar conta no ImmiAccount em immi.homeaffairs.gov.au",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Submeter pedido online com documentação completa e pagar taxa de AUD 635",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Realizar exame médico e raio-X pelo sistema eMedical se solicitado pelo Departamento",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           },
           {
+            "order": 6,
             "description": "Aguardar aprovação (média de 4-8 semanas)",
             "estimatedDays": null,
-            "name": null,
-            "order": 6
+            "name": null
           },
           {
+            "order": 7,
             "description": "Entrar na Austrália dentro de 12 meses da aprovação para ativar o visto de 12 meses",
             "estimatedDays": null,
-            "name": null,
-            "order": 7
+            "name": null
           },
           {
+            "order": 8,
             "description": "Para segundo WHV 462: completar 3 meses (88 dias) de trabalho em região designada (agricultura, pesca, mineração, construção, silvicultura)",
             "estimatedDays": null,
-            "name": null,
-            "order": 8
+            "name": null
           },
           {
+            "order": 9,
             "description": "Para terceiro WHV 462: completar 6 meses adicionais de trabalho em região designada",
             "estimatedDays": null,
-            "name": null,
-            "order": 9
+            "name": null
           }
         ]
       },
@@ -152,36 +152,36 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte brasileiro válido",
             "description": "Deve ter validade durante todo o período do visto (12 meses)",
-            "isCritical": true,
-            "name": "Passaporte brasileiro válido"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de saúde (exame médico)",
             "description": "Exame médico e raio-X via sistema eMedical com médico credenciado — se solicitado",
-            "isCritical": true,
-            "name": "Comprovante de saúde (exame médico)"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de fundos suficientes",
             "description": "Mínimo AUD 5.000 em conta bancária para sustento inicial",
-            "isCritical": true,
-            "name": "Comprovante de fundos suficientes"
+            "isCritical": true
           },
           {
+            "name": "Atestado de antecedentes criminais",
             "description": "Declaração de bons antecedentes — pode ser solicitado pelo Departamento",
-            "isCritical": true,
-            "name": "Atestado de antecedentes criminais"
+            "isCritical": true
           },
           {
+            "name": "Seguro de saúde (OVHC)",
             "description": "Overseas Visitor Health Cover recomendado — sem reciprocidade com Medicare público para brasileiros",
-            "isCritical": false,
-            "name": "Seguro de saúde (OVHC)"
+            "isCritical": false
           }
         ],
         "incomeRequirement": {
           "amount": 5000,
           "currency": "AUD",
-          "notes": "Valor mínimo em conta para sustento inicial na Austrália",
-          "period": "one-time"
+          "period": "one-time",
+          "notes": "Valor mínimo em conta para sustento inicial na Austrália"
         },
         "languageRequired": {
           "language": "Inglês",
@@ -230,52 +230,52 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Obter avaliação de habilidades (skill assessment) da autoridade competente para a sua ocupação (Engineers Australia, ACS, VETASSESS, AHPRA etc.)",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Alcançar pelo menos 65 pontos no teste de pontos do governo australiano",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Submeter Expressão de Interesse (EOI) via SkillSelect em immi.homeaffairs.gov.au",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Aguardar convite (invitation to apply) — emitido em rodadas mensais com base na pontuação mais alta",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Receber convite e submeter pedido formal dentro de 60 dias",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           },
           {
+            "order": 6,
             "description": "Pagar taxa de AUD 4.910 e submeter documentação completa",
             "estimatedDays": null,
-            "name": null,
-            "order": 6
+            "name": null
           },
           {
+            "order": 7,
             "description": "Realizar exame médico e providenciar certidão de antecedentes criminais",
             "estimatedDays": null,
-            "name": null,
-            "order": 7
+            "name": null
           },
           {
+            "order": 8,
             "description": "Aguardar decisão do Departamento (média de 12 a 24 meses)",
             "estimatedDays": null,
-            "name": null,
-            "order": 8
+            "name": null
           }
         ]
       },
@@ -283,39 +283,39 @@
       "requirements": {
         "documents": [
           {
+            "name": "Avaliação de habilidades (Skill Assessment)",
             "description": "Emitida pela autoridade competente para a ocupação na MLTSSL — obrigatória antes da EOI",
-            "isCritical": true,
-            "name": "Avaliação de habilidades (Skill Assessment)"
+            "isCritical": true
           },
           {
+            "name": "Resultado de teste de inglês",
             "description": "IELTS, PTE, TOEFL ou equivalente — nível mínimo Competente (IELTS 6.0 em cada banda)",
-            "isCritical": true,
-            "name": "Resultado de teste de inglês"
+            "isCritical": true
           },
           {
+            "name": "Passaporte válido",
             "description": "Passaporte brasileiro com validade suficiente",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Exame médico",
             "description": "Realizado por médico credenciado via eMedical após recebimento do convite",
-            "isCritical": true,
-            "name": "Exame médico"
+            "isCritical": true
           },
           {
+            "name": "Certidão de antecedentes criminais",
             "description": "De todos os países onde residiu por 12 meses ou mais nos últimos 10 anos",
-            "isCritical": true,
-            "name": "Certidão de antecedentes criminais"
+            "isCritical": true
           },
           {
+            "name": "Comprovantes de experiência profissional",
             "description": "Contratos, cartas do empregador, comprovantes de INSS ou equivalente",
-            "isCritical": true,
-            "name": "Comprovantes de experiência profissional"
+            "isCritical": true
           },
           {
+            "name": "Comprovantes de qualificações",
             "description": "Diplomas, histórico escolar, certificados profissionais",
-            "isCritical": true,
-            "name": "Comprovantes de qualificações"
+            "isCritical": true
           }
         ],
         "incomeRequirement": null,
@@ -334,14 +334,14 @@
         "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": {
+          "yearsRequired": 4,
           "conditions": [],
-          "summary": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)",
-          "yearsRequired": 4
+          "summary": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)"
         },
         "pathToResidency": {
+          "yearsRequired": null,
           "conditions": [],
-          "summary": "Visto já concede residência permanente",
-          "yearsRequired": null
+          "summary": "Visto já concede residência permanente"
         }
       }
     },
@@ -388,40 +388,40 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Empregador australiano obtém aprovação como Standard Business Sponsor (SBS) junto ao Departamento",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Empregador nomeia a posição de trabalho para o candidato e paga Nomination charge + SAF Levy",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Candidato recebe nominação aprovada e submete pedido de visto online via ImmiAccount",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Pagar taxa de AUD 3.210 e submeter documentação completa",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Realizar exame médico e providenciar certidão de antecedentes criminais",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           },
           {
+            "order": 6,
             "description": "Aguardar decisão — Specialist Skills: mediana de 7 dias; Core Skills: mediana de 21 dias",
             "estimatedDays": null,
-            "name": null,
-            "order": 6
+            "name": null
           }
         ]
       },
@@ -429,46 +429,46 @@
       "requirements": {
         "documents": [
           {
+            "name": "Nominação aprovada do empregador",
             "description": "Empregador deve ter SBS ativo e nominação aprovada para a posição",
-            "isCritical": true,
-            "name": "Nominação aprovada do empregador"
+            "isCritical": true
           },
           {
+            "name": "Passaporte válido",
             "description": "Passaporte brasileiro com validade adequada",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Comprovantes de qualificações e experiência",
             "description": "Diplomas, certificados e histórico profissional compatíveis com a ocupação nomeada",
-            "isCritical": true,
-            "name": "Comprovantes de qualificações e experiência"
+            "isCritical": true
           },
           {
+            "name": "Resultado de teste de inglês",
             "description": "IELTS 5.0 mínimo ou conforme exigido pela ocupação específica",
-            "isCritical": true,
-            "name": "Resultado de teste de inglês"
+            "isCritical": true
           },
           {
+            "name": "Exame médico",
             "description": "Realizado por médico credenciado via eMedical",
-            "isCritical": true,
-            "name": "Exame médico"
+            "isCritical": true
           },
           {
+            "name": "Certidão de antecedentes criminais",
             "description": "De todos os países relevantes de residência",
-            "isCritical": true,
-            "name": "Certidão de antecedentes criminais"
+            "isCritical": true
           },
           {
+            "name": "Contrato de trabalho ou carta de oferta",
             "description": "Salário deve atender ao TSMIT (AUD 76.515/ano em 2025-26)",
-            "isCritical": true,
-            "name": "Contrato de trabalho ou carta de oferta"
+            "isCritical": true
           }
         ],
         "incomeRequirement": {
           "amount": 76515,
           "currency": "AUD",
-          "notes": "TSMIT vigente até 30 jun 2026; Specialist Skills stream exige AUD 141.210+. É ilegal que o trabalhador pague o SAF Levy.",
-          "period": "yearly"
+          "period": "yearly",
+          "notes": "TSMIT vigente até 30 jun 2026; Specialist Skills stream exige AUD 141.210+. É ilegal que o trabalhador pague o SAF Levy."
         },
         "languageRequired": {
           "language": "Inglês",
@@ -485,14 +485,14 @@
         "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": {
+          "yearsRequired": 4,
           "conditions": [],
-          "summary": "Elegível após obter PR e cumprir 4 anos de residência permanente",
-          "yearsRequired": 4
+          "summary": "Elegível após obter PR e cumprir 4 anos de residência permanente"
         },
         "pathToResidency": {
+          "yearsRequired": 2,
           "conditions": [],
-          "summary": "Core Skills: via ENS subclasse 186 após 2 anos com mesmo empregador patrocinador; Specialist Skills: via visto permanente de habilidades especializadas",
-          "yearsRequired": 2
+          "summary": "Core Skills: via ENS subclasse 186 após 2 anos com mesmo empregador patrocinador; Specialist Skills: via visto permanente de habilidades especializadas"
         }
       }
     },
@@ -519,58 +519,58 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Verificar elegibilidade: 18-35 anos, passaporte brasileiro, sem filhos dependentes viajando junto",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Verificar a cota anual do Brasil no portal immi.homeaffairs.gov.au — Brasil tem cota limitada e pode estar pausada ou fechada durante o ano",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Criar conta no ImmiAccount em immi.homeaffairs.gov.au",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Submeter pedido online com documentação completa e pagar taxa de AUD 635",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Realizar exame médico e raio-X pelo sistema eMedical se solicitado pelo Departamento",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           },
           {
+            "order": 6,
             "description": "Aguardar aprovação (média de 4-8 semanas)",
             "estimatedDays": null,
-            "name": null,
-            "order": 6
+            "name": null
           },
           {
+            "order": 7,
             "description": "Entrar na Austrália dentro de 12 meses da aprovação para ativar o visto de 12 meses",
             "estimatedDays": null,
-            "name": null,
-            "order": 7
+            "name": null
           },
           {
+            "order": 8,
             "description": "Para segundo WHV 462: completar 3 meses (88 dias) de trabalho em região designada (agricultura, pesca, mineração, construção, silvicultura)",
             "estimatedDays": null,
-            "name": null,
-            "order": 8
+            "name": null
           },
           {
+            "order": 9,
             "description": "Para terceiro WHV 462: completar 6 meses adicionais de trabalho em região designada",
             "estimatedDays": null,
-            "name": null,
-            "order": 9
+            "name": null
           }
         ]
       },
@@ -578,36 +578,36 @@
       "requirements": {
         "documents": [
           {
+            "name": "Passaporte brasileiro válido",
             "description": "Deve ter validade durante todo o período do visto (12 meses)",
-            "isCritical": true,
-            "name": "Passaporte brasileiro válido"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de saúde (exame médico)",
             "description": "Exame médico e raio-X via sistema eMedical com médico credenciado — se solicitado",
-            "isCritical": true,
-            "name": "Comprovante de saúde (exame médico)"
+            "isCritical": true
           },
           {
+            "name": "Comprovante de fundos suficientes",
             "description": "Mínimo AUD 5.000 em conta bancária para sustento inicial",
-            "isCritical": true,
-            "name": "Comprovante de fundos suficientes"
+            "isCritical": true
           },
           {
+            "name": "Atestado de antecedentes criminais",
             "description": "Declaração de bons antecedentes — pode ser solicitado pelo Departamento",
-            "isCritical": true,
-            "name": "Atestado de antecedentes criminais"
+            "isCritical": true
           },
           {
+            "name": "Seguro de saúde (OVHC)",
             "description": "Overseas Visitor Health Cover recomendado — sem reciprocidade com Medicare público para brasileiros",
-            "isCritical": false,
-            "name": "Seguro de saúde (OVHC)"
+            "isCritical": false
           }
         ],
         "incomeRequirement": {
           "amount": 5000,
           "currency": "AUD",
-          "notes": "Valor mínimo em conta para sustento inicial na Austrália",
-          "period": "one-time"
+          "period": "one-time",
+          "notes": "Valor mínimo em conta para sustento inicial na Austrália"
         },
         "languageRequired": {
           "language": "Inglês",
@@ -656,40 +656,40 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Concluir pelo menos 2 anos de estudo presencial em instituição australiana de ensino superior (bachelor, master ou doutorado) registrada no CRICOS",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Verificar elegibilidade pela stream correta: Post-Higher Education Work (ensino superior) ou Post-Vocational Education Work (formação técnica)",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Submeter pedido online via ImmiAccount enquanto ainda possui visto de estudante válido ou dentro do período de grace após conclusão",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Pagar taxa de AUD 4.600 e submeter documentação completa",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Realizar exame médico se solicitado pelo Departamento",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           },
           {
+            "order": 6,
             "description": "Aguardar decisão (média de 3-6 meses)",
             "estimatedDays": null,
-            "name": null,
-            "order": 6
+            "name": null
           }
         ]
       },
@@ -697,34 +697,34 @@
       "requirements": {
         "documents": [
           {
+            "name": "Comprovante de conclusão do curso australiano",
             "description": "Certificado de graduação e histórico escolar de instituição CRICOS — obrigatório",
-            "isCritical": true,
-            "name": "Comprovante de conclusão do curso australiano"
+            "isCritical": true
           },
           {
+            "name": "Passaporte válido",
             "description": "Passaporte brasileiro com validade adequada",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Resultado de teste de inglês",
             "description": "IELTS, PTE, TOEFL ou Cambridge — mínimo Competente (IELTS 6.0 em cada banda) — dispensado se estudou 5+ anos em inglês",
-            "isCritical": true,
-            "name": "Resultado de teste de inglês"
+            "isCritical": true
           },
           {
+            "name": "Visto de estudante anterior válido ou recém-expirado",
             "description": "Pedido deve ser feito enquanto o visto de estudante está válido ou no período de grace",
-            "isCritical": true,
-            "name": "Visto de estudante anterior válido ou recém-expirado"
+            "isCritical": true
           },
           {
+            "name": "Exame médico",
             "description": "Pode ser solicitado pelo Departamento conforme perfil do candidato",
-            "isCritical": false,
-            "name": "Exame médico"
+            "isCritical": false
           },
           {
+            "name": "Certidão de antecedentes criminais",
             "description": "Pode ser solicitada dependendo do país de origem",
-            "isCritical": false,
-            "name": "Certidão de antecedentes criminais"
+            "isCritical": false
           }
         ],
         "incomeRequirement": null,
@@ -744,9 +744,9 @@
         "canWork": true,
         "pathToCitizenship": null,
         "pathToResidency": {
+          "yearsRequired": null,
           "conditions": [],
-          "summary": "Não confere PR diretamente, permite tempo para pontuar e solicitar vistos de habilidades (189, 190, 491) ou obter patrocinador (482)",
-          "yearsRequired": null
+          "summary": "Não confere PR diretamente, permite tempo para pontuar e solicitar vistos de habilidades (189, 190, 491) ou obter patrocinador (482)"
         }
       }
     },
@@ -783,58 +783,58 @@
         ],
         "steps": [
           {
+            "order": 1,
             "description": "Obter avaliação de habilidades (Skill Assessment) da autoridade competente para a ocupação na lista estadual ou MLTSSL/STSOL",
             "estimatedDays": null,
-            "name": null,
-            "order": 1
+            "name": null
           },
           {
+            "order": 2,
             "description": "Alcançar pelo menos 65 pontos — a nomeação estadual adiciona automaticamente 5 pontos extras",
             "estimatedDays": null,
-            "name": null,
-            "order": 2
+            "name": null
           },
           {
+            "order": 3,
             "description": "Submeter EOI via SkillSelect indicando os estados/territórios de interesse",
             "estimatedDays": null,
-            "name": null,
-            "order": 3
+            "name": null
           },
           {
+            "order": 4,
             "description": "Candidatar-se à nomeação estadual diretamente no portal do estado escolhido (cada um tem requisitos próprios)",
             "estimatedDays": null,
-            "name": null,
-            "order": 4
+            "name": null
           },
           {
+            "order": 5,
             "description": "Receber nomeação do estado — isso adiciona 5 pontos ao score no SkillSelect",
             "estimatedDays": null,
-            "name": null,
-            "order": 5
+            "name": null
           },
           {
+            "order": 6,
             "description": "Receber convite federal para solicitar o visto 190 e submeter pedido dentro de 60 dias",
             "estimatedDays": null,
-            "name": null,
-            "order": 6
+            "name": null
           },
           {
+            "order": 7,
             "description": "Pagar taxa de AUD 4.910 e submeter documentação completa",
             "estimatedDays": null,
-            "name": null,
-            "order": 7
+            "name": null
           },
           {
+            "order": 8,
             "description": "Realizar exame médico e providenciar certidão de antecedentes criminais",
             "estimatedDays": null,
-            "name": null,
-            "order": 8
+            "name": null
           },
           {
+            "order": 9,
             "description": "Aguardar decisão (média de 12 a 18 meses)",
             "estimatedDays": null,
-            "name": null,
-            "order": 9
+            "name": null
           }
         ]
       },
@@ -842,39 +842,39 @@
       "requirements": {
         "documents": [
           {
+            "name": "Avaliação de habilidades (Skill Assessment)",
             "description": "Emitida pela autoridade competente para a ocupação — obrigatória antes da EOI",
-            "isCritical": true,
-            "name": "Avaliação de habilidades (Skill Assessment)"
+            "isCritical": true
           },
           {
+            "name": "Nomeação estadual ou territorial",
             "description": "Aprovada pelo estado ou território australiano de destino — cada estado define critérios próprios",
-            "isCritical": true,
-            "name": "Nomeação estadual ou territorial"
+            "isCritical": true
           },
           {
+            "name": "Resultado de teste de inglês",
             "description": "IELTS, PTE, TOEFL ou equivalente — mínimo Competente (IELTS 6.0 em cada banda)",
-            "isCritical": true,
-            "name": "Resultado de teste de inglês"
+            "isCritical": true
           },
           {
+            "name": "Passaporte válido",
             "description": "Passaporte brasileiro com validade adequada",
-            "isCritical": true,
-            "name": "Passaporte válido"
+            "isCritical": true
           },
           {
+            "name": "Exame médico",
             "description": "Realizado por médico credenciado via eMedical após convite formal",
-            "isCritical": true,
-            "name": "Exame médico"
+            "isCritical": true
           },
           {
+            "name": "Certidão de antecedentes criminais",
             "description": "De todos os países relevantes de residência nos últimos 10 anos",
-            "isCritical": true,
-            "name": "Certidão de antecedentes criminais"
+            "isCritical": true
           },
           {
+            "name": "Comprovantes de experiência profissional e qualificações",
             "description": "Contratos, cartas de empregador, diplomas e histórico escolar",
-            "isCritical": true,
-            "name": "Comprovantes de experiência profissional e qualificações"
+            "isCritical": true
           }
         ],
         "incomeRequirement": null,
@@ -893,14 +893,14 @@
         "canChangeEmployer": true,
         "canWork": true,
         "pathToCitizenship": {
+          "yearsRequired": 4,
           "conditions": [],
-          "summary": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)",
-          "yearsRequired": 4
+          "summary": "Elegível após 4 anos de residência permanente (1 ano contínuo imediatamente anterior ao pedido)"
         },
         "pathToResidency": {
+          "yearsRequired": 2,
           "conditions": [],
-          "summary": "Visto já concede residência permanente, candidato se compromete a residir no estado nomeador por 2 anos",
-          "yearsRequired": 2
+          "summary": "Visto já concede residência permanente, candidato se compromete a residir no estado nomeador por 2 anos"
         }
       }
     }
