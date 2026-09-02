@@ -34,6 +34,7 @@ interface VisaType {
 }
 interface CountryData {
   visaTypes: VisaType[]
+  forBrazilians?: { schengenVisaFree?: boolean | null }
   generalRequirements?: {
     proofOfFunds?: Money | null
     minimumWage?: Money | null
@@ -105,6 +106,12 @@ function checkCountry(cc: string): string[] {
   if (hasMoney(pg.minimumWage) && !hasMoney(ng.minimumWage)) flags.push('generalRequirements.minimumWage zerado')
   if (pg.healthInsurance?.required === true && ng.healthInsurance?.required === false) {
     flags.push('generalRequirements.healthInsurance.required virou false')
+  }
+
+  // Isencao de visto Schengen para brasileiros e fato estavel: o LLM confunde
+  // "precisa de visto para trabalhar" com "precisa de visto para entrar".
+  if (prev.forBrazilians?.schengenVisaFree === true && next.forBrazilians?.schengenVisaFree === false) {
+    flags.push('forBrazilians.schengenVisaFree virou false')
   }
 
   // 4. perda de enriquecimento em vistos que continuam existindo

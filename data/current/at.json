@@ -2,7 +2,7 @@
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
     "notes": "Cidadãos brasileiros como cidadãos de país terceiro precisam de Red-White-Red Card e visto categoria D para trabalhar na Áustria",
-    "schengenVisaFree": false,
+    "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
   },

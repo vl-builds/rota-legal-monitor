@@ -2,7 +2,7 @@
   "forBrazilians": {
     "maxStayDaysAsTourist": 90,
     "notes": "Os brasileiros não são isentos de visto e necessitam de permissão de trabalho para trabalhar na França. As categorias de Talent Card apresentadas nesta página fornecem caminhos de imigração para trabalhadores qualificados.",
-    "schengenVisaFree": false,
+    "schengenVisaFree": true,
     "specialAgreements": [],
     "workPermitNeeded": true
   },
