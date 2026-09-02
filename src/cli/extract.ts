@@ -8,6 +8,7 @@ import { CountryDataSchema } from '@/extractors/schema'
 import type { CountryData, SourceRef, PolicyChange, MoneyAmount } from '@/extractors/schema'
 import { readCurrent, writeCurrent, archiveCurrent } from '@/storage/snapshot'
 import { reconcileVisaIds } from '@/extractors/reconcile-ids'
+import { carryForwardFromPrevious } from '@/extractors/carry-forward'
 import { hashContent, isUnchanged, updateHashes } from '@/lib/content-cache'
 import { log } from '@/lib/log'
 import type { ModelKey } from '@/lib/models'
@@ -83,10 +84,16 @@ function buildCountryData(
   merged: MergedData,
   sourceRefs: SourceRef[],
   config: SourceConfig,
+  previous: CountryData | null,
 ): CountryData {
   const fb = merged.forBrazilians ?? {}
   const gr = merged.generalRequirements ?? {}
   const hi = gr.healthInsurance
+  // O LLM frequentemente omite generalRequirements num ciclo e o valor viraria
+  // null/false, degradando o snapshot (era o que travava o guard no cron).
+  // Requisito geral so muda por mudanca de lei: na omissao, mantemos o anterior.
+  const pgr = previous?.generalRequirements
+  const phi = pgr?.healthInsurance
 
   const successCount = sourceRefs.filter((r) => r.status === 'ok').length
   const confidence = merged.visaTypes.length >= 2 ? 'medium' : 'low'
@@ -135,17 +142,20 @@ function buildCountryData(
       },
     })),
     generalRequirements: {
-      passportValidity: gr.passportValidity || 'Minimo 6 meses apos a data de entrada',
-      proofOfFunds: toMoney(gr.proofOfFunds),
-      minimumWage: toMoney(gr.minimumWage) ?? null,
+      passportValidity:
+        gr.passportValidity ||
+        pgr?.passportValidity ||
+        'Minimo 6 meses apos a data de entrada',
+      proofOfFunds: toMoney(gr.proofOfFunds) ?? pgr?.proofOfFunds ?? null,
+      minimumWage: toMoney(gr.minimumWage) ?? pgr?.minimumWage ?? null,
       healthInsurance: {
-        required: hi?.required ?? false,
-        mustBeLocal: hi?.mustBeLocal ?? false,
-        minimumCoverage: toMoney(hi?.minimumCoverage),
-        notes: hi?.notes ?? '',
+        required: hi?.required ?? phi?.required ?? false,
+        mustBeLocal: hi?.mustBeLocal ?? phi?.mustBeLocal ?? false,
+        minimumCoverage: toMoney(hi?.minimumCoverage) ?? phi?.minimumCoverage ?? null,
+        notes: hi?.notes || phi?.notes || '',
       },
-      cleanCriminalRecord: gr.cleanCriminalRecord ?? true,
-      vaccinations: gr.vaccinations ?? [],
+      cleanCriminalRecord: gr.cleanCriminalRecord ?? pgr?.cleanCriminalRecord ?? true,
+      vaccinations: gr.vaccinations ?? pgr?.vaccinations ?? [],
     },
     recentChanges: merged.recentChanges,
     reliability: {
@@ -285,7 +295,8 @@ async function extractCountry(countryCode: string, forceModel?: ModelKey): Promi
     }
   }
 
-  const countryData = buildCountryData(merged, sourceRefs, config)
+  const countryData = buildCountryData(merged, sourceRefs, config, previous)
+  carryForwardFromPrevious(countryData, previous)
   const validation = CountryDataSchema.safeParse(countryData)
 
   if (!validation.success) {

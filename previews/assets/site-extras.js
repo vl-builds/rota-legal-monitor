@@ -126,7 +126,7 @@
     lead.innerHTML =
       '<div class="rl-lead-text">' +
         '<p class="rl-lead-title">Receba o guia gratuito</p>' +
-        '<p class="rl-lead-sub">As mudancas nas regras de imigracao no seu email, todo mes. E o guia de inicio, gratis.</p>' +
+        '<p class="rl-lead-sub">As mudanças nas regras de imigração no seu email, todo mês. E o guia de início, grátis.</p>' +
       '</div>' +
       '<div>' +
         '<form class="rl-lead-form" novalidate>' +

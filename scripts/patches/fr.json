@@ -84,7 +84,7 @@
         "amount": 1867.02,
         "currency": "EUR",
         "period": "monthly",
-        "notes": "Salário mínimo (SMIC) de €11,88/h equivale a aprox. €1.801/mês bruto em 2024 — referência para maioria dos contratos"
+        "notes": "SMIC bruto 2026: €1.867,02/mês (01/06/2026)."
       },
       "languageRequired": null,
       "qualificationsRequired": [
@@ -284,7 +284,7 @@
         "amount": 1867.02,
         "currency": "EUR",
         "period": "monthly",
-        "notes": "Salário mínimo SMIC como referência — pode ser menor para algumas categorias temporárias"
+        "notes": "SMIC bruto 2026: €1.867,02/mês."
       },
       "languageRequired": null,
       "qualificationsRequired": []
@@ -378,7 +378,7 @@
         "amount": 2500,
         "currency": "EUR",
         "period": "total",
-        "notes": "€2.500 mínimos exigidos pelo consulado francês — confirmado na campanha 2026 (Recife). Demonstrar saldo em conta bancária no momento da solicitação. Fonte: br.diplomatie.gouv.fr + pvtistes.net 2026."
+        "notes": "Recursos mínimos para o período inicial — demonstrado em conta bancária no momento da solicitação"
       },
       "languageRequired": null,
       "qualificationsRequired": []
@@ -1044,7 +1044,7 @@
         "amount": 1867.02,
         "currency": "EUR",
         "period": "monthly",
-        "notes": "Salário mínimo SMIC como referência"
+        "notes": "SMIC bruto 2026: €1.867,02/mês."
       },
       "languageRequired": null,
       "qualificationsRequired": []

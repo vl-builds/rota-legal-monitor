@@ -36,7 +36,7 @@ export const ptSource: SourceConfig = {
       ignoreSSL: true,
     },
     {
-      url: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-independente-com-visto-de-residencia',
+      url: 'https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-exercicio-de-atividade-profissional-independente-com-visto-de-residencia-art-89-o-n-o1',
       contentType: 'visa-requirements',
       promptHint:
         'Autorizacao de residencia para atividade profissional independente (autonomo) em Portugal (Art. 89). Extraia: documentos exigidos (contrato de prestacao de servico, plano de negocio, NIF, etc.), comprovante de meios de subsistencia minimo em EUR/mes, taxa administrativa em EUR, prazo de processamento e requisitos especificos para profissionais liberais vs. empresarios.',

@@ -36,6 +36,18 @@ bun test                 # rodar testes
 
 Sempre rode `bun run typecheck` antes de finalizar qualquer alteração em código TypeScript.
 
+## Site (previews/) — visualizar e publicar
+
+Quando o pedido for "visualizar o site" / "ver a página", suba o preview local e abra no browser (extensão Chrome) — não assuma pelo código:
+
+```bash
+bun run dev:web          # wrangler pages dev — preview local de previews/
+bun run typecheck:web    # tsc do functions/ — rodar antes de deploy
+bun run deploy:web       # sync de dados + wrangler pages deploy previews (Cloudflare Pages, projeto rota-legal-area → rotalegal.pro)
+```
+
+Após `deploy:web`, verifique a página publicada em https://rotalegal.pro antes de declarar o deploy concluído.
+
 ## Convenções
 
 - **Nomes de arquivos:** kebab-case (`netherlands-source.ts`, não `NetherlandsSource.ts`)
